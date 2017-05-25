@@ -22,7 +22,7 @@
                                                         options:NSJSONReadingMutableContainers
                                                           error:&error];
     if(error) {
-        CCLog(@"\n_CC_JSON_FAIL_ \n",error);
+        CCLog(@"\n_CC_JSON_FAIL_ \n%@",error);
         return nil;
     }
     return dic;
