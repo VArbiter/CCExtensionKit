@@ -74,11 +74,6 @@ UIImage *ccImage(NSString *stringName , BOOL isCacheInMemory){
 
 NSString * ccLocalize(NSString * stringLocalKey , char *stringCommont){
     return NSLocalizedStringFromTableInBundle(stringLocalKey, @"LocalizableMain", [NSBundle mainBundle], nil);
-//    return NSLocalizedString(stringLocalKey, nil);
-}
-
-NSString * myLocalize(NSString * stringLocalKey, NSString * stringComment) {
-    return NSLocalizedStringFromTableInBundle(stringLocalKey, @"LocalizableMain", [NSBundle mainBundle], stringComment);
 }
 
 NSString * ccObjMerge(id obj , ... ) {

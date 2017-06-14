@@ -74,8 +74,6 @@ UIImage *ccImage(NSString *stringName , BOOL isCacheInMemory);
 
 NSString * ccLocalize(NSString * stringLocalKey , char *stringCommont);
 
-NSString * myLocalize(NSString * stringLocalKey, NSString * stringComment);
-
 /// 末尾需要添加 nil , C function 无法使用 NS_REQUIRES_NIL_TERMINATION , 不能使用集合类 .
 NSString * ccObjMerge(id obj , ... ) ;
 
