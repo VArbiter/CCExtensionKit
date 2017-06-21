@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CCCollectionViewDelegate : NSObject < UICollectionViewDelegate >
+@interface CCCollectionViewDelegate : NSObject < UICollectionViewDelegateFlowLayout >
 
 - (id < UICollectionViewDelegate >) initWithDefaultSettings ;
 

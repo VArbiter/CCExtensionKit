@@ -150,7 +150,7 @@
                    withIsFile : (BOOL) isFile
             withRenderingMode : (UIImageRenderingMode) mode {
     UIImage *image = isFile ? [UIImage imageWithContentsOfFile:stringImageName] : [UIImage imageNamed:stringImageName];
-    return [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] ;
+    return [image imageWithRenderingMode:mode] ;
 }
 + (instancetype) ccImageNamed : (NSString *) stringImageName
                    withIsFile : (BOOL) isFile
@@ -217,8 +217,7 @@
     long long lengthData = dataCompress.length;
     NSInteger i = 0;
     for (NSInteger j = 0 ; j < 10; j ++) {
-        if (lengthData / 1024.f > 300.f) {
-            ++ i ;
+        if (lengthData / 1024.f > floatQuality) {
             NSData *dataTemp = UIImageJPEGRepresentation(self , 1.f - (++ i) * .1f);
             dataResult = dataTemp;
             lengthData = dataResult.length;

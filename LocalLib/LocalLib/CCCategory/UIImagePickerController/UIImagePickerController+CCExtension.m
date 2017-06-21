@@ -12,10 +12,6 @@
 #import <objc/runtime.h>
 #import "CCCommonTools.h"
 
-const char * _CC_IMAGE_PICKER_BLOCK_COMPLETE_HANDLER_KEY_ ;
-const char * _CC_IMAGE_PICKER_BLOCK_CANCEL_KEY_;
-const char * _CC_IMAGE_PICKER_BLOCK_SAVE_ERROR_KEY ;
-
 @implementation UIImagePickerController (CCExtension)
 
 - (instancetype) ccImagePickerWithType : (CCImagePickerPresentType) typePresent
@@ -159,24 +155,24 @@ didFinishSavingWithError:(NSError *)error
 }
 
 - (void)setBlockCompleteHandler:(BlockCompleteHandler)blockCompleteHandler {
-    objc_setAssociatedObject(self, &_CC_IMAGE_PICKER_BLOCK_COMPLETE_HANDLER_KEY_, blockCompleteHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(blockCompleteHandler), blockCompleteHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (BlockCompleteHandler)blockCompleteHandler {
-    return objc_getAssociatedObject(self, &_CC_IMAGE_PICKER_BLOCK_COMPLETE_HANDLER_KEY_);
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setBlockCancelPick:(BlockCancelPick)blockCancelPick {
-    objc_setAssociatedObject(self, &_CC_IMAGE_PICKER_BLOCK_CANCEL_KEY_, blockCancelPick, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(blockCancelPick), blockCancelPick, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (BlockCancelPick)blockCancelPick {
-    return objc_getAssociatedObject(self, &_CC_IMAGE_PICKER_BLOCK_CANCEL_KEY_);
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setBlockSaveError:(BlockSaveError)blockSaveError {
-    objc_setAssociatedObject(self, &_CC_IMAGE_PICKER_BLOCK_SAVE_ERROR_KEY, blockSaveError, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(blockSaveError), blockSaveError, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (BlockSaveError)blockSaveError {
-    return objc_getAssociatedObject(self, &_CC_IMAGE_PICKER_BLOCK_SAVE_ERROR_KEY);
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 _CC_DETECT_DEALLOC_
