@@ -295,8 +295,15 @@
     }];
 }
 
-- (void) ccAddViewFromController : (UIViewController *) controller
+- (void) ccAddViewFromController : (NSObject *) controller
                   withIsAnimated : (BOOL) isAnimated {
+    if (![controllerT isKindOfClass:[UIViewController class]]) return;
+    Class clazz = [controllerT class];
+    for (id item in [UIApplication sharedApplication].delegate.window.subviews) {
+        if ([item isKindOfClass:clazz]) return;
+    }
+    
+    UIViewController *controller = (UIViewController *) controllerT;
     if (!controller) return ;
     if (isAnimated) {
         controller.view.alpha = .01f;
