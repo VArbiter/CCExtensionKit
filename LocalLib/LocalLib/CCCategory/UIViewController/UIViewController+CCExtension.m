@@ -295,7 +295,7 @@
     }];
 }
 
-- (void) ccAddViewFromController : (NSObject *) controller
+- (void) ccAddViewFromController : (NSObject *) controllerT
                   withIsAnimated : (BOOL) isAnimated {
     if (![controllerT isKindOfClass:[UIViewController class]]) return;
     Class clazz = [controllerT class];
