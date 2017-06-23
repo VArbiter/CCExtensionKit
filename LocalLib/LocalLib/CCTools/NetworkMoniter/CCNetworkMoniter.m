@@ -50,7 +50,7 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
 - (void) ccReachabilityMoniter {
     self.activityManager = [AFNetworkActivityIndicatorManager sharedManager];
     self.activityManager.enabled = YES;
-    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:_CC_NETWORK_STATUS_KEY_OLD_];
+    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:_CC_NETWORK_STATUS_KEY_NEW_];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _moniter.reachabilityManager = [AFNetworkReachabilityManager sharedManager];
     __weak typeof(self) pSelf = self;
@@ -76,8 +76,8 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
     
     [[NSNotificationCenter defaultCenter] postNotificationName:_CC_NETWORK_STATUS_CHANGE_NOTIFICATION_
                                                         object:nil
-                                                      userInfo:@{_CC_NETWORK_STATUS_KEY_NEW_ : @(status),
-                                                                 _CC_NETWORK_STATUS_KEY_OLD_ : @([[NSUserDefaults standardUserDefaults] integerForKey:_CC_NETWORK_STATUS_KEY_OLD_])}];
+                                                      userInfo:@{_CC_NETWORK_STATUS_KEY_NEW_ : @(environment),
+                                                                 _CC_NETWORK_STATUS_KEY_OLD_ : @([[NSUserDefaults standardUserDefaults] integerForKey:_CC_NETWORK_STATUS_KEY_NEW_])}];
     [[NSUserDefaults standardUserDefaults] setInteger:status
                                                forKey:_CC_NETWORK_STATUS_KEY_NEW_];
     [[NSUserDefaults standardUserDefaults] synchronize];
