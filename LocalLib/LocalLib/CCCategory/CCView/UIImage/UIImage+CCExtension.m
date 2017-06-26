@@ -95,6 +95,8 @@
     if (CGImageGetBitsPerPixel(imageRef) != 32
         || CGImageGetBitsPerComponent(imageRef) != 8
         || ((bitMapInfo & kCGBitmapAlphaInfoMask) != kCGBitmapAlphaInfoMask)) {
+#warning TODO >>>
+        /// 这里的重绘出问题了 ? 色彩失真严重
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale);
         [self drawAtPoint:CGPointZero];
         imageRef = UIGraphicsGetImageFromCurrentImageContext().CGImage;
@@ -158,6 +160,9 @@
             free(outBuffer.data);
             return self;
         }
+#warning TODO >>>
+        /// 这里的交换出问题了 ? 模糊不起效 .
+        
         void * temp = inBuffer.data;
         inBuffer.data = outBuffer.data;
         outBuffer.data = temp;
