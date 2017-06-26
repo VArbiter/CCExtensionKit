@@ -8,29 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger , CCNetworkEnvironment) {
-    CCNetworkEnvironmentUnknow = -1 ,
-    CCNetworkEnvironmentFail = 0 ,
-    CCNetworkEnvironmentWLAN = 1 ,
-    CCNetworkEnvironmentWIFI = 2 ,
+typedef NS_ENUM(NSInteger , CCNetworkType) {
+    CCNetworkTypeUnknow = -1 ,
+    CCNetworkTypeFail = 0 ,
+    CCNetworkTypeWLAN = 1 ,
+    CCNetworkTypeWIFI = 2 ,
     
-    CCNetworkEnvironment2G = 3 ,
-    CCNetworkEnvironment3G = 4 ,
-    CCNetworkEnvironment4G = 5 ,
+    CCNetworkType2G = 3 ,
+    CCNetworkType3G = 4 ,
+    CCNetworkType4G = 5 ,
     // 5G ?
 };
 
-typedef NS_ENUM(NSInteger , CCNetworkEnvironmentType) {
-    CCNetworkEnvironmentTypeStrong = 0,
-    CCNetworkEnvironmentTypeWeak ,
-    CCNetworkEnvironmentTypeNotConnected 
+typedef NS_ENUM(NSInteger , CCNetworkEnvironment) {
+    CCNetworkEnvironmentStrong = 0,
+    CCNetworkEnvironmentWeak ,
+    CCNetworkEnvironmentNotConnected
 };
 
 @interface CCNetworkMoniter : NSObject
 
 + (instancetype) sharedNetworkMoniter ;
 
-- (CCNetworkEnvironmentType) ccEnvironmentType ;
+- (CCNetworkEnvironment) ccEnvironmentType ;
 
 extern NSString * const _CC_NETWORK_STATUS_CHANGE_NOTIFICATION_ ;
 extern NSString * const _CC_NETWORK_STATUS_KEY_NEW_ ;

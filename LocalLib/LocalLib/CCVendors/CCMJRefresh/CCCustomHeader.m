@@ -11,6 +11,7 @@
 #import "UIView+CCExtension.h"
 #import "UILabel+CCExtension.h"
 #import "CCCommonDefine.h"
+#import "CCCommonTools.h"
 
 @interface CCCustomHeader ()
 

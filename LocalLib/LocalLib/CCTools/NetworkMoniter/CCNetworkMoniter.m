@@ -32,7 +32,7 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
 
 - (void) ccReachabilityMoniter ;
 
-- (CCNetworkEnvironment) ccCaptureCurrentEnvironmentWithStatus : (AFNetworkReachabilityStatus) status ;
+- (CCNetworkType) ccCaptureCurrentEnvironment : (AFNetworkReachabilityStatus) status ;
 
 @end
 
@@ -55,24 +55,24 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
     _moniter.reachabilityManager = [AFNetworkReachabilityManager sharedManager];
     __weak typeof(self) pSelf = self;
     [_moniter.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        [pSelf ccCaptureCurrentEnvironmentWithStatus:status];
+        [pSelf ccCaptureCurrentEnvironment:status];
     }];
     [_moniter.reachabilityManager startMonitoring];
 }
 
-- (CCNetworkEnvironment) ccCaptureCurrentEnvironmentWithStatus : (AFNetworkReachabilityStatus) status {
+- (CCNetworkType) ccCaptureCurrentEnvironment : (AFNetworkReachabilityStatus) status {
     NSString *stringAccess = self.netwotkInfo.currentRadioAccessTechnology ;
-    CCNetworkEnvironment environment = CCNetworkEnvironmentUnknow ;
+    CCNetworkType environment = CCNetworkTypeUnknow ;
     if ([[UIDevice currentDevice] systemVersion].floatValue > 7.f) {
         if ([self.arrayString_4G containsObject:stringAccess])
-            environment = CCNetworkEnvironment4G;
+            environment = CCNetworkType4G;
         else if ([self.arrayString_3G containsObject:stringAccess])
-            environment = CCNetworkEnvironment3G;
+            environment = CCNetworkType3G;
         else if ([self.arrayString_2G containsObject:stringAccess])
-            environment = CCNetworkEnvironment2G;
+            environment = CCNetworkType2G;
         
     }
-    else environment = (CCNetworkEnvironment) status;
+    else environment = (CCNetworkType) status;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:_CC_NETWORK_STATUS_CHANGE_NOTIFICATION_
                                                         object:nil
@@ -84,15 +84,15 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
     return environment;
 }
 
-- (CCNetworkEnvironmentType) ccEnvironmentType {
+- (CCNetworkEnvironment) ccEnvironmentType {
     NSInteger integerStatus = [[NSUserDefaults standardUserDefaults] integerForKey:_CC_NETWORK_STATUS_KEY_NEW_];
     if (integerStatus <= 0)
-        return CCNetworkEnvironmentTypeNotConnected;
+        return CCNetworkEnvironmentNotConnected;
     if (integerStatus == 1 || integerStatus == 3 || integerStatus == 4)
-        return CCNetworkEnvironmentTypeWeak;
+        return CCNetworkEnvironmentWeak;
     if (integerStatus == 2 || integerStatus == 5)
-        return CCNetworkEnvironmentTypeStrong;
-    return CCNetworkEnvironmentTypeStrong;
+        return CCNetworkEnvironmentStrong;
+    return CCNetworkEnvironmentStrong;
 }
 
 #pragma mark - Getter

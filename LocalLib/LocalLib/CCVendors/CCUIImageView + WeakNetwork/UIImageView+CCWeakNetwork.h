@@ -11,7 +11,7 @@
 @interface UIImageView (CCWeakNetwork)
 
 // 弱网不下载图片 .
-- (void) ccSDImageWithLink : (NSString *) stringLik
-           withHolderImage : (NSString *) stringImageName ;
+- (void) ccSDImage : (NSString *) stringLik
+       holderImage : (NSString *) stringImageName ;
 
 @end

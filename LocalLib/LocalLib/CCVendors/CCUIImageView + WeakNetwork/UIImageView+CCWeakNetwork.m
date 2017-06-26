@@ -7,16 +7,17 @@
 //
 
 #import "UIImageView+CCWeakNetwork.h"
-#import "CCCommonDefine.h"
+
+#import "CCCommonTools.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CCNetworkMoniter.h"
 
 @implementation UIImageView (CCWeakNetwork)
 
-- (void) ccSDImageWithLink : (NSString *) stringLik
-           withHolderImage : (NSString *) stringImageName {
-    if ([CCNetworkMoniter sharedNetworkMoniter].ccEnvironmentType == CCNetworkEnvironmentTypeStrong) {
+- (void) ccSDImage : (NSString *) stringLik
+       holderImage : (NSString *) stringImageName {
+    if ([CCNetworkMoniter sharedNetworkMoniter].ccEnvironmentType == CCNetworkEnvironmentStrong) {
         [self sd_setImageWithURL:ccURL(stringLik, false)
                 placeholderImage:ccImage(stringImageName, YES)];
     }

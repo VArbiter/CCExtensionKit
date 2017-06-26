@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "LocalLib"
-    s.version      = "1.2.8"
+    s.version      = "2.0.2"
     s.summary      = "LocalLib."
 
     s.description  = <<-DESC
@@ -17,6 +17,8 @@ Pod::Spec.new do |s|
 
     s.source = { :path => "LocalLib"}
     s.source_files  = "LocalLib", "LocalLib/**/*"
+
+    s.frameworks = "Foundation" , "UIKit" , "AssetsLibrary" , "Photos" , "CoreGraphics" , "QuartzCore" , "SystemConfiguration" , "CoreTelephony"
 
     s.dependency 'MBProgressHUD', '~> 1.0.0'
     s.dependency 'SDWebImage', '~> 3.8.2'
