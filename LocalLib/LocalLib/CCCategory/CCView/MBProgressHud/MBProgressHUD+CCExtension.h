@@ -81,5 +81,5 @@ typedef NS_ENUM(NSInteger , CCHudType) {
                              with : (UIView *) view ;
 + (instancetype) ccDefaultSetting : (CCHudType) type
                              with : (UIView *) view
-                             with : (BOOL) isIndicatorEnable ;
+                isIndicatorEnable : (BOOL) isIndicatorEnable ;
 @end

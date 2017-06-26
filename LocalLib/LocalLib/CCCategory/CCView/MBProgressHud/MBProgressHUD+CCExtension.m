@@ -177,7 +177,7 @@
                             type : (CCHudType) type {
     MBProgressHUD *hud = [MBProgressHUD ccDefaultSetting:type
                                                     with:view
-                                                    with:YES];
+                                       isIndicatorEnable:YES];
     hud.label.text = stringTitle;
     hud.detailsLabel.text = stringMessage;
     if (floatDelay > 0) {
@@ -196,12 +196,12 @@
                              with : (UIView *) view {
     return [self ccDefaultSetting:type
                              with:view
-                             with:false];
+                isIndicatorEnable:false];
 }
 
 + (instancetype) ccDefaultSetting : (CCHudType) type
                              with : (UIView *) view
-                             with : (BOOL) isIndicatorEnable {
+                isIndicatorEnable : (BOOL) isIndicatorEnable ; {
     if (!view) view = UIApplication.sharedApplication.delegate.window ;
     if (!view) view = UIApplication.sharedApplication.keyWindow ;
     
