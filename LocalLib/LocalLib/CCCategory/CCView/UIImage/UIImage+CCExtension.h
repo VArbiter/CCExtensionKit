@@ -24,6 +24,8 @@ typedef NS_ENUM(NSInteger , CCImageType) {
 @property (nonatomic , readonly) UIImage * gaussianImageAcc ;
 @property (nonatomic , readonly) UIImage * gaussianImageCI ;
 
+- (CGSize) ccZoom : (CGFloat) floatScale ;
+
 + (instancetype) ccGenerate : (UIColor *) color;
 + (instancetype) ccGenerate : (UIColor *)color
                        size : (CGFloat) floatSize ;

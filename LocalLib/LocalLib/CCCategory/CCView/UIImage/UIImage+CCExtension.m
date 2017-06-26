@@ -31,6 +31,16 @@
     return self.size.height;
 }
 
+- (CGSize) ccZoom : (CGFloat) floatScale {
+    if (floatScale > .0f) {
+        CGFloat ratio = self.height / self.width;
+        CGFloat ratioWidth = self.width * floatScale;
+        CGFloat ratioHeight = ratioWidth * ratio;
+        return CGSizeMake(ratioWidth, ratioHeight);
+    }
+    return self.size;
+}
+
 + (instancetype) ccGenerate : (UIColor *) color {
     return [self ccGenerate:color
                        size:.0f];
@@ -94,31 +104,19 @@
     if (!imageRef) return self;
     
     vImage_Buffer inBuffer, outBuffer;
-    vImage_Error error;
-    
-//    void *pixelBuffer;
-    
-    CGDataProviderRef inProvider = CGImageGetDataProvider(imageRef);
-    CFDataRef inBitmapData = CGDataProviderCopyData(inProvider);
     
     inBuffer.width = CGImageGetWidth(imageRef);
     inBuffer.height = CGImageGetHeight(imageRef);
     inBuffer.rowBytes = CGImageGetBytesPerRow(imageRef);
     
-//    inBuffer.data = (void*)CFDataGetBytePtr(inBitmapData);
-    
-//    pixelBuffer = malloc(CGImageGetBytesPerRow(imageRef) *
-//                         CGImageGetHeight(imageRef));
-    
-//    if(pixelBuffer == NULL)
-//        CCLog(@"No pixelbuffer");
-    
-//    outBuffer.data = pixelBuffer;
     outBuffer.width = CGImageGetWidth(imageRef);
     outBuffer.height = CGImageGetHeight(imageRef);
     outBuffer.rowBytes = CGImageGetBytesPerRow(imageRef);
     
-    NSUInteger bytes = CGImageGetBytesPerRow(imageRef) * CGImageGetHeight(imageRef);
+    CGDataProviderRef inProvider = CGImageGetDataProvider(imageRef);
+    CFDataRef inBitmapData = CGDataProviderCopyData(inProvider);
+    
+    NSUInteger bytes = outBuffer.rowBytes * outBuffer.height;
     inBuffer.data = malloc(bytes);
     outBuffer.data = malloc(bytes);
     
@@ -128,26 +126,23 @@
         return self;
     }
     
-    void * tempBuffer = malloc(vImageBoxConvolve_ARGB8888(&inBuffer,
-                                                          &outBuffer,
+    void * tempBuffer = malloc(vImageBoxConvolve_ARGB8888(&outBuffer,
+                                                          &inBuffer,
                                                           NULL,
                                                           0,
                                                           0,
                                                           boxSize,
                                                           boxSize,
                                                           NULL,
-                                                          kvImageEdgeExtend));
-    
-//    if (error) {
-//        CCLog(@"error from convolution %ld", error);
-//    }
+                                                          kvImageEdgeExtend | kvImageGetTempBufferSize));
+
     CGDataProviderRef providerRef = CGImageGetDataProvider(imageRef);
     CFDataRef dataInBitMap = CGDataProviderCopyData(providerRef);
     if (!dataInBitMap) return self;
     
     memcpy(outBuffer.data, CFDataGetBytePtr(dataInBitMap), MIN(bytes, CFDataGetLength(dataInBitMap)));
 
-    for (NSInteger i = 0; i< iCount; i ++) {
+    for (NSInteger i = 0; i < iCount; i ++) {
         vImage_Error error = vImageBoxConvolve_ARGB8888(&outBuffer,
                                                         &inBuffer,
                                                         tempBuffer,
@@ -163,10 +158,9 @@
             free(outBuffer.data);
             return self;
         }
-#warning TODO ....
-        void * temp = &inBuffer.data;
-        inBuffer.data = &outBuffer.data;
-        outBuffer.data = &temp;
+        void * temp = inBuffer.data;
+        inBuffer.data = outBuffer.data;
+        outBuffer.data = temp;
     }
     
     free(inBuffer.data);
@@ -182,7 +176,7 @@
                                              outBuffer.rowBytes,
                                              colorSpace,
                                              bitMapInfo);
-    if (CGColorGetAlpha(color.CGColor) > 0.0) {
+    if (color && CGColorGetAlpha(color.CGColor) > 0.0) {
         CGColorRef colorRef = CGColorCreateCopyWithAlpha(color.CGColor, _CC_GAUSSIAN_BLUR_TINT_ALPHA_);
         CGContextSetFillColor(ctx, CGColorGetComponents(colorRef));
         CGContextSetBlendMode(ctx, kCGBlendModePlusLighter);
