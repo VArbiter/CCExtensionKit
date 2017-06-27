@@ -160,6 +160,15 @@ NSURL * ccURL (NSString * stringURL , BOOL isLocalFile) {
     return isLocalFile ? [NSURL fileURLWithPath:stringURL] : [NSURL URLWithString:stringURL];
 }
 
+NSURLRequest * ccRequest(NSString * stringURL) {
+    return [NSURLRequest requestWithURL:ccURL(stringURL, false)];
+}
+
+NSMutableURLRequest * ccMRequest(NSString * stringURL) {
+    return [NSMutableURLRequest requestWithURL:ccURL(stringURL, false)];
+}
+
+
 UIImage *ccImageCache(NSString *stringName){
     return ccImage(stringName, YES);
 }

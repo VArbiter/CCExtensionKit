@@ -40,6 +40,10 @@
     return self.ccMAttributeString;
 }
 
+- (NSString *) ccAppendPath : (NSString *) string {
+    return [self stringByAppendingPathComponent:string];
+}
+
 - (NSDecimalNumber *) ccDecimalValue {
     return [NSDecimalNumber decimalNumberWithString:self];
 }

@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "LocalLib"
-    s.version      = "2.0.4"
+    s.version      = "2.0.7"
     s.summary      = "LocalLib."
 
     s.description  = <<-DESC

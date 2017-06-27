@@ -47,6 +47,10 @@ UIColor *ccRGBAColor(float floatR ,
 NSURL * ccURL (NSString * stringURL ,
                BOOL isLocalFile) ;
 
+NSURLRequest * ccRequest(NSString * stringURL) ;
+
+NSMutableURLRequest * ccMRequest(NSString * stringURL) ;
+
 UIImage *ccImageCache(NSString *stringName);
 
 UIImage *ccImage(NSString *stringName ,
