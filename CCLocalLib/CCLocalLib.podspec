@@ -2,12 +2,12 @@
 
 Pod::Spec.new do |s|
 
-    s.name         = "LocalLib"
-    s.version      = "2.0.7"
+    s.name         = "CCLocalLib"
+    s.version      = "2.0.9"
     s.summary      = "CCLocalLib."
 
     s.description  = <<-DESC
-    LocalLib for ym_sell_ios
+    CCLocalLib for project .
                    DESC
 
     s.author       = { "冯明庆" => "elwinfrederick@163.com" }
