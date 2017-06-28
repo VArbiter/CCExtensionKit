@@ -14,6 +14,7 @@
 
 @property (nonatomic , strong , readonly) NSString * stringPathComplete ;
 @property (nonatomic , strong , readonly) NSString * stringPathTempCache ;
+
 @property (nonatomic , strong , readonly) NSString * stringCacheFile ;
 
 @property (nonatomic , strong , readonly) NSFileManager *fileManager ;
@@ -39,7 +40,8 @@
 - (BOOL) ccMove : (NSString *) stringFilePath
              to : (NSString *) stringPath ;
 
-+ (NSString *) ccMD5 : (NSString *) stringFilePath ; // 普通文件 MD5 验证
-+ (NSString *) ccMD5L : (NSString *) stringFilePath ; // 大文件 MD5 验证
+- (NSString *) ccMD5 : (NSString *) stringFilePath ; // 普通文件 MD5 验证
+- (NSString *) ccMD5L : (NSString *) stringFilePath ; // 大文件 MD5 验证
+- (NSString *) ccMimeType : (NSString *) stringFilePath ; // 获得 文件 MimeType 类型
 
 @end

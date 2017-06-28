@@ -10,6 +10,7 @@
 #import "CCCommonDefine.h"
 
 #import <CommonCrypto/CommonDigest.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface CCFileManager () < NSCopying , NSMutableCopying >
 
@@ -137,8 +138,10 @@ static CCFileManager * _manager = nil;
     return false;
 }
 
-+ (NSString *) ccMD5 : (NSString *) stringFilePath {
-    //生成文件的MD5 校验的是压缩包的MD5  判断下载是否正确
+- (NSString *) ccMD5 : (NSString *) stringFilePath {
+    if (![self ccExists:stringFilePath]) {
+        return nil;
+    }
     NSFileHandle *handle = [NSFileHandle fileHandleForReadingAtPath:stringFilePath];
     if(!handle) return nil;
     
@@ -159,7 +162,10 @@ static CCFileManager * _manager = nil;
     }
     return string;
 }
-+ (NSString *) ccMD5L : (NSString *) stringFilePath {
+- (NSString *) ccMD5L : (NSString *) stringFilePath {
+    if (![self ccExists:stringFilePath]) {
+        return nil;
+    }
     
     NSString *(^block)(CFStringRef stringRefPath , size_t sizeChunk) = ^NSString *(CFStringRef stringRefPath , size_t sizeChunk) {
         // Declare needed variables
@@ -224,6 +230,17 @@ static CCFileManager * _manager = nil;
         return block(((__bridge CFStringRef)stringFilePath) , _CC_HASH_DEFAULT_CHUNK_SIZE_);
     }
     return nil;
+}
+
+- (NSString *) ccMimeType : (NSString *) stringFilePath {
+    if (![self ccExists:stringFilePath]) {
+        return nil;
+    }
+    NSString *stringExtension = stringFilePath.pathExtension;
+    CFStringRef stringContentRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,
+                                                                         (__bridge CFStringRef)(stringExtension),
+                                                                         NULL);
+    return CFBridgingRelease(stringContentRef);
 }
 
 #pragma mark - Private

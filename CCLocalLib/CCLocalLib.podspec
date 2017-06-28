@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "CCLocalLib"
-    s.version      = "2.1.1"
+    s.version      = "2.1.2"
     s.summary      = "CCLocalLib."
 
     s.description  = <<-DESC
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     s.source = { :path => "CCLocalLib"}
     s.source_files  = "CCLocalLib", "CCLocalLib/**/*"
 
-    s.frameworks = "Foundation" , "UIKit" , "AssetsLibrary" , "Photos" , "CoreGraphics" , "QuartzCore" , "SystemConfiguration" , "CoreTelephony"
+    s.frameworks = "Foundation" , "UIKit" , "AssetsLibrary" , "Photos" , "CoreGraphics" , "QuartzCore" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices"
 
     s.dependency 'MBProgressHUD', '~> 1.0.0'
     s.dependency 'SDWebImage', '~> 3.8.2'
