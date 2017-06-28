@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
     s.name         = "LocalLib"
     s.version      = "2.0.7"
-    s.summary      = "LocalLib."
+    s.summary      = "CCLocalLib."
 
     s.description  = <<-DESC
     LocalLib for ym_sell_ios
@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
     s.license  = "MIT"
     s.platform     = :ios, "8.0"
 
-    s.source = { :path => "LocalLib"}
-    s.source_files  = "LocalLib", "LocalLib/**/*"
+    s.source = { :path => "CCLocalLib"}
+    s.source_files  = "CCLocalLib", "CCLocalLib/**/*"
 
     s.frameworks = "Foundation" , "UIKit" , "AssetsLibrary" , "Photos" , "CoreGraphics" , "QuartzCore" , "SystemConfiguration" , "CoreTelephony"
 
