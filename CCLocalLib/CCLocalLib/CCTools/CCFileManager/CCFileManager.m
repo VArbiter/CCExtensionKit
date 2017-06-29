@@ -46,18 +46,18 @@ static CCFileManager * _manager = nil;
 }
 
 - (NSString *)stringPathComplete {
-    NSString *stringPath = [self.stringCacheFile stringByAppendingPathComponent:@"Downloader/Completed"];
+    NSString *stringPath = [self.stringCacheFolder stringByAppendingPathComponent:@"Downloader/Completed"];
     if ([self ccCreate:stringPath]) {
         return stringPath;
     }
-    return self.stringCacheFile;
+    return self.stringCacheFolder;
 }
 - (NSString *)stringPathTempCache {
-    NSString *stringPath = [self.stringCacheFile stringByAppendingPathComponent:@"Downloader/TempCache."];
+    NSString *stringPath = [self.stringCacheFolder stringByAppendingPathComponent:@"Downloader/TempCache."];
     if ([self ccCreate:stringPath]) {
         return stringPath;
     }
-    return self.stringCacheFile;
+    return self.stringCacheFolder;
 }
 
 - (NSFileManager *)fileManager {
@@ -240,12 +240,18 @@ static CCFileManager * _manager = nil;
     CFStringRef stringContentRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,
                                                                          (__bridge CFStringRef)(stringExtension),
                                                                          NULL);
-    return CFBridgingRelease(stringContentRef);
+    return CFBridgingRelease(stringContentRef); // 这种桥接 , 交个 ARC 释放 .
 }
 
 #pragma mark - Private
-- (NSString *)stringCacheFile {
+- (NSString *)stringCacheFolder {
     return NSSearchPathForDirectoriesInDomains(NSCachesDirectory , NSUserDomainMask, YES).firstObject;
+}
+- (NSString *)stringTempFolder {
+    return NSTemporaryDirectory();
+}
+- (NSString *)stringHomeFolder {
+    return NSHomeDirectory();
 }
 
 @end

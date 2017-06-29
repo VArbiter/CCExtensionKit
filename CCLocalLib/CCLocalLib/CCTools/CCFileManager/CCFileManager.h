@@ -15,7 +15,9 @@
 @property (nonatomic , strong , readonly) NSString * stringPathComplete ;
 @property (nonatomic , strong , readonly) NSString * stringPathTempCache ;
 
-@property (nonatomic , strong , readonly) NSString * stringCacheFile ;
+@property (nonatomic , strong , readonly) NSString * stringCacheFolder ;
+@property (nonatomic , strong , readonly) NSString * stringTempFolder ;
+@property (nonatomic , strong , readonly) NSString * stringHomeFolder ;
 
 @property (nonatomic , strong , readonly) NSFileManager *fileManager ;
 
