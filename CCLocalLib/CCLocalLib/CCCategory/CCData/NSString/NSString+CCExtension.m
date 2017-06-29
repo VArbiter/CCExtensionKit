@@ -15,6 +15,7 @@
 
 #import "NSObject+CCExtension.h"
 #import "CCCommonTools.h"
+#import "CCCommonDefine.h"
 
 @implementation NSString (CCExtension)
 
@@ -38,6 +39,19 @@
 }
 - (NSMutableAttributedString *)attributeValue {
     return self.ccMAttributeString;
+}
+
+- (NSString *(^)(NSString *))append {
+    ccWeakSelf;
+    return ^NSString *(NSString *string) {
+        return [pSelf stringByAppendingString:string];
+    };
+}
+- (NSString *(^)(NSString *))appendPath {
+    ccWeakSelf;
+    return ^NSString *(NSString *string) {
+        return [pSelf stringByAppendingPathComponent:string];
+    };
 }
 
 - (NSString *) ccAppendPath : (NSString *) string {

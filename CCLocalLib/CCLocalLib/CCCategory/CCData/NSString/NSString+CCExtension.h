@@ -21,6 +21,9 @@
 
 @property (nonatomic , readonly) NSMutableAttributedString *attributeValue ;
 
+@property (nonatomic , readonly , copy) NSString *(^appendPath)(NSString *string);
+@property (nonatomic , readonly , copy) NSString *(^append)(NSString *string);
+
 - (NSString *) ccAppendPath : (NSString *) string ;
 
 - (NSDecimalNumber *) ccDecimalValue ; // 仅限数字

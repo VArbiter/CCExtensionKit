@@ -13,6 +13,8 @@
 
 #import "CCCommonTools.h"
 
+#import <CCLocalLib/NSString+CCExtension.h>
+
 @interface ViewController ()
 
 @end
@@ -28,6 +30,8 @@
     imageView.size = [image ccZoom:0.5];
     
     [self.view addSubview:imageView];
+    
+    CCLog(@"1".append(@"2").appendPath(@"3"));
 }
 
 

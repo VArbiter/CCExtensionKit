@@ -10,6 +10,8 @@
 
 @interface NSArray (CCExtension)
 
+@property (nonatomic , readonly , copy) id(^valueAt)(NSInteger index) ;
+
 - (id) ccValue : (NSInteger) index ;
 
 @end
