@@ -30,6 +30,9 @@
 
 #pragma mark - Public
 
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 + (BOOL) ccHasAccessToAlbum {
     if (CC_Available(9.0)) {
         ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
@@ -52,6 +55,7 @@
         }
     }
 }
+#pragma clang diagnostic pop
 
 + (BOOL) ccHasAccessToCamera {
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
