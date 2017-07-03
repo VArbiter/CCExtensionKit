@@ -44,7 +44,7 @@
 
 @class UIAlertActionModel ;
 
-@interface UIAlertAction (CCExtension)
+@interface UIAlertAction (CCModel)
 
 @property (nonatomic , strong) UIAlertActionModel *modelAction ;
 

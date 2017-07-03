@@ -155,7 +155,7 @@
 
 #pragma mark - -----------------------------------------------------------------
 
-@implementation UIAlertAction (CCExtension)
+@implementation UIAlertAction (CCModel)
 
 - (void)setModelAction:(UIAlertActionModel *)modelAction {
     objc_setAssociatedObject(self, @selector(modelAction), modelAction, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
