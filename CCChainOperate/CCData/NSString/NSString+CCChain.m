@@ -119,15 +119,12 @@
     return [NSDecimalNumber decimalNumberWithString:self];
 }
 - (NSMutableAttributedString *)toAttribute {
-    if ([self isKindOfClass:[NSString class]])
-        if (self.isStringValued)
-            return [[NSMutableAttributedString alloc] initWithString:self];
-    return nil;
+    return [[NSMutableAttributedString alloc] initWithString:self.isStringValued];
 }
 - (NSDate *)toDate {
     NSString * string = NSPredicate.time().evaluate(self);
     if (!string.isStringValued) {
-        return nil;
+        return [NSDate date];
     }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -147,7 +144,7 @@
 - (NSString *)timeStickP {
     NSDate *date = self.toDate;
     if (!date) {
-        return nil;
+        return @"";
     }
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:date];
     
@@ -171,7 +168,7 @@
     }
 }
 - (NSString *)md5 {
-    if (!self.length) return nil;
+    if (!self.length) return @"";
     const char *cStr = [self.isStringValued UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, (CC_LONG) strlen(cStr), digest );

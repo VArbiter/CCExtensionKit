@@ -28,6 +28,7 @@
                 return (NSString *)self;
             }
         }
+        return @"";
     }
     return nil;
 }
@@ -40,17 +41,21 @@
                 return (NSArray *)self;
             }
         }
+        return @[].mutableCopy;
     }
     return nil;
 }
 
 - (NSDictionary *)isDictionaryValued {
-    if ([self isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *dictionary = (NSDictionary *) self;
-        if (dictionary && dictionary.allKeys.count && dictionary.allValues.count
-            && (dictionary.allKeys.count == dictionary.allValues.count)) {
-            return (NSDictionary *) self;
+    if (self) {
+        if ([self isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dictionary = (NSDictionary *) self;
+            if (dictionary && dictionary.allKeys.count && dictionary.allValues.count
+                && (dictionary.allKeys.count == dictionary.allValues.count)) {
+                return (NSDictionary *) self;
+            }
         }
+        return @{}.mutableCopy;
     }
     return nil;
 }
@@ -62,6 +67,7 @@
                 return (NSDecimalNumber *) self;
             }
         }
+        return [NSDecimalNumber decimalNumberWithString:@"0"];
     }
     return nil;
 }

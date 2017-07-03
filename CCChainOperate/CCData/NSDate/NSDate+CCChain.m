@@ -36,9 +36,9 @@
     ccWeakSelf;
     return ^NSDate *() {
         pSelf.bridge = ^id{
-            return @((self.firstWeekDayInThisMonth().toInt + self.day().toInt - 1) % 7);
+            return @((pSelf.firstWeekDayInThisMonth().toInt + pSelf.day().toInt - 1) % 7);
         };
-        return self;
+        return pSelf;
     };
 }
 
@@ -47,7 +47,7 @@
     return ^NSDate *() {
         pSelf.bridge = ^id{
             return [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay)
-                                                   fromDate:self];
+                                                   fromDate:pSelf];
         };
         return pSelf;
     };
