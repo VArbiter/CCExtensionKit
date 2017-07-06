@@ -140,9 +140,9 @@
 }
 + (instancetype) ccViewFromXib : (NSBundle *) bundle {
     if (!bundle) bundle = NSBundle.mainBundle;
-    return [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self)
-                                          owner:nil
-                                        options:nil] firstObject];
+    return [[bundle loadNibNamed:NSStringFromClass(self)
+                           owner:nil
+                         options:nil] firstObject];
 }
 
 - (void) ccAddTap : (dispatch_block_t) block {
