@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
     s.license  = "MIT"
     s.platform     = :ios, "8.0"
 
-    s.source = { :path => "CCLocalLib"}
+    s.source = { :git => "https://github.com/VArbiter/CCLocalLibrary.git" , :tag => s.version.to_s}
     s.source_files  = "CCLocalLib", "CCLocalLib/**/*"
 
     s.frameworks = "Foundation" , "UIKit" , "AssetsLibrary" , "Photos" , "CoreGraphics" , "QuartzCore" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices"

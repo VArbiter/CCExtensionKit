@@ -13,7 +13,8 @@
 
 #import "CCCommonTools.h"
 
-#import <CCLocalLib/NSString+CCExtension.h>
+//#import <CCLocalLib/NSString+CCExtension.h>
+#import "NSString+CCExtension.h"
 
 @interface ViewController ()
 
