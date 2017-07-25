@@ -10,12 +10,26 @@
 
 #import "CCCommonDefine.h"
 #import "CCCommonTools.h"
+#import "NSString+CCExtension.h"
 
 #import <CoreImage/CoreImage.h>
 #import <Accelerate/Accelerate.h>
 #import <CoreGraphics/CoreGraphics.h>
 
 @implementation UIImage (CCExtension)
+
++ (UIImage *(^)(__unsafe_unretained Class, NSString *))bundle {
+    return ^UIImage *(Class c , NSString *s) {
+        NSBundle *b = [NSBundle bundleForClass:c];
+        NSString *bName = b.infoDictionary[@"CFBundleNameKey"];
+        NSString *sc = ccStringFormat(@"%f",UIScreen.mainScreen.scale);
+        NSString *p = [b pathForResource:s.append(@"@").append(sc).append(@"x")
+                                  ofType:@"png"
+                             inDirectory:bName.append(@"bundle")];
+        return [UIImage imageWithContentsOfFile:p];
+    };
+}
+
 
 - (UIImage *)gaussianImageAcc{
     return self.ccGaussianImageAcc;
