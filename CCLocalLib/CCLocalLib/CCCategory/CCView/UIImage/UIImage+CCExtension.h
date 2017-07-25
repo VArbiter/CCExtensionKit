@@ -18,6 +18,9 @@ typedef NS_ENUM(NSInteger , CCImageType) {
 
 @interface UIImage (CCExtension)
 
+/// class 所在 bundle , 图片名称
+@property (nonatomic , class , copy , readonly) UIImage *(^bundle)(Class , NSString *);
+
 @property (nonatomic , readonly) CGFloat width ;
 @property (nonatomic , readonly) CGFloat height ;
 
