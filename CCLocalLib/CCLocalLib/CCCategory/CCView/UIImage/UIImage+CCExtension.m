@@ -25,7 +25,7 @@
         NSString *sc = ccStringFormat(@"%f",UIScreen.mainScreen.scale);
         NSString *p = [b pathForResource:s.append(@"@").append(sc).append(@"x")
                                   ofType:@"png"
-                             inDirectory:bName.append(@"bundle")];
+                             inDirectory:bName.append(@".bundle")];
         return [UIImage imageWithContentsOfFile:p];
     };
 }
