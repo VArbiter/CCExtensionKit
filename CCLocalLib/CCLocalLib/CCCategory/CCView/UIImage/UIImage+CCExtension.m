@@ -21,8 +21,8 @@
 + (UIImage *(^)(__unsafe_unretained Class, NSString *))bundle {
     return ^UIImage *(Class c , NSString *s) {
         NSBundle *b = [NSBundle bundleForClass:c];
-        NSString *bName = b.infoDictionary[@"CFBundleNameKey"];
-        NSString *sc = ccStringFormat(@"%f",UIScreen.mainScreen.scale);
+        NSString *bName = b.infoDictionary[@"CFBundleName"];
+        NSString *sc = ccStringFormat(@"%ld",(NSInteger)UIScreen.mainScreen.scale);
         NSString *p = [b pathForResource:s.append(@"@").append(sc).append(@"x")
                                   ofType:@"png"
                              inDirectory:bName.append(@".bundle")];
