@@ -18,8 +18,8 @@ typedef NS_ENUM(NSInteger , CCHudType) {
 @interface MBProgressHUD (CCChain)
 
 /// for userInteraction
-@property (nonatomic , assign , readonly) MBProgressHUD * enable ;
-@property (nonatomic , assign , readonly) MBProgressHUD * disable ;
+@property (nonatomic , copy , readonly) MBProgressHUD *(^enable)() ;
+@property (nonatomic , copy , readonly) MBProgressHUD *(^disable)() ;
 
 @property (nonatomic , class , copy , readonly) BOOL (^hasHud)();
 @property (nonatomic , class , copy , readonly) BOOL (^hasHudS)(UIView *view);
@@ -35,6 +35,5 @@ typedef NS_ENUM(NSInteger , CCHudType) {
 @property (nonatomic , copy , readonly) MBProgressHUD *(^type)(CCHudType type);
 @property (nonatomic , copy , readonly) MBProgressHUD *(^delay)(CGFloat delay);
 @property (nonatomic , copy , readonly) MBProgressHUD *(^complete)(void(^)());
-
 
 @end

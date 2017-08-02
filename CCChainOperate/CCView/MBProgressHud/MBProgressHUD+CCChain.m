@@ -10,4 +10,20 @@
 
 @implementation MBProgressHUD (CCChain)
 
+- (MBProgressHUD *(^)())enable {
+    __weak typeof(self) pSelf = self;
+    return ^MBProgressHUD * {
+        pSelf.userInteractionEnabled = false;
+        return pSelf;
+    };
+}
+
+- (MBProgressHUD *(^)())disable {
+    __weak typeof(self) pSelf = self;
+    return ^MBProgressHUD * {
+        pSelf.userInteractionEnabled = YES;
+        return pSelf;
+    };
+}
+
 @end
