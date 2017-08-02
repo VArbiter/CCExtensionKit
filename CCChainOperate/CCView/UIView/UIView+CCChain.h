@@ -8,8 +8,40 @@
 
 #import <UIKit/UIKit.h>
 
+struct CCPoint {
+    CGFloat x;
+    CGFloat y;
+};
+typedef struct CCPoint CCPoint;
+
+struct CCSize {
+    CGFloat width;
+    CGFloat height;
+};
+typedef struct CCSize CCSize;
+
+struct CCRect {
+    CCPoint origin;
+    CCSize size;
+};
+typedef struct CCRect CCRect;
+
+CCPoint CCPointMake(CGFloat x , CGFloat y);
+CCSize CCSizeMake(CGFloat width , CGFloat height);
+CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
+
+/// scaled width
+CGFloat CCScaleW(CGFloat w);
+CGFloat CCScaleH(CGFloat h);
+
+/// length scale
+CGFloat CCWScale(CGFloat w);
+CGFloat CCHScale(CGFloat h);
+
 @interface UIView (CCChain)
 
+/// set width && height for calculating , default : 750 , 1334
+@property (nonatomic , class , copy , readonly) void(^scaleSet)(CGFloat w , CGFloat h);
 @property (nonatomic , class , assign , readonly) CGFloat sWidth;
 @property (nonatomic , class , assign , readonly) CGFloat sHeight;
 
@@ -56,6 +88,12 @@
 @property (nonatomic , class , copy , readonly) UIView *(^fromXib)();
 @property (nonatomic , class , copy , readonly) UIView *(^fromXibC)(Class c);
 @property (nonatomic , class , copy , readonly) UIView *(^fromXibB)(NSBundle *bundle);
+
+/// add && remove (return itself)
+@property (nonatomic , copy , readonly) UIView *(^addSub)(UIView *view);
+@property (nonatomic , copy , readonly) void (^removeFrom)(void(^t)(UIView *viewSuper));
+@property (nonatomic , copy , readonly) UIView *(^bringToFront)(UIView *view);
+@property (nonatomic , copy , readonly) UIView *(^sendToBack)(UIView *view);
 
 /// for gesture actions
 @property (nonatomic , copy , readonly) UIView *(^tap)(void(^t)(UIView *v , UITapGestureRecognizer *gr));

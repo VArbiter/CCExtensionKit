@@ -9,7 +9,54 @@
 #import "UIView+CCChain.h"
 #import "UIGestureRecognizer+CCChain.h"
 
+static CGFloat _CC_DEFAULT_SCALE_WIDTH_ = 750.f;
+static CGFloat _CC_DEFAULT_SCALE_HEIGHT_ = 1334.f;
+
+#pragma mark - Struct
+CCPoint CCPointMake(CGFloat x , CGFloat y) {
+    CCPoint o;
+    o.x = x / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    o.y = y / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    return o;
+}
+
+CCSize CCSizeMake(CGFloat width , CGFloat height) {
+    CCSize s;
+    s.width = width / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    s.height = height / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    return s;
+}
+
+CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
+    CCRect r;
+    r.origin = CCPointMake(x, y);
+    r.size = CCSizeMake(width, height);
+    return r;
+}
+
+#pragma mark - Scale
+CGFloat CCScaleW(CGFloat w) {
+    return w / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+}
+CGFloat CCScaleH(CGFloat h) {
+    return h / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+}
+
+CGFloat CCWScale(CGFloat w) {
+    return w / _CC_DEFAULT_SCALE_WIDTH_;
+}
+CGFloat CCHScale(CGFloat h) {
+    return h / _CC_DEFAULT_SCALE_HEIGHT_;
+}
+
 @implementation UIView (CCChain)
+
++ (void (^)(CGFloat, CGFloat))scaleSet {
+    return ^(CGFloat w , CGFloat h) {
+        _CC_DEFAULT_SCALE_WIDTH_ = w;
+        _CC_DEFAULT_SCALE_HEIGHT_ = h;
+    };
+}
 
 #pragma mark - Setter
 - (void) setSize : (CGSize) size {
@@ -245,6 +292,38 @@
         return [[b loadNibNamed:NSStringFromClass(self)
                           owner:nil
                         options:nil] firstObject];
+    };
+}
+
+- (UIView *(^)(UIView *))addSub {
+    __weak typeof(self) pSelf = self;
+    return ^UIView *(UIView *v) {
+        [pSelf addSubview:v];
+        return pSelf;
+    };
+}
+
+- (void (^)(void (^)(UIView *)))removeFrom {
+    __weak typeof(self) pSelf = self;
+    return ^(void (^t)(UIView *)) {
+        if (t) t(pSelf.superview);
+        [pSelf removeFromSuperview];
+    };
+}
+
+- (UIView *(^)(UIView *))bringToFront {
+    __weak typeof(self) pSelf = self;
+    return ^UIView *(UIView *v) {
+        [pSelf bringSubviewToFront:v];
+        return pSelf;
+    };
+}
+
+- (UIView *(^)(UIView *))sendToBack {
+    __weak typeof(self) pSelf = self;
+    return ^UIView *(UIView *v) {
+        [pSelf sendSubviewToBack:v];
+        return pSelf;
     };
 }
 
