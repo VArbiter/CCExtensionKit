@@ -13,7 +13,7 @@
 
 @implementation NSArray (CCChain)
 
-- (id (^)(NSInteger))value {
+- (id (^)(NSInteger))valueAt {
     __weak typeof(self) pSelf = self;
     return ^id (NSInteger index) {
         if (index >= 0 && index < pSelf.count) {

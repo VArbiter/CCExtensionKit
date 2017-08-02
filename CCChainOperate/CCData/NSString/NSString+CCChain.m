@@ -28,7 +28,7 @@
     };
 }
 
-- (NSString *(^)(id))path {
+- (NSString *(^)(id))p {
     __weak typeof(self) pSelf = self;
     return ^NSString *(id value) {
         if ([value isKindOfClass:NSString.class]) {

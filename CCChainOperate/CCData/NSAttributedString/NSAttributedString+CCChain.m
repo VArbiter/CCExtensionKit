@@ -42,4 +42,28 @@
     };
 }
 
+- (NSMutableAttributedString *(^)(NSAttributedString *))appendS {
+    __weak typeof(self) pSelf = self;
+    return ^NSMutableAttributedString *(NSAttributedString * s) {
+        if (s && [s isKindOfClass:NSAttributedString.class]) {
+            NSMutableAttributedString *sc = pSelf.mutableCopy;
+            [sc appendAttributedString:s];
+            return sc;
+        }
+        return pSelf.mutableCopy;
+    };
+}
+
+- (NSMutableAttributedString *(^)(NSString *))appendC {
+    __weak typeof(self) pSelf = self;
+    return ^NSMutableAttributedString *(NSString *s) {
+        if (s.isStringValued) {
+            NSMutableAttributedString *sc = pSelf.mutableCopy;
+            [sc appendAttributedString:[[NSMutableAttributedString alloc] initWithString:s]];
+            return sc;
+        }
+        return pSelf.mutableCopy;
+    };
+}
+
 @end
