@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		244AFA8F04C1883DB480CE01 /* Pods_CCLocalLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C424E92BD9104CE08216FD9 /* Pods_CCLocalLibrary.framework */; };
+		370D74A71F322BBD00709A9F /* NSObject+CCProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D74A61F322BBD00709A9F /* NSObject+CCProtocol.m */; };
 		371F1DE51F0745F10055757B /* NSArray+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1D791F0745F10055757B /* NSArray+CCExtension.m */; };
 		371F1DE61F0745F10055757B /* NSDate+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1D7C1F0745F10055757B /* NSDate+CCExtension.m */; };
 		371F1DE71F0745F10055757B /* NSDecimalNumber+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1D7F1F0745F10055757B /* NSDecimalNumber+CCExtension.m */; };
@@ -67,6 +68,9 @@
 /* Begin PBXFileReference section */
 		06F3945F3B247350FA607CEF /* Pods-CCLocalLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCLocalLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary.release.xcconfig"; sourceTree = "<group>"; };
 		1C424E92BD9104CE08216FD9 /* Pods_CCLocalLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCLocalLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		370D74A41F322B7100709A9F /* CCChainOperateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCChainOperateProtocol.h; sourceTree = "<group>"; };
+		370D74A51F322BBD00709A9F /* NSObject+CCProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CCProtocol.h"; sourceTree = "<group>"; };
+		370D74A61F322BBD00709A9F /* NSObject+CCProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CCProtocol.m"; sourceTree = "<group>"; };
 		371F1D781F0745F10055757B /* NSArray+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCExtension.h"; sourceTree = "<group>"; };
 		371F1D791F0745F10055757B /* NSArray+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CCExtension.m"; sourceTree = "<group>"; };
 		371F1D7B1F0745F10055757B /* NSDate+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CCExtension.h"; sourceTree = "<group>"; };
@@ -196,6 +200,16 @@
 				06F3945F3B247350FA607CEF /* Pods-CCLocalLibrary.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		370D74A31F322B5A00709A9F /* CCProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				370D74A41F322B7100709A9F /* CCChainOperateProtocol.h */,
+				370D74A51F322BBD00709A9F /* NSObject+CCProtocol.h */,
+				370D74A61F322BBD00709A9F /* NSObject+CCProtocol.m */,
+			);
+			path = CCProtocol;
 			sourceTree = "<group>";
 		};
 		371F1D731F0745F10055757B /* CCLocalLib */ = {
@@ -595,6 +609,7 @@
 		371F1E091F0746FF0055757B /* CCChainOperate */ = {
 			isa = PBXGroup;
 			children = (
+				370D74A31F322B5A00709A9F /* CCProtocol */,
 				70471DDB1F31C647003B808F /* CCView */,
 				371F1E0A1F0747760055757B /* CCData */,
 			);
@@ -909,6 +924,7 @@
 				371F1DFB1F0745F10055757B /* UINavigationItem+CCSpacing.m in Sources */,
 				371F1E1A1F0762770055757B /* NSPredicate+CCChain.m in Sources */,
 				371F1DF31F0745F10055757B /* UICollectionView+CCExtension.m in Sources */,
+				370D74A71F322BBD00709A9F /* NSObject+CCProtocol.m in Sources */,
 				371F1DFA1F0745F10055757B /* UILabel+CCExtension.m in Sources */,
 				371F1E1E1F076D610055757B /* NSAttributedString+CCChain.m in Sources */,
 				371F1DFE1F0745F10055757B /* UITextField+CCExtension.m in Sources */,
