@@ -13,21 +13,20 @@ struct CCPoint {
     CGFloat y;
 };
 typedef struct CCPoint CCPoint;
+CCPoint CCPointMake(CGFloat x , CGFloat y);
 
 struct CCSize {
     CGFloat width;
     CGFloat height;
 };
 typedef struct CCSize CCSize;
+CCSize CCSizeMake(CGFloat width , CGFloat height);
 
 struct CCRect {
     CCPoint origin;
     CCSize size;
 };
 typedef struct CCRect CCRect;
-
-CCPoint CCPointMake(CGFloat x , CGFloat y);
-CCSize CCSizeMake(CGFloat width , CGFloat height);
 CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
 
 /// scaled width
