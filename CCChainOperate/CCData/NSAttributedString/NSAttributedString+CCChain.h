@@ -15,4 +15,7 @@
 @property (nonatomic , copy , readonly) NSMutableAttributedString *(^color)(UIColor *color);
 @property (nonatomic , copy , readonly) NSMutableAttributedString *(^operate)(NSMutableAttributedString * (^t)(NSMutableAttributedString * sender)) ;
 
+@property (nonatomic , copy , readonly) NSMutableAttributedString *(^appendS)(NSAttributedString *attributeString);
+@property (nonatomic , copy , readonly) NSMutableAttributedString *(^appendC)(NSString *string);
+
 @end

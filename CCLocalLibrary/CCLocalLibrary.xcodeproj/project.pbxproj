@@ -57,6 +57,7 @@
 		37C69E281ED6684D00531ED3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E261ED6684D00531ED3 /* LaunchScreen.storyboard */; };
 		37EDDC2E1F079CDD0034C273 /* NSDate+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDDC2D1F079CDD0034C273 /* NSDate+CCChain.m */; };
 		37EDDC321F079D020034C273 /* NSArray+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDDC311F079D020034C273 /* NSArray+CCChain.m */; };
+		70471DD61F31C142003B808F /* NSDictionary+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DD51F31C142003B808F /* NSDictionary+CCChain.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +161,8 @@
 		37EDDC301F079D020034C273 /* NSArray+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCChain.h"; sourceTree = "<group>"; };
 		37EDDC311F079D020034C273 /* NSArray+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CCChain.m"; sourceTree = "<group>"; };
 		3D5CA2FFF5E357F90100D989 /* Pods-CCLocalLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCLocalLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary.debug.xcconfig"; sourceTree = "<group>"; };
+		70471DD41F31C142003B808F /* NSDictionary+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CCChain.h"; sourceTree = "<group>"; };
+		70471DD51F31C142003B808F /* NSDictionary+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CCChain.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -589,6 +592,7 @@
 		371F1E0A1F0747760055757B /* CCData */ = {
 			isa = PBXGroup;
 			children = (
+				70471DD31F31C122003B808F /* NSDictionary */,
 				37EDDC2F1F079CF20034C273 /* NSArray */,
 				37EDDC2B1F079CDD0034C273 /* NSDate */,
 				371F1E1B1F076D4E0055757B /* NSAttributedString */,
@@ -696,6 +700,15 @@
 				37EDDC311F079D020034C273 /* NSArray+CCChain.m */,
 			);
 			path = NSArray;
+			sourceTree = "<group>";
+		};
+		70471DD31F31C122003B808F /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				70471DD41F31C142003B808F /* NSDictionary+CCChain.h */,
+				70471DD51F31C142003B808F /* NSDictionary+CCChain.m */,
+			);
+			path = NSDictionary;
 			sourceTree = "<group>";
 		};
 		8B7896DEA8F6C51E28F52700 /* Frameworks */ = {
@@ -864,6 +877,7 @@
 				371F1E021F0745F10055757B /* CCCommonTools.m in Sources */,
 				37EDDC321F079D020034C273 /* NSArray+CCChain.m in Sources */,
 				371F1E071F0745F10055757B /* UIImageView+CCWeakNetwork.m in Sources */,
+				70471DD61F31C142003B808F /* NSDictionary+CCChain.m in Sources */,
 				371F1E001F0745F10055757B /* UIViewController+CCExtension.m in Sources */,
 				371F1DE81F0745F10055757B /* NSDictionary+CCExtension.m in Sources */,
 				371F1DF91F0745F10055757B /* UIImageView+CCExtension.m in Sources */,
