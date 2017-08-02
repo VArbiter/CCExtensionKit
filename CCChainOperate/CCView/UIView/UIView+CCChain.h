@@ -96,6 +96,7 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , copy , readonly) UIView *(^sendToBack)(UIView *view);
 
 /// for gesture actions
+@property (nonatomic , copy , readonly) UIView *(^gesture)(UIGestureRecognizer *gr);
 @property (nonatomic , copy , readonly) UIView *(^tap)(void(^t)(UIView *v , UITapGestureRecognizer *gr));
 @property (nonatomic , copy , readonly) UIView *(^tapC)(NSInteger iCount , void(^t)(UIView *v , UITapGestureRecognizer *gr));
 @property (nonatomic , copy , readonly) UIView *(^press)(void(^t)(UIView *v , UILongPressGestureRecognizer *gr));

@@ -327,6 +327,14 @@ CGFloat CCHScale(CGFloat h) {
     };
 }
 
+- (UIView *(^)(UIGestureRecognizer *))gesture {
+    __weak typeof(self) pSelf = self;
+    return ^UIView *(UIGestureRecognizer *gr) {
+        if (gr) [pSelf addGestureRecognizer:gr];
+        return pSelf;
+    };
+}
+
 - (UIView *(^)(void (^)(UIView *, UITapGestureRecognizer *)))tap {
     __weak typeof(self) pSelf = self;
     return ^UIView *(void (^t)(UIView *, UITapGestureRecognizer *)) {
@@ -337,10 +345,9 @@ CGFloat CCHScale(CGFloat h) {
 - (UIView *(^)(NSInteger, void (^)(UIView *, UITapGestureRecognizer *)))tapC {
     __weak typeof(self) pSelf = self;
     return ^UIView *(NSInteger i, void(^t)(UIView * , UITapGestureRecognizer *)) {
-        [pSelf addGestureRecognizer:UITapGestureRecognizer.common().tapC(i, ^(UIGestureRecognizer *tapGR) {
+        return pSelf.gesture(UITapGestureRecognizer.common().tapC(i, ^(UIGestureRecognizer *tapGR) {
             if (t) t(pSelf , (UITapGestureRecognizer *)tapGR);
-        })];
-        return pSelf;
+        }));
     };
 }
 
@@ -354,10 +361,9 @@ CGFloat CCHScale(CGFloat h) {
 - (UIView *(^)(CGFloat, void (^)(UIView *, UILongPressGestureRecognizer *)))pressC {
     __weak typeof(self) pSelf = self;
     return ^UIView *(CGFloat f, void (^t)(UIView *, UILongPressGestureRecognizer *)) {
-        [pSelf addGestureRecognizer:UILongPressGestureRecognizer.common().pressC(f, ^(UIGestureRecognizer *pressGR) {
+        return pSelf.gesture(UILongPressGestureRecognizer.common().pressC(f, ^(UIGestureRecognizer *pressGR) {
             if (t) t(pSelf , (UILongPressGestureRecognizer *) pressGR);
-        })];
-        return pSelf;
+        }));
     };
 }
 
