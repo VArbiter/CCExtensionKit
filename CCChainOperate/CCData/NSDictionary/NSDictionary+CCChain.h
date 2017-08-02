@@ -16,6 +16,8 @@
 
 @property (nonatomic , copy , readonly) NSMutableDictionary *(^set)(id key , id value);
 @property (nonatomic , copy , readonly) NSMutableDictionary *(^setO)(id key , id value);
+
+// add it before do any other operations .
 @property (nonatomic , copy , readonly) NSMutableDictionary *(^observerS)(void(^t)(id key , id value));
 @property (nonatomic , copy , readonly) NSMutableDictionary *(^observerT)(void(^t)(id key , id value , NSArray * arrayAllKeys , NSArray * arrayAllValues));
 

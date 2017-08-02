@@ -10,7 +10,7 @@
 
 @interface NSArray (CCChain)
 
-@property (nonatomic , copy , readonly) id (^value)(NSInteger index) ;
+@property (nonatomic , copy , readonly) id (^valueAt)(NSInteger index) ;
 
 @end
 

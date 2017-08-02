@@ -59,6 +59,9 @@
 		37EDDC321F079D020034C273 /* NSArray+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDDC311F079D020034C273 /* NSArray+CCChain.m */; };
 		70471DD61F31C142003B808F /* NSDictionary+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DD51F31C142003B808F /* NSDictionary+CCChain.m */; };
 		70471DDA1F31C4E3003B808F /* NSNumber+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DD91F31C4E3003B808F /* NSNumber+CCChain.m */; };
+		70471DDF1F31C667003B808F /* UIView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DDE1F31C667003B808F /* UIView+CCChain.m */; };
+		70471DE31F31C892003B808F /* UIGestureRecognizer+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DE21F31C892003B808F /* UIGestureRecognizer+CCChain.m */; };
+		70471DE71F31D568003B808F /* MBProgressHUD+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DE61F31D568003B808F /* MBProgressHUD+CCChain.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,6 +169,12 @@
 		70471DD51F31C142003B808F /* NSDictionary+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CCChain.m"; sourceTree = "<group>"; };
 		70471DD81F31C4E3003B808F /* NSNumber+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+CCChain.h"; sourceTree = "<group>"; };
 		70471DD91F31C4E3003B808F /* NSNumber+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+CCChain.m"; sourceTree = "<group>"; };
+		70471DDD1F31C667003B808F /* UIView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CCChain.h"; sourceTree = "<group>"; };
+		70471DDE1F31C667003B808F /* UIView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CCChain.m"; sourceTree = "<group>"; };
+		70471DE11F31C892003B808F /* UIGestureRecognizer+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+CCChain.h"; sourceTree = "<group>"; };
+		70471DE21F31C892003B808F /* UIGestureRecognizer+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+CCChain.m"; sourceTree = "<group>"; };
+		70471DE51F31D568003B808F /* MBProgressHUD+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CCChain.h"; sourceTree = "<group>"; };
+		70471DE61F31D568003B808F /* MBProgressHUD+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CCChain.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -586,6 +595,7 @@
 		371F1E091F0746FF0055757B /* CCChainOperate */ = {
 			isa = PBXGroup;
 			children = (
+				70471DDB1F31C647003B808F /* CCView */,
 				371F1E0A1F0747760055757B /* CCData */,
 			);
 			name = CCChainOperate;
@@ -722,6 +732,43 @@
 				70471DD91F31C4E3003B808F /* NSNumber+CCChain.m */,
 			);
 			path = NSNumber;
+			sourceTree = "<group>";
+		};
+		70471DDB1F31C647003B808F /* CCView */ = {
+			isa = PBXGroup;
+			children = (
+				70471DE41F31D55B003B808F /* MBProgressHud */,
+				70471DE01F31C85B003B808F /* UIGestureRecognizer */,
+				70471DDC1F31C647003B808F /* UIView */,
+			);
+			path = CCView;
+			sourceTree = "<group>";
+		};
+		70471DDC1F31C647003B808F /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				70471DDD1F31C667003B808F /* UIView+CCChain.h */,
+				70471DDE1F31C667003B808F /* UIView+CCChain.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		70471DE01F31C85B003B808F /* UIGestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				70471DE11F31C892003B808F /* UIGestureRecognizer+CCChain.h */,
+				70471DE21F31C892003B808F /* UIGestureRecognizer+CCChain.m */,
+			);
+			path = UIGestureRecognizer;
+			sourceTree = "<group>";
+		};
+		70471DE41F31D55B003B808F /* MBProgressHud */ = {
+			isa = PBXGroup;
+			children = (
+				70471DE51F31D568003B808F /* MBProgressHUD+CCChain.h */,
+				70471DE61F31D568003B808F /* MBProgressHUD+CCChain.m */,
+			);
+			path = MBProgressHud;
 			sourceTree = "<group>";
 		};
 		8B7896DEA8F6C51E28F52700 /* Frameworks */ = {
@@ -882,13 +929,16 @@
 				371F1E061F0745F10055757B /* CCCustomHeader.m in Sources */,
 				371F1DFC1F0745F10055757B /* UIScrollView+CCExtension.m in Sources */,
 				37C69E201ED6684D00531ED3 /* ViewController.m in Sources */,
+				70471DDF1F31C667003B808F /* UIView+CCChain.m in Sources */,
 				371F1DE61F0745F10055757B /* NSDate+CCExtension.m in Sources */,
+				70471DE71F31D568003B808F /* MBProgressHUD+CCChain.m in Sources */,
 				371F1E051F0745F10055757B /* CCCustomFooter.m in Sources */,
 				371F1DE51F0745F10055757B /* NSArray+CCExtension.m in Sources */,
 				371F1E0E1F0747BA0055757B /* NSString+CCChain.m in Sources */,
 				70471DDA1F31C4E3003B808F /* NSNumber+CCChain.m in Sources */,
 				37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */,
 				371F1E021F0745F10055757B /* CCCommonTools.m in Sources */,
+				70471DE31F31C892003B808F /* UIGestureRecognizer+CCChain.m in Sources */,
 				37EDDC321F079D020034C273 /* NSArray+CCChain.m in Sources */,
 				371F1E071F0745F10055757B /* UIImageView+CCWeakNetwork.m in Sources */,
 				70471DD61F31C142003B808F /* NSDictionary+CCChain.m in Sources */,
