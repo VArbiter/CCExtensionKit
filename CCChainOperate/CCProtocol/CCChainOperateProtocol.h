@@ -11,5 +11,6 @@
 @protocol CCChainOperateProtocol < NSObject >
 
 - (instancetype) cc ;
++ (Class) cc;
 
 @end

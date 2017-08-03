@@ -39,6 +39,8 @@ CGFloat CCHScale(CGFloat h);
 
 @interface UIView (CCChain)
 
+@property (nonatomic , class , copy , readonly) UIView *(^common)(CCRect frame);
+
 /// set width && height for calculating , default : 750 , 1334
 @property (nonatomic , class , copy , readonly) void(^scaleSet)(CGFloat w , CGFloat h);
 @property (nonatomic , class , assign , readonly) CGFloat sWidth;
@@ -46,6 +48,9 @@ CGFloat CCHScale(CGFloat h);
 
 @property (nonatomic , assign) CGSize size;
 @property (nonatomic , assign) CGPoint origin;
+
+@property (nonatomic , assign) CCSize sizeC;
+@property (nonatomic , assign) CCPoint originC;
 
 @property (nonatomic , assign) CGFloat width;
 @property (nonatomic , assign) CGFloat height;

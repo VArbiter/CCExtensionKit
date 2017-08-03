@@ -58,32 +58,75 @@ CGFloat CCHScale(CGFloat h) {
     };
 }
 
++ (UIView *(^)(CCRect))common {
+    return ^UIView *(CCRect r) {
+        CGRect g = CGRectMake(r.origin.x, r.origin.y, r.size.width, r.size.height);
+        return [[UIView alloc] initWithFrame:g];
+    };
+}
+
 #pragma mark - Setter
 - (void) setSize : (CGSize) size {
     CGRect frame = self.frame;
     frame.size = size;
     self.frame = frame;
 }
+- (CGSize) size {
+    return self.frame.size;
+}
+
 - (void)setOrigin:(CGPoint)origin {
     CGRect frame = self.frame;
     frame.origin = origin;
     self.frame = frame;
 }
+- (CGPoint)origin {
+    return self.frame.origin;
+}
 
--(void)setWidth:(CGFloat)width{
+- (void)setSizeC:(CCSize)sizeC {
+    CGRect frame = self.frame;
+    frame.size = CGSizeMake(sizeC.width, sizeC.height);
+    self.frame = frame;
+}
+- (CCSize)sizeC {
+    return (CCSize){self.frame.size.width , self.frame.size.height};
+}
+
+- (void)setOriginC:(CCPoint)originC{
+    CGRect frame = self.frame;
+    frame.origin = CGPointMake(originC.x, originC.y);
+    self.frame = frame;
+}
+- (CCPoint)originC {
+    return (CCPoint){self.frame.origin.x , self.frame.origin.y};
+}
+
+- (void)setWidth:(CGFloat)width{
     CGRect frame = self.frame;
     frame.size.width = width;
     self.frame = frame;
 }
+- (CGFloat) width {
+    return self.frame.size.width;
+}
+
 - (void) setHeight : (CGFloat) height {
     CGRect frame = self.frame;
     frame.size.height = height;
     self.frame = frame;
 }
+- (CGFloat) height {
+    return self.frame.size.height;
+}
+
 - (void) setX : (CGFloat) x{
     CGRect frame = self.frame;
     frame.origin.x = x;
     self.frame = frame;
+}
+- (CGFloat) x {
+    return self.frame.origin.x;
 }
 
 - (void) setY : (CGFloat) y {
@@ -91,12 +134,22 @@ CGFloat CCHScale(CGFloat h) {
     frame.origin.y = y;
     self.frame = frame;
 }
+- (CGFloat) y {
+    return self.frame.origin.y;
+}
 
 - (void)setCenterX:(CGFloat)centerX {
     self.center = CGPointMake(centerX, self.center.y);
 }
+- (CGFloat)centerX {
+    return self.center.x;
+}
+
 - (void)setCenterY:(CGFloat)centerY {
     self.center = CGPointMake(self.center.x, centerY);
+}
+- (CGFloat)centerY {
+    return self.center.y;
 }
 
 - (void)setTop:(CGFloat)y {
@@ -104,58 +157,42 @@ CGFloat CCHScale(CGFloat h) {
     frame.origin.y = y;
     self.frame = frame;
 }
+- (CGFloat)top {
+    return self.frame.origin.y;
+}
+
 - (void)setLeft:(CGFloat)x {
     CGRect frame = self.frame;
     frame.origin.x = x;
     self.frame = frame;
 }
+- (CGFloat)left {
+    return self.frame.origin.x;
+}
+
 - (void)setBottom:(CGFloat)bottom {
     CGRect frame = self.frame;
     frame.origin.y = bottom - frame.size.height;
     self.frame = frame;
 }
+- (CGFloat)bottom {
+    return self.frame.origin.y + self.frame.size.height;
+}
+
 - (void)setRight:(CGFloat)right {
     CGRect frame = self.frame;
     frame.origin.x = right - frame.size.width;
     self.frame = frame;
 }
+- (CGFloat)right {
+    return self.frame.origin.x + self.frame.size.width;
+}
 
-#pragma mark - Getter
 + (CGFloat)sWidth {
     return UIScreen.mainScreen.bounds.size.width;
 }
 + (CGFloat)sHeight {
     return UIScreen.mainScreen.bounds.size.height;
-}
-
-- (CGSize) size {
-    return self.frame.size;
-}
-- (CGPoint)origin {
-    return self.frame.origin;
-}
-
-- (CGFloat) height {
-    return self.frame.size.height;
-}
-- (CGFloat) width {
-    return self.frame.size.width;
-}
-
-- (CGFloat) x {
-    return self.frame.origin.x;
-}
-
-- (CGFloat) y {
-    return self.frame.origin.y;
-}
-
-- (CGFloat)centerX {
-    return self.center.x;
-}
-
-- (CGFloat)centerY {
-    return self.center.y;
 }
 
 -(CGFloat)inCenterX{
@@ -166,19 +203,6 @@ CGFloat CCHScale(CGFloat h) {
 }
 -(CGPoint)inCenter{
     return CGPointMake(self.inCenterX, self.inCenterY);
-}
-
-- (CGFloat)top {
-    return self.frame.origin.y;
-}
-- (CGFloat)left {
-    return self.frame.origin.x;
-}
-- (CGFloat)bottom {
-    return self.frame.origin.y + self.frame.size.height;
-}
-- (CGFloat)right {
-    return self.frame.origin.x + self.frame.size.width;
 }
 
 #pragma mark - Margin
@@ -330,7 +354,10 @@ CGFloat CCHScale(CGFloat h) {
 - (UIView *(^)(UIGestureRecognizer *))gesture {
     __weak typeof(self) pSelf = self;
     return ^UIView *(UIGestureRecognizer *gr) {
-        if (gr) [pSelf addGestureRecognizer:gr];
+        if (gr) {
+            pSelf.userInteractionEnabled = YES;
+            [pSelf addGestureRecognizer:gr];
+        }
         return pSelf;
     };
 }

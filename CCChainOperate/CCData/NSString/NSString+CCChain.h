@@ -12,8 +12,8 @@
 
 @interface NSString (CCChain)
 
-@property (nonatomic , copy , readonly) NSString *(^s)(id value) ;
-@property (nonatomic , copy , readonly) NSString *(^p)(id value) ;
+@property (nonatomic , copy , readonly) NSString *(^s)(id value) ; // append string
+@property (nonatomic , copy , readonly) NSString *(^p)(id value) ; // append path
 @property (nonatomic , copy , readonly) NSString *(^timeSince1970)(NSTimeInterval interval); // yyyy-MM-dd HH:mm
 
 /// break has the topest priority .

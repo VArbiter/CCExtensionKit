@@ -13,5 +13,120 @@
 - (instancetype)cc {
     return self;
 }
++ (Class)cc {
+    return self;
+}
+
+@end
+
+#pragma mark - DATA
+
+@implementation NSNumber (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation NSDictionary (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation NSMutableDictionary (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation NSArray (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation NSMutableArray (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation NSDate (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation NSAttributedString (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation NSMutableAttributedString (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation NSPredicate (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation NSString (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
 
 @end
