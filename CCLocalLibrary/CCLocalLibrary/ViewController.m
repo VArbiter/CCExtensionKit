@@ -16,6 +16,10 @@
 //#import <CCLocalLib/NSString+CCExtension.h>
 #import "NSString+CCExtension.h"
 
+#import "NSObject+CCProtocol.h"
+#import "UIView+CCChain.h"
+#import "UIGestureRecognizer+CCChain.h"
+
 @interface ViewController ()
 
 @end
@@ -31,8 +35,17 @@
     imageView.size = [image ccZoom:0.5];
     
     [self.view addSubview:imageView];
+    imageView.tap(^(UIView *v, UITapGestureRecognizer *gr) {
+        
+    });
     
     CCLog(@"1".append(@"2").appendPath(@"3"));
+    self.view.cc.addSub(UIView.common(CCRectMake(0, 0, 100, 100)).color(UIColor.blackColor).tap(^(UIView *v, UITapGestureRecognizer *gr) {
+        v.hud().message(@"SHOWING").hide();
+    }));
+    
+    self.view.cc.hud().message(@"SHOWING");
+    
 }
 
 

@@ -351,6 +351,37 @@ CGFloat CCHScale(CGFloat h) {
     };
 }
 
+- (UIView *(^)(UIColor *))color {
+    __weak typeof(self) pSelf = self;
+    return ^UIView *(UIColor *c) {
+        pSelf.backgroundColor = c;
+        return pSelf;
+    };
+}
+
+- (UIView *(^)(CGFloat, BOOL))radius {
+    __weak typeof(self) pSelf = self;
+    return ^UIView *(CGFloat f , BOOL b) {
+        pSelf.layer.cornerRadius = f;
+        pSelf.layer.masksToBounds = b;
+        return pSelf;
+    };
+}
+
+- (UIView *(^)(UIRectCorner, CGFloat))edgeRound {
+    __weak typeof(self) pSelf = self;
+    return ^UIView *(UIRectCorner rc , CGFloat f) {
+        UIBezierPath *p = [UIBezierPath bezierPathWithRoundedRect:pSelf.bounds
+                                                byRoundingCorners:rc
+                                                      cornerRadii:CGSizeMake(CCScaleW(f), CCScaleH(f))];
+        CAShapeLayer *l = [[CAShapeLayer alloc] init];
+        l.frame = pSelf.bounds;
+        l.path = p.CGPath;
+        pSelf.layer.mask = l;
+        return pSelf;
+    };
+}
+
 - (UIView *(^)(UIGestureRecognizer *))gesture {
     __weak typeof(self) pSelf = self;
     return ^UIView *(UIGestureRecognizer *gr) {
@@ -391,6 +422,25 @@ CGFloat CCHScale(CGFloat h) {
         return pSelf.gesture(UILongPressGestureRecognizer.common().pressC(f, ^(UIGestureRecognizer *pressGR) {
             if (t) t(pSelf , (UILongPressGestureRecognizer *) pressGR);
         }));
+    };
+}
+
+@end
+
+#pragma mark - -----
+
+@implementation UIView (CCChain_Hud)
+
+- (MBProgressHUD *(^)())hud {
+    __weak typeof(self) pSelf = self;
+    return ^MBProgressHUD * {
+        return MBProgressHUD.showS(pSelf);
+    };
+}
+
++ (MBProgressHUD *(^)(UIView *))hudC {
+    return ^MBProgressHUD * (UIView *v){
+        return MBProgressHUD.showS(v);
     };
 }
 
