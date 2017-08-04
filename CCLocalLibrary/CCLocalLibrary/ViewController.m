@@ -16,6 +16,9 @@
 //#import <CCLocalLib/NSString+CCExtension.h>
 #import "NSString+CCExtension.h"
 
+#import "NSObject+CCProtocol.h"
+#import "UIView+CCChain.h"
+
 @interface ViewController ()
 
 @end
@@ -33,6 +36,10 @@
     [self.view addSubview:imageView];
     
     CCLog(@"1".append(@"2").appendPath(@"3"));
+}
+
++ (void) ts {
+
 }
 
 
