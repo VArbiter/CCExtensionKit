@@ -99,11 +99,26 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , copy , readonly) UIView *(^bringToFront)(UIView *view);
 @property (nonatomic , copy , readonly) UIView *(^sendToBack)(UIView *view);
 
+/// color && cornerRadius
+@property (nonatomic , copy , readonly) UIView *(^color)(UIColor *color);
+@property (nonatomic , copy , readonly) UIView *(^radius)(CGFloat radius , BOOL masks);
+@property (nonatomic , copy , readonly) UIView *(^edgeRound)(UIRectCorner rc , CGFloat radius);
+
 /// for gesture actions
 @property (nonatomic , copy , readonly) UIView *(^gesture)(UIGestureRecognizer *gr);
 @property (nonatomic , copy , readonly) UIView *(^tap)(void(^t)(UIView *v , UITapGestureRecognizer *gr));
 @property (nonatomic , copy , readonly) UIView *(^tapC)(NSInteger iCount , void(^t)(UIView *v , UITapGestureRecognizer *gr));
 @property (nonatomic , copy , readonly) UIView *(^press)(void(^t)(UIView *v , UILongPressGestureRecognizer *gr));
 @property (nonatomic , copy , readonly) UIView *(^pressC)(CGFloat fSeconds , void(^t)(UIView *v , UILongPressGestureRecognizer *gr));
+
+@end
+
+#pragma mark - -----
+#import "MBProgressHUD+CCChain.h"
+
+@interface UIView (CCChain_Hud)
+
+@property (nonatomic , copy , readonly) MBProgressHUD *(^hud)();
+@property (nonatomic , class , copy , readonly) MBProgressHUD *(^hudC)(UIView *view);
 
 @end

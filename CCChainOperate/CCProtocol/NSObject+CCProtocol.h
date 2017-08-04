@@ -45,3 +45,20 @@
 @end
 
 #pragma mark - VIEW
+#import <UIKit/UIKit.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+
+@interface UIView (CCProtocol)
+@end
+
+@interface UIGestureRecognizer (CCProtocol)
+@end
+
+@interface UITapGestureRecognizer (CCProtocol)
+@end
+
+@interface UILongPressGestureRecognizer (CCProtocol)
+@end
+
+@interface MBProgressHUD (CCProtocol)
+@end

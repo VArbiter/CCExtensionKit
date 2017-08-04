@@ -130,3 +130,59 @@
 }
 
 @end
+
+#pragma mark - View
+@implementation UIView (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation UIGestureRecognizer (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation UITapGestureRecognizer (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation UILongPressGestureRecognizer (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
+
+@implementation MBProgressHUD (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
