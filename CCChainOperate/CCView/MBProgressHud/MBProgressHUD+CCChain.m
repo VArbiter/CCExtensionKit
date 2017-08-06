@@ -20,7 +20,7 @@
         if (!v) v = UIApplication.sharedApplication.keyWindow;
         if (!v) v = UIApplication.sharedApplication.delegate.window;
         return [MBProgressHUD showHUDAddedTo:v
-                                    animated:YES].simple().disableT();
+                                    animated:YES].simple().enable();
     };
 }
 + (MBProgressHUD *(^)())generate {

@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger , CCHudChainType) {
 @property (nonatomic , class , copy , readonly) BOOL (^hasHud)();
 @property (nonatomic , class , copy , readonly) BOOL (^hasHudS)(UIView *view);
 
-/// for showing action , last step
+/// for showing action
 @property (nonatomic , copy , readonly) MBProgressHUD *(^show)(); // if needed , default showing after chain complete
 @property (nonatomic , copy , readonly) MBProgressHUD *(^hide)(); // default 2 seconds .
 @property (nonatomic , copy , readonly) MBProgressHUD *(^hideS)(NSTimeInterval interval);

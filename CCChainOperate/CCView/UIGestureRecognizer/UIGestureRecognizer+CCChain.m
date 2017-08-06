@@ -11,29 +11,15 @@
 
 static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY";
 
-@implementation UIGestureRecognizer (CCChain)
-
-- (UIGestureRecognizer *(^)(void (^)(UIGestureRecognizer *)))action {
-    __weak typeof(self) pSelf = self;
-    return ^UIGestureRecognizer *(void(^t)(UIGestureRecognizer *g)) {
-        if (t) objc_setAssociatedObject(pSelf, _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_, t, OBJC_ASSOCIATION_COPY_NONATOMIC);
-        return pSelf;
-    };
-}
-
-@end
-
-#pragma mark - -----
-
 @interface UIGestureRecognizer (CCChain_Assit)
 
-- (void) ccGestureAction : (UIGestureRecognizer *) sender ;
+- (void) ccGestureChainAction : (UIGestureRecognizer *) sender ;
 
 @end
 
 @implementation UIGestureRecognizer (CCChain_Assit)
 
-- (void)ccGestureAction:(UIGestureRecognizer *)sender {
+- (void)ccGestureChainAction:(UIGestureRecognizer *)sender {
     UIGestureRecognizer *(^t)(UIGestureRecognizer *) = objc_getAssociatedObject(self, _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) t(self);
@@ -44,6 +30,30 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
             });
         }
     }
+}
+
+@end
+
+#pragma mark - -----
+
+@implementation UIGestureRecognizer (CCChain)
+
+- (UIGestureRecognizer *(^)(void (^)(UIGestureRecognizer *)))action {
+    __weak typeof(self) pSelf = self;
+    return ^UIGestureRecognizer *(void(^t)(UIGestureRecognizer *g)) {
+        if (t) objc_setAssociatedObject(pSelf, _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_, t, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        return pSelf;
+    };
+}
+
+- (UIGestureRecognizer *(^)(id, void (^)(UIGestureRecognizer *)))target {
+    __weak typeof(self) pSelf = self;
+    return ^UIGestureRecognizer * (id target, void (^t)(UIGestureRecognizer *)) {
+        pSelf.action(t);
+        [pSelf addTarget:target
+                  action:@selector(ccGestureChainAction:)];
+        return pSelf;
+    };
 }
 
 @end
@@ -69,9 +79,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
     __weak typeof(self) pSelf = self;
     return ^UITapGestureRecognizer *(NSInteger i , void (^t)(UIGestureRecognizer *)) {
         pSelf.numberOfTapsRequired = i;
-        pSelf.action(t);
-        [pSelf addTarget:pSelf
-                  action:@selector(ccGestureAction:)];
+        pSelf.target(pSelf, t);
         return pSelf;
     };
 }
@@ -100,9 +108,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
     return ^UILongPressGestureRecognizer *(CGFloat f , void (^t)(UIGestureRecognizer *)) {
         pSelf.numberOfTapsRequired = 1;
         pSelf.minimumPressDuration = f;
-        pSelf.action(t);
-        [pSelf addTarget:pSelf
-                  action:@selector(ccGestureAction:)];
+        pSelf.target(pSelf, t);
         return pSelf;
     };
 }
