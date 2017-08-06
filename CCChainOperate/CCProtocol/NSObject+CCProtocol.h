@@ -48,17 +48,20 @@
 #import <UIKit/UIKit.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
-@interface UIView (CCProtocol)
+@interface UIView (CCProtocol) < CCChainOperateProtocol >
 @end
 
-@interface UIGestureRecognizer (CCProtocol)
+@interface UIGestureRecognizer (CCProtocol) < CCChainOperateProtocol >
 @end
 
-@interface UITapGestureRecognizer (CCProtocol)
+@interface UITapGestureRecognizer (CCProtocol) < CCChainOperateProtocol >
 @end
 
-@interface UILongPressGestureRecognizer (CCProtocol)
+@interface UILongPressGestureRecognizer (CCProtocol) < CCChainOperateProtocol >
 @end
 
-@interface MBProgressHUD (CCProtocol)
+@interface MBProgressHUD (CCProtocol) < CCChainOperateProtocol >
+@end
+
+@interface UIAlertController (CCProtocol) < CCChainOperateProtocol >
 @end

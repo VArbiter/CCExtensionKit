@@ -187,3 +187,14 @@
 }
 
 @end
+
+@implementation UIAlertController (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end

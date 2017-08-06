@@ -56,6 +56,7 @@
 		37C69E231ED6684D00531ED3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E211ED6684D00531ED3 /* Main.storyboard */; };
 		37C69E251ED6684D00531ED3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E241ED6684D00531ED3 /* Assets.xcassets */; };
 		37C69E281ED6684D00531ED3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E261ED6684D00531ED3 /* LaunchScreen.storyboard */; };
+		37DC7E3E1F36D6010071631B /* UIAlertController+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DC7E3D1F36D6010071631B /* UIAlertController+CCChain.m */; };
 		37EDDC2E1F079CDD0034C273 /* NSDate+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDDC2D1F079CDD0034C273 /* NSDate+CCChain.m */; };
 		37EDDC321F079D020034C273 /* NSArray+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDDC311F079D020034C273 /* NSArray+CCChain.m */; };
 		70471DD61F31C142003B808F /* NSDictionary+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DD51F31C142003B808F /* NSDictionary+CCChain.m */; };
@@ -164,6 +165,8 @@
 		37C69E241ED6684D00531ED3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37C69E271ED6684D00531ED3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37C69E291ED6684D00531ED3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37DC7E3C1F36D6010071631B /* UIAlertController+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+CCChain.h"; sourceTree = "<group>"; };
+		37DC7E3D1F36D6010071631B /* UIAlertController+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+CCChain.m"; sourceTree = "<group>"; };
 		37EDDC2C1F079CDD0034C273 /* NSDate+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CCChain.h"; sourceTree = "<group>"; };
 		37EDDC2D1F079CDD0034C273 /* NSDate+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CCChain.m"; sourceTree = "<group>"; };
 		37EDDC301F079D020034C273 /* NSArray+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCChain.h"; sourceTree = "<group>"; };
@@ -713,6 +716,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		37DC7E3B1F36D5E90071631B /* UIAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				37DC7E3C1F36D6010071631B /* UIAlertController+CCChain.h */,
+				37DC7E3D1F36D6010071631B /* UIAlertController+CCChain.m */,
+			);
+			path = UIAlertController;
+			sourceTree = "<group>";
+		};
 		37EDDC2B1F079CDD0034C273 /* NSDate */ = {
 			isa = PBXGroup;
 			children = (
@@ -752,6 +764,7 @@
 		70471DDB1F31C647003B808F /* CCView */ = {
 			isa = PBXGroup;
 			children = (
+				37DC7E3B1F36D5E90071631B /* UIAlertController */,
 				70471DE41F31D55B003B808F /* MBProgressHud */,
 				70471DE01F31C85B003B808F /* UIGestureRecognizer */,
 				70471DDC1F31C647003B808F /* UIView */,
@@ -928,6 +941,7 @@
 				371F1DFA1F0745F10055757B /* UILabel+CCExtension.m in Sources */,
 				371F1E1E1F076D610055757B /* NSAttributedString+CCChain.m in Sources */,
 				371F1DFE1F0745F10055757B /* UITextField+CCExtension.m in Sources */,
+				37DC7E3E1F36D6010071631B /* UIAlertController+CCChain.m in Sources */,
 				371F1DFD1F0745F10055757B /* UITableView+CCExtension.m in Sources */,
 				371F1E031F0745F10055757B /* CCFileManager.m in Sources */,
 				371F1DEE1F0745F10055757B /* NSString+CCExtension.m in Sources */,

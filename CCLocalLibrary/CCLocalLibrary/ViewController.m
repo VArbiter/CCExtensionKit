@@ -41,11 +41,12 @@
     });
     
     CCLog(@"1".append(@"2").appendPath(@"3"));
-    self.view.cc.addSub(UIView.common(CCRectMake(0, 0, 100, 100)).color(UIColor.blackColor).tap(^(UIView *v, UITapGestureRecognizer *gr) {
-        v.hud().message(@"SHOWING").hide();
-    }));
+    UIView *v = UIView.common(CCRectMake(0, 500, 100, 100)).color(UIColor.blackColor).tap(^(UIView *v, UITapGestureRecognizer *gr) {
+        self.view.cc.hud().message(@"SHOWING").hide();
+    });
+    self.view.cc.addSub(v);
     
-    self.view.cc.hud().message(@"SHOWING");
+//    self.view.cc.hud().message(@"SHOWING").type(CCHudChainTypeDarkDeep);
     
 }
 
