@@ -25,6 +25,8 @@
 
 @end
 
+#pragma mark - -----
+
 @interface UILongPressGestureRecognizer (CCChain)
 
 @property (nonatomic , class , copy , readonly) UILongPressGestureRecognizer *(^common)();

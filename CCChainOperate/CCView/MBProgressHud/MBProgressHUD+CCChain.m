@@ -75,22 +75,21 @@
     };
 }
 
-- (MBProgressHUD *(^)())hide {
+- (void (^)())hide {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD * {
-        return pSelf.hideS(2.f);
+    return ^{
+        pSelf.hideS(2.f);
     };
 }
-- (MBProgressHUD *(^)(NSTimeInterval))hideS {
+- (void (^)(NSTimeInterval))hideS {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD *(NSTimeInterval i) {
+    return ^(NSTimeInterval i) {
         pSelf.removeFromSuperViewOnHide = YES;
         if (i > .0f) {
             [pSelf hideAnimated:YES
                      afterDelay:i];
         }
         else [pSelf hideAnimated:YES];
-        return pSelf;
     };
 }
 
@@ -152,7 +151,27 @@
 - (MBProgressHUD *(^)(CGFloat))delay {
     __weak typeof(self) pSelf = self;
     return ^MBProgressHUD * (CGFloat f) {
-        return pSelf.hideS(f);
+        dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(f * NSEC_PER_SEC));
+        dispatch_after(t, dispatch_get_main_queue(), ^{
+            pSelf.show();
+        });
+        return pSelf;
+    };
+}
+
+- (MBProgressHUD *(^)(NSTimeInterval))grace {
+    __weak typeof(self) pSelf = self;
+    return ^MBProgressHUD *(NSTimeInterval i) {
+        pSelf.graceTime = i;
+        return pSelf;
+    };
+}
+
+- (MBProgressHUD *(^)(NSTimeInterval))min {
+    __weak typeof(self) pSelf = self;
+    return ^MBProgressHUD *(NSTimeInterval i) {
+        pSelf.minShowTime = i;
+        return pSelf;
     };
 }
 

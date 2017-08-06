@@ -132,6 +132,7 @@
 @end
 
 #pragma mark - View
+
 @implementation UIView (CCProtocol)
 
 - (instancetype)cc {
