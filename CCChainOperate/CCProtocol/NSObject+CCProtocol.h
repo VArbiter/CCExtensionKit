@@ -7,64 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCChainOperateProtocol.h"
+
+@protocol CCChainOperateProtocol < NSObject >
+
+- (instancetype) cc ;
++ (Class) cc;
+
+@end
 
 @interface NSObject (CCProtocol) < CCChainOperateProtocol >
 @end
 
-#pragma mark - DATA
-
-@interface NSNumber (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface NSDictionary (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface NSMutableDictionary (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface NSArray (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface NSMutableArray (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface NSDate (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface NSAttributedString (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface NSMutableAttributedString (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface NSPredicate (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface NSString (CCProtocol) < CCChainOperateProtocol >
-@end
-
-#pragma mark - VIEW
-#import <UIKit/UIKit.h>
-#import <MBProgressHUD/MBProgressHUD.h>
-
-@interface UIView (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface UIGestureRecognizer (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface UITapGestureRecognizer (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface UILongPressGestureRecognizer (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface MBProgressHUD (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface UIAlertController (CCProtocol) < CCChainOperateProtocol >
-@end
-
-@interface UIBarButtonItem (CCProtocol) < CCChainOperateProtocol >
-@end

@@ -58,6 +58,7 @@
 		37C69E281ED6684D00531ED3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E261ED6684D00531ED3 /* LaunchScreen.storyboard */; };
 		37DC7E3E1F36D6010071631B /* UIAlertController+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DC7E3D1F36D6010071631B /* UIAlertController+CCChain.m */; };
 		37DC7E421F36E1FF0071631B /* UIBarButtonItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DC7E411F36E1FF0071631B /* UIBarButtonItem+CCChain.m */; };
+		37DC7E461F36ECD70071631B /* UIButton+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DC7E451F36ECD70071631B /* UIButton+CCChain.m */; };
 		37EDDC2E1F079CDD0034C273 /* NSDate+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDDC2D1F079CDD0034C273 /* NSDate+CCChain.m */; };
 		37EDDC321F079D020034C273 /* NSArray+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDDC311F079D020034C273 /* NSArray+CCChain.m */; };
 		70471DD61F31C142003B808F /* NSDictionary+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DD51F31C142003B808F /* NSDictionary+CCChain.m */; };
@@ -70,7 +71,6 @@
 /* Begin PBXFileReference section */
 		06F3945F3B247350FA607CEF /* Pods-CCLocalLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCLocalLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary.release.xcconfig"; sourceTree = "<group>"; };
 		1C424E92BD9104CE08216FD9 /* Pods_CCLocalLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCLocalLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		370D74A41F322B7100709A9F /* CCChainOperateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCChainOperateProtocol.h; sourceTree = "<group>"; };
 		370D74A51F322BBD00709A9F /* NSObject+CCProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CCProtocol.h"; sourceTree = "<group>"; };
 		370D74A61F322BBD00709A9F /* NSObject+CCProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CCProtocol.m"; sourceTree = "<group>"; };
 		371F1D781F0745F10055757B /* NSArray+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCExtension.h"; sourceTree = "<group>"; };
@@ -170,6 +170,8 @@
 		37DC7E3D1F36D6010071631B /* UIAlertController+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+CCChain.m"; sourceTree = "<group>"; };
 		37DC7E401F36E1FF0071631B /* UIBarButtonItem+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+CCChain.h"; sourceTree = "<group>"; };
 		37DC7E411F36E1FF0071631B /* UIBarButtonItem+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+CCChain.m"; sourceTree = "<group>"; };
+		37DC7E441F36ECD70071631B /* UIButton+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CCChain.h"; sourceTree = "<group>"; };
+		37DC7E451F36ECD70071631B /* UIButton+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CCChain.m"; sourceTree = "<group>"; };
 		37EDDC2C1F079CDD0034C273 /* NSDate+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CCChain.h"; sourceTree = "<group>"; };
 		37EDDC2D1F079CDD0034C273 /* NSDate+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CCChain.m"; sourceTree = "<group>"; };
 		37EDDC301F079D020034C273 /* NSArray+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCChain.h"; sourceTree = "<group>"; };
@@ -211,7 +213,6 @@
 		370D74A31F322B5A00709A9F /* CCProtocol */ = {
 			isa = PBXGroup;
 			children = (
-				370D74A41F322B7100709A9F /* CCChainOperateProtocol.h */,
 				370D74A51F322BBD00709A9F /* NSObject+CCProtocol.h */,
 				370D74A61F322BBD00709A9F /* NSObject+CCProtocol.m */,
 			);
@@ -737,6 +738,15 @@
 			path = UIBarButtonItem;
 			sourceTree = "<group>";
 		};
+		37DC7E431F36ECC90071631B /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				37DC7E441F36ECD70071631B /* UIButton+CCChain.h */,
+				37DC7E451F36ECD70071631B /* UIButton+CCChain.m */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
 		37EDDC2B1F079CDD0034C273 /* NSDate */ = {
 			isa = PBXGroup;
 			children = (
@@ -776,6 +786,7 @@
 		70471DDB1F31C647003B808F /* CCView */ = {
 			isa = PBXGroup;
 			children = (
+				37DC7E431F36ECC90071631B /* UIButton */,
 				37DC7E3F1F36E1EF0071631B /* UIBarButtonItem */,
 				37DC7E3B1F36D5E90071631B /* UIAlertController */,
 				70471DE41F31D55B003B808F /* MBProgressHud */,
@@ -987,6 +998,7 @@
 				371F1E071F0745F10055757B /* UIImageView+CCWeakNetwork.m in Sources */,
 				70471DD61F31C142003B808F /* NSDictionary+CCChain.m in Sources */,
 				371F1E001F0745F10055757B /* UIViewController+CCExtension.m in Sources */,
+				37DC7E461F36ECD70071631B /* UIButton+CCChain.m in Sources */,
 				371F1DE81F0745F10055757B /* NSDictionary+CCExtension.m in Sources */,
 				371F1DF91F0745F10055757B /* UIImageView+CCExtension.m in Sources */,
 				371F1DF11F0745F10055757B /* UIBarButtonItem+CCExtension.m in Sources */,

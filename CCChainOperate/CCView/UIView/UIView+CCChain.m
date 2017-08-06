@@ -19,6 +19,12 @@ CCPoint CCPointMake(CGFloat x , CGFloat y) {
     o.y = y / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
     return o;
 }
+CCPoint CCMakePointFrom(CGPoint point) {
+    return CCPointMake(point.x, point.y);
+}
+CGPoint CGMakePointFrom(CCPoint point) {
+    return CGPointMake(point.x, point.y);
+}
 
 CCSize CCSizeMake(CGFloat width , CGFloat height) {
     CCSize s;
@@ -26,12 +32,34 @@ CCSize CCSizeMake(CGFloat width , CGFloat height) {
     s.height = height / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
     return s;
 }
+CCSize CCMakeSizeFrom(CGSize size) {
+    return CCSizeMake(size.width, size.height);
+}
+CGSize CGMakeSizeFrom(CCSize size) {
+    return CGSizeMake(size.width, size.height);
+}
 
 CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
     CCRect r;
     r.origin = CCPointMake(x, y);
     r.size = CCSizeMake(width, height);
     return r;
+}
+CCRect CCMakeRectFrom(CGRect rect) {
+    return CCRectMake(rect.origin.x,
+                      rect.origin.y,
+                      rect.size.width,
+                      rect.size.height);
+}
+CGRect CGMakeRectFrom(CCRect rect) {
+    return CGRectMake(rect.origin.x,
+                      rect.origin.y,
+                      rect.size.width,
+                      rect.size.height);
+}
+
+static inline CGRect CGRectFull(){
+    return UIScreen.mainScreen.bounds;
 }
 
 #pragma mark - Scale

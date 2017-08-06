@@ -14,6 +14,8 @@ struct CCPoint {
 };
 typedef struct CCPoint CCPoint;
 CCPoint CCPointMake(CGFloat x , CGFloat y);
+CCPoint CCMakePointFrom(CGPoint point);
+CGPoint CGMakePointFrom(CCPoint point);
 
 struct CCSize {
     CGFloat width;
@@ -21,6 +23,8 @@ struct CCSize {
 };
 typedef struct CCSize CCSize;
 CCSize CCSizeMake(CGFloat width , CGFloat height);
+CCSize CCMakeSizeFrom(CGSize size);
+CGSize CGMakeSizeFrom(CCSize size);
 
 struct CCRect {
     CCPoint origin;
@@ -28,6 +32,10 @@ struct CCRect {
 };
 typedef struct CCRect CCRect;
 CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
+CCRect CCMakeRectFrom(CGRect rect);
+CGRect CGMakeRectFrom(CCRect rect);
+
+static inline CGRect CGRectFull();
 
 /// scaled width
 CGFloat CCScaleW(CGFloat w);
