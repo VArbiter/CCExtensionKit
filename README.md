@@ -1,9 +1,18 @@
 # CCLocalLibrary
 
-####SomeCategorys that can be installed as a local static library . (as framework , depends how you manage your pods) .
+###SomeCategorys that can be installed as a static library . (as framework , depends how you manage your pods) .
 
 ### What's new ?
 ---
+2017-08-06 15:38:09
+Well ... I found that local libraries have some issues on spec dependency . Therefore , CCLocalLib was no longer a local lib. 
+👏👏👏 -> now , jusy run `pod 'LocalLib' ` and cocoapods will do the rest .
+
+> and probably , i won't use prefix `CC` any longer. 
+> 
+> maybe , `EL` will be the existance in the next project . EL , Elwin Frederick , of course .
+>
+>  single dog , single dog , single all the way. 🐶🐶🐶
 
 2017-07-01 19:49:01
 
@@ -14,7 +23,7 @@
  
  but , as we all know , on the opposite side , `swift` was much better , easily to use , simple to unsderstand (though its haven't stable yet). 
  
-  Someday , i find , that block , can actually can perform a style like swift , therefore `CCChainOperate ` was born (not complete yet , maybe , forever , but i'll try.).
+  Someday , i find , that block , can actually can perform a style like swift , therefore `CCChainOperate ` was born (not complete yet , maybe , forever , but I'll try.).
   
   Also , heavily inspired by react-Objc .
 
@@ -32,4 +41,4 @@ For freshmen :
 7. if you can't find the spec file , use `mdfind` command in `Terminal`.	
 
 
-  `pod 'LocalLib' , :path => '../LocalLib'`
+  `pod 'LocalLib' , '2.1.8'`
