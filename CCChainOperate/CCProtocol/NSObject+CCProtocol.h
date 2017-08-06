@@ -65,3 +65,6 @@
 
 @interface UIAlertController (CCProtocol) < CCChainOperateProtocol >
 @end
+
+@interface UIBarButtonItem (CCProtocol) < CCChainOperateProtocol >
+@end

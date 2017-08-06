@@ -198,3 +198,14 @@
 }
 
 @end
+
+@implementation UIBarButtonItem (CCProtocol)
+
+- (instancetype)cc {
+    return self;
+}
++ (Class)cc {
+    return self;
+}
+
+@end
