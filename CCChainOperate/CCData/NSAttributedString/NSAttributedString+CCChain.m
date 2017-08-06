@@ -67,3 +67,25 @@
 }
 
 @end
+
+#pragma mark - -----
+
+@implementation NSMutableAttributedString (CCChain)
+
+- (NSMutableAttributedString *(^)(NSString *, id))attributeC {
+    __weak typeof(self) pSelf = self;
+    return ^NSMutableAttributedString *(NSString *s , id v) {
+        if (s && s.length) [pSelf addAttribute:s value:v range:(NSRange){0 , pSelf.length}];
+        return pSelf;
+    };
+}
+
+- (NSMutableAttributedString *(^)(NSDictionary *))attributeS {
+    __weak typeof(self) pSelf = self;
+    return ^NSMutableAttributedString *(NSDictionary *d) {
+        if (d.allKeys) [pSelf addAttributes:d range:NSMakeRange(0, pSelf.length)];
+        return pSelf;
+    };
+}
+
+@end

@@ -19,3 +19,12 @@
 @property (nonatomic , copy , readonly) NSMutableAttributedString *(^appendC)(NSString *string);
 
 @end
+
+#pragma mark - -----
+
+@interface NSMutableAttributedString (CCChain)
+
+@property (nonatomic , copy , readonly) NSMutableAttributedString *(^attributeC)(NSString *key , id value);
+@property (nonatomic , copy , readonly) NSMutableAttributedString *(^attributeS)(NSDictionary * attr);
+
+@end

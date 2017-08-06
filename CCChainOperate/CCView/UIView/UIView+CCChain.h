@@ -120,6 +120,5 @@ CGFloat CCHScale(CGFloat h);
 
 @property (nonatomic , copy , readonly) MBProgressHUD *(^hud)();
 @property (nonatomic , class , copy , readonly) MBProgressHUD *(^hudC)(UIView *view);
-@property (nonatomic , copy , readonly) MBProgressHUD *(hide)
 
 @end

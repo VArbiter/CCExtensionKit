@@ -13,7 +13,7 @@
 @implementation NSDictionary (CCExtension)
 
 + (NSDictionary *)ccDictionaryWith : (NSString *) stringJson ; {
-    if (stringJson.isStringValued) {
+    if (!stringJson.isStringValued) {
         return nil;
     }
     

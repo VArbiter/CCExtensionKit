@@ -12,6 +12,22 @@
 
 @implementation NSDictionary (CCChain)
 
++ (NSDictionary *(^)(NSString *))json {
+    return ^NSDictionary *(NSString *s) {
+        if (!s || !s.length) {
+            return @{};
+        }
+        
+        NSData *d = [s dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *e = nil;
+        NSDictionary *dicionary = [NSJSONSerialization JSONObjectWithData:d
+                                                                  options:NSJSONReadingMutableContainers | NSJSONReadingAllowFragments
+                                                                    error:&e];
+        if(e) return @{};
+        return dicionary;
+    };
+}
+
 @end
 
 #pragma mark - -----

@@ -10,6 +10,8 @@
 
 @interface NSDictionary (CCChain)
 
+@property (nonatomic , class , copy , readonly) NSDictionary *(^json)(NSString *sJson);
+
 @end
 
 @interface NSMutableDictionary (CCChain)
