@@ -10,6 +10,32 @@
 
 @implementation MBProgressHUD (CCChain)
 
++ (MBProgressHUD *(^)())initC {
+    return ^MBProgressHUD * {
+        return MBProgressHUD.initS(nil);
+    };
+}
++ (MBProgressHUD *(^)(UIView *))initS {
+    return ^MBProgressHUD *(UIView *v) {
+        if (!v) v = UIApplication.sharedApplication.keyWindow;
+        if (!v) v = UIApplication.sharedApplication.delegate.window;
+        return [MBProgressHUD showHUDAddedTo:v
+                                    animated:YES].simple().disableT();
+    };
+}
++ (MBProgressHUD *(^)())generate {
+    return ^MBProgressHUD *{
+        return MBProgressHUD.generateS(nil);
+    };
+}
++ (MBProgressHUD *(^)(UIView *))generateS {
+    return ^MBProgressHUD *(UIView *v){
+        if (!v) v = UIApplication.sharedApplication.keyWindow;
+        if (!v) v = UIApplication.sharedApplication.delegate.window;
+        return [[MBProgressHUD alloc] initWithView:v].simple().disableT();
+    };
+}
+
 - (MBProgressHUD *(^)())enable {
     __weak typeof(self) pSelf = self;
     return ^MBProgressHUD * {
@@ -18,7 +44,7 @@
     };
 }
 
-- (MBProgressHUD *(^)())disable {
+- (MBProgressHUD *(^)())disableT {
     __weak typeof(self) pSelf = self;
     return ^MBProgressHUD * {
         pSelf.userInteractionEnabled = YES;
@@ -38,17 +64,14 @@
     };
 }
 
-+ (MBProgressHUD *(^)())show {
+- (MBProgressHUD *(^)())show {
     __weak typeof(self) pSelf = self;
     return ^MBProgressHUD *() {
-        return pSelf.showS(nil);
-    };
-}
-+ (MBProgressHUD *(^)(UIView *))showS {
-    return ^MBProgressHUD *(UIView *v) {
-        if (!v) v = UIApplication.sharedApplication.keyWindow;
-        return [MBProgressHUD showHUDAddedTo:v
-                                    animated:YES].simple().disable();
+        if (NSThread.isMainThread) [pSelf showAnimated:YES];
+        else dispatch_sync(dispatch_get_main_queue(), ^{
+            [pSelf showAnimated:YES];
+        });
+        return pSelf;
     };
 }
 
@@ -71,7 +94,7 @@
     };
 }
 
-- (MBProgressHUD *(^)())indicator {
+- (MBProgressHUD *(^)())indicatorD {
     __weak typeof(self) pSelf = self;
     return ^MBProgressHUD * {
         pSelf.mode = MBProgressHUDModeIndeterminate;
@@ -101,20 +124,22 @@
     };
 }
 
-- (MBProgressHUD *(^)(CCHudTypeC))type {
+- (MBProgressHUD *(^)(CCHudChainType))type {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD *(CCHudTypeC t) {
-        NSDictionary *d = @{@(CCHudTypeCLight) : ^{
+    return ^MBProgressHUD *(CCHudChainType t) {
+        NSDictionary *d = @{@(CCHudChainTypeLight) : ^{
                                 pSelf.contentColor = UIColor.blackColor;
                             },
-                            @(CCHudTypeCDarkDeep) : ^{
+                            @(CCHudChainTypeDarkDeep) : ^{
                                 pSelf.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-                            },
-                            @(CCHudTypeCDark) : ^{
                                 pSelf.contentColor = UIColor.whiteColor;
                                 pSelf.bezelView.backgroundColor = UIColor.blackColor;
                             },
-                            @(CCHudTypeCNone) : ^{
+                            @(CCHudChainTypeDark) : ^{
+                                pSelf.contentColor = UIColor.whiteColor;
+                                pSelf.bezelView.backgroundColor = UIColor.blackColor;
+                            },
+                            @(CCHudChainTypeNone) : ^{
                                 pSelf.contentColor = UIColor.blackColor;
                             }};
         if (!d[@(t)]) return pSelf;

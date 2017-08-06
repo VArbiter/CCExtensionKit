@@ -434,13 +434,13 @@ CGFloat CCHScale(CGFloat h) {
 - (MBProgressHUD *(^)())hud {
     __weak typeof(self) pSelf = self;
     return ^MBProgressHUD * {
-        return MBProgressHUD.showS(pSelf);
+        return UIView.hudC(pSelf);
     };
 }
 
 + (MBProgressHUD *(^)(UIView *))hudC {
     return ^MBProgressHUD * (UIView *v){
-        return MBProgressHUD.showS(v);
+        return MBProgressHUD.initS(v);
     };
 }
 
