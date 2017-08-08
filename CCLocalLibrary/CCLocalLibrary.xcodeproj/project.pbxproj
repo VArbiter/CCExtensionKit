@@ -50,6 +50,7 @@
 		371F1E1A1F0762770055757B /* NSPredicate+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1E191F0762770055757B /* NSPredicate+CCChain.m */; };
 		371F1E1E1F076D610055757B /* NSAttributedString+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1E1D1F076D610055757B /* NSAttributedString+CCChain.m */; };
 		377CAD1A1F0105E800AE46A8 /* 0ZG63407-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 377CAD191F0105E800AE46A8 /* 0ZG63407-0.png */; };
+		37A492BC1F39FD3400B69D88 /* UIControl+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A492BB1F39FD3400B69D88 /* UIControl+CCChain.m */; };
 		37C69E1A1ED6684D00531ED3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E191ED6684D00531ED3 /* main.m */; };
 		37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E1C1ED6684D00531ED3 /* AppDelegate.m */; };
 		37C69E201ED6684D00531ED3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E1F1ED6684D00531ED3 /* ViewController.m */; };
@@ -156,6 +157,8 @@
 		371F1E1C1F076D610055757B /* NSAttributedString+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CCChain.h"; sourceTree = "<group>"; };
 		371F1E1D1F076D610055757B /* NSAttributedString+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+CCChain.m"; sourceTree = "<group>"; };
 		377CAD191F0105E800AE46A8 /* 0ZG63407-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0ZG63407-0.png"; sourceTree = "<group>"; };
+		37A492BA1F39FD3400B69D88 /* UIControl+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+CCChain.h"; sourceTree = "<group>"; };
+		37A492BB1F39FD3400B69D88 /* UIControl+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+CCChain.m"; sourceTree = "<group>"; };
 		37C69E151ED6684D00531ED3 /* CCLocalLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCLocalLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C69E191ED6684D00531ED3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37C69E1B1ED6684D00531ED3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -675,6 +678,15 @@
 			path = NSAttributedString;
 			sourceTree = "<group>";
 		};
+		37A492B91F39FD2000B69D88 /* UIControl */ = {
+			isa = PBXGroup;
+			children = (
+				37A492BA1F39FD3400B69D88 /* UIControl+CCChain.h */,
+				37A492BB1F39FD3400B69D88 /* UIControl+CCChain.m */,
+			);
+			path = UIControl;
+			sourceTree = "<group>";
+		};
 		37C69E0C1ED6684D00531ED3 = {
 			isa = PBXGroup;
 			children = (
@@ -786,6 +798,7 @@
 		70471DDB1F31C647003B808F /* CCView */ = {
 			isa = PBXGroup;
 			children = (
+				37A492B91F39FD2000B69D88 /* UIControl */,
 				37DC7E431F36ECC90071631B /* UIButton */,
 				37DC7E3F1F36E1EF0071631B /* UIBarButtonItem */,
 				37DC7E3B1F36D5E90071631B /* UIAlertController */,
@@ -1007,6 +1020,7 @@
 				37C69E1A1ED6684D00531ED3 /* main.m in Sources */,
 				371F1DEF1F0745F10055757B /* MBProgressHUD+CCExtension.m in Sources */,
 				371F1DFF1F0745F10055757B /* UIView+CCExtension.m in Sources */,
+				37A492BC1F39FD3400B69D88 /* UIControl+CCChain.m in Sources */,
 				371F1E011F0745F10055757B /* WKWebView+CCExtension.m in Sources */,
 				371F1DED1F0745F10055757B /* NSObject+CCExtension.m in Sources */,
 			);
