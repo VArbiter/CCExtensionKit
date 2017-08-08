@@ -62,6 +62,27 @@ static inline CGRect CGRectFull(){
     return UIScreen.mainScreen.bounds;
 }
 
+CCEdgeInsets CCEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
+    CCEdgeInsets i;
+    i.top = top / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    i.left = left / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    i.bottom = bottom / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    i.right = right / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    return i;
+}
+CCEdgeInsets CCMakeEdgeInsetsFrom(UIEdgeInsets insets) {
+    return CCEdgeInsetsMake(insets.top,
+                            insets.left,
+                            insets.bottom,
+                            insets.right);
+}
+UIEdgeInsets UIMakeEdgeInsetsFrom(CCEdgeInsets insets) {
+    return UIEdgeInsetsMake(insets.top,
+                            insets.left,
+                            insets.bottom,
+                            insets.right);
+}
+
 #pragma mark - Scale
 CGFloat CCScaleW(CGFloat w) {
     return w / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;

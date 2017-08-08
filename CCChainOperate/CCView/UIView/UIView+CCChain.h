@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 struct CCPoint {
-    CGFloat x;
-    CGFloat y;
+    CGFloat x , y;
 };
 typedef struct CCPoint CCPoint;
 CCPoint CCPointMake(CGFloat x , CGFloat y);
@@ -18,8 +17,7 @@ CCPoint CCMakePointFrom(CGPoint point);
 CGPoint CGMakePointFrom(CCPoint point);
 
 struct CCSize {
-    CGFloat width;
-    CGFloat height;
+    CGFloat width , height;
 };
 typedef struct CCSize CCSize;
 CCSize CCSizeMake(CGFloat width , CGFloat height);
@@ -36,6 +34,14 @@ CCRect CCMakeRectFrom(CGRect rect);
 CGRect CGMakeRectFrom(CCRect rect);
 
 static inline CGRect CGRectFull();
+
+typedef struct CCEdgeInsets {
+    CGFloat top, left, bottom, right;
+} CCEdgeInsets;
+typedef struct CCEdgeInsets CCEdgeInsets;
+CCEdgeInsets CCEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
+CCEdgeInsets CCMakeEdgeInsetsFrom(UIEdgeInsets insets);
+UIEdgeInsets UIMakeEdgeInsetsFrom(CCEdgeInsets insets);
 
 /// scaled width
 CGFloat CCScaleW(CGFloat w);
