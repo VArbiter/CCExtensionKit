@@ -21,4 +21,8 @@
 /// custom actions .
 @property (nonatomic , copy , readonly) UIControl *(^custom)(id target , SEL selector , UIControlEvents events);
 
+/// increase trigger rect .
+@property (nonatomic , copy , readonly) UIControl *(^increaseS)(CCEdgeInsets insets);
+@property (nonatomic , copy , readonly) UIControl *(^increaseC)(UIEdgeInsets insets);
+
 @end

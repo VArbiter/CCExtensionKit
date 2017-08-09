@@ -13,14 +13,14 @@ static const char * _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UICONTROL_CHA
 
 @interface UIButton (CCChain_Assit)
 
-- (void) ccControlChainAction : (UIButton *) sender ;
+- (void) ccControlChainAction : (UIControl *) sender ;
 
 @end
 
 @implementation UIButton (CCChain_Assit)
 
-- (void) ccControlChainAction : (UIButton *) sender {
-    void (^t)(UIButton *) = objc_getAssociatedObject(self, _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_);
+- (void) ccControlChainAction : (UIControl *) sender {
+    void (^t)(UIControl *) = objc_getAssociatedObject(self, _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) t(sender);
         else dispatch_sync(dispatch_get_main_queue(), ^{
@@ -32,6 +32,10 @@ static const char * _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UICONTROL_CHA
 @end
 
 #pragma mark - -----
+static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY_;
+static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY_;
+static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY_;
+static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_;
 
 @implementation UIControl (CCChain)
 
@@ -75,6 +79,49 @@ static const char * _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UICONTROL_CHA
         forControlEvents:e];
         return pSelf;
     };
+}
+
+- (UIControl *(^)(CCEdgeInsets))increaseS {
+    __weak typeof(self) pSelf = self;
+    return ^UIControl *(CCEdgeInsets e) {
+        return pSelf.increaseC(UIMakeEdgeInsetsFrom(e));
+    };
+}
+
+- (UIControl *(^)(UIEdgeInsets))increaseC {
+    __weak typeof(self) pSelf = self;
+    return ^UIControl *(UIEdgeInsets insets) {
+        objc_setAssociatedObject(pSelf, _CC_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY_,
+                                 @(insets.top), OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(pSelf, _CC_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY_,
+                                 @(insets.left), OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(pSelf, _CC_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY_,
+                                 @(insets.bottom), OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(pSelf, _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_,
+                                 @(insets.right), OBJC_ASSOCIATION_COPY_NONATOMIC);
+        return pSelf;
+    };
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    __weak typeof(self) pSelf = self;
+    CGRect (^t)() = ^CGRect {
+        NSNumber * top = objc_getAssociatedObject(pSelf, &_CC_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY_);
+        NSNumber * left = objc_getAssociatedObject(pSelf, &_CC_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY_);
+        NSNumber * bottom = objc_getAssociatedObject(pSelf, &_CC_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY_);
+        NSNumber * right = objc_getAssociatedObject(pSelf, &_CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_);
+        if (top && left && bottom && right) {
+            return CGRectMake(pSelf.bounds.origin.x - left.floatValue,
+                              pSelf.bounds.origin.y - top.floatValue,
+                              pSelf.bounds.size.width + left.floatValue + right.floatValue,
+                              pSelf.bounds.size.height + top.floatValue + bottom.floatValue);
+        }
+        else return pSelf.bounds;
+    };
+    
+    CGRect rect = t();
+    if (CGRectEqualToRect(rect, self.bounds)) return [super hitTest:point withEvent:event];
+    return CGRectContainsPoint(rect, point) ? self : nil;
 }
 
 @end
