@@ -75,10 +75,11 @@
 
 #pragma mark - -----
 
-#warning TODO >>>
-
 @interface NSArray (CCChain_Collection_Refresh)
 
-//@property (nonatomic , copy , readonly) 
+// for using dataSource to reload .
+/// if count > 0 , reload section 0 , else reloadData . if dataSource valued , reload with Animate , otherwise NOT .
+@property (nonatomic , copy , readonly) NSArray *(^reload)(UICollectionView *collectionView);
+@property (nonatomic , copy , readonly) NSArray *(^reloadSection)(UICollectionView *collectionView , NSIndexSet *set);
 
 @end

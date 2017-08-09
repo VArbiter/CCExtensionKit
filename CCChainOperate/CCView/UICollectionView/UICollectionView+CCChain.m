@@ -347,4 +347,22 @@ forCellWithReuseIdentifier:s];
 
 @implementation NSArray (CCChain_Collection_Refresh)
 
+- (NSArray *(^)(UICollectionView *))reload {
+    __weak typeof(self) pSelf = self;
+    return ^NSArray *(UICollectionView *c) {
+        if (pSelf.count) c.reload(YES);
+        else [c reloadData];
+        return pSelf;
+    };
+}
+
+- (NSArray *(^)(UICollectionView *, NSIndexSet *))reloadSection {
+    __weak typeof(self) pSelf = self;
+    return ^NSArray *(UICollectionView *c , NSIndexSet *s) {
+        if (pSelf.count) c.reloadS(s, YES);
+        else c.reloadS(s, false);
+        return pSelf;
+    };
+}
+
 @end
