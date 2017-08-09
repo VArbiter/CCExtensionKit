@@ -157,4 +157,188 @@ forCellWithReuseIdentifier:s];
         return pSelf;
     };
 }
+
+@end
+
+#pragma mark - -----
+
+@interface CCCollectionChainDelegate ()
+
+@property (nonatomic , copy) BOOL (^blockDidSelect)(UICollectionView *collectionView , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) void (^blockDidHightedCell)(UICollectionView *collectionView , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) void (^blockDidUnhigntedCell)(UICollectionView *collectionView , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) CGFloat (^blockMinimumLineSpacingInSection)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger integerSection) ;
+@property (nonatomic , copy) CGFloat (^blockMinimumInterItemSpacingInSection)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger integerSection) ;
+@property (nonatomic , copy) UIEdgeInsets (^blockSpacingBetweenSections)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger integerSection) ;
+
+@end
+
+@implementation CCCollectionChainDelegate
+
++ (CCCollectionChainDelegate<UICollectionViewDelegateFlowLayout> *(^)())common {
+    return ^ CCCollectionChainDelegate<UICollectionViewDelegateFlowLayout> * {
+        return CCCollectionChainDelegate.alloc.init;
+    };
+}
+
+- (CCCollectionChainDelegate *(^)(BOOL (^)(UICollectionView *, NSIndexPath *)))didSelect {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(BOOL (^t)(UICollectionView *, NSIndexPath *)) {
+        if (t) pSelf.blockDidSelect = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCCollectionChainDelegate *(^)(void (^)(UICollectionView *, NSIndexPath *)))didHightedCell {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(void (^t)(UICollectionView *, NSIndexPath *)) {
+        if (t) pSelf.blockDidHightedCell = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCCollectionChainDelegate *(^)(void (^)(UICollectionView *, NSIndexPath *)))didUnhigntedCell {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(void (^t)(UICollectionView *, NSIndexPath *)) {
+        if (t) pSelf.blockDidUnhigntedCell = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCCollectionChainDelegate *(^)(CGFloat (^)(UICollectionView *, UICollectionViewLayout *, NSInteger)))minimumLineSpacingInSection {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(CGFloat (^t)(UICollectionView *, UICollectionViewLayout *, NSInteger)) {
+        if (t) pSelf.blockMinimumLineSpacingInSection = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCCollectionChainDelegate *(^)(CGFloat (^)(UICollectionView *, UICollectionViewLayout *, NSInteger)))minimumInterItemSpacingInSection {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(CGFloat (^t)(UICollectionView *, UICollectionViewLayout *, NSInteger)) {
+        if (t) pSelf.blockMinimumInterItemSpacingInSection = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCCollectionChainDelegate *(^)(UIEdgeInsets (^)(UICollectionView *, UICollectionViewLayout *, NSInteger)))spacingBetweenSections {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(UIEdgeInsets (^t)(UICollectionView *, UICollectionViewLayout *, NSInteger)) {
+        if (t) pSelf.spacingBetweenSections = [t copy];
+        return pSelf;
+    };
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.blockDidSelect) {
+        if (self.blockDidSelect(collectionView , indexPath)) {
+            [collectionView deselectItemAtIndexPath:indexPath animated:false];
+        }
+    }
+}
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.blockDidHightedCell)
+        self.blockDidHightedCell(collectionView, indexPath);
+}
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.blockDidUnhigntedCell)
+        self.blockDidUnhigntedCell(collectionView, indexPath);
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return self.blockMinimumLineSpacingInSection ? self.blockMinimumLineSpacingInSection(collectionView , collectionViewLayout , section) : .0f;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return self.blockMinimumInterItemSpacingInSection ? self.blockMinimumInterItemSpacingInSection (collectionView , collectionViewLayout , section) : .0f;
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return self.blockSpacingBetweenSections ? self.blockSpacingBetweenSections(collectionView , collectionViewLayout , section) : UIEdgeInsetsZero ;
+}
+
+- (void)dealloc {
+#if DEBUG
+    NSLog(@"_CC_%@_DEALLOC_" , NSStringFromClass(self.class));
+#endif
+}
+
+@end
+
+#pragma mark - -----
+
+@interface CCCollectionChainDataSource ()
+
+@property (nonatomic , copy) NSInteger (^blockSections)(UICollectionView *collectionView) ;
+@property (nonatomic , copy) NSInteger (^blockItemsInSections)(UICollectionView * collectionView , NSInteger integerSections) ;
+@property (nonatomic , copy) NSString *(^blockCellIdentifier)(UICollectionView * collectionView , NSIndexPath * indexPath) ;
+@property (nonatomic , copy) UICollectionViewCell *(^blockConfigCell)(UICollectionView * collectionView , UICollectionViewCell * cellConfig , NSIndexPath * indexPath);
+
+@end
+
+@implementation CCCollectionChainDataSource
+
++ (CCCollectionChainDataSource<UICollectionViewDataSource> *(^)())common {
+    return ^ CCCollectionChainDataSource<UICollectionViewDataSource> * {
+        return CCCollectionChainDataSource.alloc.init;
+    };
+}
+
+- (CCCollectionChainDataSource *(^)(NSInteger (^)(UICollectionView *)))sections {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDataSource *(NSInteger (^t)(UICollectionView *)) {
+        if (t) pSelf.blockSections = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCCollectionChainDataSource *(^)(NSInteger (^)(UICollectionView *, NSInteger)))itemsInSections {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDataSource *(NSInteger (^t)(UICollectionView *, NSInteger)) {
+        if (t) pSelf.blockItemsInSections = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCCollectionChainDataSource *(^)(NSString *(^)(UICollectionView *, NSIndexPath *)))identifierS {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDataSource *(NSString *(^t)(UICollectionView *, NSIndexPath *)) {
+        if (t) pSelf.blockCellIdentifier = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCCollectionChainDataSource *(^)(UICollectionViewCell *(^)(UICollectionView *, UICollectionViewCell *, NSIndexPath *)))configCell {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDataSource *(UICollectionViewCell *(^t)(UICollectionView *, UICollectionViewCell *, NSIndexPath *)) {
+        if (t) pSelf.blockConfigCell = [t copy];
+        return pSelf;
+    };
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return self.blockSections ? self.blockSections(collectionView) : 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.blockItemsInSections ? self.blockItemsInSections(collectionView , section) : 0;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *stringCellIdentifier = self.blockCellIdentifier ? self.blockCellIdentifier(collectionView , indexPath) : @"CELL";
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:stringCellIdentifier
+                                                                           forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[UICollectionViewCell alloc] init];
+    }
+    
+    return self.blockConfigCell ? self.blockConfigCell(collectionView , cell , indexPath) : cell;
+}
+
+- (void)dealloc {
+#if DEBUG
+    NSLog(@"_CC_%@_DEALLOC_" , NSStringFromClass(self.class));
+#endif
+}
+
 @end

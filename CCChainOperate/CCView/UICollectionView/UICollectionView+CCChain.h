@@ -44,3 +44,31 @@
 @property (nonatomic , copy , readonly) UICollectionViewFlowLayout *(^headerSizeC)(CGSize insets);
 
 @end
+
+#pragma mark - -----
+
+@interface CCCollectionChainDelegate : NSObject < UICollectionViewDelegateFlowLayout >
+
+@property (nonatomic , class , copy , readonly) CCCollectionChainDelegate < UICollectionViewDelegateFlowLayout > *(^common)();
+
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didSelect)(BOOL (^)(UICollectionView *collectionView , NSIndexPath *indexPath)) ;
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didHightedCell)(void(^)(UICollectionView *collectionView , NSIndexPath *indexPath)) ;
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didUnhigntedCell)(void(^)(UICollectionView *collectionView , NSIndexPath *indexPath)) ;
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^minimumLineSpacingInSection)(CGFloat (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^minimumInterItemSpacingInSection)(CGFloat (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
+@property (nonatomic , copy) CCCollectionChainDelegate *(^spacingBetweenSections)(UIEdgeInsets (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
+
+@end
+
+#pragma mark - -----
+
+@interface CCCollectionChainDataSource : NSObject < UICollectionViewDataSource >
+
+@property (nonatomic , class , copy , readonly) CCCollectionChainDataSource < UICollectionViewDataSource > *(^common)();
+
+@property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^sections)(NSInteger (^)(UICollectionView *collectionView)) ;
+@property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^itemsInSections)(NSInteger(^)(UICollectionView * collectionView , NSInteger iSections)) ;
+@property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^identifierS)(NSString *(^)(UICollectionView * collectionView , NSIndexPath * indexPath)) ;
+@property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^configCell)(UICollectionViewCell *(^)(UICollectionView * collectionView , UICollectionViewCell * cell , NSIndexPath * indexPath));
+
+@end
