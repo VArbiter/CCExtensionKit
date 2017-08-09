@@ -342,3 +342,9 @@ forCellWithReuseIdentifier:s];
 }
 
 @end
+
+#pragma mark - -----
+
+@implementation NSArray (CCChain_Collection_Refresh)
+
+@end

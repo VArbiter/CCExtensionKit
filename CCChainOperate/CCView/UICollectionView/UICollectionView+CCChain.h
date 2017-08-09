@@ -72,3 +72,13 @@
 @property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^configCell)(UICollectionViewCell *(^)(UICollectionView * collectionView , UICollectionViewCell * cell , NSIndexPath * indexPath));
 
 @end
+
+#pragma mark - -----
+
+#warning TODO >>>
+
+@interface NSArray (CCChain_Collection_Refresh)
+
+//@property (nonatomic , copy , readonly) 
+
+@end
