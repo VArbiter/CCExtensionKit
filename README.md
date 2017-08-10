@@ -4,28 +4,40 @@
 
 ### What's new ?
 ---
-2017-08-06 15:38:09
-Well ... I found that local libraries have some issues on spec dependency . Therefore , CCLocalLib was no longer a local lib. 
-👏👏👏 -> now , jusy run `pod 'LocalLib' ` and cocoapods will do the rest .
+**2017-08-10 14:50:52**
+  
+> After writing `CCChainOperate` for almost a month , I figured , that , **THIS CAN BE A KIT !**
+> 
+> Therefore , `CCChainKit` was created . 👏👏👏 .
+> 
+> 👉👉👉**[CCChainKit](https://github.com/VArbiter/CCChainKit)**
+> 
+> and Why I still using prefix __*CC*__ ?
+> 
+> cause I just still miss her .
 
+**2017-08-06 15:38:09**
+
+> Well ... I found that local libraries have some issues on spec dependency . Therefore , CCLocalLib was no longer a local lib. 
+👏👏👏 -> now , jusy run `pod 'LocalLib' ` and cocoapods will do the rest .
+>
 > and probably , i won't use prefix `CC` any longer. 
 > 
 > maybe , `EL` will be the existance in the next project . EL , Elwin Frederick , of course .
 >
 >  single dog , single dog , single all the way. 🐶🐶🐶
 
-2017-07-01 19:49:01
-
- I wrote a new library called `CCChainOperate` .
+**2017-07-01 19:49:01**
+> I wrote a new library called `CCChainOperate` .
  Why I wrote it ?
- 
- well , after years of writing objective-c , i figured some dis-advantage of it . such as you have to use `[]`  everywhere . i just hate that . 
- 
- but , as we all know , on the opposite side , `swift` was much better , easily to use , simple to unsderstand (though its haven't stable yet). 
- 
-  Someday , i find , that block , can actually can perform a style like swift , therefore `CCChainOperate ` was born (not complete yet , maybe , forever , but I'll try.).
-  
-  Also , heavily inspired by react-Objc .
+>
+> well , after years of writing objective-c , i figured some dis-advantage of it . such as you have to use `[]`  everywhere . i just hate that . 
+> 
+> but , as we all know , on the opposite side , `swift` was much better , easily to use , simple to unsderstand (though its haven't stable yet). 
+> 
+>  Someday , i find , that block , can actually can perform a style like swift , therefore `CCChainOperate ` was born (not complete yet , maybe , forever , but I'll try.).
+>  
+>  Also , heavily inspired by react-Objc .
 
 ### How to use ?
 ---
