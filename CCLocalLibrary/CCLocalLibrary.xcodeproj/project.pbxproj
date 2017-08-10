@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		244AFA8F04C1883DB480CE01 /* Pods_CCLocalLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C424E92BD9104CE08216FD9 /* Pods_CCLocalLibrary.framework */; };
-		3704A1E41F3B5E90000C7B50 /* UIColor+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3704A1E31F3B5E90000C7B50 /* UIColor+CCChain.m */; };
-		3704A1E81F3B6123000C7B50 /* UIImage+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3704A1E71F3B6123000C7B50 /* UIImage+CCChain.m */; };
-		370D74A71F322BBD00709A9F /* NSObject+CCProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D74A61F322BBD00709A9F /* NSObject+CCProtocol.m */; };
 		371F1DE51F0745F10055757B /* NSArray+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1D791F0745F10055757B /* NSArray+CCExtension.m */; };
 		371F1DE61F0745F10055757B /* NSDate+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1D7C1F0745F10055757B /* NSDate+CCExtension.m */; };
 		371F1DE71F0745F10055757B /* NSDecimalNumber+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1D7F1F0745F10055757B /* NSDecimalNumber+CCExtension.m */; };
@@ -47,41 +44,18 @@
 		371F1E061F0745F10055757B /* CCCustomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1DE01F0745F10055757B /* CCCustomHeader.m */; };
 		371F1E071F0745F10055757B /* UIImageView+CCWeakNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1DE31F0745F10055757B /* UIImageView+CCWeakNetwork.m */; };
 		371F1E081F0745F10055757B /* CCLocalLib.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 371F1DE41F0745F10055757B /* CCLocalLib.podspec */; };
-		371F1E0E1F0747BA0055757B /* NSString+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1E0D1F0747BA0055757B /* NSString+CCChain.m */; };
-		371F1E161F0752270055757B /* NSObject+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1E151F0752270055757B /* NSObject+CCChain.m */; };
-		371F1E1A1F0762770055757B /* NSPredicate+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1E191F0762770055757B /* NSPredicate+CCChain.m */; };
-		371F1E1E1F076D610055757B /* NSAttributedString+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F1E1D1F076D610055757B /* NSAttributedString+CCChain.m */; };
 		377CAD1A1F0105E800AE46A8 /* 0ZG63407-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 377CAD191F0105E800AE46A8 /* 0ZG63407-0.png */; };
-		37A492BC1F39FD3400B69D88 /* UIControl+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A492BB1F39FD3400B69D88 /* UIControl+CCChain.m */; };
-		37A492C01F3A010A00B69D88 /* UICollectionView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A492BF1F3A010A00B69D88 /* UICollectionView+CCChain.m */; };
-		37A492C41F3A021E00B69D88 /* NSBundle+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A492C31F3A021E00B69D88 /* NSBundle+CCChain.m */; };
 		37C69E1A1ED6684D00531ED3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E191ED6684D00531ED3 /* main.m */; };
 		37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E1C1ED6684D00531ED3 /* AppDelegate.m */; };
 		37C69E201ED6684D00531ED3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E1F1ED6684D00531ED3 /* ViewController.m */; };
 		37C69E231ED6684D00531ED3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E211ED6684D00531ED3 /* Main.storyboard */; };
 		37C69E251ED6684D00531ED3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E241ED6684D00531ED3 /* Assets.xcassets */; };
 		37C69E281ED6684D00531ED3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E261ED6684D00531ED3 /* LaunchScreen.storyboard */; };
-		37DC7E3E1F36D6010071631B /* UIAlertController+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DC7E3D1F36D6010071631B /* UIAlertController+CCChain.m */; };
-		37DC7E421F36E1FF0071631B /* UIBarButtonItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DC7E411F36E1FF0071631B /* UIBarButtonItem+CCChain.m */; };
-		37DC7E461F36ECD70071631B /* UIButton+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DC7E451F36ECD70071631B /* UIButton+CCChain.m */; };
-		37EDDC2E1F079CDD0034C273 /* NSDate+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDDC2D1F079CDD0034C273 /* NSDate+CCChain.m */; };
-		37EDDC321F079D020034C273 /* NSArray+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDDC311F079D020034C273 /* NSArray+CCChain.m */; };
-		70471DD61F31C142003B808F /* NSDictionary+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DD51F31C142003B808F /* NSDictionary+CCChain.m */; };
-		70471DDA1F31C4E3003B808F /* NSNumber+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DD91F31C4E3003B808F /* NSNumber+CCChain.m */; };
-		70471DDF1F31C667003B808F /* UIView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DDE1F31C667003B808F /* UIView+CCChain.m */; };
-		70471DE31F31C892003B808F /* UIGestureRecognizer+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DE21F31C892003B808F /* UIGestureRecognizer+CCChain.m */; };
-		70471DE71F31D568003B808F /* MBProgressHUD+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70471DE61F31D568003B808F /* MBProgressHUD+CCChain.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06F3945F3B247350FA607CEF /* Pods-CCLocalLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCLocalLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary.release.xcconfig"; sourceTree = "<group>"; };
 		1C424E92BD9104CE08216FD9 /* Pods_CCLocalLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCLocalLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3704A1E21F3B5E90000C7B50 /* UIColor+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CCChain.h"; sourceTree = "<group>"; };
-		3704A1E31F3B5E90000C7B50 /* UIColor+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CCChain.m"; sourceTree = "<group>"; };
-		3704A1E61F3B6123000C7B50 /* UIImage+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CCChain.h"; sourceTree = "<group>"; };
-		3704A1E71F3B6123000C7B50 /* UIImage+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CCChain.m"; sourceTree = "<group>"; };
-		370D74A51F322BBD00709A9F /* NSObject+CCProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CCProtocol.h"; sourceTree = "<group>"; };
-		370D74A61F322BBD00709A9F /* NSObject+CCProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CCProtocol.m"; sourceTree = "<group>"; };
 		371F1D781F0745F10055757B /* NSArray+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCExtension.h"; sourceTree = "<group>"; };
 		371F1D791F0745F10055757B /* NSArray+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CCExtension.m"; sourceTree = "<group>"; };
 		371F1D7B1F0745F10055757B /* NSDate+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CCExtension.h"; sourceTree = "<group>"; };
@@ -156,21 +130,7 @@
 		371F1DE21F0745F10055757B /* UIImageView+CCWeakNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CCWeakNetwork.h"; sourceTree = "<group>"; };
 		371F1DE31F0745F10055757B /* UIImageView+CCWeakNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CCWeakNetwork.m"; sourceTree = "<group>"; };
 		371F1DE41F0745F10055757B /* CCLocalLib.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CCLocalLib.podspec; sourceTree = "<group>"; };
-		371F1E0C1F0747BA0055757B /* NSString+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CCChain.h"; sourceTree = "<group>"; };
-		371F1E0D1F0747BA0055757B /* NSString+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CCChain.m"; sourceTree = "<group>"; };
-		371F1E141F0752270055757B /* NSObject+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CCChain.h"; sourceTree = "<group>"; };
-		371F1E151F0752270055757B /* NSObject+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CCChain.m"; sourceTree = "<group>"; };
-		371F1E181F0762770055757B /* NSPredicate+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+CCChain.h"; sourceTree = "<group>"; };
-		371F1E191F0762770055757B /* NSPredicate+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+CCChain.m"; sourceTree = "<group>"; };
-		371F1E1C1F076D610055757B /* NSAttributedString+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CCChain.h"; sourceTree = "<group>"; };
-		371F1E1D1F076D610055757B /* NSAttributedString+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+CCChain.m"; sourceTree = "<group>"; };
 		377CAD191F0105E800AE46A8 /* 0ZG63407-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0ZG63407-0.png"; sourceTree = "<group>"; };
-		37A492BA1F39FD3400B69D88 /* UIControl+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+CCChain.h"; sourceTree = "<group>"; };
-		37A492BB1F39FD3400B69D88 /* UIControl+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+CCChain.m"; sourceTree = "<group>"; };
-		37A492BE1F3A010A00B69D88 /* UICollectionView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+CCChain.h"; sourceTree = "<group>"; };
-		37A492BF1F3A010A00B69D88 /* UICollectionView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+CCChain.m"; sourceTree = "<group>"; };
-		37A492C21F3A021E00B69D88 /* NSBundle+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CCChain.h"; sourceTree = "<group>"; };
-		37A492C31F3A021E00B69D88 /* NSBundle+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+CCChain.m"; sourceTree = "<group>"; };
 		37C69E151ED6684D00531ED3 /* CCLocalLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCLocalLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C69E191ED6684D00531ED3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37C69E1B1ED6684D00531ED3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -181,27 +141,7 @@
 		37C69E241ED6684D00531ED3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37C69E271ED6684D00531ED3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37C69E291ED6684D00531ED3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		37DC7E3C1F36D6010071631B /* UIAlertController+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+CCChain.h"; sourceTree = "<group>"; };
-		37DC7E3D1F36D6010071631B /* UIAlertController+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+CCChain.m"; sourceTree = "<group>"; };
-		37DC7E401F36E1FF0071631B /* UIBarButtonItem+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+CCChain.h"; sourceTree = "<group>"; };
-		37DC7E411F36E1FF0071631B /* UIBarButtonItem+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+CCChain.m"; sourceTree = "<group>"; };
-		37DC7E441F36ECD70071631B /* UIButton+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CCChain.h"; sourceTree = "<group>"; };
-		37DC7E451F36ECD70071631B /* UIButton+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CCChain.m"; sourceTree = "<group>"; };
-		37EDDC2C1F079CDD0034C273 /* NSDate+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CCChain.h"; sourceTree = "<group>"; };
-		37EDDC2D1F079CDD0034C273 /* NSDate+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CCChain.m"; sourceTree = "<group>"; };
-		37EDDC301F079D020034C273 /* NSArray+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCChain.h"; sourceTree = "<group>"; };
-		37EDDC311F079D020034C273 /* NSArray+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CCChain.m"; sourceTree = "<group>"; };
 		3D5CA2FFF5E357F90100D989 /* Pods-CCLocalLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCLocalLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary.debug.xcconfig"; sourceTree = "<group>"; };
-		70471DD41F31C142003B808F /* NSDictionary+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CCChain.h"; sourceTree = "<group>"; };
-		70471DD51F31C142003B808F /* NSDictionary+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CCChain.m"; sourceTree = "<group>"; };
-		70471DD81F31C4E3003B808F /* NSNumber+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+CCChain.h"; sourceTree = "<group>"; };
-		70471DD91F31C4E3003B808F /* NSNumber+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+CCChain.m"; sourceTree = "<group>"; };
-		70471DDD1F31C667003B808F /* UIView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CCChain.h"; sourceTree = "<group>"; };
-		70471DDE1F31C667003B808F /* UIView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CCChain.m"; sourceTree = "<group>"; };
-		70471DE11F31C892003B808F /* UIGestureRecognizer+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+CCChain.h"; sourceTree = "<group>"; };
-		70471DE21F31C892003B808F /* UIGestureRecognizer+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+CCChain.m"; sourceTree = "<group>"; };
-		70471DE51F31D568003B808F /* MBProgressHUD+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CCChain.h"; sourceTree = "<group>"; };
-		70471DE61F31D568003B808F /* MBProgressHUD+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CCChain.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,33 +163,6 @@
 				06F3945F3B247350FA607CEF /* Pods-CCLocalLibrary.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		3704A1E11F3B5E7C000C7B50 /* UIColor */ = {
-			isa = PBXGroup;
-			children = (
-				3704A1E21F3B5E90000C7B50 /* UIColor+CCChain.h */,
-				3704A1E31F3B5E90000C7B50 /* UIColor+CCChain.m */,
-			);
-			path = UIColor;
-			sourceTree = "<group>";
-		};
-		3704A1E51F3B6116000C7B50 /* UIImage */ = {
-			isa = PBXGroup;
-			children = (
-				3704A1E61F3B6123000C7B50 /* UIImage+CCChain.h */,
-				3704A1E71F3B6123000C7B50 /* UIImage+CCChain.m */,
-			);
-			path = UIImage;
-			sourceTree = "<group>";
-		};
-		370D74A31F322B5A00709A9F /* CCProtocol */ = {
-			isa = PBXGroup;
-			children = (
-				370D74A51F322BBD00709A9F /* NSObject+CCProtocol.h */,
-				370D74A61F322BBD00709A9F /* NSObject+CCProtocol.m */,
-			);
-			path = CCProtocol;
 			sourceTree = "<group>";
 		};
 		371F1D731F0745F10055757B /* CCLocalLib */ = {
@@ -646,100 +559,9 @@
 			path = "CCUIImageView + WeakNetwork";
 			sourceTree = "<group>";
 		};
-		371F1E091F0746FF0055757B /* CCChainOperate */ = {
-			isa = PBXGroup;
-			children = (
-				370D74A31F322B5A00709A9F /* CCProtocol */,
-				70471DDB1F31C647003B808F /* CCView */,
-				371F1E0A1F0747760055757B /* CCData */,
-			);
-			name = CCChainOperate;
-			path = ../CCChainOperate;
-			sourceTree = "<group>";
-		};
-		371F1E0A1F0747760055757B /* CCData */ = {
-			isa = PBXGroup;
-			children = (
-				37A492C11F3A021200B69D88 /* NSBundle */,
-				70471DD71F31C4D2003B808F /* NSNumber */,
-				70471DD31F31C122003B808F /* NSDictionary */,
-				37EDDC2F1F079CF20034C273 /* NSArray */,
-				37EDDC2B1F079CDD0034C273 /* NSDate */,
-				371F1E1B1F076D4E0055757B /* NSAttributedString */,
-				371F1E171F0762660055757B /* NSPredicate */,
-				371F1E131F07520D0055757B /* NSObject */,
-				371F1E0B1F0747760055757B /* NSString */,
-			);
-			path = CCData;
-			sourceTree = "<group>";
-		};
-		371F1E0B1F0747760055757B /* NSString */ = {
-			isa = PBXGroup;
-			children = (
-				371F1E0C1F0747BA0055757B /* NSString+CCChain.h */,
-				371F1E0D1F0747BA0055757B /* NSString+CCChain.m */,
-			);
-			path = NSString;
-			sourceTree = "<group>";
-		};
-		371F1E131F07520D0055757B /* NSObject */ = {
-			isa = PBXGroup;
-			children = (
-				371F1E141F0752270055757B /* NSObject+CCChain.h */,
-				371F1E151F0752270055757B /* NSObject+CCChain.m */,
-			);
-			path = NSObject;
-			sourceTree = "<group>";
-		};
-		371F1E171F0762660055757B /* NSPredicate */ = {
-			isa = PBXGroup;
-			children = (
-				371F1E181F0762770055757B /* NSPredicate+CCChain.h */,
-				371F1E191F0762770055757B /* NSPredicate+CCChain.m */,
-			);
-			path = NSPredicate;
-			sourceTree = "<group>";
-		};
-		371F1E1B1F076D4E0055757B /* NSAttributedString */ = {
-			isa = PBXGroup;
-			children = (
-				371F1E1C1F076D610055757B /* NSAttributedString+CCChain.h */,
-				371F1E1D1F076D610055757B /* NSAttributedString+CCChain.m */,
-			);
-			path = NSAttributedString;
-			sourceTree = "<group>";
-		};
-		37A492B91F39FD2000B69D88 /* UIControl */ = {
-			isa = PBXGroup;
-			children = (
-				37A492BA1F39FD3400B69D88 /* UIControl+CCChain.h */,
-				37A492BB1F39FD3400B69D88 /* UIControl+CCChain.m */,
-			);
-			path = UIControl;
-			sourceTree = "<group>";
-		};
-		37A492BD1F3A010000B69D88 /* UICollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				37A492BE1F3A010A00B69D88 /* UICollectionView+CCChain.h */,
-				37A492BF1F3A010A00B69D88 /* UICollectionView+CCChain.m */,
-			);
-			path = UICollectionView;
-			sourceTree = "<group>";
-		};
-		37A492C11F3A021200B69D88 /* NSBundle */ = {
-			isa = PBXGroup;
-			children = (
-				37A492C21F3A021E00B69D88 /* NSBundle+CCChain.h */,
-				37A492C31F3A021E00B69D88 /* NSBundle+CCChain.m */,
-			);
-			path = NSBundle;
-			sourceTree = "<group>";
-		};
 		37C69E0C1ED6684D00531ED3 = {
 			isa = PBXGroup;
 			children = (
-				371F1E091F0746FF0055757B /* CCChainOperate */,
 				371F1D731F0745F10055757B /* CCLocalLib */,
 				37C69E171ED6684D00531ED3 /* CCLocalLibrary */,
 				37C69E161ED6684D00531ED3 /* Products */,
@@ -779,113 +601,6 @@
 				37C69E191ED6684D00531ED3 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		37DC7E3B1F36D5E90071631B /* UIAlertController */ = {
-			isa = PBXGroup;
-			children = (
-				37DC7E3C1F36D6010071631B /* UIAlertController+CCChain.h */,
-				37DC7E3D1F36D6010071631B /* UIAlertController+CCChain.m */,
-			);
-			path = UIAlertController;
-			sourceTree = "<group>";
-		};
-		37DC7E3F1F36E1EF0071631B /* UIBarButtonItem */ = {
-			isa = PBXGroup;
-			children = (
-				37DC7E401F36E1FF0071631B /* UIBarButtonItem+CCChain.h */,
-				37DC7E411F36E1FF0071631B /* UIBarButtonItem+CCChain.m */,
-			);
-			path = UIBarButtonItem;
-			sourceTree = "<group>";
-		};
-		37DC7E431F36ECC90071631B /* UIButton */ = {
-			isa = PBXGroup;
-			children = (
-				37DC7E441F36ECD70071631B /* UIButton+CCChain.h */,
-				37DC7E451F36ECD70071631B /* UIButton+CCChain.m */,
-			);
-			path = UIButton;
-			sourceTree = "<group>";
-		};
-		37EDDC2B1F079CDD0034C273 /* NSDate */ = {
-			isa = PBXGroup;
-			children = (
-				37EDDC2C1F079CDD0034C273 /* NSDate+CCChain.h */,
-				37EDDC2D1F079CDD0034C273 /* NSDate+CCChain.m */,
-			);
-			path = NSDate;
-			sourceTree = "<group>";
-		};
-		37EDDC2F1F079CF20034C273 /* NSArray */ = {
-			isa = PBXGroup;
-			children = (
-				37EDDC301F079D020034C273 /* NSArray+CCChain.h */,
-				37EDDC311F079D020034C273 /* NSArray+CCChain.m */,
-			);
-			path = NSArray;
-			sourceTree = "<group>";
-		};
-		70471DD31F31C122003B808F /* NSDictionary */ = {
-			isa = PBXGroup;
-			children = (
-				70471DD41F31C142003B808F /* NSDictionary+CCChain.h */,
-				70471DD51F31C142003B808F /* NSDictionary+CCChain.m */,
-			);
-			path = NSDictionary;
-			sourceTree = "<group>";
-		};
-		70471DD71F31C4D2003B808F /* NSNumber */ = {
-			isa = PBXGroup;
-			children = (
-				70471DD81F31C4E3003B808F /* NSNumber+CCChain.h */,
-				70471DD91F31C4E3003B808F /* NSNumber+CCChain.m */,
-			);
-			path = NSNumber;
-			sourceTree = "<group>";
-		};
-		70471DDB1F31C647003B808F /* CCView */ = {
-			isa = PBXGroup;
-			children = (
-				3704A1E51F3B6116000C7B50 /* UIImage */,
-				3704A1E11F3B5E7C000C7B50 /* UIColor */,
-				37A492BD1F3A010000B69D88 /* UICollectionView */,
-				37A492B91F39FD2000B69D88 /* UIControl */,
-				37DC7E431F36ECC90071631B /* UIButton */,
-				37DC7E3F1F36E1EF0071631B /* UIBarButtonItem */,
-				37DC7E3B1F36D5E90071631B /* UIAlertController */,
-				70471DE41F31D55B003B808F /* MBProgressHud */,
-				70471DE01F31C85B003B808F /* UIGestureRecognizer */,
-				70471DDC1F31C647003B808F /* UIView */,
-			);
-			path = CCView;
-			sourceTree = "<group>";
-		};
-		70471DDC1F31C647003B808F /* UIView */ = {
-			isa = PBXGroup;
-			children = (
-				70471DDD1F31C667003B808F /* UIView+CCChain.h */,
-				70471DDE1F31C667003B808F /* UIView+CCChain.m */,
-			);
-			path = UIView;
-			sourceTree = "<group>";
-		};
-		70471DE01F31C85B003B808F /* UIGestureRecognizer */ = {
-			isa = PBXGroup;
-			children = (
-				70471DE11F31C892003B808F /* UIGestureRecognizer+CCChain.h */,
-				70471DE21F31C892003B808F /* UIGestureRecognizer+CCChain.m */,
-			);
-			path = UIGestureRecognizer;
-			sourceTree = "<group>";
-		};
-		70471DE41F31D55B003B808F /* MBProgressHud */ = {
-			isa = PBXGroup;
-			children = (
-				70471DE51F31D568003B808F /* MBProgressHUD+CCChain.h */,
-				70471DE61F31D568003B808F /* MBProgressHUD+CCChain.m */,
-			);
-			path = MBProgressHud;
 			sourceTree = "<group>";
 		};
 		8B7896DEA8F6C51E28F52700 /* Frameworks */ = {
@@ -1022,22 +737,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				371F1DF71F0745F10055757B /* UIImage+CCExtension.m in Sources */,
-				371F1E161F0752270055757B /* NSObject+CCChain.m in Sources */,
-				37DC7E421F36E1FF0071631B /* UIBarButtonItem+CCChain.m in Sources */,
 				371F1DFB1F0745F10055757B /* UINavigationItem+CCSpacing.m in Sources */,
-				371F1E1A1F0762770055757B /* NSPredicate+CCChain.m in Sources */,
 				371F1DF31F0745F10055757B /* UICollectionView+CCExtension.m in Sources */,
-				370D74A71F322BBD00709A9F /* NSObject+CCProtocol.m in Sources */,
 				371F1DFA1F0745F10055757B /* UILabel+CCExtension.m in Sources */,
-				371F1E1E1F076D610055757B /* NSAttributedString+CCChain.m in Sources */,
 				371F1DFE1F0745F10055757B /* UITextField+CCExtension.m in Sources */,
-				3704A1E41F3B5E90000C7B50 /* UIColor+CCChain.m in Sources */,
-				37DC7E3E1F36D6010071631B /* UIAlertController+CCChain.m in Sources */,
 				371F1DFD1F0745F10055757B /* UITableView+CCExtension.m in Sources */,
 				371F1E031F0745F10055757B /* CCFileManager.m in Sources */,
 				371F1DEE1F0745F10055757B /* NSString+CCExtension.m in Sources */,
 				371F1DF01F0745F10055757B /* UIAlertController+CCExtension.m in Sources */,
-				37EDDC2E1F079CDD0034C273 /* NSDate+CCChain.m in Sources */,
 				371F1DF41F0745F10055757B /* UIColor+CCExtension.m in Sources */,
 				371F1DEB1F0745F10055757B /* NSMutableDictionary+CCExtension.m in Sources */,
 				371F1DF21F0745F10055757B /* UIButton+CCExtension.m in Sources */,
@@ -1050,24 +757,13 @@
 				371F1E061F0745F10055757B /* CCCustomHeader.m in Sources */,
 				371F1DFC1F0745F10055757B /* UIScrollView+CCExtension.m in Sources */,
 				37C69E201ED6684D00531ED3 /* ViewController.m in Sources */,
-				37A492C41F3A021E00B69D88 /* NSBundle+CCChain.m in Sources */,
-				70471DDF1F31C667003B808F /* UIView+CCChain.m in Sources */,
 				371F1DE61F0745F10055757B /* NSDate+CCExtension.m in Sources */,
-				70471DE71F31D568003B808F /* MBProgressHUD+CCChain.m in Sources */,
 				371F1E051F0745F10055757B /* CCCustomFooter.m in Sources */,
 				371F1DE51F0745F10055757B /* NSArray+CCExtension.m in Sources */,
-				3704A1E81F3B6123000C7B50 /* UIImage+CCChain.m in Sources */,
-				371F1E0E1F0747BA0055757B /* NSString+CCChain.m in Sources */,
-				70471DDA1F31C4E3003B808F /* NSNumber+CCChain.m in Sources */,
 				37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */,
 				371F1E021F0745F10055757B /* CCCommonTools.m in Sources */,
-				70471DE31F31C892003B808F /* UIGestureRecognizer+CCChain.m in Sources */,
-				37EDDC321F079D020034C273 /* NSArray+CCChain.m in Sources */,
 				371F1E071F0745F10055757B /* UIImageView+CCWeakNetwork.m in Sources */,
-				70471DD61F31C142003B808F /* NSDictionary+CCChain.m in Sources */,
-				37A492C01F3A010A00B69D88 /* UICollectionView+CCChain.m in Sources */,
 				371F1E001F0745F10055757B /* UIViewController+CCExtension.m in Sources */,
-				37DC7E461F36ECD70071631B /* UIButton+CCChain.m in Sources */,
 				371F1DE81F0745F10055757B /* NSDictionary+CCExtension.m in Sources */,
 				371F1DF91F0745F10055757B /* UIImageView+CCExtension.m in Sources */,
 				371F1DF11F0745F10055757B /* UIBarButtonItem+CCExtension.m in Sources */,
@@ -1076,7 +772,6 @@
 				37C69E1A1ED6684D00531ED3 /* main.m in Sources */,
 				371F1DEF1F0745F10055757B /* MBProgressHUD+CCExtension.m in Sources */,
 				371F1DFF1F0745F10055757B /* UIView+CCExtension.m in Sources */,
-				37A492BC1F39FD3400B69D88 /* UIControl+CCChain.m in Sources */,
 				371F1E011F0745F10055757B /* WKWebView+CCExtension.m in Sources */,
 				371F1DED1F0745F10055757B /* NSObject+CCExtension.m in Sources */,
 			);
