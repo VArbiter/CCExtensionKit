@@ -164,6 +164,12 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return self.blockSectionHeader ? self.blockSectionHeader(tableView , section) : nil;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return self.blockSectionFooter ? self.blockSectionFooter(tableView , section) : nil;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return self.blockSectionFooterHeight ? self.blockSectionFooterHeight(tableView , section) : .01f;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.blockDidSelect) {
         if (self.blockDidSelect(tableView , indexPath)) {

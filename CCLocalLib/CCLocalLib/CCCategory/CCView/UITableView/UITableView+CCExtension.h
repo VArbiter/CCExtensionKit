@@ -53,6 +53,8 @@
 @property (nonatomic , copy) CGFloat (^blockCellHeight)(UITableView * tableView , NSIndexPath *indexPath) ;
 @property (nonatomic , copy) CGFloat (^blockSectionHeaderHeight)(UITableView * tableView , NSInteger integerSection) ;
 @property (nonatomic , copy) UIView *(^blockSectionHeader)(UITableView *tableView , NSInteger integerSection) ;
+@property (nonatomic , copy) CGFloat (^blockSectionFooterHeight)(UITableView * tableView , NSInteger integerSection) ;
+@property (nonatomic , copy) UIView *(^blockSectionFooter)(UITableView *tableView , NSInteger integerSection) ;
 @property (nonatomic , copy) BOOL (^blockDidSelect)(UITableView *tableView , NSIndexPath *indexPath) ;
 
 @end
