@@ -54,7 +54,7 @@
     };
 }
 
-- (NSString *) ccAppendPath : (NSString *) string {
+- (instancetype) ccAppendPath : (NSString *) string {
     return [self stringByAppendingPathComponent:string];
 }
 
@@ -62,7 +62,7 @@
     return [NSDecimalNumber decimalNumberWithString:self];
 }
 
-- (NSString *) ccTimeStick {
+- (instancetype) ccTimeStick {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm";
     NSDate *date = [formatter dateFromString:self];
@@ -94,14 +94,14 @@
     return timeInterval / (60 * 60 * 24);
 }
 
-- (NSString *) ccTimeStickWeekDays {
+- (instancetype) ccTimeStickWeekDays {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm";
     NSDate *date = [formatter dateFromString:self];
     return date.ccWeekDays;
 }
 
-- (NSString *) ccTimeSince1970 : (NSTimeInterval) interval {
+- (instancetype) ccTimeSince1970 : (NSTimeInterval) interval {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm";
@@ -115,9 +115,9 @@
     return [formatter dateFromString:self];
 }
 
-+ (NSString *) ccMergeNeedLineBreak : (BOOL) isNeedBreak
-                        needSpacing : (BOOL) isNeedSpacing
-                               with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION {
++ (instancetype) ccMergeNeedLineBreak : (BOOL) isNeedBreak
+                          needSpacing : (BOOL) isNeedSpacing
+                                 with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION {
     if (!string || !string.length) return nil;
     
     NSMutableArray *arrayStrings = [NSMutableArray array];
@@ -137,9 +137,9 @@
              needSpacing:isNeedSpacing];
 }
 
-+ (NSString *) ccMerge : (NSArray <NSString *> *) arrayStrings
-         needLineBreak : (BOOL) isNeedBreak // 回车优先级最高 , 高于空格
-           needSpacing : (BOOL) isNeedSpacing {
++ (instancetype) ccMerge : (NSArray <NSString *> *) arrayStrings
+           needLineBreak : (BOOL) isNeedBreak // 回车优先级最高 , 高于空格
+             needSpacing : (BOOL) isNeedSpacing {
     __block NSString *stringResult = @"";
     if (isNeedBreak) {
         [arrayStrings enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -169,7 +169,7 @@
     return stringResult;
 }
 
-- (NSString *) ccMD5String {
+- (instancetype) ccMD5String {
     if (!self.length) return nil;
     const char *cStr = [self UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];

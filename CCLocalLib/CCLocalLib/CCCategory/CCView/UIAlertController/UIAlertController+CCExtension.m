@@ -13,23 +13,23 @@
 
 @implementation UIAlertController (CCExtension)
 
-- (UIAlertController *) ccAlert : (NSString *) stringMessage {
+- (instancetype) ccAlert : (NSString *) stringMessage {
     return [self ccAlert:nil
                  message:stringMessage];
 }
 
-- (UIAlertController *) ccAlert : (NSString *) stringTitle
-                        message : (NSString *) stringMessage {
+- (instancetype) ccAlert : (NSString *) stringTitle
+                 message : (NSString *) stringMessage {
     return [self ccAlert:stringTitle
                  message:stringMessage
                  confirm:nil
                   cancel:nil];
 }
 
-- (UIAlertController *) ccAlert : (NSString *) stringTitle
-                        message : (NSString *) stringMessage
-                        confirm : (dispatch_block_t) blockConfirm
-                         cancel : (dispatch_block_t) blockCancel {
+- (instancetype) ccAlert : (NSString *) stringTitle
+                 message : (NSString *) stringMessage
+                 confirm : (dispatch_block_t) blockConfirm
+                  cancel : (dispatch_block_t) blockCancel {
     return [self ccAlert:stringTitle
                  message:stringMessage
             titleConfirm:ccLocalize(@"_CC_CONFIRM_", "确认")
@@ -38,12 +38,12 @@
                   cancel:blockConfirm];
 }
 
-- (UIAlertController *) ccAlert : (NSString *) stringTitle
-                        message : (NSString *) stringMessage
-                   titleConfirm : (NSString *) stringConfirmTitle
-                    titleCancel : (NSString *) stringCancelTitle
-                        confirm : (dispatch_block_t) blockConfirm
-                         cancel : (dispatch_block_t) blockCancel {
+- (instancetype) ccAlert : (NSString *) stringTitle
+                 message : (NSString *) stringMessage
+            titleConfirm : (NSString *) stringConfirmTitle
+             titleCancel : (NSString *) stringCancelTitle
+                 confirm : (dispatch_block_t) blockConfirm
+                  cancel : (dispatch_block_t) blockCancel {
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:stringTitle
                                                                     message:stringMessage
                                                              preferredStyle:UIAlertControllerStyleAlert];
@@ -70,10 +70,10 @@
     return alertC;
 }
 
-- (UIAlertController *) ccAlertSheet : (NSString *) stringTitleCancel
-                            destruct : (NSString *) stringTitleDestruct
-                              others : (NSArray *) arrayButtonTitles
-                               click : (void(^)(NSInteger integerIndex)) blockClickIndex {
+- (instancetype) ccAlertSheet : (NSString *) stringTitleCancel
+                     destruct : (NSString *) stringTitleDestruct
+                       others : (NSArray *) arrayButtonTitles
+                        click : (void(^)(NSInteger integerIndex)) blockClickIndex {
     return [self ccAlertSheet:nil
                       message:nil
                        cancel:stringTitleCancel
@@ -82,12 +82,12 @@
                         click:blockClickIndex];
 }
 
-- (UIAlertController *) ccAlertSheet : (NSString *) stringTitle
-                             message : (NSString *) stringMessage
-                              cancel : (NSString *) stringTitleCancel
-                            destruct : (NSString *) stringTitleDestruct
-                              others : (NSArray *) arrayButtonTitles
-                               click : (void(^)(NSInteger integerIndex)) blockClickIndex {
+- (instancetype) ccAlertSheet : (NSString *) stringTitle
+                      message : (NSString *) stringMessage
+                       cancel : (NSString *) stringTitleCancel
+                     destruct : (NSString *) stringTitleDestruct
+                       others : (NSArray *) arrayButtonTitles
+                        click : (void(^)(NSInteger integerIndex)) blockClickIndex {
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:stringTitle
                                                                         message:stringMessage
                                                                  preferredStyle:UIAlertControllerStyleActionSheet];

@@ -24,29 +24,29 @@
 @property (nonatomic , readonly , copy) NSString *(^appendPath)(NSString *string);
 @property (nonatomic , readonly , copy) NSString *(^append)(NSString *string);
 
-- (NSString *) ccAppendPath : (NSString *) string ;
+- (instancetype) ccAppendPath : (NSString *) string ;
 
 - (NSDecimalNumber *) ccDecimalValue ; // 仅限数字
 
-- (NSString *) ccTimeStick ; // yyyy-MM-dd HH:mm
+- (instancetype) ccTimeStick ; // yyyy-MM-dd HH:mm
 
-- (NSString *) ccTimeStickWeekDays ; // yyyy-MM-dd HH:mm
+- (instancetype) ccTimeStickWeekDays ; // yyyy-MM-dd HH:mm
 
-- (NSString *) ccTimeSince1970 : (NSTimeInterval) interval ;
+- (instancetype) ccTimeSince1970 : (NSTimeInterval) interval ;
 
 - (NSDate *) ccDate ;
 
 - (NSUInteger) ccDays ;
 
-+ (NSString *) ccMergeNeedLineBreak : (BOOL) isNeedBreak // 回车优先级最高 , 高于空格
-                        needSpacing : (BOOL) isNeedSpacing
-                               with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION;
++ (instancetype) ccMergeNeedLineBreak : (BOOL) isNeedBreak // 回车优先级最高 , 高于空格
+                          needSpacing : (BOOL) isNeedSpacing
+                                 with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION;
 
-+ (NSString *) ccMerge : (NSArray <NSString *> *) arrayStrings
-         needLineBreak : (BOOL) isNeedBreak // 回车优先级最高 , 高于空格
-           needSpacing : (BOOL) isNeedSpacing ;
++ (instancetype) ccMerge : (NSArray <NSString *> *) arrayStrings
+           needLineBreak : (BOOL) isNeedBreak // 回车优先级最高 , 高于空格
+             needSpacing : (BOOL) isNeedSpacing ;
 
-- (NSString *) ccMD5String ;
+- (instancetype) ccMD5String ;
 
 - (NSMutableAttributedString *) ccMAttributeString ;
 

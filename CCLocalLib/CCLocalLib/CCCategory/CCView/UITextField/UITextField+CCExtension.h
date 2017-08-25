@@ -10,9 +10,9 @@
 
 @interface UITextField (CCExtension)
 
-+ (UITextField *) ccCommon : (CGRect) rectFrame ;
-+ (UITextField *) ccCommon : (CGRect) rectFrame
-                  delegate : (id) delegate ;
++ (instancetype) ccCommon : (CGRect) rectFrame ;
++ (instancetype) ccCommon : (CGRect) rectFrame
+                 delegate : (id) delegate ;
 
 - (void) ccSetRightView : (NSString *) stringImageName ;
 - (BOOL) ccResignFirstResponder ;

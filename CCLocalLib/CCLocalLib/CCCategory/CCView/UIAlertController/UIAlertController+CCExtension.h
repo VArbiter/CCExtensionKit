@@ -10,34 +10,34 @@
 
 @interface UIAlertController (CCExtension)
 
-- (UIAlertController *) ccAlert : (NSString *) stringMessage ;
+- (instancetype) ccAlert : (NSString *) stringMessage ;
 
-- (UIAlertController *) ccAlert : (NSString *) stringTitle
-                        message : (NSString *) stringMessage ;
+- (instancetype) ccAlert : (NSString *) stringTitle
+                 message : (NSString *) stringMessage ;
 
-- (UIAlertController *) ccAlert : (NSString *) stringTitle
-                        message : (NSString *) stringMessage
-                        confirm : (dispatch_block_t) blockConfirm
-                         cancel : (dispatch_block_t) blockCancel ;
+- (instancetype) ccAlert : (NSString *) stringTitle
+                 message : (NSString *) stringMessage
+                 confirm : (dispatch_block_t) blockConfirm
+                  cancel : (dispatch_block_t) blockCancel ;
 
-- (UIAlertController *) ccAlert : (NSString *) stringTitle
-                        message : (NSString *) stringMessage
-                   titleConfirm : (NSString *) stringConfirmTitle
-                    titleCancel : (NSString *) stringCancelTitle
-                        confirm : (dispatch_block_t) blockConfirm
-                         cancel : (dispatch_block_t) blockCancel;
+- (instancetype) ccAlert : (NSString *) stringTitle
+                 message : (NSString *) stringMessage
+            titleConfirm : (NSString *) stringConfirmTitle
+             titleCancel : (NSString *) stringCancelTitle
+                 confirm : (dispatch_block_t) blockConfirm
+                  cancel : (dispatch_block_t) blockCancel;
 
-- (UIAlertController *) ccAlertSheet : (NSString *) stringTitleCancel
-                            destruct : (NSString *) stringTitleDestruct
-                              others : (NSArray *) arrayButtonTitles
-                               click : (void(^)(NSInteger integerIndex)) blockClickIndex;
+- (instancetype) ccAlertSheet : (NSString *) stringTitleCancel
+                     destruct : (NSString *) stringTitleDestruct
+                       others : (NSArray *) arrayButtonTitles
+                        click : (void(^)(NSInteger integerIndex)) blockClickIndex;
 
-- (UIAlertController *) ccAlertSheet : (NSString *) stringTitle
-                             message : (NSString *) stringMessage
-                              cancel : (NSString *) stringTitleCancel
-                            destruct : (NSString *) stringTitleDestruct
-                              others : (NSArray *) arrayButtonTitles
-                               click : (void(^)(NSInteger integerIndex)) blockClickIndex ;
+- (instancetype) ccAlertSheet : (NSString *) stringTitle
+                      message : (NSString *) stringMessage
+                       cancel : (NSString *) stringTitleCancel
+                     destruct : (NSString *) stringTitleDestruct
+                       others : (NSArray *) arrayButtonTitles
+                        click : (void(^)(NSInteger integerIndex)) blockClickIndex ;
 
 @end
 

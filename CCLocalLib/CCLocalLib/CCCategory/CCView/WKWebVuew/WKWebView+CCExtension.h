@@ -26,3 +26,13 @@
 - (WKNavigation *) ccLoadHTMLString : (NSString *) stringHTML ;
 
 @end
+
+#pragma mark - -----
+
+@interface CCScriptMessageDelegate : NSObject < WKScriptMessageHandler >
+
+@property (nonatomic , assign) id < WKScriptMessageHandler > scriptDelegate;
+
+- (instancetype) init:(id < WKScriptMessageHandler > ) scriptDelegate;
+
+@end

@@ -13,12 +13,12 @@
 
 @implementation UITextField (CCExtension)
 
-+ (UITextField *) ccCommon : (CGRect) rectFrame {
++ (instancetype) ccCommon : (CGRect) rectFrame {
     return [self ccCommon:rectFrame
                  delegate:nil];
 }
-+ (UITextField *) ccCommon : (CGRect) rectFrame
-                  delegate : (id) delegate {
++ (instancetype) ccCommon : (CGRect) rectFrame
+                 delegate : (id) delegate {
     UITextField *textField = [[UITextField alloc] initWithFrame:rectFrame];
     textField.textColor = [UIColor whiteColor];
     textField.clearsOnBeginEditing = YES;
