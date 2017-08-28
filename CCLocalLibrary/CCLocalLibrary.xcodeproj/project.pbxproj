@@ -51,6 +51,7 @@
 		37C69E231ED6684D00531ED3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E211ED6684D00531ED3 /* Main.storyboard */; };
 		37C69E251ED6684D00531ED3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E241ED6684D00531ED3 /* Assets.xcassets */; };
 		37C69E281ED6684D00531ED3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E261ED6684D00531ED3 /* LaunchScreen.storyboard */; };
+		702931D51F5408D30013C947 /* NSBundle+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 702931D41F5408D30013C947 /* NSBundle+CCExtension.m */; };
 		70FF668C1F43E43F009E67F6 /* NSObject+CCProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF668B1F43E43F009E67F6 /* NSObject+CCProtocol.m */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +144,8 @@
 		37C69E271ED6684D00531ED3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37C69E291ED6684D00531ED3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D5CA2FFF5E357F90100D989 /* Pods-CCLocalLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCLocalLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary.debug.xcconfig"; sourceTree = "<group>"; };
+		702931D31F5408D30013C947 /* NSBundle+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CCExtension.h"; sourceTree = "<group>"; };
+		702931D41F5408D30013C947 /* NSBundle+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+CCExtension.m"; sourceTree = "<group>"; };
 		70FF668A1F43E43F009E67F6 /* NSObject+CCProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CCProtocol.h"; sourceTree = "<group>"; };
 		70FF668B1F43E43F009E67F6 /* NSObject+CCProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CCProtocol.m"; sourceTree = "<group>"; };
 		70FF668E1F43E479009E67F6 /* CCLocalLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLocalLib.h; sourceTree = "<group>"; };
@@ -204,6 +207,7 @@
 		371F1D761F0745F10055757B /* CCData */ = {
 			isa = PBXGroup;
 			children = (
+				702931D21F54087F0013C947 /* NSBundle */,
 				371F1D771F0745F10055757B /* NSArray */,
 				371F1D7A1F0745F10055757B /* NSDate */,
 				371F1D7D1F0745F10055757B /* NSDecimalNumber */,
@@ -609,6 +613,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		702931D21F54087F0013C947 /* NSBundle */ = {
+			isa = PBXGroup;
+			children = (
+				702931D31F5408D30013C947 /* NSBundle+CCExtension.h */,
+				702931D41F5408D30013C947 /* NSBundle+CCExtension.m */,
+			);
+			path = NSBundle;
+			sourceTree = "<group>";
+		};
 		70FF66891F43E43F009E67F6 /* CCProtocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -785,6 +798,7 @@
 				371F1DF11F0745F10055757B /* UIBarButtonItem+CCExtension.m in Sources */,
 				371F1DF51F0745F10055757B /* UIGestureRecognizer+CCExtension.m in Sources */,
 				371F1DEA1F0745F10055757B /* NSMutableAttributedString+CCExtension.m in Sources */,
+				702931D51F5408D30013C947 /* NSBundle+CCExtension.m in Sources */,
 				37C69E1A1ED6684D00531ED3 /* main.m in Sources */,
 				371F1DEF1F0745F10055757B /* MBProgressHUD+CCExtension.m in Sources */,
 				371F1DFF1F0745F10055757B /* UIView+CCExtension.m in Sources */,

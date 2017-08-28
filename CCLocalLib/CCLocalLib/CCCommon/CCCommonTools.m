@@ -185,6 +185,12 @@ NSString * ccLocalize(NSString * stringLocalKey , ...){
     return ccBundleLocalize(stringLocalKey, NSBundle.mainBundle , "");
 }
 
+NSString * ccLocalizeIn(Class clazz , NSString * stringLocalKey , ...) {
+    NSBundle *b = [NSBundle bundleForClass:clazz];
+    if (b) return ccBundleLocalize(stringLocalKey, b , "");
+    else return ccBundleLocalize(stringLocalKey, NSBundle.mainBundle , "");
+}
+
 NSString * ccBundleLocalize(NSString * stringLocalKey , NSBundle * bundle , ... ){
     return NSLocalizedStringFromTableInBundle(stringLocalKey, @"LocalizableMain", bundle, nil);
 }

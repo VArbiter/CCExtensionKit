@@ -58,6 +58,8 @@ UIImage *ccImage(NSString *stringName ,
 
 NSString * ccLocalize(NSString * stringLocalKey , ...); // Default Main
 
+NSString * ccLocalizeIn(Class clazz , NSString * stringLocalKey , ...); //
+
 NSString * ccBundleLocalize(NSString * stringLocalKey , NSBundle * bundle , ... ); // Default @"LocalizableMain.strings"
 
 /// 末尾需要添加 nil , C function 无法使用 NS_REQUIRES_NIL_TERMINATION , 不能使用集合类 .
