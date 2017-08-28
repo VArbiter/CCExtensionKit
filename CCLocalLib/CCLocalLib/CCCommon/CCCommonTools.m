@@ -192,7 +192,10 @@ NSString * ccLocalizeIn(Class clazz , NSString * stringLocalKey , ...) {
 }
 
 NSString * ccBundleLocalize(NSString * stringLocalKey , NSBundle * bundle , ... ){
-    return NSLocalizedStringFromTableInBundle(stringLocalKey, @"LocalizableMain", bundle, nil);
+    id s = NSLocalizedStringFromTableInBundle(stringLocalKey, @"LocalizableMain", bundle, nil);
+    if (s && [s isKindOfClass:NSString.class])
+        if (((NSString *)s).length) return s;
+    return @"";
 }
 
 NSString * ccObjMerge(id obj , ... ) {
