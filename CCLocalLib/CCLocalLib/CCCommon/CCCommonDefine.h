@@ -40,10 +40,14 @@
         #define CCLog(fmt , ...) /* */
     #endif
 
-    #define _CC_DETECT_DEALLOC_ \
-        - (void)dealloc { \
-            CCLog(@"_CC_%@_DEALLOC_", NSStringFromClass([self class]));\
-        } \
+    #if _CC_DEBUG_MODE_
+        #define _CC_DETECT_DEALLOC_ \
+            - (void)dealloc { \
+                CCLog(@"_CC_%@_DEALLOC_", NSStringFromClass([self class]));\
+            } 
+    #else
+        #define _CC_DETECT_DEALLOC_ /* */
+    #endif
 
     // self 弱引用
     #define ccWeakSelf __weak typeof(&*self) pSelf = self

@@ -17,9 +17,9 @@
 #import "NSString+CCExtension.h"
 
 #import "NSObject+CCProtocol.h"
-#import "UIView+CCChain.h"
+//#import "UIView+CCChain.h"
 
-#import "UIGestureRecognizer+CCChain.h"
+//#import "UIGestureRecognizer+CCChain.h"
 
 @interface ViewController ()
 
@@ -34,7 +34,7 @@
     UIImageView *imageView = [UIImageView ccCommon:CGRectZero image:image enable:false];
     imageView.y = 80;
     imageView.size = [image ccZoom:0.5];
-    
+    /*
     [self.view addSubview:imageView];
     imageView.tap(^(UIView *v, UITapGestureRecognizer *gr) {
         
@@ -47,6 +47,7 @@
     self.view.cc.addSub(v);
     
 //    self.view.cc.hud().message(@"SHOWING").type(CCHudChainTypeDarkDeep);
+     */
     
 }
 
