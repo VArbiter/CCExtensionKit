@@ -99,7 +99,7 @@
             }break;
                 
             case CCImageSaveTypeAll:{
-                UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerEditedImage"],
+                UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerOriginalImage"],
                                                self,
                                                @selector(image:didFinishSavingWithError:contextInfo:),
                                                nil);
