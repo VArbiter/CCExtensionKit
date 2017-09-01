@@ -44,13 +44,19 @@
 - (NSString *(^)(NSString *))append {
     ccWeakSelf;
     return ^NSString *(NSString *string) {
-        return [pSelf stringByAppendingString:string];
+        if ([string isKindOfClass:NSString.class]) {
+            return string && string.length ? [pSelf stringByAppendingString:string] : pSelf;
+        }
+        return pSelf;
     };
 }
 - (NSString *(^)(NSString *))appendPath {
     ccWeakSelf;
     return ^NSString *(NSString *string) {
-        return [pSelf stringByAppendingPathComponent:string];
+        if ([string isKindOfClass:NSString.class]) {
+            return string && string.length ? [pSelf stringByAppendingPathComponent:string] : pSelf;
+        }
+        return pSelf;
     };
 }
 
