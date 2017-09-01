@@ -37,7 +37,7 @@
                                                                              action:nil];
     itemBar.width = self.iOffsetRight;
     NSArray *array = [NSArray arrayWithObjects:itemBar,item, nil];
-    [self setLeftBarButtonItems:array];
+    [self setRightBarButtonItems:array];
 }
 
 - (void)setIOffsetLeft:(NSInteger)iOffsetLeft {
