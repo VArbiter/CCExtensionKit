@@ -47,7 +47,7 @@
 
 @end
 
-#pragma mark - UICollectionViewFlowLayout --------------------------------------
+#pragma mark - -----
 
 @interface UICollectionViewFlowLayout (CCExtension)
 
@@ -60,30 +60,81 @@
 
 @end
 
-#pragma mark - CCCollectionViewDelegate ----------------------------------------
+#pragma mark - -----
 
-@interface CCCollectionViewDelegate : NSObject < UICollectionViewDelegateFlowLayout >
+@interface CCCollectionExtensionDelegate : NSObject < UICollectionViewDelegateFlowLayout >
 
 - (id < UICollectionViewDelegateFlowLayout > ) init;
+- (instancetype) ccDidSelect : (BOOL (^)(UICollectionView *collectionView ,
+                                         NSIndexPath *indexPath)) didSelect;
+- (instancetype) ccDidHighted : (void (^)(UICollectionView *collectionView ,
+                                          NSIndexPath *indexPath)) didHighLighted ;
+- (instancetype) ccDidUnHighted : (void (^)(UICollectionView *collectionView ,
+                                            NSIndexPath *indexPath)) didUnHighLighted ;
+- (instancetype) ccMinimumLineSpacingInSection : (CGFloat (^)(UICollectionView *collectionView ,
+                                                              UICollectionViewLayout *layout ,
+                                                              NSInteger iSection)) minimumLineSpacingInSection;
+- (instancetype) ccMinimumInteritemSpacingInSection : (CGFloat (^)(UICollectionView *collectionView ,
+                                                                   UICollectionViewLayout *layout ,
+                                                                   NSInteger iSection)) minimumInteritemSpacingInSection;
+- (instancetype) ccSpacingBetweenSections : (UIEdgeInsets(^)(UICollectionView *collectionView ,
+                                                             UICollectionViewLayout *layout ,
+                                                             NSInteger iSection)) spacingBetweenSections;
 
-@property (nonatomic , copy) BOOL (^blockDidSelect)(UICollectionView *collectionView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) void (^blockDidHightedCell)(UICollectionView *collectionView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) void (^blockDidUnhigntedCell)(UICollectionView *collectionView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) CGFloat (^blockMinimumLineSpacingInSection)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger integerSection) ;
-@property (nonatomic , copy) CGFloat (^blockMinimumInteritemSpacingInSection)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger integerSection) ;
-@property (nonatomic , copy) UIEdgeInsets (^blockSpacingBetweenSections)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger integerSection) ;
 @end
 
-#pragma mark - CCCollectionViewDataSource --------------------------------------
+#pragma mark - -----
 
-@interface CCCollectionViewDataSource : NSObject < UICollectionViewDataSource >
+@interface CCCollectionExtensionDataSource : NSObject < UICollectionViewDataSource >
 
 - (id < UICollectionViewDataSource >) init ;
-
-@property (nonatomic , copy) NSInteger (^blockSections)(UICollectionView *collectionView) ;
-@property (nonatomic , copy) NSInteger (^blockItemsInSections)(UICollectionView * collectionView , NSInteger integerSections) ;
-@property (nonatomic , copy) NSString *(^blockCellIdentifier)(UICollectionView * collectionView , NSIndexPath * indexPath) ;
-@property (nonatomic , copy) UICollectionViewCell *(^blockConfigCell)(UICollectionView * collectionView , UICollectionViewCell * cellConfig , NSIndexPath * indexPath);
+- (instancetype) ccSections : (NSInteger (^)(UICollectionView *collectionView)) sections ;
+- (instancetype) ccItemsInSections : (NSInteger (^)(UICollectionView * collectionView ,
+                                                    NSInteger iSections)) itemInSections ;
+- (instancetype) ccCellIdentifier : (NSString *(^)(UICollectionView * collectionView ,
+                                                   NSIndexPath * indexPath)) identifier ;
+- (instancetype) ccConfiguration : (UICollectionViewCell *(^)(UICollectionView * collectionView ,
+                                                              __kindof UICollectionViewCell * cell ,
+                                                              NSIndexPath * indexPath)) configuration ;
 
 @end
+
+#pragma mark - -----
+
+@interface NSArray (CCExtension_Collection_Refresh)
+
+- (instancetype) ccReload : (UICollectionView *) collectionView ;
+- (instancetype) ccReload : (UICollectionView *) collectionView
+                 sections : (NSIndexSet *) set ;
+
+@end
+
+#pragma mark - -----
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+
+/// pre-fetching
+/// note: highly recommended to put prefetching in background thread , in other word , must
+/// note: pre-fetch is sort-of auto fit technics , therefore , these method (for dellegate it self)
+///     will not recalls for every time the collection view shows it cells .
+/// note: that is , if users scrolling slowly or stop to scroll , it will goes pre-fetch
+///     if fast , goes not .
+/// note: for canceling , when users interested in sth , or reverse it scroll directions ,
+///     or press to make system reponse an event , then , canceling was active .
+/// note: sometimes canceling was not used in actual.
+/// note: when canceling has recall values , maybe it's a subset of 'ccPrefetchAt:'
+
+@interface CCCollectionExtensionDataPrefetching : NSObject < UICollectionViewDataSourcePrefetching >
+
+/// auto enable prefetch in background thread
+- (id <UICollectionViewDataSourcePrefetching> ) init ;
+- (instancetype) ccDisableBackgroundMode;
+- (instancetype) ccPrefetchAt : (void (^)(__kindof UICollectionView *collectionView ,
+                                          NSArray <NSIndexPath *> *array)) fetch ;
+- (instancetype) ccCancelPrefetchAt : (void (^)(__kindof UICollectionView *collectionView ,
+                                                NSArray <NSIndexPath *> *array)) cancel ;
+
+@end
+
+#endif
 
