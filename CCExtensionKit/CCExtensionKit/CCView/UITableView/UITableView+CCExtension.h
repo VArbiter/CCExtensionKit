@@ -7,43 +7,56 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MJRefresh/MJRefresh.h>
-
-#import "CCCommonDefine.h"
 
 @interface UITableView (CCExtension)
 
-+ (instancetype) ccCommon : (CGRect) rectFrame;
-+ (instancetype) ccCommon : (CGRect) rectFrame
-       delegateDataSource : (id) delegateDataSource ;
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                 delegate : (id) delegate
-               dataSource : (id) dataSource ;
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                    style : (UITableViewStyle) style
-       delegateDataSource : (id) delegateDataSource ;
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                    style : (UITableViewStyle) style
-                 delegate : (id) delegate
-               dataSource : (id) dataSource ;
+/// default plain.
++ (instancetype) common : (CGRect) frame ;
++ (instancetype) common : (CGRect) frame
+                  style : (UITableViewStyle) style ;
 
-- (void) ccRegistNib : (NSString *) stringNib ;
-- (void) ccRegistClass : (NSString *) stringClazz ;
+- (instancetype) ccDelegateT : (id) delegate ;
+- (instancetype) ccDataSourceT : (id) dataSource ;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+/// data source that pre-fetching
+- (instancetype) ccPrefetchingT : (id) prefetch ;
+#endif
 
-- (void) ccHeaderRefreshing : (CCEndLoadType(^)()) blockRefresh
-             footerLoadMore : (CCEndLoadType(^)()) blockLoadMore ;
+/// requires that nib name is equal to cell's idetifier .
+/// default main bundle
+- (instancetype) ccRegistNib : (NSString *) sNib ;
+- (instancetype) ccRegistNib : (NSString *) sNib
+                      bundle : (NSBundle *) bundle ;
+/// requires that class name is equal to cell's idetifier .
+- (instancetype) ccRegistCls : (Class) cls ;
 
-- (void) ccUpdateing : (dispatch_block_t) block ;
+/// default main bundle
+- (instancetype) ccRegistHeaderFooterNib : (NSString *) sNib ;
+- (instancetype) ccRegistHeaderFooterNib : (NSString *) sNib
+                                  bundle : (NSBundle *) bundle ;
+- (instancetype) ccRegistHeaderFooterCls : (Class) cls ;
 
-- (void) ccHeaderEndRefreshing;
-- (void) ccFooterEndLoadMore ;
+/// wrapper of "beginUpdates" && "endUpdates"
+- (instancetype) ccUpdating : (void (^)()) updating ;
 
-- (void) ccEndLoading ;
-- (void) ccFooterEndLoadNoMoreData ;
-- (void) ccResetLoadMoreStatus ;
+/// for non-animated , only section 0 was available.
+/// note : UITableViewRowAnimationNone means reloading without hidden animations .
+/// note : if animated is set to -1 , equals to reloadData.
+/// note : if reloeded muti sections , using "ccReloadSectionsT:animate:" down below
+- (instancetype) ccReloading : (UITableViewRowAnimation) animation ;
+- (instancetype) ccReloadSectionsT : (NSIndexSet *) set
+                           animate : (UITableViewRowAnimation) animation ;
+- (instancetype) ccReloadItemsT : (NSArray <NSIndexPath *> *) array
+                        animate : (UITableViewRowAnimation) animation ;
+
+- (__kindof UITableViewCell *) ccDeqCell : (NSString *) sIdentifier ;
+/// for cell that register in tableView
+- (__kindof UITableViewCell *) ccDeqCell : (NSString *) sIdentifier
+                               indexPath : (NSIndexPath *) indexPath ;
+- (__kindof UITableViewHeaderFooterView *) ccDeqReusableView : (NSString *) sIdentifier ;
 
 @end
-
+#warning TODO >>>
 #pragma mark - CCTableViewDelegate ---------------------------------------------
 
 @interface CCTableViewDelegate : NSObject < UITableViewDelegate >

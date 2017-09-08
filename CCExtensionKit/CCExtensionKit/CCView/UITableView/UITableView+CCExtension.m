@@ -7,139 +7,168 @@
 //
 
 #import "UITableView+CCExtension.h"
-#import "UIImageView+CCExtension.h"
 
-#import "CCCustomFooter.h"
-#import "CCCustomHeader.h"
-
-#import "CCCommonTools.h"
+#ifndef _CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_
+    #define _CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_ @"CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER"
+#endif
 
 @implementation UITableView (CCExtension)
 
-+ (instancetype) ccCommon : (CGRect) rectFrame {
-    return [self ccCommon:rectFrame
-            delegateDataSource:nil];
++ (instancetype) common : (CGRect) frame {
+    return [self common:frame style:UITableViewStylePlain];
 }
-+ (instancetype) ccCommon : (CGRect) rectFrame
-       delegateDataSource : (id) delegateDataSource {
-    return [self ccCommon:rectFrame
-                    style:UITableViewStylePlain
-       delegateDataSource:delegateDataSource];
-}
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                 delegate : (id) delegate
-               dataSource : (id) dataSource {
-    return [self ccCommon:rectFrame
-                    style:UITableViewStylePlain
-                 delegate:delegate
-               dataSource:dataSource];
-}
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                    style : (UITableViewStyle) style
-       delegateDataSource : (id) delegateDataSource {
-    return [self ccCommon:rectFrame
-                    style:style
-                 delegate:delegateDataSource
-               dataSource:delegateDataSource];
++ (instancetype) common : (CGRect) frame
+                  style : (UITableViewStyle) style {
+    UITableView *v  = [[UITableView alloc] initWithFrame:frame
+                                                   style:style];
+    v.showsVerticalScrollIndicator = false;
+    v.showsHorizontalScrollIndicator = false;
+    v.separatorStyle = UITableViewCellSeparatorStyleNone;
+    v.backgroundColor = UIColor.clearColor;
+    [v registerClass:UITableViewCell.class
+forCellReuseIdentifier:_CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
+    return v;
 }
 
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                    style : (UITableViewStyle) style
-                 delegate : (id) delegate
-               dataSource : (id) dataSource  {
-    UITableView *tableView  = [[UITableView alloc] initWithFrame:rectFrame
-                                                           style:style];
-    if (delegate) 
-        tableView.delegate = delegate;
-    if (dataSource)
-        tableView.dataSource = dataSource;
-    tableView.showsVerticalScrollIndicator = false;
-    tableView.showsHorizontalScrollIndicator = false;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.backgroundColor = [UIColor clearColor];
-    tableView.bounces = YES;
-    return tableView;
+- (instancetype) ccDelegateT : (id) delegate {
+    self.delegate = delegate;
+    return self;
+}
+- (instancetype) ccDataSourceT : (id) dataSource {
+    self.dataSource = dataSource;
+    return self;
+}
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+- (instancetype) ccPrefetchingT : (id) prefetch {
+    self.prefetchDataSource = prefetch;
+    return self;
+}
+#endif
+
+- (instancetype) ccRegistNib : (NSString *) sNib {
+    return [self ccRegistNib:sNib bundle:nil];
+}
+- (instancetype) ccRegistNib : (NSString *) sNib
+                      bundle : (NSBundle *) bundle {
+    if (!bundle) bundle = NSBundle.mainBundle;
+    [self registerNib:[UINib nibWithNibName:sNib
+                                      bundle:bundle]
+forCellReuseIdentifier:sNib];
+    return self;
 }
 
-- (void) ccRegistNib : (NSString *) stringNib {
-    [self registerNib:[UINib nibWithNibName:stringNib
-                                    bundle:[NSBundle mainBundle]]
-                     forCellReuseIdentifier:stringNib];
-}
-- (void) ccRegistClass : (NSString *) stringClazz{
-    [self registerClass:NSClassFromString(stringClazz)
- forCellReuseIdentifier:stringClazz];
+- (instancetype) ccRegistCls : (Class) cls {
+    [self registerClass:cls
+  forCellReuseIdentifier:NSStringFromClass(cls)];
+    return self;
 }
 
-- (void) ccHeaderRefreshing : (CCEndLoadType(^)()) blockRefresh
-             footerLoadMore : (CCEndLoadType(^)()) blockLoadMore {
-    ccWeakSelf;
-    CC_Safe_UI_Operation(blockRefresh, ^{
-       CCCustomHeader *header = [CCCustomHeader headerWithRefreshingBlock:^{
-           if (blockRefresh() != CCEndLoadTypeManualEnd) {
-               [pSelf.mj_header endRefreshing];
-           }
-       }];
-       
-       pSelf.mj_header = header ;
-    });
-    
-    CC_Safe_UI_Operation(blockLoadMore, ^{
-        CCCustomFooter *footer = [CCCustomFooter footerWithRefreshingBlock:^{
-            switch (blockLoadMore()) {
-                case CCEndLoadTypeEnd:{
-                    [pSelf.mj_footer endRefreshing];
-                }break;
-                case CCEndLoadTypeNoMoreData:{
-                    [pSelf.mj_footer endRefreshingWithNoMoreData];
-                }break;
-                case CCEndLoadTypeManualEnd:{
-                    
-                }break;
-                    
-                default:{
-                    [pSelf.mj_header endRefreshing];
-                }break;
-            }
-        }];
+- (instancetype) ccRegistHeaderFooterNib : (NSString *) sNib {
+    return [self ccRegistHeaderFooterNib:sNib bundle:nil];
+}
+- (instancetype) ccRegistHeaderFooterNib : (NSString *) sNib
+                                  bundle : (NSBundle *) bundle {
+    if (NSClassFromString(sNib) == UITableViewHeaderFooterView.class
+        || [NSClassFromString(sNib) isSubclassOfClass:UITableViewHeaderFooterView.class]) {
+        if (!bundle) bundle = NSBundle.mainBundle;
+        [self registerNib:[UINib nibWithNibName:sNib
+                                         bundle:bundle]
+forHeaderFooterViewReuseIdentifier:sNib];
+    }
+    return self;
+}
+- (instancetype) ccRegistHeaderFooterCls : (Class) cls {
+    if (cls == UITableViewHeaderFooterView.class
+        || [cls isSubclassOfClass:UITableViewHeaderFooterView.class]){
+        [self registerClass:cls forHeaderFooterViewReuseIdentifier:NSStringFromClass(cls)];
+    }
+    return self;
+}
+
+- (instancetype) ccUpdating : (void (^)()) updating {
+    if (updating) {
+        [self beginUpdates];
+        updating();
+        [self endUpdates];
+    }
+    return self;
+}
+
+- (instancetype) ccReloading : (UITableViewRowAnimation) animation {
+    if ((NSInteger)animation > 0 && animation != UITableViewRowAnimationNone) {
+        return [self ccReloadSectionsT:[NSIndexSet indexSetWithIndex:0]
+                               animate:animation];
+    }
+    else [self reloadData];
+    return self;
+}
+- (instancetype) ccReloadSectionsT : (NSIndexSet *) set
+                           animate : (UITableViewRowAnimation) animation {
+    if (!set) return self;
+    if ((NSInteger)animation > 0 && animation != UITableViewRowAnimationNone) {
+        [self reloadSections:set
+            withRowAnimation:animation];
+    } else {
         
-        pSelf.mj_footer = footer;
-    });
+        void (^t)(void (^)()) = ^(void (^e)()) {
+            if (e) {
+                [UIView setAnimationsEnabled:false];
+                e();
+                [UIView setAnimationsEnabled:YES];
+            }
+        };
+        
+        __weak typeof(self) pSelf = self;
+        if ((NSInteger)animation == -2) {
+            t(^{
+                [pSelf reloadSections:set
+                     withRowAnimation:UITableViewRowAnimationNone];
+            });
+        } else [self reloadSections:set
+                   withRowAnimation:UITableViewRowAnimationNone];
+    }
+    return self;
+}
+- (instancetype) ccReloadItemsT : (NSArray <NSIndexPath *> *) array
+                        animate : (UITableViewRowAnimation) animation {
+    if (array && array.count) {
+        if ((NSInteger)animation > 0 && animation != UITableViewRowAnimationNone) {
+            [self reloadRowsAtIndexPaths:array
+                        withRowAnimation:animation];
+        } else {
+            
+            void (^t)(void (^)()) = ^(void (^e)()) {
+                if (e) {
+                    [UIView setAnimationsEnabled:false];
+                    e();
+                    [UIView setAnimationsEnabled:YES];
+                }
+            };
+            __weak typeof(self) pSelf = self;
+            if ((NSInteger)animation == -2) {
+                t(^{
+                    [pSelf reloadRowsAtIndexPaths:array
+                                 withRowAnimation:UITableViewRowAnimationNone];
+                });
+            } else [self reloadRowsAtIndexPaths:array
+                               withRowAnimation:UITableViewRowAnimationNone];
+        }
+    }
+    else [self reloadData];
+    return self;
 }
 
-- (void) ccUpdateing : (dispatch_block_t) block {
-    [self beginUpdates];
-    if (block) {
-        block();
-    }
-    [self endUpdates];
+- (__kindof UITableViewCell *) ccDeqCell : (NSString *) sIdentifier {
+    return [self dequeueReusableCellWithIdentifier:sIdentifier];
 }
 
-- (void) ccHeaderEndRefreshing {
-    [self.mj_header endRefreshing];
+- (__kindof UITableViewCell *) ccDeqCell : (NSString *) sIdentifier
+                               indexPath : (NSIndexPath *) indexPath {
+    return [self dequeueReusableCellWithIdentifier:sIdentifier
+                                      forIndexPath:indexPath];
 }
-- (void) ccFooterEndLoadMore {
-    [self.mj_footer endRefreshing];
-}
-
-- (void) ccEndLoading {
-    [self ccHeaderEndRefreshing];
-    [self ccFooterEndLoadMore];
-}
-- (void) ccFooterEndLoadNoMoreData {
-    [self ccHeaderEndRefreshing];
-    if ([self.mj_footer isKindOfClass:[MJRefreshAutoGifFooter class]]) {
-        MJRefreshAutoGifFooter *footer = (MJRefreshAutoGifFooter *) self.mj_footer;
-        footer.stateLabel.hidden = false;
-    }
-    [self.mj_footer endRefreshingWithNoMoreData];
-}
-- (void) ccResetLoadMoreStatus {
-    if ([self.mj_footer isKindOfClass:[MJRefreshAutoGifFooter class]]) {
-        MJRefreshAutoGifFooter *footer = (MJRefreshAutoGifFooter *) self.mj_footer;
-        footer.stateLabel.hidden = false;
-    }
-    [self.mj_footer resetNoMoreData];
+- (__kindof UITableViewHeaderFooterView *) ccDeqReusableView : (NSString *) sIdentifier {
+    return [self dequeueReusableHeaderFooterViewWithIdentifier:sIdentifier];
 }
 
 @end
