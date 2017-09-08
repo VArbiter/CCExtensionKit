@@ -7,6 +7,7 @@
 //
 
 #import "UITableView+CCExtension.h"
+#import "CCCommon.h"
 
 #ifndef _CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_
     #define _CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_ @"CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER"
