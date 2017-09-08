@@ -10,11 +10,23 @@
 
 @interface UIScrollView (CCExtension)
 
-+ (instancetype) ccCommon : (CGRect) rectFrame;
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                  content : (CGSize) sizeContent ;
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                  content : (CGSize) sizeContent
-                 delegate : (id) delegate ;
++ (instancetype) common : (CGRect) frame ;
+
+- (instancetype) ccContentSize : (CGSize) size ;
+- (instancetype) ccDelegateT : (id) delegate ;
+
+/// animated is YES .
+- (instancetype) ccAnimatedOffset : (CGPoint) offSet ;
+- (instancetype) ccAnimatedOffset : (CGPoint) offSet
+                         animated : (BOOL) isAnimated ;
+
+- (instancetype) hideVerticalIndicator ;
+- (instancetype) hideHorizontalIndicator ;
+- (instancetype) disableBounces ;
+- (instancetype) disableScroll ;
+- (instancetype) disableScrollsToTop ;
+
+- (instancetype) enablePaging ;
+- (instancetype) enableDirectionLock ;
 
 @end

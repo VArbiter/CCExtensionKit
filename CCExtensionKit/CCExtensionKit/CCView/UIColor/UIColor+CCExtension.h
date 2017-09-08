@@ -10,8 +10,37 @@
 
 @interface UIColor (CCExtension)
 
-@property (nonatomic , readonly) UIImage * image;
+/// eg: 0xFFFFFF , 0x000000
++ (instancetype) ccHex : (int) value ;
++ (instancetype) ccHex : (int) value
+                 alpha : (double) alpha ;
+/// eg: @"0xFFFFFF" , @"##FFFFFF" , @"#FFFFFF" , @"0XFFFFFF"
+/// otherwise , returns clear color .
++ (instancetype) ccHexS : (NSString *) sHex;
++ (instancetype) ccR : (double) r
+                   G : (double) g
+                   B : (double) b ;
++ (instancetype) ccR : (double) r
+                   G : (double) g
+                   B : (double) b
+                   A : (double) a ;
 
-- (UIImage *) ccImage ;
+- (instancetype) ccAlpha : (double) alpha ;
+
++ (instancetype) random;
+
+/// generate a image that size equals (CGSize){1.f , 1.f}
+@property (nonatomic , readonly) UIImage *imageT;
+
+@end
+
+#pragma mark - -----
+
+@interface UIImage (CCExtension_Color)
+
+/// generate a image with colors.
++ (instancetype) ccColor : (UIColor *) color;
++ (instancetype) ccColor : (UIColor *) color
+                    size : (CGSize) size ;
 
 @end

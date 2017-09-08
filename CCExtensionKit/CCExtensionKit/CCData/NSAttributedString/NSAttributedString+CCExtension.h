@@ -28,3 +28,12 @@
 - (NSMutableAttributedString *) ccAttributeS : (NSDictionary *) dAttributes ;
 
 @end
+
+#pragma mark - -----
+
+@interface NSString (CCExtension_AttributedString)
+
+@property (nonatomic , readonly) NSMutableAttributedString * toAttribute;
+- (NSMutableAttributedString *) ccColor : (UIColor *) color ;
+
+@end

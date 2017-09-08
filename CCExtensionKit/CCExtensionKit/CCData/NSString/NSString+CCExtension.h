@@ -33,8 +33,6 @@
                       bundle : (NSBundle *) bundle
                      comment : (NSString *) sComment ;
 
-- (NSMutableAttributedString *) ccColor : (UIColor *) color ;
-
 @property (nonatomic , readonly) NSInteger toInteger ;
 @property (nonatomic , readonly) long long toLonglong ;
 @property (nonatomic , readonly) int toInt;
@@ -44,7 +42,6 @@
 
 /// only numbers .
 @property (nonatomic , readonly) NSDecimalNumber * toDecimal;
-@property (nonatomic , readonly) NSMutableAttributedString * toAttribute;
 /// yyyy-MM-dd HH:mm:ss
 @property (nonatomic , readonly) NSDate * toDate;
 

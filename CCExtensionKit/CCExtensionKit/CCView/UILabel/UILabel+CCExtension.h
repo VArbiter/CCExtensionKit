@@ -10,19 +10,13 @@
 
 @interface UILabel (CCExtension)
 
-+ (CGFloat) ccHeight : (NSString *) stringValue
-               width : (CGFloat) floatWidth ;
++ (instancetype) common : (CGRect) frame;
 
-+ (CGFloat) ccHeight : (NSString *) stringValue
-                font : (UIFont *) font
-           breakMode : (NSLineBreakMode) mode
-               width : (CGFloat) floatWidth ;
-
-- (CGFloat) ccHeight : (NSString *) stringValue
-               width : (CGFloat) floatWidth ;
-
-- (CGFloat) ccHeight ;
-
-+ (UILabel *) ccCommon : (CGRect) rectFrame ;
+/// auto fit with text || attributed Text ,
+/// params fEstimate that determins if the height after calculate ,  was lesser than original .
+/// note: ignores text-indent , attributed text's level will be higher than others
+- (instancetype) ccAutoHeight : (CGFloat) fEstimate ;
+- (instancetype) ccAttributedTextHeight : (CGFloat) fEstimate ;
+- (instancetype) ccTextHeight : (CGFloat) fEstimate ;
 
 @end

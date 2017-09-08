@@ -8,64 +8,99 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger , CCImageType) {
-    CCImageTypeUnknow = 0 ,
-    CCImageTypeJPEG ,
-    CCImageTypePNG ,
-    CCImageTypeGif ,
-    CCImageTypeTiff
-};
-
 @interface UIImage (CCExtension)
 
-/// class 所在 bundle , 图片名称
-@property (nonatomic , class , copy , readonly) UIImage *(^bundle)(Class , NSString *);
-
+/// for image size && width
 @property (nonatomic , readonly) CGFloat width ;
 @property (nonatomic , readonly) CGFloat height ;
 
-@property (nonatomic , readonly) UIImage * gaussianImageAcc ;
-@property (nonatomic , readonly) UIImage * gaussianImageCI ;
+/// scale size with radius
+- (CGSize) ccZoom : (CGFloat) fRadius ;
+- (instancetype) ccResizable : (UIEdgeInsets) insets ;
+- (instancetype) ccRendaring : (UIImageRenderingMode) mode ;
+- (instancetype) ccAlwaysOriginal ;
 
-- (CGSize) ccZoom : (CGFloat) floatScale ;
+/// class , imageName
++ (instancetype) ccBundle : (Class) cls
+                     name : (NSString *) sName;
++ (instancetype) ccName : (NSString *) sName ;
++ (instancetype) ccName : (NSString *) sName
+                 bundle : (NSBundle *) bundle ;
++ (instancetype) ccFile : (NSString *) sPath ;
 
-+ (instancetype) ccGenerate : (UIColor *) color;
-+ (instancetype) ccGenerate : (UIColor *)color
-                       size : (CGFloat) floatSize ;
+@end
 
-- (instancetype) ccGaussianImageAcc ;
-- (instancetype) ccGaussianImageAcc : (CGFloat) floatValue ;
-- (instancetype) ccGaussianImageAcc : (CGFloat) floatValue
-                     iterationCount : (NSInteger) iCount
-                               tint : (UIColor *) color ;
-- (void) ccGaussianImageAcc : (CGFloat) floatValue
-             iterationCount : (NSInteger) iCount
-                       tint : (UIColor *) color
-                   complete : (void(^)(UIImage *imageOrigin , UIImage *imageProcessed)) block;
+#pragma mark - -----
 
-- (instancetype) ccGaussianImageCI ;
-- (instancetype) ccGaussianImageCI : (CGFloat) floatValue ;
-- (void) ccGaussianImageCI : (CGFloat) floatValue
-                  complete : (void(^)(UIImage *imageOrigin , UIImage *imageProcessed)) block;
+@interface UIImage (CCExtension_Gaussian)
 
-+ (instancetype) ccImage : (NSString *) stringImageName ;
-+ (instancetype) ccImage : (NSString *) stringImageName
-                  isFile : (BOOL) isFile ;
-+ (instancetype) ccImage : (NSString *) stringImageName
-                  isFile : (BOOL) isFile
-           renderingMode : (UIImageRenderingMode) mode;
-+ (instancetype) ccImage : (NSString *) stringImageName
-                  isFile : (BOOL) isFile
-           renderingMode : (UIImageRenderingMode) mode
-      resizableCapInsets : (UIEdgeInsets) insets ;
+FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_VALUE_ ;
+FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 
-- (NSData *) ccImageDataStream : (void (^)(CCImageType type , NSData *dataImage)) block ;
-- (CCImageType) ccType : (NSData *) data ; // 同样是先转换为 Data 再进行判断 
+// for gaussian issues
 
-/// 只针对 UIImage 起效
-- (NSData *) ccCompressQuality ;
-- (NSData *) ccCompressQuality : (CGFloat) floatQuality ; // 压缩大小限制 , kb 单位
-- (BOOL) ccIsOverLimit_3M ; // iOS 是千进制, 所以 3M 限制定在 2.9
-- (BOOL) ccIsOverLimit : (CGFloat) floatMBytes ;
+/// using Accelerate
+- (instancetype) ccGaussianAcc ;
+- (instancetype) ccGaussianAcc : (CGFloat) fRadius ;
+- (instancetype) ccGaussianAcc : (CGFloat) fRadius
+                     iteration : (NSInteger) iteration
+                          tint : (UIColor *) tint ;
+- (instancetype) ccGaussianAcc : (CGFloat) fRadius
+                     iteration : (NSInteger) iteration
+                          tint : (UIColor *) tint
+                      complete : (void(^)(UIImage *origin , UIImage *processed)) complete ;
+
+/// using CoreImage
+- (instancetype) ccGaussianCI ; // sync , not recommended
+- (instancetype) ccGaussianCI : (CGFloat) fRadius ; // sync , not recommended
+- (instancetype) ccGaussianCI : (CGFloat) fRadius
+                     complete : (void(^)(UIImage *origin , UIImage *processed)) complete ; // async
+
+
+@end
+
+#pragma mark - -----
+
+@interface UIImage (CCExtension_Data)
+
+FOUNDATION_EXPORT CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
+
+// available for PNG && JPEG
+
+@property (nonatomic , readonly) NSData *toData ;
+/// compress and limit it with in a fitable range .
+- (NSData *) ccCompresssJPEG : (CGFloat) fQuility;
+/// arguments with Mbytes .
+- (BOOL) ccIsOverLimitFor : (CGFloat) fMBytes ;
+
+@end
+
+#pragma mark - -----
+
+typedef NS_ENUM(NSInteger , CCImageType) {
+    CCImageType_Unknow = 0 ,
+    CCImageType_JPEG ,
+    CCImageType_PNG ,
+    CCImageType_Gif ,
+    CCImageType_Tiff ,
+    CCImageType_WebP
+};
+
+@interface NSData (CCExtension_Image)
+
+/// technically , you have to read all 8-Bytes length to specific an imageType .
+/// for now , i just use the first to decide is type . (borrowed from SDWebImage) .
+@property (nonatomic , readonly) CCImageType type ;
+
+@end
+
+#pragma mark - -----
+
+@interface UIImageView (CCExtension_Gaussian)
+
+/// using Accelerate
+
+- (instancetype) ccGaussian ;
+- (instancetype) ccGaussian : (CGFloat) fRadius;
 
 @end

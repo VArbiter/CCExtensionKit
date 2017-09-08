@@ -7,60 +7,39 @@
 //
 
 #import "UILabel+CCExtension.h"
-#import "CCCommonDefine.h"
+#import "UIView+CCExtension.h"
 
 @implementation UILabel (CCExtension)
 
-+ (CGFloat) ccHeight : (NSString *) stringValue
-               width : (CGFloat) floatWidth {
-    return [self ccHeight:stringValue
-                     font:[UIFont systemFontOfSize:_CC_DEFAULT_FONT_SIZE_]
-                breakMode:NSLineBreakByWordWrapping
-                    width:floatWidth];
-}
-
-+ (CGFloat) ccHeight : (NSString *) stringValue
-                font : (UIFont *) font
-           breakMode : (NSLineBreakMode) mode
-               width : (CGFloat) floatWidth {
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    [style setLineBreakMode:mode];
-    return [stringValue boundingRectWithSize:CGSizeMake(floatWidth,
-                                                        [[UIScreen mainScreen] bounds].size.height)
-                                     options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:@{NSFontAttributeName : font,
-                                               NSParagraphStyleAttributeName : style}
-                                     context:nil].size.height;
-}
-
-- (CGFloat) ccHeight : (NSString *) stringValue
-               width : (CGFloat) floatWidth {
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    [style setLineBreakMode:self.lineBreakMode];
-    NSDictionary *dictionaryAttributes = @{ NSFontAttributeName : self.font,
-                                            NSParagraphStyleAttributeName : style };
-    
-    return [stringValue boundingRectWithSize:CGSizeMake(floatWidth,
-                                                        [[UIScreen mainScreen] bounds].size.height)
-                                     options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:dictionaryAttributes
-                                     context:nil].size.height;
-}
-
-- (CGFloat) ccHeight {
-    return [self ccHeight:self.text
-                    width:self.frame.size.width];
-}
-
-+ (UILabel *) ccCommon : (CGRect) rectFrame {
-    UILabel *label = [[UILabel alloc] initWithFrame:rectFrame];
++ (instancetype) common : (CGRect) frame {
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.numberOfLines = 0;
-    label.font = [UIFont systemFontOfSize:_CC_DEFAULT_FONT_SIZE_];
     label.textAlignment = NSTextAlignmentLeft;
     label.textColor = [UIColor blackColor];
     label.backgroundColor = [UIColor clearColor];
     label.lineBreakMode = NSLineBreakByWordWrapping;
     return label;
+}
+
+- (instancetype) ccAutoHeight : (CGFloat) fEstimate {
+    if (self.attributedText
+        && self.attributedText.length) return [self ccAttributedTextHeight:fEstimate];
+    if (self.text && self.text.length) return [self ccTextHeight:fEstimate];
+    return self;
+}
+- (instancetype) ccAttributedTextHeight : (CGFloat) fEstimate {
+    self.height = CC_TEXT_HEIGHT_A(self.width,
+                                   fEstimate,
+                                   self.attributedText);
+    return self;
+}
+- (instancetype) ccTextHeight : (CGFloat) fEstimate {
+    self.height = CC_TEXT_HEIGHT_C(self.width,
+                                   fEstimate,
+                                   self.text,
+                                   self.font,
+                                   self.lineBreakMode);
+    return self;
 }
 
 @end

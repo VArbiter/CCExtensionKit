@@ -8,36 +8,11 @@
 
 #import "UIImage+CCExtension.h"
 
-#import "CCCommonDefine.h"
-#import "CCCommonTools.h"
-#import "NSString+CCExtension.h"
-
-#import <CoreImage/CoreImage.h>
-#import <Accelerate/Accelerate.h>
 #import <CoreGraphics/CoreGraphics.h>
 
 @implementation UIImage (CCExtension)
 
-+ (UIImage *(^)(__unsafe_unretained Class, NSString *))bundle {
-    return ^UIImage *(Class c , NSString *s) {
-        NSBundle *b = [NSBundle bundleForClass:c];
-        NSString *bName = b.infoDictionary[@"CFBundleName"];
-        NSString *sc = ccStringFormat(@"%ld",(NSInteger)UIScreen.mainScreen.scale);
-        NSString *p = [b pathForResource:s.append(@"@").append(sc).append(@"x")
-                                  ofType:@"png"
-                             inDirectory:bName.append(@".bundle")];
-        return [UIImage imageWithContentsOfFile:p];
-    };
-}
-
-
-- (UIImage *)gaussianImageAcc{
-    return self.ccGaussianImageAcc;
-}
-- (UIImage *)gaussianImageCI {
-    return self.ccGaussianImageCI; // sync , 不推荐使用
-}
-
+/// for image size && width
 - (CGFloat)width {
     return self.size.width;
 }
@@ -45,62 +20,83 @@
     return self.size.height;
 }
 
-- (CGSize) ccZoom : (CGFloat) floatScale {
-    if (floatScale > .0f) {
+/// scale size with radius
+- (CGSize) ccZoom : (CGFloat) fRadius {
+    if (fRadius > .0f) {
         CGFloat ratio = self.height / self.width;
-        CGFloat ratioWidth = self.width * floatScale;
+        CGFloat ratioWidth = self.width * fRadius;
         CGFloat ratioHeight = ratioWidth * ratio;
         return CGSizeMake(ratioWidth, ratioHeight);
     }
     return self.size;
 }
-
-+ (instancetype) ccGenerate : (UIColor *) color {
-    return [self ccGenerate:color
-                       size:.0f];
+- (instancetype) ccResizable : (UIEdgeInsets) insets {
+    return [self resizableImageWithCapInsets:insets];
+}
+- (instancetype) ccRendaring : (UIImageRenderingMode) mode {
+    return [self imageWithRenderingMode:mode];
+}
+- (instancetype) ccAlwaysOriginal {
+    return [self imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
-+ (instancetype) ccGenerate : (UIColor *)color
-                       size : (CGFloat) floatSize {
-    if (floatSize <= .0f) {
-        floatSize = 1.f;
-    }
-    
-    CGRect rect = CGRectMake(0.0f, 0.0f, floatSize, floatSize);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *imageGenerate = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return imageGenerate;
+/// class , imageName
++ (instancetype) ccBundle : (Class) cls
+                     name : (NSString *) sName {
+    NSBundle *b = [NSBundle bundleForClass:cls];
+    NSString *bName = b.infoDictionary[@"CFBundleName"];
+    NSString *sc = [NSString stringWithFormat:@"%ld",(NSInteger)UIScreen.mainScreen.scale];
+    NSString *temp = [[[sName stringByAppendingString:@"@"] stringByAppendingString:sc] stringByAppendingString:@"x"];
+    NSString *p = [b pathForResource:temp
+                              ofType:@"png"
+                         inDirectory:[bName stringByAppendingString:@".bundle"]];
+    return [UIImage imageWithContentsOfFile:p];
+}
++ (instancetype) ccName : (NSString *) sName {
+    return [self imageNamed:sName];
+}
++ (instancetype) ccName : (NSString *) sName
+                 bundle : (NSBundle *) bundle {
+    return [self imageNamed:sName
+                   inBundle:bundle
+compatibleWithTraitCollection:nil];
+}
++ (instancetype) ccFile : (NSString *) sPath {
+    return [UIImage imageWithContentsOfFile:sPath];
 }
 
-- (instancetype) ccGaussianImageAcc {
-    return [self ccGaussianImageAcc:_CC_GAUSSIAN_BLUR_VALUE_];
-}
+@end
 
-- (instancetype) ccGaussianImageAcc : (CGFloat) floatValue {
-    return [self ccGaussianImageAcc:floatValue
-                     iterationCount:0
-                               tint:UIColor.whiteColor];
-}
+#pragma mark - -----
+@import Accelerate;
+@import CoreImage;
 
-- (instancetype) ccGaussianImageAcc : (CGFloat) floatValue
-                     iterationCount : (NSInteger) iCount
-                               tint : (UIColor *) color {
+CGFloat _CC_GAUSSIAN_BLUR_VALUE_ = .1f;
+CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
+
+@implementation UIImage (CCExtension_Gaussian)
+
+- (instancetype) ccGaussianAcc {
+    return [self ccGaussianAcc:_CC_GAUSSIAN_BLUR_VALUE_];
+}
+- (instancetype) ccGaussianAcc : (CGFloat) fRadius {
+    return [self ccGaussianAcc:fRadius iteration:0 tint:UIColor.whiteColor];
+}
+- (instancetype) ccGaussianAcc : (CGFloat) fRadius
+                     iteration : (NSInteger) iteration
+                          tint : (UIColor *) tint {
     UIImage *image = [self copy];
     if (!image) return self;
     
-    if (floatValue < 0.f || floatValue > 1.f) {
-        floatValue = 0.5f;
+    if (fRadius < 0.f || fRadius > 1.f) {
+        fRadius = 0.5f;
     }
     
     if (floor(self.width) * floor(self.height) <= 0) {
         return self;
     }
     
-    UInt32 boxSize = (UInt32)(floatValue * self.scale);
+    UInt32 boxSize = (UInt32)(fRadius * self.scale);
     boxSize = boxSize - (boxSize % 2) + 1;
     
     CGImageRef imageRef = image.CGImage;
@@ -151,14 +147,14 @@
                                                           boxSize,
                                                           NULL,
                                                           kvImageEdgeExtend | kvImageGetTempBufferSize));
-
+    
     CGDataProviderRef providerRef = CGImageGetDataProvider(imageRef);
     CFDataRef dataInBitMap = CGDataProviderCopyData(providerRef);
     if (!dataInBitMap) return self;
     
     memcpy(outBuffer.data, CFDataGetBytePtr(dataInBitMap), MIN(bytes, CFDataGetLength(dataInBitMap)));
-
-    for (NSInteger i = 0; i < iCount; i ++) {
+    
+    for (NSInteger i = 0; i < iteration; i ++) {
         vImage_Error error = vImageBoxConvolve_ARGB8888(&outBuffer,
                                                         &inBuffer,
                                                         tempBuffer,
@@ -195,8 +191,8 @@
                                              outBuffer.rowBytes,
                                              colorSpace,
                                              bitMapInfo);
-    if (color && CGColorGetAlpha(color.CGColor) > 0.0) {
-        CGColorRef colorRef = CGColorCreateCopyWithAlpha(color.CGColor, _CC_GAUSSIAN_BLUR_TINT_ALPHA_);
+    if (tint && CGColorGetAlpha(tint.CGColor) > 0.0) {
+        CGColorRef colorRef = CGColorCreateCopyWithAlpha(tint.CGColor, _CC_GAUSSIAN_BLUR_TINT_ALPHA_);
         CGContextSetFillColor(ctx, CGColorGetComponents(colorRef));
         CGContextSetBlendMode(ctx, kCGBlendModePlusLighter);
         CGContextFillRect(ctx, (CGRect){CGPointZero , outBuffer.width , outBuffer.height});
@@ -214,40 +210,36 @@
     
     return imageProcessed;
 }
-
-- (void) ccGaussianImageAcc : (CGFloat) floatValue
-             iterationCount : (NSInteger) iCount
-                       tint : (UIColor *) color
-                   complete : (void(^)(UIImage *imageOrigin , UIImage *imageProcessed)) block {
+- (instancetype) ccGaussianAcc : (CGFloat)fRadius
+                     iteration : (NSInteger) iteration
+                          tint : (UIColor *) tint
+                      complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
+    __weak typeof(self) pSelf = self;
+    void (^tp)() = ^ {
+        UIImage *m = [pSelf ccGaussianAcc:fRadius iteration:iteration tint:tint];
+        if (NSThread.isMainThread) {
+            if (complete) complete(pSelf , m);
+        } else dispatch_sync(dispatch_get_main_queue(), ^{
+            if (complete) complete(pSelf , m);
+        });
+    };
     
-    if (CC_Available(10.0)) {
-        // ios 10 DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL
-        dispatch_async(dispatch_queue_create("Love.cc.love.home", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
-            UIImage *image = [self ccGaussianImageAcc:floatValue
-                                       iterationCount:iCount
-                                                 tint:color];
-            CC_Safe_UI_Operation(block, ^{
-                block(self, image);
-            });
+    if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
+        dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
+            if (tp) tp();
         });
     } else {
-        dispatch_async(dispatch_queue_create("Love.cc.love.home", DISPATCH_QUEUE_CONCURRENT), ^{
-            UIImage *image = [self ccGaussianImageAcc:floatValue
-                                       iterationCount:iCount
-                                                 tint:color];
-
-            CC_Safe_UI_Operation(block, ^{
-                block(self , image);
-            });
+        dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT), ^{
+            if (tp) tp();
         });
     }
+    return pSelf;
 }
 
-// Core Image . 处理速度太慢 . 不推荐使用 .
-- (instancetype) ccGaussianImageCI {
-    return [self ccGaussianImageCI:_CC_GAUSSIAN_BLUR_VALUE_];
+- (instancetype) ccGaussianCI {
+    return [self ccGaussianCI:_CC_GAUSSIAN_BLUR_VALUE_];
 }
-- (instancetype) ccGaussianImageCI : (CGFloat) floatValue {
+- (instancetype) ccGaussianCI : (CGFloat) fRadius {
     UIImage *image = [self copy];
     if (!image) return self;
     
@@ -255,7 +247,7 @@
     CIImage *imageInput= [CIImage imageWithCGImage:image.CGImage];
     CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
     [filter setValue:imageInput forKey:kCIInputImageKey];
-    [filter setValue:@(floatValue) forKey: @"inputRadius"];
+    [filter setValue:@(fRadius) forKey: @"inputRadius"];
     
     CIImage *imageResult = [filter valueForKey:kCIOutputImageKey];
     CGImageRef imageOutput = [context createCGImage:imageResult
@@ -265,132 +257,119 @@
     
     return imageBlur;
 }
-- (void) ccGaussianImageCI : (CGFloat) floatValue
-                  complete : (void(^)(UIImage *imageOrigin , UIImage *imageProcessed)) block {
-    ccWeakSelf;
-    if (CC_Available(10.0)) {
-        dispatch_async(dispatch_queue_create("Love.cc.love.home", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
-            UIImage *image = [self ccGaussianImageCI:floatValue];
-            CC_Safe_UI_Operation(block, ^{
-                block(pSelf , image);
-            });
+- (instancetype) ccGaussianCI : (CGFloat) fRadius
+                     complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
+    __weak typeof(self) pSelf = self;
+    void (^tp)() = ^ {
+        UIImage *m = [pSelf ccGaussianCI:fRadius];
+        if (NSThread.isMainThread) {
+            if (complete) complete(pSelf , m);
+        } else dispatch_sync(dispatch_get_main_queue(), ^{
+            if (complete) complete(pSelf , m);
+        });
+    };
+    
+    if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
+        dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
+            if (tp) tp();
         });
     } else {
-        dispatch_async(dispatch_queue_create("Love.cc.love.home", DISPATCH_QUEUE_CONCURRENT), ^{
-            UIImage *image = [self ccGaussianImageCI:floatValue];;
-            CC_Safe_UI_Operation(block, ^{
-                block(pSelf , image);
-            });
+        dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT), ^{
+            if (tp) tp();
         });
     }
+    return self;
 }
 
-+ (instancetype) ccImage : (NSString *) stringImageName {
-    return [self ccImage:stringImageName
-                  isFile:false];
-}
-+ (instancetype) ccImage : (NSString *) stringImageName
-                  isFile : (BOOL) isFile {
-    return [self ccImage:stringImageName
-                  isFile:isFile
-           renderingMode:UIImageRenderingModeAlwaysOriginal];
-}
-+ (instancetype) ccImage : (NSString *) stringImageName
-                  isFile : (BOOL) isFile
-           renderingMode : (UIImageRenderingMode) mode {
-    UIImage *image = isFile ? [UIImage imageWithContentsOfFile:stringImageName] : [UIImage imageNamed:stringImageName];
-    return [image imageWithRenderingMode:mode] ;
-}
-+ (instancetype) ccImage : (NSString *) stringImageName
-                  isFile : (BOOL) isFile
-           renderingMode : (UIImageRenderingMode) mode
-      resizableCapInsets : (UIEdgeInsets) insets {
-    UIImage *image = [self ccImage:stringImageName
-                             isFile:isFile
-                      renderingMode:mode];
-    return [image resizableImageWithCapInsets:insets];
+@end
+
+#pragma mark - -----
+
+@implementation UIImage (CCExtension_Data)
+
+CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
+
+- (NSData *)toData {
+    NSData *d = nil;
+    if ((d = UIImagePNGRepresentation(self))) return d;
+    if ((d = UIImageJPEGRepresentation(self, .0f))) return d;
+    return d;
 }
 
-- (NSData *) ccImageDataStream : (void (^)(CCImageType type , NSData *dataImage)) block {
-    NSData *data = nil;
-    if (self && [self isKindOfClass:[UIImage class]]) {
-        if ((data = UIImagePNGRepresentation(self))) {
-            CC_Safe_UI_Operation(block, ^{
-                block(CCImageTypePNG , data);
-            });
-        }
-        else if ((data = UIImageJPEGRepresentation(self, _CC_IMAGE_JPEG_COMPRESSION_QUALITY_))) {
-            CC_Safe_Operation(block, ^{
-                block(CCImageTypeJPEG , data);
-            });
-        }
-        else {
-            CC_Safe_Operation(block, ^{
-                block(CCImageTypeUnknow , data);
-            });
-        }
-    }
-    return data;
-}
-
-- (CCImageType) ccType : (NSData *) data {
-    if (!data) return CCImageTypeUnknow;
+- (NSData *) ccCompresssJPEG : (CGFloat) fQuility {
+    NSData *dO = UIImageJPEGRepresentation(self, .0f); // dataOrigin
+    if (!dO) return nil;
+    NSData *dC = dO ; // dataCompress
+    NSData *dR = dO; // dataResult
     
-    UInt8 c = 0;
-    [data getBytes:&c length:1];
-    switch (c) {
-        case 0xFF:
-            return CCImageTypeJPEG;
-        case 0x89:
-            return CCImageTypePNG;
-        case 0x47:
-            return CCImageTypeGif;
-        case 0x49:
-        case 0x4D:
-            return CCImageTypeTiff;
-        case 0x52:
-            if (data.length < 12) {
-                return CCImageTypeUnknow;
-            }
-            
-        default:
-            return CCImageTypeUnknow;
-            break;
-    }
-    return CCImageTypeUnknow;
-}
-
-- (NSData *) ccCompressQuality {
-    return [self ccCompressQuality:_CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_];
-}
-- (NSData *) ccCompressQuality : (CGFloat) floatQuality {
-    NSData *dataOrigin = [self ccImageDataStream:nil];
-    if (!dataOrigin) {
-        return nil;
-    }
-    NSData *dataCompress = dataOrigin ;
-    NSData *dataResult = dataOrigin;
-    
-    long long lengthData = dataCompress.length;
+    long long lengthData = dC.length;
     NSInteger i = 0;
     for (NSInteger j = 0 ; j < 10; j ++) {
-        if (lengthData / 1024.f > floatQuality) {
+        if (lengthData / 1024.f > fQuility) {
             NSData *dataTemp = UIImageJPEGRepresentation(self , 1.f - (++ i) * .1f);
-            dataResult = dataTemp;
-            lengthData = dataResult.length;
+            dR = dataTemp;
+            lengthData = dR.length;
             continue;
         }
         break;
     }
-    return dataResult;
+    return dR;
 }
 
-- (BOOL) ccIsOverLimit_3M {
-    return [self ccIsOverLimit:2.9f];
+- (BOOL) ccIsOverLimitFor : (CGFloat) fMBytes {
+    return self.toData.length / powl(1024, 2) > fMBytes;
 }
-- (BOOL) ccIsOverLimit : (CGFloat) floatMBytes {
-    NSData *data = [self ccImageDataStream:nil];
-    return [data length] / powl(1024, 2) > floatMBytes;
+
+@end
+
+#pragma mark - -----
+
+@implementation NSData (CCExtension_Image)
+
+- (CCImageType)type {
+    NSData *data = [self copy];
+    if (!data) return CCImageType_Unknow;
+    
+    UInt8 c = 0;
+    [data getBytes:&c length:1];
+    switch (c) {
+        case 0xFF: return CCImageType_JPEG;
+        case 0x89: return CCImageType_PNG;
+        case 0x47: return CCImageType_Gif;
+        case 0x49:
+        case 0x4D: return CCImageType_Tiff;
+        case 0x52:{
+            if (data.length < 12) {
+                return CCImageType_Unknow;
+            }
+            // 0x52 == 'R' , and R is Riff for WEBP
+            NSString *s = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 12)]
+                                                encoding:NSASCIIStringEncoding];
+            if ([s hasPrefix:@"RIFF"] && [s hasSuffix:@"WEBP"]) {
+                return CCImageType_WebP;
+            }
+        }
+            
+        default:
+            return CCImageType_Unknow;
+            break;
+    }
+    return CCImageType_Unknow;
+}
+
+@end
+
+#pragma mark - -----
+
+@implementation UIImageView (CCExtension_Gaussian)
+
+- (instancetype) ccGaussian {
+    if (self.image) self.image = [self.image ccGaussianAcc];
+    return self;
+}
+- (instancetype) ccGaussian : (CGFloat) fRadius {
+    if (self.image) self.image = [self.image ccGaussianAcc:fRadius];
+    return self;
 }
 
 @end

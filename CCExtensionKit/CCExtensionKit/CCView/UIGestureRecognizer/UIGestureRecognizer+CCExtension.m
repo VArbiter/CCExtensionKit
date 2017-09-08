@@ -89,3 +89,38 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 }
 
 @end
+
+#pragma mark - -----
+
+@implementation UIView (CCExtension_Gesture_Actions)
+
+/// for gesture actions
+- (instancetype) ccGesture : (__kindof UIGestureRecognizer *) gesture {
+    self.userInteractionEnabled = YES;
+    if (gesture) [self addGestureRecognizer:gesture];
+    return self;
+}
+- (instancetype) ccTap : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action {
+    return [self ccTap:1 action:action];
+}
+- (instancetype) ccTap : (NSInteger) iCount
+                action : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action {
+    __weak typeof(self) pSelf = self;
+    self.userInteractionEnabled = YES;
+    return [self ccGesture:[UITapGestureRecognizer.common ccTap:1 action:^(UITapGestureRecognizer *tapGR) {
+        if (action) action(pSelf , tapGR);
+    }]];
+}
+- (instancetype) ccPress : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action {
+    return [self ccPress:.5f action:action];
+}
+- (instancetype) ccPress : (CGFloat) fSeconds
+                  action : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action {
+    __weak typeof(self) pSelf = self;
+    self.userInteractionEnabled = YES;
+    return [self ccGesture:[UILongPressGestureRecognizer.common ccPress:fSeconds action:^(UILongPressGestureRecognizer *pressGR) {
+        if (action) action(pSelf , pressGR);
+    }]];
+}
+
+@end

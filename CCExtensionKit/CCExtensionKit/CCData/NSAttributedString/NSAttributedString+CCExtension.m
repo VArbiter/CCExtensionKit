@@ -71,3 +71,16 @@
 }
 
 @end
+
+#pragma mark - -----
+
+@implementation NSString (CCExtension_AttributedString)
+
+- (NSMutableAttributedString *)toAttribute {
+    return [[NSMutableAttributedString alloc] initWithString:self.isStringValued];
+}
+- (NSMutableAttributedString *) ccColor : (UIColor *) color {
+    return [self.toAttribute ccColor:color];
+}
+
+@end

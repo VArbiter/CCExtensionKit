@@ -9,7 +9,6 @@
 #import "NSString+CCExtension.h"
 
 #import "NSDate+CCExtension.h"
-#import "NSAttributedString+CCExtension.h"
 #import "NSObject+CCExtension.h"
 #import "NSPredicate+CCExtension.h"
 #import <CommonCrypto/CommonDigest.h>
@@ -114,11 +113,6 @@
     return NSLocalizedStringFromTableInBundle(sKey, sStrings, bundle, nil);
 }
 
-- (NSMutableAttributedString *) ccColor : (UIColor *) color {
-    return [self.toAttribute ccColor:color];
-}
-
-
 - (NSInteger)toInteger {
     return self.integerValue;
 }
@@ -141,9 +135,7 @@
 - (NSDecimalNumber *)toDecimal {
     return [NSDecimalNumber decimalNumberWithString:self];
 }
-- (NSMutableAttributedString *)toAttribute {
-    return [[NSMutableAttributedString alloc] initWithString:self.isStringValued];
-}
+
 - (NSDate *)toDate {
     if (!self.isTime.isStringValued) {
         return [NSDate date];

@@ -10,18 +10,7 @@
 
 @interface UIImageView (CCExtension)
 
-+ (instancetype) ccCommon : (CGRect) rectFrame ;
-
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                    image : (UIImage *) image ;
-
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                    image : (UIImage *) image
-                   enable : (BOOL) isEnable ;
-
-- (instancetype) ccGussianImage;
-- (instancetype) ccGussianImageWithComplete : (dispatch_block_t) block;
-- (instancetype) ccViewWithGaussianBlurValue : (CGFloat) floatValue
-                           withCompleteBlock : (dispatch_block_t) block; // 高斯模糊, 只在 UIImageView 下起效
++ (instancetype) ccCommon : (CGRect) frame ;
+- (instancetype) ccImageT : (UIImage *) image ;
 
 @end

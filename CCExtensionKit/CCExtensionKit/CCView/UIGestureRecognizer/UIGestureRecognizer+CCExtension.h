@@ -39,3 +39,18 @@
                   action : (void(^)(UILongPressGestureRecognizer *pressGR)) action ;
 
 @end
+
+#pragma mark - -----
+
+@interface UIView (CCExtension_Gesture_Actions)
+
+/// for gesture actions
+- (instancetype) ccGesture : (__kindof UIGestureRecognizer *) gesture ;
+- (instancetype) ccTap : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action ;
+- (instancetype) ccTap : (NSInteger) iCount
+                action : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action ;
+- (instancetype) ccPress : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action ;
+- (instancetype) ccPress : (CGFloat) fSeconds
+                  action : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action ;
+
+@end

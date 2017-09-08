@@ -10,32 +10,60 @@
 
 @implementation UIScrollView (CCExtension)
 
-+ (instancetype) ccCommon : (CGRect) rectFrame {
-    return [self ccCommon:rectFrame
-                  content:rectFrame.size];
++ (instancetype)common:(CGRect)frame{
+    UIScrollView *v = [[UIScrollView alloc] initWithFrame:frame];
+    v.backgroundColor = UIColor.clearColor;
+    return v;
 }
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                      content : (CGSize) sizeContent{
-    return [self ccCommon:rectFrame
-                  content:sizeContent
-                 delegate:nil];
+
+- (instancetype) ccContentSize : (CGSize) size {
+    self.contentSize = size;
+    return self;
 }
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                  content : (CGSize) sizeContent
-                 delegate : (id) delegate {
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:rectFrame];
-    scrollView.contentSize = sizeContent;
-    if (delegate) {
-        scrollView.delegate = delegate;
-    }
-    scrollView.showsVerticalScrollIndicator = false;
-    scrollView.showsHorizontalScrollIndicator = false;
-    scrollView.bounces = false;
-    scrollView.pagingEnabled = YES;
-    scrollView.directionalLockEnabled = YES;
-    scrollView.backgroundColor = [UIColor clearColor];
-    scrollView.scrollEnabled = YES;
-    return scrollView;
+- (instancetype) ccDelegateT : (id) delegate {
+    self.delegate = delegate;
+    return self;
+}
+
+/// animated is YES .
+- (instancetype) ccAnimatedOffset : (CGPoint) offSet {
+    return [self ccAnimatedOffset:offSet animated:YES];
+}
+- (instancetype) ccAnimatedOffset : (CGPoint) offSet
+                         animated : (BOOL) isAnimated {
+    [self setContentOffset:offSet
+                  animated:isAnimated];
+    return self;
+}
+
+- (instancetype) hideVerticalIndicator {
+    self.showsVerticalScrollIndicator = false;
+    return self;
+}
+- (instancetype) hideHorizontalIndicator {
+    self.showsHorizontalScrollIndicator = false;
+    return self;
+}
+- (instancetype) disableBounces {
+    self.bounces = false;
+    return self;
+}
+- (instancetype) disableScroll {
+    self.scrollEnabled = false;
+    return self;
+}
+- (instancetype) disableScrollsToTop {
+    self.scrollsToTop = false;
+    return self;
+}
+
+- (instancetype) enablePaging {
+    self.pagingEnabled = YES;
+    return self;
+}
+- (instancetype) enableDirectionLock {
+    self.directionalLockEnabled = YES;
+    return self;
 }
 
 @end

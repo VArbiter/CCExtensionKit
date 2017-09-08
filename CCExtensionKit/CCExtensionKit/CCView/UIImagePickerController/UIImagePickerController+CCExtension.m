@@ -8,172 +8,126 @@
 
 #import "UIImagePickerController+CCExtension.h"
 
-#import "CCCommonDefine.h"
-#import "CCCommonTools.h"
+#import "CCCommon.h"
 
 #import <objc/runtime.h>
 
 @implementation UIImagePickerController (CCExtension)
 
-- (instancetype) ccImagePicker : (CCImagePickerPresentType) typePresent
-                      complete : (BlockCompleteHandler) blockComplete
-                        cancel : (BlockCancelPick) blockCancel
-                     saveError : (BlockSaveError) blockError {
-    NSArray *arraySupport = self.ccSupportType;
-    if ([arraySupport containsObject:@(CCImagePickerSupportTypeNone)]) {
-        CC_Safe_UI_Operation(blockComplete, ^{
-            blockComplete(nil , nil , CGRectNull , arraySupport);
-        });
-        return nil;
++ (instancetype) common {
+    UIImagePickerController *c = UIImagePickerController.alloc.init;
+    CC_WEAK_INSTANCE(c);
+    c.delegate = weakTc;
+    return c;
+}
+
+- (instancetype) ccDelegateT : (id) delegate {
+    if (delegate) self.delegate = delegate;
+    return self;
+}
+
+- (instancetype) ccCameraT : (void (^)()) notAllowed {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        if (notAllowed) notAllowed();
+        return self;
     }
-    BOOL isSupportAll = [arraySupport containsObject:@(CCImagePickerSupportTypeAll)];
-    CCImagePickerSupportType typeUnsupport = -1;
-    
-    switch (typePresent) {
-        case CCImagePickerPresentTypeNone:{
-            return nil;
-        }break;
-        case CCImagePickerPresentTypeCamera:{
-            if (isSupportAll || [arraySupport containsObject:@(CCImagePickerPresentTypeCamera)]) {
-                self.sourceType = UIImagePickerControllerSourceTypeCamera;
-                self.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-                self.showsCameraControls = YES;
-            }
-            else typeUnsupport = CCImagePickerSupportTypeCamera;
-        }break;
-        case CCImagePickerPresentTypePhotosAlbum:{
-            if (isSupportAll || [arraySupport containsObject:@(CCImagePickerPresentTypePhotosAlbum)]) {
-                self.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-            }
-            else typeUnsupport = CCImagePickerSupportTypePhotosAlbum;
-        }break;
-        case CCImagePickerPresentTypePhotoLibrary:{
-            if (isSupportAll || [arraySupport containsObject:@(CCImagePickerPresentTypePhotoLibrary)]) {
-                self.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            }
-            else typeUnsupport = CCImagePickerSupportTypePhotoLibrary;
-        }break;
-            
-        default:{
-            return nil;
-        }break;
+    self.sourceType = UIImagePickerControllerSourceTypeCamera;
+    self.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+    self.showsCameraControls = YES;
+    return self;
+}
+
+- (instancetype) ccSavedPhotosAlbumT : (void (^)()) notAllowed {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+        if (notAllowed) notAllowed();
+        return self;
     }
-    if ((NSInteger) typeUnsupport > 0) {
-        CC_Safe_UI_Operation(blockComplete, ^{
-            blockComplete(nil , nil , CGRectNull , @[@(typeUnsupport)]);
-        });
-        return nil;
+    self.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    return self;
+}
+
+- (instancetype) ccPhotoLibraryT : (void (^)()) notAllowed {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        if (notAllowed) notAllowed();
+        return self;
     }
-    
-    self.delegate = self;
+    self.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    return self;
+}
+
+- (instancetype) ccEnableEditing {
     self.allowsEditing = YES;
-    self.blockCompleteHandler = [blockComplete copy];
-    self.blockCancelPick = [blockCancel copy];
-    self.blockSaveError = [blockError copy];
+    return self;
+}
+
+- (instancetype) ccSave : (CCImageSaveType) type {
+    objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_SAVE_TYPE_", @(type), OBJC_ASSOCIATION_ASSIGN);
+    return self;
+}
+
+- (instancetype) ccCancel : (void (^)()) action {
+    objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_USER_DID_CANCEL_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return self;
+}
+
+- (instancetype) ccErrorIn : (void (^)(NSError *error)) action {
+    objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_SAVING_ERROR_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return self;
+}
+
+- (instancetype) ccOriginal : (void (^)(UIImage *image)) action {
+    objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_GET_ORIGINAL_IMAGE_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return self;
+}
+
+- (instancetype) ccEdited : (void (^)(UIImage *image , CGRect cropRect)) action {
+    objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_GET_EDITED_IMAGE_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    ccWeakSelf;
-    CC_Safe_UI_Operation(self.blockCompleteHandler, ^{
-        NSArray *arraySupport = pSelf.ccSupportType;
-        CCImageSaveType typeSave = pSelf.blockCompleteHandler(info[@"UIImagePickerControllerOriginalImage"],
-                                                              info[@"UIImagePickerControllerEditedImage"],
-                                                              [info[@"UIImagePickerControllerCropRect"] CGRectValue],
-                                                              arraySupport);
-        
-        switch (typeSave) {
-            case CCImageSaveTypeNone:{
-                return ;
-            }break;
-            case CCImageSaveTypeOriginalImage:{
-                UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerOriginalImage"],
-                                               self,
-                                               @selector(image:didFinishSavingWithError:contextInfo:),
-                                               nil);
-            }break;
-            case CCImageSaveTypeEditedImage:{
-                UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerEditedImage"],
-                                               self,
-                                               @selector(image:didFinishSavingWithError:contextInfo:), nil);
-            }break;
-                
-            case CCImageSaveTypeAll:{
-                UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerOriginalImage"],
-                                               self,
-                                               @selector(image:didFinishSavingWithError:contextInfo:),
-                                               nil);
-                UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerEditedImage"],
-                                               self,
-                                               @selector(image:didFinishSavingWithError:contextInfo:),
-                                               nil);
-            }break;
-                
-            default:
-                break;
-        }
-    });
+    CCImageSaveType type = [objc_getAssociatedObject(self, "_CC_IMAGE_PICKER_SAVE_TYPE_") intValue];
+    if (type & CCImageSaveTypeNone) return ;
+    __weak typeof(self) pSelf = self;
+    void (^o)() = ^ {
+        UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerOriginalImage"],
+                                       self,
+                                       @selector(image:didFinishSavingWithError:contextInfo:),
+                                       nil);
+        void (^t)(UIImage *) = objc_getAssociatedObject(pSelf, "_CC_IMAGE_PICKER_GET_ORIGINAL_IMAGE_");
+        if (t) t(info[@"UIImagePickerControllerOriginalImage"]);
+    };
+    void (^e)() = ^ {
+        UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerEditedImage"],
+                                       self,
+                                       @selector(image:didFinishSavingWithError:contextInfo:),
+                                       nil);
+        void (^t)(UIImage *, CGRect) = objc_getAssociatedObject(pSelf, "_CC_IMAGE_PICKER_GET_EDITED_IMAGE_");
+        if (t) t(info[@"UIImagePickerControllerEditedImage"] , [info[@"UIImagePickerControllerCropRect"] CGRectValue]);
+    };
+    
+    if (type & CCImageSaveTypeAll) {
+        if (o) o();
+        if (e) e();
+    }
+    else if (type & CCImageSaveTypeOriginal) {
+        if (o) o();
+    }
+    else if (type & CCImageSaveTypeEdited) {
+        if (e) e();
+    }
 }
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    ccWeakSelf;
-    CC_Safe_UI_Operation(self.blockCancelPick, ^{
-        pSelf.blockCancelPick();
-    });
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    void (^t)() = objc_getAssociatedObject(self, "_CC_IMAGE_PICKER_USER_DID_CANCEL_");
+    if (t) t();
 }
 
 - (void)image:(UIImage *)image
 didFinishSavingWithError:(NSError *)error
-  contextInfo:(void *)contextInfo {
-    ccWeakSelf;
-    if (error) {
-        CC_Safe_UI_Operation(self.blockSaveError, ^{
-            pSelf.blockSaveError(error);
-        });
-    }
-}
-
-- (NSArray *) ccSupportType {
-    if (![CCCommonTools ccHasAccessToAlbum] || ![CCCommonTools ccHasAccessToCamera]) {
-        return @[@(CCImagePickerSupportTypeNone)];
-    }
-    NSMutableArray *array = [NSMutableArray array];
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        [array addObject:@(CCImagePickerSupportTypePhotoLibrary)];
-    }
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-        [array addObject:@(CCImagePickerSupportTypePhotosAlbum)];
-    }
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [array addObject:@(CCImagePickerSupportTypeCamera)];
-    }
-    if (array.count == 3) {
-        return @[@(CCImagePickerSupportTypeAll)];
-    }
-    else if (!array.count) {
-        return @[@(CCImagePickerSupportTypeNone)];
-    }
-    else return array;
-}
-
-- (void)setBlockCompleteHandler:(BlockCompleteHandler)blockCompleteHandler {
-    objc_setAssociatedObject(self, @selector(blockCompleteHandler), blockCompleteHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-- (BlockCompleteHandler)blockCompleteHandler {
-    return objc_getAssociatedObject(self, _cmd);
-}
-
-- (void)setBlockCancelPick:(BlockCancelPick)blockCancelPick {
-    objc_setAssociatedObject(self, @selector(blockCancelPick), blockCancelPick, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-- (BlockCancelPick)blockCancelPick {
-    return objc_getAssociatedObject(self, _cmd);
-}
-
-- (void)setBlockSaveError:(BlockSaveError)blockSaveError {
-    objc_setAssociatedObject(self, @selector(blockSaveError), blockSaveError, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-- (BlockSaveError)blockSaveError {
-    return objc_getAssociatedObject(self, _cmd);
+  contextInfo:(void *)contextInfo{
+    void (^t)(NSError *) = objc_getAssociatedObject(self, "_CC_IMAGE_PICKER_SAVING_ERROR_");
+    if (t) t(error);
 }
 
 _CC_DETECT_DEALLOC_

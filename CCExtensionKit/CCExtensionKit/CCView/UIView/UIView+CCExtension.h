@@ -117,15 +117,6 @@ CGSize CCScaleSize(CGSize size);
                       radius : (CGFloat) fRadius ;
 - (instancetype) ccContentMode : (UIViewContentMode) mode ;
 
-/// for gesture actions
-- (instancetype) ccGesture : (__kindof UIGestureRecognizer *) gesture ;
-- (instancetype) ccTap : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action ;
-- (instancetype) ccTap : (NSInteger) iCount
-                action : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action ;
-- (instancetype) ccPress : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action ;
-- (instancetype) ccPress : (CGFloat) fSeconds
-                  action : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action ;
-
 @end
 
 #pragma mark - -----

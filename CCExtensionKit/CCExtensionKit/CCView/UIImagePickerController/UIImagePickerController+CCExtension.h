@@ -8,43 +8,40 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger , CCImagePickerSupportType) {
-    CCImagePickerSupportTypeNone = 0, // 用户锁定访问权限
-    CCImagePickerSupportTypeAll , // 所有
-    CCImagePickerSupportTypePhotoLibrary , // 图库
-    CCImagePickerSupportTypeCamera , // 相机
-    CCImagePickerSupportTypePhotosAlbum // 相册 (保存图片)
+typedef NS_OPTIONS(NSInteger , CCImageSaveType) {
+    CCImageSaveTypeNone = 1 << 0 , // 1 save nothing , if options contains none , will ignore other save types
+    CCImageSaveTypeOriginal = 1 << 1, // 2
+    CCImageSaveTypeEdited = 1 << 2, // 4
+    CCImageSaveTypeAll = 1 << 3 // 8 both original && edited
 };
-
-typedef NS_ENUM(NSInteger , CCImagePickerPresentType) {
-    CCImagePickerPresentTypeNone = 0 , // 无操作
-    CCImagePickerPresentTypeCamera , // 弹出相机
-    CCImagePickerPresentTypePhotoLibrary , // 弹出图库
-    CCImagePickerPresentTypePhotosAlbum , // 弹出相册
-};
-
-typedef NS_ENUM(NSInteger , CCImageSaveType) {
-    CCImageSaveTypeNone = 0 ,
-    CCImageSaveTypeOriginalImage ,
-    CCImageSaveTypeEditedImage ,
-    CCImageSaveTypeAll 
-};
-
-/// image 存在 , arrayTypes 是支持类型集合 , 不存在是不支持类型集合
-typedef void (^BlockSaveError)(NSError *error);
-typedef CCImageSaveType (^BlockCompleteHandler)(UIImage *imageOrigin , UIImage *imageEdited , CGRect rectCrop , NSArray <NSNumber *> * arrayTypes); // YES 保存到相册
-typedef void(^BlockCancelPick)();
 
 @interface UIImagePickerController (CCExtension) < UINavigationControllerDelegate , UIImagePickerControllerDelegate >
 
-- (instancetype) ccImagePicker : (CCImagePickerPresentType) typePresent
-                      complete : (BlockCompleteHandler) blockComplete
-                        cancel : (BlockCancelPick) blockCancel
-                     saveError : (BlockSaveError) blockError;
-- (NSArray *) ccSupportType ;
+/// default : allowEditing = false;
++ (instancetype) common ;
+/// default is itself .
+/// note : if specific , reload method to get images will be handled by developers , extension kit will do nothing
+- (instancetype) ccDelegateT : (id) delegate ;
 
-@property (nonatomic , copy) BlockCompleteHandler blockCompleteHandler ;
-@property (nonatomic , copy) BlockCancelPick blockCancelPick ;
-@property (nonatomic , copy) BlockSaveError blockSaveError ;
+/// default present camera , allowEditing = false;
+- (instancetype) ccCameraT : (void (^)()) notAllowed ;
+/// default present savedPhotosAlbum , allowEditing = false;
+- (instancetype) ccSavedPhotosAlbumT : (void (^)()) notAllowed ;
+/// default present photoLibrary , allowEditing = false;
+- (instancetype) ccPhotoLibraryT : (void (^)()) notAllowed ;
+/// allowEditing = YES ;
+- (instancetype) ccEnableEditing ;
+/// save specific type of images
+- (instancetype) ccSave : (CCImageSaveType) type ;
+/// if user cancelled
+- (instancetype) ccCancel : (void (^)()) action ;
+/// if an error on saving process
+- (instancetype) ccErrorIn : (void (^)(NSError *error)) action ;
+
+/// original iamge
+- (instancetype) ccOriginal : (void (^)(UIImage *image)) action ;
+/// edited image
+/// note : only enableEditing
+- (instancetype) ccEdited : (void (^)(UIImage *image , CGRect cropRect)) action ;
 
 @end

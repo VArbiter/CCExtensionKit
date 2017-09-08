@@ -379,32 +379,6 @@ CGFloat CCHScale(CGFloat h) {
     return self;
 }
 
-/// for gesture actions
-- (instancetype) ccGesture : (__kindof UIGestureRecognizer *) gesture {
-    if (gesture) [self.ccEnable addGestureRecognizer:gesture];
-    return self;
-}
-- (instancetype) ccTap : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action {
-    return [self ccTap:1 action:action];
-}
-- (instancetype) ccTap : (NSInteger) iCount
-                action : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action {
-    __weak typeof(self) pSelf = self;
-    return [self.ccEnable ccGesture:[UITapGestureRecognizer.common ccTap:1 action:^(UITapGestureRecognizer *tapGR) {
-        if (action) action(pSelf , tapGR);
-    }]];
-}
-- (instancetype) ccPress : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action {
-    return [self ccPress:.5f action:action];
-}
-- (instancetype) ccPress : (CGFloat) fSeconds
-                  action : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action {
-    __weak typeof(self) pSelf = self;
-    return [self.ccEnable ccGesture:[UILongPressGestureRecognizer.common ccPress:fSeconds action:^(UILongPressGestureRecognizer *pressGR) {
-        if (action) action(pSelf , pressGR);
-    }]];
-}
-
 @end
 
 #pragma mark - -----
