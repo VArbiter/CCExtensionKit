@@ -59,6 +59,7 @@
 		70FF30511F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF30501F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m */; };
 		70FF30541F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF30531F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.m */; };
 		70FF305E1F6A7874001B6407 /* CCMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF305D1F6A7874001B6407 /* CCMediator.m */; };
+		70FF30611F6A79B3001B6407 /* CCBridgeWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF30601F6A79B3001B6407 /* CCBridgeWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +174,8 @@
 		70FF305B1F6A784F001B6407 /* CCRouterExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCRouterExtension.h; sourceTree = "<group>"; };
 		70FF305C1F6A7874001B6407 /* CCMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMediator.h; sourceTree = "<group>"; };
 		70FF305D1F6A7874001B6407 /* CCMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMediator.m; sourceTree = "<group>"; };
+		70FF305F1F6A79B3001B6407 /* CCBridgeWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBridgeWrapper.h; sourceTree = "<group>"; };
+		70FF30601F6A79B3001B6407 /* CCBridgeWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBridgeWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -772,6 +775,8 @@
 		70FF30591F6A7820001B6407 /* CCBridgeWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				70FF305F1F6A79B3001B6407 /* CCBridgeWrapper.h */,
+				70FF30601F6A79B3001B6407 /* CCBridgeWrapper.m */,
 			);
 			path = CCBridgeWrapper;
 			sourceTree = "<group>";
@@ -934,6 +939,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70FF30611F6A79B3001B6407 /* CCBridgeWrapper.m in Sources */,
 				7034D6B01F5FBF3C0005D1E1 /* UIView+CCExtension.m in Sources */,
 				7034D6971F5FBF3C0005D1E1 /* NSPredicate+CCExtension.m in Sources */,
 				7034D6AF1F5FBF3C0005D1E1 /* UITextField+CCExtension.m in Sources */,
