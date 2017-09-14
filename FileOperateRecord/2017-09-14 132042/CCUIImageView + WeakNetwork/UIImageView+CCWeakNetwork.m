@@ -17,10 +17,10 @@
 
 - (void) ccSDImage : (NSString *) stringLik
        holderImage : (NSString *) stringImageName {
-//    if ([CCNetworkMoniter sharedNetworkMoniter].ccEnvironmentType == CCNetworkEnvironmentStrong) {
-//        [self sd_setImageWithURL:ccURL(stringLik, false)
-//                placeholderImage:ccImage(stringImageName, YES)];
-//    }
+    if ([CCNetworkMoniter sharedNetworkMoniter].ccEnvironmentType == CCNetworkEnvironmentStrong) {
+        [self sd_setImageWithURL:ccURL(stringLik, false)
+                placeholderImage:ccImage(stringImageName, YES)];
+    }
 }
 
 @end

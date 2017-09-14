@@ -8,7 +8,9 @@
 
 #import "CCNetworkMoniter.h"
 
-#import <AFNetworking/AFNetworking.h>
+#if __has_include(<AFNetworking/AFNetworkReachabilityManager.h>) \
+    && __has_include(<AFNetworking/AFNetworkActivityIndicatorManager.h>)
+
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 
@@ -38,7 +40,7 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
 
 @implementation CCNetworkMoniter
 
-+ (instancetype) sharedNetworkMoniter {
++ (instancetype) shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _moniter = [[CCNetworkMoniter alloc] init];
@@ -121,3 +123,5 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
 }
 
 @end
+
+#endif

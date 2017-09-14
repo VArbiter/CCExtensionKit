@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#if __has_include(<AFNetworking/AFNetworkReachabilityManager.h>) \
+    && __has_include(<AFNetworking/AFNetworkActivityIndicatorManager.h>)
+
 typedef NS_ENUM(NSInteger , CCNetworkType) {
     CCNetworkTypeUnknow = -1 ,
     CCNetworkTypeFail = 0 ,
@@ -28,7 +31,7 @@ typedef NS_ENUM(NSInteger , CCNetworkEnvironment) {
 
 @interface CCNetworkMoniter : NSObject
 
-+ (instancetype) sharedNetworkMoniter ;
++ (instancetype) shared;
 
 - (CCNetworkEnvironment) ccEnvironmentType ;
 
@@ -37,3 +40,5 @@ extern NSString * const _CC_NETWORK_STATUS_KEY_NEW_ ;
 extern NSString * const _CC_NETWORK_STATUS_KEY_OLD_ ;
 
 @end
+
+#endif
