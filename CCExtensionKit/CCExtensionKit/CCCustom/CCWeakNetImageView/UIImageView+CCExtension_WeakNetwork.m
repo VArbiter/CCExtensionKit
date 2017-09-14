@@ -22,8 +22,8 @@ static BOOL __isEnableLoading = YES;
                       holder : (UIImage *) imageHolder {
     BOOL isStrong = CCNetworkMoniter.shared.ccEnvironmentType == CCNetworkEnvironmentStrong;
     if (isStrong && __isEnableLoading) {
-        [self sd_setImageWithURL:u
-                placeholderImage:m
+        [self sd_setImageWithURL:url
+                placeholderImage:imageHolder
                          options:SDWebImageRetryFailed | SDWebImageAllowInvalidSSLCertificates | SDWebImageScaleDownLargeImages];
     };
     return self;

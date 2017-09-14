@@ -11,6 +11,9 @@
 
     #import "UIImageView+CCExtension_WeakNetwork.h"
     #import "CCNetworkMoniter.h"
+    #import "UICollectionView+CCExtension_Refresh.h"
+    #import "UITableView+CCExtension_Refresh.h"
+    #import "MBProgressHUD+CCExtension.h"
 
     #if !TARGET_OS_WATCH
         #import "CCNetworkMoniter.h"

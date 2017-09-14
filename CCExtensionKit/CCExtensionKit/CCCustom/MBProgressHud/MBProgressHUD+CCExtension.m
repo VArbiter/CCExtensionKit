@@ -8,224 +8,138 @@
 
 #import "MBProgressHUD+CCExtension.h"
 
-#import "CCCommonTools.h"
-#import "CCCommonDefine.h"
-
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
+#if __has_include(<MBProgressHUD/MBProgressHUD.h>)
 
 @implementation MBProgressHUD (CCExtension)
 
-- (void)enable {
-    self.userInteractionEnabled = YES;
++ (instancetype) init {
+    return [self init:nil];
 }
-- (void)disable {
++ (instancetype) init : (UIView *) view {
+    if (!view) view = UIApplication.sharedApplication.keyWindow;
+    if (!view) view = UIApplication.sharedApplication.delegate.window;
+    return [MBProgressHUD showHUDAddedTo:view
+                                animated:YES].ccSimple.ccEnable;
+}
+
++ (instancetype) ccGenerate {
+    return [self ccGenerate:nil];
+}
++ (instancetype) ccGenerate : (UIView *) view {
+    if (!view) view = UIApplication.sharedApplication.keyWindow;
+    if (!view) view = UIApplication.sharedApplication.delegate.window;
+    return [[MBProgressHUD alloc] initWithView:view].ccSimple.ccDisable;
+}
+
+- (instancetype) ccEnable {
     self.userInteractionEnabled = false;
+    return self;
 }
-- (BOOL)isCurrentHasHud {
-    return [MBProgressHUD ccIsCurrentHasHud:nil] > 0;
-}
-
-- (void) ccEnabled {
+- (instancetype) ccDisable {
     self.userInteractionEnabled = YES;
-}
-- (void)ccDisable {
-    self.userInteractionEnabled = false;
+    return self;
 }
 
-+ (NSInteger) ccIsCurrentHasHud : (UIView *) view {
-    if (!view) view = UIApplication.sharedApplication.delegate.window;
-    NSInteger iCount = 0;
-    for (id viewT in view.subviews) {
-        if ([viewT isKindOfClass:MBProgressHUD.class]) ++ iCount ;
-    }
-    return iCount;
++ (BOOL) ccHasHud {
+    return [self ccHasHud:nil];
+}
++ (BOOL) ccHasHud : (UIView *) view {
+    if (!view) view = UIApplication.sharedApplication.keyWindow;
+    return !![MBProgressHUD HUDForView:view];
 }
 
-+ (void) ccHideAll {
-    [self ccHideAllFor:nil];
-}
-+ (void) ccHideAllFor : (UIView *) view {
-    [self ccHideAllFor:view
-              complete:nil];
-}
-+ (void) ccHideAllFor : (UIView *) view
-             complete : (dispatch_block_t) blockComplete {
-    if (!view) view = UIApplication.sharedApplication.delegate.window;
-    if (view) {
-        for (id viewT in view.subviews) {
-            if ([viewT isKindOfClass:MBProgressHUD.class]) {
-                
-            }
-        }
-        CC_Safe_Operation(blockComplete, ^{
-            blockComplete();
-        });
-    }
-}
-
-+ (void) ccHideSingle {
-    [self ccHideAllFor:nil];
-}
-+ (void) ccHideSingleFor : (UIView *) view {
-    if (!view) view = UIApplication.sharedApplication.delegate.window;
-    CC_Main_Queue_Operation(^{
-        [MBProgressHUD hideHUDForView:view
-                             animated:YES];
+- (instancetype) ccShow {
+    if (NSThread.isMainThread) [self showAnimated:YES];
+    else dispatch_sync(dispatch_get_main_queue(), ^{
+        [self showAnimated:YES];
     });
+    return self;
+}
+- (void) ccHide {
+    [self ccHide:2.f];
+}
+- (void) ccHide : (NSTimeInterval) interval {
+    self.removeFromSuperViewOnHide = YES;
+    if (interval > .0f) {
+        [self hideAnimated:YES
+                afterDelay:interval];
+    }
+    else [self hideAnimated:YES];
 }
 
-+ (instancetype) ccShowMessage : (NSString *) stringMessage {
-    return [self ccShowMessage:stringMessage
-                          with:nil];
+- (instancetype) ccIndicator {
+    self.mode = MBProgressHUDModeIndeterminate;
+    return self;
 }
-+ (instancetype) ccShowMessage : (NSString *) stringMessage
-                          with : (UIView *) view {
-    return [self ccShowMessage:stringMessage
-                          type:CCHudTypeNone
-                          with:view];
+- (instancetype) ccSimple {
+    self.mode = MBProgressHUDModeText;
+    return self;
 }
-+ (instancetype) ccShowMessage : (NSString *) stringMessage
-                          type : (CCHudType) type
-                          with : (UIView *) view {
-    return [self ccShowTitle:nil
-                     message:stringMessage
-                        type:type
-                        with:view];
+- (instancetype) ccTitle : (NSString *) sTitle {
+    self.label.text = sTitle;
+    return self;
 }
-+ (instancetype) ccShowTitle : (NSString *) stringTitle
-                     message : (NSString *) stringMessage
-                        type : (CCHudType) type
-                        with : (UIView *) view {
-    return [self ccShowTitle:stringTitle
-                     message:stringMessage
-                        type:type
-                        with:view
-                       delay:_CC_ALERT_DISSMISS_COMMON_DURATION_];
+- (instancetype) ccMessage : (NSString *) sMessage {
+    self.detailsLabel.text = sMessage;
+    return self;
 }
-+ (instancetype) ccShowTitle : (NSString *) stringTitle
-                     message : (NSString *) stringMessage
-                        type : (CCHudType) type
-                        with : (UIView *) view
-                       delay : (CGFloat) floatDelay {
-    return [self ccShowTitle:stringTitle
-                     message:stringMessage
-                        type:type
-                        with:view
-                       delay:floatDelay
-                    complete:nil];
-}
-+ (instancetype) ccShowTitle : (NSString *) stringTitle
-                     message : (NSString *) stringMessage
-                        type : (CCHudType) type
-                        with : (UIView *) view
-                       delay : (CGFloat) floatDelay
-                    complete : (dispatch_block_t) blockComplete {
-    MBProgressHUD *hud = [self ccDefaultSetting:type with:view];
-    hud.label.text = stringTitle;
-    hud.detailsLabel.text = stringMessage;
-    if (floatDelay > 0) {
-        [hud hideAnimated:YES
-               afterDelay:floatDelay];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
-                                     (int64_t)((floatDelay + 0.1) * NSEC_PER_SEC)),
-                       dispatch_get_main_queue(), ^{
-            CC_Safe_Operation(blockComplete, ^{
-                blockComplete();
-            });
-        });
-    } else {
-        CC_Safe_Operation(blockComplete, ^{
-            blockComplete();
-        });
-    }
-    return hud;
-}
-// Indicator
-+ (instancetype) ccShowIndicator : (CGFloat) floatDelay {
-    return [self ccShowIndicator:floatDelay
-                         message:nil];
-}
-+ (instancetype) ccShowIndicator : (CGFloat) floatDelay
-                         message : (NSString *) stringMessage {
-    return [self ccShowIndicator:floatDelay
-                            with:nil
-                         message:stringMessage];
-}
-+ (instancetype) ccShowIndicator : (CGFloat) floatDelay
-                            with : (UIView *) view
-                         message : (NSString *) stringMessage {
-    return [self ccShowIndicator:floatDelay
-                            with:view
-                         message:stringMessage
-                            type:CCHudTypeNone];
-}
-+ (instancetype) ccShowIndicator : (CGFloat) floatDelay
-                            with : (UIView *) view
-                         message : (NSString *) stringMessage
-                            type : (CCHudType) type {
-    return [self ccShowIndicator:floatDelay
-                            with:view
-                           title:nil
-                         message:stringMessage
-                            type:type];
-}
-+ (instancetype) ccShowIndicator : (CGFloat) floatDelay
-                            with : (UIView *) view
-                           title : (NSString *) stringTitle
-                         message : (NSString *) stringMessage
-                            type : (CCHudType) type {
-    MBProgressHUD *hud = [MBProgressHUD ccDefaultSetting:type
-                                                    with:view
-                                       isIndicatorEnable:YES];
-    hud.label.text = stringTitle;
-    hud.detailsLabel.text = stringMessage;
-    if (floatDelay > 0) {
-        [hud hideAnimated:YES
-               afterDelay:floatDelay];
-    }
-    return hud;
+- (instancetype) ccType : (CCHudExtensionType) type {
+    __weak typeof(self) pSelf = self;
+    NSDictionary *d = @{@(CCHudExtensionTypeLight).stringValue : ^{
+                            pSelf.contentColor = UIColor.blackColor;
+                        },
+                        @(CCHudExtensionTypeDarkDeep).stringValue : ^{
+                            pSelf.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+                            pSelf.contentColor = UIColor.whiteColor;
+                            pSelf.bezelView.backgroundColor = UIColor.blackColor;
+                        },
+                        @(CCHudExtensionTypeDark).stringValue : ^{
+                            pSelf.contentColor = UIColor.whiteColor;
+                            pSelf.bezelView.backgroundColor = UIColor.blackColor;
+                        },
+                        @(CCHudExtensionTypeNone).stringValue : ^{
+                            pSelf.contentColor = UIColor.blackColor;
+                        }};
+    if (!d[@(type).stringValue]) return self;
+    void (^b)() = d[@(type).stringValue];
+    if (b) b();
+    return self;
 }
 
-#pragma mark - Default Settings
-+ (instancetype) ccDefaultSetting : (CCHudType) type {
-    return [self ccDefaultSetting:CCHudTypeNone
-                             with:nil];
+- (instancetype) ccDelay : (CGFloat) fDelay {
+    dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fDelay * NSEC_PER_SEC));
+    __weak typeof(self) pSelf = self;
+    dispatch_after(t, dispatch_get_main_queue(), ^{
+        [pSelf ccShow];
+    });
+    return self;
 }
-+ (instancetype) ccDefaultSetting : (CCHudType) type
-                             with : (UIView *) view {
-    return [self ccDefaultSetting:type
-                             with:view
-                isIndicatorEnable:false];
+- (instancetype) ccGrace : (NSTimeInterval) interval {
+    self.graceTime = interval;
+    return self;
 }
-
-+ (instancetype) ccDefaultSetting : (CCHudType) type
-                             with : (UIView *) view
-                isIndicatorEnable : (BOOL) isIndicatorEnable ; {
-    if (!view) view = UIApplication.sharedApplication.delegate.window ;
-    if (!view) view = UIApplication.sharedApplication.keyWindow ;
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view
-                                              animated:YES];
-    if (!isIndicatorEnable) hud.mode = MBProgressHUDModeText;
-    [hud disable];
-    switch (type) {
-        case CCHudTypeLight:{
-            hud.contentColor = UIColor.blackColor;
-        }break;
-        case CCHudTypeDarkDeep:{
-            hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-        }
-        case CCHudTypeDark:{
-            hud.contentColor = UIColor.whiteColor;
-            hud.bezelView.backgroundColor = UIColor.blackColor;
-        }break;
-            
-        default:{
-            hud.contentColor = UIColor.blackColor;
-        }break;
-    }
-    return hud;
+- (instancetype) ccMin : (NSTimeInterval) interval {
+    self.minShowTime = interval;
+    return self;
+}
+- (instancetype) ccComplete : (void (^)()) complete {
+    self.completionBlock = complete;
+    return self;
 }
 
 @end
+
+#pragma mark - -----
+
+@implementation UIView (CCExtension_Hud)
+
+- (__kindof MBProgressHUD *) ccHud {
+    return [UIView ccHud:self];
+}
++ (__kindof MBProgressHUD *) ccHud : (UIView *) view {
+    return [MBProgressHUD init:view];
+}
+
+@end
+
+#endif

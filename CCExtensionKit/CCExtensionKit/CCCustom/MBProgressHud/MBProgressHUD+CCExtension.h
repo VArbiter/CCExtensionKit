@@ -6,80 +6,62 @@
 //  Copyright © 2017年 冯明庆. All rights reserved.
 //
 
-#import <MBProgressHUD/MBProgressHUD.h>
+#if __has_include(<MBProgressHUD/MBProgressHUD.h>)
 
-typedef NS_ENUM(NSInteger , CCHudType) {
-    CCHudTypeNone = 0 ,
-    CCHudTypeLight ,
-    CCHudTypeDark ,
-    CCHudTypeDarkDeep
+@import MBProgressHUD;
+
+typedef NS_ENUM(NSInteger , CCHudExtensionType) {
+    CCHudExtensionTypeNone = 0 ,
+    CCHudExtensionTypeLight ,
+    CCHudExtensionTypeDark ,
+    CCHudExtensionTypeDarkDeep
 };
 
 @interface MBProgressHUD (CCExtension)
 
-@property (nonatomic , readonly) void enable ; // 阻挡用户操作
-@property (nonatomic , readonly) void disable ;
+/// init ,  default showing after actions complete , no need to deploy showing action "ccShow".
++ (instancetype) init ;
++ (instancetype) init : (UIView *) view ;
 
-@property (nonatomic , readonly) BOOL isCurrentHasHud ; // default keyWindow
+/// generate a hud with its bounds . default with application window .
+/// also , you have to add it after generate compete , and deploy showing action "ccShow" .
++ (instancetype) ccGenerate ;
++ (instancetype) ccGenerate : (UIView *) view ;
 
-- (void) ccEnabled ;
-- (void) ccDisable ;
+/// for block interact for user operate action .
+- (instancetype) ccEnable ;
+- (instancetype) ccDisable ;
 
-+ (NSInteger) ccIsCurrentHasHud : (UIView *) view ;
++ (BOOL) ccHasHud ;
++ (BOOL) ccHasHud : (UIView *) view ;
 
-+ (void) ccHideAll ;
-+ (void) ccHideAllFor : (UIView *) view ;
-+ (void) ccHideAllFor : (UIView *) view
-             complete : (dispatch_block_t) blockComplete ;
+/// for showing action
+- (instancetype) ccShow ; // if needed , default showing after chain complete
+- (void) ccHide ; // default 2 seconds . and hide will trigger dealloc . last step .
+- (void) ccHide : (NSTimeInterval) interval ;
 
-+ (void) ccHideSingle ;
-+ (void) ccHideSingleFor : (UIView *) view ;
+/// messages && indicator
+- (instancetype) ccIndicator ;
+- (instancetype) ccSimple ; // default
+- (instancetype) ccTitle : (NSString *) sTitle ;
+- (instancetype) ccMessage : (NSString *) sMessage ;
+- (instancetype) ccType : (CCHudExtensionType) type ;
 
-+ (instancetype) ccShowMessage : (NSString *) stringMessage;
-+ (instancetype) ccShowMessage : (NSString *) stringMessage
-                          with : (UIView *) view;
-+ (instancetype) ccShowMessage : (NSString *) stringMessage
-                          type : (CCHudType) type
-                          with : (UIView *) view;
-+ (instancetype) ccShowTitle : (NSString *) stringTitle
-                     message : (NSString *) stringMessage
-                        type : (CCHudType) type
-                        with : (UIView *) view;
-+ (instancetype) ccShowTitle : (NSString *) stringTitle
-                     message : (NSString *) stringMessage
-                        type : (CCHudType) type
-                        with : (UIView *) view
-                       delay : (CGFloat) floatDelay ;
-+ (instancetype) ccShowTitle : (NSString *) stringTitle
-                     message : (NSString *) stringMessage
-                        type : (CCHudType) type
-                        with : (UIView *) view
-                       delay : (CGFloat) floatDelay
-                    complete : (dispatch_block_t) blockComplete ;
+/// if deploy , make sure you DO NOT delpoied "show()";
+- (instancetype) ccDelay : (CGFloat) fDelay ;
+- (instancetype) ccGrace : (NSTimeInterval) interval ; // same as MBProgressHud
+- (instancetype) ccMin : (NSTimeInterval) interval ; // same as MBProgressHud
+- (instancetype) ccComplete : (void (^)()) complete ;
 
-// Indicator
-+ (instancetype) ccShowIndicator : (CGFloat) floatDelay;
-+ (instancetype) ccShowIndicator : (CGFloat) floatDelay
-                         message : (NSString *) stringMessage;
-+ (instancetype) ccShowIndicator : (CGFloat) floatDelay
-                            with : (UIView *) view
-                         message : (NSString *) stringMessage;
-+ (instancetype) ccShowIndicator : (CGFloat) floatDelay
-                            with : (UIView *) view
-                         message : (NSString *) stringMessage
-                            type : (CCHudType) type ;
-+ (instancetype) ccShowIndicator : (CGFloat) floatDelay
-                            with : (UIView *) view
-                           title : (NSString *) stringTitle
-                         message : (NSString *) stringMessage
-                            type : (CCHudType) type ;
-
-#pragma mark - NOT FOR PRIMARY
-
-+ (instancetype) ccDefaultSetting : (CCHudType) type ;
-+ (instancetype) ccDefaultSetting : (CCHudType) type
-                             with : (UIView *) view ;
-+ (instancetype) ccDefaultSetting : (CCHudType) type
-                             with : (UIView *) view
-                isIndicatorEnable : (BOOL) isIndicatorEnable ;
 @end
+
+#pragma mark - -----
+
+@interface UIView (CCExtension_Hud)
+
+- (__kindof MBProgressHUD *) ccHud ;
++ (__kindof MBProgressHUD *) ccHud : (UIView *) view ;
+
+@end
+
+#endif

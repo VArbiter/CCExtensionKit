@@ -27,8 +27,6 @@
 		7034D6981F5FBF3C0005D1E1 /* NSString+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D63A1F5FBF3C0005D1E1 /* NSString+CCExtension.m */; };
 		7034D6991F5FBF3C0005D1E1 /* NSTimer+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D63D1F5FBF3C0005D1E1 /* NSTimer+CCExtension.m */; };
 		7034D69A1F5FBF3C0005D1E1 /* NSObject+CCProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6421F5FBF3C0005D1E1 /* NSObject+CCProtocol.m */; };
-		7034D69D1F5FBF3C0005D1E1 /* CCCustomFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D64D1F5FBF3C0005D1E1 /* CCCustomFooter.m */; };
-		7034D69E1F5FBF3C0005D1E1 /* CCCustomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D64F1F5FBF3C0005D1E1 /* CCCustomHeader.m */; };
 		7034D6A11F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6591F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m */; };
 		7034D6A21F5FBF3C0005D1E1 /* UIBarButtonItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D65C1F5FBF3C0005D1E1 /* UIBarButtonItem+CCExtension.m */; };
 		7034D6A31F5FBF3C0005D1E1 /* UIButton+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D65F1F5FBF3C0005D1E1 /* UIButton+CCExtension.m */; };
@@ -58,6 +56,8 @@
 		70FF2FDE1F6A46C1001B6407 /* MBProgressHUD+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FDA1F6A46C1001B6407 /* MBProgressHUD+CCExtension.m */; };
 		70FF2FDF1F6A46C1001B6407 /* CCNetworkMoniter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FDD1F6A46C1001B6407 /* CCNetworkMoniter.m */; };
 		70FF2FE41F6A4824001B6407 /* UIImageView+CCExtension_WeakNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FE31F6A4824001B6407 /* UIImageView+CCExtension_WeakNetwork.m */; };
+		70FF30511F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF30501F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m */; };
+		70FF30541F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF30531F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,10 +101,6 @@
 		7034D63F1F5FBF3C0005D1E1 /* CCProtocolExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCProtocolExtension.h; sourceTree = "<group>"; };
 		7034D6411F5FBF3C0005D1E1 /* NSObject+CCProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CCProtocol.h"; sourceTree = "<group>"; };
 		7034D6421F5FBF3C0005D1E1 /* NSObject+CCProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CCProtocol.m"; sourceTree = "<group>"; };
-		7034D64C1F5FBF3C0005D1E1 /* CCCustomFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCustomFooter.h; sourceTree = "<group>"; };
-		7034D64D1F5FBF3C0005D1E1 /* CCCustomFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCustomFooter.m; sourceTree = "<group>"; };
-		7034D64E1F5FBF3C0005D1E1 /* CCCustomHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCustomHeader.h; sourceTree = "<group>"; };
-		7034D64F1F5FBF3C0005D1E1 /* CCCustomHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCustomHeader.m; sourceTree = "<group>"; };
 		7034D6581F5FBF3C0005D1E1 /* UIAlertController+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+CCExtension.h"; sourceTree = "<group>"; };
 		7034D6591F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+CCExtension.m"; sourceTree = "<group>"; };
 		7034D65B1F5FBF3C0005D1E1 /* UIBarButtonItem+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+CCExtension.h"; sourceTree = "<group>"; };
@@ -169,6 +165,10 @@
 		70FF2FE01F6A46EC001B6407 /* CCExtensionCustom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCExtensionCustom.h; sourceTree = "<group>"; };
 		70FF2FE21F6A4824001B6407 /* UIImageView+CCExtension_WeakNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CCExtension_WeakNetwork.h"; sourceTree = "<group>"; };
 		70FF2FE31F6A4824001B6407 /* UIImageView+CCExtension_WeakNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CCExtension_WeakNetwork.m"; sourceTree = "<group>"; };
+		70FF304F1F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+CCExtension_Refresh.h"; sourceTree = "<group>"; };
+		70FF30501F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+CCExtension_Refresh.m"; sourceTree = "<group>"; };
+		70FF30521F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CCExtension_Refresh.h"; sourceTree = "<group>"; };
+		70FF30531F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CCExtension_Refresh.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,7 +254,6 @@
 				7034D6531F5FBF3C0005D1E1 /* CCView */,
 				7034D6151F5FBF3C0005D1E1 /* CCCommon */,
 				70FF2FD71F6A46C1001B6407 /* CCCustom */,
-				7034D64A1F5FBF3C0005D1E1 /* CCVendors */,
 			);
 			path = CCExtensionKit;
 			sourceTree = "<group>";
@@ -405,25 +404,6 @@
 				7034D6421F5FBF3C0005D1E1 /* NSObject+CCProtocol.m */,
 			);
 			path = NSObject;
-			sourceTree = "<group>";
-		};
-		7034D64A1F5FBF3C0005D1E1 /* CCVendors */ = {
-			isa = PBXGroup;
-			children = (
-				7034D64B1F5FBF3C0005D1E1 /* CCMJRefresh */,
-			);
-			path = CCVendors;
-			sourceTree = "<group>";
-		};
-		7034D64B1F5FBF3C0005D1E1 /* CCMJRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				7034D64C1F5FBF3C0005D1E1 /* CCCustomFooter.h */,
-				7034D64D1F5FBF3C0005D1E1 /* CCCustomFooter.m */,
-				7034D64E1F5FBF3C0005D1E1 /* CCCustomHeader.h */,
-				7034D64F1F5FBF3C0005D1E1 /* CCCustomHeader.m */,
-			);
-			path = CCMJRefresh;
 			sourceTree = "<group>";
 		};
 		7034D6531F5FBF3C0005D1E1 /* CCView */ = {
@@ -706,6 +686,8 @@
 				70FF2FE01F6A46EC001B6407 /* CCExtensionCustom.h */,
 				70FF2FE11F6A4806001B6407 /* CCWeakNetImageView */,
 				70FF2FDB1F6A46C1001B6407 /* NetworkMoniter */,
+				70FF304D1F6A6963001B6407 /* UICollectionView */,
+				70FF304E1F6A6963001B6407 /* UITableView */,
 				70FF2FD81F6A46C1001B6407 /* MBProgressHud */,
 			);
 			path = CCCustom;
@@ -736,6 +718,24 @@
 				70FF2FE31F6A4824001B6407 /* UIImageView+CCExtension_WeakNetwork.m */,
 			);
 			path = CCWeakNetImageView;
+			sourceTree = "<group>";
+		};
+		70FF304D1F6A6963001B6407 /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				70FF304F1F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.h */,
+				70FF30501F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m */,
+			);
+			path = UICollectionView;
+			sourceTree = "<group>";
+		};
+		70FF304E1F6A6963001B6407 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				70FF30521F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.h */,
+				70FF30531F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.m */,
+			);
+			path = UITableView;
 			sourceTree = "<group>";
 		};
 		8B7896DEA8F6C51E28F52700 /* Frameworks */ = {
@@ -825,9 +825,22 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MGJRouter/MGJRouter.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGJRouter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -855,13 +868,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CCLocalLibrary-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -895,11 +911,11 @@
 				7034D6901F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m in Sources */,
 				7034D6A31F5FBF3C0005D1E1 /* UIButton+CCExtension.m in Sources */,
 				7034D6931F5FBF3C0005D1E1 /* NSDictionary+CCExtension.m in Sources */,
-				7034D69D1F5FBF3C0005D1E1 /* CCCustomFooter.m in Sources */,
 				7034D6A51F5FBF3C0005D1E1 /* UIColor+CCExtension.m in Sources */,
 				7034D6A21F5FBF3C0005D1E1 /* UIBarButtonItem+CCExtension.m in Sources */,
 				7034D6A81F5FBF3C0005D1E1 /* UIImage+CCExtension.m in Sources */,
 				7034D6A41F5FBF3C0005D1E1 /* UICollectionView+CCExtension.m in Sources */,
+				70FF30511F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m in Sources */,
 				7034D6961F5FBF3C0005D1E1 /* NSObject+CCExtension.m in Sources */,
 				7034D6CD1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m in Sources */,
 				70FF2FBA1F6A1BD5001B6407 /* UITextView+CCExtension.m in Sources */,
@@ -907,12 +923,12 @@
 				7034D6A11F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m in Sources */,
 				7034D69A1F5FBF3C0005D1E1 /* NSObject+CCProtocol.m in Sources */,
 				70FF2FDF1F6A46C1001B6407 /* CCNetworkMoniter.m in Sources */,
-				7034D69E1F5FBF3C0005D1E1 /* CCCustomHeader.m in Sources */,
 				7034D6CA1F5FD5280005D1E1 /* NSURL+CCExtension.m in Sources */,
 				7034D6921F5FBF3C0005D1E1 /* NSDate+CCExtension.m in Sources */,
 				37C69E1A1ED6684D00531ED3 /* main.m in Sources */,
 				7034D6B21F5FBF3C0005D1E1 /* WKWebView+CCExtension.m in Sources */,
 				7034D68F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m in Sources */,
+				70FF30541F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.m in Sources */,
 				7034D6AA1F5FBF3C0005D1E1 /* UIImageView+CCExtension.m in Sources */,
 				7034D6BB1F5FCE140005D1E1 /* CCCommon.m in Sources */,
 				70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */,
