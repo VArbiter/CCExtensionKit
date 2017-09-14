@@ -31,5 +31,7 @@
     #import "UIViewController+CCExtension.h"
 
     // custom
+    #import "CCEasyWebView.h"
+    #import "CCMenuView.h"
 
 #endif /* CCViewExtension_h */
