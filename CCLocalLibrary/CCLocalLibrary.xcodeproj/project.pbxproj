@@ -32,7 +32,6 @@
 		7034D69D1F5FBF3C0005D1E1 /* CCCustomFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D64D1F5FBF3C0005D1E1 /* CCCustomFooter.m */; };
 		7034D69E1F5FBF3C0005D1E1 /* CCCustomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D64F1F5FBF3C0005D1E1 /* CCCustomHeader.m */; };
 		7034D69F1F5FBF3C0005D1E1 /* UIImageView+CCWeakNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6521F5FBF3C0005D1E1 /* UIImageView+CCWeakNetwork.m */; };
-		7034D6A01F5FBF3C0005D1E1 /* MBProgressHUD+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6561F5FBF3C0005D1E1 /* MBProgressHUD+CCExtension.m */; };
 		7034D6A11F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6591F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m */; };
 		7034D6A21F5FBF3C0005D1E1 /* UIBarButtonItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D65C1F5FBF3C0005D1E1 /* UIBarButtonItem+CCExtension.m */; };
 		7034D6A31F5FBF3C0005D1E1 /* UIButton+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D65F1F5FBF3C0005D1E1 /* UIButton+CCExtension.m */; };
@@ -56,6 +55,7 @@
 		70BD28911F6272BF008C2C9A /* UIControl+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28901F6272BF008C2C9A /* UIControl+CCExtension.m */; };
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
+		70FF2FBA1F6A1BD5001B6407 /* UITextView+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FB91F6A1BD5001B6407 /* UITextView+CCExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,8 +109,6 @@
 		7034D64F1F5FBF3C0005D1E1 /* CCCustomHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCustomHeader.m; sourceTree = "<group>"; };
 		7034D6511F5FBF3C0005D1E1 /* UIImageView+CCWeakNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CCWeakNetwork.h"; sourceTree = "<group>"; };
 		7034D6521F5FBF3C0005D1E1 /* UIImageView+CCWeakNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CCWeakNetwork.m"; sourceTree = "<group>"; };
-		7034D6551F5FBF3C0005D1E1 /* MBProgressHUD+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CCExtension.h"; sourceTree = "<group>"; };
-		7034D6561F5FBF3C0005D1E1 /* MBProgressHUD+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CCExtension.m"; sourceTree = "<group>"; };
 		7034D6581F5FBF3C0005D1E1 /* UIAlertController+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+CCExtension.h"; sourceTree = "<group>"; };
 		7034D6591F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+CCExtension.m"; sourceTree = "<group>"; };
 		7034D65B1F5FBF3C0005D1E1 /* UIBarButtonItem+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+CCExtension.h"; sourceTree = "<group>"; };
@@ -161,6 +159,9 @@
 		70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+CCExtension.m"; sourceTree = "<group>"; };
 		70BD28961F6297F2008C2C9A /* UINavigationItem+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+CCExtension.h"; sourceTree = "<group>"; };
 		70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CCExtension.m"; sourceTree = "<group>"; };
+		70FF2FB81F6A1BD5001B6407 /* UITextView+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+CCExtension.h"; sourceTree = "<group>"; };
+		70FF2FB91F6A1BD5001B6407 /* UITextView+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CCExtension.m"; sourceTree = "<group>"; };
+		70FF2FBB1F6A1D4F001B6407 /* CCAdvanceMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAdvanceMacro.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -477,19 +478,10 @@
 				7034D67A1F5FBF3C0005D1E1 /* UIScrollView */,
 				7034D67D1F5FBF3C0005D1E1 /* UITableView */,
 				7034D6801F5FBF3C0005D1E1 /* UITextField */,
-				7034D6541F5FBF3C0005D1E1 /* MBProgressHud */,
+				70FF2FB71F6A1BBB001B6407 /* UITextView */,
 				7034D6861F5FBF3C0005D1E1 /* UIViewController */,
 			);
 			path = CCView;
-			sourceTree = "<group>";
-		};
-		7034D6541F5FBF3C0005D1E1 /* MBProgressHud */ = {
-			isa = PBXGroup;
-			children = (
-				7034D6551F5FBF3C0005D1E1 /* MBProgressHUD+CCExtension.h */,
-				7034D6561F5FBF3C0005D1E1 /* MBProgressHUD+CCExtension.m */,
-			);
-			path = MBProgressHud;
 			sourceTree = "<group>";
 		};
 		7034D6571F5FBF3C0005D1E1 /* UIAlertController */ = {
@@ -657,6 +649,7 @@
 		7034D6B41F5FCA910005D1E1 /* CCCommon */ = {
 			isa = PBXGroup;
 			children = (
+				70FF2FBB1F6A1D4F001B6407 /* CCAdvanceMacro.h */,
 				7034D6BC1F5FCF850005D1E1 /* CCSingleton.h */,
 				7034D6B91F5FCE140005D1E1 /* CCCommon.h */,
 				7034D6BA1F5FCE140005D1E1 /* CCCommon.m */,
@@ -698,6 +691,15 @@
 				70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */,
 			);
 			path = UIFont;
+			sourceTree = "<group>";
+		};
+		70FF2FB71F6A1BBB001B6407 /* UITextView */ = {
+			isa = PBXGroup;
+			children = (
+				70FF2FB81F6A1BD5001B6407 /* UITextView+CCExtension.h */,
+				70FF2FB91F6A1BD5001B6407 /* UITextView+CCExtension.m */,
+			);
+			path = UITextView;
 			sourceTree = "<group>";
 		};
 		8B7896DEA8F6C51E28F52700 /* Frameworks */ = {
@@ -849,7 +851,6 @@
 				7034D6B81F5FCC040005D1E1 /* CCAuthorize.m in Sources */,
 				7034D6AD1F5FBF3C0005D1E1 /* UIScrollView+CCExtension.m in Sources */,
 				7034D6AE1F5FBF3C0005D1E1 /* UITableView+CCExtension.m in Sources */,
-				7034D6A01F5FBF3C0005D1E1 /* MBProgressHUD+CCExtension.m in Sources */,
 				70BD28911F6272BF008C2C9A /* UIControl+CCExtension.m in Sources */,
 				7034D6D01F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m in Sources */,
 				7034D6901F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m in Sources */,
@@ -862,6 +863,7 @@
 				7034D6A41F5FBF3C0005D1E1 /* UICollectionView+CCExtension.m in Sources */,
 				7034D6961F5FBF3C0005D1E1 /* NSObject+CCExtension.m in Sources */,
 				7034D6CD1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m in Sources */,
+				70FF2FBA1F6A1BD5001B6407 /* UITextView+CCExtension.m in Sources */,
 				7034D6981F5FBF3C0005D1E1 /* NSString+CCExtension.m in Sources */,
 				7034D6A11F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m in Sources */,
 				7034D69A1F5FBF3C0005D1E1 /* NSObject+CCProtocol.m in Sources */,

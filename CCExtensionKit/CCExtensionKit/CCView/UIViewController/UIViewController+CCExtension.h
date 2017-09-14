@@ -7,54 +7,49 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIImagePickerController+CCExtension.h"
 
 @interface UIViewController (CCExtension)
 
-+ (void) ccDismiss : (id) controller
-             delay : (CGFloat) floatDelay ;
-+ (void) ccDismiss : (id) controller
-             delay : (CGFloat) floatDelay
-          complete : (dispatch_block_t) block ;
+/// remove all animated for pushing && presenting .
+- (instancetype) ccDisableAnimated ;
+- (instancetype) ccEnableAnimated ;
 
-+ (id) ccGetCurrentController ; 
+/// first detect if nagvigation pop back enable ,
+/// then detect if dismiss enable .
+/// respose the first findout .
 
-- (void) ccPush : (UIViewController *) controller ;
-- (void) ccPush : (UIViewController *) controller
-       animated : (BOOL) isAnimated ; // default Hids Bottombar
+- (void) ccGoBack ;
+- (void) ccDismiss ;
+- (void) ccDismiss : (CGFloat) fDelay ;
+- (void) ccDismiss : (CGFloat) fDelay
+          complete : (void(^)()) complete ;
 
-- (void) ccModal : (UIViewController *) controller;
-- (void) ccModal : (UIViewController *) controller
-        animated : (BOOL) isAnimated
-        complete : (dispatch_block_t) block ; // 透明背景 modal (同时控制器背景色也需要为透明)
+- (void) ccPop ;
+- (void) ccPopTo : (__kindof UIViewController *) controller ;
+- (void) ccPopToRoot ;
 
-- (void) ccAddView : (UIViewController *) controller
-          animated : (BOOL) isAnimated ;
+/// default enable animated && Hide bottom bar
+- (instancetype) ccPush : (__kindof UIViewController *) controller ;
+- (instancetype) ccPush : (__kindof UIViewController *) controller
+             hideBottom : (BOOL) isHide ;
 
-- (UIImagePickerController *) ccImagePicker : (CCImagePickerPresentType) type
-                                   complete : (BlockCompleteHandler) blockComplete ;
-- (UIImagePickerController *) ccImagePicker : (CCImagePickerPresentType) type
-                                   complete : (BlockCompleteHandler) blockComplete
-                                     cancel : (BlockCancelPick) blockCancel
-                                      error : (BlockSaveError) blockError ;
+- (instancetype) ccPresent : (__kindof UIViewController *) controller ;
+- (instancetype) ccPresent : (__kindof UIViewController *) controller
+                  complete : (void (^)()) complete ;
+/// clear color == backgroundColor
+- (instancetype) ccPresentClear : (__kindof UIViewController *) controller
+                       complete : (void (^)()) complete;
 
-@end
+/// deafult enable animated , fade in , fade out .
+- (instancetype) ccAddViewFrom : (__kindof UIViewController *) controller
+                      duration : (CGFloat) fAnimationDuration ;
 
-#pragma mark - -----------------------------------------------------------------
+/// note : [UIApplication sharedApplication].delegate.window is the super view
++ (void) ccCoverViewWith : (__kindof UIViewController *) controller
+                animated : (BOOL) isAminated
+                duration : (CGFloat) fAnimationDuration ;
 
-@class UIAlertActionModel ;
-
-@interface UIAlertAction (CCModel)
-
-@property (nonatomic , strong) UIAlertActionModel *modelAction ;
-
-@end
-
-#pragma mark - -----------------------------------------------------------------
-
-@interface UIAlertActionModel : NSObject
-
-@property (nonatomic , strong) NSString *stringTitle ;
-@property (nonatomic , assign) NSInteger integerIndex ;
+/// current controller that shows on screen .
++ (__kindof UIViewController *) ccCurrent ;
 
 @end

@@ -20,5 +20,7 @@
     #import "NSNumber+CCExtension.h"
     #import "NSString+CCExtension.h"
     #import "NSPredicate+CCExtension.h"
+    #import "NSURL+CCExtension.h"
+    #import "NSURLRequest+CCExtension.h"
 
 #endif /* CCDataExtension_h */

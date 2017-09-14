@@ -10,11 +10,17 @@
 
 @interface UITextField (CCExtension)
 
-+ (instancetype) ccCommon : (CGRect) rectFrame ;
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                 delegate : (id) delegate ;
++ (instancetype) common : (CGRect) frame ;
+- (instancetype) ccDelegateT : (id <UITextFieldDelegate>) delegete ;
+- (instancetype) ccPlaceHolder : (NSDictionary <NSString * , id> *) dAttributes
+                        string : (NSString *) string ;
 
-- (void) ccSetRightView : (NSString *) stringImageName ;
-- (BOOL) ccResignFirstResponder ;
+/// default with a image View that already size-to-fit with original image .
+- (instancetype) ccLeftView : (UIImage *) image
+                       mode : (UITextFieldViewMode) mode ;
+- (instancetype) ccRightView : (UIImage *) image
+                        mode : (UITextFieldViewMode) mode ;
+
+@property (nonatomic , readonly) BOOL resignFirstResponderT;
 
 @end

@@ -264,9 +264,9 @@ _CC_DETECT_DEALLOC_
     self.blockCellIdentifier = [identifier copy];
     return self;
 }
-- (instancetype) ccConfiguration : (UICollectionViewCell *(^)(UICollectionView * collectionView ,
-                                                              __kindof UICollectionViewCell * cell ,
-                                                              NSIndexPath * indexPath)) configuration {
+- (instancetype) ccConfiguration : (__kindof UICollectionViewCell *(^)(UICollectionView * collectionView ,
+                                                                       __kindof UICollectionViewCell * cell ,
+                                                                       NSIndexPath * indexPath)) configuration {
     self.blockConfigCell = [configuration copy];
     return self;
 }

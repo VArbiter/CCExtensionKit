@@ -93,9 +93,9 @@
                                                     NSInteger iSections)) itemInSections ;
 - (instancetype) ccCellIdentifier : (NSString *(^)(UICollectionView * collectionView ,
                                                    NSIndexPath * indexPath)) identifier ;
-- (instancetype) ccConfiguration : (UICollectionViewCell *(^)(UICollectionView * collectionView ,
-                                                              __kindof UICollectionViewCell * cell ,
-                                                              NSIndexPath * indexPath)) configuration ;
+- (instancetype) ccConfiguration : (__kindof UICollectionViewCell *(^)(UICollectionView * collectionView ,
+                                                                       __kindof UICollectionViewCell * cell ,
+                                                                       NSIndexPath * indexPath)) configuration ;
 
 @end
 

@@ -8,10 +8,7 @@
 
 #import "UIColor+CCExtension.h"
 
-#import "UIImage+CCExtension.h"
-
 @implementation UIColor (CCExtension)
-
 
 + (instancetype) ccHex : (int) value {
     return [self ccHex:value alpha:1.f];

@@ -56,31 +56,62 @@
 - (__kindof UITableViewHeaderFooterView *) ccDeqReusableView : (NSString *) sIdentifier ;
 
 @end
-#warning TODO >>>
-#pragma mark - CCTableViewDelegate ---------------------------------------------
 
-@interface CCTableViewDelegate : NSObject < UITableViewDelegate >
+#pragma mark - -----
+
+@interface CCTableExtensionDelegate : NSObject < UITableViewDelegate >
 
 - (id < UITableViewDelegate > ) init ;
 
-@property (nonatomic , copy) CGFloat (^blockCellHeight)(UITableView * tableView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) CGFloat (^blockSectionHeaderHeight)(UITableView * tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) UIView *(^blockSectionHeader)(UITableView *tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) CGFloat (^blockSectionFooterHeight)(UITableView * tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) UIView *(^blockSectionFooter)(UITableView *tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) BOOL (^blockDidSelect)(UITableView *tableView , NSIndexPath *indexPath) ;
+- (instancetype) ccCellHeight : (CGFloat (^)(UITableView * tableView , NSIndexPath *indexPath)) cellHeight ;
+- (instancetype) ccSectionHeaderHeight : (CGFloat (^)(UITableView * tableView , NSInteger iSection)) sectionHeaderHeight ;
+- (instancetype) ccSectionHeader : (UIView *(^)(UITableView *tableView , NSInteger iSection)) sectionHeader ;
+- (instancetype) ccSectionFooterHeight : (CGFloat (^)(UITableView * tableView , NSInteger iSection)) sectionFooterHeight ;
+- (instancetype) ccSectionFooter : (UIView *(^)(UITableView *tableView , NSInteger iSection)) sectionFooter ;
+- (instancetype) ccDidSelect : (BOOL (^)(UITableView *tableView , NSIndexPath *indexPath)) didSelect;
 
 @end
 
-#pragma mark - CCTableViewDataSource -------------------------------------------
+#pragma mark - -----
 
-@interface CCTableViewDataSource : NSObject < UITableViewDataSource >
+@interface CCTableExtensionDataSource : NSObject < UITableViewDataSource >
 
 - (id < UITableViewDataSource >) init ;
 
-@property (nonatomic , copy) NSInteger (^blockSections)(UITableView *tableView);
-@property (nonatomic , copy) NSInteger (^blockRowsInSections)(UITableView * tableView , NSInteger integerSection);
-@property (nonatomic , copy) NSString * (^blockCellIdentifier)(UITableView *tableView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) UITableViewCell * (^blockConfigCell)(UITableView *tableView , UITableViewCell *cellConfig , NSIndexPath *indexPath) ;
+- (instancetype) ccSections : (NSInteger (^)(UITableView *tableView)) sections ;
+- (instancetype) ccRowsInSections : (NSInteger (^)(UITableView * tableView , NSInteger iSection)) rowsInSections ;
+- (instancetype) ccCellIdentifier : (NSString *(^)(UITableView *tableView , NSIndexPath *indexPath)) cellIdentifier ;
+- (instancetype) ccConfiguration : (__kindof UITableViewCell *(^)(UITableView *tableView , __kindof UITableViewCell *tCell , NSIndexPath *indexPath)) configuration ;
 
 @end
+
+#pragma mark - -----
+
+/// instructions && notes are the same with 'NSArray+CCExtension_Collection_Refresh' in 'UICollectionView+CCExtension'
+
+@interface NSArray (CCExtension_Table_Refresh)
+
+- (instancetype) ccReload : (__kindof UITableView *) tableView ;
+- (instancetype) ccReload : (__kindof UITableView *) tableView
+                 sections : (NSIndexSet *) set ;
+
+@end
+
+#pragma mark - -----
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+
+/// instructions && notes are the same with 'CCCollectionExtensionDataPrefetching' in 'UICollectionView+CCExtension'
+
+@interface CCTableExtensionDataPrefetching : NSObject < UITableViewDataSourcePrefetching >
+
+/// auto enable prefetch in background thread
+- (id < UITableViewDataSourcePrefetching >) init ;
+
+- (instancetype) ccDisableBackgroundMode ;
+- (instancetype) ccPrefetchAt : (void (^)(__kindof UITableView *collectionView , NSArray <NSIndexPath *> *array)) prefetchAt ;
+- (instancetype) ccCancelPrefetchAt : (void (^)(__kindof UITableView *collectionView , NSArray <NSIndexPath *> *array)) cancelPrefetchAt;
+
+@end
+
+#endif

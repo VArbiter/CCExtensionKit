@@ -8,15 +8,15 @@
 
 #import "ViewController.h"
 
-#import "CCCommonViewTools.h"
-#import "CCCommonDataTools.h"
+//#import "CCCommonViewTools.h"
+//#import "CCCommonDataTools.h"
 
-#import "CCCommonTools.h"
+//#import "CCCommonTools.h"
 
 //#import <CCLocalLib/NSString+CCExtension.h>
-#import "NSString+CCExtension.h"
+//#import "NSString+CCExtension.h"
 
-#import "NSObject+CCProtocol.h"
+//#import "NSObject+CCProtocol.h"
 //#import "UIView+CCChain.h"
 
 //#import "UIGestureRecognizer+CCChain.h"
@@ -30,10 +30,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *image = [ccImageCache(@"0ZG63407-0") ccGaussianImageAcc:_CC_GAUSSIAN_BLUR_VALUE_ iterationCount:100 tint:nil];
-    UIImageView *imageView = [UIImageView ccCommon:CGRectZero image:image enable:false];
-    imageView.y = 80;
-    imageView.size = [image ccZoom:0.5];
+//    UIImage *image = [ccImageCache(@"0ZG63407-0") ccGaussianImageAcc:_CC_GAUSSIAN_BLUR_VALUE_ iterationCount:100 tint:nil];
+//    UIImageView *imageView = [UIImageView ccCommon:CGRectZero image:image enable:false];
+//    imageView.y = 80;
+//    imageView.size = [image ccZoom:0.5];
     /*
     [self.view addSubview:imageView];
     imageView.tap(^(UIView *v, UITapGestureRecognizer *gr) {

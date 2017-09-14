@@ -31,10 +31,19 @@
         if (notAllowed) notAllowed();
         return self;
     }
-    self.sourceType = UIImagePickerControllerSourceTypeCamera;
-    self.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-    self.showsCameraControls = YES;
-    return self;
+    if (_CC_IS_SIMULATOR_) {
+        NSLog(@"\n \
+              Simulator is not support camera . \n \
+              UIImagePickerController will change \"sourceType\" \
+              \t from \"UIImagePickerControllerSourceTypeCamera\" \
+              \t to \"UIImagePickerControllerSourceTypePhotoLibrary\". \n");
+        return [self ccPhotoLibraryT:notAllowed];
+    } else {
+        self.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+        self.showsCameraControls = YES;
+        return self;
+    }
 }
 
 - (instancetype) ccSavedPhotosAlbumT : (void (^)()) notAllowed {

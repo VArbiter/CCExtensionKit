@@ -8,43 +8,53 @@
 
 #import "UITextField+CCExtension.h"
 
-#import "CCCommonTools.h"
-#import "CCCommonDefine.h"
-
 @implementation UITextField (CCExtension)
 
-+ (instancetype) ccCommon : (CGRect) rectFrame {
-    return [self ccCommon:rectFrame
-                 delegate:nil];
++ (instancetype) common : (CGRect) frame {
+    UITextField *v = [[UITextField alloc] initWithFrame:frame];
+    v.clearsOnBeginEditing = YES;
+    v.clearButtonMode = UITextFieldViewModeWhileEditing ;
+    return v;
 }
-+ (instancetype) ccCommon : (CGRect) rectFrame
-                 delegate : (id) delegate {
-    UITextField *textField = [[UITextField alloc] initWithFrame:rectFrame];
-    textField.textColor = [UIColor whiteColor];
-    textField.clearsOnBeginEditing = YES;
-    textField.clearButtonMode = UITextFieldViewModeWhileEditing ;
-    textField.font = [UIFont systemFontOfSize:_CC_DEFAULT_FONT_SIZE_];
-    if (delegate) {
-        textField.delegate = delegate;
-    }
-    return textField;
+- (instancetype) ccDelegateT : (id <UITextFieldDelegate>) delegete {
+    if (delegete) self.delegate = delegete;
+    else self.delegate = nil;
+    return self;
 }
-
-- (void) ccSetRightView : (NSString *) stringImageName{
-    UIImage *image = [ccImage(stringImageName, YES) imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [imageView sizeToFit];
-    self.rightViewMode = UITextFieldViewModeAlways;
-    self.rightView = imageView;
+- (instancetype) ccPlaceHolder : (NSDictionary <NSString * , id> *) dAttributes
+                        string : (NSString *) string {
+    if (![string isKindOfClass:NSString.class] || !string || !string.length) return self;
+    NSAttributedString *sAttr = [[NSAttributedString alloc] initWithString:string
+                                                                attributes:dAttributes];
+    self.attributedPlaceholder = sAttr;
+    return self;
 }
 
-- (BOOL) ccResignFirstResponder {
-    BOOL isCan = [self canResignFirstResponder];
-    if (isCan) {
-        [self resignFirstResponder];
-    }
-    return isCan;
+- (instancetype) ccLeftView : (UIImage *) image
+                       mode : (UITextFieldViewMode) mode {
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImageView *v = [[UIImageView alloc] initWithImage:image];
+    v.contentMode = UIViewContentModeScaleAspectFit;
+    [v sizeToFit];
+    self.rightViewMode = mode;
+    self.rightView = v;
+    return self;
+}
+- (instancetype) ccRightView : (UIImage *) image
+                        mode : (UITextFieldViewMode) mode {
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImageView *v = [[UIImageView alloc] initWithImage:image];
+    v.contentMode = UIViewContentModeScaleAspectFit;
+    [v sizeToFit];
+    self.leftViewMode = mode;
+    self.leftView = v;
+    return self;
+}
+
+- (BOOL)resignFirstResponderT {
+    BOOL b = [self canResignFirstResponder];
+    if (b) [self resignFirstResponder];
+    return b;
 }
 
 @end
