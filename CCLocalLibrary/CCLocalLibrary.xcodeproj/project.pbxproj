@@ -56,6 +56,8 @@
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
 		70FF2FBA1F6A1BD5001B6407 /* UITextView+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FB91F6A1BD5001B6407 /* UITextView+CCExtension.m */; };
+		70FF2FC11F6A2A87001B6407 /* CCEasyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FC01F6A2A87001B6407 /* CCEasyWebView.m */; };
+		70FF2FC41F6A2AA4001B6407 /* CCMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FC31F6A2AA4001B6407 /* CCMenuView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +164,10 @@
 		70FF2FB81F6A1BD5001B6407 /* UITextView+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+CCExtension.h"; sourceTree = "<group>"; };
 		70FF2FB91F6A1BD5001B6407 /* UITextView+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CCExtension.m"; sourceTree = "<group>"; };
 		70FF2FBB1F6A1D4F001B6407 /* CCAdvanceMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAdvanceMacro.h; sourceTree = "<group>"; };
+		70FF2FBF1F6A2A87001B6407 /* CCEasyWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEasyWebView.h; sourceTree = "<group>"; };
+		70FF2FC01F6A2A87001B6407 /* CCEasyWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEasyWebView.m; sourceTree = "<group>"; };
+		70FF2FC21F6A2AA4001B6407 /* CCMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMenuView.h; sourceTree = "<group>"; };
+		70FF2FC31F6A2AA4001B6407 /* CCMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMenuView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				7034D6C51F5FD4C20005D1E1 /* CCViewExtension.h */,
+				70FF2FBC1F6A2A77001B6407 /* CCOriginalSustom */,
 				7034D6831F5FBF3C0005D1E1 /* UIView */,
 				7034D6891F5FBF3C0005D1E1 /* WKWebVuew */,
 				7034D6571F5FBF3C0005D1E1 /* UIAlertController */,
@@ -702,6 +709,33 @@
 			path = UITextView;
 			sourceTree = "<group>";
 		};
+		70FF2FBC1F6A2A77001B6407 /* CCOriginalSustom */ = {
+			isa = PBXGroup;
+			children = (
+				70FF2FBD1F6A2A77001B6407 /* CCEasyWebView */,
+				70FF2FBE1F6A2A77001B6407 /* UIMenuController */,
+			);
+			path = CCOriginalSustom;
+			sourceTree = "<group>";
+		};
+		70FF2FBD1F6A2A77001B6407 /* CCEasyWebView */ = {
+			isa = PBXGroup;
+			children = (
+				70FF2FBF1F6A2A87001B6407 /* CCEasyWebView.h */,
+				70FF2FC01F6A2A87001B6407 /* CCEasyWebView.m */,
+			);
+			path = CCEasyWebView;
+			sourceTree = "<group>";
+		};
+		70FF2FBE1F6A2A77001B6407 /* UIMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				70FF2FC21F6A2AA4001B6407 /* CCMenuView.h */,
+				70FF2FC31F6A2AA4001B6407 /* CCMenuView.m */,
+			);
+			path = UIMenuController;
+			sourceTree = "<group>";
+		};
 		8B7896DEA8F6C51E28F52700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -841,6 +875,8 @@
 				7034D6AB1F5FBF3C0005D1E1 /* UILabel+CCExtension.m in Sources */,
 				7034D6991F5FBF3C0005D1E1 /* NSTimer+CCExtension.m in Sources */,
 				7034D69F1F5FBF3C0005D1E1 /* UIImageView+CCWeakNetwork.m in Sources */,
+				70FF2FC11F6A2A87001B6407 /* CCEasyWebView.m in Sources */,
+				70FF2FC41F6A2AA4001B6407 /* CCMenuView.m in Sources */,
 				70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */,
 				7034D6941F5FBF3C0005D1E1 /* NSFileManager+CCExtension.m in Sources */,
 				37C69E201ED6684D00531ED3 /* ViewController.m in Sources */,
