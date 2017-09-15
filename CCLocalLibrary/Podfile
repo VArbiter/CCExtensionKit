@@ -6,14 +6,14 @@ target 'CCLocalLibrary' do
     # pod 'CCLocalLib' , :path => '../CCLocalLib'
     pod 'CCExtensionKit/CCFull', :path => '../'
 
-    pod 'MBProgressHUD', '~> 1.0.0'
-
-    pod 'Realm', '~> 2.10.0'
-
-    pod 'MGJRouter', '~> 0.9.3'
-    pod 'AFNetworking/Reachability', '~> 3.1.0'
-    pod 'AFNetworking/UIKit', '~> 3.1.0'
-    pod 'SDWebImage', '~> 4.1.0'
-    pod 'MJRefresh', '~> 3.1.12'
+#    pod 'MBProgressHUD', '~> 1.0.0'
+#
+#    pod 'Realm', '~> 2.10.0'
+#
+#    pod 'MGJRouter', '~> 0.9.3'
+#    pod 'AFNetworking/Reachability', '~> 3.1.0'
+#    pod 'AFNetworking/UIKit', '~> 3.1.0'
+#    pod 'SDWebImage', '~> 4.1.0'
+#    pod 'MJRefresh', '~> 3.1.12'
 
 end
