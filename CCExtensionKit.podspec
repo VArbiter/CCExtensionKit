@@ -2,12 +2,12 @@
 
 Pod::Spec.new do |s|
 
-    s.name         = "CCLocalLib"
+    s.name         = "CCExtensionKit"
     s.version      = "3.0.0"
-    s.summary      = "CCLocalLib."
+    s.summary      = "CCExtensionKit."
 
     s.description  = <<-DESC
-    CCLocalLib for project .
+    original was "CCLocalLib" . and it's has an compare kit called 'CCChainKit'.
                    DESC
 
     s.author       = { "冯明庆" => "elwinfrederick@163.com" }
@@ -16,14 +16,74 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "8.0"
 
     s.source = { :git => "https://github.com/VArbiter/CCLocalLibrary.git" , :tag => s.version.to_s}
-    s.source_files  = "CCLocalLib", "CCLocalLib/**/*"
 
-    s.frameworks = "Foundation" , "UIKit" , "AssetsLibrary" , "Photos" , "CoreGraphics" , "QuartzCore" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices"
+    s.default_subspec = 'CCCore'
 
-    s.dependency 'MBProgressHUD', '~> 1.0.0'
-    s.dependency 'SDWebImage', '~> 3.8.2'
-    s.dependency 'MJRefresh', '~> 3.1.12'
-    s.dependency 'AFNetworking', '~> 3.1.0'
+    s.subspec 'CCCore' do |coreT|
+      coreT.dependency 'CCExtensionKit/CCData'
+      coreT.dependency 'CCExtensionKit/CCView'
+      coreT.dependency 'CCExtensionKit/CCRuntime'
+      # coreT.dependency 'CCChainKit/CCChainAssets'
+    end
+
+    s.subspec 'CCFull' do |fullT|
+      fullT.dependency 'CCExtensionKit/CCCore'
+      fullT.dependency 'CCExtensionKit/CCDataBase'
+      fullT.dependency 'CCExtensionKit/CCRouter'
+      fullT.dependency 'CCExtensionKit/CCData'
+      fullT.dependency 'CCExtensionKit/CCView'
+      fullT.dependency 'CCExtensionKit/CCCustom'
+    end
+
+      s.subspec 'CCCommon' do |common|
+        common.source_files = 'CCExtensionKit/CCExtensionKit/CCCommon/*'
+        common.frameworks = "Foundation", "UIKit", "AssetsLibrary" , "Photos" , "AVFoundation"
+      end
+
+      s.subspec 'CCProtocol' do |protocol|
+        protocol.source_files = 'CCExtensionKit/CCExtensionKit/CCProtocol/*'
+        protocol.dependency 'CCChainKit/CCCommon'
+      end
+
+      s.subspec 'CCRuntime' do |runtime|
+        runtime.source_files = 'CCExtensionKit/CCExtensionKit/CCRuntime/*'
+      end
+
+      s.subspec 'CCDataBase' do |dataBase|
+        dataBase.source_files = 'CCExtensionKit/CCExtensionKit/CCDataBase/*'
+        dataBase.dependency 'Realm', '~> 2.10.0'
+        dataBase.frameworks = "Foundation"
+      end
+
+      s.subspec 'CCRouter' do |router|
+        router.source_files = 'CCExtensionKit/CCExtensionKit/CCRouter/*'
+        router.frameworks = "Foundation"
+        router.dependency 'MGJRouter', '~> 0.9.3'
+      end
+
+      s.subspec 'CCData' do |data|
+        data.source_files = 'CCExtensionKit/CCExtensionKit/CCData/*'
+        data.dependency 'CCChainKit/CCProtocol'
+        data.frameworks = "MobileCoreServices"
+      end
+
+      s.subspec 'CCView' do |view|
+        view.source_files = 'CCExtensionKit/CCExtensionKit/CCView/*'
+        view.frameworks = "CoreGraphics" , "QuartzCore"
+        view.dependency 'CCChainKit/CCProtocol'
+      end
+
+      s.subspec 'CCCustom' do |custom|
+        custom.source_files = 'CCExtensionKit/CCExtensionKit/CCCustom/*'
+        custom.dependency 'CCChainKit/CCCore'
+        custom.dependency 'AFNetworking/Reachability', '~> 3.1.0'
+        custom.dependency 'AFNetworking/UIKit', '~> 3.1.0'
+        custom.dependency 'SDWebImage', '~> 4.1.0'
+        custom.dependency 'MJRefresh', '~> 3.1.12'
+        custom.dependency 'MBProgressHUD', '~> 1.0.0'
+        custom.frameworks = "WebKit" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
+      end
+
     s.requires_arc = true
 
 end
