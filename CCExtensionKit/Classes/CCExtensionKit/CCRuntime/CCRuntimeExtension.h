@@ -10,6 +10,6 @@
 #define CCRuntimeExtension_h
 
     #import "CCRuntime.h"
-    #import "CCProxyDealerMacro.h "
+    #import "CCProxyDealerMacro.h"
 
 #endif /* CCRuntimeExtension_h */

@@ -1,8 +1,20 @@
 # CCLocalLibrary
 
-###SomeCategorys that can be installed as a static library . (as framework , depends how you manage your pods) .
+### SomeCategorys that can be installed as a static library . (as framework , depends how you manage your pods) .
+
+[![Version](https://img.shields.io/cocoapods/v/CCExtensionKit?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+
+[![License](https://img.shields.io/cocoapods/l/CCExtensionKit?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+
+[![Platform](https://img.shields.io/cocoapods/p/CCExtensionKit?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
 
 ### What's new ?
+---
+**2017-09-15 17:56:19**
+
+> rename 'CCLocalLib' to 'CCExtensionKit' .
+> updated to '3.0.0'
+> 
 ---
 **2017-08-10 14:50:52**
   
@@ -53,4 +65,4 @@ For freshmen :
 7. if you can't find the spec file , use `mdfind` command in `Terminal`.	
 
 
-  `pod 'LocalLib' , '2.1.8'`
+  <del>`pod 'LocalLib'`</del> `pod 'CCExtensionKit'`
