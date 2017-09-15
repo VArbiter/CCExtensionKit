@@ -22,7 +22,7 @@
 @end
 
 static CCRealmHandler *__handler = nil;
-static const char * _CC_RLM_ERROR_KEY_ = "_CC_RLM_ERROR_";
+static const char * _CC_RLM_ERROR_KEY_ = "_CC_RLM_ERROR_KEY_";
 static const char * _CC_RLM_SUCCEED_KEY_ = "_CC_RLM_SUCCEED_KEY_";
 static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 
