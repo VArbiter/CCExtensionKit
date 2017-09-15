@@ -47,6 +47,7 @@
 		7034D6CA1F5FD5280005D1E1 /* NSURL+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6C91F5FD5280005D1E1 /* NSURL+CCExtension.m */; };
 		7034D6CD1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6CC1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m */; };
 		7034D6D01F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6CF1F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m */; };
+		70A3CC621F6B880500CCD480 /* CCMediator+CCBridgeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3CC611F6B880500CCD480 /* CCMediator+CCBridgeAPI.m */; };
 		70BD28911F6272BF008C2C9A /* UIControl+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28901F6272BF008C2C9A /* UIControl+CCExtension.m */; };
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
@@ -147,6 +148,8 @@
 		7034D6CC1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+CCExtension.m"; sourceTree = "<group>"; };
 		7034D6CE1F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+CCExtension.h"; sourceTree = "<group>"; };
 		7034D6CF1F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+CCExtension.m"; sourceTree = "<group>"; };
+		70A3CC601F6B880500CCD480 /* CCMediator+CCBridgeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCMediator+CCBridgeAPI.h"; sourceTree = "<group>"; };
+		70A3CC611F6B880500CCD480 /* CCMediator+CCBridgeAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCMediator+CCBridgeAPI.m"; sourceTree = "<group>"; };
 		70BD288F1F6272BF008C2C9A /* UIControl+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+CCExtension.h"; sourceTree = "<group>"; };
 		70BD28901F6272BF008C2C9A /* UIControl+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+CCExtension.m"; sourceTree = "<group>"; };
 		70BD28931F628F6C008C2C9A /* UIFont+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+CCExtension.h"; sourceTree = "<group>"; };
@@ -768,6 +771,8 @@
 		70FF30581F6A7820001B6407 /* CCAPI */ = {
 			isa = PBXGroup;
 			children = (
+				70A3CC601F6B880500CCD480 /* CCMediator+CCBridgeAPI.h */,
+				70A3CC611F6B880500CCD480 /* CCMediator+CCBridgeAPI.m */,
 			);
 			path = CCAPI;
 			sourceTree = "<group>";
@@ -965,6 +970,7 @@
 				70FF305E1F6A7874001B6407 /* CCMediator.m in Sources */,
 				7034D6A31F5FBF3C0005D1E1 /* UIButton+CCExtension.m in Sources */,
 				7034D6931F5FBF3C0005D1E1 /* NSDictionary+CCExtension.m in Sources */,
+				70A3CC621F6B880500CCD480 /* CCMediator+CCBridgeAPI.m in Sources */,
 				7034D6A51F5FBF3C0005D1E1 /* UIColor+CCExtension.m in Sources */,
 				7034D6A21F5FBF3C0005D1E1 /* UIBarButtonItem+CCExtension.m in Sources */,
 				7034D6A81F5FBF3C0005D1E1 /* UIImage+CCExtension.m in Sources */,
