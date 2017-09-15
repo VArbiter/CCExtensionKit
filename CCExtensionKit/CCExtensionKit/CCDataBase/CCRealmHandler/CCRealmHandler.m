@@ -226,7 +226,9 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
                              [c.fileURL URLByAppendingPathExtension:@"log_b"],
                              [c.fileURL URLByAppendingPathExtension:@"note"]];
     NSFileManager *m = NSFileManager.defaultManager;
+#if !DEBUG
     __weak typeof(self) pSelf = self;
+#endif
     [a enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSError *error = nil;
         if (![m removeItemAtURL:obj
