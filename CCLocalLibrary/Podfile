@@ -4,6 +4,7 @@ target 'CCLocalLibrary' do
   use_frameworks!
 
     # pod 'CCLocalLib' , :path => '../CCLocalLib'
+    pod 'CCExtensionKit/CCFull', :path => '../'
 
     pod 'MBProgressHUD', '~> 1.0.0'
 

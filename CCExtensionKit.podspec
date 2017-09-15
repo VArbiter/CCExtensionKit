@@ -20,10 +20,11 @@ Pod::Spec.new do |s|
     s.default_subspec = 'CCCore'
 
     s.subspec 'CCCore' do |coreT|
+      coreT.source_files = 'CCExtensionKit/Classes/*.h'
       coreT.dependency 'CCExtensionKit/CCData'
       coreT.dependency 'CCExtensionKit/CCView'
       coreT.dependency 'CCExtensionKit/CCRuntime'
-      # coreT.dependency 'CCChainKit/CCChainAssets'
+      # coreT.dependency 'CCExtensionKit/CCChainAssets'
     end
 
     s.subspec 'CCFull' do |fullT|
@@ -36,46 +37,46 @@ Pod::Spec.new do |s|
     end
 
       s.subspec 'CCCommon' do |common|
-        common.source_files = 'CCExtensionKit/CCExtensionKit/CCCommon/*'
+        common.source_files = 'CCExtensionKit/Classes/CCExtensionKit/CCCommon/**/*'
         common.frameworks = "Foundation", "UIKit", "AssetsLibrary" , "Photos" , "AVFoundation"
       end
 
       s.subspec 'CCProtocol' do |protocol|
-        protocol.source_files = 'CCExtensionKit/CCExtensionKit/CCProtocol/*'
-        protocol.dependency 'CCChainKit/CCCommon'
+        protocol.source_files = 'CCExtensionKit/Classes/CCExtensionKit/CCProtocol/**/*'
+        protocol.dependency 'CCExtensionKit/CCCommon'
       end
 
       s.subspec 'CCRuntime' do |runtime|
-        runtime.source_files = 'CCExtensionKit/CCExtensionKit/CCRuntime/*'
+        runtime.source_files = 'CCExtensionKit/Classes/CCExtensionKit/CCRuntime/**/*'
       end
 
       s.subspec 'CCDataBase' do |dataBase|
-        dataBase.source_files = 'CCExtensionKit/CCExtensionKit/CCDataBase/*'
+        dataBase.source_files = 'CCExtensionKit/Classes/CCExtensionKit/CCDataBase/**/*'
         dataBase.dependency 'Realm', '~> 2.10.0'
         dataBase.frameworks = "Foundation"
       end
 
       s.subspec 'CCRouter' do |router|
-        router.source_files = 'CCExtensionKit/CCExtensionKit/CCRouter/*'
+        router.source_files = 'CCExtensionKit/Classes/CCExtensionKit/CCRouter/**/*'
         router.frameworks = "Foundation"
         router.dependency 'MGJRouter', '~> 0.9.3'
       end
 
       s.subspec 'CCData' do |data|
-        data.source_files = 'CCExtensionKit/CCExtensionKit/CCData/*'
-        data.dependency 'CCChainKit/CCProtocol'
+        data.source_files = 'CCExtensionKit/Classes/CCExtensionKit/CCData/**/*'
+        data.dependency 'CCExtensionKit/CCProtocol'
         data.frameworks = "MobileCoreServices"
       end
 
       s.subspec 'CCView' do |view|
-        view.source_files = 'CCExtensionKit/CCExtensionKit/CCView/*'
+        view.source_files = 'CCExtensionKit/Classes/CCExtensionKit/CCView/**/*'
         view.frameworks = "CoreGraphics" , "QuartzCore"
-        view.dependency 'CCChainKit/CCProtocol'
+        view.dependency 'CCExtensionKit/CCProtocol'
       end
 
       s.subspec 'CCCustom' do |custom|
-        custom.source_files = 'CCExtensionKit/CCExtensionKit/CCCustom/*'
-        custom.dependency 'CCChainKit/CCCore'
+        custom.source_files = 'CCExtensionKit/Classes/CCExtensionKit/CCCustom/**/*'
+        custom.dependency 'CCExtensionKit/CCCore'
         custom.dependency 'AFNetworking/Reachability', '~> 3.1.0'
         custom.dependency 'AFNetworking/UIKit', '~> 3.1.0'
         custom.dependency 'SDWebImage', '~> 4.1.0'
