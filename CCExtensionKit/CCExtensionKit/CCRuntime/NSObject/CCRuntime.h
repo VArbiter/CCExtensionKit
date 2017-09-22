@@ -90,7 +90,7 @@ CCQueue CC_MAIN_QUEUE();
 @interface CCRuntime (CCExtension_Queue)
 
 + (CCQueue) ccCreate : (const char *) label
-                  serilal : (BOOL) isSerial ;
+             serilal : (BOOL) isSerial ;
 + (CCQueue) ccGlobal : (CCQueueQOS) qos ;
 
 @end

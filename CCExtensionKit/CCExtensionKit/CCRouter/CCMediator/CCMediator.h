@@ -10,6 +10,8 @@
 
 @interface CCMediator : NSObject
 
+- (instancetype) init NS_UNAVAILABLE;
+
 + (id) ccPerform : (NSString *) sTarget
           action : (NSString *) sAction
       returnVale : (BOOL) isNeed

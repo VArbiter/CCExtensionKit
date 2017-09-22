@@ -111,6 +111,8 @@ static NSString * _CC_UUID_;
 
 @interface CCCommon : NSObject
 
+- (instancetype) init NS_UNAVAILABLE;
+
 /// notify you whether this operation was excuted on main thread .
 /// returns if this operation was excuted on main thread .
 BOOL CC_IS_MAIN_QUEUE();

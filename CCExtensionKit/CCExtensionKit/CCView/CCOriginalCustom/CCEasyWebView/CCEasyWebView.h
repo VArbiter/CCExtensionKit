@@ -10,6 +10,8 @@
 
 @interface CCEasyWebView : NSObject
 
+- (instancetype) init NS_UNAVAILABLE ;
+
 + (instancetype) common : (CGRect) frame ;
 + (instancetype) common : (CGRect) frame
           configuration : (WKWebViewConfiguration *) configuration ;

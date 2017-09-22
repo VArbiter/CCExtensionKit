@@ -27,7 +27,7 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 - (instancetype) init : (CGRect) frame ;
 
 - (instancetype) init : (CGRect) frame
-        configuration : (WKWebViewConfiguration *) configuration ;
+        configuration : (WKWebViewConfiguration *) configuration NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic , copy) void (^progress)(double);
 @property (nonatomic , copy) WKNavigationActionPolicy (^decision)(WKNavigationAction * action);
