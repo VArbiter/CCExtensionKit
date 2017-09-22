@@ -95,12 +95,14 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
     else self.realm = [RLMRealm defaultRealm];
     
     __weak typeof(self) pSelf = self;
-    self.token = [pSelf.realm addNotificationBlock:^(RLMNotification  _Nonnull notification, RLMRealm * _Nonnull realm) {
-        void (^t)(RLMNotification n, RLMRealm *r) = objc_getAssociatedObject(pSelf, _CC_RLM_NOTIFICATION_KEY_);
-        if (t) {
-            t(notification , realm);
-        }
-    }];
+    void (^t)(RLMNotification n, RLMRealm *r) = objc_getAssociatedObject(pSelf, _CC_RLM_NOTIFICATION_KEY_);
+    if (t) {
+        self.token = [pSelf.realm addNotificationBlock:^(RLMNotification  _Nonnull notification, RLMRealm * _Nonnull realm) {
+            if (t) {
+                t(notification , realm);
+            }
+        }];
+    }
     
     return pSelf;
 }
@@ -270,7 +272,8 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
                       action : (void (^)(RLMRealmConfiguration *c , RLMMigration *m , uint64_t vOld)) action {
     if (!action) return self;
     RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
-    // config.deleteRealmIfMigrationNeeded = YES; // if needed , delete realm , currently , not need .         config.schemaVersion = vNew;
+    // config.deleteRealmIfMigrationNeeded = YES; // if needed , delete realm , currently , not need .
+    config.schemaVersion = version;
     __unsafe_unretained typeof(config) pConfig = config;
     config.migrationBlock = ^(RLMMigration * _Nonnull migration, uint64_t oldSchemaVersion) {
         /// Realm will automatic do the migration actions (including structure && data)
