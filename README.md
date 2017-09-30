@@ -60,7 +60,7 @@
 > 
 > Therefore , `CCChainKit` was created . 👏👏👏 .
 > 
-> 👉👉👉**[CCChainKit](https://github.com/VArbiter/CCChainKit)**
+> 👉👉👉 **[CCChainKit](https://github.com/VArbiter/CCChainKit)**
 > 
 > and Why I still using prefix __*CC*__ ?
 > 

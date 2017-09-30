@@ -58,7 +58,7 @@
 > 
 > 所以 , `CCChainKit` 就诞生了 . 👏👏👏 .
 > 
-> 👉👉👉**[CCChainKit](https://github.com/VArbiter/CCChainKit)**
+> 👉👉👉 **[CCChainKit](https://github.com/VArbiter/CCChainKit)**
 > 
 > 为啥我还在用 __*CC*__ 前缀?
 > 
@@ -73,7 +73,7 @@
 > 
 > 或许 , 下一个工程我会用 `EL`. 当然 , EL , Elwin Frederick.
 >
->  单身狗 , 单身狗 , 一直单身狗. (请用 _叮叮当 , 叮叮当 , 铃儿响叮当的调子_ .) 🐶🐶🐶
+>  单身狗 , 单身狗 , 一直单身狗. (请用 _**叮叮当 , 叮叮当 , 铃儿响叮当的调子**_ .) 🐶🐶🐶
 
 **2017-07-01 19:49:01**
 > 我创建了一个叫做 `CCChainOperate` 的新库 , 我为啥写他?
