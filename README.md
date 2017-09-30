@@ -1,12 +1,50 @@
-# CCLocalLibrary
+# CCExtensionKit
 
-### SomeCategorys that can be installed as a static library . (as framework , depends how you manage your pods) .
+##### Some custom categories for iOS with Objective-C. 
 
-[![Version](https://img.shields.io/cocoapods/v/CCExtensionKit?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+### 中文说明请点击[[这里](https://github.com/VArbiter/CCLocalLibrary/blob/master/README_CN.md)]
 
-[![License](https://img.shields.io/cocoapods/l/CCExtensionKit?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+### Current Version 3.0.3
 
-[![Platform](https://img.shields.io/cocoapods/p/CCExtensionKit?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+> pod 'CCExtensionKit' , '~> 3.0.3' // default is CCCore
+> 
+> > pod 'CCExtensionKit/CCFull' , '~> 3.0.3' . if you wanna install the whole Kit .
+
+### Warning 
+> CCLocalLib has no longer effect after version `2.2.3`
+> 
+> cause after `3.0.0` , CCLocalLib was renamed to `'CCExtensionKit'` .
+
+### Note
+> when install , default is `CCCore` , `CCCore` contains 
+> 
+> > `CCCommon` (Macros) , `CCProtocol` (Protocol) , `CCData` (NS Family), `CCView` (UI Family), `CCRuntime` (objc/ runtime associate)
+> 
+> when you wanna get to Full , install with `"CCExtensionKit/CCFull"` (note: `CCFull` had dependend on other vendors.)
+> 
+> **Instructions**
+> 
+> > CCCore : Core extensions . a abstract collection .
+> 
+> > CCFull : Full extensions . a abstract collection .
+> 
+> > CCExtensionAssets : Assets collection , preserve for future needs . (not available for now).
+> 
+> > CCCommon : Macros && Common tools .
+> 
+> > CCProtocol : CCProtocol . for CC . make all the sub-class of NSObject conforms to it .
+> 
+> > CCRuntime : Packaged for some runtime functions .
+> 
+> > CCDataBase : For now , only for [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.0').
+> 
+> > CCRouter : a extension Package Router for [`MGJRouter`](https://github.com/meili/MGJRouter) ('~> 0.9.3') && perform actions .
+> 
+> > CCData :  a extension actions for NS family .
+> 
+> > CCView :  a extension actions for UI family .
+> 
+> > CCCustom :  Custom classes or functions , dependend or based on other vendors .
 
 ### What's new ?
 ---
@@ -15,7 +53,7 @@
 > rename 'CCLocalLib' to 'CCExtensionKit' .
 > updated to '3.0.0'
 > 
----
+
 **2017-08-10 14:50:52**
   
 > After writing `CCChainOperate` for almost a month , I figured , that , **THIS CAN BE A KIT !**
@@ -51,18 +89,27 @@
 >  
 >  Also , heavily inspired by react-Objc .
 
-### How to use ?
----
+### Example
 
-For freshmen :
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-1. Download first or clone the git repo .
-2. open `Terminal` , `cd` and make right into where the `Podfile` placed in .
-3. `pod install`
-4. open `*.xcworkspace`
-5. see the content in the `Podfile` .
-6. see the conten in the locallib.spec
-7. if you can't find the spec file , use `mdfind` command in `Terminal`.	
+### Requirements
 
+Already done in pod spec.
 
-  <del>`pod 'LocalLib'`</del> `pod 'CCExtensionKit'`
+### Installation
+
+CCExtensionKit is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "CCExtensionKit"
+```
+
+### Author
+
+**ElwinFrederick, [elwinfrederick@163.com](elwinfrederick@163.com)**
+
+### License
+
+CCExtensionKit is available under the MIT license. See the LICENSE file for more info.
