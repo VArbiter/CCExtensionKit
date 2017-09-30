@@ -45,6 +45,9 @@ CGSize CCScaleSize(CGSize size);
 @interface UIView (CCExtension)
 
 + (instancetype) common : (CGRect) frame ;
+
+/// for some designer use basic UI that is not for iPhone 6/6s/7/8
+/// set H && W only once in somewhere for "+ (void) load"
 + (void) ccSetScale : (CGFloat) fWidth
              height : (CGFloat) fHeight ;
 
@@ -73,6 +76,11 @@ CGSize CCScaleSize(CGSize size);
 @property (nonatomic , assign) CGFloat left;
 @property (nonatomic , assign) CGFloat bottom;
 @property (nonatomic , assign) CGFloat right;
+
+@property (nonatomic , assign , readonly) CGFloat inTop;
+@property (nonatomic , assign , readonly) CGFloat inLeft;
+@property (nonatomic , assign , readonly) CGFloat inBottom;
+@property (nonatomic , assign , readonly) CGFloat inRight;
 
 /// an easy way to margin
 - (instancetype) ccSize : (CGSize) size ;
