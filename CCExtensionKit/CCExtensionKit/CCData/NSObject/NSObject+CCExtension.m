@@ -10,6 +10,13 @@
 
 @implementation NSObject (CCExtension)
 
++ (NSString *)sSelf {
+    return NSStringFromClass(self);
+}
++ (Class)Self {
+    return self;
+}
+
 - (NSString *)toString {
     return [NSString stringWithFormat:@"%@",self];
 }
