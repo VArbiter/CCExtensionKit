@@ -10,7 +10,7 @@
 
 @interface UIImageView (CCExtension)
 
-+ (instancetype) ccCommon : (CGRect) frame ;
++ (instancetype) common : (CGRect) frame ;
 - (instancetype) ccImageT : (UIImage *) image ;
 
 @end

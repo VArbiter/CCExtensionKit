@@ -10,7 +10,7 @@
 
 @implementation UIImageView (CCExtension)
 
-+ (instancetype)ccCommon:(CGRect)frame {
++ (instancetype)common:(CGRect)frame {
     UIImageView *v = [[self alloc] initWithFrame:frame];
     v.backgroundColor = [UIColor clearColor];
     v.contentMode = UIViewContentModeScaleAspectFit;
