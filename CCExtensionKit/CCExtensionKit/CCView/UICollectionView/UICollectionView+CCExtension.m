@@ -22,9 +22,9 @@
     c.backgroundColor = UIColor.clearColor;
     c.showsVerticalScrollIndicator = false;
     c.showsHorizontalScrollIndicator = false;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-    c.prefetchingEnabled = YES;
-#endif
+    if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
+        c.prefetchingEnabled = YES;
+    }
     
     [c registerClass:UICollectionViewCell.class
 forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
@@ -43,8 +43,10 @@ forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 - (instancetype) ccPrefetching : (id <UICollectionViewDataSourcePrefetching>) prefetch {
-    if (prefetch) self.prefetchDataSource = prefetch;
-    else self.prefetchDataSource = nil;
+    if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {    
+        if (prefetch) self.prefetchDataSource = prefetch;
+        else self.prefetchDataSource = nil;
+    }
     return self;
 }
 #endif

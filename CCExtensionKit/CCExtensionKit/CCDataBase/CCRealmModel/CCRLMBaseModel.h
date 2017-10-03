@@ -12,9 +12,9 @@
 
 @interface CCRLMBaseModel : RLMObject
 
-+ (instancetype) ccCommon ;
-+ (instancetype) ccCommonD : (NSDictionary *) dictionary ;
-+ (instancetype) ccCommonA : (NSArray *) array ;
++ (instancetype) common ;
++ (instancetype) commonD : (NSDictionary *) dictionary ;
++ (instancetype) commonA : (NSArray *) array ;
 
 ///  default : defalut
 - (instancetype) ccSpecific : (NSString *) specificDataBase ;

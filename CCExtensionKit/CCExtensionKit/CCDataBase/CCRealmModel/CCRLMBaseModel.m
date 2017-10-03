@@ -24,14 +24,14 @@ static RLMNotificationToken *__ccToken = nil;
     return @[@"specificBase",@"ccToken"];
 }
 
-+ (instancetype) ccCommon {
-    return [self ccCommonD:nil];
++ (instancetype) common {
+    return [self commonD:nil];
 }
-+ (instancetype) ccCommonD : (NSDictionary *) dictionary {
++ (instancetype) commonD : (NSDictionary *) dictionary {
     return [CCRealmHandler.shared ccDictionary:self
                                          value:dictionary];
 }
-+ (instancetype) ccCommonA : (NSArray *) array {
++ (instancetype) commonA : (NSArray *) array {
     return [CCRealmHandler.shared ccArray:self
                                     value:array];
 }
