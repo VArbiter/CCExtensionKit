@@ -59,7 +59,7 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
 }
 - (BOOL)ccMoveT:(NSString *)sFrom to:(NSString *)sTo {
     if (!sFrom || !sFrom.length
-        || !sTo || sTo.length) return false;
+        || !sTo || !sTo.length) return false;
     if ([self ccIsDirectoryT:sFrom]) return false;
     if ([self ccIsDirectoryT:sTo]) return false;
     if (![self ccExistsT:sFrom]) return false;
