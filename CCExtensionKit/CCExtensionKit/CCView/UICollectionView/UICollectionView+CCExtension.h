@@ -65,21 +65,27 @@
 @interface CCCollectionExtensionDelegate : NSObject < UICollectionViewDelegateFlowLayout >
 
 - (id < UICollectionViewDelegateFlowLayout > ) init;
-- (instancetype) ccDidSelect : (BOOL (^)(UICollectionView *collectionView ,
+- (instancetype) ccDidSelect : (BOOL (^)(__kindof UICollectionView *collectionView ,
                                          NSIndexPath *indexPath)) didSelect;
-- (instancetype) ccDidHighted : (void (^)(UICollectionView *collectionView ,
+- (instancetype) ccDidHighted : (void (^)(__kindof UICollectionView *collectionView ,
                                           NSIndexPath *indexPath)) didHighLighted ;
-- (instancetype) ccDidUnHighted : (void (^)(UICollectionView *collectionView ,
+- (instancetype) ccDidUnHighted : (void (^)(__kindof UICollectionView *collectionView ,
                                             NSIndexPath *indexPath)) didUnHighLighted ;
-- (instancetype) ccMinimumLineSpacingInSection : (CGFloat (^)(UICollectionView *collectionView ,
-                                                              UICollectionViewLayout *layout ,
+- (instancetype) ccMinimumLineSpacingInSection : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+                                                              __kindof UICollectionViewLayout *layout ,
                                                               NSInteger iSection)) minimumLineSpacingInSection;
-- (instancetype) ccMinimumInteritemSpacingInSection : (CGFloat (^)(UICollectionView *collectionView ,
-                                                                   UICollectionViewLayout *layout ,
+- (instancetype) ccMinimumInteritemSpacingInSection : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+                                                                   __kindof UICollectionViewLayout *layout ,
                                                                    NSInteger iSection)) minimumInteritemSpacingInSection;
-- (instancetype) ccSpacingBetweenSections : (UIEdgeInsets(^)(UICollectionView *collectionView ,
-                                                             UICollectionViewLayout *layout ,
+- (instancetype) ccSpacingBetweenSections : (UIEdgeInsets(^)(__kindof UICollectionView *collectionView ,
+                                                             __kindof UICollectionViewLayout *layout ,
                                                              NSInteger iSection)) spacingBetweenSections;
+
+- (instancetype) ccDidScroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll ;
+- (instancetype) ccWillBeginDecelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating;
+- (instancetype) ccDidEndDecelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating;
+- (instancetype) ccShouldScrollToTop : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop;
+- (instancetype) ccDidScrollToTop : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop;
 
 @end
 
@@ -88,12 +94,12 @@
 @interface CCCollectionExtensionDataSource : NSObject < UICollectionViewDataSource >
 
 - (id < UICollectionViewDataSource >) init ;
-- (instancetype) ccSections : (NSInteger (^)(UICollectionView *collectionView)) sections ;
-- (instancetype) ccItemsInSections : (NSInteger (^)(UICollectionView * collectionView ,
+- (instancetype) ccSections : (NSInteger (^)(__kindof UICollectionView *collectionView)) sections ;
+- (instancetype) ccItemsInSections : (NSInteger (^)(__kindof UICollectionView * collectionView ,
                                                     NSInteger iSections)) itemInSections ;
-- (instancetype) ccCellIdentifier : (NSString *(^)(UICollectionView * collectionView ,
+- (instancetype) ccCellIdentifier : (NSString *(^)(__kindof UICollectionView * collectionView ,
                                                    NSIndexPath * indexPath)) identifier ;
-- (instancetype) ccConfiguration : (__kindof UICollectionViewCell *(^)(UICollectionView * collectionView ,
+- (instancetype) ccConfiguration : (__kindof UICollectionViewCell *(^)(__kindof UICollectionView * collectionView ,
                                                                        __kindof UICollectionViewCell * cell ,
                                                                        NSIndexPath * indexPath)) configuration ;
 
@@ -103,8 +109,8 @@
 
 @interface NSArray (CCExtension_Collection_Refresh)
 
-- (instancetype) ccReload : (UICollectionView *) collectionView ;
-- (instancetype) ccReload : (UICollectionView *) collectionView
+- (instancetype) ccReload : (__kindof UICollectionView *) collectionView ;
+- (instancetype) ccReload : (__kindof UICollectionView *) collectionView
                  sections : (NSIndexSet *) set ;
 
 @end

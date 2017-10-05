@@ -153,12 +153,18 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
 
 @interface CCCollectionExtensionDelegate ()
 
-@property (nonatomic , copy) BOOL (^blockDidSelect)(UICollectionView *collectionView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) void (^blockDidHightedCell)(UICollectionView *collectionView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) void (^blockDidUnhigntedCell)(UICollectionView *collectionView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) CGFloat (^blockMinimumLineSpacingInSection)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger integerSection) ;
-@property (nonatomic , copy) CGFloat (^blockMinimumInteritemSpacingInSection)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger integerSection) ;
-@property (nonatomic , copy) UIEdgeInsets (^blockSpacingBetweenSections)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger integerSection) ;
+@property (nonatomic , copy) BOOL (^bDidSelect)(__kindof UICollectionView *collectionView , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) void (^bDidHightedCell)(__kindof UICollectionView *collectionView , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) void (^bDidUnhigntedCell)(__kindof UICollectionView *collectionView , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) CGFloat (^bMinimumLineSpacingInSection)(__kindof UICollectionView *collectionView ,__kindof  UICollectionViewLayout *layout , NSInteger integerSection) ;
+@property (nonatomic , copy) CGFloat (^bMinimumInteritemSpacingInSection)(__kindof UICollectionView *collectionView ,__kindof  UICollectionViewLayout *layout , NSInteger integerSection) ;
+@property (nonatomic , copy) UIEdgeInsets (^bSpacingBetweenSections)(__kindof UICollectionView *collectionView ,__kindof  UICollectionViewLayout *layout , NSInteger integerSection) ;
+
+@property (nonatomic , copy) void (^bDidScroll)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bWillBeginDecelerating)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bDidEndDecelerating)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) BOOL (^bShouldScrollToTop)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bDidScrollToTop)(__kindof UIScrollView *scrollView);
 
 @end
 
@@ -171,62 +177,104 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
     return self;
 }
 
-- (instancetype) ccDidSelect : (BOOL (^)(UICollectionView *collectionView ,
+- (instancetype) ccDidSelect : (BOOL (^)(__kindof UICollectionView *collectionView ,
                                          NSIndexPath *indexPath)) didSelect {
-    self.blockDidSelect = [didSelect copy];
+    self.bDidSelect = [didSelect copy];
     return self;
 }
-- (instancetype) ccDidHighted : (void (^)(UICollectionView *collectionView ,
+- (instancetype) ccDidHighted : (void (^)(__kindof UICollectionView *collectionView ,
                                           NSIndexPath *indexPath)) didHighLighted {
-    self.blockDidHightedCell = [didHighLighted copy];
+    self.bDidHightedCell = [didHighLighted copy];
     return self;
 }
-- (instancetype) ccDidUnHighted : (void (^)(UICollectionView *collectionView ,
+- (instancetype) ccDidUnHighted : (void (^)(__kindof UICollectionView *collectionView ,
                                             NSIndexPath *indexPath)) didUnHighLighted {
-    self.blockDidUnhigntedCell = [didUnHighLighted copy];
+    self.bDidUnhigntedCell = [didUnHighLighted copy];
     return self;
 }
-- (instancetype) ccMinimumLineSpacingInSection : (CGFloat (^)(UICollectionView *collectionView ,
-                                                              UICollectionViewLayout *layout ,
+- (instancetype) ccMinimumLineSpacingInSection : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+                                                              __kindof UICollectionViewLayout *layout ,
                                                               NSInteger iSection)) minimumLineSpacingInSection {
-    self.blockMinimumLineSpacingInSection = [minimumLineSpacingInSection copy];
+    self.bMinimumLineSpacingInSection = [minimumLineSpacingInSection copy];
     return self;
 }
-- (instancetype) ccMinimumInteritemSpacingInSection : (CGFloat (^)(UICollectionView *collectionView ,
-                                                                   UICollectionViewLayout *layout ,
+- (instancetype) ccMinimumInteritemSpacingInSection : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+                                                                   __kindof UICollectionViewLayout *layout ,
                                                                    NSInteger iSection)) minimumInteritemSpacingInSection {
-    self.blockMinimumInteritemSpacingInSection = [minimumInteritemSpacingInSection copy];
+    self.bMinimumInteritemSpacingInSection = [minimumInteritemSpacingInSection copy];
     return self;
 }
-- (instancetype) ccSpacingBetweenSections : (UIEdgeInsets(^)(UICollectionView *collectionView ,
-                                                             UICollectionViewLayout *layout ,
+- (instancetype) ccSpacingBetweenSections : (UIEdgeInsets(^)(__kindof UICollectionView *collectionView ,
+                                                             __kindof UICollectionViewLayout *layout ,
                                                              NSInteger iSection)) spacingBetweenSections {
-    self.blockSpacingBetweenSections = [spacingBetweenSections copy];
+    self.bSpacingBetweenSections = [spacingBetweenSections copy];
+    return self;
+}
+
+- (instancetype) ccDidScroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll {
+    self.bDidScroll = [didScroll copy];
+    return self;
+}
+- (instancetype) ccWillBeginDecelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating {
+    self.bWillBeginDecelerating = [willBeginDecelerating copy];
+    return self;
+}
+- (instancetype) ccDidEndDecelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating {
+    self.bDidEndDecelerating = [didEndDecelerating copy];
+    return self;
+}
+- (instancetype) ccShouldScrollToTop : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop {
+    self.bShouldScrollToTop = [shouldScrollToTop copy];
+    return self;
+}
+- (instancetype) ccDidScrollToTop : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop {
+    self.bDidScrollToTop = [didScrollToTop copy];
     return self;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.blockDidSelect) {
-        if (self.blockDidSelect(collectionView , indexPath)) {
+    if (self.bDidSelect) {
+        if (self.bDidSelect(collectionView , indexPath)) {
             [collectionView deselectItemAtIndexPath:indexPath animated:false];
         }
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.blockDidHightedCell) self.blockDidHightedCell(collectionView, indexPath);
+    if (self.bDidHightedCell) self.bDidHightedCell(collectionView, indexPath);
 }
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.blockDidUnhigntedCell) self.blockDidUnhigntedCell(collectionView, indexPath);
+    if (self.bDidUnhigntedCell) self.bDidUnhigntedCell(collectionView, indexPath);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return self.blockMinimumLineSpacingInSection ? self.blockMinimumLineSpacingInSection(collectionView , collectionViewLayout , section) : .0f;
+    return self.bMinimumLineSpacingInSection ? self.bMinimumLineSpacingInSection(collectionView , collectionViewLayout , section) : .0f;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return self.blockMinimumInteritemSpacingInSection ? self.blockMinimumInteritemSpacingInSection (collectionView , collectionViewLayout , section) : .0f;
+    return self.bMinimumInteritemSpacingInSection ? self.bMinimumInteritemSpacingInSection (collectionView , collectionViewLayout , section) : .0f;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return self.blockSpacingBetweenSections ? self.blockSpacingBetweenSections(collectionView , collectionViewLayout , section) : UIEdgeInsetsZero ;
+    return self.bSpacingBetweenSections ? self.bSpacingBetweenSections(collectionView , collectionViewLayout , section) : UIEdgeInsetsZero ;
+}
+
+#pragma mark - ----- UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.bDidScroll) self.bDidScroll(scrollView);
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    if (self.bWillBeginDecelerating) self.bWillBeginDecelerating(scrollView);
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (self.bDidEndDecelerating) self.bDidEndDecelerating(scrollView);
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
+    if (self.bShouldScrollToTop) return self.bShouldScrollToTop(scrollView);
+    return YES;
+}
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+    if (self.bDidScrollToTop) self.bDidScrollToTop(scrollView);
 }
 
 _CC_DETECT_DEALLOC_
@@ -237,10 +285,10 @@ _CC_DETECT_DEALLOC_
 
 @interface CCCollectionExtensionDataSource ()
 
-@property (nonatomic , copy) NSInteger (^blockSections)(UICollectionView *collectionView) ;
-@property (nonatomic , copy) NSInteger (^blockItemsInSections)(UICollectionView * collectionView , NSInteger integerSections) ;
-@property (nonatomic , copy) NSString *(^blockCellIdentifier)(UICollectionView * collectionView , NSIndexPath * indexPath) ;
-@property (nonatomic , copy) UICollectionViewCell *(^blockConfigCell)(UICollectionView * collectionView , UICollectionViewCell * cellConfig , NSIndexPath * indexPath);
+@property (nonatomic , copy) NSInteger (^bSections)(__kindof UICollectionView *collectionView) ;
+@property (nonatomic , copy) NSInteger (^bItemsInSections)(__kindof UICollectionView * collectionView , NSInteger integerSections) ;
+@property (nonatomic , copy) NSString *(^bCellIdentifier)(__kindof UICollectionView * collectionView , NSIndexPath * indexPath) ;
+@property (nonatomic , copy) UICollectionViewCell *(^bConfigCell)(__kindof UICollectionView * collectionView , UICollectionViewCell * cellConfig , NSIndexPath * indexPath);
 
 @end
 
@@ -252,40 +300,40 @@ _CC_DETECT_DEALLOC_
     }
     return self;
 }
-- (instancetype) ccSections : (NSInteger (^)(UICollectionView *collectionView)) sections {
-    self.blockSections = [sections copy];
+- (instancetype) ccSections : (NSInteger (^)(__kindof UICollectionView *collectionView)) sections {
+    self.bSections = [sections copy];
     return self;
 }
-- (instancetype) ccItemsInSections : (NSInteger (^)(UICollectionView * collectionView ,
+- (instancetype) ccItemsInSections : (NSInteger (^)(__kindof UICollectionView * collectionView ,
                                                     NSInteger iSections)) itemInSections {
-    self.blockItemsInSections = [itemInSections copy];
+    self.bItemsInSections = [itemInSections copy];
     return self;
 }
-- (instancetype) ccCellIdentifier : (NSString *(^)(UICollectionView * collectionView ,
+- (instancetype) ccCellIdentifier : (NSString *(^)(__kindof UICollectionView * collectionView ,
                                                    NSIndexPath * indexPath)) identifier {
-    self.blockCellIdentifier = [identifier copy];
+    self.bCellIdentifier = [identifier copy];
     return self;
 }
-- (instancetype) ccConfiguration : (__kindof UICollectionViewCell *(^)(UICollectionView * collectionView ,
+- (instancetype) ccConfiguration : (__kindof UICollectionViewCell *(^)(__kindof UICollectionView * collectionView ,
                                                                        __kindof UICollectionViewCell * cell ,
                                                                        NSIndexPath * indexPath)) configuration {
-    self.blockConfigCell = [configuration copy];
+    self.bConfigCell = [configuration copy];
     return self;
 }
 
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.blockSections ? self.blockSections(collectionView) : 1;
+    return self.bSections ? self.bSections(collectionView) : 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.blockItemsInSections ? self.blockItemsInSections(collectionView , section) : 0;
+    return self.bItemsInSections ? self.bItemsInSections(collectionView , section) : 0;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *stringCellIdentifier = self.blockCellIdentifier ? self.blockCellIdentifier(collectionView , indexPath) : _CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_;
+    NSString *stringCellIdentifier = self.bCellIdentifier ? self.bCellIdentifier(collectionView , indexPath) : _CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_;
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:stringCellIdentifier
                                                                            forIndexPath:indexPath];
     if (!cell) cell = [[UICollectionViewCell alloc] init];
-    return self.blockConfigCell ? self.blockConfigCell(collectionView , cell , indexPath) : cell;
+    return self.bConfigCell ? self.bConfigCell(collectionView , cell , indexPath) : cell;
 }
 
 _CC_DETECT_DEALLOC_

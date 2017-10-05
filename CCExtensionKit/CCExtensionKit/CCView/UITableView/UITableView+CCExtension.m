@@ -179,12 +179,18 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 @interface CCTableExtensionDelegate ()
 
-@property (nonatomic , copy) CGFloat (^blockCellHeight)(UITableView * tableView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) CGFloat (^blockSectionHeaderHeight)(UITableView * tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) UIView *(^blockSectionHeader)(UITableView *tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) CGFloat (^blockSectionFooterHeight)(UITableView * tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) UIView *(^blockSectionFooter)(UITableView *tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) BOOL (^blockDidSelect)(UITableView *tableView , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) CGFloat (^bCellHeight)(__kindof UITableView * tableView , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) CGFloat (^bSectionHeaderHeight)(__kindof UITableView * tableView , NSInteger integerSection) ;
+@property (nonatomic , copy) UIView *(^bSectionHeader)(__kindof UITableView *tableView , NSInteger integerSection) ;
+@property (nonatomic , copy) CGFloat (^bSectionFooterHeight)(__kindof UITableView * tableView , NSInteger integerSection) ;
+@property (nonatomic , copy) UIView *(^bSectionFooter)(__kindof UITableView *tableView , NSInteger integerSection) ;
+@property (nonatomic , copy) BOOL (^bDidSelect)(__kindof UITableView *tableView , NSIndexPath *indexPath) ;
+
+@property (nonatomic , copy) void (^bDidScroll)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bWillBeginDecelerating)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bDidEndDecelerating)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) BOOL (^bShouldScrollToTop)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bDidScrollToTop)(__kindof UIScrollView *scrollView);
 
 @end
 
@@ -197,54 +203,96 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) ccCellHeight : (CGFloat (^)(UITableView * tableView , NSIndexPath *indexPath)) cellHeight {
-    self.blockCellHeight = [cellHeight copy];
+- (instancetype) ccCellHeight : (CGFloat (^)(__kindof UITableView * tableView , NSIndexPath *indexPath)) cellHeight {
+    self.bCellHeight = [cellHeight copy];
     return self;
 }
-- (instancetype) ccSectionHeaderHeight : (CGFloat (^)(UITableView * tableView , NSInteger iSection)) sectionHeaderHeight {
-    self.blockSectionHeaderHeight = [sectionHeaderHeight copy];
+- (instancetype) ccSectionHeaderHeight : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionHeaderHeight {
+    self.bSectionHeaderHeight = [sectionHeaderHeight copy];
     return self;
 }
-- (instancetype) ccSectionHeader : (UIView *(^)(UITableView *tableView , NSInteger iSection)) sectionHeader {
-    self.blockSectionHeader = [sectionHeader copy];
+- (instancetype) ccSectionHeader : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionHeader {
+    self.bSectionHeader = [sectionHeader copy];
     return self;
 }
-- (instancetype) ccSectionFooterHeight : (CGFloat (^)(UITableView * tableView , NSInteger iSection)) sectionFooterHeight {
-    self.blockSectionFooterHeight = [sectionFooterHeight copy];
+- (instancetype) ccSectionFooterHeight : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionFooterHeight {
+    self.bSectionFooterHeight = [sectionFooterHeight copy];
     return self;
 }
-- (instancetype) ccSectionFooter : (UIView *(^)(UITableView *tableView , NSInteger iSection)) sectionFooter {
-    self.blockSectionFooter = [sectionFooter copy];
+- (instancetype) ccSectionFooter : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionFooter {
+    self.bSectionFooter = [sectionFooter copy];
     return self;
 }
-- (instancetype) ccDidSelect : (BOOL (^)(UITableView *tableView , NSIndexPath *indexPath)) didSelect {
-    self.blockDidSelect = [didSelect copy];
+- (instancetype) ccDidSelect : (BOOL (^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) didSelect {
+    self.bDidSelect = [didSelect copy];
+    return self;
+}
+
+- (instancetype) ccDidScroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll {
+    self.bDidScroll = [didScroll copy];
+    return self;
+}
+- (instancetype) ccWillBeginDecelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating {
+    self.bWillBeginDecelerating = [willBeginDecelerating copy];
+    return self;
+}
+- (instancetype) ccDidEndDecelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating {
+    self.bDidEndDecelerating = [didEndDecelerating copy];
+    return self;
+}
+- (instancetype) ccShouldScrollToTop : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop {
+    self.bShouldScrollToTop = [shouldScrollToTop copy];
+    return self;
+}
+- (instancetype) ccDidScrollToTop : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop {
+    self.bDidScrollToTop = [didScrollToTop copy];
     return self;
 }
 
 #pragma mark - ---
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.blockCellHeight ? self.blockCellHeight(tableView , indexPath) : 45.f ;
+    return self.bCellHeight ? self.bCellHeight(tableView , indexPath) : 45.f ;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return self.blockSectionHeaderHeight ? self.blockSectionHeaderHeight(tableView , section) : .0f;
+    return self.bSectionHeaderHeight ? self.bSectionHeaderHeight(tableView , section) : .0f;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return self.blockSectionHeader ? self.blockSectionHeader(tableView , section) : nil;
+    return self.bSectionHeader ? self.bSectionHeader(tableView , section) : nil;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return self.blockSectionFooter ? self.blockSectionFooter(tableView , section) : nil;
+    return self.bSectionFooter ? self.bSectionFooter(tableView , section) : nil;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return self.blockSectionFooterHeight ? self.blockSectionFooterHeight(tableView , section) : .01f;
+    return self.bSectionFooterHeight ? self.bSectionFooterHeight(tableView , section) : .01f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.blockDidSelect) {
-        if (self.blockDidSelect(tableView , indexPath)) {
+    if (self.bDidSelect) {
+        if (self.bDidSelect(tableView , indexPath)) {
             [tableView deselectRowAtIndexPath:indexPath animated:false];
         }
     }
+}
+
+#pragma mark - ----- UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.bDidScroll) self.bDidScroll(scrollView);
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    if (self.bWillBeginDecelerating) self.bWillBeginDecelerating(scrollView);
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (self.bDidEndDecelerating) self.bDidEndDecelerating(scrollView);
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
+    if (self.bShouldScrollToTop) return self.bShouldScrollToTop(scrollView);
+    return YES;
+}
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+    if (self.bDidScrollToTop) self.bDidScrollToTop(scrollView);
 }
 
 - (void)dealloc {
@@ -259,10 +307,10 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 @interface CCTableExtensionDataSource ()
 
-@property (nonatomic , copy) NSInteger (^blockSections)(UITableView *tableView);
-@property (nonatomic , copy) NSInteger (^blockRowsInSections)(UITableView * tableView , NSInteger integerSection);
-@property (nonatomic , copy) NSString * (^blockCellIdentifier)(UITableView *tableView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) UITableViewCell * (^blockConfigCell)(UITableView *tableView , UITableViewCell *cellConfig , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) NSInteger (^bSections)(__kindof UITableView *tableView);
+@property (nonatomic , copy) NSInteger (^bRowsInSections)(__kindof UITableView * tableView , NSInteger integerSection);
+@property (nonatomic , copy) NSString * (^bCellIdentifier)(__kindof UITableView *tableView , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) UITableViewCell * (^bConfigCell)(__kindof UITableView *tableView , UITableViewCell *cellConfig , NSIndexPath *indexPath) ;
 
 @end
 
@@ -275,40 +323,40 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) ccSections : (NSInteger (^)(UITableView *tableView)) sections {
-    self.blockSections = [sections copy];
+- (instancetype) ccSections : (NSInteger (^)(__kindof UITableView *tableView)) sections {
+    self.bSections = [sections copy];
     return self;
 }
-- (instancetype) ccRowsInSections : (NSInteger (^)(UITableView * tableView , NSInteger iSection)) rowsInSections {
-    self.blockRowsInSections = [rowsInSections copy];
+- (instancetype) ccRowsInSections : (NSInteger (^)(__kindof UITableView * tableView , NSInteger iSection)) rowsInSections {
+    self.bRowsInSections = [rowsInSections copy];
     return self;
 }
-- (instancetype) ccCellIdentifier : (NSString *(^)(UITableView *tableView , NSIndexPath *indexPath)) cellIdentifier {
-    self.blockCellIdentifier = [cellIdentifier copy];
+- (instancetype) ccCellIdentifier : (NSString *(^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) cellIdentifier {
+    self.bCellIdentifier = [cellIdentifier copy];
     return self;
 }
-- (instancetype) ccConfiguration : (__kindof UITableViewCell *(^)(UITableView *tableView , __kindof UITableViewCell *tCell , NSIndexPath *indexPath)) configuration {
-    self.blockConfigCell = [configuration copy];
+- (instancetype) ccConfiguration : (__kindof UITableViewCell *(^)(__kindof UITableView *tableView , __kindof UITableViewCell *tCell , NSIndexPath *indexPath)) configuration {
+    self.bConfigCell = [configuration copy];
     return self;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.blockSections ? self.blockSections(tableView) : 1;
+    return self.bSections ? self.bSections(tableView) : 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.blockRowsInSections ? self.blockRowsInSections(tableView , section) : 0 ;
+    return self.bRowsInSections ? self.bRowsInSections(tableView , section) : 0 ;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *stringCellIdentifer = self.blockCellIdentifier ? self.blockCellIdentifier(tableView , indexPath) : _CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_;
+    NSString *stringCellIdentifer = self.bCellIdentifier ? self.bCellIdentifier(tableView , indexPath) : _CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_;
     
     UITableViewCell *cell = nil;
-    if (self.blockCellIdentifier) cell = [tableView dequeueReusableCellWithIdentifier:stringCellIdentifer
+    if (self.bCellIdentifier) cell = [tableView dequeueReusableCellWithIdentifier:stringCellIdentifer
                                                                          forIndexPath:indexPath];
     else cell = [tableView dequeueReusableCellWithIdentifier:stringCellIdentifer];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                              reuseIdentifier:stringCellIdentifer];
-    return self.blockConfigCell ? self.blockConfigCell(tableView , cell , indexPath) : cell;
+    return self.bConfigCell ? self.bConfigCell(tableView , cell , indexPath) : cell;
 }
 
 - (void)dealloc {
@@ -364,11 +412,11 @@ forHeaderFooterViewReuseIdentifier:sNib];
     self.isDisableBackground = YES;
     return self;
 }
-- (instancetype) ccPrefetchAt : (void (^)(__kindof UITableView *collectionView , NSArray <NSIndexPath *> *array)) prefetchAt {
+- (instancetype) ccPrefetchAt : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) prefetchAt {
     self.prefetching = [prefetchAt copy];
     return self;
 }
-- (instancetype) ccCancelPrefetchAt : (void (^)(__kindof UITableView *collectionView , NSArray <NSIndexPath *> *array)) cancelPrefetchAt {
+- (instancetype) ccCancelPrefetchAt : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) cancelPrefetchAt {
     self.canceling = [cancelPrefetchAt copy];
     return self;
 }

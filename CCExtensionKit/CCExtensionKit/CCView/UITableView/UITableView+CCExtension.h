@@ -63,12 +63,18 @@
 
 - (id < UITableViewDelegate > ) init ;
 
-- (instancetype) ccCellHeight : (CGFloat (^)(UITableView * tableView , NSIndexPath *indexPath)) cellHeight ;
-- (instancetype) ccSectionHeaderHeight : (CGFloat (^)(UITableView * tableView , NSInteger iSection)) sectionHeaderHeight ;
-- (instancetype) ccSectionHeader : (UIView *(^)(UITableView *tableView , NSInteger iSection)) sectionHeader ;
-- (instancetype) ccSectionFooterHeight : (CGFloat (^)(UITableView * tableView , NSInteger iSection)) sectionFooterHeight ;
-- (instancetype) ccSectionFooter : (UIView *(^)(UITableView *tableView , NSInteger iSection)) sectionFooter ;
-- (instancetype) ccDidSelect : (BOOL (^)(UITableView *tableView , NSIndexPath *indexPath)) didSelect;
+- (instancetype) ccCellHeight : (CGFloat (^)(__kindof UITableView * tableView , NSIndexPath *indexPath)) cellHeight ;
+- (instancetype) ccSectionHeaderHeight : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionHeaderHeight ;
+- (instancetype) ccSectionHeader : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionHeader ;
+- (instancetype) ccSectionFooterHeight : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionFooterHeight ;
+- (instancetype) ccSectionFooter : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionFooter ;
+- (instancetype) ccDidSelect : (BOOL (^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) didSelect;
+
+- (instancetype) ccDidScroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll ;
+- (instancetype) ccWillBeginDecelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating;
+- (instancetype) ccDidEndDecelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating;
+- (instancetype) ccShouldScrollToTop : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop;
+- (instancetype) ccDidScrollToTop : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop;
 
 @end
 
@@ -78,10 +84,10 @@
 
 - (id < UITableViewDataSource >) init ;
 
-- (instancetype) ccSections : (NSInteger (^)(UITableView *tableView)) sections ;
-- (instancetype) ccRowsInSections : (NSInteger (^)(UITableView * tableView , NSInteger iSection)) rowsInSections ;
-- (instancetype) ccCellIdentifier : (NSString *(^)(UITableView *tableView , NSIndexPath *indexPath)) cellIdentifier ;
-- (instancetype) ccConfiguration : (__kindof UITableViewCell *(^)(UITableView *tableView , __kindof UITableViewCell *tCell , NSIndexPath *indexPath)) configuration ;
+- (instancetype) ccSections : (NSInteger (^)(__kindof UITableView *tableView)) sections ;
+- (instancetype) ccRowsInSections : (NSInteger (^)(__kindof UITableView * tableView , NSInteger iSection)) rowsInSections ;
+- (instancetype) ccCellIdentifier : (NSString *(^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) cellIdentifier ;
+- (instancetype) ccConfiguration : (__kindof UITableViewCell *(^)(__kindof UITableView *tableView , __kindof UITableViewCell *cell , NSIndexPath *indexPath)) configuration ;
 
 @end
 
@@ -109,8 +115,8 @@
 - (id < UITableViewDataSourcePrefetching >) init ;
 
 - (instancetype) ccDisableBackgroundMode ;
-- (instancetype) ccPrefetchAt : (void (^)(__kindof UITableView *collectionView , NSArray <NSIndexPath *> *array)) prefetchAt ;
-- (instancetype) ccCancelPrefetchAt : (void (^)(__kindof UITableView *collectionView , NSArray <NSIndexPath *> *array)) cancelPrefetchAt;
+- (instancetype) ccPrefetchAt : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) prefetchAt ;
+- (instancetype) ccCancelPrefetchAt : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) cancelPrefetchAt;
 
 @end
 
