@@ -87,4 +87,17 @@ static void CC_ON_EXIT_BLOCK(__strong void(^*block)(void)) {
     #define CC_STRUCT_PACKED __attribute__((__packed__))
 #endif
 
+/// make sure that a class can't be subclassed
+/// eg :
+/// CC_FINAL
+/// @interface : FinalClass
+/// @end
+#ifndef CC_FINAL
+    #if defined(__has_attribute) && __has_attribute(objc_subclassing_restricted)
+        # define CC_FINAL __attribute__((objc_subclassing_restricted))
+    #else
+        # define CC_FINAL
+    #endif
+#endif
+
 #endif /* CCAdvanceMacro_h */
