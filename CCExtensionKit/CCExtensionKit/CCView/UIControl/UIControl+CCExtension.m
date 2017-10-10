@@ -10,18 +10,18 @@
 
 #import <objc/runtime.h>
 
-static const char * _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY";
+static const char * _CC_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_ = "CC_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY";
 
-@interface UIButton (CCExtension_Assit)
+@interface UIControl (CCExtension_Assit)
 
-- (void) ccControlChainAction : ( __kindof UIControl *) sender ;
+- (void) ccControlExtensionAction : ( __kindof UIControl *) sender ;
 
 @end
 
-@implementation UIButton (CCExtension_Assit)
+@implementation UIControl (CCExtension_Assit)
 
-- (void) ccControlChainAction : ( __kindof UIControl *) sender {
-    void (^t)( __kindof UIControl *) = objc_getAssociatedObject(self, _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_);
+- (void) ccControlExtensionAction : ( __kindof UIControl *) sender {
+    void (^t)( __kindof UIControl *) = objc_getAssociatedObject(self, _CC_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) t(sender);
         else dispatch_sync(dispatch_get_main_queue(), ^{
@@ -51,9 +51,9 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
 }
 - (instancetype) ccTarget : (id) target
                   actions : (void (^)( __kindof UIControl *sender)) action {
-    objc_setAssociatedObject(self, _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, _CC_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self addTarget:target
-              action:@selector(ccControlChainAction:)
+              action:@selector(ccControlExtensionAction:)
     forControlEvents:UIControlEventTouchUpInside];
     return self;
 }
