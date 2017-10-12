@@ -83,6 +83,7 @@ CGSize CCScaleSize(CGSize size);
 @property (nonatomic , assign , readonly) CGFloat inRight;
 
 /// an easy way to margin
+- (instancetype) ccFrame : (CGRect) frame ;
 - (instancetype) ccSize : (CGSize) size ;
 - (instancetype) ccOrigin : (CGPoint) point ;
 
@@ -94,6 +95,7 @@ CGSize CCScaleSize(CGSize size);
 
 - (instancetype) ccCenterX : (CGFloat) fCenterX ;
 - (instancetype) ccCenterY : (CGFloat) fCenterY ;
+- (instancetype) ccCenter : (CGPoint) pCenter ;
 
 - (instancetype) ccTop : (CGFloat) fTop ;
 - (instancetype) ccLeft : (CGFloat) fLeft ;

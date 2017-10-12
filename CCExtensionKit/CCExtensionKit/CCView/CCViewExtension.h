@@ -29,6 +29,7 @@
     #import "UITextField+CCExtension.h"
     #import "UITextView+CCExtension.h"
     #import "UIViewController+CCExtension.h"
+    #import "UIVisualEffectView+CCExtension.h"
 
     // custom
     #import "CCEasyWebView.h"

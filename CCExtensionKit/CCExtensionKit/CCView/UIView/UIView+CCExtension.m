@@ -261,6 +261,10 @@ CGFloat CCHScale(CGFloat h) {
     return CGPointMake(self.inCenterX, self.inCenterY);
 }
 
+- (instancetype) ccFrame : (CGRect) frame {
+    self.frame = frame;
+    return self;
+}
 - (instancetype) ccSize : (CGSize) size {
     self.size = size;
     return self;
@@ -294,6 +298,10 @@ CGFloat CCHScale(CGFloat h) {
 }
 - (instancetype) ccCenterY : (CGFloat) fCenterY {
     self.centerY = fCenterY;
+    return self;
+}
+- (instancetype) ccCenter : (CGPoint) pCenter {
+    self.center = pCenter;
     return self;
 }
 

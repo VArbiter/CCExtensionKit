@@ -13,7 +13,6 @@
 /// default type is custom
 + (instancetype) common ;
 + (instancetype) common : (UIButtonType) type ;
-- (instancetype) ccFrame : (CGRect) frame ;
 
 /// titles && images
 - (instancetype) ccTitle : (NSString *) sTitle

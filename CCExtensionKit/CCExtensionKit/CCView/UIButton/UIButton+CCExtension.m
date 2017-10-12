@@ -39,10 +39,6 @@ static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN
 + (instancetype) common : (UIButtonType) type {
     return [UIButton buttonWithType:type];
 }
-- (instancetype) ccFrame : (CGRect) frame {
-    self.frame = frame;
-    return self;
-}
 
 /// titles && images
 - (instancetype) ccTitle : (NSString *) sTitle

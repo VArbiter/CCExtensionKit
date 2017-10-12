@@ -27,6 +27,14 @@
     v.backgroundColor = UIColor.clearColor;
     [v registerClass:UITableViewCell.class
 forCellReuseIdentifier:_CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
+    
+    // for shaking problem under iOS 11 . rewrite them when needed .
+    if (UIDevice.currentDevice.systemVersion.floatValue >= 11.f) {
+        v.estimatedRowHeight = 0;
+        v.estimatedSectionHeaderHeight = 0;
+        v.estimatedSectionFooterHeight = 0;
+    }
+    
     return v;
 }
 
@@ -279,7 +287,6 @@ forHeaderFooterViewReuseIdentifier:sNib];
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (self.bDidScroll) self.bDidScroll(scrollView);
 }
-
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
     if (self.bWillBeginDecelerating) self.bWillBeginDecelerating(scrollView);
 }

@@ -15,6 +15,7 @@
 		37C69E231ED6684D00531ED3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E211ED6684D00531ED3 /* Main.storyboard */; };
 		37C69E251ED6684D00531ED3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E241ED6684D00531ED3 /* Assets.xcassets */; };
 		37C69E281ED6684D00531ED3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E261ED6684D00531ED3 /* LaunchScreen.storyboard */; };
+		37ECA3731F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ECA3721F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.m */; };
 		7034D68F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D61F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m */; };
 		7034D6901F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6221F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m */; };
 		7034D6911F5FBF3C0005D1E1 /* NSBundle+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6251F5FBF3C0005D1E1 /* NSBundle+CCExtension.m */; };
@@ -81,6 +82,8 @@
 		37C69E241ED6684D00531ED3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37C69E271ED6684D00531ED3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37C69E291ED6684D00531ED3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37ECA3711F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIVisualEffectView+CCExtension.h"; sourceTree = "<group>"; };
+		37ECA3721F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIVisualEffectView+CCExtension.m"; sourceTree = "<group>"; };
 		3D5CA2FFF5E357F90100D989 /* Pods-CCLocalLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCLocalLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary.debug.xcconfig"; sourceTree = "<group>"; };
 		7034D61C1F5FBF3C0005D1E1 /* CCDataExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDataExtension.h; sourceTree = "<group>"; };
 		7034D61E1F5FBF3C0005D1E1 /* NSArray+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCExtension.h"; sourceTree = "<group>"; };
@@ -261,6 +264,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		37ECA3701F8F24D700A82BA5 /* UIVisualEffectView */ = {
+			isa = PBXGroup;
+			children = (
+				37ECA3711F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.h */,
+				37ECA3721F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.m */,
+			);
+			path = UIVisualEffectView;
+			sourceTree = "<group>";
+		};
 		7034D6121F5FBF3C0005D1E1 /* CCExtensionKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				7034D6C51F5FD4C20005D1E1 /* CCViewExtension.h */,
+				37ECA3701F8F24D700A82BA5 /* UIVisualEffectView */,
 				70FF2FCE1F6A34BD001B6407 /* CCOriginalCustom */,
 				7034D6831F5FBF3C0005D1E1 /* UIView */,
 				7034D6891F5FBF3C0005D1E1 /* WKWebVuew */,
@@ -1046,6 +1059,7 @@
 				7034D6901F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m in Sources */,
 				70FF305E1F6A7874001B6407 /* CCMediator.m in Sources */,
 				7034D6A31F5FBF3C0005D1E1 /* UIButton+CCExtension.m in Sources */,
+				37ECA3731F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.m in Sources */,
 				7034D6931F5FBF3C0005D1E1 /* NSDictionary+CCExtension.m in Sources */,
 				70A3CC621F6B880500CCD480 /* CCMediator+CCBridgeAPI.m in Sources */,
 				7034D6A51F5FBF3C0005D1E1 /* UIColor+CCExtension.m in Sources */,

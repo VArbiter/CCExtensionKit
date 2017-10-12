@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef CC_IMAGE_B
+    #define CC_IMAGE_B(_value_) [UIImage ccBundle:self.class name:(_value_)]
+#endif
+
 @interface UIImage (CCExtension)
 
 /// for image size && width
