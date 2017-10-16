@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef CC_LOCALIZED_S
+    #define CC_LOCALIZED_S(_vKey_,_vComment_) [NSString ccLocalized:(_vKey_) comment:(_vComment_)]
+#endif
+
 @interface NSString (CCExtension)
 
 @property (nonatomic , copy , readonly) NSString *(^s)(id value) ; // append string

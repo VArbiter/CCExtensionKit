@@ -110,7 +110,11 @@
                      comment : (NSString *) sComment {
     if (!bundle) bundle = NSBundle.mainBundle;
     if (!sStrings) sStrings = @"Localizable";
-    return NSLocalizedStringFromTableInBundle(sKey, sStrings, bundle, nil);
+    NSString *s = NSLocalizedStringFromTableInBundle(sKey, sStrings, bundle, nil);
+#if DEBUG
+    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" not found , return @\"\" istead",sKey);
+#endif
+    return ((s && s.length) ? s : @"");
 }
 
 - (NSInteger)toInteger {

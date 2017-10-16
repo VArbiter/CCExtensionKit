@@ -50,7 +50,11 @@
     NSString *p = [b pathForResource:temp
                               ofType:@"png"
                          inDirectory:[bName stringByAppendingString:@".bundle"]];
-    return [UIImage imageWithContentsOfFile:p];
+    UIImage *image = [UIImage imageWithContentsOfFile:p];
+#if DEBUG
+    if (!image) NSLog(@"image Named \"%@\" with class \"%@\" not found , return new image istead",sName,NSStringFromClass(cls));
+#endif
+    return (image ? image : UIImage.new);
 }
 + (instancetype) ccName : (NSString *) sName {
     return [self imageNamed:sName];

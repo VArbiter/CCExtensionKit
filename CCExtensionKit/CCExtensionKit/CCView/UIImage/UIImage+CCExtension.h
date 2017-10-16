@@ -12,6 +12,18 @@
     #define CC_IMAGE_B(_value_) [UIImage ccBundle:self.class name:(_value_)]
 #endif
 
+#ifndef CC_IMAGE_NAME
+    #define CC_IMAGE_NAME(_value_) [UIImage ccName:(_value_)]
+#endif
+
+#ifndef CC_IMAGE_FILE
+    #define CC_IMAGE_FILE(_value_) [UIImage ccFile:(_value_)]
+#endif
+
+#ifndef CC_IMAGE_BUNDLE
+    #define CC_IMAGE_BUNDLE(_vName_,_vBundle_) [UIImage ccName:(_vName_) bundle:(_vBundle_)]
+#endif
+
 @interface UIImage (CCExtension)
 
 /// for image size && width
