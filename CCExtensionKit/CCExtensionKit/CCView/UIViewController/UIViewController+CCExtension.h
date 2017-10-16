@@ -49,7 +49,13 @@
                 animated : (BOOL) isAminated
                 duration : (CGFloat) fAnimationDuration ;
 
-/// current controller that shows on screen .
+/// current controller that shows on screen . (only the main window)
 + (__kindof UIViewController *) ccCurrent ;
++ (__kindof UIViewController *) ccRootViewController ;
++ (__kindof UINavigationController *) ccCurrentNavigationController;
++ (__kindof UIViewController *) ccCurrentFrom : (UIViewController *) controller ;
+
+/// when have muti windows .
++ (__kindof UIViewController *) ccWindowedCurrentController ;
 
 @end

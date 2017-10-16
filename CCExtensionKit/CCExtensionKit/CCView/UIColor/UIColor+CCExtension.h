@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef CC_COLOR_HEX
+    #define CC_COLOR_HEX(_hex_,_alpha_) [UIColor ccHex:(_hex_) alpha:(_alpha_)]
+#endif
+
+#ifndef CC_COLOR_HEX_S
+    #define CC_COLOR_HEX_S(_hex_,_alpha_) [[UIColor ccHexS:(_hex_)] ccAlpha:(_alpha_)]
+#endif
+
 @interface UIColor (CCExtension)
 
 /// eg: 0xFFFFFF , 0x000000

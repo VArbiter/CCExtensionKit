@@ -156,6 +156,29 @@
 }
 
 + (__kindof UIViewController *) ccCurrent {
+    return [self ccCurrentFrom:UIViewController.ccRootViewController];
+}
++ (__kindof UIViewController *) ccRootViewController {
+    return UIApplication.sharedApplication.delegate.window.rootViewController;
+}
++ (__kindof UINavigationController *) ccCurrentNavigationController {
+    return self.ccCurrent.navigationController;
+}
++ (__kindof UIViewController *) ccCurrentFrom : (UIViewController *) controller {
+    if ([controller isKindOfClass:UINavigationController.class]) {
+        UINavigationController *nvc = (UINavigationController *)controller;
+        return [self ccCurrentFrom:nvc.viewControllers.lastObject];
+    }
+    else if([controller isKindOfClass:UITabBarController.class]) {
+        UITabBarController *tbvc = (UITabBarController *)controller;
+        return [self ccCurrentFrom:tbvc.selectedViewController];
+    }
+    else if(controller.presentedViewController != nil) {
+        return [self ccCurrentFrom:controller.presentedViewController];
+    }
+    else return controller;
+}
++ (UIViewController *)ccWindowedCurrentController {
     id vc = nil;
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];
     if (window.windowLevel != UIWindowLevelNormal) {
@@ -169,7 +192,8 @@
     }
     UIView *viewFront = [[window subviews] firstObject];
     vc = [viewFront nextResponder];
-    if ([vc isKindOfClass:[UIViewController class]]) return vc;
+    if ([vc isKindOfClass:[UIViewController class]])
+        return [UIViewController ccCurrentFrom:vc];
     else return window.rootViewController;
 }
 
