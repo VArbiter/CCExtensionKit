@@ -53,5 +53,6 @@
 /// mil-senconds -> yyyy-MM-dd HH:mm
 @property (nonatomic , readonly) NSString *toTimeStick ;
 @property (nonatomic , readonly) NSString *toMD5 ;
+@property (nonatomic , readonly) NSString *toSHA1 ;
 
 @end
