@@ -21,6 +21,9 @@
 
 //#import "UIGestureRecognizer+CCChain.h"
 
+#import "UIViewController+CCExtension.h"
+#import "CCTestViewController.h"
+
 @interface ViewController ()
 
 @end
@@ -48,11 +51,16 @@
     
 //    self.view.cc.hud().message(@"SHOWING").type(CCHudChainTypeDarkDeep);
      */
-    
 }
 
 + (void) ts {
 
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CCTestViewController *c = [[CCTestViewController alloc] init];
+    c.view.backgroundColor = UIColor.cyanColor;
+    [self ccPresent:c complete:nil];
 }
 
 

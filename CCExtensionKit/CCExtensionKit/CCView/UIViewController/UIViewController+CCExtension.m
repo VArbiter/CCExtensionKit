@@ -12,7 +12,7 @@
 
 #import <objc/runtime.h>
 
-@implementation UIViewController (CCExtension)
+@implementation UIViewController (CCExtension) 
 
 - (instancetype) ccDisableAnimated {
     objc_setAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_", @(false), OBJC_ASSOCIATION_ASSIGN);
@@ -195,6 +195,116 @@
     if ([vc isKindOfClass:[UIViewController class]])
         return [UIViewController ccCurrentFrom:vc];
     else return window.rootViewController;
+}
+
+- (instancetype) ccEnablePushingPopingStyleWhenPresentOrDismiss {
+    self.transitioningDelegate = self;
+    return self;
+}
+
+// - UIViewControllerTransitioningDelegate
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    CCAnimatedTransitionPresent *animate = CCAnimatedTransitionPresent.alloc.init;
+    animate.intervalDuration = .2f;
+    return animate;
+}
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    CCAnimatedTransitionDismiss *animate = CCAnimatedTransitionDismiss.alloc.init;
+    animate.intervalDuration = .2f;
+    return animate;
+}
+
+@end
+
+#pragma mark - -----
+
+@interface CCAnimatedTransitionPresent () < CAAnimationDelegate >
+
+@property (nonatomic , assign) id < UIViewControllerContextTransitioning > transition;
+
+@end
+
+@implementation CCAnimatedTransitionPresent
+
+- (instancetype)init {
+    if ((self = [super init])) {
+        self.intervalDuration = _CC_DEFAULT_ANIMATION_COMMON_DURATION_;
+        self.sAnimationType = kCATransitionFromRight;
+    }
+    return self;
+}
+
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
+    return self.intervalDuration;
+}
+
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    self.transition = transitionContext;
+    UIViewController * vcFrom = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController * vcTo = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView * viewContainer = [transitionContext containerView];
+    
+    [viewContainer insertSubview:vcTo.view
+                    aboveSubview:vcFrom.view];
+    
+    CATransition *transition = [CATransition animation];
+    transition.type = kCATransitionPush;
+    transition.subtype = self.sAnimationType.length > 0 ? self.sAnimationType : kCATransitionFromRight;
+    transition.duration = [self transitionDuration:transitionContext];
+    transition.delegate = self;
+    [vcTo.view.layer addAnimation:transition forKey:@"pushAnimation"];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    [self.transition completeTransition:flag];
+}
+
+@end
+
+#pragma mark - -----
+
+@interface CCAnimatedTransitionDismiss () < CAAnimationDelegate >
+
+@property (nonatomic , assign) id < UIViewControllerContextTransitioning > transition;
+
+@end
+
+@implementation CCAnimatedTransitionDismiss
+
+- (instancetype)init {
+    if ((self = [super init])) {
+        self.intervalDuration = _CC_DEFAULT_ANIMATION_COMMON_DURATION_;
+        self.directionRight = YES;
+    }
+    return self;
+}
+
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
+    return self.intervalDuration;
+}
+
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    self.transition = transitionContext;
+    UIViewController * vcFrom = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController * vcTo = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView * viewContainer = [transitionContext containerView];
+    
+    [viewContainer insertSubview:vcTo.view
+                    belowSubview:vcFrom.view];
+    
+    __weak typeof(self) pSelf = self;
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+        CGRect r = vcFrom.view.frame;
+        if (pSelf.isDirectionRight) r.origin.x += r.size.width;
+        else r.origin.x -= r.size.width;
+        vcFrom.view.frame = r;
+    } completion:^(BOOL finished) {
+        [pSelf.transition completeTransition:finished];
+    }];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    [self.transition completeTransition:flag];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		244AFA8F04C1883DB480CE01 /* Pods_CCLocalLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C424E92BD9104CE08216FD9 /* Pods_CCLocalLibrary.framework */; };
+		375E52041F9C2F94007B057E /* CCTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 375E52031F9C2F94007B057E /* CCTestViewController.m */; };
 		377CAD1A1F0105E800AE46A8 /* 0ZG63407-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 377CAD191F0105E800AE46A8 /* 0ZG63407-0.png */; };
 		37C69E1A1ED6684D00531ED3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E191ED6684D00531ED3 /* main.m */; };
 		37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E1C1ED6684D00531ED3 /* AppDelegate.m */; };
@@ -71,6 +72,8 @@
 /* Begin PBXFileReference section */
 		06F3945F3B247350FA607CEF /* Pods-CCLocalLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCLocalLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary.release.xcconfig"; sourceTree = "<group>"; };
 		1C424E92BD9104CE08216FD9 /* Pods_CCLocalLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCLocalLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		375E52021F9C2F94007B057E /* CCTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTestViewController.h; sourceTree = "<group>"; };
+		375E52031F9C2F94007B057E /* CCTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTestViewController.m; sourceTree = "<group>"; };
 		377CAD191F0105E800AE46A8 /* 0ZG63407-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0ZG63407-0.png"; sourceTree = "<group>"; };
 		37C69E151ED6684D00531ED3 /* CCLocalLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCLocalLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C69E191ED6684D00531ED3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				37C69E1C1ED6684D00531ED3 /* AppDelegate.m */,
 				37C69E1E1ED6684D00531ED3 /* ViewController.h */,
 				37C69E1F1ED6684D00531ED3 /* ViewController.m */,
+				375E52021F9C2F94007B057E /* CCTestViewController.h */,
+				375E52031F9C2F94007B057E /* CCTestViewController.m */,
 				37C69E211ED6684D00531ED3 /* Main.storyboard */,
 				37C69E241ED6684D00531ED3 /* Assets.xcassets */,
 				37C69E261ED6684D00531ED3 /* LaunchScreen.storyboard */,
@@ -1037,6 +1042,7 @@
 				7034D6AF1F5FBF3C0005D1E1 /* UITextField+CCExtension.m in Sources */,
 				70A3CC6A1F6B89FE00CCD480 /* CCRealmHandler.m in Sources */,
 				7034D6AB1F5FBF3C0005D1E1 /* UILabel+CCExtension.m in Sources */,
+				375E52041F9C2F94007B057E /* CCTestViewController.m in Sources */,
 				7034D6991F5FBF3C0005D1E1 /* NSTimer+CCExtension.m in Sources */,
 				70FF2FE41F6A4824001B6407 /* UIImageView+CCExtension_WeakNetwork.m in Sources */,
 				70FF2FDE1F6A46C1001B6407 /* MBProgressHUD+CCExtension.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (CCExtension)
+@interface UIViewController (CCExtension) < UIViewControllerTransitioningDelegate >
 
 /// remove all animated for pushing && presenting .
 - (instancetype) ccDisableAnimated ;
@@ -57,5 +57,28 @@
 
 /// when have muti windows .
 + (__kindof UIViewController *) ccWindowedCurrentController ;
+
+/// make present modeled push / dismiss modeled pop
+/// only works in present .
+/// note : deply it in the controller is about to presented . not the presenting one .
+- (instancetype) ccEnablePushingPopingStyleWhenPresentOrDismiss ;
+
+@end
+
+#pragma mark - -----
+
+@interface CCAnimatedTransitionPresent : NSObject < UIViewControllerAnimatedTransitioning >
+
+@property (nonatomic , assign) NSTimeInterval intervalDuration ;
+@property (nonatomic , copy) NSString * sAnimationType; // default kCATransitionFromRight
+
+@end
+
+#pragma mark - -----
+
+@interface CCAnimatedTransitionDismiss : NSObject < UIViewControllerAnimatedTransitioning >
+
+@property (nonatomic , assign) NSTimeInterval intervalDuration ;
+@property (nonatomic , assign , getter=isDirectionRight) BOOL directionRight; // default YES
 
 @end
