@@ -45,7 +45,10 @@ static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONIT
     return self;
 }
 - (instancetype) ccImage : (UIImage *) image {
-    self.image = image;
+    if (!CGSizeEqualToSize(image.size, CGSizeZero)) {
+        self.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
+    else self.image = image;
     return self;
 }
 - (instancetype) ccAction : (void (^)( __kindof UIBarButtonItem *sender)) action {
