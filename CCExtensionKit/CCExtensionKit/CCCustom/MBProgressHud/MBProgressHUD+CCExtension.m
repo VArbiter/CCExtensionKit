@@ -16,8 +16,8 @@
     return [self init:nil];
 }
 + (instancetype) init : (UIView *) view {
-    if (!view) view = UIApplication.sharedApplication.keyWindow;
     if (!view) view = UIApplication.sharedApplication.delegate.window;
+    if (!view) view = UIApplication.sharedApplication.keyWindow;
     return [MBProgressHUD showHUDAddedTo:view
                                 animated:YES].ccSimple.ccEnable;
 }
@@ -26,9 +26,9 @@
     return [self ccGenerate:nil];
 }
 + (instancetype) ccGenerate : (UIView *) view {
-    if (!view) view = UIApplication.sharedApplication.keyWindow;
     if (!view) view = UIApplication.sharedApplication.delegate.window;
-    return [[MBProgressHUD alloc] initWithView:view].ccSimple.ccDisable;
+    if (!view) view = UIApplication.sharedApplication.keyWindow;
+    return [MBProgressHUD init:view];
 }
 
 - (instancetype) ccEnable {
