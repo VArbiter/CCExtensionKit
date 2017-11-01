@@ -10,7 +10,7 @@
 
 ### 中文说明请点击[[这里](https://github.com/VArbiter/CCLocalLibrary/blob/master/README_CN.md)]
 
-### Current Version 3.0.3
+### Current Version 3.1.36
 
 > pod 'CCExtensionKit' , '~> 3.0.3' // default is CCCore
 > 
@@ -54,6 +54,11 @@
 
 ### What's new ?
 ---
+**2017-11-01 19:24:27**
+
+> fix annoying warnings under Xcode 9.
+
+
 **2017-09-15 17:56:19**
 
 > rename 'CCLocalLib' to 'CCExtensionKit' .

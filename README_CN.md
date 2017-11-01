@@ -8,7 +8,7 @@
 
 [![Platform](https://img.shields.io/cocoapods/p/CCExtensionKit.svg?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
 
-### 当前版本 3.0.3
+### 当前版本 3.1.36
 
 > pod 'CCExtensionKit' , '~> 3.0.3' // 默认是 CCCore
 > 
@@ -52,6 +52,11 @@
 
 ### 上新 ?
 ---
+**2017-11-01 19:24:27**
+
+> 修复 Xcode 9 下烦人的警告.
+
+
 **2017-09-15 17:56:19**
 
 > 将 'CCLocalLib' 重命名为 'CCExtensionKit' .
