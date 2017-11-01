@@ -25,7 +25,7 @@ CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
 CCRect CCMakeRectFrom(CGRect rect);
 CGRect CGMakeRectFrom(CCRect rect);
 
-CGRect CGRectFull(); // main screen bounds .
+CGRect CGRectFull(void); // main screen bounds .
 
 typedef UIEdgeInsets CCEdgeInsets;
 CCEdgeInsets CCEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);

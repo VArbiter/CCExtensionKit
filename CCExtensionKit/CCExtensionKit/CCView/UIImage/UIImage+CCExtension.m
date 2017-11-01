@@ -219,7 +219,7 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
                           tint : (UIColor *) tint
                       complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
     __weak typeof(self) pSelf = self;
-    void (^tp)() = ^ {
+    void (^tp)(void) = ^ {
         UIImage *m = [pSelf ccGaussianAcc:fRadius iteration:iteration tint:tint];
         if (NSThread.isMainThread) {
             if (complete) complete(pSelf , m);
@@ -264,7 +264,7 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 - (instancetype) ccGaussianCI : (CGFloat) fRadius
                      complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
     __weak typeof(self) pSelf = self;
-    void (^tp)() = ^ {
+    void (^tp)(void) = ^ {
         UIImage *m = [pSelf ccGaussianCI:fRadius];
         if (NSThread.isMainThread) {
             if (complete) complete(pSelf , m);

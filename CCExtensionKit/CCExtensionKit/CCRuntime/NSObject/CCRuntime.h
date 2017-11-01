@@ -37,7 +37,7 @@ typedef dispatch_source_t CCSource;
 typedef dispatch_time_t CCTime;
 typedef size_t CCCount;
 
-CCQueue CC_MAIN_QUEUE();
+CCQueue CC_MAIN_QUEUE(void);
 
 @interface CCRuntime : NSObject
 
@@ -106,7 +106,7 @@ CCQueue CC_MAIN_QUEUE();
 
 @interface CCRuntime (CCExtension_Group) < CCRunTimeGroupProtocol >
 
-CCGroup CC_GROUP_INIT();
+CCGroup CC_GROUP_INIT(void);
 
 /// return a new object of CCRuntime , not the shared instance .
 - (instancetype) ccGroup : (CCGroup) group

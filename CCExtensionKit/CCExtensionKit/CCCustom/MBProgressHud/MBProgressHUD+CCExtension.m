@@ -101,7 +101,7 @@
                             pSelf.contentColor = UIColor.blackColor;
                         }};
     if (!d[@(type).stringValue]) return self;
-    void (^b)() = d[@(type).stringValue];
+    void (^b)(void) = d[@(type).stringValue];
     if (b) b();
     return self;
 }

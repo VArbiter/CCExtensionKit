@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 #import <pthread.h>
 
-CCQueue CC_MAIN_QUEUE() {
+CCQueue CC_MAIN_QUEUE(void) {
     return dispatch_get_main_queue();
 }
 
@@ -219,7 +219,7 @@ static CCRuntime *__instance = nil;
     return objc_getAssociatedObject(self, "_CC_RUNTIME_ASSOCIATE_GROUP_ACTION_QUEUE_");
 }
 
-CCGroup CC_GROUP_INIT() {
+CCGroup CC_GROUP_INIT(void) {
     return dispatch_group_create();
 }
 

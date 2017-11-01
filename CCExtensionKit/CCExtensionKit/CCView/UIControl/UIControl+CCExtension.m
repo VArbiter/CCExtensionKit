@@ -81,7 +81,7 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     __weak typeof(self) pSelf = self;
-    CGRect (^t)() = ^CGRect {
+    CGRect (^t)(void) = ^CGRect {
         NSNumber * top = objc_getAssociatedObject(pSelf, _CC_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY_);
         NSNumber * left = objc_getAssociatedObject(pSelf, _CC_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY_);
         NSNumber * bottom = objc_getAssociatedObject(pSelf, _CC_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY_);

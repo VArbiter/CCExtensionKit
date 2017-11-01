@@ -68,7 +68,7 @@
 
 - (instancetype) ccMigration : (uint64_t) version
                       action : (void (^)(RLMRealmConfiguration *c , RLMMigration *m , uint64_t vOld)) action ;
-- (instancetype) ccMigrationT : (RLMRealmConfiguration *(^)()) configuration
+- (instancetype) ccMigrationT : (RLMRealmConfiguration *(^)(void)) configuration
                        action : (void (^)(RLMMigration *m , uint64_t vOld)) action ;
 
 // ----- status -----

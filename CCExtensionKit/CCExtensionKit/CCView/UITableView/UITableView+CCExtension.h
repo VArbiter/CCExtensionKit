@@ -37,7 +37,7 @@
 - (instancetype) ccRegistHeaderFooterCls : (Class) cls ;
 
 /// wrapper of "beginUpdates" && "endUpdates"
-- (instancetype) ccUpdating : (void (^)()) updating ;
+- (instancetype) ccUpdating : (void (^)(void)) updating ;
 
 /// for non-animated , only section 0 was available.
 /// note : UITableViewRowAnimationNone means reloading without hidden animations .

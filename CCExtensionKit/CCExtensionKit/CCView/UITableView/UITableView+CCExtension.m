@@ -95,7 +95,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) ccUpdating : (void (^)()) updating {
+- (instancetype) ccUpdating : (void (^)(void)) updating {
     if (updating) {
         [self beginUpdates];
         updating();
@@ -120,7 +120,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
             withRowAnimation:animation];
     } else {
         
-        void (^t)(void (^)()) = ^(void (^e)()) {
+        void (^t)(void (^)(void)) = ^(void (^e)(void)) {
             if (e) {
                 [UIView setAnimationsEnabled:false];
                 e();
@@ -147,7 +147,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
                         withRowAnimation:animation];
         } else {
             
-            void (^t)(void (^)()) = ^(void (^e)()) {
+            void (^t)(void (^)(void)) = ^(void (^e)(void)) {
                 if (e) {
                     [UIView setAnimationsEnabled:false];
                     e();

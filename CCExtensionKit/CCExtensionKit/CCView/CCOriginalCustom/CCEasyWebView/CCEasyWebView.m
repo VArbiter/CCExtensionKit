@@ -156,7 +156,7 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler {
     /// trust without any doubt .
     
-    void (^t)() = ^ {
+    void (^t)(void) = ^ {
         NSString *stringAuthenticationMethod = [[challenge protectionSpace] authenticationMethod];
         if ([stringAuthenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
             NSURLCredential *credential = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];

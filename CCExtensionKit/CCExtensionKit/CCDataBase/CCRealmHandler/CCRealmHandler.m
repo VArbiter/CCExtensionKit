@@ -14,7 +14,7 @@
 
 @interface CCRealmHandler () < NSCopying , NSMutableCopying >
 
-- (instancetype) ccDefaultSettings : (void (^)()) action ;
+- (instancetype) ccDefaultSettings : (void (^)(void)) action ;
 @property (nonatomic , strong) RLMRealm *realm;
 /// must decorate with strong , otherwise it will release before useing
 @property (nonatomic , strong) RLMNotificationToken *token;
@@ -162,7 +162,7 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
     if (![[object class] isSubclassOfClass:[RLMObject class]]) return self;
     __weak typeof(self) pSelf = self;
     return [self ccOperate:^{
-        void (^t)() = ^ {
+        void (^t)(void) = ^ {
             [pSelf.realm addObject:object]; // if not , insert only
         };
         if ([[object class] respondsToSelector:@selector(primaryKey)]) {
@@ -286,7 +286,7 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
     [RLMRealm defaultRealm];
     return self;
 }
-- (instancetype) ccMigrationT : (RLMRealmConfiguration *(^)()) configuration
+- (instancetype) ccMigrationT : (RLMRealmConfiguration *(^)(void)) configuration
                        action : (void (^)(RLMMigration *m , uint64_t vOld)) action {
     if (!configuration || !action) return self;
     void (^b)(BOOL) = objc_getAssociatedObject(self, _CC_RLM_SUCCEED_KEY_);
@@ -322,7 +322,7 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 
 #pragma mark - Private
 
-- (instancetype) ccDefaultSettings : (void (^)()) action {
+- (instancetype) ccDefaultSettings : (void (^)(void)) action {
     if (action) action();
     return self;
 }

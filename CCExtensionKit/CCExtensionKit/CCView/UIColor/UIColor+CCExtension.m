@@ -64,7 +64,7 @@
 }
 
 + (instancetype) random {
-    CGFloat (^t)() = ^CGFloat {
+    CGFloat (^t)(void) = ^CGFloat {
         return arc4random_uniform(256) / 255.0f;
     };
     

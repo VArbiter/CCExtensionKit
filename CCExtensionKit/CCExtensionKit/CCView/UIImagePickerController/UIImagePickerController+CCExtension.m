@@ -98,7 +98,7 @@
     CCImageSaveType type = [objc_getAssociatedObject(self, "_CC_IMAGE_PICKER_SAVE_TYPE_") intValue];
     if (type & CCImageSaveTypeNone) return ;
     __weak typeof(self) pSelf = self;
-    void (^o)() = ^ {
+    void (^o)(void) = ^ {
         UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerOriginalImage"],
                                        self,
                                        @selector(image:didFinishSavingWithError:contextInfo:),
@@ -106,7 +106,7 @@
         void (^t)(UIImage *) = objc_getAssociatedObject(pSelf, "_CC_IMAGE_PICKER_GET_ORIGINAL_IMAGE_");
         if (t) t(info[@"UIImagePickerControllerOriginalImage"]);
     };
-    void (^e)() = ^ {
+    void (^e)(void) = ^ {
         UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerEditedImage"],
                                        self,
                                        @selector(image:didFinishSavingWithError:contextInfo:),
@@ -128,7 +128,7 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    void (^t)() = objc_getAssociatedObject(self, "_CC_IMAGE_PICKER_USER_DID_CANCEL_");
+    void (^t)(void) = objc_getAssociatedObject(self, "_CC_IMAGE_PICKER_USER_DID_CANCEL_");
     if (t) t();
 }
 

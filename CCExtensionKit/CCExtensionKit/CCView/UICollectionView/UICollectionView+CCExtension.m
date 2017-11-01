@@ -82,7 +82,7 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
         [self reloadSections:set];
     } else {
         __weak typeof(self) pSelf = self;
-        void (^t)() = ^ {
+        void (^t)(void) = ^ {
             [UIView setAnimationsEnabled:false];
             [self performBatchUpdates:^{
                 [pSelf reloadSections:set];
