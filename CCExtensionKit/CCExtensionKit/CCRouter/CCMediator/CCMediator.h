@@ -15,6 +15,6 @@
 + (id) ccPerform : (NSString *) sTarget
           action : (NSString *) sAction
       returnVale : (BOOL) isNeed
-           value : (id (^)()) value ;
+           value : (id (^)(void)) value ;
 
 @end

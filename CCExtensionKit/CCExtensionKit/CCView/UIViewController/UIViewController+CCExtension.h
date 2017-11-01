@@ -22,7 +22,7 @@
 - (void) ccDismiss ;
 - (void) ccDismiss : (CGFloat) fDelay ;
 - (void) ccDismiss : (CGFloat) fDelay
-          complete : (void(^)()) complete ;
+          complete : (void(^)(void)) complete ;
 
 - (void) ccPop ;
 - (void) ccPopTo : (__kindof UIViewController *) controller ;
@@ -35,10 +35,10 @@
 
 - (instancetype) ccPresent : (__kindof UIViewController *) controller ;
 - (instancetype) ccPresent : (__kindof UIViewController *) controller
-                  complete : (void (^)()) complete ;
+                  complete : (void (^)(void)) complete ;
 /// clear color == backgroundColor
 - (instancetype) ccPresentClear : (__kindof UIViewController *) controller
-                       complete : (void (^)()) complete;
+                       complete : (void (^)(void)) complete;
 
 /// deafult enable animated , fade in , fade out .
 - (instancetype) ccAddViewFrom : (__kindof UIViewController *) controller

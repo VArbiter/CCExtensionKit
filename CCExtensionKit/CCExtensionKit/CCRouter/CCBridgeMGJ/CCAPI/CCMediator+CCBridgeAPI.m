@@ -12,7 +12,7 @@
 
 @implementation CCMediator (CCBridgeAPI)
 
-+ (void) ccFallBack : (void (^)()) fallBack {
++ (void) ccFallBack : (void (^)(void)) fallBack {
     [CCBridgeWrapper.shared ccFallBack:fallBack];
 }
 + (void) ccRegist : (NSString *) sURL
@@ -21,30 +21,30 @@
                               action:action];
 }
 + (void) ccCall : (NSString *) sURL
-       fallBack : (void(^)()) fallback {
+       fallBack : (void(^)(void)) fallback {
     [CCBridgeWrapper.shared ccCall:sURL
                           fallBack:fallback];
 }
 + (void) ccCall : (NSString *) sURL
        userInfo : (id) userInfo
-       fallBack : (void(^)()) fallback {
+       fallBack : (void(^)(void)) fallback {
     [CCBridgeWrapper.shared ccCall:sURL
                           userInfo:userInfo
                           fallBack:fallback];
 }
 + (void) ccObject : (NSString *) sURL
-            value : (id(^)()) value {
+            value : (id(^)(id value)) value {
     [CCBridgeWrapper.shared ccObject:sURL
                                value:value];
 }
 + (id) ccGet : (NSString *) sURL
-    fallBack : (void(^)()) fallback {
+    fallBack : (void(^)(void)) fallback {
     return [CCBridgeWrapper.shared ccGet:sURL
                                 fallBack:fallback];
 }
 + (id) ccGet : (NSString *) sURL
     userInfo : (id) userInfo
-    fallBack : (void(^)()) fallback {
+    fallBack : (void(^)(void)) fallback {
     return [CCBridgeWrapper.shared ccGet:sURL
                                 userInfo:userInfo
                                 fallBack:fallback];

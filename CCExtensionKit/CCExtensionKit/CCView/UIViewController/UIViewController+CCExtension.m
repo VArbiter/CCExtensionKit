@@ -34,7 +34,7 @@
     [self ccDismiss:fDelay complete:nil];
 }
 - (void) ccDismiss : (CGFloat) fDelay
-          complete : (void(^)()) complete {
+          complete : (void(^)(void)) complete {
     id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     if (self.presentingViewController) {
@@ -95,7 +95,7 @@
     return [self ccPresent:controller complete:nil];
 }
 - (instancetype) ccPresent : (__kindof UIViewController *) controller
-                  complete : (void (^)()) complete {
+                  complete : (void (^)(void)) complete {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
     id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
@@ -109,7 +109,7 @@
     return self;
 }
 - (instancetype) ccPresentClear : (__kindof UIViewController *) controller
-                       complete : (void (^)()) complete {
+                       complete : (void (^)(void)) complete {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
     controller.providesPresentationContextTransitionStyle = YES;
     controller.definesPresentationContext = YES;

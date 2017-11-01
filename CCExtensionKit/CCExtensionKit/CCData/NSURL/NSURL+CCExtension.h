@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#ifndef CC_URL_S
+    #define CC_URL_S(_value_) [NSURL ccURL:_value_]
+#endif
+#ifndef CC_URL_L
+    #define CC_URL_L(_value_) [NSURL ccLocal:_value_]
+#endif
+
 @interface NSURL (CCExtension)
 
 + (instancetype) ccURL : (NSString *) sURL ;

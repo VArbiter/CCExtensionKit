@@ -49,24 +49,24 @@ CCQueue CC_MAIN_QUEUE();
                   target : (SEL) selTarget ;
 /// interval time , timer action , return yes to stop , cancel action (cancel timer to trigger it);
 - (instancetype) ccTimer : (NSTimeInterval) intereval
-                  action : (BOOL (^)()) action
-                  cancel : (void (^)()) cancel ;
+                  action : (BOOL (^)(void)) action
+                  cancel : (void (^)(void)) cancel ;
 /// interval time , actions
 - (instancetype) ccAfter : (double) seconds
-                  action : (void (^)()) action ;
+                  action : (void (^)(void)) action ;
 /// async to main
-- (instancetype) ccAsyncM : (void(^)()) action ;
+- (instancetype) ccAsyncM : (void(^)(void)) action ;
 /// sync to main . warning : do NOT deploy it in MAIN QUEUE , other wise will cause lock done .
-- (instancetype) ccSyncM : (void(^)()) action ;
+- (instancetype) ccSyncM : (void(^)(void)) action ;
 /// async to specific queue
 - (instancetype) ccAsync : (CCQueue) queue
-                  action : (void (^)()) action ;
+                  action : (void (^)(void)) action ;
 /// sync to specific queue , warning : do NOT deploy it in MAIN QUEUE , other wise will cause lock done .
 - (instancetype) ccSync : (CCQueue) queue
-                 action : (void (^)()) action ;
+                 action : (void (^)(void)) action ;
 /// equals to dispatch_barrier_async
 - (instancetype) ccBarrierAsync : (CCQueue) queue
-                         action : (void(^)()) action ;
+                         action : (void(^)(void)) action ;
 /// equals to dispatch_apply
 - (instancetype) ccApplyFor : (CCCount) count
                       queue : (CCQueue) queue
@@ -112,10 +112,10 @@ CCGroup CC_GROUP_INIT();
 - (instancetype) ccGroup : (CCGroup) group
                    queue : (CCQueue) queue ;
 /// actions for group , can deploy it for muti times
-- (instancetype) ccGroupAction : (void (^)()) action ;
+- (instancetype) ccGroupAction : (void (^)(void)) action ;
 /// when all group actions finished
 - (instancetype) ccNotify : (CCQueue) queue
-                   finish : (void(^)()) finish ;
+                   finish : (void(^)(void)) finish ;
 
 /// enter and leave mast use it with a pair
 /// enter a group

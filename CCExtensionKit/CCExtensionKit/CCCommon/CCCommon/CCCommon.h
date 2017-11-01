@@ -115,30 +115,30 @@ static NSString * _CC_UUID_;
 
 /// notify you whether this operation was excuted on main thread .
 /// returns if this operation was excuted on main thread .
-BOOL CC_IS_MAIN_QUEUE();
+BOOL CC_IS_MAIN_QUEUE(void);
 
 /// sometimes you have to fit muti versions of iOS system
 /// eg : CC_Available_C(10.0)
 /// returns YES (and recall s) if system version was at least 10.0
 /// retunrns NO (and recall f) if not .
 BOOL CC_Available_C(double version);
-void CC_Available_S(double version , void(^s)() , void(^f)());
+void CC_Available_S(double version , void(^s)(void) , void(^f)(void));
 
 /// if not in the main thread, operation will sync to it.
-void CC_Main_Thread_Sync(void (^)());
+void CC_Main_Thread_Sync(void (^)(void));
 /// if not in the main thread, operation will async to it.
-void CC_Main_Thread_Async(void (^)());
+void CC_Main_Thread_Async(void (^)(void));
 
 /// operation for debug and release
-void CC_DEBUG(void (^debug)() , void (^release)());
+void CC_DEBUG(void (^debug)(void) , void (^release)(void));
 
 /// operation for debug and release , also , can be controlled manually
 /// -1 DEBUG , 0 auto , 1 release
-void CC_DEBUG_M(int mark , void (^debug)() , void (^release)());
+void CC_DEBUG_M(int mark , void (^debug)(void) , void (^release)(void));
 
 /// if is SIMULATOR
 /// recall y if is  , recall n if not .
-void CC_DETECT_SIMULATOR(void (^y)() , void (^n)());
+void CC_DETECT_SIMULATOR(void (^y)(void) , void (^n)(void));
 
 /// make sure that if a chain has started ,
 /// non 'nil' return for next chain actions . (if does , system will crash immediately) .

@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger , CCHudExtensionType) {
 - (instancetype) ccDelay : (CGFloat) fDelay ;
 - (instancetype) ccGrace : (NSTimeInterval) interval ; // same as MBProgressHud
 - (instancetype) ccMin : (NSTimeInterval) interval ; // same as MBProgressHud
-- (instancetype) ccComplete : (void (^)()) complete ;
+- (instancetype) ccComplete : (void (^)(void)) complete ;
 
 @end
 

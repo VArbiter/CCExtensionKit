@@ -43,8 +43,8 @@ static CCRuntime *__instance = nil;
 }
 
 - (instancetype) ccTimer : (NSTimeInterval) intereval
-                  action : (BOOL (^)()) action
-                  cancel : (void (^)()) cancel {
+                  action : (BOOL (^)(void)) action
+                  cancel : (void (^)(void)) cancel {
     if (!action) return self;
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
@@ -63,7 +63,7 @@ static CCRuntime *__instance = nil;
 }
 
 - (instancetype) ccAfter : (double) seconds
-                  action : (void (^)()) action {
+                  action : (void (^)(void)) action {
     if (!action) return self;
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC));
     dispatch_after(time, dispatch_get_main_queue(), ^{
@@ -72,25 +72,25 @@ static CCRuntime *__instance = nil;
     return self;
 }
 
-- (instancetype) ccAsyncM : (void(^)()) action {
+- (instancetype) ccAsyncM : (void(^)(void)) action {
     return [self ccAsync:dispatch_get_main_queue()
                   action:action];
 }
 
-- (instancetype) ccSyncM : (void(^)()) action {
+- (instancetype) ccSyncM : (void(^)(void)) action {
     return [self ccSync:dispatch_get_main_queue()
                  action:action];
 }
 
 - (instancetype) ccAsync : (CCQueue) queue
-                  action : (void (^)()) action {
+                  action : (void (^)(void)) action {
     if (!queue) return self;
     dispatch_async(queue ? queue : CC_MAIN_QUEUE(), action);
     return self;
 }
 
 - (instancetype) ccSync : (CCQueue) queue
-                 action : (void (^)()) action {
+                 action : (void (^)(void)) action {
     if (!queue) return self;
     if (pthread_main_np() != 0) {
         if (action) action();
@@ -100,7 +100,7 @@ static CCRuntime *__instance = nil;
 }
 
 - (instancetype) ccBarrierAsync : (CCQueue) queue
-                         action : (void(^)()) action {
+                         action : (void(^)(void)) action {
     dispatch_barrier_async(queue ? queue : CC_MAIN_QUEUE(), action);
     return self;
 }
@@ -231,13 +231,13 @@ CCGroup CC_GROUP_INIT() {
     return r;
 }
 
-- (instancetype) ccGroupAction : (void (^)()) action {
+- (instancetype) ccGroupAction : (void (^)(void)) action {
     dispatch_group_async(self.group, self.queue, action);
     return self;
 }
 
 - (instancetype) ccNotify : (CCQueue) queue
-                   finish : (void(^)()) finish {
+                   finish : (void(^)(void)) finish {
     dispatch_group_notify(self.group, queue, finish);
     return self;
 }

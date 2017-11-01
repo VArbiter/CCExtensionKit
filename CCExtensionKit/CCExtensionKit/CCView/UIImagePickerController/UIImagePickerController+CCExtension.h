@@ -24,17 +24,17 @@ typedef NS_OPTIONS(NSInteger , CCImageSaveType) {
 - (instancetype) ccDelegateT : (id) delegate ;
 
 /// default present camera , allowEditing = false;
-- (instancetype) ccCameraT : (void (^)()) notAllowed ;
+- (instancetype) ccCameraT : (void (^)(void)) notAllowed ;
 /// default present savedPhotosAlbum , allowEditing = false;
-- (instancetype) ccSavedPhotosAlbumT : (void (^)()) notAllowed ;
+- (instancetype) ccSavedPhotosAlbumT : (void (^)(void)) notAllowed ;
 /// default present photoLibrary , allowEditing = false;
-- (instancetype) ccPhotoLibraryT : (void (^)()) notAllowed ;
+- (instancetype) ccPhotoLibraryT : (void (^)(void)) notAllowed ;
 /// allowEditing = YES ;
 - (instancetype) ccEnableEditing ;
 /// save specific type of images
 - (instancetype) ccSave : (CCImageSaveType) type ;
 /// if user cancelled
-- (instancetype) ccCancel : (void (^)()) action ;
+- (instancetype) ccCancel : (void (^)(void)) action ;
 /// if an error on saving process
 - (instancetype) ccErrorIn : (void (^)(NSError *error)) action ;
 

@@ -106,7 +106,7 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
     
     return pSelf;
 }
-- (instancetype) ccOperate : (void(^)()) operate {
+- (instancetype) ccOperate : (void(^)(void)) operate {
     NSError *error = nil;
     if ([self.realm inWriteTransaction]) {
 #if DEBUG

@@ -22,8 +22,8 @@
 - (instancetype) ccResetLoadingStatus ;
 - (instancetype) ccNoMoreData ;
 
-- (instancetype) ccRefreshing : (void (^)()) refreshing ;
-- (instancetype) ccLoadingMore : (void (^)()) loading ;
+- (instancetype) ccRefreshing : (void (^)(void)) refreshing ;
+- (instancetype) ccLoadingMore : (void (^)(void)) loading ;
 
 @end
 

@@ -16,21 +16,21 @@
 
 + (instancetype) shared ;
 
-- (instancetype) ccFallBack : (void (^)()) fallBack ;
+- (instancetype) ccFallBack : (void (^)(void)) fallBack ;
 - (instancetype) ccRegist : (NSString *) sURL
                    action : (void(^)(NSDictionary *)) action ;
 - (instancetype) ccCall : (NSString *) sURL
-               fallBack : (void(^)()) fallback ;
+               fallBack : (void(^)(void)) fallback ;
 - (instancetype) ccCall : (NSString *) sURL
                userInfo : (id) userInfo
-               fallBack : (void(^)()) fallback ;
+               fallBack : (void(^)(void)) fallback ;
 - (instancetype) ccObject : (NSString *) sURL
-                    value : (id(^)()) value ;
+                    value : (id(^)(id value)) value ;
 - (id) ccGet : (NSString *) sURL
-    fallBack : (void(^)()) fallback ;
+    fallBack : (void(^)(void)) fallback ;
 - (id) ccGet : (NSString *) sURL
     userInfo : (id) userInfo
-    fallBack : (void(^)()) fallback ;
+    fallBack : (void(^)(void)) fallback ;
 
 FOUNDATION_EXPORT NSString * const _CC_ROUTER_PARAMS_URL_;
 FOUNDATION_EXPORT NSString * const _CC_ROUTER_PARAMS_COMPLETION_;

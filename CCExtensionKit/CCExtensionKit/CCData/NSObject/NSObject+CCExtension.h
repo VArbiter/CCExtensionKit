@@ -22,4 +22,9 @@
 @property (nonatomic , strong , readonly) NSDecimalNumber * isDecimalValued ;
 @property (nonatomic , assign , readonly) BOOL isNull ;
 
+@property (nonatomic , assign , readonly) BOOL isValuedString ;
+@property (nonatomic , assign , readonly) BOOL isValuedArray ;
+@property (nonatomic , assign , readonly) BOOL isValuedDictionary ;
+@property (nonatomic , assign , readonly) BOOL isValuedDecimal ;
+
 @end

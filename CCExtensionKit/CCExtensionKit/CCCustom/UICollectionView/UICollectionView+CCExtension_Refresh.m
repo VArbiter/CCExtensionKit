@@ -34,13 +34,13 @@
     return self;
 }
 
-- (instancetype) ccRefreshing : (void (^)()) refreshing {
+- (instancetype) ccRefreshing : (void (^)(void)) refreshing {
     [self.mj_header beginRefreshingWithCompletionBlock:^{
         if (refreshing) refreshing();
     }];
     return self;
 }
-- (instancetype) ccLoadingMore : (void (^)()) loading {
+- (instancetype) ccLoadingMore : (void (^)(void)) loading {
     [self.mj_footer beginRefreshingWithCompletionBlock:^{
         if (loading) loading();
     }];

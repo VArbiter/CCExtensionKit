@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger , CCSupportType) {
 /// has authorize to sepecific settings .
 /// the return value for fail , decide whether if need to guide to setting pages .
 - (instancetype) ccHasAuthorize : (CCSupportType) type
-                        success : (void (^)()) success
-                           fail : (BOOL (^)()) fail ;
+                        success : (void (^)(void)) success
+                           fail : (BOOL (^)(void)) fail ;
 
 @end

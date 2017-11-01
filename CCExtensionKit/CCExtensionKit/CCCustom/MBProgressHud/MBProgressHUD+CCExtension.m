@@ -122,7 +122,7 @@
     self.minShowTime = interval;
     return self;
 }
-- (instancetype) ccComplete : (void (^)()) complete {
+- (instancetype) ccComplete : (void (^)(void)) complete {
     self.completionBlock = complete;
     return self;
 }

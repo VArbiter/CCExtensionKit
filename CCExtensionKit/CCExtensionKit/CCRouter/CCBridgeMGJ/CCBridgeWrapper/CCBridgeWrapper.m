@@ -50,7 +50,7 @@ static CCBridgeWrapper *__router = nil;
 
 #pragma mark -
 
-- (instancetype) ccFallBack : (void (^)()) fallBack {
+- (instancetype) ccFallBack : (void (^)(void)) fallBack {
     [MGJRouter registerURLPattern:_CC_ROUTER_FALL_BACK_URL_ toHandler:^(NSDictionary *routerParameters) {
         if (fallBack) fallBack();
     }];
@@ -65,7 +65,7 @@ static CCBridgeWrapper *__router = nil;
     return self;
 }
 - (instancetype) ccCall : (NSString *) sURL
-               fallBack : (void(^)()) fallback {
+               fallBack : (void(^)(void)) fallback {
     if ([MGJRouter canOpenURL:self.format(sURL)]) {
         [MGJRouter openURL:self.format(sURL)];
     } else if (fallback) fallback();
@@ -73,7 +73,7 @@ static CCBridgeWrapper *__router = nil;
 }
 - (instancetype) ccCall : (NSString *) sURL
                userInfo : (id) userInfo
-               fallBack : (void(^)()) fallback {
+               fallBack : (void(^)(void)) fallback {
     if (![MGJRouter canOpenURL:self.format(sURL)]) {
         if (fallback) fallback();
         return self;
@@ -83,7 +83,7 @@ static CCBridgeWrapper *__router = nil;
     return self;
 }
 - (instancetype) ccObject : (NSString *) sURL
-                    value : (id(^)()) value {
+                    value : (id(^)(id value)) value {
     __weak typeof(self) pSelf = self;
     [MGJRouter registerURLPattern:self.format(sURL) toObjectHandler:^id(NSDictionary *routerParameters) {
         if (value) return value(pSelf.transferMGJ(routerParameters));
@@ -92,14 +92,14 @@ static CCBridgeWrapper *__router = nil;
     return self;
 }
 - (id) ccGet : (NSString *) sURL
-    fallBack : (void(^)()) fallback {
+    fallBack : (void(^)(void)) fallback {
     return [self ccGet:sURL
               userInfo:nil
               fallBack:fallback];
 }
 - (id) ccGet : (NSString *) sURL
     userInfo : (id) userInfo
-    fallBack : (void(^)()) fallback {
+    fallBack : (void(^)(void)) fallback {
     id v = [MGJRouter objectForURL:self.format(sURL) withUserInfo:userInfo];
     if (v) return v;
     else if (fallback) fallback();

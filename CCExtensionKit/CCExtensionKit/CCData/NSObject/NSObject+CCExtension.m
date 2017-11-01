@@ -83,4 +83,27 @@
     return (self && ![self isKindOfClass:[NSNull class]] && (self != NSNull.null));
 }
 
+- (BOOL)isValuedString {
+    return (self.isStringValued.length > 0);
+}
+
+- (BOOL)isValuedArray {
+    return (self.isArrayValued.count > 0);
+}
+
+- (BOOL)isValuedDictionary {
+    return (self.isDictionaryValued.allKeys.count > 0);
+}
+
+- (BOOL)isValuedDecimal {
+    if (self) {
+        if ([self isKindOfClass:[NSDecimalNumber class]]) {
+            if (![self isEqual:NSDecimalNumber.notANumber]) {
+                return YES;
+            }
+        }
+    }
+    return false;
+}
+
 @end

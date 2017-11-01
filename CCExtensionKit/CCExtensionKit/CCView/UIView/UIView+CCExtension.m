@@ -117,7 +117,7 @@ CGFloat CCHScale(CGFloat h) {
     _CC_DEFAULT_SCALE_HEIGHT_ = fHeight;
 }
 
-+ (void) ccDisableAnimation : (void (^)()) action {
++ (void) ccDisableAnimation : (void (^)(void)) action {
     if (action) {
         [UIView setAnimationsEnabled:false];
         action();

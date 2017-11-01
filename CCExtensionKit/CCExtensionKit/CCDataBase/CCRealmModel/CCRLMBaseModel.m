@@ -40,12 +40,12 @@ static RLMNotificationToken *__ccToken = nil;
     if (specificDataBase.length > 0) self.specificBase = specificDataBase;
     return self;
 }
-+ (CCRealmHandler *) ccOperate : (void (^)()) transaction {
++ (CCRealmHandler *) ccOperate : (void (^)(void)) transaction {
     return [self ccOperate:nil
                transaction:transaction];
 }
 + (CCRealmHandler *) ccOperate : (NSString *) specificDataBase
-                   transaction : (void (^)()) transaction {
+                   transaction : (void (^)(void)) transaction {
     return [[CCRealmHandler.shared ccSpecific:specificDataBase] ccOperate:^{
         if (transaction) transaction();
     }];

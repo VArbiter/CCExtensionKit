@@ -26,7 +26,7 @@
     return self;
 }
 
-- (instancetype) ccCameraT : (void (^)()) notAllowed {
+- (instancetype) ccCameraT : (void (^)(void)) notAllowed {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         if (notAllowed) notAllowed();
         return self;
@@ -46,7 +46,7 @@
     }
 }
 
-- (instancetype) ccSavedPhotosAlbumT : (void (^)()) notAllowed {
+- (instancetype) ccSavedPhotosAlbumT : (void (^)(void)) notAllowed {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
         if (notAllowed) notAllowed();
         return self;
@@ -55,7 +55,7 @@
     return self;
 }
 
-- (instancetype) ccPhotoLibraryT : (void (^)()) notAllowed {
+- (instancetype) ccPhotoLibraryT : (void (^)(void)) notAllowed {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         if (notAllowed) notAllowed();
         return self;
@@ -74,7 +74,7 @@
     return self;
 }
 
-- (instancetype) ccCancel : (void (^)()) action {
+- (instancetype) ccCancel : (void (^)(void)) action {
     objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_USER_DID_CANCEL_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }

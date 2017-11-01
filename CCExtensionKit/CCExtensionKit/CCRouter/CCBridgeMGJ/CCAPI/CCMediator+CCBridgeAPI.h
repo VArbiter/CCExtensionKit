@@ -14,21 +14,21 @@
 
 @interface CCMediator (CCBridgeAPI)
 
-+ (void) ccFallBack : (void (^)()) fallBack ;
++ (void) ccFallBack : (void (^)(void)) fallBack ;
 + (void) ccRegist : (NSString *) sURL
-                   action : (void(^)(NSDictionary *)) action ;
+           action : (void(^)(NSDictionary *)) action ;
 + (void) ccCall : (NSString *) sURL
-               fallBack : (void(^)()) fallback ;
+       fallBack : (void(^)(void)) fallback ;
 + (void) ccCall : (NSString *) sURL
-               userInfo : (id) userInfo
-               fallBack : (void(^)()) fallback ;
+       userInfo : (id) userInfo
+       fallBack : (void(^)(void)) fallback ;
 + (void) ccObject : (NSString *) sURL
-                    value : (id(^)()) value ;
+            value : (id(^)(id value)) value ;
 + (id) ccGet : (NSString *) sURL
-    fallBack : (void(^)()) fallback ;
+    fallBack : (void(^)(void)) fallback ;
 + (id) ccGet : (NSString *) sURL
     userInfo : (id) userInfo
-    fallBack : (void(^)()) fallback ;
+    fallBack : (void(^)(void)) fallback ;
 
 @end
 

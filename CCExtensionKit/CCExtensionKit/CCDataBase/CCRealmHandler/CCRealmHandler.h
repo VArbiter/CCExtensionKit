@@ -20,7 +20,7 @@
 + (instancetype) shared ;
 - (instancetype) ccDefault ; // equal : ccSpecific : nil
 - (instancetype) ccSpecific : (NSString *) specific ; // open a specific realm
-- (instancetype) ccOperate : (void(^)()) operate ; // do actions in transaction
+- (instancetype) ccOperate : (void(^)(void)) operate ; // do actions in transaction
 
 // ----- insert -----
 

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef CC_FONT_ASPECT_SYS
+    #define CC_FONT_ASPECT_SYS(_value_) [UIFont ccSystem:CCScaleH(_value_)]
+#endif
+
+#ifndef CC_FONT_ASPECT_BOLD
+    #define CC_FONT_ASPECT_BOLD(_value_) [UIFont ccBold:CCScaleH(_value_)]
+#endif
+
 @interface UIFont (CCExtension)
 
 /// when you determin to make a font that auto adjust it self for different screens

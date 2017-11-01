@@ -51,7 +51,7 @@ CGSize CCScaleSize(CGSize size);
 + (void) ccSetScale : (CGFloat) fWidth
              height : (CGFloat) fHeight ;
 
-+ (void) ccDisableAnimation : (void (^)()) action ;
++ (void) ccDisableAnimation : (void (^)(void)) action ;
 
 @property (nonatomic , class , assign , readonly) CGFloat sWidth;
 @property (nonatomic , class , assign , readonly) CGFloat sHeight;

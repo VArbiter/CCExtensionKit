@@ -19,10 +19,10 @@
 ///  default : defalut
 - (instancetype) ccSpecific : (NSString *) specificDataBase ;
 /// in transaction
-+ (CCRealmHandler *) ccOperate : (void (^)()) transaction ;
++ (CCRealmHandler *) ccOperate : (void (^)(void)) transaction ;
 /// specific database in transaction
 + (CCRealmHandler *) ccOperate : (NSString *) specificDataBase
-                   transaction : (void (^)()) transaction ;
+                   transaction : (void (^)(void)) transaction ;
 - (CCRealmHandler *) ccSave ;
 
 // when a delete complete , do sth more like reloading data (prevent crash)
