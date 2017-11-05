@@ -27,7 +27,7 @@
 }
 
 - (instancetype) ccCameraT : (void (^)(void)) notAllowed {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         if (notAllowed) notAllowed();
         return self;
     }
@@ -47,7 +47,7 @@
 }
 
 - (instancetype) ccSavedPhotosAlbumT : (void (^)(void)) notAllowed {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
         if (notAllowed) notAllowed();
         return self;
     }
@@ -56,7 +56,7 @@
 }
 
 - (instancetype) ccPhotoLibraryT : (void (^)(void)) notAllowed {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         if (notAllowed) notAllowed();
         return self;
     }
