@@ -44,6 +44,9 @@
                  bundle : (NSBundle *) bundle ;
 + (instancetype) ccFile : (NSString *) sPath ;
 
+/// create an image with current window
++ (instancetype) ccCaptureCurrent ;
+
 @end
 
 #pragma mark - -----
@@ -59,10 +62,8 @@ FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 - (instancetype) ccGaussianAcc ;
 - (instancetype) ccGaussianAcc : (CGFloat) fRadius ;
 - (instancetype) ccGaussianAcc : (CGFloat) fRadius
-                     iteration : (NSInteger) iteration
                           tint : (UIColor *) tint ;
 - (instancetype) ccGaussianAcc : (CGFloat) fRadius
-                     iteration : (NSInteger) iteration
                           tint : (UIColor *) tint
                       complete : (void(^)(UIImage *origin , UIImage *processed)) complete ;
 

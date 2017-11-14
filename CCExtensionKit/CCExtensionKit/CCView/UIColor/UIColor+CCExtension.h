@@ -40,6 +40,14 @@
 /// generate a image that size equals (CGSize){1.f , 1.f}
 @property (nonatomic , readonly) UIImage *imageT;
 
+/// returns the original R , G , B , A for colors
+/// note , if use it to generate a new color , has to make sure that each one must muti by "255.f"
+/// return 0 if sth goes wrong 
+@property (nonatomic , assign , readonly) CGFloat redT ;
+@property (nonatomic , assign , readonly) CGFloat greenT ;
+@property (nonatomic , assign , readonly) CGFloat blueT ;
+@property (nonatomic , assign , readonly) CGFloat alphaT ;
+
 @end
 
 #pragma mark - -----

@@ -69,13 +69,22 @@ compatibleWithTraitCollection:nil];
     return [UIImage imageWithContentsOfFile:sPath];
 }
 
++ (instancetype) ccCaptureCurrent {
+    UIWindow *w = [UIApplication sharedApplication].windows.firstObject;
+    UIGraphicsBeginImageContext(w.frame.size);
+    [w.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @end
 
 #pragma mark - -----
 @import Accelerate;
 @import CoreImage;
 
-CGFloat _CC_GAUSSIAN_BLUR_VALUE_ = .1f;
+CGFloat _CC_GAUSSIAN_BLUR_VALUE_ = 4.f;
 CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 
 @implementation UIImage (CCExtension_Gaussian)
@@ -84,143 +93,115 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
     return [self ccGaussianAcc:_CC_GAUSSIAN_BLUR_VALUE_];
 }
 - (instancetype) ccGaussianAcc : (CGFloat) fRadius {
-    return [self ccGaussianAcc:fRadius iteration:0 tint:UIColor.whiteColor];
+    return [self ccGaussianAcc:fRadius tint:UIColor.clearColor];
 }
 - (instancetype) ccGaussianAcc : (CGFloat) fRadius
-                     iteration : (NSInteger) iteration
                           tint : (UIColor *) tint {
-    UIImage *image = [self copy];
-    if (!image) return self;
+    UIImage *imageOriginal = [self copy];
     
-    if (fRadius < 0.f || fRadius > 1.f) {
-        fRadius = 0.5f;
-    }
+    CGFloat fSaturationDeltaFactor = 1;
+    UIImage *imageMask = nil;
     
-    if (floor(self.width) * floor(self.height) <= 0) {
-        return self;
-    }
+    CGRect rectImage = (CGRect){CGPointZero, imageOriginal.size};
+    UIImage *imageEffect = imageOriginal;
     
-    UInt32 boxSize = (UInt32)(fRadius * self.scale);
-    boxSize = boxSize - (boxSize % 2) + 1;
-    
-    CGImageRef imageRef = image.CGImage;
-    
-    CGBitmapInfo bitMapInfo = CGImageGetBitmapInfo(imageRef);
-    if (CGImageGetBitsPerPixel(imageRef) != 32
-        || CGImageGetBitsPerComponent(imageRef) != 8
-        || ((bitMapInfo & kCGBitmapAlphaInfoMask) != kCGBitmapAlphaInfoMask)) {
-#warning TODO >>>
-        /// 这里的重绘出问题了 ? 色彩失真严重
-        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale);
-        [self drawAtPoint:CGPointZero];
-        imageRef = UIGraphicsGetImageFromCurrentImageContext().CGImage;
+    BOOL isHasBlur = fRadius > __FLT_EPSILON__;
+    BOOL isHasSaturationChange = fabs(fSaturationDeltaFactor - 1.) > __FLT_EPSILON__;
+    if (isHasBlur || isHasSaturationChange) {
+        UIGraphicsBeginImageContextWithOptions(imageOriginal.size, NO, [[UIScreen mainScreen] scale]);
+        CGContextRef contextEffect = UIGraphicsGetCurrentContext();
+        CGContextScaleCTM(contextEffect, 1.0, -1.0);
+        CGContextTranslateCTM(contextEffect, 0, -imageOriginal.size.height);
+        CGContextDrawImage(contextEffect, rectImage, imageOriginal.CGImage);
+        
+        vImage_Buffer bufferEffect;
+        bufferEffect.data = CGBitmapContextGetData(contextEffect);
+        bufferEffect.width = CGBitmapContextGetWidth(contextEffect);
+        bufferEffect.height = CGBitmapContextGetHeight(contextEffect);
+        bufferEffect.rowBytes = CGBitmapContextGetBytesPerRow(contextEffect);
+        
+        UIGraphicsBeginImageContextWithOptions(imageOriginal.size, NO, [[UIScreen mainScreen] scale]);
+        CGContextRef contextOutEffect = UIGraphicsGetCurrentContext();
+        vImage_Buffer bufferOutEffect;
+        bufferOutEffect.data = CGBitmapContextGetData(contextOutEffect);
+        bufferOutEffect.width = CGBitmapContextGetWidth(contextOutEffect);
+        bufferOutEffect.height = CGBitmapContextGetHeight(contextOutEffect);
+        bufferOutEffect.rowBytes = CGBitmapContextGetBytesPerRow(contextOutEffect);
+        
+        if (isHasBlur) {
+            CGFloat fInputRadius = fRadius * [[UIScreen mainScreen] scale];
+            uint32_t radius = floor(fInputRadius * 3. * sqrt(2 * M_PI) / 4 + 0.5);
+            if (radius % 2 != 1) {
+                radius += 1;
+            }
+            vImageBoxConvolve_ARGB8888(&bufferEffect, &bufferOutEffect, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
+            vImageBoxConvolve_ARGB8888(&bufferOutEffect, &bufferEffect, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
+            vImageBoxConvolve_ARGB8888(&bufferEffect, &bufferOutEffect, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
+        }
+        BOOL isEffectImageBuffersAreSwapped = NO;
+        if (isHasSaturationChange) {
+            CGFloat s = fSaturationDeltaFactor;
+            CGFloat floatingPointSaturationMatrix[] = {
+                0.0722 + 0.9278 * s,  0.0722 - 0.0722 * s,  0.0722 - 0.0722 * s,  0,
+                0.7152 - 0.7152 * s,  0.7152 + 0.2848 * s,  0.7152 - 0.7152 * s,  0,
+                0.2126 - 0.2126 * s,  0.2126 - 0.2126 * s,  0.2126 + 0.7873 * s,  0,
+                0,                    0,                    0,  1,
+            };
+            const int32_t divisor = 256;
+            NSUInteger matrixSize = sizeof(floatingPointSaturationMatrix)/sizeof(floatingPointSaturationMatrix[0]);
+            int16_t saturationMatrix[matrixSize];
+            for (NSUInteger i = 0; i < matrixSize; ++i) {
+                saturationMatrix[i] = (int16_t)roundf(floatingPointSaturationMatrix[i] * divisor);
+            }
+            if (isHasBlur) {
+                vImageMatrixMultiply_ARGB8888(&bufferOutEffect, &bufferEffect, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
+                isEffectImageBuffersAreSwapped = YES;
+            }
+            else {
+                vImageMatrixMultiply_ARGB8888(&bufferEffect, &bufferOutEffect, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
+            }
+        }
+        if (!isEffectImageBuffersAreSwapped) imageEffect = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        if (isEffectImageBuffersAreSwapped) imageEffect = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
     
-    if (!imageRef) return self;
+    UIGraphicsBeginImageContextWithOptions(imageOriginal.size, NO, [[UIScreen mainScreen] scale]);
+    CGContextRef outputContext = UIGraphicsGetCurrentContext();
+    CGContextScaleCTM(outputContext, 1.0, -1.0);
+    CGContextTranslateCTM(outputContext, 0, -imageOriginal.size.height);
     
-    vImage_Buffer inBuffer, outBuffer;
+    CGContextDrawImage(outputContext, rectImage, imageOriginal.CGImage);
     
-    inBuffer.width = CGImageGetWidth(imageRef);
-    inBuffer.height = CGImageGetHeight(imageRef);
-    inBuffer.rowBytes = CGImageGetBytesPerRow(imageRef);
-    
-    outBuffer.width = CGImageGetWidth(imageRef);
-    outBuffer.height = CGImageGetHeight(imageRef);
-    outBuffer.rowBytes = CGImageGetBytesPerRow(imageRef);
-    
-    CGDataProviderRef inProvider = CGImageGetDataProvider(imageRef);
-    CFDataRef inBitmapData = CGDataProviderCopyData(inProvider);
-    
-    NSUInteger bytes = outBuffer.rowBytes * outBuffer.height;
-    inBuffer.data = malloc(bytes);
-    outBuffer.data = malloc(bytes);
-    
-    if (!inBuffer.data || !outBuffer.data) {
-        free(inBuffer.data);
-        free(outBuffer.data);
-        return self;
-    }
-    
-    void * tempBuffer = malloc(vImageBoxConvolve_ARGB8888(&outBuffer,
-                                                          &inBuffer,
-                                                          NULL,
-                                                          0,
-                                                          0,
-                                                          boxSize,
-                                                          boxSize,
-                                                          NULL,
-                                                          kvImageEdgeExtend | kvImageGetTempBufferSize));
-    
-    CGDataProviderRef providerRef = CGImageGetDataProvider(imageRef);
-    CFDataRef dataInBitMap = CGDataProviderCopyData(providerRef);
-    if (!dataInBitMap) return self;
-    
-    memcpy(outBuffer.data, CFDataGetBytePtr(dataInBitMap), MIN(bytes, CFDataGetLength(dataInBitMap)));
-    
-    for (NSInteger i = 0; i < iteration; i ++) {
-        vImage_Error error = vImageBoxConvolve_ARGB8888(&outBuffer,
-                                                        &inBuffer,
-                                                        tempBuffer,
-                                                        0,
-                                                        0,
-                                                        boxSize,
-                                                        boxSize,
-                                                        NULL,
-                                                        kvImageEdgeExtend);
-        if (error != kvImageNoError) {
-            free(tempBuffer);
-            free(inBuffer.data);
-            free(outBuffer.data);
-            return self;
+    if (isHasBlur) {
+        CGContextSaveGState(outputContext);
+        if (imageMask) {
+            CGContextClipToMask(outputContext, rectImage, imageMask.CGImage);
         }
-#warning TODO >>>
-        /// 这里的交换出问题了 ? 模糊不起效 .
-        
-        void * temp = inBuffer.data;
-        inBuffer.data = outBuffer.data;
-        outBuffer.data = temp;
+        CGContextDrawImage(outputContext, rectImage, imageEffect.CGImage);
+        CGContextRestoreGState(outputContext);
     }
     
-    free(inBuffer.data);
-    free(tempBuffer);
-    
-    CGColorSpaceRef colorSpace = CGImageGetColorSpace(imageRef);
-    if (!colorSpace) return self;
-    
-    CGContextRef ctx = CGBitmapContextCreate(outBuffer.data,
-                                             outBuffer.width,
-                                             outBuffer.height,
-                                             8,
-                                             outBuffer.rowBytes,
-                                             colorSpace,
-                                             bitMapInfo);
-    if (tint && CGColorGetAlpha(tint.CGColor) > 0.0) {
-        CGColorRef colorRef = CGColorCreateCopyWithAlpha(tint.CGColor, _CC_GAUSSIAN_BLUR_TINT_ALPHA_);
-        CGContextSetFillColor(ctx, CGColorGetComponents(colorRef));
-        CGContextSetBlendMode(ctx, kCGBlendModePlusLighter);
-        CGContextFillRect(ctx, (CGRect){CGPointZero , outBuffer.width , outBuffer.height});
+    if (tint) {
+        CGContextSaveGState(outputContext);
+        CGContextSetFillColorWithColor(outputContext, tint.CGColor);
+        CGContextFillRect(outputContext, rectImage);
+        CGContextRestoreGState(outputContext);
     }
-    imageRef = CGBitmapContextCreateImage(ctx);
-    UIImage * imageProcessed = [UIImage imageWithCGImage:imageRef];
     
-    CGContextRelease(ctx);
-    CGColorSpaceRelease(colorSpace);
+    UIImage *imageOutput = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
-    CFRelease(inBitmapData);
-    
-    CGColorSpaceRelease(colorSpace);
-    CGImageRelease(imageRef);
-    
-    return imageProcessed;
+    return imageOutput;
 }
 - (instancetype) ccGaussianAcc : (CGFloat)fRadius
-                     iteration : (NSInteger) iteration
                           tint : (UIColor *) tint
                       complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
     __weak typeof(self) pSelf = self;
     void (^tp)(void) = ^ {
-        UIImage *m = [pSelf ccGaussianAcc:fRadius iteration:iteration tint:tint];
+        UIImage *m = [pSelf ccGaussianAcc:fRadius tint:tint];
         if (NSThread.isMainThread) {
             if (complete) complete(pSelf , m);
         } else dispatch_sync(dispatch_get_main_queue(), ^{

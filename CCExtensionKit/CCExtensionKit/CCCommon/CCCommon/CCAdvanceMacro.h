@@ -32,15 +32,6 @@ static void CC_ON_EXIT_BLOCK(__strong void(^*block)(void)) {
     #define CC_OVERLOADABLE_FUNCTION __attribute__((overloadable))
 #endif
 
-/// make class a final class , forbidden all inhert actions .
-/// note : add it just before @interface
-/// eg :
-///     CC_FINAL_CLASS @interface CCSomeClass : Class
-///     @end
-#ifndef CC_FINAL_CLASS
-    #define CC_FINAL_CLASS __attribute__((objc_subclassing_restricted))
-#endif
-
 /// used for c-type functions , only worked when params && return value type both are basic types .
 /// use it between return value type and function names :
 /// eg : int CC_CONST_FUNCTION add(int , int)
@@ -88,6 +79,7 @@ static void CC_ON_EXIT_BLOCK(__strong void(^*block)(void)) {
 #endif
 
 /// make sure that a class can't be subclassed
+/// forbidden all inhert actions .
 /// eg :
 /// CC_FINAL
 /// @interface : FinalClass

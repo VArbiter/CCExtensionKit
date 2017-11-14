@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@import UIKit;
 
 /// if is simulator .
 #ifndef _CC_IS_SIMULATOR_
@@ -105,9 +106,19 @@
     #endif
 #endif
 
-
 /// returns uuid
 static NSString * _CC_UUID_;
+
+/// returns fitable values related (by system origin , not custom)
+/// for annoying iPhone X =.=
+static CGRect _CC_STATUS_BAR_FRAME_ ;
+static CGFloat _CC_STATUS_BAR_HEIGHT_ ;
+static CGFloat _CC_STATUS_BAR_BOTTOM_ ; // may not equals to the navigation top on iPhone X
+static CGFloat _CC_NAVIGATION_HEIGHT_ ;
+static CGFloat _CC_NAVIGATION_BOTTOM_ ;
+static CGFloat _CC_TABBAR_HEIGHT_ ;
+static CGFloat _CC_TABBAR_TOP_ ;
+
 
 @interface CCCommon : NSObject
 

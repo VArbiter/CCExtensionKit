@@ -79,6 +79,35 @@
     return [UIImage ccColor:self];
 }
 
+- (CGFloat)fRed {
+    CGFloat r = .0f;
+    if ([self getRed:&r green:NULL blue:NULL alpha:NULL]) {
+        
+    }
+    return r;
+}
+- (CGFloat)fGreen {
+    CGFloat g = .0f;
+    if ([self getRed:NULL green:&g blue:NULL alpha:NULL]) {
+        
+    }
+    return g;
+}
+- (CGFloat)fBlue {
+    CGFloat b = .0f;
+    if ([self getRed:NULL green:NULL blue:&b alpha:NULL]) {
+        
+    }
+    return b;
+}
+- (CGFloat)fAlpha {
+    CGFloat a = .0f;
+    if ([self getRed:NULL green:NULL blue:NULL alpha:&a]) {
+        
+    }
+    return a;
+}
+
 @end
 
 @implementation UIImage (CCExtension_Color)

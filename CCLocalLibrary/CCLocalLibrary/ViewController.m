@@ -24,6 +24,9 @@
 #import "UIViewController+CCExtension.h"
 #import "CCTestViewController.h"
 
+#import "UIImage+CCExtension.h"
+#import "UIView+CCExtension.h"
+
 @interface ViewController ()
 
 @end
@@ -33,12 +36,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UIImage *image = [ccImageCache(@"0ZG63407-0") ccGaussianImageAcc:_CC_GAUSSIAN_BLUR_VALUE_ iterationCount:100 tint:nil];
-//    UIImageView *imageView = [UIImageView ccCommon:CGRectZero image:image enable:false];
-//    imageView.y = 80;
-//    imageView.size = [image ccZoom:0.5];
-    /*
+    UIImage *image = [CC_IMAGE_NAME(@"0ZG63407-0") ccGaussianAcc];
+    UIImageView *imageView = [UIImageView common:CGRectZero];
+    imageView.image = image;
+    imageView.y = 80;
+    imageView.size = [image ccZoom:0.5];
     [self.view addSubview:imageView];
+    /*
     imageView.tap(^(UIView *v, UITapGestureRecognizer *gr) {
         
     });

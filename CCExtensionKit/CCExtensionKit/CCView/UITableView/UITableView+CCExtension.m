@@ -199,6 +199,8 @@ forHeaderFooterViewReuseIdentifier:sNib];
 @property (nonatomic , copy) void (^bDidEndDecelerating)(__kindof UIScrollView *scrollView);
 @property (nonatomic , copy) BOOL (^bShouldScrollToTop)(__kindof UIScrollView *scrollView);
 @property (nonatomic , copy) void (^bDidScrollToTop)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bWillBeginDragging)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bDidEndDragging)(__kindof UIScrollView *scrollView , BOOL decelerate);
 
 @end
 
@@ -256,6 +258,14 @@ forHeaderFooterViewReuseIdentifier:sNib];
     self.bDidScrollToTop = [didScrollToTop copy];
     return self;
 }
+- (instancetype) ccWillBeginDragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging {
+    self.bWillBeginDragging = [willBeginDragging copy];
+    return self;
+}
+- (instancetype) ccDidEndDragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging {
+    self.bDidEndDragging = [didEndDragging copy];
+    return self;
+}
 
 #pragma mark - ---
 
@@ -300,6 +310,12 @@ forHeaderFooterViewReuseIdentifier:sNib];
 }
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
     if (self.bDidScrollToTop) self.bDidScrollToTop(scrollView);
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (self.bWillBeginDragging) self.bWillBeginDragging(scrollView);
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (self.bDidEndDragging) self.bDidEndDragging(scrollView, decelerate);
 }
 
 - (void)dealloc {
