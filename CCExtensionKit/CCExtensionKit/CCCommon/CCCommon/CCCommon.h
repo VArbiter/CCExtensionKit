@@ -119,7 +119,6 @@ static CGFloat _CC_NAVIGATION_BOTTOM_ ;
 static CGFloat _CC_TABBAR_HEIGHT_ ;
 static CGFloat _CC_TABBAR_TOP_ ;
 
-
 @interface CCCommon : NSObject
 
 - (instancetype) init NS_UNAVAILABLE;
