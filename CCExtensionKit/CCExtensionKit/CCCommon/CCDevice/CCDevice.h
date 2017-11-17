@@ -8,24 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-#ifndef CC_DEVICE_TYPE
-    #define CC_DEVICE_TYPE [CCDeviceHelper ccDeviceType]
+#ifndef CC_DEVICE_TYPE_S
+    #define CC_DEVICE_TYPE_S [CCDeviceHelper ccDeviceType]
 #endif
 
-#ifndef CC_SYSTEM_VERSION
-    #define CC_SYSTEM_VERSION [CCDeviceHelper ccSystemVersion]
+#ifndef CC_SYSTEM_VERSION_S
+    #define CC_SYSTEM_VERSION_S [CCDeviceHelper ccSystemVersion]
 #endif
 
-#ifndef CC_DEVICE_UUID
-    #define CC_DEVICE_UUID [CCDeviceHelper ccDeviceUUID]
+#ifndef CC_DEVICE_UUID_S
+    #define CC_DEVICE_UUID_S [CCDeviceHelper ccDeviceUUID]
 #endif
 
-#ifndef CC_DEVICE_RESOLUTION
-    #define CC_DEVICE_RESOLUTION [CCDeviceHelper ccDeviceResolution]
+#ifndef CC_DEVICE_RESOLUTION_S
+    #define CC_DEVICE_RESOLUTION_S [CCDeviceHelper ccDeviceResolution]
 #endif
 
-#ifndef CC_DEVICE_RECT
-    #define CC_DEVICE_RECT [CCDeviceHelper ccDeviceRect]
+#ifndef CC_DEVICE_RECT_S
+    #define CC_DEVICE_RECT_S [CCDeviceHelper ccDeviceRect]
 #endif
 
 @interface CCDevice : NSObject
