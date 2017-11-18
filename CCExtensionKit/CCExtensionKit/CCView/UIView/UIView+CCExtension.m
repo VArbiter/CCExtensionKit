@@ -400,6 +400,11 @@ CGFloat CCHScale(CGFloat h) {
     return self;
 }
 
+- (instancetype) ccDuplicate {
+    NSData * dt = [NSKeyedArchiver archivedDataWithRootObject:self];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:dt];
+}
+
 @end
 
 #pragma mark - -----

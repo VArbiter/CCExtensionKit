@@ -127,6 +127,9 @@ CGSize CCScaleSize(CGSize size);
                       radius : (CGFloat) fRadius ;
 - (instancetype) ccContentMode : (UIViewContentMode) mode ;
 
+/// copy it self .
+- (instancetype) ccDuplicate ;
+
 @end
 
 #pragma mark - -----
