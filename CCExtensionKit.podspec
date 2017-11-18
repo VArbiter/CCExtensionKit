@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "CCExtensionKit"
-    s.version      = "3.4.1"
+    s.version      = "3.4.5"
     s.summary      = "CCExtensionKit."
 
     s.description  = <<-DESC
