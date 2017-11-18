@@ -106,22 +106,12 @@
     #endif
 #endif
 
-/// returns uuid
-static NSString * _CC_UUID_;
-
-/// returns fitable values related (by system origin , not custom)
-/// for annoying iPhone X =.=
-static CGRect _CC_STATUS_BAR_FRAME_ ;
-static CGFloat _CC_STATUS_BAR_HEIGHT_ ;
-static CGFloat _CC_STATUS_BAR_BOTTOM_ ; // may not equals to the navigation top on iPhone X
-static CGFloat _CC_NAVIGATION_HEIGHT_ ;
-static CGFloat _CC_NAVIGATION_BOTTOM_ ;
-static CGFloat _CC_TABBAR_HEIGHT_ ;
-static CGFloat _CC_TABBAR_TOP_ ;
-
 @interface CCCommon : NSObject
 
 - (instancetype) init NS_UNAVAILABLE;
+
+/// returns uuid
+NSString * _CC_UUID_(void);
 
 /// notify you whether this operation was excuted on main thread .
 /// returns if this operation was excuted on main thread .

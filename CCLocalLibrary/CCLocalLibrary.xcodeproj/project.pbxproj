@@ -12,6 +12,7 @@
 		3772441D1FBB05AD0006E83A /* CCDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3772441C1FBB05AD0006E83A /* CCDevice.m */; };
 		3773C2051FC0258300C7F384 /* CCGradientLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3773C2041FC0258300C7F384 /* CCGradientLayerView.m */; };
 		3773C2091FC0269700C7F384 /* NSUserDefaults+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3773C2081FC0269700C7F384 /* NSUserDefaults+CCExtension.m */; };
+		3773C2111FC06CBC00C7F384 /* CCFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3773C2101FC06CBC00C7F384 /* CCFit.m */; };
 		377CAD1A1F0105E800AE46A8 /* 0ZG63407-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 377CAD191F0105E800AE46A8 /* 0ZG63407-0.png */; };
 		37C69E1A1ED6684D00531ED3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E191ED6684D00531ED3 /* main.m */; };
 		37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E1C1ED6684D00531ED3 /* AppDelegate.m */; };
@@ -83,6 +84,8 @@
 		3773C2041FC0258300C7F384 /* CCGradientLayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCGradientLayerView.m; sourceTree = "<group>"; };
 		3773C2071FC0269700C7F384 /* NSUserDefaults+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+CCExtension.h"; sourceTree = "<group>"; };
 		3773C2081FC0269700C7F384 /* NSUserDefaults+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+CCExtension.m"; sourceTree = "<group>"; };
+		3773C20F1FC06CBC00C7F384 /* CCFit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCFit.h; sourceTree = "<group>"; };
+		3773C2101FC06CBC00C7F384 /* CCFit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCFit.m; sourceTree = "<group>"; };
 		377CAD191F0105E800AE46A8 /* 0ZG63407-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0ZG63407-0.png"; sourceTree = "<group>"; };
 		37C69E151ED6684D00531ED3 /* CCLocalLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCLocalLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C69E191ED6684D00531ED3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -259,6 +262,15 @@
 			path = NSUserDefaults;
 			sourceTree = "<group>";
 		};
+		3773C20E1FC06CB000C7F384 /* CCFit */ = {
+			isa = PBXGroup;
+			children = (
+				3773C20F1FC06CBC00C7F384 /* CCFit.h */,
+				3773C2101FC06CBC00C7F384 /* CCFit.m */,
+			);
+			path = CCFit;
+			sourceTree = "<group>";
+		};
 		37C69E0C1ED6684D00531ED3 = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				7034D6B51F5FCAA00005D1E1 /* CCCommonExtension.h */,
+				3773C20E1FC06CB000C7F384 /* CCFit */,
 				3772441A1FBB05970006E83A /* CCDevice */,
 				7034D6B31F5FCA910005D1E1 /* CCAuthorize */,
 				7034D6B41F5FCA910005D1E1 /* CCCommon */,
@@ -1127,6 +1140,7 @@
 				37C69E1A1ED6684D00531ED3 /* main.m in Sources */,
 				7034D6B21F5FBF3C0005D1E1 /* WKWebView+CCExtension.m in Sources */,
 				7034D68F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m in Sources */,
+				3773C2111FC06CBC00C7F384 /* CCFit.m in Sources */,
 				70FF30541F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.m in Sources */,
 				7034D6AA1F5FBF3C0005D1E1 /* UIImageView+CCExtension.m in Sources */,
 				7034D6BB1F5FCE140005D1E1 /* CCCommon.m in Sources */,

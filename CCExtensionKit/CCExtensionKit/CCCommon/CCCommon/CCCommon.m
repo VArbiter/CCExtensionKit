@@ -8,26 +8,11 @@
 
 #import "CCCommon.h"
 #import <pthread.h>
-#import "CCDevice.h"
 
 @implementation CCCommon
 
-+ (void)load {
-    _CC_UUID_ = UIDevice.currentDevice.identifierForVendor.UUIDString;
-    
-    _CC_STATUS_BAR_FRAME_ = UIApplication.sharedApplication.statusBarFrame;
-    _CC_STATUS_BAR_HEIGHT_ = _CC_STATUS_BAR_FRAME_.size.height;
-    _CC_STATUS_BAR_BOTTOM_ = CGRectGetMaxY(_CC_STATUS_BAR_FRAME_);
-    _CC_NAVIGATION_HEIGHT_ = 44.f;
-    if ([[CCDevice ccDeviceType] isEqualToString:@"iPhone X"]) {
-        _CC_NAVIGATION_BOTTOM_ = 88.f;
-        _CC_TABBAR_HEIGHT_ = 83.f;
-    }
-    else {
-        _CC_NAVIGATION_BOTTOM_ = 64.f;
-        _CC_TABBAR_HEIGHT_ = 49.f;
-    }
-    _CC_TABBAR_TOP_ = UIScreen.mainScreen.bounds.size.height - _CC_TABBAR_HEIGHT_;
+NSString * _CC_UUID_() {
+    return UIDevice.currentDevice.identifierForVendor.UUIDString;
 }
 
 BOOL CC_Available_C(double version) {

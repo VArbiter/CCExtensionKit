@@ -12,5 +12,7 @@
     #import "CCAuthorize.h"   
     #import "CCCommon.h"
     #import "CCSingleton.h"
+    #import "CCDevice.h"
+    #import "CCFit.h"
 
 #endif /* CCCommonExtension_h */
