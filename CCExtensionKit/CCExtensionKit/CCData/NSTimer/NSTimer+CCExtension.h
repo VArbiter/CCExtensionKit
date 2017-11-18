@@ -39,4 +39,10 @@
 /// invalidate && set entity to nil.
 void CC_TIMER_DESTORY(NSTimer *timer);
 
+// for additional actions
+- (instancetype) ccFire ; // == fire
+- (instancetype) ccPause ; // has to be a valid timer .
+- (instancetype) ccResume ; // has to be a valid timer .
+- (instancetype) ccStop ; // == invalidate
+
 @end

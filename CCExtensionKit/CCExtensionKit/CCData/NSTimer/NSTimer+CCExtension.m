@@ -98,4 +98,27 @@ void CC_TIMER_DESTORY(NSTimer *timer) {
     timer = nil;
 }
 
+- (instancetype) ccFire {
+    if (self.isValid) {
+        [self fire];
+    }
+    return self;
+}
+- (instancetype) ccPause {
+    if (self.isValid) {
+        self.fireDate = NSDate.distantFuture;
+    }
+    return self;
+}
+- (instancetype) ccResume {
+    if (self.isValid) {
+        self.fireDate = NSDate.date;
+    }
+    return self;
+}
+- (instancetype) ccStop {
+    [self invalidate];
+    return self;
+}
+
 @end
