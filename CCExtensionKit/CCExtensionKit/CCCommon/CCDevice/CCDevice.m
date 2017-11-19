@@ -15,8 +15,9 @@
 
 + (NSString *) ccDeviceType {
 #if TARGET_IPHONE_SIMULATOR
-    CGFloat fW = UIScreen.mainScreen.bounds.size.width;
-    CGFloat fH = UIScreen.mainScreen.bounds.size.height;
+    CGFloat fS = UIScreen.mainScreen.scale;
+    CGFloat fW = UIScreen.mainScreen.bounds.size.width * fS;
+    CGFloat fH = UIScreen.mainScreen.bounds.size.height * fS;
     
     if (fW == 320.f && fH == 480.f) return @"iPhone 3GS"; // == iPhone 3
     if (fW == 640.f && fH == 960.f) return @"iPhone 4s"; // == iPhone 4
