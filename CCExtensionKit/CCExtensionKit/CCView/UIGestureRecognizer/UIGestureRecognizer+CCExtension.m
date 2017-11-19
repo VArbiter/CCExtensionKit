@@ -124,3 +124,65 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 }
 
 @end
+
+#pragma mark - -----
+
+static const char * _CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY_ = "CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY";
+
+@interface UIViewController (CCExtension_Gesture_Actions_Assit)
+
+@property (nonatomic , strong) UIScreenEdgePanGestureRecognizer *screenEdgePanGR ;
+- (void) ccScreenEdgePanGestureAction : (UIScreenEdgePanGestureRecognizer *) sender ;
+
+@end
+
+@implementation UIViewController (CCExtension_Gesture_Actions_Assit)
+
+- (void)setScreenEdgePanGR:(UIScreenEdgePanGestureRecognizer *)screenEdgePanGR {
+    objc_setAssociatedObject(self,
+                             "CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_ASSOCIATE_KEY",
+                             screenEdgePanGR,
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (UIScreenEdgePanGestureRecognizer *)screenEdgePanGR {
+    return objc_getAssociatedObject(self, "CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_ASSOCIATE_KEY");
+}
+
+- (void) ccScreenEdgePanGestureAction : (UIScreenEdgePanGestureRecognizer *) sender {
+    void(^t)(__kindof UIViewController *sender , __kindof UIScreenEdgePanGestureRecognizer *edgePanGR) = objc_getAssociatedObject(self, _CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY_);
+    if (t) {
+        if (NSThread.isMainThread) t(self,sender);
+        else {
+            __weak typeof(self) pSelf = self;
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                t(pSelf,sender);
+            });
+        }
+    }
+}
+
+@end
+
+@implementation UIViewController (CCExtension_Gesture_Actions)
+
+- (instancetype) ccModalPopGesture : (void(^)(__kindof UIViewController *sender ,
+                                              __kindof UIScreenEdgePanGestureRecognizer *edgePanGR)) bEdgePanGR {
+    objc_setAssociatedObject(self,
+                             _CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY_,
+                             bEdgePanGR,
+                             OBJC_ASSOCIATION_COPY_NONATOMIC);
+    if (self.screenEdgePanGR) {
+        [self.screenEdgePanGR removeTarget:self action:@selector(ccScreenEdgePanGestureAction:)];
+        [self.view removeGestureRecognizer:self.screenEdgePanGR];
+        self.screenEdgePanGR = nil;
+    }
+    else {
+        UIScreenEdgePanGestureRecognizer *gr = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(ccScreenEdgePanGestureAction:)];
+        gr.edges = UIRectEdgeLeft;
+        self.screenEdgePanGR = gr;
+    }
+    [self.view addGestureRecognizer:self.screenEdgePanGR];
+    return self;
+}
+
+@end

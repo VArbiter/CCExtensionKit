@@ -54,3 +54,14 @@
                   action : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action ;
 
 @end
+
+#pragma mark - -----
+
+@interface UIViewController (CCExtension_Gesture_Actions)
+
+/// make modaled controller can trigger pop action like UINavigationController.
+/// highly recommend use it with [instance ccEnablePushingPopingStyleWhenPresentOrDismiss] .
+- (instancetype) ccModalPopGesture : (void(^)(__kindof UIViewController *sender ,
+                                              __kindof UIScreenEdgePanGestureRecognizer *edgePanGR)) bEdgePanGR ;
+
+@end

@@ -86,6 +86,8 @@
 - (instancetype) ccDidEndDecelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating;
 - (instancetype) ccShouldScrollToTop : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop;
 - (instancetype) ccDidScrollToTop : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop;
+- (instancetype) ccWillBeginDragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging;
+- (instancetype) ccDidEndDragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging;
 
 @end
 
