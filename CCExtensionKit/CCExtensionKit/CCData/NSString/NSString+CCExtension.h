@@ -37,12 +37,19 @@
                       bundle : (NSBundle *) bundle
                      comment : (NSString *) sComment ;
 
+@end
+
+#pragma mark - -----
+
+@interface NSString (CCExtension_Convert)
+
 @property (nonatomic , readonly) NSInteger toInteger ;
 @property (nonatomic , readonly) long long toLonglong ;
 @property (nonatomic , readonly) int toInt;
 @property (nonatomic , readonly) BOOL toBool ;
 @property (nonatomic , readonly) float toFloat ;
 @property (nonatomic , readonly) double toDouble ;
+@property (nonatomic , readonly) NSData *toData ; // [self dataUsingEncoding:NSUTF8StringEncoding];
 
 /// only numbers .
 @property (nonatomic , readonly) NSDecimalNumber * toDecimal;
@@ -54,5 +61,7 @@
 @property (nonatomic , readonly) NSString *toTimeStick ;
 @property (nonatomic , readonly) NSString *toMD5 ;
 @property (nonatomic , readonly) NSString *toSHA1 ;
+@property (nonatomic , readonly) NSString *toBase64 ; // encode base 64 usign origin
+@property (nonatomic , readonly) NSString *toBase64Decode ; // decode base 64 using origin
 
 @end

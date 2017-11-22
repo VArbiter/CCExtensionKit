@@ -117,6 +117,12 @@
     return ((s && s.length) ? s : @"");
 }
 
+@end
+
+#pragma mark - -----
+
+@implementation NSString (CCExtension_Convert)
+
 - (NSInteger)toInteger {
     return self.integerValue;
 }
@@ -134,6 +140,9 @@
 }
 - (double)toDouble {
     return self.doubleValue;
+}
+- (NSData *)toData {
+    return [self dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 - (NSDecimalNumber *)toDecimal {
@@ -204,6 +213,18 @@
     NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
     for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++) [output appendFormat:@"%02x", digest[i]];
     return output;
+}
+- (NSString *)toBase64 {
+    NSData *d = self.toData;
+    if (d && d.length) {
+        return [d base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    }
+    else return @"";
+}
+- (NSString *)toBase64Decode {
+    NSData *d = [[NSData alloc] initWithBase64EncodedString:self
+                                                    options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
 }
 
 @end
