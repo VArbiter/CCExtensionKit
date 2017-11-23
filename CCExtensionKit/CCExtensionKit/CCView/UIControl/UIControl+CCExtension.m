@@ -11,14 +11,40 @@
 #import <objc/runtime.h>
 
 static const char * _CC_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_ = "CC_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY";
+static const char * _CC_UICONTROL_EVENT_DICTIONARY_STORED_KEY_ = "CC_UICONTROL_EVENT_DICTIONARY_STORED_KEY";
+static const char * _CC_UICONTROL_EVENT_STORED_KEY_ = "CC_UICONTROL_EVENT_STORED_KEY";
 
 @interface UIControl (CCExtension_Assit)
 
 - (void) ccControlExtensionAction : ( __kindof UIControl *) sender ;
 
+@property (nonatomic , strong) NSMutableDictionary *dEvent ;
+@property (nonatomic , assign) UIControlEvents eventControlAssist ;
+- (void) ccControlExtensionEventAction : (__kindof UIControl *) sender ;
+
 @end
 
 @implementation UIControl (CCExtension_Assit)
+
+- (void)setDEvent:(NSMutableDictionary *)dEvent {
+    objc_setAssociatedObject(self, _CC_UICONTROL_EVENT_DICTIONARY_STORED_KEY_, dEvent, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (NSMutableDictionary *)dEvent {
+    NSMutableDictionary *d = objc_getAssociatedObject(self, _CC_UICONTROL_EVENT_DICTIONARY_STORED_KEY_);
+    if (d) return d;
+    else {
+        d = [NSMutableDictionary dictionary];
+        objc_setAssociatedObject(self, _CC_UICONTROL_EVENT_DICTIONARY_STORED_KEY_, d, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return d;
+}
+
+- (void)setEventControlAssist:(UIControlEvents)eventControlAssist {
+    objc_setAssociatedObject(self, _CC_UICONTROL_EVENT_STORED_KEY_, @(eventControlAssist), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+-(UIControlEvents)eventControlAssist {
+    return [objc_getAssociatedObject(self, _CC_UICONTROL_EVENT_STORED_KEY_) unsignedIntegerValue];
+}
 
 - (void) ccControlExtensionAction : ( __kindof UIControl *) sender {
     void (^t)( __kindof UIControl *) = objc_getAssociatedObject(self, _CC_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_);
@@ -28,6 +54,14 @@ static const char * _CC_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_ = "CC_UICONTROL
             t(sender);
         });
     }
+}
+
+- (void) ccControlExtensionEventAction : (__kindof UIControl *) sender {
+    UIControlEvents events = self.eventControlAssist;
+    NSString *s = @"CC_UICONTROL_EVENT_TRIGGER_ACTION_";
+    s = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(events).stringValue]];
+    void (^bEvent)(__kindof UIControl *sender) = self.dEvent[s];
+    if (bEvent) bEvent(self);
 }
 
 @end
@@ -98,6 +132,35 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
     CGRect rect = t();
     if (CGRectEqualToRect(rect, self.bounds)) return [super hitTest:point withEvent:event];
     return CGRectContainsPoint(rect, point) ? self : nil;
+}
+
+- (instancetype) ccSharedControlEvent : (UIControlEvents) event
+                              actions : (void (^)( __kindof UIControl *sender)) action {
+    if (!action) return self;
+    NSString *s = [@"CC_UICONTROL_EVENT_TRIGGER_ACTION_" stringByAppendingString:[NSString stringWithFormat:@"%@",@(event).stringValue]];
+    
+    [self.dEvent setValue:action forKey:s];
+    self.eventControlAssist = self.eventControlAssist | event;
+    
+    [self addTarget:self
+             action:@selector(ccControlExtensionEventAction:)
+   forControlEvents:event];
+    return self;
+}
+
+- (instancetype) ccRemoveEvent : (UIControlEvents) event {
+    if (self.eventControlAssist & event) {
+        NSString *s = @"CC_UICONTROL_EVENT_TRIGGER_ACTION_";
+        NSString *ts = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(self.eventControlAssist).stringValue]];
+        id t = self.dEvent[ts];
+        self.eventControlAssist = self.eventControlAssist & (~event);
+        NSString *te = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(self.eventControlAssist).stringValue]];
+        [self.dEvent setValue:t forKey:te];
+        [self removeTarget:self
+                    action:@selector(ccControlExtensionEventAction:)
+          forControlEvents:event];
+    }
+    return self;
 }
 
 @end

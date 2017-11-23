@@ -26,6 +26,7 @@
 
 #import "UIImage+CCExtension.h"
 #import "UIView+CCExtension.h"
+#import "UITextField+CCExtension.h"
 
 @interface ViewController ()
 
@@ -55,6 +56,17 @@
     
 //    self.view.cc.hud().message(@"SHOWING").type(CCHudChainTypeDarkDeep);
      */
+    
+    UITextField *t = [UITextField common:CGRectMake(0, 0, 100, 100)];
+    t.placeholder = @"123456789";
+    [self.view ccAdd:[[t ccLeft:.0f] ccTop:400.f]];
+    [t ccTextDidChange:^(__kindof UITextField *sender) {
+        NSLog(@"%@",sender.text);
+    }];
+    [t ccTextEvent:UIControlEventEditingDidBegin | UIControlEventEditingDidEndOnExit | UIControlEventEditingChanged action:^(__kindof UITextField *sender) {
+        NSLog(@"editing did begin / end ----- %@" , sender.text);
+    }];
+//    [t ccRemoveEvent:UIControlEventEditingChanged];
 }
 
 + (void) ts {

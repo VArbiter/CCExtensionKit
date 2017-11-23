@@ -22,4 +22,14 @@
 /// increase trigger rect .
 - (instancetype) ccIncrease : (UIEdgeInsets) insets ;
 
+/// add custom events
+/// note : all events within , always respond the latest action .
+/// note : that means , for single instance , it's shared .
+- (instancetype) ccSharedControlEvent : (UIControlEvents) event
+                              actions : (void (^)( __kindof UIControl *sender)) action ;
+
+/// note : it only has effect on event you personaly added by [UIControl.instance ccControlEvent:actions:]
+/// note : be ware on event you removed , it might has unknow effects to others
+- (instancetype) ccRemoveEvent : (UIControlEvents) event ;
+
 @end
