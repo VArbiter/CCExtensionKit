@@ -226,5 +226,28 @@
                                                     options:NSDataBase64DecodingIgnoreUnknownCharacters];
     return [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
 }
+- (NSString *)toUrlEncoded {
+    
+    // CharactersToBeEscaped = @":/?&=;+!@#$()~',*";
+    // CharactersToLeaveUnescaped = @"[].";
+    
+    NSString *sUnencode = self;
+    NSString *sEncode = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)sUnencode,
+                                                              NULL,
+                                                              (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                              kCFStringEncodingUTF8));
+    return sEncode;
+}
+- (NSString *)toUrlDecoded {
+    NSString *sEncode = self;
+    NSString *sDecode = nil;
+    sDecode = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                                                    (__bridge CFStringRef)sEncode,
+                                                                                                    CFSTR(""),
+                                                                                                    CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+    return sDecode;
+}
 
 @end

@@ -19,3 +19,16 @@
 }
 
 @end
+
+#pragma mark - -----
+
+@implementation NSString (CCExtension_UrlEncode)
+
+- (NSURL *)toWebURL {
+    return [NSURL ccURL:self];
+}
+- (NSURL *)toLocalURL {
+    return [NSURL ccLocal:self];
+}
+
+@end

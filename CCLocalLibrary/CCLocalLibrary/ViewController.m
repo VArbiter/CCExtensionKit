@@ -63,7 +63,7 @@
     [t ccTextDidChange:^(__kindof UITextField *sender) {
         NSLog(@"%@",sender.text);
     }];
-    [t ccTextEvent:UIControlEventEditingDidBegin | UIControlEventEditingDidEndOnExit | UIControlEventEditingChanged action:^(__kindof UITextField *sender) {
+    [t ccTextSharedEvent:UIControlEventEditingDidBegin | UIControlEventEditingDidEndOnExit | UIControlEventEditingChanged action:^(__kindof UITextField *sender) {
         NSLog(@"editing did begin / end ----- %@" , sender.text);
     }];
 //    [t ccRemoveEvent:UIControlEventEditingChanged];

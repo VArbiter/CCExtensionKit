@@ -63,5 +63,7 @@
 @property (nonatomic , readonly) NSString *toSHA1 ;
 @property (nonatomic , readonly) NSString *toBase64 ; // encode base 64 usign origin
 @property (nonatomic , readonly) NSString *toBase64Decode ; // decode base 64 using origin
+@property (nonatomic , readonly) NSString *toUrlEncoded ; // encode chinese character using origin
+@property (nonatomic , readonly) NSString *toUrlDecoded ; // decode chinese character using origin
 
 @end

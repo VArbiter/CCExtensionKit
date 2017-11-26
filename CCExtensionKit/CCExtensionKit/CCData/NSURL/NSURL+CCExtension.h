@@ -21,3 +21,10 @@
 + (instancetype) ccLocal : (NSString *) sURL ;
 
 @end
+
+@interface NSString (CCExtension_UrlEncode)
+
+@property (nonatomic , readonly) NSURL *toWebURL ; // encode chinese character using origin
+@property (nonatomic , readonly) NSURL *toLocalURL ; // decode chinese character using origin
+
+@end
