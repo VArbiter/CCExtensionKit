@@ -9,7 +9,6 @@
 #ifndef CCRouterExtension_h
 #define CCRouterExtension_h
 
-    #import "CCMediator+CCBridgeAPI.h"
     #import "CCBridgeWrapper.h"
     #import "CCMediator.h"
 
