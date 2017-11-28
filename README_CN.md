@@ -8,11 +8,11 @@
 
 [![Platform](https://img.shields.io/cocoapods/p/CCExtensionKit.svg?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
 
-### 当前版本 3.1.36
+### 当前版本 3.5.0
 
-> pod 'CCExtensionKit' , '~> 3.0.3' // 默认是 CCCore
+> pod 'CCExtensionKit' , '~> 3.5.0' // 默认是 CCCore
 > 
-> > pod 'CCExtensionKit/CCFull' , '~> 3.0.3' . 如果你想安装整个框架.
+> > pod 'CCExtensionKit/CCFull' , '~> 3.5.0' . 如果你想安装整个框架.
 
 ### Warning 
 > CCLocalLib 在版本 `2.2.3` 后就失效了
@@ -52,10 +52,13 @@
 
 ### 上新 ?
 ---
+**2017-11-28 12:39:59**
+
+> 重构 `CCRouter` 中的 `CCBridgeWrapper` .
+
 **2017-11-01 19:24:27**
 
 > 修复 Xcode 9 下烦人的警告.
-
 
 **2017-09-15 17:56:19**
 

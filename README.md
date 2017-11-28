@@ -10,11 +10,11 @@
 
 ### 中文说明请点击[[这里](https://github.com/VArbiter/CCLocalLibrary/blob/master/README_CN.md)]
 
-### Current Version 3.1.36
+### Current Version 3.5.0
 
-> pod 'CCExtensionKit' , '~> 3.0.3' // default is CCCore
+> pod 'CCExtensionKit' , '~> 3.5.0' // default is CCCore
 > 
-> > pod 'CCExtensionKit/CCFull' , '~> 3.0.3' . if you wanna install the whole Kit .
+> > pod 'CCExtensionKit/CCFull' , '~> 3.5.0' . if you wanna install the whole Kit .
 
 ### Warning 
 > CCLocalLib has no longer effect after version `2.2.3`
@@ -54,10 +54,13 @@
 
 ### What's new ?
 ---
+**2017-11-28 12:39:59**
+
+> rebuilt `CCBridgeWrapper` in `CCRouter` .
+
 **2017-11-01 19:24:27**
 
 > fix annoying warnings under Xcode 9.
-
 
 **2017-09-15 17:56:19**
 
