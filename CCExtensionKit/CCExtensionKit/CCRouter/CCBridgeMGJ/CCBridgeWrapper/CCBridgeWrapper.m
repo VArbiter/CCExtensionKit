@@ -10,15 +10,15 @@
 
 #if __has_include(<MGJRouter/MGJRouter.h>)
 
-NSString * const _CC_ROUTER_PARAMS_URL_ = @"CC_ROUTER_PARAMS_URL";
-NSString * const _CC_ROUTER_PARAMS_COMPLETION_ = @"CC_ROUTER_PARAMS_COMPLETION";
-NSString * const _CC_ROUTER_PARAMS_USER_INFO_ = @"CC_ROUTER_PARAMS_USER_INFO";
-NSString * const _CC_ROUTER_FALL_BACK_URL_ = @"loveCC://";
+CCRouterOperateKey const _CC_ROUTER_PARAMS_URL_ = @"CC_ROUTER_PARAMS_URL";
+CCRouterOperateKey const _CC_ROUTER_PARAMS_COMPLETION_ = @"CC_ROUTER_PARAMS_COMPLETION";
+CCRouterOperateKey const _CC_ROUTER_PARAMS_USER_INFO_ = @"CC_ROUTER_PARAMS_USER_INFO";
+CCRouterOperateKey _CC_ROUTER_FALL_BACK_URL_ = @"loveCC://";
 
 @interface CCBridgeWrapper () < NSCopying , NSMutableCopying >
 
-@property (nonatomic , copy , readonly) NSString *(^format)(NSString *);
-@property (nonatomic , copy , readonly) NSDictionary *(^transferMGJ)(NSDictionary *d) ;
+NSDictionary * CC_TRANSFER_MGJ_PARAMETERS(NSDictionary *dParams);
+NSString * CC_APPEND_URL_SCHEME(CCRouterRegistKey sURL , BOOL isRegist);
 
 @end
 
@@ -26,9 +26,20 @@ static CCBridgeWrapper *__router = nil;
 
 @implementation CCBridgeWrapper
 
+//+ (void)initialize {
+//    [CCBridgeWrapper shared];
+//}
+
 + (instancetype) shared {
     if (__router) return __router;
-    __router = [[CCBridgeWrapper alloc] init];
+    __router = [[CCBridgeWrapper alloc] init]; 
+    return __router;
+}
++ (instancetype) sharedWithScheme : (CCRouterRegistKey) sScheme {
+    if (!__router) {
+        _CC_ROUTER_FALL_BACK_URL_ = sScheme;
+        return self.shared;
+    }
     return __router;
 }
 
@@ -50,59 +61,93 @@ static CCBridgeWrapper *__router = nil;
 
 #pragma mark -
 
-- (instancetype) ccFallBack : (void (^)(void)) fallBack {
+// regist
+- (instancetype) ccRegistFallBack : (void (^)(CCRouterPatternInfo *dInfos)) fallBack {
     [MGJRouter registerURLPattern:_CC_ROUTER_FALL_BACK_URL_ toHandler:^(NSDictionary *routerParameters) {
-        if (fallBack) fallBack();
+        if (fallBack) fallBack(CC_TRANSFER_MGJ_PARAMETERS(routerParameters));
     }];
     return self;
 }
-- (instancetype) ccRegist : (NSString *) sURL
-                   action : (void(^)(NSDictionary *)) action {
-    __weak typeof(self) pSelf = self;
-    [MGJRouter registerURLPattern:pSelf.format(sURL) toHandler:^(NSDictionary *routerParameters) {
-        if (action) action(pSelf.transferMGJ(routerParameters));
+- (instancetype) ccRegistOperation : (CCRouterRegistKey) sURL
+                            action : (void(^)(CCRouterPatternInfo *dInfos)) action {
+    [MGJRouter registerURLPattern:CC_APPEND_URL_SCHEME(sURL , YES) toHandler:^(NSDictionary *routerParameters) {
+        if (action) action(CC_TRANSFER_MGJ_PARAMETERS(routerParameters));
     }];
     return self;
 }
-- (instancetype) ccCall : (NSString *) sURL
-               fallBack : (void(^)(void)) fallback {
-    if ([MGJRouter canOpenURL:self.format(sURL)]) {
-        [MGJRouter openURL:self.format(sURL)];
-    } else if (fallback) fallback();
-    return self;
-}
-- (instancetype) ccCall : (NSString *) sURL
-               userInfo : (id) userInfo
-               fallBack : (void(^)(void)) fallback {
-    if (![MGJRouter canOpenURL:self.format(sURL)]) {
-        if (fallback) fallback();
-        return self;
-    }
-    
-    [MGJRouter openURL:self.format(sURL) withUserInfo:userInfo completion:nil];
-    return self;
-}
-- (instancetype) ccObject : (NSString *) sURL
-                    value : (id(^)(id value)) value {
-    __weak typeof(self) pSelf = self;
-    [MGJRouter registerURLPattern:self.format(sURL) toObjectHandler:^id(NSDictionary *routerParameters) {
-        if (value) return value(pSelf.transferMGJ(routerParameters));
+- (instancetype) ccRegistObject : (CCRouterRegistKey) sURL
+                          value : (id(^)(id value)) value {
+    [MGJRouter registerURLPattern:CC_APPEND_URL_SCHEME(sURL , YES) toObjectHandler:^id(NSDictionary *routerParameters) {
+        if (value) return value(CC_TRANSFER_MGJ_PARAMETERS(routerParameters));
         return nil;
     }];
     return self;
 }
-- (id) ccGet : (NSString *) sURL
-    fallBack : (void(^)(void)) fallback {
-    return [self ccGet:sURL
-              userInfo:nil
-              fallBack:fallback];
+
+// deregist
+- (instancetype) ccDeregist : (CCRouterRegistKey) sURL {
+    [MGJRouter deregisterURLPattern:sURL];
+    return self;
 }
-- (id) ccGet : (NSString *) sURL
-    userInfo : (id) userInfo
-    fallBack : (void(^)(void)) fallback {
-    id v = [MGJRouter objectForURL:self.format(sURL) withUserInfo:userInfo];
+
+// open
+- (BOOL) ccIsCanOpen : (CCRouterRegistKey) sURL  {
+    return [MGJRouter canOpenURL:CC_APPEND_URL_SCHEME(sURL , false)];
+}
+
+- (instancetype) ccCall : (CCRouterPatternInfo *) dPattern
+               fallBack : (void(^)(CCRouterPatternInfo *dInfos)) fallback {
+    if (![MGJRouter canOpenURL:CC_APPEND_URL_SCHEME(dPattern[_CC_ROUTER_PARAMS_URL_] , false)]) {
+        if (fallback) fallback(dPattern);
+        return self;
+    }
+    
+    [MGJRouter openURL:CC_APPEND_URL_SCHEME(dPattern[_CC_ROUTER_PARAMS_URL_] , false)
+          withUserInfo:dPattern[_CC_ROUTER_PARAMS_USER_INFO_] completion:^(id result) {
+              CCRouterCompletionBlock b = dPattern[_CC_ROUTER_PARAMS_COMPLETION_];
+              if (b) b(result);
+          }];
+    return self;
+}
+
+- (id) ccGet : (CCRouterPatternInfo *) dPattern
+    fallBack : (void(^)(CCRouterPatternInfo *)) fallback {
+    id v = [MGJRouter objectForURL:CC_APPEND_URL_SCHEME(dPattern[_CC_ROUTER_PARAMS_URL_] , false)
+                      withUserInfo:dPattern[_CC_ROUTER_PARAMS_USER_INFO_]];
     if (v) return v;
-    else if (fallback) fallback();
+    else if (fallback) fallback(dPattern);
+    return nil;
+}
+
+CCRouterPatternInfo * CC_URL_PATTERN_MAKE(CCRouterRegistKey sURL , NSDictionary *dUserInfo) {
+    return CC_URL_PATTERN_COMPLETION_MAKE(sURL, dUserInfo, nil);
+}
+CCRouterPatternInfo * CC_URL_PATTERN_COMPLETION_MAKE(CCRouterRegistKey sURL ,
+                                                     NSDictionary *dUserInfo ,
+                                                     void (^completion)(id result)) {
+    NSMutableDictionary *d= [NSMutableDictionary dictionary];
+    [d setValue:sURL forKey:_CC_ROUTER_PARAMS_URL_];
+    [d setValue:dUserInfo forKey:_CC_ROUTER_PARAMS_USER_INFO_];
+    [d setValue:completion forKey:_CC_ROUTER_PARAMS_COMPLETION_];
+    return d.copy;
+}
+
+NSDictionary * CC_TRANSFER_MGJ_PARAMETERS(NSDictionary *dParams) {
+    NSMutableDictionary *d = [NSMutableDictionary dictionary];
+    [d setValue:dParams[MGJRouterParameterURL] forKey:_CC_ROUTER_PARAMS_URL_];
+    [d setValue:dParams[MGJRouterParameterUserInfo] forKey:_CC_ROUTER_PARAMS_USER_INFO_];
+    [d setValue:dParams[MGJRouterParameterCompletion] forKey:_CC_ROUTER_PARAMS_COMPLETION_];
+    return d;
+}
+NSString * CC_APPEND_URL_SCHEME(CCRouterRegistKey sURL , BOOL isRegist) {
+    if (sURL && (sURL.length > 0)) {
+        return [_CC_ROUTER_FALL_BACK_URL_ stringByAppendingString:sURL];
+    } else if (sURL) {
+        NSLog(@" ----- regist url is equal to @\"\" , will fall back to root .");
+    }
+    else if (isRegist) {
+        @throw @"regist url can't be nil";
+    }
     return nil;
 }
 

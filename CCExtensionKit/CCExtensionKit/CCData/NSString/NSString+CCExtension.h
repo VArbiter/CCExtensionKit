@@ -66,4 +66,7 @@
 @property (nonatomic , readonly) NSString *toUrlEncoded ; // encode chinese character using origin
 @property (nonatomic , readonly) NSString *toUrlDecoded ; // decode chinese character using origin
 
+@property (nonatomic , readonly) const char * toUTF8 NS_RETURNS_INNER_POINTER ; // might null if can't be convert
+NSString * CC_STRING_FROM_UTF8(const char * cUTF8) ; // if params doesn't exist , return @"".
+
 @end

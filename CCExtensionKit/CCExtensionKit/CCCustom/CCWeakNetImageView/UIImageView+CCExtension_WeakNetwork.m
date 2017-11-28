@@ -12,7 +12,10 @@
 
 #import "CCNetworkMoniter.h"
 
-@import SDWebImage;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+    @import SDWebImage;
+#pragma clang diagnostic pop
 
 static BOOL __isEnableLoading = YES;
 

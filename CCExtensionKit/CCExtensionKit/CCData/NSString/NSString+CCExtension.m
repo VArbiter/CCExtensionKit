@@ -250,4 +250,14 @@
     return sDecode;
 }
 
+- (const char *)toUTF8 {
+    return self.UTF8String;
+}
+NSString * CC_STRING_FROM_UTF8(const char * cUTF8) {
+    if (cUTF8 && (*cUTF8 != '\0')) {
+        return [NSString stringWithUTF8String:cUTF8];
+    }
+    return @"";
+}
+
 @end

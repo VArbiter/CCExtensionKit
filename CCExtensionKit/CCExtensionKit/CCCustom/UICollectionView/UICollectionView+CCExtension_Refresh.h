@@ -10,7 +10,10 @@
 
 #if __has_include(<MJRefresh/MJRefresh.h>)
 
-@import MJRefresh;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+    @import MJRefresh;
+#pragma clang diagnostic pop
 
 @interface UICollectionView (CCExtension_Refresh)
 

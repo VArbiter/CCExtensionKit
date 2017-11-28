@@ -8,7 +8,10 @@
 
 #if __has_include(<MBProgressHUD/MBProgressHUD.h>)
 
-@import MBProgressHUD;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+    @import MBProgressHUD;
+#pragma clang diagnostic pop
 
 typedef NS_ENUM(NSInteger , CCHudExtensionType) {
     CCHudExtensionTypeNone = 0 ,

@@ -11,8 +11,11 @@
 #if __has_include(<AFNetworking/AFNetworkReachabilityManager.h>) \
     && __has_include(<AFNetworking/AFNetworkActivityIndicatorManager.h>)
 
-#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
-#import <AFNetworking/AFNetworkReachabilityManager.h>
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+    #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+    #import <AFNetworking/AFNetworkReachabilityManager.h>
+#pragma clang diagnostic pop
 
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 

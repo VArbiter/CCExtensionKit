@@ -10,32 +10,61 @@
 
 #if __has_include(<MGJRouter/MGJRouter.h>)
 
+typedef NSString *CCRouterOperateKey NS_EXTENSIBLE_STRING_ENUM;
+typedef NSString *CCRouterRegistKey NS_EXTENSIBLE_STRING_ENUM;
+typedef NSDictionary CCRouterPatternInfo;
+typedef void (^CCRouterCompletionBlock)(id result);
+
+#ifndef CC_ROUTER_W
+    #define CC_ROUTER_W CCBridgeWrapper.shared
+#endif
+
 @import MGJRouter;
 
 @interface CCBridgeWrapper : NSObject
 
+/// note : what ever you use the 'alloc init' or some intial method ,
+/// note : this Wrapper returns the same object ,
+/// note : absolute singleton
+
++ (instancetype) new NS_UNAVAILABLE;
 + (instancetype) shared ;
 
-- (instancetype) ccFallBack : (void (^)(void)) fallBack ;
-- (instancetype) ccRegist : (NSString *) sURL
-                   action : (void(^)(NSDictionary *)) action ;
-- (instancetype) ccCall : (NSString *) sURL
-               fallBack : (void(^)(void)) fallback ;
-- (instancetype) ccCall : (NSString *) sURL
-               userInfo : (id) userInfo
-               fallBack : (void(^)(void)) fallback ;
-- (instancetype) ccObject : (NSString *) sURL
-                    value : (id(^)(id value)) value ;
-- (id) ccGet : (NSString *) sURL
-    fallBack : (void(^)(void)) fallback ;
-- (id) ccGet : (NSString *) sURL
-    userInfo : (id) userInfo
-    fallBack : (void(^)(void)) fallback ;
+// begin with scheme , like "loveCC://"
+// note : only the first time have its effect (scheme can't be re-configured again) .
++ (instancetype) sharedWithScheme : (CCRouterRegistKey) sScheme ;
 
-FOUNDATION_EXPORT NSString * const _CC_ROUTER_PARAMS_URL_;
-FOUNDATION_EXPORT NSString * const _CC_ROUTER_PARAMS_COMPLETION_;
-FOUNDATION_EXPORT NSString * const _CC_ROUTER_PARAMS_USER_INFO_;
-FOUNDATION_EXPORT NSString * const _CC_ROUTER_FALL_BACK_URL_ ;
+// regist
+- (instancetype) ccRegistFallBack : (void (^)(CCRouterPatternInfo *dInfos)) fallBack ;
+- (instancetype) ccRegistOperation : (CCRouterRegistKey) sURL
+                            action : (void(^)(CCRouterPatternInfo *dInfos)) action ;
+- (instancetype) ccRegistObject : (CCRouterRegistKey) sURL
+                          value : (id(^)(id value)) value ;
+
+// deregist
+- (instancetype) ccDeregist : (CCRouterRegistKey) sURL ;
+
+// open
+- (BOOL) ccIsCanOpen : (CCRouterRegistKey) sURL ;
+- (instancetype) ccCall : (CCRouterPatternInfo *) dPattern
+               fallBack : (void(^)(CCRouterPatternInfo *dInfos)) fallback ;
+
+- (id) ccGet : (CCRouterPatternInfo *) dPattern
+    fallBack : (void(^)(CCRouterPatternInfo *)) fallback ;
+
+FOUNDATION_EXPORT CCRouterOperateKey const _CC_ROUTER_PARAMS_URL_;
+FOUNDATION_EXPORT CCRouterOperateKey const _CC_ROUTER_PARAMS_COMPLETION_;
+FOUNDATION_EXPORT CCRouterOperateKey const _CC_ROUTER_PARAMS_USER_INFO_;
+FOUNDATION_EXPORT CCRouterOperateKey _CC_ROUTER_FALL_BACK_URL_ ; // can be customed by user with 'sharedWithScheme:' methods
+
+CCRouterPatternInfo * CC_URL_PATTERN_MAKE(CCRouterRegistKey sURL ,
+                                          NSDictionary *dUserInfo) ;
+
+/// note : completion block only works with regist methods
+/// note : if uses in call method , completion will have no values .
+CCRouterPatternInfo * CC_URL_PATTERN_COMPLETION_MAKE(CCRouterRegistKey sURL ,
+                                                     NSDictionary *dUserInfo ,
+                                                     CCRouterCompletionBlock) ;
 
 @end
 
