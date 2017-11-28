@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "CCExtensionKit"
-    s.version      = "3.4.13"
+    s.version      = "3.5.0"
     s.summary      = "CCExtensionKit."
 
     s.description  = <<-DESC
@@ -24,15 +24,12 @@ Pod::Spec.new do |s|
       coreT.dependency 'CCExtensionKit/CCData'
       coreT.dependency 'CCExtensionKit/CCView'
       coreT.dependency 'CCExtensionKit/CCRuntime'
-      # coreT.dependency 'CCExtensionKit/CCChainAssets'
     end
 
     s.subspec 'CCFull' do |fullT|
       fullT.dependency 'CCExtensionKit/CCCore'
       fullT.dependency 'CCExtensionKit/CCDataBase'
       fullT.dependency 'CCExtensionKit/CCRouter'
-      fullT.dependency 'CCExtensionKit/CCData'
-      fullT.dependency 'CCExtensionKit/CCView'
       fullT.dependency 'CCExtensionKit/CCCustom'
     end
 
