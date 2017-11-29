@@ -44,9 +44,10 @@ CCQueue CC_MAIN_QUEUE(void);
 /// non-absolute singleton
 + (instancetype) runtime ;
 
-/// original selector , target selector
+/// class original selector , target selector
 - (instancetype) ccSwizz : (SEL) selOriginal
-                  target : (SEL) selTarget ;
+                  target : (SEL) selTarget
+                   clazz : (Class) cls;
 /// interval time , timer action , return yes to stop , cancel action (cancel timer to trigger it);
 - (instancetype) ccTimer : (NSTimeInterval) intereval
                   action : (BOOL (^)(void)) action

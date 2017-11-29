@@ -32,11 +32,12 @@ static CCRuntime *__instance = nil;
 }
 
 - (instancetype) ccSwizz : (SEL) selOriginal
-                  target : (SEL) selTarget {
-    Method om = class_getInstanceMethod(self.class, selOriginal);
-    Method tm = class_getInstanceMethod(self.class, selTarget);
-    if (class_addMethod(self.class,selOriginal,method_getImplementation(tm),method_getTypeEncoding(tm))) {
-        class_replaceMethod(self.class,selTarget,method_getImplementation(om),method_getTypeEncoding(om));
+                  target : (SEL) selTarget
+                   clazz : (Class) cls {
+    Method om = class_getInstanceMethod(cls, selOriginal);
+    Method tm = class_getInstanceMethod(cls, selTarget);
+    if (class_addMethod(cls,selOriginal,method_getImplementation(tm),method_getTypeEncoding(tm))) {
+        class_replaceMethod(cls,selTarget,method_getImplementation(om),method_getTypeEncoding(om));
     }
     else method_exchangeImplementations(om, tm);
     return self;
