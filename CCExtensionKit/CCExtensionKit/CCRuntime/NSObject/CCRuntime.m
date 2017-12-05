@@ -18,118 +18,87 @@ CCQueue CC_MAIN_QUEUE(void) {
 
 @end
 
-static CCRuntime *__instance = nil;
-
 @implementation CCRuntime
 
 + (instancetype) runtime {
-    if (__instance) return __instance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __instance = [[self alloc] init];
-    });
-    return __instance;
+    return [[self alloc] init];
 }
 
-- (instancetype) ccSwizz : (SEL) selOriginal
-                  target : (SEL) selTarget
-                   clazz : (Class) cls {
+void CC_SWIZZ_METHOD(SEL selOriginal , SEL selTarget , Class cls) {
     Method om = class_getInstanceMethod(cls, selOriginal);
     Method tm = class_getInstanceMethod(cls, selTarget);
     if (class_addMethod(cls,selOriginal,method_getImplementation(tm),method_getTypeEncoding(tm))) {
         class_replaceMethod(cls,selTarget,method_getImplementation(om),method_getTypeEncoding(om));
     }
     else method_exchangeImplementations(om, tm);
-    return self;
 }
 
-- (instancetype) ccTimer : (NSTimeInterval) intereval
-                  action : (BOOL (^)(void)) action
-                  cancel : (void (^)(void)) cancel {
-    if (!action) return self;
+dispatch_source_t CC_DISPATCH_TIMER(NSTimeInterval interval ,
+                                    BOOL (^bAction)(void) ,
+                                    void (^bCancel)(void)) {
+    if (!bAction) return NULL;
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), intereval * NSEC_PER_SEC, 0);
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), interval * NSEC_PER_SEC, 0);
     dispatch_source_set_event_handler(timer, ^{
-        if (action()) dispatch_source_cancel(timer);
+        if (bAction()) dispatch_source_cancel(timer);
     });
     dispatch_source_set_cancel_handler(timer, ^{
         dispatch_group_leave(group);
-        if (cancel) cancel();
+        if (bCancel) bCancel();
     });
     dispatch_resume(timer);
-    return self;
+    return timer;
 }
 
-- (instancetype) ccAfter : (double) seconds
-                  action : (void (^)(void)) action {
-    if (!action) return self;
-    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC));
+dispatch_time_t CC_DISPATCH_AFTER(double fSeconds ,
+                                  void (^bAction)(void)) {
+    if (!bAction) return 0;
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fSeconds * NSEC_PER_SEC));
     dispatch_after(time, dispatch_get_main_queue(), ^{
-        if (action) action();
+        if (bAction) bAction();
     });
-    return self;
+    return time;
 }
 
-- (instancetype) ccAsyncM : (void(^)(void)) action {
-    return [self ccAsync:dispatch_get_main_queue()
-                  action:action];
+void CC_DISPATCH_ASYNC_M(void (^bAction)(void)) {
+    CC_DISPATCH_ASYNC(dispatch_get_main_queue(), bAction);
 }
-
-- (instancetype) ccSyncM : (void(^)(void)) action {
-    return [self ccSync:dispatch_get_main_queue()
-                 action:action];
+void CC_DISPATCH_SYNC_M(void (^bAction)(void)) {
+    CC_DISPATCH_SYNC(dispatch_get_main_queue(), bAction);
 }
-
-- (instancetype) ccAsync : (CCQueue) queue
-                  action : (void (^)(void)) action {
-    if (!queue) return self;
-    dispatch_async(queue ? queue : CC_MAIN_QUEUE(), action);
-    return self;
+void CC_DISPATCH_ASYNC(CCQueue queue , void (^bAction)(void)) {
+    if (!queue) return ;
+    dispatch_async(queue ? queue : CC_MAIN_QUEUE(), bAction);
 }
-
-- (instancetype) ccSync : (CCQueue) queue
-                 action : (void (^)(void)) action {
-    if (!queue) return self;
+void CC_DISPATCH_SYNC(CCQueue queue , void (^bAction)(void)) {
     if (pthread_main_np() != 0) {
-        if (action) action();
+        if (bAction) bAction();
     }
-    else dispatch_sync(queue ? queue : dispatch_queue_create("love.cc.love.home", NULL), action);
-    return self;
+    else dispatch_sync(queue ? queue : CC_MAIN_QUEUE(), bAction);
 }
 
-- (instancetype) ccBarrierAsync : (CCQueue) queue
-                         action : (void(^)(void)) action {
-    dispatch_barrier_async(queue ? queue : CC_MAIN_QUEUE(), action);
-    return self;
+void CC_DISPATCH_BARRIER_ASYNC(CCQueue queue , void (^bAction)(void)){
+    dispatch_barrier_async(queue ? queue : CC_MAIN_QUEUE(), bAction);
 }
 
-- (instancetype) ccApplyFor : (CCCount) count
-                      queue : (CCQueue) queue
-                       time : (void (^)(CCCount t)) time {
-    dispatch_apply(count, queue ? queue : CC_MAIN_QUEUE(), time);
-    return self;
+void CC_DISPATCH_APPLY_FOR(CCCount count , CCQueue queue , void (^bTime)(CCCount t)) {
+    dispatch_apply(count, queue ? queue : CC_MAIN_QUEUE(), bTime);
 }
-
-- (instancetype) ccSetAssociate : (id) object
-                            key : (const void *) key
-                          value : (id) value
-                         policy : (CCAssociationPolicy) policy {
+void CC_DISPATCH_SET_ASSOCIATE(id object , const void * key , id value , CCAssociationPolicy policy) {
     objc_setAssociatedObject(object, key, value, (objc_AssociationPolicy)policy);
-    return self;
 }
 
-- (id) ccGetAssociate : (id) object
-                  key : (const void *) key {
+id CC_DISPATCH_GET_ASSOCIATE(id object ,
+                             const void * key) {
     return objc_getAssociatedObject(object, key);
 }
-- (instancetype) ccGetAssociate : (id) object
-                            key : (const void *) key
-                          value : (void (^)(id t)) value {
-    if (value) value([self ccGetAssociate:object key:key]);
-    return self;
+void CC_DISPATCH_GET_ASSOCIATE_B(id object ,
+                                 const void * key ,
+                                 void (^bValue)(id value)) {
+    if (bValue) bValue(CC_DISPATCH_GET_ASSOCIATE(object, key));
 }
 
 @end
@@ -139,13 +108,12 @@ static CCRuntime *__instance = nil;
 
 @implementation CCRuntime (CCExtension_Queue)
 
-+ (CCQueue) ccCreate : (const char *) label
-             serilal : (BOOL) isSerial {
+CCQueue CC_DISPATCH_CREATE_SERIAL(const char * label , BOOL isSerial) {
     if (UIDevice.currentDevice.systemVersion.floatValue >= 10.0) {
         return dispatch_queue_create(label, isSerial ? NULL : DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL);
     } else return dispatch_queue_create(label, isSerial ? NULL : DISPATCH_QUEUE_CONCURRENT);
 }
-+ (CCQueue) ccGlobal : (CCQueueQOS) qos {
+CCQueue CC_DISPATCH_GLOBAL(CCQueueQOS qos) {
     /// for unsigned long flags , what's DOCs told that , it use for reserves for future needs .
     /// thus , for now , it's always be 0 .
     
@@ -204,9 +172,6 @@ static CCRuntime *__instance = nil;
 
 @implementation CCRuntime (CCExtension_Group)
 
-@dynamic group;
-@dynamic queue;
-
 - (void)setGroup:(CCGroup)group {
     objc_setAssociatedObject(self, "_CC_RUNTIME_ASSOCIATE_GROUP_ACTION_GROUP_", group, OBJC_ASSOCIATION_ASSIGN);
 }
@@ -226,10 +191,9 @@ CCGroup CC_GROUP_INIT(void) {
 
 - (instancetype) ccGroup : (CCGroup) group
                    queue : (CCQueue) queue {
-    CCRuntime *r = CCRuntime.alloc.init;
-    r.group = group;
-    r.queue = queue;
-    return r;
+    self.group = group;
+    self.queue = queue;
+    return self;
 }
 
 - (instancetype) ccGroupAction : (void (^)(void)) action {
@@ -264,8 +228,8 @@ CCGroup CC_GROUP_INIT(void) {
 
 @implementation CCRuntime (CCExtension_Class)
 
-- (instancetype) ccGetIVar : (Class) cls
-                    finish : (void (^)(NSDictionary <NSString * , NSString *> *dictionary)) finish {
+void CC_GET_IVAR(Class cls ,
+                 void (^bFinish)(NSDictionary <NSString * , NSString *> *dictionary)) {
     unsigned int iVars = 0;
     Ivar *ivarList = class_copyIvarList(cls, &iVars);
     
@@ -290,18 +254,21 @@ CCGroup CC_GROUP_INIT(void) {
         [dictionary setValue:sMemberType // types can be found multi times , therefore , make it values .
                       forKey:sMember];
     }
-    if (finish) finish(dictionary);
-    return self;
+    if (bFinish) bFinish(dictionary);
 }
 
-- (instancetype) ccAddMethod : (Class) cls
-                        name : (NSString *) sName
-                   impSupply : (SEL) supply {
-    class_addMethod(cls,
-                    NSSelectorFromString(sName),
-                    class_getMethodImplementation(cls, supply),
-                    "s@:@");
-    return self;
+BOOL CC_DYNAMIC_ADD_METHOD(Class cls ,
+                           NSString * sName ,
+                           SEL selSupply ,
+                           void (^bFail)(void)) {
+    BOOL b = class_addMethod(cls,
+                             NSSelectorFromString(sName),
+                             class_getMethodImplementation(cls, selSupply),
+                             "s@:@");
+    if (!b) {
+        if (bFail) bFail();
+    }
+    return b;
 }
 
 @end

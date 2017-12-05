@@ -13,6 +13,7 @@
 		3773C2051FC0258300C7F384 /* CCGradientLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3773C2041FC0258300C7F384 /* CCGradientLayerView.m */; };
 		3773C2091FC0269700C7F384 /* NSUserDefaults+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3773C2081FC0269700C7F384 /* NSUserDefaults+CCExtension.m */; };
 		3773C2111FC06CBC00C7F384 /* CCFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3773C2101FC06CBC00C7F384 /* CCFit.m */; };
+		377548E01FD6B45500CBA4CE /* CCDropAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 377548DF1FD6B45500CBA4CE /* CCDropAlertView.m */; };
 		377CAD1A1F0105E800AE46A8 /* 0ZG63407-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 377CAD191F0105E800AE46A8 /* 0ZG63407-0.png */; };
 		37B52EDE1FC7D383009C17FF /* NSNotificationCenter+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B52EDD1FC7D382009C17FF /* NSNotificationCenter+CCExtension.m */; };
 		37C69E1A1ED6684D00531ED3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E191ED6684D00531ED3 /* main.m */; };
@@ -86,6 +87,8 @@
 		3773C2081FC0269700C7F384 /* NSUserDefaults+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+CCExtension.m"; sourceTree = "<group>"; };
 		3773C20F1FC06CBC00C7F384 /* CCFit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCFit.h; sourceTree = "<group>"; };
 		3773C2101FC06CBC00C7F384 /* CCFit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCFit.m; sourceTree = "<group>"; };
+		377548DE1FD6B45500CBA4CE /* CCDropAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDropAlertView.h; sourceTree = "<group>"; };
+		377548DF1FD6B45500CBA4CE /* CCDropAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCDropAlertView.m; sourceTree = "<group>"; };
 		377CAD191F0105E800AE46A8 /* 0ZG63407-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0ZG63407-0.png"; sourceTree = "<group>"; };
 		37B52EDC1FC7D382009C17FF /* NSNotificationCenter+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+CCExtension.h"; sourceTree = "<group>"; };
 		37B52EDD1FC7D382009C17FF /* NSNotificationCenter+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+CCExtension.m"; sourceTree = "<group>"; };
@@ -269,6 +272,15 @@
 				3773C2101FC06CBC00C7F384 /* CCFit.m */,
 			);
 			path = CCFit;
+			sourceTree = "<group>";
+		};
+		377548DD1FD6B45500CBA4CE /* CCDropAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				377548DE1FD6B45500CBA4CE /* CCDropAlertView.h */,
+				377548DF1FD6B45500CBA4CE /* CCDropAlertView.m */,
+			);
+			path = CCDropAlertView;
 			sourceTree = "<group>";
 		};
 		37B52EDB1FC7D382009C17FF /* NSNotificationCenter */ = {
@@ -820,6 +832,7 @@
 		70FF2FCE1F6A34BD001B6407 /* CCOriginalCustom */ = {
 			isa = PBXGroup;
 			children = (
+				377548DD1FD6B45500CBA4CE /* CCDropAlertView */,
 				3773C2021FC0255D00C7F384 /* CCGradientView */,
 				70FF2FCF1F6A34BD001B6407 /* CCEasyWebView */,
 				70FF2FD21F6A34BD001B6407 /* UIMenuController */,
@@ -1094,6 +1107,7 @@
 				7034D6AF1F5FBF3C0005D1E1 /* UITextField+CCExtension.m in Sources */,
 				70A3CC6A1F6B89FE00CCD480 /* CCRealmHandler.m in Sources */,
 				7034D6AB1F5FBF3C0005D1E1 /* UILabel+CCExtension.m in Sources */,
+				377548E01FD6B45500CBA4CE /* CCDropAlertView.m in Sources */,
 				375E52041F9C2F94007B057E /* CCTestViewController.m in Sources */,
 				7034D6991F5FBF3C0005D1E1 /* NSTimer+CCExtension.m in Sources */,
 				70FF2FE41F6A4824001B6407 /* UIImageView+CCExtension_WeakNetwork.m in Sources */,

@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 
 typedef NS_ENUM(unsigned long , CCAssociationPolicy) {
-    CCAssociationPolicy_assign = 0,
-    CCAssociationPolicy_retain_nonatomic = 1,
-    CCAssociationPolicy_copy_nonatomic = 3,
-    CCAssociationPolicy_retain = 01401,
-    CCAssociationPolicy_copy = 01403
+    CCAssociationPolicy_assign = OBJC_ASSOCIATION_ASSIGN,
+    CCAssociationPolicy_retain_nonatomic = OBJC_ASSOCIATION_RETAIN_NONATOMIC,
+    CCAssociationPolicy_copy_nonatomic = OBJC_ASSOCIATION_COPY_NONATOMIC,
+    CCAssociationPolicy_retain = OBJC_ASSOCIATION_RETAIN,
+    CCAssociationPolicy_copy = OBJC_ASSOCIATION_COPY
 };
 
 typedef NS_ENUM(unsigned int , CCQueueQOS) {
@@ -41,48 +42,50 @@ CCQueue CC_MAIN_QUEUE(void);
 
 @interface CCRuntime : NSObject
 
-/// non-absolute singleton
+/// constructor
 + (instancetype) runtime ;
 
 /// class original selector , target selector
-- (instancetype) ccSwizz : (SEL) selOriginal
-                  target : (SEL) selTarget
-                   clazz : (Class) cls;
+void CC_SWIZZ_METHOD(SEL selOriginal ,
+                     SEL selTarget ,
+                     Class cls) ;
+
 /// interval time , timer action , return yes to stop , cancel action (cancel timer to trigger it);
-- (instancetype) ccTimer : (NSTimeInterval) intereval
-                  action : (BOOL (^)(void)) action
-                  cancel : (void (^)(void)) cancel ;
+dispatch_source_t CC_DISPATCH_TIMER(NSTimeInterval interval ,
+                                    BOOL (^bAction)(void) ,
+                                    void (^bCancel)(void)) ;
 /// interval time , actions
-- (instancetype) ccAfter : (double) seconds
-                  action : (void (^)(void)) action ;
+dispatch_time_t CC_DISPATCH_AFTER(double fSeconds ,
+                                  void (^bAction)(void)) ;
 /// async to main
-- (instancetype) ccAsyncM : (void(^)(void)) action ;
+void CC_DISPATCH_ASYNC_M(void (^bAction)(void)) ;
 /// sync to main . warning : do NOT deploy it in MAIN QUEUE , other wise will cause lock done .
-- (instancetype) ccSyncM : (void(^)(void)) action ;
+void CC_DISPATCH_SYNC_M(void (^bAction)(void)) ;
 /// async to specific queue
-- (instancetype) ccAsync : (CCQueue) queue
-                  action : (void (^)(void)) action ;
+void CC_DISPATCH_ASYNC(CCQueue queue ,
+                       void (^bAction)(void)) ;
 /// sync to specific queue , warning : do NOT deploy it in MAIN QUEUE , other wise will cause lock done .
-- (instancetype) ccSync : (CCQueue) queue
-                 action : (void (^)(void)) action ;
+void CC_DISPATCH_SYNC(CCQueue queue ,
+                      void (^bAction)(void)) ;
 /// equals to dispatch_barrier_async
-- (instancetype) ccBarrierAsync : (CCQueue) queue
-                         action : (void(^)(void)) action ;
+void CC_DISPATCH_BARRIER_ASYNC(CCQueue queue ,
+                               void (^bAction)(void)) ;
 /// equals to dispatch_apply
-- (instancetype) ccApplyFor : (CCCount) count
-                      queue : (CCQueue) queue
-                       time : (void (^)(CCCount t)) time ;
+void CC_DISPATCH_APPLY_FOR(CCCount count ,
+                           CCQueue queue ,
+                           void (^bTime)(CCCount t)) ;
+
 /// equals to objc_setAssociatedObject
-- (instancetype) ccSetAssociate : (id) object
-                            key : (const void *) key
-                          value : (id) value
-                         policy : (CCAssociationPolicy) policy;
+void CC_DISPATCH_SET_ASSOCIATE(id object ,
+                               const void * key ,
+                               id value ,
+                               CCAssociationPolicy policy) ;
 /// equals to objc_getAssociatedObject
-- (id) ccGetAssociate : (id) object
-                  key : (const void *) key ;
-- (instancetype) ccGetAssociate : (id) object
-                            key : (const void *) key
-                          value : (void (^)(id t)) value ;
+id CC_DISPATCH_GET_ASSOCIATE(id object ,
+                             const void * key) ;
+void CC_DISPATCH_GET_ASSOCIATE_B(id object ,
+                                 const void * key ,
+                                 void (^bValue)(id value)) ;
 
 @end
 
@@ -90,26 +93,20 @@ CCQueue CC_MAIN_QUEUE(void);
 
 @interface CCRuntime (CCExtension_Queue)
 
-+ (CCQueue) ccCreate : (const char *) label
-             serilal : (BOOL) isSerial ;
-+ (CCQueue) ccGlobal : (CCQueueQOS) qos ;
+CCQueue CC_DISPATCH_CREATE_SERIAL(const char * label , BOOL isSerial) ;
+CCQueue CC_DISPATCH_GLOBAL(CCQueueQOS qos) ;
 
 @end
 
 #pragma mark - -----
 
-@protocol CCRunTimeGroupProtocol <NSObject>
-
-@property (nonatomic , strong) CCGroup group;
-@property (nonatomic , strong) CCQueue queue;
-
-@end
-
-@interface CCRuntime (CCExtension_Group) < CCRunTimeGroupProtocol >
+@interface CCRuntime (CCExtension_Group)
 
 CCGroup CC_GROUP_INIT(void);
 
-/// return a new object of CCRuntime , not the shared instance .
+@property (nonatomic) CCGroup group;
+@property (nonatomic) CCQueue queue;
+
 - (instancetype) ccGroup : (CCGroup) group
                    queue : (CCQueue) queue ;
 /// actions for group , can deploy it for muti times
@@ -140,11 +137,12 @@ CCGroup CC_GROUP_INIT(void);
 @interface CCRuntime (CCExtension_Class) 
 
 /// class that want to be found , <types , properties>
-- (instancetype) ccGetIVar : (Class) cls
-                    finish : (void (^)(NSDictionary <NSString * , NSString *> *dictionary)) finish ;
+void CC_GET_IVAR(Class cls ,
+                 void (^bFinish)(NSDictionary <NSString * , NSString *> *dictionary)) ;
 /// add a method with one argument .
-- (instancetype) ccAddMethod : (Class) cls
-                        name : (NSString *) sName
-                   impSupply : (SEL) supply ;
+BOOL CC_DYNAMIC_ADD_METHOD(Class cls ,
+                           NSString * sName ,
+                           SEL selSupply ,
+                           void (^bFail)(void)) ;
 
 @end
