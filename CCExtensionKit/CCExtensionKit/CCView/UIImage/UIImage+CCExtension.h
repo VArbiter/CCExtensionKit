@@ -12,6 +12,10 @@
     #define CC_IMAGE_B(_value_) [UIImage ccBundle:self.class name:(_value_)]
 #endif
 
+#ifndef CC_IMAGE_MODULE_B
+    #define CC_IMAGE_MODULE_B(_module_,_value_) [UIImage ccBundle:self.class module:(_module_) name:(_value_)]
+#endif
+
 #ifndef CC_IMAGE_NAME
     #define CC_IMAGE_NAME(_value_) [UIImage ccName:(_value_)]
 #endif
@@ -39,6 +43,9 @@
 /// class , imageName
 + (instancetype) ccBundle : (Class) cls
                      name : (NSString *) sName;
++ (instancetype) ccBundle : (Class) cls
+                   module : (NSString *) sModule
+                     name : (NSString *) sName ;
 + (instancetype) ccName : (NSString *) sName ;
 + (instancetype) ccName : (NSString *) sName
                  bundle : (NSBundle *) bundle ;

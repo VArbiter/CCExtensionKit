@@ -43,16 +43,30 @@
 /// class , imageName
 + (instancetype) ccBundle : (Class) cls
                      name : (NSString *) sName {
+    return [self ccBundle:cls
+                   module:nil
+                     name:sName];
+}
++ (instancetype) ccBundle : (Class) cls
+                   module : (NSString *) sModule
+                     name : (NSString *) sName {
     NSBundle *b = [NSBundle bundleForClass:cls];
     NSString *bName = b.infoDictionary[@"CFBundleName"];
     NSString *sc = [NSString stringWithFormat:@"%ld",(NSInteger)UIScreen.mainScreen.scale];
     NSString *temp = [[[sName stringByAppendingString:@"@"] stringByAppendingString:sc] stringByAppendingString:@"x"];
-    NSString *p = [b pathForResource:temp
-                              ofType:@"png"
-                         inDirectory:[bName stringByAppendingString:@".bundle"]];
+    NSString *p = nil;
+    if (sModule && sModule.length) {
+        sModule = [sModule stringByReplacingOccurrencesOfString:@"/" withString:@""];
+        p = [b pathForResource:temp
+                        ofType:@"png"
+                   inDirectory:[[bName stringByAppendingPathComponent:sModule] stringByAppendingString:@".bundle"]];
+    }
+    else p = [b pathForResource:temp
+                         ofType:@"png"
+                    inDirectory:[bName stringByAppendingString:@".bundle"]];
     UIImage *image = [UIImage imageWithContentsOfFile:p];
 #if DEBUG
-    if (!image) NSLog(@"image Named \"%@\" with class \"%@\" not found , return new image istead",sName,NSStringFromClass(cls));
+    if (!image) NSLog(@"\n ----- [CCExtensionKit] image Named \"%@\" with class \"%@\" not found , return new image istead",sName,NSStringFromClass(cls));
 #endif
     return (image ? image : UIImage.new);
 }

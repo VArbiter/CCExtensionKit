@@ -31,6 +31,7 @@
             NSString *string = (NSString *) self;
             if (string.length
                 && ![string isEqualToString:@"(null)"]
+                && ![string isEqualToString:@"<null>"]
                 && ![string isKindOfClass:NSNull.class]) {
                 return (NSString *)self;
             }

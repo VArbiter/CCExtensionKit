@@ -67,6 +67,8 @@
         NSLog(@"editing did begin / end ----- %@" , sender.text);
     }];
 //    [t ccRemoveEvent:UIControlEventEditingChanged];
+    UIImageView *v = nil;
+    v.image = CC_IMAGE_MODULE_B(@"", @"0ZG63407-0");
 }
 
 + (void) ts {
