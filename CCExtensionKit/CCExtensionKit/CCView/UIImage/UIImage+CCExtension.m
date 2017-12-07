@@ -59,7 +59,7 @@
         sModule = [sModule stringByReplacingOccurrencesOfString:@"/" withString:@""];
         p = [b pathForResource:temp
                         ofType:@"png"
-                   inDirectory:[[bName stringByAppendingPathComponent:sModule] stringByAppendingString:@".bundle"]];
+                   inDirectory:[sModule stringByAppendingString:@".bundle"]];
     }
     else p = [b pathForResource:temp
                          ofType:@"png"

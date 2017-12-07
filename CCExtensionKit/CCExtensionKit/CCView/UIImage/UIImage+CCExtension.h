@@ -44,7 +44,7 @@
 + (instancetype) ccBundle : (Class) cls
                      name : (NSString *) sName;
 + (instancetype) ccBundle : (Class) cls
-                   module : (NSString *) sModule
+                   module : (NSString *) sModule // the module for archiving bundle .
                      name : (NSString *) sName ;
 + (instancetype) ccName : (NSString *) sName ;
 + (instancetype) ccName : (NSString *) sName
