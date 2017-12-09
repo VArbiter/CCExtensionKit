@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "CCExtensionKit"
-    s.version      = "3.6.3"
+    s.version      = "3.6.3.1"
     s.summary      = "CCExtensionKit."
 
     s.description  = <<-DESC
@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "8.0"
 
     s.source = { :git => "https://github.com/VArbiter/CCLocalLibrary.git" , :tag => s.version.to_s}
+    s.compiler_flags = '-Wstrict-prototypes'
 
     s.default_subspec = 'CCCore'
 
