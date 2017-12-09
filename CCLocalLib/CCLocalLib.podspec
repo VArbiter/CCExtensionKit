@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "CCLocalLib"
-    s.version      = "2.2.3"
+    s.version      = "2.2.4"
     s.summary      = "CCLocalLib."
 
     s.description  = <<-DESC
@@ -25,5 +25,7 @@ Pod::Spec.new do |s|
     s.dependency 'MJRefresh', '~> 3.1.12'
     s.dependency 'AFNetworking', '~> 3.1.0'
     s.requires_arc = true
+    s.deprecated = true
+    s.deprecated_in_favor_of = 'CCExtensionKit'
 
 end
