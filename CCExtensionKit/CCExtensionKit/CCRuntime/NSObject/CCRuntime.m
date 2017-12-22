@@ -196,14 +196,18 @@ CCGroup CC_GROUP_INIT(void) {
     return self;
 }
 
-- (instancetype) ccGroupAction : (void (^)(void)) action {
-    dispatch_group_async(self.group, self.queue, action);
+- (instancetype) ccGroupAction : (void (^)(CCRuntime * sender)) action {
+    dispatch_group_async(self.group, self.queue, ^{
+        if (action) action(self);
+    });
     return self;
 }
 
 - (instancetype) ccNotify : (CCQueue) queue
-                   finish : (void(^)(void)) finish {
-    dispatch_group_notify(self.group, queue, finish);
+                   finish : (void(^)(CCRuntime * sender)) finish {
+    dispatch_group_notify(self.group, queue, ^{
+        if (finish) finish(self);
+    });
     return self;
 }
 

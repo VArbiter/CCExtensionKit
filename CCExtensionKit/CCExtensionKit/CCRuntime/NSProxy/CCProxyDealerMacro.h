@@ -35,7 +35,7 @@
 #endif
 
 #ifndef CC_PROXY_DEALER_INTERFACE
-    /// name , protocols that want to be simulated
+    /// name , protocols that want to be simulated // 名称 , 想被模仿的协议
 
     #define CC_PROXY_DEALER_INTERFACE(_name_ , ...) \
 \
@@ -48,7 +48,7 @@
 #endif
 
 #ifndef CC_PROXY_DEALER_IMPLEMENTATION
-    /// name , it should be the name that passing though CC_PROXY_DEALER_INTERFACE.
+    /// name , it should be the name that passing though CC_PROXY_DEALER_INTERFACE. // 名称 , 应该是 传入 CC_PROXY_DEALER_INTERFACE 的
 
     #define CC_PROXY_DEALER_IMPLEMENTATION(_name_) \
 \

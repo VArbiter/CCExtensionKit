@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger , CCSupportType) {
-    CCSupportTypeNone = 0, // all access denied
-    CCSupportTypeAll , // all
-    CCSupportTypePhotoLibrary , // photos library
+    CCSupportTypeNone = 0, // all access denied // 所有都被拒绝
+    CCSupportTypeAll , // all // 所有允许通行
+    CCSupportTypePhotoLibrary , // photos library // 图库
     CCSupportTypeVideo ,
     CCSupportTypeAudio
 };
@@ -19,8 +19,8 @@ typedef NS_ENUM(NSInteger , CCSupportType) {
 @interface CCAuthorize : NSObject
 
 + (instancetype) shared ;
-/// has authorize to sepecific settings .
-/// the return value for fail , decide whether if need to guide to setting pages .
+/// has authorize to sepecific settings . // 是否有某个权限
+/// the return value for fail , decide whether if need to guide to setting pages . // fail block 的返回值决定是否打开设置页面
 - (instancetype) ccHasAuthorize : (CCSupportType) type
                         success : (void (^)(void)) success
                            fail : (BOOL (^)(void)) fail ;

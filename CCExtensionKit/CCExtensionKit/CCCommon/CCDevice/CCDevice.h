@@ -30,6 +30,8 @@
 
 @interface CCDevice : NSObject
 
++ (NSString *) ccDeviceInfo ;
+
 + (NSString *) ccDeviceType ;
 
 + (NSString *) ccSystemVersion ;

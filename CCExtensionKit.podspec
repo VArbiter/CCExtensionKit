@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "CCExtensionKit"
-    s.version      = "3.6.3.1"
+    s.version      = "3.6.3.2"
     s.summary      = "CCExtensionKit."
 
     s.description  = <<-DESC
@@ -11,11 +11,11 @@ Pod::Spec.new do |s|
                    DESC
 
     s.author       = { "冯明庆" => "elwinfrederick@163.com" }
-    s.homepage = "https://github.com/VArbiter/CCLocalLibrary"
+    s.homepage = "https://github.com/VArbiter/CCExtensionKit"
     s.license  = "MIT"
     s.platform     = :ios, "8.0"
 
-    s.source = { :git => "https://github.com/VArbiter/CCLocalLibrary.git" , :tag => s.version.to_s}
+    s.source = { :git => "https://github.com/VArbiter/CCExtensionKit.git" , :tag => s.version.to_s}
     s.compiler_flags = '-Wstrict-prototypes'
 
     s.default_subspec = 'CCCore'
@@ -70,6 +70,11 @@ Pod::Spec.new do |s|
         view.source_files = 'CCExtensionKit/CCExtensionKit/CCView/**/*'
         view.frameworks = "CoreGraphics" , "QuartzCore"
         view.dependency 'CCExtensionKit/CCProtocol'
+      end
+
+      s.subspec 'CCOrigin' do |origin|
+        origin.source_files = 'CCExtensionKit/CCExtensionKit/CCOrigin/**/*'
+        origin.dependency 'CCExtensionKit/CCCore'
       end
 
       s.subspec 'CCCustom' do |custom|

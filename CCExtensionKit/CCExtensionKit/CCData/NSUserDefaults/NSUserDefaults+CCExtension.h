@@ -10,10 +10,10 @@
 
 @interface NSUserDefaults (CCExtension)
 
-/// an easy way to do 'standardUserDefaults' && 'synchronize'
+/// an easy way to do 'standardUserDefaults' && 'synchronize' // 一个简便的方式去调用 standardUserDefaults 和 synchronize
 BOOL CC_USER_DEFAULLTS(void (^bDef)(NSUserDefaults *sender)) ;
 
-/// reset standard userDefaults .
+/// reset standard userDefaults . // 重置 standardUserDefaults
 void CC_RESET_USER_DEFAULLTS(void) ;
 
 @end

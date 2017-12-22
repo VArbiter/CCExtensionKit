@@ -23,9 +23,9 @@
 
 @interface NSMutableAttributedString (CCExtension)
 
-- (NSMutableAttributedString *) ccAttributeC : (NSString *) sKey
+- (NSMutableAttributedString *) ccAttributeC : (NSAttributedStringKey) sKey
                                        value : (id) value ;
-- (NSMutableAttributedString *) ccAttributeS : (NSDictionary *) dAttributes ;
+- (NSMutableAttributedString *) ccAttributeS : (NSDictionary <NSAttributedStringKey , id> *) dAttributes ;
 
 @end
 

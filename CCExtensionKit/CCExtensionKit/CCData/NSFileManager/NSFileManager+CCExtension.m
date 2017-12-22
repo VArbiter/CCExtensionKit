@@ -52,7 +52,7 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
     if ([self ccIsDirectoryT:sPath]) return YES;
     NSError *e = nil;
     BOOL b = [self createDirectoryAtPath:sPath
-             withIntermediateDirectories:YES // whether if create middle path
+             withIntermediateDirectories:YES // whether if create middle path // 是否创建中间路径
                               attributes:nil
                                    error:&e];
     return e ? false : b;
@@ -95,7 +95,7 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
     if (!sPath || !sPath.length) return @"";
     if ([self ccIsDirectoryT:sPath]) return @"";
     if (![self ccExistsT:sPath]) return @"";
-    if ([self ccFileSizeT:sPath] >= 10 * pow(10, 6)) { // file limit 10 MB
+    if ([self ccFileSizeT:sPath] >= 10 * pow(10, 6)) { // file limit 10 MB // 文件限制 10 M
         return [self ccMD5Large:sPath] ;
     }
     return [self ccMD5Normal:sPath];
@@ -129,29 +129,29 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
     if ([self ccIsDirectoryT:sPath]) return @"";
     if (![self ccExistsT:sPath]) return @"";
     NSString *(^t)(CFStringRef stringRefPath , size_t sizeChunk) = ^NSString *(CFStringRef stringRefPath , size_t sizeChunk) {
-        // Declare needed variables
+        // Declare needed variables // 声明变量
         CFStringRef result = NULL;
         CFReadStreamRef readStream = NULL;
-        // Get the file URL
+        // Get the file URL // 获得文件 URL
         CFURLRef fileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
                                                          (CFStringRef)stringRefPath,
                                                          kCFURLPOSIXPathStyle,
                                                          (Boolean)false);
         if (!fileURL) goto done;
-        // Create and open the read stream
+        // Create and open the read stream // 创建文件输入流
         readStream = CFReadStreamCreateWithFile(kCFAllocatorDefault,
                                                 (CFURLRef)fileURL);
         if (!readStream) goto done;
         bool didSucceed = (bool)CFReadStreamOpen(readStream);
         if (!didSucceed) goto done;
-        // Initialize the hash object
+        // Initialize the hash object // 创建哈希对象
         CC_MD5_CTX hashObject;
         CC_MD5_Init(&hashObject);
-        // Make sure chunkSizeForReadingData is valid
+        // Make sure chunkSizeForReadingData is valid // 保证 读取对象的 会大小是有效的
         if (!sizeChunk) {
             sizeChunk = _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_;
         }
-        // Feed the data to the hash object
+        // Feed the data to the hash object // 将 data 给 哈希对象
         bool hasMoreData = true;
         while (hasMoreData) {
             uint8_t buffer[sizeChunk];
@@ -163,14 +163,14 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
             }
             CC_MD5_Update(&hashObject,(const void *)buffer,(CC_LONG)readBytesCount);
         }
-        // Check if the read operation succeeded
+        // Check if the read operation succeeded // 检查读取操作是否成功
         didSucceed = !hasMoreData;
-        // Compute the hash digest
+        // Compute the hash digest // 计算 哈希值
         unsigned char digest[CC_MD5_DIGEST_LENGTH];
         CC_MD5_Final(digest, &hashObject);
-        // Abort if the read operation failed
+        // Abort if the read operation failed // 放弃如果读操作失败
         if (!didSucceed) goto done;
-        // Compute the string result
+        // Compute the string result // 计算字符串对象
         char hash[2 * sizeof(digest) + 1];
         for (size_t i = 0; i < sizeof(digest); ++i) {
             snprintf(hash + (2 * i), 3, "%02x", (int)(digest[i]));
@@ -195,7 +195,7 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
     CFStringRef sContentRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,
                                                                     (__bridge CFStringRef)(sExtension),
                                                                     NULL);
-    return CFBridgingRelease(sContentRef); // hanleded to arc
+    return CFBridgingRelease(sContentRef); // hanleded to arc // 交给 ARC 管理
 }
 
 

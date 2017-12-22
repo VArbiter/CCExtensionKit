@@ -17,7 +17,7 @@
 + (instancetype) macAddress ;
 + (instancetype) webURL ;
 
-// only in china
+// only in china // 仅在中国有效
 
 + (instancetype) cellPhone ;
 + (instancetype) chinaMobile ;
@@ -45,7 +45,7 @@
 - (instancetype) isMacAddress ;
 - (instancetype) isWebURL ;
 
-// only in china
+// only in china // 仅在中国有效
 + (BOOL) ccAccurateVerifyID : (NSString *) sID;
 
 - (instancetype) isAccurateIdentity ;

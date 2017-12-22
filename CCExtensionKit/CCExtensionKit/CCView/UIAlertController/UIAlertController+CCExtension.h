@@ -12,7 +12,7 @@ typedef NSDictionary CCAlertActionInfo;
 
 @interface UIAlertController (CCExtension)
 
-/// default alert
+/// default alert // 默认 alert 样式
 + (instancetype) common ;
 + (instancetype) common : (UIAlertControllerStyle) style ;
 

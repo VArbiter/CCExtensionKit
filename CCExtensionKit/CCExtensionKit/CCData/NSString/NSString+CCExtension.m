@@ -117,6 +117,28 @@
     return ((s && s.length) ? s : @"");
 }
 
++ (instancetype) ccLocalized : (Class) cls
+                      module : (NSString *) sModule
+                     strings : (NSString *) sStrings
+                         key : (NSString *) sKey
+                     comment : (NSString *) sComment {
+    NSBundle *b = [NSBundle bundleForClass:cls];
+    NSString *s = nil;
+    if (sModule && sModule.length) {
+        sModule = [sModule stringByReplacingOccurrencesOfString:@"/" withString:@""];
+        NSString *p = [b pathForResource:sModule
+                                  ofType:@"bundle"
+                             inDirectory:nil];
+        NSBundle *bS = [NSBundle bundleWithPath:p];
+        s = NSLocalizedStringFromTableInBundle(sKey, sStrings, bS, nil);
+    }
+    else s = NSLocalizedStringFromTableInBundle(sKey, sStrings, b, nil);
+#if DEBUG
+    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" in module \"%@\" not found , return @\"\" istead",sKey,sModule);
+#endif
+    return ((s && s.length) ? s : @"");
+}
+
 @end
 
 #pragma mark - -----

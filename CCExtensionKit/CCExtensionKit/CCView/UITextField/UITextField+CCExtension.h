@@ -12,11 +12,12 @@
 @interface UITextField (CCExtension)
 
 + (instancetype) common : (CGRect) frame ;
+
 - (instancetype) ccDelegateT : (id <UITextFieldDelegate>) delegete ;
 - (instancetype) ccPlaceHolder : (NSDictionary <NSString * , id> *) dAttributes
                         string : (NSString *) string ;
 
-/// default with a image View that already size-to-fit with original image .
+/// default with a image View that already size-to-fit with original image . // 默认使用一个 sizeToFit 的 imageView (original) .
 - (instancetype) ccLeftView : (UIImage *) image
                        mode : (UITextFieldViewMode) mode ;
 - (instancetype) ccRightView : (UIImage *) image
@@ -24,17 +25,17 @@
 
 @property (nonatomic , readonly) BOOL resignFirstResponderT;
 
-/// observer text did change
-/// note : it has no conflict on [UITextField.instance ccTextEvent:action:]
-/// note : therefore when use [UITextField.instance ccTextDidChange:]
-/// note : [UITextField.instance ccTextEvent:UIControlEventEditingChanged action:***] not should be done .
+/// observer text did change // 监听 textField 输入变化
+/// note : it has no conflict on [UITextField.instance ccTextEvent:action:] // 和 [UITextField.instance ccTextEvent:action:] 没有冲突
+/// note : therefore when use [UITextField.instance ccTextDidChange:] // 所以使用 [UITextField.instance ccTextDidChange:] 的时候
+/// note : [UITextField.instance ccTextEvent:UIControlEventEditingChanged action:***] not should be done . // [UITextField.instance ccTextEvent:UIControlEventEditingChanged action:***] 不应该被实现
 - (instancetype) ccTextDidChange : (void (^)(__kindof UITextField *sender)) bChanged ;
 
-/// note : only events below allowed
-/// note : if you accidently removed the event of 'UIControlEventEditingChanged'
-/// note : [UITextField.instance ccTextDidChange:] will also , has no effect
-/// note : all events within , always respond the latest action .
-/// note : that means , for single instance , it's shared .
+/// note : only events below allowed // 仅仅下列事件被允许
+/// note : if you accidently removed the event of 'UIControlEventEditingChanged' // 如果你不小心移除了 UIControlEventEditingChanged
+/// note : [UITextField.instance ccTextDidChange:] will also , has no effect // [UITextField.instance ccTextDidChange:] 将会没有任何效果
+/// note : all events within , always respond the latest action . // 所有的事件 , 响应到最近的
+/// note : that means , for single instance , it's shared . // 所以 针对单个的实例来说 , 它是共享的
 // UIControlEventEditingDidBegin
 // UIControlEventEditingChanged
 // UIControlEventEditingDidEnd

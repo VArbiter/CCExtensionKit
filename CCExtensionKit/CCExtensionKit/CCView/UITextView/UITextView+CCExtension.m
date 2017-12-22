@@ -10,12 +10,11 @@
 
 @implementation UITextView (CCExtension)
 
-+ (instancetype) common : (CGRect) frame {
-    UITextView *v = [[UITextView alloc] initWithFrame:frame];
-    v.layer.backgroundColor = UIColor.clearColor.CGColor;
-    v.editable = YES;
-    v.selectable = false;
-    return v;
+- (instancetype) ccMakeDefault {
+    self.layer.backgroundColor = UIColor.clearColor.CGColor;
+    self.editable = YES;
+    self.selectable = false;
+    return self;
 }
 
 - (instancetype) ccDelegateT : (id <UITextViewDelegate>) delegate {

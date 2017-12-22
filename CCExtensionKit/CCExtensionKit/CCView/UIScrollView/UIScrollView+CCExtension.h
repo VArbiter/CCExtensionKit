@@ -15,7 +15,7 @@
 - (instancetype) ccContentSize : (CGSize) size ;
 - (instancetype) ccDelegateT : (id) delegate ;
 
-/// animated is YES .
+/// animated is YES . // 启用 动画
 - (instancetype) ccAnimatedOffset : (CGPoint) offSet ;
 - (instancetype) ccAnimatedOffset : (CGPoint) offSet
                          animated : (BOOL) isAnimated ;

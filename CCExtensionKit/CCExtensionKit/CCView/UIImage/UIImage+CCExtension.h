@@ -30,28 +30,28 @@
 
 @interface UIImage (CCExtension)
 
-/// for image size && width
+/// for image size && width // 获得 image 的宽和高
 @property (nonatomic , readonly) CGFloat width ;
 @property (nonatomic , readonly) CGFloat height ;
 
-/// scale size with radius
+/// scale size with radius // 按比例缩放图片
 - (CGSize) ccZoom : (CGFloat) fRadius ;
 - (instancetype) ccResizable : (UIEdgeInsets) insets ;
 - (instancetype) ccRendaring : (UIImageRenderingMode) mode ;
 - (instancetype) ccAlwaysOriginal ;
 
-/// class , imageName
+/// class , imageName // 类名 , 图片名称
 + (instancetype) ccBundle : (Class) cls
                      name : (NSString *) sName;
 + (instancetype) ccBundle : (Class) cls
-                   module : (NSString *) sModule // the module for archiving bundle .
+                   module : (NSString *) sModule // the module for archiving bundle . // 用来打包的 module
                      name : (NSString *) sName ;
 + (instancetype) ccName : (NSString *) sName ;
 + (instancetype) ccName : (NSString *) sName
                  bundle : (NSBundle *) bundle ;
 + (instancetype) ccFile : (NSString *) sPath ;
 
-/// create an image with current window
+/// create an image with current window // 对当前 window 进行截图
 + (instancetype) ccCaptureCurrent ;
 
 @end
@@ -63,9 +63,9 @@
 FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_VALUE_ ;
 FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 
-// for gaussian issues
+// for blur issues // 针对模糊
 
-/// using Accelerate
+/// using Accelerate // 使用 Accelerate 框架
 - (instancetype) ccGaussianAcc ;
 - (instancetype) ccGaussianAcc : (CGFloat) fRadius ;
 - (instancetype) ccGaussianAcc : (CGFloat) fRadius
@@ -74,9 +74,9 @@ FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
                           tint : (UIColor *) tint
                       complete : (void(^)(UIImage *origin , UIImage *processed)) complete ;
 
-/// using CoreImage
-- (instancetype) ccGaussianCI ; // sync , not recommended
-- (instancetype) ccGaussianCI : (CGFloat) fRadius ; // sync , not recommended
+/// using CoreImage // 使用 CoreImage 框架
+- (instancetype) ccGaussianCI ; // sync , not recommended // 同步 , 不建议
+- (instancetype) ccGaussianCI : (CGFloat) fRadius ; // sync , not recommended // 同步 , 不建议
 - (instancetype) ccGaussianCI : (CGFloat) fRadius
                      complete : (void(^)(UIImage *origin , UIImage *processed)) complete ; // async
 
@@ -89,12 +89,12 @@ FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 
 FOUNDATION_EXPORT CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
 
-// available for PNG && JPEG
+// available for PNG && JPEG // 对于 PNG 和 JPEG 起效
 
 @property (nonatomic , readonly) NSData *toData ;
-/// compress and limit it with in a fitable range .
+/// compress and limit it with in a fitable range . // 压缩 , 并限制图片在合适的大小
 - (NSData *) ccCompresssJPEG : (CGFloat) fQuility;
-/// arguments with Mbytes .
+/// arguments with Mbytes . // 参数是 兆 为单位的
 - (BOOL) ccIsOverLimitFor : (CGFloat) fMBytes ;
 
 @end
@@ -112,8 +112,8 @@ typedef NS_ENUM(NSInteger , CCImageType) {
 
 @interface NSData (CCExtension_Image)
 
-/// technically , you have to read all 8-Bytes length to specific an imageType .
-/// for now , i just use the first to decide is type . (borrowed from SDWebImage) .
+/// technically , you have to read all 8-Bytes length to specific an imageType . // 从技术角度上来说 , 你必须读取所有的 8 个字节才能确定一张图片的类型
+/// for now , i just use the first to decide is type . (borrowed from SDWebImage) . // 目前 , 我只是读取了首个 , (借鉴自 SDWebImage)
 @property (nonatomic , readonly) CCImageType type ;
 
 @end
@@ -122,7 +122,7 @@ typedef NS_ENUM(NSInteger , CCImageType) {
 
 @interface UIImageView (CCExtension_Gaussian)
 
-/// using Accelerate
+/// using Accelerate // 使用 Accelerate 框架
 
 - (instancetype) ccGaussian ;
 - (instancetype) ccGaussian : (CGFloat) fRadius;

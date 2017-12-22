@@ -13,6 +13,13 @@
 
 @implementation CCDevice
 
++ (NSString *) ccDeviceInfo {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    return [NSString stringWithCString:systemInfo.machine
+                              encoding:NSASCIIStringEncoding];
+}
+
 + (NSString *) ccDeviceType {
 #if TARGET_IPHONE_SIMULATOR
     CGFloat fS = UIScreen.mainScreen.scale;

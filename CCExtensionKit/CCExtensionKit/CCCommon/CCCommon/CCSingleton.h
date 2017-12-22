@@ -9,7 +9,7 @@
 #ifndef CCSingleton_h
     #define CCSingleton_h
 
-    /// absolute singleton
+    /// absolute singleton // 绝对单例
 
     // ARC
     #if __has_feature(objc_arc)

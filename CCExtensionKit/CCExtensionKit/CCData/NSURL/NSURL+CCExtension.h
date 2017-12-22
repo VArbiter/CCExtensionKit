@@ -24,7 +24,7 @@
 
 @interface NSString (CCExtension_UrlEncode)
 
-@property (nonatomic , readonly) NSURL *toWebURL ; // encode chinese character using origin
-@property (nonatomic , readonly) NSURL *toLocalURL ; // decode chinese character using origin
+@property (nonatomic , readonly) NSURL *toWebURL ; // encode chinese character using origin // 使用原生转换为 在线 URL
+@property (nonatomic , readonly) NSURL *toLocalURL ; // decode chinese character using origin // 使用原生转换为 本地 URL
 
 @end

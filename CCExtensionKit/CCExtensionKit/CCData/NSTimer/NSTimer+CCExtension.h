@@ -36,13 +36,13 @@
                       repeat : (BOOL) isRepeat
                       action : (void (^)(NSTimer *sender)) action ;
 
-/// invalidate && set entity to nil.
+/// invalidate && set entity to nil. // 取消定时和销毁
 void CC_TIMER_DESTORY(NSTimer *timer);
 
-// for additional actions
+// for additional actions // 额外功能
 - (instancetype) ccFire ; // == fire
-- (instancetype) ccPause ; // has to be a valid timer .
-- (instancetype) ccResume ; // has to be a valid timer .
+- (instancetype) ccPause ; // has to be a valid timer . // 必须是有效的 timer
+- (instancetype) ccResume ; // has to be a valid timer . // 必须是有效的 timer
 - (instancetype) ccStop ; // == invalidate
 
 @end

@@ -20,18 +20,18 @@ FOUNDATION_EXPORT NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_;
 - (BOOL) ccIsDirectoryT : (NSString *) sPath ;
 - (BOOL) ccExistsT : (NSString *) sPath ;
 - (BOOL) ccRemoveT : (NSString *) sPath ;
-/// create if not exists .
+/// create if not exists . // 如果不存在就创建
 - (BOOL) ccCreateFolderT : (NSString *) sPath ;
 - (BOOL) ccMoveT : (NSString *) sFrom
               to : (NSString *) sTo ;
 
 /// note : in iOS , 1G == 1000Mb == 1000 * 1000kb == 1000 * 1000 * 1000b
 /// note : in iOS (for bytes) , 1G = pow(10, 9) , 1Mb = pow(10, 6) , 1Kb = pow(10, 3)
-/// note : highly recommend put it in a sub thread . (if sPath point at a directory)
+/// note : highly recommend put it in a sub thread . (if sPath point at a directory) // 如果 sPath 是一个文件夹 , 建议把它放在子线程中
 - (unsigned long long) ccFileSizeT : (NSString *) sPath ;
 - (unsigned long long) ccFolderSizeT : (NSString *) sPath ;
 
-/// note : if self is a folder or not valued path at all , returns @""
+/// note : if self is a folder or not valued path at all , returns @"" // 如果 self 是一个文件夹 , 或者路径是无效的 , 返回 @""
 - (NSString *) ccMD5Auto : (NSString *) sPath ;
 - (NSString *) ccMD5Normal : (NSString *) sPath ;
 - (NSString *) ccMD5Large : (NSString *) sPath ;
@@ -48,13 +48,13 @@ FOUNDATION_EXPORT NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_;
 @property (nonatomic , readonly) BOOL removeT ;
 @property (nonatomic , readonly) BOOL createFolderT ;
 
-/// note : highly recommend put it in a sub thread . (if self point at a directory)
+/// note : highly recommend put it in a sub thread . (if self point at a directory) // 如果 字符串 是一个文件夹 , 建议把它放在子线程中
 @property (nonatomic , readonly) unsigned long long fileSizeT ;
 @property (nonatomic , readonly) unsigned long long folderSizeT ;
 
 - (BOOL) ccMoveTo : (NSString *) sTo ;
 
-/// note : if self is a folder or not valued path at all , returns @"" rather than it self .
+/// note : if self is a folder or not valued path at all , returns @"" rather than it self . // 如果 字符串 是一个文件夹 , 或者路径是无效的 , 返回 @"" 而不是它本身
 @property (nonatomic , readonly) NSString *mimeType ;
 @property (nonatomic , readonly) NSString *fileAutoMD5 ;
 @property (nonatomic , readonly) NSString *fileMD5 ;

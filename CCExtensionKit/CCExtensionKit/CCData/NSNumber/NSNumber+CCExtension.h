@@ -18,7 +18,7 @@
 
 @interface NSDecimalNumber (CCExtension)
 
-/// default two after point .
+/// default two after point . // 默认小数点后两位
 @property (nonatomic , readonly) NSString * round ;
 - (NSString *) ccRound : (short) point ;
 - (NSString *) ccRound : (short) point

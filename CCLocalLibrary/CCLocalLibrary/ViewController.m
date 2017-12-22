@@ -27,6 +27,7 @@
 #import "UIImage+CCExtension.h"
 #import "UIView+CCExtension.h"
 #import "UITextField+CCExtension.h"
+#import "NSString+CCExtension.h"
 
 @interface ViewController ()
 

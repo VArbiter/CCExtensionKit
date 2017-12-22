@@ -21,7 +21,8 @@
 - (instancetype) ccSet : (id) key
                  value : (id) value ;
 
-/// set key && value with observer
+/// set key && value with observer // 使用 观察者 来添加 key 和 value
+/// note : need to implementated the observers down blow first. // 需要首先实现下方的监听者
 - (instancetype) ccSetWithObserver : (id) key
                              value : (id) value ;
 

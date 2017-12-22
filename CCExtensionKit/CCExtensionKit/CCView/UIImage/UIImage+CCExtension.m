@@ -341,7 +341,7 @@ CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
             if (data.length < 12) {
                 return CCImageType_Unknow;
             }
-            // 0x52 == 'R' , and R is Riff for WEBP
+            // 0x52 == 'R' , and R is Riff for WEBP 
             NSString *s = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 12)]
                                                 encoding:NSASCIIStringEncoding];
             if ([s hasPrefix:@"RIFF"] && [s hasSuffix:@"WEBP"]) {

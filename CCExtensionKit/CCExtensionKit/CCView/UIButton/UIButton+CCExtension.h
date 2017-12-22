@@ -10,22 +10,22 @@
 
 @interface UIButton (CCExtension)
 
-/// default type is custom
+/// default type is custom // 默认是 custom 类型
 + (instancetype) common ;
 + (instancetype) common : (UIButtonType) type ;
 
-/// titles && images
+/// titles && images // title 和 images
 - (instancetype) ccTitle : (NSString *) sTitle
                    state : (UIControlState) state ;
 - (instancetype) ccImage : (UIImage *) image
                    state : (UIControlState) state ;
 
-/// actions , default is touchUpInside
+/// actions , default is touchUpInside // 动作  默认 touchUpInside
 - (instancetype) ccAction : (void (^)( __kindof UIButton *sender)) action ;
 - (instancetype) ccTarget : (id) target
                    action : (void (^)( __kindof UIButton *sender)) action ;
 
-/// custom actions .
+/// custom actions . // 自定义动作
 - (instancetype) ccCustom : (id) target
                       sel : (SEL) sel
                    events : (UIControlEvents) events ;

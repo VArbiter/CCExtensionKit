@@ -18,9 +18,9 @@
 
 @interface UIFont (CCExtension)
 
-/// when you determin to make a font that auto adjust it self for different screens
-/// note: fill in with CCScaleH(_value_) , and if you're not sure it is .
-/// use label's (also available on others) height and decrease 2 (for pixels) .
+/// when you determin to make a font that auto adjust it self for different screens // 当你决定让字体也跟着屏幕做自适应的时候
+/// note: fill in with CCScaleH(_value_) , and if you're not sure it is . // 使用 CScaleH(_value_) 进行操作 , 如果你不确定的话
+/// use label's (also available on others) height and decrease 2 (for pixels) . // 使用 label(其它也适用)的高度 , 减去 2 像素
 
 - (instancetype) ccSize : (CGFloat) fSize ;
 + (instancetype) ccSystem : (CGFloat) fSize ;

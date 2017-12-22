@@ -59,13 +59,13 @@
 
 @implementation NSMutableAttributedString (CCExtension)
 
-- (NSMutableAttributedString *) ccAttributeC : (NSString *) sKey
+- (NSMutableAttributedString *) ccAttributeC : (NSAttributedStringKey) sKey
                                        value : (id) value {
     if (sKey && sKey.length) [self addAttribute:sKey value:value range:(NSRange){0 , self.length}];
     return self;
 }
 
-- (NSMutableAttributedString *) ccAttributeS : (NSDictionary *) dAttributes {
+- (NSMutableAttributedString *) ccAttributeS : (NSDictionary <NSAttributedStringKey , id> *) dAttributes {
     if (dAttributes.allKeys) [self addAttributes:dAttributes range:NSMakeRange(0, self.length)];
     return self;
 }

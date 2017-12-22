@@ -17,7 +17,7 @@
 
 @interface UITableView (CCExtension_Refresh)
 
-/// equals : endRefresh + endLoadMore
+/// equals : endRefresh + endLoadMore  // 等同于 endRefresh + endLoadMore
 - (instancetype) ccEndLoading ;
 - (instancetype) ccEndRefresh ;
 - (instancetype) ccEndLoadMore ;

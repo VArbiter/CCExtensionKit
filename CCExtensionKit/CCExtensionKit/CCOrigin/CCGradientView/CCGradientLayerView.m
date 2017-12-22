@@ -39,7 +39,7 @@
     l.startPoint = pBegin;
     l.endPoint = pEnd;
     l.locations = aN;
-    //    l.type = kCAGradientLayerAxial; // only axial , and it's the default value
+//    l.type = kCAGradientLayerAxial; // only axial , and it's the default value // 目前只有 axial , 而且它还是默认值 
     self.layerGradient = l;
     [self.layer addSublayer:self.layerGradient];
 }

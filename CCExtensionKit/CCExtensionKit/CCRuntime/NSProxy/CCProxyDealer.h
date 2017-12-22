@@ -14,9 +14,9 @@
 
 #ifdef _CC_PROXY_DELER_PROTOCOL_TEST_EXAMPLE_
 
-/// simply simulat the muti-inhert of objective-C
-/// note : if you want that CCProxyDealer to simulate the muti-inhert values
-///     all your methods must be instance and interface in a protocol
+/// simply simulat the muti-inhert of objective-C // 在 OC 中模仿多继承
+/// note : if you want that CCProxyDealer to simulate the muti-inhert values // 如果你想使用 CCProxyDealer 来模仿多继承
+///     all your methods must be instance and interface in a protocol // 所有方法必须在 一个协议中声明
 /// eg :
 ///
 /// @@protocol CCTestProtocol : <NSObject>
@@ -34,11 +34,11 @@
 
 @interface CCProxyDealer : NSProxy
 
-/// it's not a singleton .
+/// it's not a singleton . // 不是单例
 + (instancetype) common ;
 + (instancetype) common : (NSArray <id> *) arrayTarget ;
 
-/// regist targets , only instance methods allowed (CCProxyDealer is an instance)
+/// regist targets , only instance methods allowed (CCProxyDealer is an instance) // 注册目标 , 只有对象被允许
 - (instancetype) ccRegistMethods : (NSArray <id> *) arrayTarget ;
 
 @end
