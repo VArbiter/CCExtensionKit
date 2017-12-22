@@ -8,11 +8,11 @@
 
 [![Platform](https://img.shields.io/cocoapods/p/CCExtensionKit.svg?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
 
-### 当前版本 3.5.0
+### 当前版本 3.7.0
 
-> pod 'CCExtensionKit' , '~> 3.5.0' // 默认是 CCCore
+> pod 'CCExtensionKit' , '~> 3.7.0' // 默认是 CCCore
 > 
-> > pod 'CCExtensionKit/CCFull' , '~> 3.5.0' . 如果你想安装整个框架.
+> > pod 'CCExtensionKit/CCFull' , '~> 3.7.0' . 如果你想安装整个框架.
 
 ### Warning 
 > CCLocalLib 在版本 `2.2.3` 后就失效了
@@ -48,10 +48,16 @@
 > 
 > > CCView : UI 族群类库 .
 > 
+> CCOrigin : 一个由自己开发的自定义视图库
+> 
 > > CCCustom :  一些自定义的类和功能 , 依赖或者基于一些其它的第三方 .
 
 ### 上新 ?
 ---
+**2017-12-22 15:59:44**
+
+> 将头文件中所有的注释都翻译成汉语 .
+
 **2017-11-28 12:39:59**
 
 > 重构 `CCRouter` 中的 `CCBridgeWrapper` .

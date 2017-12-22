@@ -8,13 +8,13 @@
 
 [![Platform](https://img.shields.io/cocoapods/p/CCExtensionKit.svg?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
 
-### 中文说明请点击[[这里](https://github.com/VArbiter/CCLocalLibrary/blob/master/README_CN.md)]
+### 中文说明请点击[[这里](https://github.com/VArbiter/CCExtensionKit/blob/master/README_CN.md)]
 
-### Current Version 3.5.0
+### Current Version 3.7.0
 
-> pod 'CCExtensionKit' , '~> 3.5.0' // default is CCCore
+> pod 'CCExtensionKit' , '~> 3.7.0' // default is CCCore
 > 
-> > pod 'CCExtensionKit/CCFull' , '~> 3.5.0' . if you wanna install the whole Kit .
+> > pod 'CCExtensionKit/CCFull' , '~> 3.7.0' . if you wanna install the whole Kit .
 
 ### Warning 
 > CCLocalLib has no longer effect after version `2.2.3`
@@ -50,10 +50,16 @@
 > 
 > > CCView :  a extension actions for UI family .
 > 
+> > CCOrigin : a kit that for develop for custom views .
+> 
 > > CCCustom :  Custom classes or functions , dependend or based on other vendors .
 
 ### What's new ?
 ---
+**2017-12-22 15:59:44**
+
+> translate all comment in header file into chinese .
+
 **2017-11-28 12:39:59**
 
 > rebuilt `CCBridgeWrapper` in `CCRouter` .
