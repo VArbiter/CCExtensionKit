@@ -1,9 +1,7 @@
-
-
 Pod::Spec.new do |s|
 
     s.name         = "CCExtensionKit"
-    s.version      = "3.6.3.2"
+    s.version      = "3.7.0"
     s.summary      = "CCExtensionKit."
 
     s.description  = <<-DESC
@@ -32,6 +30,7 @@ Pod::Spec.new do |s|
       fullT.dependency 'CCExtensionKit/CCDataBase'
       fullT.dependency 'CCExtensionKit/CCRouter'
       fullT.dependency 'CCExtensionKit/CCCustom'
+      fullT.dependency 'CCExtensionKit/CCOrigin'
     end
 
       s.subspec 'CCCommon' do |common|
