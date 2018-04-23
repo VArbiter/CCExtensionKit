@@ -30,7 +30,7 @@
 > 
 > > CCCore : 核心拓展 . 一个抽象集合.
 > 
-> > CCFull : 全部 . 一个抽象集合 .
+> > CCFull : 全部 (不包括 CCDataBase && CCCustom) . 一个抽象集合 .
 > 
 > > CCExtensionAssets : 资源集合 , 为未来的使用做准备 . (当前为启用).
 > 
@@ -48,12 +48,16 @@
 > 
 > > CCView : UI 族群类库 .
 > 
-> CCOrigin : 一个由自己开发的自定义视图库
+> > CCOrigin : 一个由自己开发的自定义视图库
 > 
 > > CCCustom :  一些自定义的类和功能 , 依赖或者基于一些其它的第三方 .
 
 ### 上新 ?
 ---
+**2018-04-23 18:53:35**
+
+> 更换所有的前缀为 `cc_` , 将 CCDataBase 和 CCCustom 从 CCFull 中移除
+
 **2017-12-22 15:59:44**
 
 > 将头文件中所有的注释都翻译成汉语 .
@@ -78,22 +82,13 @@
 > 
 > 所以 , `CCChainKit` 就诞生了 . 👏👏👏 .
 > 
-> 👉👉👉 **[CCChainKit](https://github.com/VArbiter/CCChainKit)**
-> 
-> 为啥我还在用 __*CC*__ 前缀?
-> 
-> 因为我还想她 .
+> ~~👉👉👉 **[CCChainKit](https://github.com/VArbiter/CCChainKit)**~~
+> CCChainKit 可能会很长一段时间不再更新了. 维护两个库确实没精力 .
 
 **2017-08-06 15:38:09**
 
 > 呃 ... 我发现 , 本地库在依赖一些其它的第三方库上有一些问题 , 所以 , CCLocalLib 不再是一个本地库了 .
 👏👏👏 -> 现在 , 仅仅是 `pod 'LocalLib' ` , cocoapods 就会帮你完成剩下的工作.
->
-> 可能 , 我不会再用 `CC` 前缀了. 
-> 
-> 或许 , 下一个工程我会用 `EL`. 当然 , EL , Elwin Frederick.
->
->  单身狗 , 单身狗 , 一直单身狗. (请用 _**叮叮当 , 叮叮当 , 铃儿响叮当的调子**_ .) 🐶🐶🐶
 
 **2017-07-01 19:49:01**
 > 我创建了一个叫做 `CCChainOperate` 的新库 , 我为啥写他?

@@ -32,7 +32,7 @@
 > 
 > > CCCore : Core extensions . a abstract collection .
 > 
-> > CCFull : Full extensions . a abstract collection .
+> > CCFull : Full extensions (not included CCDataBase && CCCustom) . a abstract collection .
 > 
 > > CCExtensionAssets : Assets collection , preserve for future needs . (not available for now).
 > 
@@ -56,6 +56,10 @@
 
 ### What's new ?
 ---
+**2018-04-23 18:53:35**
+
+> make prefix all `cc_` . remove CCDataBase && CCCustom from CCFull .
+
 **2017-12-22 15:59:44**
 
 > translate all comment in header file into chinese .
@@ -80,22 +84,13 @@
 > 
 > Therefore , `CCChainKit` was created . 👏👏👏 .
 > 
-> 👉👉👉 **[CCChainKit](https://github.com/VArbiter/CCChainKit)**
-> 
-> and Why I still using prefix __*CC*__ ?
-> 
-> cause I just still miss her .
+> ~~👉👉👉 **[CCChainKit](https://github.com/VArbiter/CCChainKit)**~~
+> probably I won't update CCChainKit for a long time , I don't have that time or energy to continue contribute on two repos .
 
 **2017-08-06 15:38:09**
 
 > Well ... I found that local libraries have some issues on spec dependency . Therefore , CCLocalLib was no longer a local lib. 
 👏👏👏 -> now , jusy run `pod 'LocalLib' ` and cocoapods will do the rest .
->
-> and probably , i won't use prefix `CC` any longer. 
-> 
-> maybe , `EL` will be the existance in the next project . EL , Elwin Frederick , of course .
->
->  single dog , single dog , single all the way. 🐶🐶🐶
 
 **2017-07-01 19:49:01**
 > I wrote a new library called `CCChainOperate` .
