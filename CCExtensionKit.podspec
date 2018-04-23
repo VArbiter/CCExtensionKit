@@ -27,9 +27,7 @@ Pod::Spec.new do |s|
 
     s.subspec 'CCFull' do |fullT|
       fullT.dependency 'CCExtensionKit/CCCore'
-      fullT.dependency 'CCExtensionKit/CCDataBase'
       fullT.dependency 'CCExtensionKit/CCRouter'
-      fullT.dependency 'CCExtensionKit/CCCustom'
       fullT.dependency 'CCExtensionKit/CCOrigin'
     end
 
