@@ -16,10 +16,10 @@
 
 @implementation CCGradientLayerView
 
-- (void) ccBeginWith : (CGPoint) pBegin
-                 end : (CGPoint) pEnd
-              colors : (NSArray <UIColor *> *(^)(void)) colors
-        eachPercents : (NSArray <NSNumber *> *(^)(void)) percents {
+- (void) cc_begin_with : (CGPoint) pBegin
+                   end : (CGPoint) pEnd
+                colors : (NSArray <UIColor *> *(^)(void)) colors
+         each_percents : (NSArray <NSNumber *> *(^)(void)) percents {
     if (!colors || !percents) return ;
     NSArray <UIColor *> *aC = colors();
     NSArray <NSNumber *> *aN = percents();

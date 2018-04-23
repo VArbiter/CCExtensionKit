@@ -11,8 +11,9 @@
 
 @implementation NSNumber (CCExtension)
 
-- (NSDecimalNumber *)decimal {
-    return [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%@",self]].isDecimalValued;
+- (NSDecimalNumber *)toDecimal {
+    NSDecimalNumber *t = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%@",self]];
+    return CC_IS_DECIMAL_VALUED(t) ? t : nil;
 }
 
 @end
@@ -22,41 +23,42 @@
 @implementation NSDecimalNumber (CCExtension)
 
 - (NSString *)round {
-    return [self ccRound:2];
+    return [self cc_round:2];
 }
 
-- (NSString *) ccRound : (short) point {
-    return [self ccRound:point mode:NSRoundPlain];
+- (NSString *) cc_round : (short) point {
+    return [self cc_round:point mode:NSRoundPlain];
 }
-- (NSString *) ccRound : (short) point
+- (NSString *) cc_round : (short) point
                   mode : (NSRoundingMode) mode {
-    return [self ccRoundDecimal:point mode:mode].stringValue;
+    return [self cc_round_decimal:point mode:mode].stringValue;
 }
 
-- (instancetype) roundDecimal {
-    return [self ccRoundDecimal:2];
+- (instancetype) cc_round_decimal {
+    return [self cc_round_decimal:2];
 }
-- (instancetype) ccRoundDecimal : (short) point {
-    return [self ccRoundDecimal:point mode:NSRoundPlain];
+- (instancetype) cc_round_decimal : (short) point {
+    return [self cc_round_decimal:point mode:NSRoundPlain];
 }
-- (instancetype) ccRoundDecimal : (short) point
+- (instancetype) cc_round_decimal : (short) point
                            mode : (NSRoundingMode) mode {
-    return [self decimalNumberByRoundingAccordingToBehavior:[NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:mode
-                                                                                                                   scale:point
-                                                                                                        raiseOnExactness:NO
-                                                                                                         raiseOnOverflow:NO
-                                                                                                        raiseOnUnderflow:NO
-                                                                                                     raiseOnDivideByZero:NO]];
+    return [self decimalNumberByRoundingAccordingToBehavior:[NSDecimalNumberHandler
+                                                             decimalNumberHandlerWithRoundingMode:mode
+                                                             scale:point
+                                                             raiseOnExactness:NO
+                                                             raiseOnOverflow:NO
+                                                             raiseOnUnderflow:NO
+                                                             raiseOnDivideByZero:NO]];
 }
 
-- (instancetype) ccMutiply : (NSDecimalNumber *) decimal {
+- (instancetype) cc_mutiply : (NSDecimalNumber *) decimal {
     if (![decimal isKindOfClass:[NSDecimalNumber class]]) return self;
-    if (!decimal.isDecimalValued || !self.isDecimalValued) return self;
+    if (!CC_IS_DECIMAL_VALUED(decimal) || !CC_IS_DECIMAL_VALUED(self)) return self;
     return [self decimalNumberByMultiplyingBy:decimal];
 }
-- (instancetype) ccDevide : (NSDecimalNumber *) decimal {
+- (instancetype) cc_devide : (NSDecimalNumber *) decimal {
     if (![decimal isKindOfClass:[NSDecimalNumber class]]) return self;
-    if (!decimal.isDecimalValued || !self.isDecimalValued) return self;
+    if (!CC_IS_DECIMAL_VALUED(decimal) || !CC_IS_DECIMAL_VALUED(self)) return self;
     if ([decimal isEqual:NSDecimalNumber.zero]) return self; // 0 can't be devided
     return [self decimalNumberByDividingBy:decimal];
 }

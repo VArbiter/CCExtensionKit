@@ -49,30 +49,30 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
     UITouch *touch = touches.anyObject;
     CGPoint p = [touch locationInView:self];
     if (!CGRectContainsPoint(self.viewCustom.frame , p)) {
-        [self ccDismiss];
+        [self cc_dismiss];
     }
 }
 
-- (void) ccShow {
-    [self ccShow:CCDropAnimate_Smooth];
+- (void) cc_show {
+    [self cc_show:CCDropAnimate_Smooth];
 }
 
-- (void) ccShow : (CCDropAnimate) animate {
+- (void) cc_show : (CCDropAnimate) animate {
     [self.viewOn addSubview:self];
     
-    if (self.bActionStart) self.bActionStart(self);
+    if (self.block_action_start) self.block_action_start(self);
     
     switch (animate) {
         case CCDropAnimate_None:{
             self.viewCustom.center = self.inCenter;
-            if (self.bActionStartDidEnd) self.bActionStartDidEnd(self);
+            if (self.block_action_start_did_end) self.block_action_start_did_end(self);
         }break;
         case CCDropAnimate_Smooth:{
             CC_WEAK_SELF;
             void (^bCenter)(void) = ^ {
                 [UIView animateWithDuration:.2f animations:^{
                     pSelf.viewCustom.center = pSelf.inCenter;
-                    if (pSelf.bActionStartDidEnd) pSelf.bActionStartDidEnd(pSelf);
+                    if (pSelf.block_action_start_did_end) pSelf.block_action_start_did_end(pSelf);
                 }];
             };
             
@@ -88,7 +88,7 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
             [UIView animateWithDuration:CC_DROP_ANIMATION_DURATION animations:^{
                 pSelf.alpha = 1.0f;
             } completion:^(BOOL finished) {
-                if (pSelf.bActionStartDidEnd) pSelf.bActionStartDidEnd(pSelf);
+                if (pSelf.block_action_start_did_end) pSelf.block_action_start_did_end(pSelf);
             }];
             
             UISnapBehavior *snapBehaviour = [[UISnapBehavior alloc] initWithItem:self.viewCustom
@@ -103,10 +103,10 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
     }
 }
 
-- (void) ccDismiss {
-    [self ccDismiss:CCDropAnimate_Snap];
+- (void) cc_dismiss {
+    [self cc_dismiss:CCDropAnimate_Snap];
 }
-- (void) ccDismiss : (CCDropAnimate) animate {
+- (void) cc_dismiss : (CCDropAnimate) animate {
     
     CC_WEAK_SELF;
     void (^bDismiss)(void) = ^ {
@@ -114,7 +114,7 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
             pSelf.alpha = 0.0f;
         } completion:^(BOOL finished) {
             [pSelf removeFromSuperview];
-            if (pSelf.bActionDidEnd) pSelf.bActionDidEnd(pSelf);
+            if (pSelf.block_action_did_end) pSelf.block_action_did_end(pSelf);
         }];
     };
     
@@ -149,8 +149,8 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
     }
 }
 
-- (void) ccSetShadow : (UIColor *) color
-               alpha : (CGFloat) fAlpha {
+- (void) cc_set_shadow : (UIColor *) color
+                 alpha : (CGFloat) fAlpha {
     if (color
         && [color isKindOfClass:UIColor.class]
         && fAlpha >= 0
@@ -169,10 +169,10 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
 
 #pragma mark - -----
 - (void)dynamicAnimatorWillResume:(UIDynamicAnimator *)animator {
-    if (self.bActionResume) self.bActionResume(self);
+    if (self.block_action_resume) self.block_action_resume(self);
 }
 - (void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator {
-    if (self.bActionPaused) self.bActionPaused(self);
+    if (self.block_action_paused) self.block_action_paused(self);
 }
 
 _CC_DETECT_DEALLOC_

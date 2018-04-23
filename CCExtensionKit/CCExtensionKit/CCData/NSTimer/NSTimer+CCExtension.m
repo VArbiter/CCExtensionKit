@@ -33,26 +33,26 @@ static const char * _CC_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "CC_NSTIMER_ASSOCIATE
 @implementation NSTimer (CCExtension)
 
 /// timer
-+ (instancetype) ccTimer : (NSTimeInterval) interval
-                  action : (void (^)(NSTimer *sender)) action {
-    return [self ccTimer:interval
-                  repeat:YES
-                  action:action];
++ (instancetype) cc_timer : (NSTimeInterval) interval
+                   action : (void (^)(NSTimer *sender)) action {
+    return [self cc_timer:interval
+                   repeat:YES
+                   action:action];
 }
 
-+ (instancetype) ccTimer : (NSTimeInterval) interval
-                  repeat : (BOOL) isRepeat
-                  action : (void (^)(NSTimer *sender)) action {
-    return [self ccTimer:interval
-                userInfo:nil
-                  repeat:isRepeat
-                  action:action];
++ (instancetype) cc_timer : (NSTimeInterval) interval
+                   repeat : (BOOL) isRepeat
+                   action : (void (^)(NSTimer *sender)) action {
+    return [self cc_timer:interval
+                 userInfo:nil
+                   repeat:isRepeat
+                   action:action];
 }
 
-+ (instancetype) ccTimer : (NSTimeInterval) interval
-                userInfo : (id) userInfo
-                  repeat : (BOOL) isRepeat
-                  action : (void (^)(NSTimer *sender)) action {
++ (instancetype) cc_timer : (NSTimeInterval) interval
+                 userInfo : (id) userInfo
+                   repeat : (BOOL) isRepeat
+                   action : (void (^)(NSTimer *sender)) action {
     NSTimer *tTimer = [NSTimer timerWithTimeInterval:interval
                                               target:self
                                             selector:@selector(ccTimerAction:)
@@ -63,26 +63,26 @@ static const char * _CC_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "CC_NSTIMER_ASSOCIATE
 }
 
 /// scheduled
-+ (instancetype) ccScheduled : (NSTimeInterval) interval
-                      action : (void (^)(NSTimer *sender)) action {
-    return [self ccScheduled:interval
-                      repeat:YES
-                      action:action];
++ (instancetype) cc_scheduled : (NSTimeInterval) interval
+                       action : (void (^)(NSTimer *sender)) action {
+    return [self cc_scheduled:interval
+                       repeat:YES
+                       action:action];
 }
 
-+ (instancetype) ccScheduled : (NSTimeInterval) interval
-                      repeat : (BOOL) isRepeat
-                      action : (void (^)(NSTimer *sender)) action {
-    return [self ccScheduled:interval
-                    userInfo:nil
-                      repeat:isRepeat
-                      action:action];
++ (instancetype) cc_scheduled : (NSTimeInterval) interval
+                       repeat : (BOOL) isRepeat
+                       action : (void (^)(NSTimer *sender)) action {
+    return [self cc_scheduled:interval
+                     userInfo:nil
+                       repeat:isRepeat
+                       action:action];
 }
 
-+ (instancetype) ccScheduled : (NSTimeInterval) interval
-                    userInfo : (id) userInfo
-                      repeat : (BOOL) isRepeat
-                      action : (void (^)(NSTimer *sender)) action {
++ (instancetype) cc_scheduled : (NSTimeInterval) interval
+                     userInfo : (id) userInfo
+                       repeat : (BOOL) isRepeat
+                       action : (void (^)(NSTimer *sender)) action {
     NSTimer *tTimer = [NSTimer scheduledTimerWithTimeInterval:interval
                                                        target:self
                                                      selector:@selector(ccTimerAction:)
@@ -98,25 +98,25 @@ void CC_TIMER_DESTORY(NSTimer *timer) {
     timer = nil;
 }
 
-- (instancetype) ccFire {
+- (instancetype) cc_fire {
     if (self.isValid) {
         [self fire];
     }
     return self;
 }
-- (instancetype) ccPause {
+- (instancetype) cc_pause {
     if (self.isValid) {
         self.fireDate = NSDate.distantFuture;
     }
     return self;
 }
-- (instancetype) ccResume {
+- (instancetype) cc_resume {
     if (self.isValid) {
         self.fireDate = NSDate.date;
     }
     return self;
 }
-- (instancetype) ccStop {
+- (instancetype) cc_stop {
     [self invalidate];
     return self;
 }

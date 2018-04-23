@@ -19,7 +19,7 @@
     return self;
 }
 
-+ (instancetype)CC_Non_NULL:(void (^)(id))setting {
++ (instancetype)CC_NON_NULL:(void (^)(id))setting {
     id value = [[self alloc] init];
     if (setting && value) setting(value);
     return value;

@@ -11,16 +11,16 @@
 
 @implementation NSAttributedString (CCExtension)
 
-+ (NSMutableAttributedString *) ccColor : (UIColor *) color
++ (NSMutableAttributedString *) cc_color : (UIColor *) color
                                  string : (NSString *) string {
-    if (string.isStringValued) {
+    if (CC_IS_STRING_VALUED(string)) {
         return [[NSMutableAttributedString alloc] initWithString:string
                                                       attributes:@{NSForegroundColorAttributeName : color}];
     }
-    return [[NSMutableAttributedString alloc] initWithString:@""];
+    return nil;
 }
 
-- (NSMutableAttributedString *) ccColor : (UIColor *) color {
+- (NSMutableAttributedString *) cc_color : (UIColor *) color {
     NSMutableAttributedString *t = self.mutableCopy;
     [t addAttribute:NSForegroundColorAttributeName
               value:color
@@ -28,14 +28,14 @@
     return t;
 }
 
-- (NSMutableAttributedString *) ccOperate : (NSMutableAttributedString * (^)(NSMutableAttributedString * sender)) action {
+- (NSMutableAttributedString *) cc_operate : (NSMutableAttributedString * (^)(NSMutableAttributedString * sender)) action {
     if (action) {
         return action(self.mutableCopy);
     }
     return self.mutableCopy;
 }
 
-- (NSMutableAttributedString *) ccAppendS : (NSAttributedString *) sAttr {
+- (NSMutableAttributedString *) cc_append_s : (NSAttributedString *) sAttr {
     if (sAttr && [sAttr isKindOfClass:NSAttributedString.class]) {
         NSMutableAttributedString *sc = self.mutableCopy;
         [sc appendAttributedString:sAttr];
@@ -44,8 +44,8 @@
     return self.mutableCopy;
 }
 
-- (NSMutableAttributedString *) ccAppendC : (NSString *) string {
-    if (string.isStringValued) {
+- (NSMutableAttributedString *) cc_append_c : (NSString *) string {
+    if (CC_IS_STRING_VALUED(string)) {
         NSMutableAttributedString *sc = self.mutableCopy;
         [sc appendAttributedString:[[NSMutableAttributedString alloc] initWithString:string]];
         return sc;
@@ -59,13 +59,13 @@
 
 @implementation NSMutableAttributedString (CCExtension)
 
-- (NSMutableAttributedString *) ccAttributeC : (NSAttributedStringKey) sKey
+- (NSMutableAttributedString *) cc_attribute_c : (NSAttributedStringKey) sKey
                                        value : (id) value {
     if (sKey && sKey.length) [self addAttribute:sKey value:value range:(NSRange){0 , self.length}];
     return self;
 }
 
-- (NSMutableAttributedString *) ccAttributeS : (NSDictionary <NSAttributedStringKey , id> *) dAttributes {
+- (NSMutableAttributedString *) cc_attribute_s : (NSDictionary <NSAttributedStringKey , id> *) dAttributes {
     if (dAttributes.allKeys) [self addAttributes:dAttributes range:NSMakeRange(0, self.length)];
     return self;
 }
@@ -77,10 +77,10 @@
 @implementation NSString (CCExtension_AttributedString)
 
 - (NSMutableAttributedString *)toAttribute {
-    return [[NSMutableAttributedString alloc] initWithString:self.isStringValued];
+    return CC_IS_STRING_VALUED(self) ? [[NSMutableAttributedString alloc] initWithString:self] : nil;
 }
-- (NSMutableAttributedString *) ccColor : (UIColor *) color {
-    return [self.toAttribute ccColor:color];
+- (NSMutableAttributedString *) cc_color : (UIColor *) color {
+    return [self.toAttribute cc_color:color];
 }
 
 @end

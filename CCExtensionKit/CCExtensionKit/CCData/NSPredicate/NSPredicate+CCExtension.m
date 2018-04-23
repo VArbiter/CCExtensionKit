@@ -17,55 +17,55 @@
     return [NSPredicate predicateWithFormat:@""];
 }
 
-+ (instancetype) time {
++ (instancetype) cc_time {
     return [NSPredicate common:@"^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)\\s+([01][0-9]|2[0-3]):[0-5][0-9]$"];
 }
-+ (instancetype) macAddress {
++ (instancetype) cc_mac_address {
     return [NSPredicate common:@"([A-Fa-f\\d]{2}:){5}[A-Fa-f\\d]{2}"];
 }
-+ (instancetype) webURL {
++ (instancetype) cc_web_URL {
     return [NSPredicate common:@"^((http)|(https))+:[^\\s]+\\.[^\\s]*$"];
 }
 
-+ (instancetype) cellPhone {
++ (instancetype) cc_cell_phone {
     return [NSPredicate common:@"^1((3//d|5[0-35-9]|8[025-9])//d|70[059])\\d{7}$"];
 }
-+ (instancetype) chinaMobile {
++ (instancetype) cc_china_mobile {
     return [NSPredicate common:@"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d|705)\\d{7}$"];
 }
-+ (instancetype) chinaUnicom {
++ (instancetype) cc_china_unicom {
     return [NSPredicate common:@"^1((3[0-2]|5[256]|8[56])\\d|709)\\d{7}$"];
 }
-+ (instancetype) chinaTelecom {
++ (instancetype) cc_china_telecom {
     return [NSPredicate common:@"^1((33|53|8[09])\\d|349|700)\\d{7}$"];
 }
 
-+ (instancetype) email {
++ (instancetype) cc_email {
     return [NSPredicate common:@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"];
 }
-+ (instancetype) telephone {
++ (instancetype) cc_telephone {
     return [NSPredicate common:@"^0(10|2[0-5789]|\\d{3})\\d{7,8}$"];
 }
 
-+ (instancetype) chineseIdentityNumber {
++ (instancetype) cc_chinese_identity_number {
     return [NSPredicate common:@"^(\\d{14}|\\d{17})(\\d|[xX])$"];
 }
-+ (instancetype) chineseCarNumber {
++ (instancetype) cc_chinese_car_number {
     // \u4e00-\u9fa5 indicates that's a encoded unicode , \u9fa5-\u9fff reserve for future addition .
     // \u4e00-\u9fa5 判断是否是 unicode 编码 , \u9fa5-\u9fff 为未来添加所保留
     return [NSPredicate common:@"^[\u4e00-\u9fff]{1}[a-zA-Z]{1}[-][a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fff]$"];
 }
-+ (instancetype) chineseCharacter {
++ (instancetype) cc_chinese_character {
     return [NSPredicate common:@"^[\u4e00-\u9fa5]+$"];
 }
-+ (instancetype) chinesePostalCode {
++ (instancetype) cc_chinese_postal_code {
     return [NSPredicate common:@"^[0-8]\\d{5}(?!\\d)$"];
 }
-+ (instancetype) chineseTaxNumber {
++ (instancetype) cc_chinese_tax_number {
     return [NSPredicate common:@"[0-9]\\d{13}([0-9]|X)$"];
 }
 
-- (id) ccEvalute : (id) object {
+- (id) cc_evalute : (id) object {
     if ([self evaluateWithObject:object]) {
         return object;
     }
@@ -78,18 +78,18 @@
 
 @implementation NSString (CCExtension_Regex)
 
-- (instancetype) isTime {
-    return [NSPredicate.time ccEvalute:self] ? self : @"";
+- (BOOL) is_time {
+    return [NSPredicate.cc_time cc_evalute:self] ? YES : false;
 }
-- (instancetype) isMacAddress {
-    return [NSPredicate.macAddress ccEvalute:self] ? self : @"";
+- (BOOL) is_mac_address {
+    return [NSPredicate.cc_mac_address cc_evalute:self] ? YES : false;
 }
-- (instancetype) isWebURL {
-    return [NSPredicate.webURL ccEvalute:self] ? self : @"";
+- (BOOL) is_web_URL {
+    return [NSPredicate.cc_web_URL cc_evalute:self] ? YES : false;
 }
 
 // only in china
-+ (BOOL) ccAccurateVerifyID : (NSString *) sID {
++ (BOOL) cc_accurate_verify_ID : (NSString *) sID {
     NSString *value = [sID stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     int length =0;
     if (!value || !value.length) return NO;
@@ -177,41 +177,41 @@
 
 }
 
-- (instancetype) isAccurateIdentity {
-    return [NSString ccAccurateVerifyID:self] ? self : @"";
+- (BOOL) is_accurate_identity {
+    return [NSString cc_accurate_verify_ID:self] ? YES : false;
 }
-- (instancetype) isCellPhone {
-    return [NSPredicate.cellPhone ccEvalute:self] ? self : @"";
+- (BOOL) is_cell_phone {
+    return [NSPredicate.cc_cell_phone cc_evalute:self] ? YES : false;
 }
-- (instancetype) isChinaMobile {
-    return [NSPredicate.chinaMobile ccEvalute:self] ? self : @"";
+- (BOOL) is_china_mobile {
+    return [NSPredicate.cc_china_mobile cc_evalute:self] ? YES : false;
 }
-- (instancetype) isChinaUnicom {
-    return [NSPredicate.chinaUnicom ccEvalute:self] ? self : @"";
+- (BOOL) is_china_unicom {
+    return [NSPredicate.cc_china_unicom cc_evalute:self] ? YES : false;
 }
-- (instancetype) isChinaTelecom {
-    return [NSPredicate.chinaTelecom ccEvalute:self] ? self : @"";
+- (BOOL) is_china_telecom {
+    return [NSPredicate.cc_china_telecom cc_evalute:self] ? YES : false;
 }
-- (instancetype) isTelephone {
-    return [NSPredicate.telephone ccEvalute:self] ? self : @"";
+- (BOOL) is_telephone {
+    return [NSPredicate.cc_telephone cc_evalute:self] ? YES : false;
 }
-- (instancetype) isEmail {
-    return [NSPredicate.email ccEvalute:self] ? self : @"";
+- (BOOL) is_email {
+    return [NSPredicate.cc_email cc_evalute:self] ? YES : false;
 }
-- (instancetype) isChineseIdentityNumber {
-    return [NSPredicate.chineseIdentityNumber ccEvalute:self] ? self : @"";
+- (BOOL) is_chinese_identity_number {
+    return [NSPredicate.cc_chinese_identity_number cc_evalute:self] ? YES : false;
 }
-- (instancetype) isChineseCarNumber {
-    return [NSPredicate.chineseCarNumber ccEvalute:self] ? self : @"";
+- (BOOL) is_chinese_car_number {
+    return [NSPredicate.cc_chinese_car_number cc_evalute:self] ? YES : false;
 }
-- (instancetype) isChineseCharacter {
-    return [NSPredicate.chineseCharacter ccEvalute:self] ? self : @"";
+- (BOOL) is_chinese_character {
+    return [NSPredicate.cc_chinese_character cc_evalute:self] ? YES : false;
 }
-- (instancetype) isChinesePostalCode {
-    return [NSPredicate.chinesePostalCode ccEvalute:self] ? self : @"";
+- (BOOL) is_chinese_postal_code {
+    return [NSPredicate.cc_chinese_postal_code cc_evalute:self] ? YES : false;
 }
-- (instancetype) isChineseTaxNumber {
-    return [NSPredicate.chineseTaxNumber ccEvalute:self] ? self : @"";
+- (BOOL) is_chinese_tax_number {
+    return [NSPredicate.cc_chinese_tax_number cc_evalute:self] ? YES : false;
 }
 
 @end

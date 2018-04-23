@@ -10,7 +10,7 @@
 
 @implementation NSObject (CCExtension)
 
-+ (NSString *)sSelf {
++ (NSString *)s_self {
     return NSStringFromClass(self);
 }
 + (Class)Self {
@@ -25,86 +25,52 @@
     return NSStringFromClass(self.class);
 }
 
-- (NSString *)isStringValued {
-    if (self) {
-        if ([self isKindOfClass:[NSString class]]) {
-            NSString *string = (NSString *) self;
+@end
+
+BOOL CC_IS_STRING_VALUED(__kindof NSString * string) {
+    if (string) {
+        if ([string isKindOfClass:[NSString class]]) {
             if (string.length
                 && ![string isEqualToString:@"(null)"]
                 && ![string isEqualToString:@"<null>"]
                 && ![string isKindOfClass:NSNull.class]) {
-                return (NSString *)self;
-            }
-        }
-        return @"";
-    }
-    return @"";
-}
-
-- (NSArray *)isArrayValued {
-    if (self) {
-        if ([self isKindOfClass:[NSArray class]]) {
-            NSArray *array = (NSArray *) self;
-            if (array.count) {
-                return (NSArray *)self;
-            }
-        }
-        return @[].mutableCopy;
-    }
-    return @[];
-}
-
-- (NSDictionary *)isDictionaryValued {
-    if (self) {
-        if ([self isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *dictionary = (NSDictionary *) self;
-            if (dictionary && dictionary.allKeys.count && dictionary.allValues.count
-                && (dictionary.allKeys.count == dictionary.allValues.count)) {
-                return (NSDictionary *) self;
-            }
-        }
-        return @{}.mutableCopy;
-    }
-    return @{};
-}
-
-- (NSDecimalNumber *)isDecimalValued {
-    if (self) {
-        if ([self isKindOfClass:[NSDecimalNumber class]]) {
-            if (![self isEqual:NSDecimalNumber.notANumber]) {
-                return (NSDecimalNumber *) self;
-            }
-        }
-        return [NSDecimalNumber decimalNumberWithString:@"0"];
-    }
-    return [NSDecimalNumber decimalNumberWithString:@"0"];
-}
-
-- (BOOL)isNull {
-    return (self && ![self isKindOfClass:[NSNull class]] && (self != NSNull.null));
-}
-
-- (BOOL)isValuedString {
-    return (self.isStringValued.length > 0);
-}
-
-- (BOOL)isValuedArray {
-    return (self.isArrayValued.count > 0);
-}
-
-- (BOOL)isValuedDictionary {
-    return (self.isDictionaryValued.allKeys.count > 0);
-}
-
-- (BOOL)isValuedDecimal {
-    if (self) {
-        if ([self isKindOfClass:[NSDecimalNumber class]]) {
-            if (![self isEqual:NSDecimalNumber.notANumber]) {
                 return YES;
             }
         }
     }
     return false;
 }
-
-@end
+BOOL CC_IS_ARRAY_VALUED(__kindof NSArray * array) {
+    if (array) {
+        if ([array isKindOfClass:[NSArray class]]) {
+            if (array.count) {
+                return YES;
+            }
+        }
+    }
+    return false;
+}
+BOOL CC_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) {
+    if (dictionary) {
+        if ([dictionary isKindOfClass:[NSDictionary class]]) {
+            if (dictionary && dictionary.allKeys.count && dictionary.allValues.count
+                && (dictionary.allKeys.count == dictionary.allValues.count)) {
+                return YES;
+            }
+        }
+    }
+    return false;
+}
+BOOL CC_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) {
+    if (decimal) {
+        if ([decimal isKindOfClass:[NSDecimalNumber class]]) {
+            if (![decimal isEqual:NSDecimalNumber.notANumber]) {
+                return YES;
+            }
+        }
+    }
+    return false;
+}
+BOOL CC_IS_NULL(id object) {
+    return (object && ![object isKindOfClass:[NSNull class]] && (object != NSNull.null));
+}

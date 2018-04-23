@@ -10,7 +10,7 @@
 
 @interface NSNumber (CCExtension)
 
-@property (nonatomic , readonly) NSDecimalNumber * decimal ;
+@property (nonatomic , readonly) NSDecimalNumber * toDecimal ;
 
 @end
 
@@ -20,16 +20,16 @@
 
 /// default two after point . // 默认小数点后两位
 @property (nonatomic , readonly) NSString * round ;
-- (NSString *) ccRound : (short) point ;
-- (NSString *) ccRound : (short) point
-                  mode : (NSRoundingMode) mode ;
+- (NSString *) cc_round : (short) point ;
+- (NSString *) cc_round : (short) point
+                   mode : (NSRoundingMode) mode ;
 
-- (instancetype) roundDecimal ;
-- (instancetype) ccRoundDecimal : (short) point ;
-- (instancetype) ccRoundDecimal : (short) point
-                           mode : (NSRoundingMode) mode ;
+- (instancetype) cc_round_decimal ;
+- (instancetype) cc_round_decimal : (short) point ;
+- (instancetype) cc_round_decimal : (short) point
+                             mode : (NSRoundingMode) mode ;
 
-- (instancetype) ccMutiply : (NSDecimalNumber *) decimal ;
-- (instancetype) ccDevide : (NSDecimalNumber *) decimal ;
+- (instancetype) cc_mutiply : (NSDecimalNumber *) decimal ;
+- (instancetype) cc_devide : (NSDecimalNumber *) decimal ;
 
 @end

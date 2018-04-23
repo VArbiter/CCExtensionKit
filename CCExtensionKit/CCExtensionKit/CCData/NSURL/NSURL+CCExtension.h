@@ -17,8 +17,8 @@
 
 @interface NSURL (CCExtension)
 
-+ (instancetype) ccURL : (NSString *) sURL ;
-+ (instancetype) ccLocal : (NSString *) sURL ;
++ (instancetype) cc_URL : (NSString *) sURL ;
++ (instancetype) cc_local : (NSString *) sURL ;
 
 @end
 

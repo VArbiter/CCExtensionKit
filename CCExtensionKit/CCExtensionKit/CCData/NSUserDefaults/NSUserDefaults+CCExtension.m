@@ -20,4 +20,10 @@ void CC_RESET_USER_DEFAULLTS(void) {
     [NSUserDefaults resetStandardUserDefaults];
 }
 
+BOOL CC_USER_DEFAULTS_S(NSString *s_suite_id , void (^block_def)(NSUserDefaults *sender)) {
+    NSUserDefaults *def = [[NSUserDefaults alloc] initWithSuiteName:s_suite_id];
+    if (block_def) block_def(def);
+    return def.synchronize;
+}
+
 @end

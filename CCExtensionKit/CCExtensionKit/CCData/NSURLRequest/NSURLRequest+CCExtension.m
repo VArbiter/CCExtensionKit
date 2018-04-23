@@ -11,11 +11,11 @@
 
 @implementation NSURLRequest (CCExtension)
 
-+ (instancetype) ccRequest : (NSString *) sURL {
-    return [NSURLRequest requestWithURL:[NSURL ccURL:sURL]];
++ (instancetype) cc_request : (NSString *) sURL {
+    return [NSURLRequest requestWithURL:[NSURL cc_URL:sURL]];
 }
-+ (instancetype) ccLocal : (NSString *) sURL {
-    return [NSURLRequest requestWithURL:[NSURL ccLocal:sURL]];
++ (instancetype) cc_local : (NSString *) sURL {
+    return [NSURLRequest requestWithURL:[NSURL cc_local:sURL]];
 }
 
 @end
@@ -24,11 +24,11 @@
 
 @implementation NSMutableURLRequest (CCExtension)
 
-+ (instancetype)ccRequest:(NSString *)sURL {
-    return [NSMutableURLRequest requestWithURL:[NSURL ccURL:sURL]];
++ (instancetype)cc_request:(NSString *)sURL {
+    return [NSMutableURLRequest requestWithURL:[NSURL cc_URL:sURL]];
 }
-+ (instancetype)ccLocal:(NSString *)sURL {
-    return [NSMutableURLRequest requestWithURL:[NSURL ccLocal:sURL]];
++ (instancetype)cc_local:(NSString *)sURL {
+    return [NSMutableURLRequest requestWithURL:[NSURL cc_local:sURL]];
 }
 
 @end

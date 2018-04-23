@@ -10,11 +10,11 @@
 
 @implementation NSURL (CCExtension)
 
-+ (instancetype)ccURL:(NSString *)sURL {
++ (instancetype)cc_URL:(NSString *)sURL {
     return [NSURL URLWithString:(sURL && sURL.length) ? sURL : @""];
 }
 
-+ (instancetype)ccLocal:(NSString *)sURL {
++ (instancetype)cc_local:(NSString *)sURL {
     return [NSURL fileURLWithPath:(sURL && sURL.length) ? sURL : @""];
 }
 
@@ -25,10 +25,10 @@
 @implementation NSString (CCExtension_UrlEncode)
 
 - (NSURL *)toWebURL {
-    return [NSURL ccURL:self];
+    return [NSURL cc_URL:self];
 }
 - (NSURL *)toLocalURL {
-    return [NSURL ccLocal:self];
+    return [NSURL cc_local:self];
 }
 
 @end

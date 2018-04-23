@@ -10,8 +10,8 @@
 
 @interface NSURLRequest (CCExtension)
 
-+ (instancetype) ccRequest : (NSString *) sURL ;
-+ (instancetype) ccLocal : (NSString *) sURL ;
++ (instancetype) cc_request : (NSString *) sURL ;
++ (instancetype) cc_local : (NSString *) sURL ;
 
 @end
 

@@ -26,13 +26,13 @@
 /// note : when you give out the methodName , make sure that won't use by system . // 确保给出的"方法名"不会和系统方法名重名
 /// eg (for method name): copy -> error && crash , copyy -> correct // 若给出方法名为 copy , 会崩溃 . copyy 就没有问题
 
-- (instancetype) ccShow : (CGRect) frame
-                  items : (NSArray <NSDictionary <NSString * , NSString *> *> *) arrayTitles ;
-- (instancetype) ccClick : (void (^)(NSDictionary *dTotal ,
-                                     NSString *sKey ,
-                                     NSString *sValue ,
-                                     NSInteger index)) click ;
-- (instancetype) ccDelegate : (id <CCMenuViewProtocol>) delegate ;
+- (instancetype) cc_show : (CGRect) frame
+                   items : (NSArray <NSDictionary <NSString * , NSString *> *> *) arrayTitles ;
+- (instancetype) cc_click : (void (^)(NSDictionary *dTotal ,
+                                      NSString *sKey ,
+                                      NSString *sValue ,
+                                      NSInteger index)) click ;
+- (instancetype) cc_delegate : (id <CCMenuViewProtocol>) delegate ;
 
 /// remove form super view && destory (set to nil) . // 从父视图移除和销毁
 void CC_DESTORY_MENU_ITEM(CCMenuView *view);

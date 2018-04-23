@@ -12,9 +12,40 @@
 
 @implementation NSArray (CCExtension)
 
-- (id) ccValueAt : (NSInteger) index {
+- (NSString *)toJson {
+    NSError *error;
+    NSData *t_data = [NSJSONSerialization dataWithJSONObject:self
+                                                     options:NSJSONWritingPrettyPrinted
+                                                       error:&error];
+    
+    NSString *s_json = nil;
+    
+    if (!t_data) return nil;
+    else s_json = [[NSString alloc]initWithData:t_data encoding:NSUTF8StringEncoding];
+    
+    NSMutableString *s_mutable = [NSMutableString stringWithString:s_json];
+
+    NSRange range = {0,s_json.length};
+    [s_mutable replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    
+    NSRange range2 = {0,s_mutable.length};
+    [s_mutable replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    return s_mutable;
+}
+
+- (NSData *)toData {
+    NSError *error;
+    NSData *t_data = [NSJSONSerialization dataWithJSONObject:self
+                                                     options:NSJSONWritingPrettyPrinted
+                                                       error:&error];
+    if (error) return nil;
+    else return t_data;
+}
+
+- (id) cc_value_at : (NSInteger) index {
+    if (!CC_IS_ARRAY_VALUED(self)) return nil;
     if (index >= 0 && index < self.count) {
-        return self.isArrayValued[index];
+        return self[index];
     }
     return nil;
 }
@@ -26,11 +57,11 @@
 
 @implementation NSMutableArray (CCExtension)
 
-- (instancetype) ccType : (NSString *) cls {
+- (instancetype) cc_type : (NSString *) cls {
     objc_setAssociatedObject(self, "_CC_ARRAY_CLAZZ_", cls, OBJC_ASSOCIATION_ASSIGN);
     return self;
 }
-- (instancetype) ccAppend : (id) value {
+- (instancetype) cc_append : (id) value {
     BOOL isCan = YES;
     if (objc_getAssociatedObject(self, "_CC_ARRAY_CLAZZ_")) {
         Class clazz = NSClassFromString([NSString stringWithFormat:@"%@",objc_getAssociatedObject(self, "_CC_ARRAY_CLAZZ_")]);
@@ -57,21 +88,21 @@
     return self;
 }
 
-- (instancetype) ccAppend : (id)value
+- (instancetype) cc_append : (id)value
                    expand : (BOOL) isExpand {
     if ([value isKindOfClass:NSArray.class]) {
         if (isExpand) {
             __weak typeof(self) pSelf = self;
             [(NSArray *)value enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [pSelf ccAppend:value];
+                [pSelf cc_append:value];
             }];
         }
-        else [self ccAppend:value];
+        else [self cc_append:value];
     }
-    else [self ccAppend:value];
+    else [self cc_append:value];
     return self;
 }
-- (instancetype) ccRemove : (id) value {
+- (instancetype) cc_remove : (id) value {
     CCArrayChangeInfo type ;
     type.type = CCArrayChangeTypeRemoved;
     type.count = self.count;
@@ -90,7 +121,7 @@
     }
     return self;
 }
-- (instancetype) ccRemoveAll : (BOOL (^)(BOOL isCompare , id obj)) action {
+- (instancetype) cc_remove_all : (BOOL (^)(BOOL isCompare , id obj)) action {
     NSString *stringClazz = [NSString stringWithFormat:@"%@",objc_getAssociatedObject(self, "_CC_ARRAY_CLAZZ_")];
     
     NSMutableArray *arrayRemove = [NSMutableArray array];
@@ -121,11 +152,11 @@
 }
 
 
-- (instancetype) ccChange : (void (^)(id value , CCArrayChangeInfo type)) action {
+- (instancetype) cc_change : (void (^)(id value , CCArrayChangeInfo type)) action {
     objc_setAssociatedObject(self, "_CC_ARRAY_CHANGE_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
-- (instancetype) ccComplete : (void (^)(CCArrayChangeInfo type)) action {
+- (instancetype) cc_complete : (void (^)(CCArrayChangeInfo type)) action {
     objc_setAssociatedObject(self, "_CC_ARRAY_COMPLETE_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }

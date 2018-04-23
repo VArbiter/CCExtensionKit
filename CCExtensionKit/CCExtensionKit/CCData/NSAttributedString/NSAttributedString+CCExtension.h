@@ -10,12 +10,12 @@
 
 @interface NSAttributedString (CCExtension)
 
-+ (NSMutableAttributedString *) ccColor : (UIColor *) color
-                                 string : (NSString *) string ;
-- (NSMutableAttributedString *) ccColor : (UIColor *) color ;
-- (NSMutableAttributedString *) ccOperate : (NSMutableAttributedString * (^)(NSMutableAttributedString * sender)) action ;
-- (NSMutableAttributedString *) ccAppendS : (NSAttributedString *) sAttr ;
-- (NSMutableAttributedString *) ccAppendC : (NSString *) string ;
++ (NSMutableAttributedString *) cc_color : (UIColor *) color
+                                  string : (NSString *) string ;
+- (NSMutableAttributedString *) cc_color : (UIColor *) color ;
+- (NSMutableAttributedString *) cc_operate : (NSMutableAttributedString * (^)(NSMutableAttributedString * sender)) action ;
+- (NSMutableAttributedString *) cc_append_s : (NSAttributedString *) sAttr ;
+- (NSMutableAttributedString *) cc_append_c : (NSString *) string ;
 
 @end
 
@@ -23,9 +23,9 @@
 
 @interface NSMutableAttributedString (CCExtension)
 
-- (NSMutableAttributedString *) ccAttributeC : (NSAttributedStringKey) sKey
+- (NSMutableAttributedString *) cc_attribute_c : (NSAttributedStringKey) sKey
                                        value : (id) value ;
-- (NSMutableAttributedString *) ccAttributeS : (NSDictionary <NSAttributedStringKey , id> *) dAttributes ;
+- (NSMutableAttributedString *) cc_attribute_s : (NSDictionary <NSAttributedStringKey , id> *) dAttributes ;
 
 @end
 
@@ -34,6 +34,6 @@
 @interface NSString (CCExtension_AttributedString)
 
 @property (nonatomic , readonly) NSMutableAttributedString * toAttribute;
-- (NSMutableAttributedString *) ccColor : (UIColor *) color ;
+- (NSMutableAttributedString *) cc_color : (UIColor *) color ;
 
 @end

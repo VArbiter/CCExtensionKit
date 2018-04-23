@@ -13,43 +13,43 @@
 
 NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
 
-@implementation NSFileManager (CCExtension)
-
-+ (NSString *)sHomeDirectory {
+NSString * CC_HOME_DIRECTORY(void) {
     return NSHomeDirectory();
 }
-+ (NSString *)sTempDirectory {
+NSString * CC_TEMP_DIRECTORY(void) {
     return NSTemporaryDirectory();
 }
-+ (NSString *)sCacheDirectory {
+NSString * CC_CACHE_DIRECTORY(void) {
     return NSSearchPathForDirectoriesInDomains(NSCachesDirectory , NSUserDomainMask, YES).firstObject;
 }
-+ (NSString *)sLibraryDirectory {
+NSString * CC_LIBRARY_DIRECTORY(void) {
     return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory , NSUserDomainMask, YES).firstObject;
 }
 
-- (BOOL)ccIsDirectoryT:(NSString *)sPath {
+@implementation NSFileManager (CCExtension)
+
+- (BOOL)cc_is_directory_t:(NSString *)sPath {
     if (!sPath || !sPath.length) return false;
     BOOL isDir = false;
     [self fileExistsAtPath:sPath
                isDirectory:&isDir];
     return isDir;
 }
-- (BOOL)ccExistsT:(NSString *)sPath {
+- (BOOL)cc_exists_t:(NSString *)sPath {
     if (!sPath || !sPath.length) return false;
-    if ([self ccIsDirectoryT:sPath]) return false;
+    if ([self cc_is_directory_t:sPath]) return false;
     return [self fileExistsAtPath:sPath];
 }
-- (BOOL)ccRemoveT:(NSString *)sPath {
+- (BOOL)cc_remove_t:(NSString *)sPath {
     if (!sPath || !sPath.length) return YES;
     NSError *e;
     BOOL b = [self removeItemAtPath:sPath
                               error:&e];
     return e ? false : b;
 }
-- (BOOL)ccCreateFolderT:(NSString *)sPath {
+- (BOOL)cc_create_folder_t:(NSString *)sPath {
     if (!sPath || !sPath.length) return false;
-    if ([self ccIsDirectoryT:sPath]) return YES;
+    if ([self cc_is_directory_t:sPath]) return YES;
     NSError *e = nil;
     BOOL b = [self createDirectoryAtPath:sPath
              withIntermediateDirectories:YES // whether if create middle path // 是否创建中间路径
@@ -57,12 +57,12 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
                                    error:&e];
     return e ? false : b;
 }
-- (BOOL)ccMoveT:(NSString *)sFrom to:(NSString *)sTo {
+- (BOOL)cc_move_t:(NSString *)sFrom to:(NSString *)sTo {
     if (!sFrom || !sFrom.length
         || !sTo || !sTo.length) return false;
-    if ([self ccIsDirectoryT:sFrom]) return false;
-    if ([self ccIsDirectoryT:sTo]) return false;
-    if (![self ccExistsT:sFrom]) return false;
+    if ([self cc_is_directory_t:sFrom]) return false;
+    if ([self cc_is_directory_t:sTo]) return false;
+    if (![self cc_exists_t:sFrom]) return false;
     NSError *e ;
     BOOL b = [self moveItemAtPath:sFrom
                            toPath:sTo
@@ -70,40 +70,40 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
     return e ? false : b;
 }
 
-- (unsigned long long)ccFileSizeT:(NSString *)sPath {
+- (unsigned long long)cc_file_size_t:(NSString *)sPath {
     if (!sPath || !sPath.length) return 0;
-    if ([self ccIsDirectoryT:sPath]) return 0;
-    if (![self ccExistsT:sPath]) return 0;
+    if ([self cc_is_directory_t:sPath]) return 0;
+    if (![self cc_exists_t:sPath]) return 0;
     NSError *e ;
     NSDictionary *dictionaryInfo = [self attributesOfItemAtPath:sPath
                                                           error:&e];
     return e ? 0 : [dictionaryInfo[NSFileSize] longLongValue];
 }
-- (unsigned long long)ccFolderSizeT:(NSString *)sPath {
+- (unsigned long long)cc_folder_size_t:(NSString *)sPath {
     if (!sPath || !sPath.length) return 0;
-    if (![self ccIsDirectoryT:sPath]) return [self ccFileSizeT:sPath];
+    if (![self cc_is_directory_t:sPath]) return [self cc_file_size_t:sPath];
     NSEnumerator * enumeratorFiles = [[self subpathsAtPath:sPath] objectEnumerator];
     NSString * sFileName = nil;
     unsigned long long folderSize = 0;
     while ((sFileName = [enumeratorFiles nextObject]) != nil) {
-        folderSize += [self ccFileSizeT:[sPath stringByAppendingPathComponent:sFileName]];
+        folderSize += [self cc_file_size_t:[sPath stringByAppendingPathComponent:sFileName]];
     }
     return folderSize;
 }
 
-- (NSString *)ccMD5Auto:(NSString *)sPath {
-    if (!sPath || !sPath.length) return @"";
-    if ([self ccIsDirectoryT:sPath]) return @"";
-    if (![self ccExistsT:sPath]) return @"";
-    if ([self ccFileSizeT:sPath] >= 10 * pow(10, 6)) { // file limit 10 MB // 文件限制 10 M
-        return [self ccMD5Large:sPath] ;
+- (NSString *)cc_MD5_auto:(NSString *)sPath {
+    if (!sPath || !sPath.length) return nil;
+    if ([self cc_is_directory_t:sPath]) return nil;
+    if (![self cc_exists_t:sPath]) return nil;
+    if ([self cc_file_size_t:sPath] >= 10 * pow(10, 6)) { // file limit 10 MB // 文件限制 10 M
+        return [self cc_MD5_large:sPath] ;
     }
-    return [self ccMD5Normal:sPath];
+    return [self cc_MD5_normal:sPath];
 }
-- (NSString *)ccMD5Normal:(NSString *)sPath {
-    if (!sPath || !sPath.length) return @"";
-    if ([self ccIsDirectoryT:sPath]) return @"";
-    if (![self ccExistsT:sPath]) return @"";
+- (NSString *)cc_MD5_normal:(NSString *)sPath {
+    if (!sPath || !sPath.length) return nil;
+    if ([self cc_is_directory_t:sPath]) return nil;
+    if (![self cc_exists_t:sPath]) return nil;
     NSFileHandle *handle = [NSFileHandle fileHandleForReadingAtPath:sPath];
     if(!handle) return nil;
     
@@ -124,10 +124,10 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
     }
     return string;
 }
-- (NSString *)ccMD5Large:(NSString *)sPath {
-    if (!sPath || !sPath.length) return @"";
-    if ([self ccIsDirectoryT:sPath]) return @"";
-    if (![self ccExistsT:sPath]) return @"";
+- (NSString *)cc_MD5_large:(NSString *)sPath {
+    if (!sPath || !sPath.length) return nil;
+    if ([self cc_is_directory_t:sPath]) return nil;
+    if (![self cc_exists_t:sPath]) return nil;
     NSString *(^t)(CFStringRef stringRefPath , size_t sizeChunk) = ^NSString *(CFStringRef stringRefPath , size_t sizeChunk) {
         // Declare needed variables // 声明变量
         CFStringRef result = NULL;
@@ -185,12 +185,12 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
         if (fileURL) CFRelease(fileURL);
         return (__bridge_transfer NSString *) result;
     };
-    return t ? t(((__bridge CFStringRef)sPath) , _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_) : @"";
+    return t ? t(((__bridge CFStringRef)sPath) , _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_) : nil;
 }
-- (NSString *)ccMimeType:(NSString *)sPath {
-    if (!sPath || !sPath.length) return @"";
-    if ([self ccIsDirectoryT:sPath]) return @"";
-    if (![self ccExistsT:sPath]) return @"";
+- (NSString *)cc_mime_type:(NSString *)sPath {
+    if (!sPath || !sPath.length) return nil;
+    if ([self cc_is_directory_t:sPath]) return nil;
+    if (![self cc_exists_t:sPath]) return nil;
     NSString *sExtension = sPath.pathExtension;
     CFStringRef sContentRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,
                                                                     (__bridge CFStringRef)(sExtension),
@@ -205,42 +205,42 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
 
 @implementation NSString (CCExtension_File_Extension)
 
-- (BOOL)isDirectoryT {
-    return [NSFileManager.defaultManager ccIsDirectoryT:self];
+- (BOOL)is_directory_t {
+    return [NSFileManager.defaultManager cc_is_directory_t:self];
 }
-- (BOOL)isExistsT {
-    return [NSFileManager.defaultManager ccExistsT:self];
+- (BOOL)is_exists_t {
+    return [NSFileManager.defaultManager cc_exists_t:self];
 }
-- (BOOL)removeT {
-    return [NSFileManager.defaultManager ccRemoveT:self];
+- (BOOL)remove_t {
+    return [NSFileManager.defaultManager cc_remove_t:self];
 }
-- (BOOL)createFolderT {
-    return [NSFileManager.defaultManager ccCreateFolderT:self];
-}
-
-- (unsigned long long)fileSizeT {
-    return [NSFileManager.defaultManager ccFileSizeT:self];
-}
-- (unsigned long long)folderSizeT {
-    return [NSFileManager.defaultManager ccFolderSizeT:self];
+- (BOOL)create_folder_t {
+    return [NSFileManager.defaultManager cc_create_folder_t:self];
 }
 
-- (BOOL)ccMoveTo:(NSString *)sTo {
-    return [NSFileManager.defaultManager ccMoveT:self
-                                              to:sTo];
+- (unsigned long long)file_size_t {
+    return [NSFileManager.defaultManager cc_file_size_t:self];
+}
+- (unsigned long long)folder_size_t {
+    return [NSFileManager.defaultManager cc_folder_size_t:self];
 }
 
-- (NSString *)mimeType {
-    return [NSFileManager.defaultManager ccMimeType:self];
+- (BOOL)cc_move_to:(NSString *)sTo {
+    return [NSFileManager.defaultManager cc_move_t:self
+                                                to:sTo];
 }
-- (NSString *)fileAutoMD5 {
-    return [NSFileManager.defaultManager ccMD5Auto:self];
+
+- (NSString *)mime_type {
+    return [NSFileManager.defaultManager cc_mime_type:self];
 }
-- (NSString *)fileMD5 {
-    return [NSFileManager.defaultManager ccMD5Normal:self];
+- (NSString *)file_auto_MD5 {
+    return [NSFileManager.defaultManager cc_MD5_auto:self];
 }
-- (NSString *)largeFileMD5 {
-    return [NSFileManager.defaultManager ccMD5Large:self];
+- (NSString *)file_MD5 {
+    return [NSFileManager.defaultManager cc_MD5_normal:self];
+}
+- (NSString *)large_file_MD5 {
+    return [NSFileManager.defaultManager cc_MD5_large:self];
 }
 
 @end

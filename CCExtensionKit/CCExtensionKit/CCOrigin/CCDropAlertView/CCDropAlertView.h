@@ -38,26 +38,26 @@ NS_ASSUME_NONNULL_BEGIN
 /// enable or not offEdgePop , default is false // 是否启用超界消失 , 默认是 false
 @property (nonatomic , assign , getter=isEnableOffEdgePop) BOOL enableOffEdgePop ;
 /// animation will be started // 动画将要开始
-@property (nonatomic , copy) void (^bActionStart)(CCDropAlertView *sender) ;
+@property (nonatomic , copy) void (^block_action_start)(CCDropAlertView *sender) ;
 /// start animation will be ended // 开始动画已经结束 (视图已经完整出现在屏幕中央 , 动画器完成出现动画时调用)
-@property (nonatomic , copy) void (^bActionStartDidEnd)(CCDropAlertView *sender) ;
+@property (nonatomic , copy) void (^block_action_start_did_end)(CCDropAlertView *sender) ;
 /// animation already ended // 动画已经结束
-@property (nonatomic , copy) void (^bActionDidEnd)(CCDropAlertView *sender) ;
+@property (nonatomic , copy) void (^block_action_did_end)(CCDropAlertView *sender) ;
 /// animation was paused // 动画已经暂停
-@property (nonatomic , copy) void (^bActionPaused)(CCDropAlertView *sender) ;
+@property (nonatomic , copy) void (^block_action_paused)(CCDropAlertView *sender) ;
 /// animation will be resumed // 动画将要恢复执行
-@property (nonatomic , copy) void (^bActionResume)(CCDropAlertView *sender) ;
+@property (nonatomic , copy) void (^block_action_resume)(CCDropAlertView *sender) ;
 
-- (void) ccShow ; // default CCDropAnimate_Smooth
-- (void) ccShow : (CCDropAnimate) animate ;
-- (void) ccDismiss ; // default CCDropAnimate_Snap
-- (void) ccDismiss : (CCDropAnimate) animate ;
+- (void) cc_show ; // default CCDropAnimate_Smooth
+- (void) cc_show : (CCDropAnimate) animate ;
+- (void) cc_dismiss ; // default CCDropAnimate_Snap
+- (void) cc_dismiss : (CCDropAnimate) animate ;
 
 /// set the background color for alert content view // 设置包裹视图的背景色
 // note : falpha was the component for color , not for view . // falpha 是 color 的通道 , 不是 View 的通道
 // note : thus , it has no effect for its subviews . // 所以 , 它不会影响到它的子试图
-- (void) ccSetShadow : (UIColor *) color
-               alpha : (CGFloat) fAlpha ;
+- (void) cc_set_shadow : (UIColor *) color
+                 alpha : (CGFloat) fAlpha ;
 
 @end
 

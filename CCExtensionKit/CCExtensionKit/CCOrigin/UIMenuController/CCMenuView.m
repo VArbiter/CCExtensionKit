@@ -151,8 +151,8 @@ static NSArray *__arrayKeys = nil;
 
 @implementation CCMenuView
 
-- (instancetype) ccShow : (CGRect) frame
-                  items : (NSArray <NSDictionary <NSString * , NSString *> *> *) arrayTitles {
+- (instancetype) cc_show : (CGRect) frame
+                   items : (NSArray <NSDictionary <NSString * , NSString *> *> *) arrayTitles {
     if (self.menuController.isMenuVisible || !arrayTitles.count) return self;
     
     NSMutableArray *akeys = [NSMutableArray array];
@@ -199,14 +199,14 @@ static NSArray *__arrayKeys = nil;
                                animated:YES];
     return self;
 }
-- (instancetype) ccClick : (void (^)(NSDictionary *dTotal ,
+- (instancetype) cc_click : (void (^)(NSDictionary *dTotal ,
                                      NSString *sKey ,
                                      NSString *sValue ,
                                      NSInteger index)) click {
     self.click = [click copy];
     return self;
 }
-- (instancetype) ccDelegate : (id <CCMenuViewProtocol>) delegate {
+- (instancetype) cc_delegate : (id <CCMenuViewProtocol>) delegate {
     self.delegate = delegate;
     return self;
 }

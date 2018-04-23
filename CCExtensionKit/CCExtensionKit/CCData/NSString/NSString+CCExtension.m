@@ -35,9 +35,9 @@
     };
 }
 
-+ (instancetype) ccMerge : (BOOL) isNeedBreak
-                 spacing : (BOOL) isNeedSpacing
-                    with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION {
++ (instancetype) cc_merge : (BOOL) isNeedBreak
+                  spacing : (BOOL) isNeedSpacing
+                     with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION {
     if (!string || !string.length) return nil;
     
     NSMutableArray *arrayStrings = [NSMutableArray array];
@@ -52,13 +52,13 @@
         va_end(argumentList);
     }
     free(argumentList);
-    return [self ccMerge:arrayStrings
-                  nBreak:isNeedBreak
-                 spacing:isNeedSpacing];
+    return [self cc_merge:arrayStrings
+               need_break:isNeedBreak
+                  spacing:isNeedSpacing];
 }
-+ (instancetype) ccMerge : (NSArray <NSString *> *) arrayStrings
-                  nBreak : (BOOL) isNeedBreak
-                 spacing : (BOOL) isNeedSpacing {
++ (instancetype) cc_merge : (NSArray <NSString *> *) arrayStrings
+               need_break : (BOOL) isNeedBreak
+                  spacing : (BOOL) isNeedSpacing {
     __block NSString *stringResult = @"";
     if (isNeedBreak) {
         [arrayStrings enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -89,25 +89,25 @@
 }
 
 /// for localizedString
-+ (instancetype) ccLocalized : (NSString *) sKey
-                     comment : (NSString *) sComment {
-    return [self ccLocalized:sKey
-                      bundle:NSBundle.mainBundle
-                     comment:sComment];
++ (instancetype) cc_localized : (NSString *) sKey
+                      comment : (NSString *) sComment {
+    return [self cc_localized:sKey
+                       bundle:NSBundle.mainBundle
+                      comment:sComment];
 }
-+ (instancetype) ccLocalized : (NSString *) sKey
-                      bundle : (NSBundle *) bundle
-                     comment : (NSString *) sComment {
-    return [self ccLocalized:sKey
-                     strings:@"Localizable"
-                      bundle:bundle
-                     comment:sComment];
++ (instancetype) cc_localized : (NSString *) sKey
+                       bundle : (NSBundle *) bundle
+                      comment : (NSString *) sComment {
+    return [self cc_localized:sKey
+                      strings:@"Localizable"
+                       bundle:bundle
+                      comment:sComment];
 }
 /// key , strings file , bundle , comment
-+ (instancetype) ccLocalized : (NSString *) sKey
-                     strings : (NSString *) sStrings
-                      bundle : (NSBundle *) bundle
-                     comment : (NSString *) sComment {
++ (instancetype) cc_localized : (NSString *) sKey
+                      strings : (NSString *) sStrings
+                       bundle : (NSBundle *) bundle
+                      comment : (NSString *) sComment {
     if (!bundle) bundle = NSBundle.mainBundle;
     if (!sStrings) sStrings = @"Localizable";
     NSString *s = NSLocalizedStringFromTableInBundle(sKey, sStrings, bundle, nil);
@@ -117,11 +117,11 @@
     return ((s && s.length) ? s : @"");
 }
 
-+ (instancetype) ccLocalized : (Class) cls
-                      module : (NSString *) sModule
-                     strings : (NSString *) sStrings
-                         key : (NSString *) sKey
-                     comment : (NSString *) sComment {
++ (instancetype) cc_localized : (Class) cls
+                       module : (NSString *) sModule
+                      strings : (NSString *) sStrings
+                          key : (NSString *) sKey
+                      comment : (NSString *) sComment {
     NSBundle *b = [NSBundle bundleForClass:cls];
     NSString *s = nil;
     if (sModule && sModule.length) {
@@ -172,7 +172,7 @@
 }
 
 - (NSDate *)toDate {
-    if (!self.isTime.isStringValued) {
+    if (!CC_IS_STRING_VALUED(self) || !self.is_time) {
         return [NSDate date];
     }
     
@@ -181,39 +181,9 @@
     return [formatter dateFromString:self];
 }
 
-- (instancetype) ccTimeStick : (BOOL) isNeedSpace {
-    if (isNeedSpace) {
-        return self.s(@" ").s(self.toTimeStick);
-    }
-    return self.s(self.toTimeStick);
-}
-- (NSString *)toTimeStick {
-    NSDate *date = self.toDate;
-    if (!date) {
-        return @"";
-    }
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:date];
-    
-    long interval = (long) timeInterval;
-    if (timeInterval / (60 * 60 * 24 * 30) >= 1 ) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"yyyy-MM-dd HH:mm";
-        return [formatter stringFromDate:date];
-    }
-    else if (timeInterval / (60 * 60 * 24) >= 1) {
-        return [NSString stringWithFormat:@"%ld %@",interval / (60 * 60 * 24) , [NSString ccLocalized:@"_CC_DAYS_AGO_" comment:@"天前"]];
-    }
-    else if (timeInterval / (60 * 60) >= 1) {
-        return [NSString stringWithFormat:@"%ld %@",interval / (60 * 60) , [NSString ccLocalized:@"_CC_HOURS_AGO_" comment:@"小时前"]];
-    }
-    else if (timeInterval / 60 >= 1) {
-        return [NSString stringWithFormat:@"%ld %@",interval / 60 , [NSString ccLocalized:@"_CC_MINUTES_AGO_" comment:@"分钟前"]];
-    }
-    else return [NSString ccLocalized:@"_CC_AGO_" comment:@"刚刚"];
-}
 - (NSString *)toMD5 {
-    if (!self.length) return @"";
-    const char *cStr = [self.isStringValued UTF8String];
+    if (!CC_IS_STRING_VALUED(self)) return nil;
+    const char *cStr = [self UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, (CC_LONG) strlen(cStr), digest );
     NSMutableString *stringOutput = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
@@ -222,6 +192,7 @@
     return  stringOutput;
 }
 - (NSString *)toSHA1 {
+    if (!CC_IS_STRING_VALUED(self)) return nil;
     const char *cstr = [self cStringUsingEncoding:NSUTF8StringEncoding];
     NSData *data = [NSData dataWithBytes:cstr length:self.length];
     // length
@@ -237,11 +208,12 @@
     return output;
 }
 - (NSString *)toBase64 {
+    if (!CC_IS_STRING_VALUED(self)) return nil;
     NSData *d = self.toData;
     if (d && d.length) {
         return [d base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     }
-    else return @"";
+    else return nil;
 }
 - (NSString *)toBase64Decode {
     NSData *d = [[NSData alloc] initWithBase64EncodedString:self
@@ -279,7 +251,7 @@ NSString * CC_STRING_FROM_UTF8(const char * cUTF8) {
     if (cUTF8 && (*cUTF8 != '\0')) {
         return [NSString stringWithUTF8String:cUTF8];
     }
-    return @"";
+    return nil;
 }
 
 @end

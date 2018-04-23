@@ -15,10 +15,10 @@
 /// make sure that when blocks is deploy ,
 /// the object in blocks , was never can't be nil
 /// use CC_TYPE(_type_ , sameObject) to force 'sameObject' with aspecific value .
-- (instancetype) cc : (id (^)(id sameObject)) sameObject;
+- (instancetype) cc : (id (^)(id same_object)) sameObject;
 
 /// intialize a value that definitly can't be nil
-+ (instancetype) CC_Non_NULL : (void(^)(id value)) setting;
++ (instancetype) CC_NON_NULL : (void(^)(id value)) setting;
 /// c function type , same as + (instancetype)CC_Non_NULL:
 id CC_NON_NULL(Class clazz , void (^setting)(id value));
 

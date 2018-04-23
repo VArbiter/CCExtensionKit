@@ -10,35 +10,35 @@
 
 @implementation NSBundle (CCExtension)
 
-+ (instancetype) ccBundleFor : (Class) clazz {
++ (instancetype) cc_bundle_for : (Class) clazz {
     if (clazz) {
         return [NSBundle bundleForClass:clazz];
     }
     return [NSBundle mainBundle];
 }
 
-- (instancetype) ccResource : (NSString *) sName
-                  extension : (NSString *) sExtension
-                     action : (void(^)(NSString *sPath)) action {
-    return [self ccResource:sName
-                  extension:sExtension
-                    subPath:nil
-                     action:action];
+- (instancetype) cc_resource : (NSString *) sName
+                   extension : (NSString *) sExtension
+                      action : (void(^)(NSString *sPath)) action {
+    return [self cc_resource:sName
+                   extension:sExtension
+                    sub_path:nil
+                      action:action];
 }
 
-- (instancetype) ccResource : (NSString *) sName
-                  extension : (NSString *) sExtension
-                    subPath : (NSString *) sSubPath
-                     action : (void(^)(NSString *sPath)) action {
+- (instancetype) cc_resource : (NSString *) sName
+                   extension : (NSString *) sExtension
+                    sub_path : (NSString *) sSubPath
+                      action : (void(^)(NSString *sPath)) action {
     if (action) action([self pathForResource:sName
                                       ofType:sExtension
                                  inDirectory:sSubPath]);
     return self;
 }
 
-- (instancetype) ccResource : (NSString *) sExtension
-                    subPath : (NSString *) sSubPath
-                     action : (void(^)(NSArray <NSString *> *sPath)) action {
+- (instancetype) cc_resource : (NSString *) sExtension
+                    sub_path : (NSString *) sSubPath
+                      action : (void(^)(NSArray <NSString *> *sPath)) action {
     if (action) action([self pathsForResourcesOfType:sExtension
                                          inDirectory:sSubPath]);
     return self;

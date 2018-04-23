@@ -66,18 +66,18 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
     return self;
 }
 
-- (instancetype) ccAuthChallenge : (BOOL) isWithoutAnyDoubt {
+- (instancetype) cc_auth_challenge : (BOOL) isWithoutAnyDoubt {
     self.isTrustWithoutAnyDoubt = isWithoutAnyDoubt;
     return self;
 }
 
-- (instancetype) ccDealAuthChallenge : (void (^)(WKWebView *webView , NSURLAuthenticationChallenge * challenge,
+- (instancetype) cc_deal_auth_challenge : (void (^)(WKWebView *webView , NSURLAuthenticationChallenge * challenge,
                                                  void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * credential))) challenge {
     if (challenge) self.challenge = [challenge copy];
     return self;
 }
 
-- (instancetype) ccDecidedByUser : (NSString *) sAppName
+- (instancetype) cc_decided_by_user : (NSString *) sAppName
                            alert :  (void (^)(UIAlertController *controller)) alert {
     if (alert) {
         self.sAppName = sAppName;
@@ -86,41 +86,41 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
     return self;
 }
 
-- (instancetype) ccPolicyForAction : (WKNavigationActionPolicy(^)(WKNavigationAction * action)) decision {
+- (instancetype) cc_policy_for_action : (WKNavigationActionPolicy(^)(WKNavigationAction * action)) decision {
     if (decision) self.decision = [decision copy];
     return self;
 }
-- (instancetype) ccPolicyForResponse : (WKNavigationResponsePolicy(^)(WKNavigationResponse *response)) decision {
+- (instancetype) cc_policy_for_response : (WKNavigationResponsePolicy(^)(WKNavigationResponse *response)) decision {
     if (decision) self.decisionR = [decision copy];
     return self;
 }
-- (instancetype) ccDidCommit : (void (^)(WKWebView *webView , WKNavigation *navigation)) commit {
+- (instancetype) cc_did_commit : (void (^)(WKWebView *webView , WKNavigation *navigation)) commit {
     if (commit) self.commit = [commit copy];
     return self;
 }
-- (instancetype) ccDidStart : (void (^)(WKWebView *webView , WKNavigation *navigation)) start {
+- (instancetype) cc_did_start : (void (^)(WKWebView *webView , WKNavigation *navigation)) start {
     if (start) self.start = [start copy];
     return self;
 }
-- (instancetype) ccFailProvisional : (void (^)(WKWebView *webView , WKNavigation *navigation , NSError * error)) provisional {
+- (instancetype) cc_fail_provisional : (void (^)(WKWebView *webView , WKNavigation *navigation , NSError * error)) provisional {
     if (provisional) self.provisional = [provisional copy];
     return self;
 }
-- (instancetype) ccReceiveRedirect : (void (^)(WKWebView *webView , WKNavigation *navigation)) redirect {
+- (instancetype) cc_receive_redirect : (void (^)(WKWebView *webView , WKNavigation *navigation)) redirect {
     if (redirect) self.redirect = [redirect copy];
     return self;
 }
-- (instancetype) ccDidFinish : (void (^)(WKWebView *webView , WKNavigation *navigation)) finish {
+- (instancetype) cc_did_finish : (void (^)(WKWebView *webView , WKNavigation *navigation)) finish {
     if (finish) self.finish = [finish copy];
     return self;
 }
-- (instancetype) ccDidFail : (void (^)(WKWebView *webView , WKNavigation *navigation , NSError * error)) fail {
+- (instancetype) cc_did_fail : (void (^)(WKWebView *webView , WKNavigation *navigation , NSError * error)) fail {
     if (fail) self.fail = [fail copy];
     return self;
 }
 
-- (instancetype) ccLoad : (NSString *) sContent
-             navigation : (void (^)(WKNavigation *navigation)) navigation {
+- (instancetype) cc_load : (NSString *) sContent
+              navigation : (void (^)(WKNavigation *navigation)) navigation {
     if (sContent && sContent.length) {
         WKNavigation *n = nil;
         if ([sContent hasPrefix:@"http://"] || [sContent hasPrefix:@"https://"]) {
@@ -131,13 +131,13 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
     return self;
 }
 
-- (instancetype) ccLoadingProgress : (void (^)(double progress)) progress {
+- (instancetype) cc_loading_progress : (void (^)(double progress)) progress {
     if (progress) self.progress = [progress copy];
     return self;
 }
 
-- (instancetype) ccScript : (NSString *) sKey
-                  message : (void (^)(WKUserContentController * userContentController, WKScriptMessage *message)) message {
+- (instancetype) cc_script : (NSString *) sKey
+                   message : (void (^)(WKUserContentController * userContentController, WKScriptMessage *message)) message {
     if (sKey && sKey.length) {
         [self.userContentController addScriptMessageHandler:self.messageDelegate
                                                        name:sKey];

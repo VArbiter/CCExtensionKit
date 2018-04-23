@@ -8,15 +8,44 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger , CCWeekType) {
+    CCWeekType_Unknow = 0,
+    CCWeekType_Monday ,
+    CCWeekType_Tuesday ,
+    CCWeekType_Wednesday ,
+    CCWeekType_Thursday ,
+    CCWeekType_Friday ,
+    CCWeekType_Saturday ,
+    CCWeekType_Sunday
+};
+
 @interface NSDate (CCExtension)
 
 @property (nonatomic , readonly) NSInteger firstWeekdayInThisMonth ;
 @property (nonatomic , readonly) NSInteger day ;
-@property (nonatomic , readonly) NSInteger dateWeekday ;
-@property (nonatomic , readonly) NSString * weekday ; // returns current week days // 返回当前的日期
+@property (nonatomic , readonly) NSInteger toDateWeekday ;
+@property (nonatomic , readonly) CCWeekType toWeekday ; // returns current week days // 返回当前的日期
 
 /// yyyy-MM-dd HH:mm
-- (NSString *) ccTimeSince1970 : (NSTimeInterval) interval;
+- (NSString *) cc_time_since_1970 : (NSTimeInterval) interval;
 
+@end
+
+typedef NS_ENUM(NSInteger , CCTimeStick) {
+    CCTimeStick_Error = 0 ,
+    CCTimeStick_Seconds_Ago ,
+    CCTimeStick_Minutes_Ago ,
+    CCTimeStick_Today ,
+    CCTimeStick_Yesterday ,
+    CCTimeStick_This_Week ,
+    CCTimeStick_This_Month ,
+    CCTimeStick_Earlier ,
+};
+
+@interface NSString (CCExtension_String_Convert)
+
+// eg: @"2018-03-28 15:31:42"
+@property (nonatomic , readonly) NSDate *toDate;
+@property (nonatomic , readonly) CCTimeStick toTimeStick;
 
 @end

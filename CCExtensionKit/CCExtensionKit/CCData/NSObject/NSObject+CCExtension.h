@@ -10,21 +10,16 @@
 
 @interface NSObject (CCExtension)
 
-@property (nonatomic , class , copy , readonly) NSString * sSelf;
+@property (nonatomic , class , copy , readonly) NSString * s_self;
 @property (nonatomic , class , readonly) Class Self;
 
 @property (nonatomic , copy , readonly) NSString * toString ;
 @property (nonatomic , copy , readonly) NSString * getClass ;
 
-@property (nonatomic , copy , readonly) NSString * isStringValued ;
-@property (nonatomic , strong , readonly) NSArray * isArrayValued ;
-@property (nonatomic , strong , readonly) NSDictionary * isDictionaryValued ;
-@property (nonatomic , strong , readonly) NSDecimalNumber * isDecimalValued ;
-@property (nonatomic , assign , readonly) BOOL isNull ;
-
-@property (nonatomic , assign , readonly) BOOL isValuedString ;
-@property (nonatomic , assign , readonly) BOOL isValuedArray ;
-@property (nonatomic , assign , readonly) BOOL isValuedDictionary ;
-@property (nonatomic , assign , readonly) BOOL isValuedDecimal ;
-
 @end
+
+BOOL CC_IS_STRING_VALUED(__kindof NSString * string) ;
+BOOL CC_IS_ARRAY_VALUED(__kindof NSArray * array) ;
+BOOL CC_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) ;
+BOOL CC_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) ;
+BOOL CC_IS_NULL(id object) ;

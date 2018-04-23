@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 #ifndef CC_LOCALIZED_S
-    #define CC_LOCALIZED_S(_vKey_,_vComment_) [NSString ccLocalized:(_vKey_) comment:(_vComment_)]
+    #define CC_LOCALIZED_S(_vKey_,_vComment_) [NSString cc_localized:(_vKey_) comment:(_vComment_)]
 #endif
 
 #ifndef CC_LOCALIZED_B
     #define CC_LOCALIZED_B(_vModule_,_vStrings_,_vKey_,_vComment_) \
-        [NSString ccLocalized:self.class module:(_vModule_) strings:(_vStrings_) key:(_vKey_) comment:(_vComment_)];
+        [NSString cc_localized:self.class module:(_vModule_) strings:(_vStrings_) key:(_vKey_) comment:(_vComment_)];
 #endif
 
 @interface NSString (CCExtension)
@@ -24,31 +24,31 @@
 @property (nonatomic , copy , readonly) NSString *(^p)(id value) ; // append path // 追加 路径
 
 /// break has the topest priority . // 回车拥有最高优先级
-+ (instancetype) ccMerge : (BOOL) isNeedBreak
++ (instancetype) cc_merge : (BOOL) isNeedBreak
                  spacing : (BOOL) isNeedSpacing
                     with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION;
-+ (instancetype) ccMerge : (NSArray <NSString *> *) arrayStrings
-                  nBreak : (BOOL) isNeedBreak
-                 spacing : (BOOL) isNeedSpacing ;
++ (instancetype) cc_merge : (NSArray <NSString *> *) arrayStrings
+               need_break : (BOOL) isNeedBreak
+                  spacing : (BOOL) isNeedSpacing ;
 
 /// for localizedString == CC_LOCALIZED_S(...) // 本地化字符串
-+ (instancetype) ccLocalized : (NSString *) sKey
-                     comment : (NSString *) sComment ;
-+ (instancetype) ccLocalized : (NSString *) sKey
-                      bundle : (NSBundle *) bundle
-                     comment : (NSString *) sComment ;
++ (instancetype) cc_localized : (NSString *) sKey
+                      comment : (NSString *) sComment ;
++ (instancetype) cc_localized : (NSString *) sKey
+                       bundle : (NSBundle *) bundle
+                      comment : (NSString *) sComment ;
 /// key , strings file , bundle , comment // key , 字符串文件 , bundle , 注释
-+ (instancetype) ccLocalized : (NSString *) sKey
-                     strings : (NSString *) sStrings
-                      bundle : (NSBundle *) bundle
-                     comment : (NSString *) sComment ;
++ (instancetype) cc_localized : (NSString *) sKey
+                      strings : (NSString *) sStrings
+                       bundle : (NSBundle *) bundle
+                      comment : (NSString *) sComment ;
 
 /// for those used in subspecs == CC_LOCALIZED_B(...). // 适用于在 subspec 中的资源
-+ (instancetype) ccLocalized : (Class) cls
-                      module : (NSString *) sModule
-                     strings : (NSString *) sStrings
-                         key : (NSString *) sKey
-                     comment : (NSString *) sComment ;
++ (instancetype) cc_localized : (Class) cls
+                       module : (NSString *) sModule
+                      strings : (NSString *) sStrings
+                          key : (NSString *) sKey
+                      comment : (NSString *) sComment ;
 
 @end
 
@@ -66,8 +66,6 @@
 
 /// only numbers . // 只针对数字字符起效
 @property (nonatomic , readonly) NSDecimalNumber * toDecimal;
-/// yyyy-MM-dd HH:mm:ss
-@property (nonatomic , readonly) NSDate * toDate;
 
 - (instancetype) ccTimeStick : (BOOL) isNeedSpace ;
 /// mil-senconds -> yyyy-MM-dd HH:mm
