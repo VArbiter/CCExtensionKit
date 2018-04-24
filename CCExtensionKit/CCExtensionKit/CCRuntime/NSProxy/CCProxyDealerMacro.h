@@ -64,7 +64,7 @@
         return [[self common] ccRegistMethods:arrayTarget]; \
     } \
 \
-    - (instancetype) ccRegistMethods : (NSArray <id> *) arrayTarget { \
+    - (instancetype) cc_regist_methods : (NSArray <id> *) arrayTarget { \
         for (id t in arrayTarget) { \
             unsigned int iMethods = 0; \
             Method *methodList = class_copyMethodList([t class], &iMethods); \

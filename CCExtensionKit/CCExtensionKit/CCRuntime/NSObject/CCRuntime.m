@@ -189,39 +189,39 @@ CCGroup CC_GROUP_INIT(void) {
     return dispatch_group_create();
 }
 
-- (instancetype) ccGroup : (CCGroup) group
-                   queue : (CCQueue) queue {
+- (instancetype) cc_group : (CCGroup) group
+                    queue : (CCQueue) queue {
     self.group = group;
     self.queue = queue;
     return self;
 }
 
-- (instancetype) ccGroupAction : (void (^)(CCRuntime * sender)) action {
+- (instancetype) cc_group_action : (void (^)(CCRuntime * sender)) action {
     dispatch_group_async(self.group, self.queue, ^{
         if (action) action(self);
     });
     return self;
 }
 
-- (instancetype) ccNotify : (CCQueue) queue
-                   finish : (void(^)(CCRuntime * sender)) finish {
+- (instancetype) cc_notify : (CCQueue) queue
+                    finish : (void(^)(CCRuntime * sender)) finish {
     dispatch_group_notify(self.group, queue, ^{
         if (finish) finish(self);
     });
     return self;
 }
 
-- (instancetype) ccEnter {
+- (instancetype) cc_enter {
     dispatch_group_enter(self.group);
     return self;
 }
 
-- (instancetype) ccLeave {
+- (instancetype) cc_leave {
     dispatch_group_leave(self.group);
     return self;
 }
 
-- (instancetype) ccWait : (CCTime) time {
+- (instancetype) cc_wait : (CCTime) time {
     dispatch_group_wait(self.group, time);
     return self;
 }

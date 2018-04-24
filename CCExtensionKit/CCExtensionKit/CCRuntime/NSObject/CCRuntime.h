@@ -119,21 +119,21 @@ CCGroup CC_GROUP_INIT(void);
 @property (nonatomic) CCGroup group;
 @property (nonatomic) CCQueue queue;
 
-- (instancetype) ccGroup : (CCGroup) group
-                   queue : (CCQueue) queue ;
+- (instancetype) cc_group : (CCGroup) group
+                    queue : (CCQueue) queue ;
 /// actions for group , can deploy it for muti times // group 的动作 , 可以多次添加
-- (instancetype) ccGroupAction : (void (^)(CCRuntime * sender)) action ;
+- (instancetype) cc_group_action : (void (^)(CCRuntime * sender)) action ;
 /// when all group actions finished // 当组中所有任务完成时调用
-- (instancetype) ccNotify : (CCQueue) queue
-                   finish : (void(^)(CCRuntime * sender)) finish ;
+- (instancetype) cc_notify : (CCQueue) queue
+                    finish : (void(^)(CCRuntime * sender)) finish ;
 
 /// enter and leave mast use it with a pair // 进入和离开必须成对调用
 /// enter a group // 进入组
-- (instancetype) ccEnter;
+- (instancetype) cc_enter;
 /// leave a group // 离开组
-- (instancetype) ccLeave;
+- (instancetype) cc_leave;
 /// do someting after delay . // 在延迟后做操作
-- (instancetype) ccWait : (CCTime) time ;
+- (instancetype) cc_wait : (CCTime) time ;
 
 @end
 

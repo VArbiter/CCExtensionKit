@@ -39,7 +39,7 @@
 + (instancetype) common : (NSArray <id> *) arrayTarget ;
 
 /// regist targets , only instance methods allowed (CCProxyDealer is an instance) // 注册目标 , 只有对象被允许
-- (instancetype) ccRegistMethods : (NSArray <id> *) arrayTarget ;
+- (instancetype) cc_regist_methods : (NSArray <id> *) arrayTarget ;
 
 @end
 
