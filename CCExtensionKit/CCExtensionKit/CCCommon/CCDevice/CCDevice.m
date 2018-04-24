@@ -13,14 +13,14 @@
 
 @implementation CCDevice
 
-+ (NSString *) ccDeviceInfo {
++ (NSString *) cc_device_info {
     struct utsname systemInfo;
     uname(&systemInfo);
     return [NSString stringWithCString:systemInfo.machine
                               encoding:NSASCIIStringEncoding];
 }
 
-+ (NSString *) ccDeviceType {
++ (NSString *) cc_device_type {
 #if TARGET_IPHONE_SIMULATOR
     CGFloat fS = UIScreen.mainScreen.scale;
     CGFloat fW = UIScreen.mainScreen.bounds.size.width * fS;
@@ -111,22 +111,22 @@
 #endif
 }
 
-+ (NSString *) ccSystemVersion {
++ (NSString *) cc_system_version {
     return @(UIDevice.currentDevice.systemVersion.floatValue).stringValue ;
 }
 
-+ (NSString *) ccDeviceUUID {
++ (NSString *) cc_device_UUID {
     return UIDevice.currentDevice.identifierForVendor.UUIDString;
 }
 
-+ (NSString *) ccDeviceResolution {
++ (NSString *) cc_device_resolution {
     CGFloat w = UIScreen.mainScreen.bounds.size.width;
     CGFloat h = UIScreen.mainScreen.bounds.size.height;
     CGFloat scale = UIScreen.mainScreen.scale;
     return [NSString stringWithFormat:@"%ld*%ld",(long)(h * scale),(NSInteger)(w * scale)];
 }
 
-+ (NSString *) ccDeviceRect {
++ (NSString *) cc_device_rect {
     return NSStringFromCGRect(UIScreen.mainScreen.bounds);
 }
 

@@ -40,7 +40,7 @@
 > 
 > > CCRuntime : 一些 runtime 的封装合集 .
 > 
-> > CCDataBase : 暂时 , 只有 [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.0').
+> > CCDataBase :  [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.0')  && && [`FCModel`](https://github.com/marcoarment/FCModel) 的包裹 . 
 > 
 > > CCRouter : 一个路由的拓展, 依赖了 [`MGJRouter`](https://github.com/meili/MGJRouter) ('~> 0.9.3') && perform actions .
 > 

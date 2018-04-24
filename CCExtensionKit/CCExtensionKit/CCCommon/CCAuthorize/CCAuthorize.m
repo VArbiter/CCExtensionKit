@@ -50,9 +50,9 @@ static CCAuthorize *_instance = nil;
     return _instance;
 }
 
-- (instancetype) ccHasAuthorize : (CCSupportType) type
-                        success : (void (^)(void)) success
-                           fail : (BOOL (^)(void)) fail  {
+- (instancetype) cc_has_authorize : (CCSupportType) type
+                          success : (void (^)(void)) success
+                             fail : (BOOL (^)(void)) fail  {
     BOOL (^g)(void) = self.dictionaryGuide[@(type).stringValue];
     if (g) {
         if (g()) {

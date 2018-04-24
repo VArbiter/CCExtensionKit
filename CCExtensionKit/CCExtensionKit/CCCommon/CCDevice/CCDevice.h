@@ -9,37 +9,37 @@
 #import <Foundation/Foundation.h>
 
 #ifndef CC_DEVICE_TYPE_S
-    #define CC_DEVICE_TYPE_S [CCDevice ccDeviceType]
+    #define CC_DEVICE_TYPE_S [CCDevice cc_device_type]
 #endif
 
 #ifndef CC_SYSTEM_VERSION_S
-    #define CC_SYSTEM_VERSION_S [CCDevice ccSystemVersion]
+    #define CC_SYSTEM_VERSION_S [CCDevice cc_system_version]
 #endif
 
 #ifndef CC_DEVICE_UUID_S
-    #define CC_DEVICE_UUID_S [CCDevice ccDeviceUUID]
+    #define CC_DEVICE_UUID_S [CCDevice cc_device_UUID]
 #endif
 
 #ifndef CC_DEVICE_RESOLUTION_S
-    #define CC_DEVICE_RESOLUTION_S [CCDevice ccDeviceResolution]
+    #define CC_DEVICE_RESOLUTION_S [CCDevice cc_device_resolution]
 #endif
 
 #ifndef CC_DEVICE_RECT_S
-    #define CC_DEVICE_RECT_S [CCDevice ccDeviceRect]
+    #define CC_DEVICE_RECT_S [CCDevice cc_device_rect]
 #endif
 
 @interface CCDevice : NSObject
 
-+ (NSString *) ccDeviceInfo ;
++ (NSString *) cc_device_info ;
 
-+ (NSString *) ccDeviceType ;
++ (NSString *) cc_device_type ;
 
-+ (NSString *) ccSystemVersion ;
++ (NSString *) cc_system_version ;
 
-+ (NSString *) ccDeviceUUID ;
++ (NSString *) cc_device_UUID ;
 
-+ (NSString *) ccDeviceResolution ;
++ (NSString *) cc_device_resolution ;
 
-+ (NSString *) ccDeviceRect ;
++ (NSString *) cc_device_rect ;
 
 @end

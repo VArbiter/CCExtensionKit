@@ -42,7 +42,7 @@
 > 
 > > CCRuntime : Packaged for some runtime functions .
 > 
-> > CCDataBase : For now , only for [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.0').
+> > CCDataBase : Wrappers for [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.0') && [`FCModel`](https://github.com/marcoarment/FCModel)
 > 
 > > CCRouter : a extension Package Router for [`MGJRouter`](https://github.com/meili/MGJRouter) ('~> 0.9.3') && perform actions .
 > 

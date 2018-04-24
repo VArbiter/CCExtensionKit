@@ -21,8 +21,8 @@ typedef NS_ENUM(NSInteger , CCSupportType) {
 + (instancetype) shared ;
 /// has authorize to sepecific settings . // 是否有某个权限
 /// the return value for fail , decide whether if need to guide to setting pages . // fail block 的返回值决定是否打开设置页面
-- (instancetype) ccHasAuthorize : (CCSupportType) type
-                        success : (void (^)(void)) success
-                           fail : (BOOL (^)(void)) fail ;
+- (instancetype) cc_has_authorize : (CCSupportType) type
+                          success : (void (^)(void)) success
+                             fail : (BOOL (^)(void)) fail ;
 
 @end
