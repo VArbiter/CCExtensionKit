@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NSString * CCMediatorOperateKey NS_EXTENSIBLE_STRING_ENUM;
+
 @interface CCMediator : NSObject
 
 - (instancetype) init NS_UNAVAILABLE;
 
-+ (id) ccPerform : (NSString *) sTarget
-          action : (NSString *) sAction
-      returnVale : (BOOL) isNeed
-           value : (id (^)(void)) value ;
++ (id) cc_perform : (NSString *) sTarget
+           action : (NSString *) sAction
+     return_value : (BOOL) isNeed
+            value : (id (^)(void)) value ;
 
 @end

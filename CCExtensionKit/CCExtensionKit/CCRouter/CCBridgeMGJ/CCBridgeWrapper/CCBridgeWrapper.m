@@ -13,7 +13,7 @@
 CCRouterOperateKey const _CC_ROUTER_PARAMS_URL_ = @"CC_ROUTER_PARAMS_URL";
 CCRouterOperateKey const _CC_ROUTER_PARAMS_COMPLETION_ = @"CC_ROUTER_PARAMS_COMPLETION";
 CCRouterOperateKey const _CC_ROUTER_PARAMS_USER_INFO_ = @"CC_ROUTER_PARAMS_USER_INFO";
-CCRouterOperateKey _CC_ROUTER_FALL_BACK_URL_ = @"loveCC://";
+CCRouterOperateKey _CC_ROUTER_FALL_BACK_URL_ = @"elwinfrederick://";
 
 @interface CCBridgeWrapper () < NSCopying , NSMutableCopying >
 
@@ -35,7 +35,7 @@ static CCBridgeWrapper *__router = nil;
     __router = [[CCBridgeWrapper alloc] init]; 
     return __router;
 }
-+ (instancetype) sharedWithScheme : (CCRouterRegistKey) sScheme {
++ (instancetype) shared_with_scheme : (CCRouterRegistKey) sScheme {
     if (!__router) {
         _CC_ROUTER_FALL_BACK_URL_ = sScheme;
         return self.shared;
@@ -62,21 +62,21 @@ static CCBridgeWrapper *__router = nil;
 #pragma mark -
 
 // regist
-- (instancetype) ccRegistFallBack : (void (^)(CCRouterPatternInfo *dInfos)) fallBack {
+- (instancetype) cc_regist_fallback : (void (^)(CCRouterPatternInfo *dInfos)) fallBack {
     [MGJRouter registerURLPattern:_CC_ROUTER_FALL_BACK_URL_ toHandler:^(NSDictionary *routerParameters) {
         if (fallBack) fallBack(CC_TRANSFER_MGJ_PARAMETERS(routerParameters));
     }];
     return self;
 }
-- (instancetype) ccRegistOperation : (CCRouterRegistKey) sURL
-                            action : (void(^)(CCRouterPatternInfo *dInfos)) action {
+- (instancetype) cc_regist_operation : (CCRouterRegistKey) sURL
+                              action : (void(^)(CCRouterPatternInfo *dInfos)) action {
     [MGJRouter registerURLPattern:CC_APPEND_URL_SCHEME(sURL , YES) toHandler:^(NSDictionary *routerParameters) {
         if (action) action(CC_TRANSFER_MGJ_PARAMETERS(routerParameters));
     }];
     return self;
 }
-- (instancetype) ccRegistObject : (CCRouterRegistKey) sURL
-                          value : (id(^)(id value)) value {
+- (instancetype) cc_regist_object : (CCRouterRegistKey) sURL
+                            value : (id(^)(CCRouterPatternInfo *dInfos)) value {
     [MGJRouter registerURLPattern:CC_APPEND_URL_SCHEME(sURL , YES) toObjectHandler:^id(NSDictionary *routerParameters) {
         if (value) return value(CC_TRANSFER_MGJ_PARAMETERS(routerParameters));
         return nil;
@@ -85,18 +85,18 @@ static CCBridgeWrapper *__router = nil;
 }
 
 // deregist
-- (instancetype) ccDeregist : (CCRouterRegistKey) sURL {
+- (instancetype) cc_deregist : (CCRouterRegistKey) sURL {
     [MGJRouter deregisterURLPattern:sURL];
     return self;
 }
 
 // open
-- (BOOL) ccIsCanOpen : (CCRouterRegistKey) sURL  {
+- (BOOL) cc_is_can_open : (CCRouterRegistKey) sURL  {
     return [MGJRouter canOpenURL:CC_APPEND_URL_SCHEME(sURL , false)];
 }
 
-- (instancetype) ccCall : (CCRouterPatternInfo *) dPattern
-               fallBack : (void(^)(CCRouterPatternInfo *dInfos)) fallback {
+- (instancetype) cc_call : (CCRouterPatternInfo *) dPattern
+                fallback : (void(^)(CCRouterPatternInfo *dInfos)) fallback {
     if (![MGJRouter canOpenURL:CC_APPEND_URL_SCHEME(dPattern[_CC_ROUTER_PARAMS_URL_] , false)]) {
         if (fallback) fallback(dPattern);
         return self;
@@ -110,8 +110,8 @@ static CCBridgeWrapper *__router = nil;
     return self;
 }
 
-- (id) ccGet : (CCRouterPatternInfo *) dPattern
-    fallBack : (void(^)(CCRouterPatternInfo *)) fallback {
+- (id) cc_get : (CCRouterPatternInfo *) dPattern
+     fallback : (void(^)(CCRouterPatternInfo *)) fallback {
     id v = [MGJRouter objectForURL:CC_APPEND_URL_SCHEME(dPattern[_CC_ROUTER_PARAMS_URL_] , false)
                       withUserInfo:dPattern[_CC_ROUTER_PARAMS_USER_INFO_]];
     if (v) return v;

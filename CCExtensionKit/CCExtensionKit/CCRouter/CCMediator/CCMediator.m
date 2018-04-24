@@ -10,10 +10,10 @@
 
 @implementation CCMediator
 
-+ (id) ccPerform : (NSString *) sTarget
-          action : (NSString *) sAction
-      returnVale : (BOOL) isNeed
-           value : (id (^)(void)) value {
++ (id) cc_perform : (NSString *) sTarget
+           action : (NSString *) sAction
+     return_value : (BOOL) isNeed
+            value : (id (^)(void)) value {
     id m;
     if (value) m = value();
     Class ts = NSClassFromString(sTarget);

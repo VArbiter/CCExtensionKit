@@ -30,27 +30,27 @@ typedef void (^CCRouterCompletionBlock)(id result);
 + (instancetype) new NS_UNAVAILABLE;
 + (instancetype) shared ;
 
-// begin with scheme , like "loveCC://" // 用一个 scheme 来初始化 , 比如 "我亲爱的女王大人说://上缴工资"
+// begin with scheme , like "scheme://do sth" // 用一个 scheme 来初始化 , 比如 "scheme://do sth"
 // note : only the first time have its effect (scheme can't be re-configured again) . // 只第一次使用有效 , scheme 不能被重新设置
-+ (instancetype) sharedWithScheme : (CCRouterRegistKey) sScheme ;
++ (instancetype) shared_with_scheme : (CCRouterRegistKey) sScheme ;
 
 // regist // 注册
-- (instancetype) ccRegistFallBack : (void (^)(CCRouterPatternInfo *dInfos)) fallBack ;
-- (instancetype) ccRegistOperation : (CCRouterRegistKey) sURL
-                            action : (void(^)(CCRouterPatternInfo *dInfos)) action ;
-- (instancetype) ccRegistObject : (CCRouterRegistKey) sURL
-                          value : (id(^)(id value)) value ;
+- (instancetype) cc_regist_fallback : (void (^)(CCRouterPatternInfo *dInfos)) fallBack ;
+- (instancetype) cc_regist_operation : (CCRouterRegistKey) sURL
+                              action : (void(^)(CCRouterPatternInfo *dInfos)) action ;
+- (instancetype) cc_regist_object : (CCRouterRegistKey) sURL
+                            value : (id(^)(CCRouterPatternInfo *dInfos)) value ;
 
 // deregist // 取消注册
-- (instancetype) ccDeregist : (CCRouterRegistKey) sURL ;
+- (instancetype) cc_deregist : (CCRouterRegistKey) sURL ;
 
 // open // 打开
-- (BOOL) ccIsCanOpen : (CCRouterRegistKey) sURL ;
-- (instancetype) ccCall : (CCRouterPatternInfo *) dPattern
-               fallBack : (void(^)(CCRouterPatternInfo *dInfos)) fallback ;
+- (BOOL) cc_is_can_open : (CCRouterRegistKey) sURL ;
+- (instancetype) cc_call : (CCRouterPatternInfo *) dPattern
+                fallback : (void(^)(CCRouterPatternInfo *dInfos)) fallback ;
 
-- (id) ccGet : (CCRouterPatternInfo *) dPattern
-    fallBack : (void(^)(CCRouterPatternInfo *)) fallback ;
+- (id) cc_get : (CCRouterPatternInfo *) dPattern
+     fallback : (void(^)(CCRouterPatternInfo *)) fallback ;
 
 FOUNDATION_EXPORT CCRouterOperateKey const _CC_ROUTER_PARAMS_URL_;
 FOUNDATION_EXPORT CCRouterOperateKey const _CC_ROUTER_PARAMS_COMPLETION_;
