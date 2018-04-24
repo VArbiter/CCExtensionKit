@@ -68,6 +68,7 @@
 		70B48FDF208F3F55005D0054 /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FDD208F3F55005D0054 /* CCRealmHandler.m */; };
 		70B48FE4208F4240005D0054 /* CCFCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FE3208F4240005D0054 /* CCFCModel.m */; };
 		70B48FE7208F424F005D0054 /* CCFCModelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FE6208F424F005D0054 /* CCFCModelHandler.m */; };
+		70B48FEB208F4857005D0054 /* CCAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FEA208F4857005D0054 /* CCAuthentication.m */; };
 		70BD28911F6272BF008C2C9A /* UIControl+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28901F6272BF008C2C9A /* UIControl+CCExtension.m */; };
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
@@ -212,6 +213,8 @@
 		70B48FE3208F4240005D0054 /* CCFCModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCFCModel.m; sourceTree = "<group>"; };
 		70B48FE5208F424F005D0054 /* CCFCModelHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCFCModelHandler.h; sourceTree = "<group>"; };
 		70B48FE6208F424F005D0054 /* CCFCModelHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCFCModelHandler.m; sourceTree = "<group>"; };
+		70B48FE9208F4857005D0054 /* CCAuthentication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCAuthentication.h; sourceTree = "<group>"; };
+		70B48FEA208F4857005D0054 /* CCAuthentication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCAuthentication.m; sourceTree = "<group>"; };
 		70BD288F1F6272BF008C2C9A /* UIControl+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+CCExtension.h"; sourceTree = "<group>"; };
 		70BD28901F6272BF008C2C9A /* UIControl+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+CCExtension.m"; sourceTree = "<group>"; };
 		70BD28931F628F6C008C2C9A /* UIFont+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+CCExtension.h"; sourceTree = "<group>"; };
@@ -437,6 +440,7 @@
 		7034D6151F5FBF3C0005D1E1 /* CCCommon */ = {
 			isa = PBXGroup;
 			children = (
+				70B48FE8208F483D005D0054 /* CCAuthentication */,
 				7034D6B51F5FCAA00005D1E1 /* CCCommonExtension.h */,
 				3773C20E1FC06CB000C7F384 /* CCFit */,
 				3772441A1FBB05970006E83A /* CCDevice */,
@@ -916,6 +920,15 @@
 			path = CCFCModelHandler;
 			sourceTree = "<group>";
 		};
+		70B48FE8208F483D005D0054 /* CCAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				70B48FE9208F4857005D0054 /* CCAuthentication.h */,
+				70B48FEA208F4857005D0054 /* CCAuthentication.m */,
+			);
+			path = CCAuthentication;
+			sourceTree = "<group>";
+		};
 		70BD288E1F62729E008C2C9A /* UIControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1194,6 +1207,7 @@
 				70B48FDF208F3F55005D0054 /* CCRealmHandler.m in Sources */,
 				7034D6AF1F5FBF3C0005D1E1 /* UITextField+CCExtension.m in Sources */,
 				7034D6AB1F5FBF3C0005D1E1 /* UILabel+CCExtension.m in Sources */,
+				70B48FEB208F4857005D0054 /* CCAuthentication.m in Sources */,
 				70B48FE7208F424F005D0054 /* CCFCModelHandler.m in Sources */,
 				375E52041F9C2F94007B057E /* CCTestViewController.m in Sources */,
 				7034D6991F5FBF3C0005D1E1 /* NSTimer+CCExtension.m in Sources */,
