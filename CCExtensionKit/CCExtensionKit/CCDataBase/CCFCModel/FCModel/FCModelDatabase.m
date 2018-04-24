@@ -63,6 +63,8 @@ static void _sqlite3_update_hook(void *context, int sqlite_operation, char const
     return self;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wimplicit-retain-self"
 - (FMDatabase *)database
 {
     if (! _openDatabase) fcm_onMainThread(^{
@@ -75,6 +77,7 @@ static void _sqlite3_update_hook(void *context, int sqlite_operation, char const
     });
     return _openDatabase;
 }
+#pragma clang diagnostic pop
 
 - (BOOL)sqliteChangeTrackingIsActive { return changeCounterReadFileDescriptor > 0; }
 

@@ -35,9 +35,11 @@
 - (void)addObserver:(id)target selector:(SEL)action class:(Class)class changedFields:(NSSet *)requestedFields
 {
     dispatch_sync(_targetWriteQueue, ^{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wimplicit-retain-self"
         NSMutableArray *targetObservers = [_observersByTarget objectForKey:target];
         if (! targetObservers) [_observersByTarget setObject:(targetObservers = [NSMutableArray array]) forKey:target];
-        
+#pragma clang diagnostic pop
         __weak id weakTarget = target;
         [targetObservers addObject:[NSNotificationCenter.defaultCenter addObserverForName:FCModelChangeNotification object:class queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification *n) {
             __strong id strongTarget = weakTarget;
@@ -55,6 +57,8 @@
     });
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wimplicit-retain-self"
 - (void)removeFieldChangeObservers:(id)target
 {
     dispatch_sync(_targetWriteQueue, ^{
@@ -64,5 +68,6 @@
         [_observersByTarget removeObjectForKey:target];
     });
 }
+#pragma clang diagnostic pop
 
 @end
