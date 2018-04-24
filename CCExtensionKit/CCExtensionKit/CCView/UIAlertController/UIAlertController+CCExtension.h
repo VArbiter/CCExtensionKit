@@ -16,13 +16,13 @@ typedef NSDictionary CCAlertActionInfo;
 + (instancetype) common ;
 + (instancetype) common : (UIAlertControllerStyle) style ;
 
-- (instancetype) ccTitle : (NSString *) sTitle ;
-- (instancetype) ccMessage : (NSString *) sMessage ;
+- (instancetype) cc_title : (NSString *) sTitle ;
+- (instancetype) cc_message : (NSString *) sMessage ;
 
-- (instancetype) ccAction : (CCAlertActionInfo *) info
-                   action : (void(^)( __kindof UIAlertAction *action)) action ;
-- (instancetype) ccActions : (NSArray < CCAlertActionInfo *> *) array
-                    action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) actionT ;
+- (instancetype) cc_action : (CCAlertActionInfo *) info
+                    action : (void(^)( __kindof UIAlertAction *action)) action ;
+- (instancetype) cc_action_s : (NSArray < CCAlertActionInfo *> *) array
+                      action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) actionT ;
 
 CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle style) ;
 
@@ -32,7 +32,7 @@ CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle s
 
 @interface CCAlertActionEntity : NSObject
 
-@property (nonatomic , strong) NSString *sTitle ;
+@property (nonatomic , strong) NSString *s_title ;
 @property (nonatomic , assign) UIAlertActionStyle style;
 @property (nonatomic , assign) NSInteger index ;
 
@@ -42,6 +42,6 @@ CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle s
 
 @interface UIAlertAction (CCExtension)
 
-@property (nonatomic , strong) CCAlertActionEntity *actionM ;
+@property (nonatomic , strong) CCAlertActionEntity *action_m ;
 
 @end

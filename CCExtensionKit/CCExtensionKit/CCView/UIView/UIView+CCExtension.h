@@ -48,10 +48,10 @@ CGSize CCScaleSize(CGSize size);
 
 /// for some designer use basic UI that is not for iPhone 6/6s/7/8 // 针对于一些设计人员基于 iPhone 6/6s/7/8 所设计的尺寸
 /// set H && W only once in somewhere for "+ (void) load" // 设置基准 宽 && 高 , 在 "+ (void) load "设置里调用一次即可
-+ (void) ccSetScale : (CGFloat) fWidth
-             height : (CGFloat) fHeight ;
++ (void) cc_set_scale : (CGFloat) fWidth
+               height : (CGFloat) fHeight ;
 
-+ (void) ccDisableAnimation : (void (^)(void)) action ;
++ (void) cc_disable_animation : (void (^)(void)) action ;
 
 @property (nonatomic , class , assign , readonly) CGFloat sWidth;
 @property (nonatomic , class , assign , readonly) CGFloat sHeight;
@@ -83,52 +83,52 @@ CGSize CCScaleSize(CGSize size);
 @property (nonatomic , assign , readonly) CGFloat inRight;
 
 /// an easy way to margin // 一个方便的方式进行校准
-- (instancetype) ccFrame : (CGRect) frame ;
-- (instancetype) ccSize : (CGSize) size ;
-- (instancetype) ccOrigin : (CGPoint) point ;
+- (instancetype) cc_frame : (CGRect) frame ;
+- (instancetype) cc_size : (CGSize) size ;
+- (instancetype) cc_origin : (CGPoint) point ;
 
-- (instancetype) ccWidth : (CGFloat) fWidth ;
-- (instancetype) ccHeight : (CGFloat) fHeight ;
+- (instancetype) cc_width : (CGFloat) fWidth ;
+- (instancetype) cc_height : (CGFloat) fHeight ;
 
-- (instancetype) ccX : (CGFloat) fX ;
-- (instancetype) ccY : (CGFloat) fY ;
+- (instancetype) cc_x : (CGFloat) fX ;
+- (instancetype) cc_y : (CGFloat) fY ;
 
-- (instancetype) ccCenterX : (CGFloat) fCenterX ;
-- (instancetype) ccCenterY : (CGFloat) fCenterY ;
-- (instancetype) ccCenter : (CGPoint) pCenter ;
+- (instancetype) cc_center_x : (CGFloat) fCenterX ;
+- (instancetype) cc_center_y : (CGFloat) fCenterY ;
+- (instancetype) cc_center : (CGPoint) pCenter ;
 
-- (instancetype) ccTop : (CGFloat) fTop ;
-- (instancetype) ccLeft : (CGFloat) fLeft ;
-- (instancetype) ccBottom : (CGFloat) fBottom ;
-- (instancetype) ccRight : (CGFloat) fRight ;
+- (instancetype) cc_top : (CGFloat) fTop ;
+- (instancetype) cc_left : (CGFloat) fLeft ;
+- (instancetype) cc_bottom : (CGFloat) fBottom ;
+- (instancetype) cc_right : (CGFloat) fRight ;
 
 /// for xibs // 针对 xib 的
-+ (instancetype) ccFromXib ;
-+ (instancetype) ccFromXib : (Class) cls ;
-+ (instancetype) ccFromXibB : (NSBundle *) bundle;
++ (instancetype) cc_from_xib ;
++ (instancetype) cc_from_xib : (Class) cls ;
++ (instancetype) cc_from_xib_b : (NSBundle *) bundle;
 
 /// add && remove (return itself) // 添加和移除 , 返回他本省
-- (instancetype) ccAdd : (__kindof UIView *) view ;
-- (void) ccRemoveFrom : (void (^)(__kindof UIView *viewSuper)) action ;
-- (instancetype) ccBringToFront : (__kindof UIView *) view ;
-- (instancetype) ccSendToBack : (__kindof UIView *) view ;
-- (instancetype) ccMakeToFront ;
-- (instancetype) ccMakeToBack ;
+- (instancetype) cc_add : (__kindof UIView *) view ;
+- (void) cc_remove_from : (void (^)(__kindof UIView *viewSuper)) action ;
+- (instancetype) cc_bring_to_front : (__kindof UIView *) view ;
+- (instancetype) cc_send_to_back : (__kindof UIView *) view ;
+- (instancetype) cc_make_to_front ;
+- (instancetype) cc_make_to_back ;
 
 /// enable / disable userinteraction // 启用 / 禁用用户交互
-- (instancetype) ccEnable ;
-- (instancetype) ccDisable ;
+- (instancetype) cc_enable ;
+- (instancetype) cc_disable ;
 
 /// color && cornerRadius && contentMode // 颜色 / 圆角 / 包裹模式
-- (instancetype) ccColor : (UIColor *) color ;
-- (instancetype) ccRadius : (CGFloat) fRadius
-                    masks : (BOOL) isMask ;
-- (instancetype) ccEdgeRound : (UIRectCorner) corner
-                      radius : (CGFloat) fRadius ;
-- (instancetype) ccContentMode : (UIViewContentMode) mode ;
+- (instancetype) cc_color : (UIColor *) color ;
+- (instancetype) cc_radius : (CGFloat) fRadius
+                     masks : (BOOL) isMask ;
+- (instancetype) cc_round_corner : (UIRectCorner) corner
+                          radius : (CGFloat) fRadius ;
+- (instancetype) cc_content_mode : (UIViewContentMode) mode ;
 
 /// copy it self . // 复制自身
-- (instancetype) ccDuplicate ;
+- (instancetype) cc_duplicate ;
 
 @end
 

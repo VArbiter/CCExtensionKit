@@ -8,20 +8,22 @@
 
 #import "UIColor+CCExtension.h"
 
+#import <objc/runtime.h>
+
 @implementation UIColor (CCExtension)
 
-+ (instancetype) ccHex : (int) value {
-    return [self ccHex:value alpha:1.f];
++ (instancetype) cc_hex : (int) value {
+    return [self cc_hex:value alpha:1.f];
 }
 
-+ (instancetype) ccHex : (int) value
-                 alpha : (double) alpha {
++ (instancetype) cc_hex : (int) value
+                  alpha : (double) alpha {
     return [UIColor colorWithRed:( (double) ( (value & 0xFF0000) >> 16) ) / 255.f
                            green:( (double) ( (value & 0xFF00) >> 8) ) / 255.f
                             blue:( (double) (value & 0xFF) ) / 255.f
                            alpha:alpha];
 }
-+ (instancetype) ccHexS : (NSString *) sHex {
++ (instancetype) cc_hex_s : (NSString *) sHex {
     if (!sHex || ![sHex isKindOfClass:NSString.class] || sHex.length < 6) {
         return self.clearColor;
     }
@@ -42,28 +44,28 @@
     range.location = 4 ;
     [[NSScanner scannerWithString:[sHex substringWithRange:range]] scanHexInt:&b];
     
-    return [self ccR:r G:g B:b];
+    return [self cc_R:r G:g B:b];
 }
-+ (instancetype) ccR : (double) r
-                   G : (double) g
-                   B : (double) b {
-    return [self ccR:r G:g B:b A:1.f];
++ (instancetype) cc_R : (double) r
+                    G : (double) g
+                    B : (double) b {
+    return [self cc_R:r G:g B:b A:1.f];
 }
-+ (instancetype) ccR : (double) r
-                   G : (double) g
-                   B : (double) b
-                   A : (double) a {
++ (instancetype) cc_R : (double) r
+                    G : (double) g
+                    B : (double) b
+                    A : (double) a {
     return [UIColor colorWithRed:r / 255.f
                            green:g / 255.f
                             blue:b / 255.f
                            alpha:a];
 }
 
-- (instancetype) ccAlpha : (double) alpha {
+- (instancetype) cc_alpha : (double) alpha {
     return [self colorWithAlphaComponent:alpha];
 }
 
-+ (instancetype) random {
++ (instancetype) cc_random {
     CGFloat (^t)(void) = ^CGFloat {
         return arc4random_uniform(256) / 255.0f;
     };
@@ -75,48 +77,48 @@
     return c;
 }
 
-- (UIImage *)imageT {
-    return [UIImage ccColor:self];
+- (UIImage *)image_t {
+    return [UIImage cc_color:self];
 }
 
-- (CGFloat)redT {
-    CGFloat r = .0f;
-    if ([self getRed:&r green:NULL blue:NULL alpha:NULL]) {
-        
-    }
-    return r;
+- (CGFloat)red_t {
+    return self.RGBA.firstObject.floatValue;
 }
-- (CGFloat)greenT {
-    CGFloat g = .0f;
-    if ([self getRed:NULL green:&g blue:NULL alpha:NULL]) {
-        
-    }
-    return g;
+- (CGFloat)green_t {
+    return self.RGBA[1].floatValue;
 }
-- (CGFloat)blueT {
-    CGFloat b = .0f;
-    if ([self getRed:NULL green:NULL blue:&b alpha:NULL]) {
-        
-    }
-    return b;
+- (CGFloat)blue_t {
+    return self.RGBA[2].floatValue;
 }
-- (CGFloat)alphaT {
-    CGFloat a = .0f;
-    if ([self getRed:NULL green:NULL blue:NULL alpha:&a]) {
-        
+- (CGFloat)alpha_t {
+    return self.RGBA.lastObject.floatValue;
+}
+
+- (NSArray<NSNumber *> *)RGBA {
+    NSArray *t = objc_getAssociatedObject(self, "CC_UICOLOR_GET_RGBA_ASSOCIATE_KEY");
+    if (t) return t;
+    CGFloat r = .0f,
+    g = .0f,
+    b = .0f,
+    a = .0f;
+    
+    if ([self getRed:&r green:&g blue:&b alpha:&a]) {
+        NSMutableArray *t = [NSMutableArray arrayWithObjects:@(r),@(g),@(b),@(a), nil];
+        objc_setAssociatedObject(self, "CC_UICOLOR_GET_RGBA_ASSOCIATE_KEY", t, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return t;
     }
-    return a;
+    return nil;
 }
 
 @end
 
 @implementation UIImage (CCExtension_Color)
 
-+ (instancetype) ccColor : (UIColor *) color {
-    return [self ccColor:color size:CGSizeZero];
++ (instancetype) cc_color : (UIColor *) color {
+    return [self cc_color:color size:CGSizeZero];
 }
-+ (instancetype) ccColor : (UIColor *) color
-                    size : (CGSize) size {
++ (instancetype) cc_color : (UIColor *) color
+                     size : (CGSize) size {
     if (size.width <= .0f) size.width = 1.f;
     if (size.height <= .0f) size.height = 1.f;
     

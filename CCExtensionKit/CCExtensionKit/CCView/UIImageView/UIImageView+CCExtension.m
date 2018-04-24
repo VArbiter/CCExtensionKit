@@ -10,14 +10,25 @@
 
 @implementation UIImageView (CCExtension)
 
+static UIViewContentMode __mode_image_view = UIViewContentModeScaleAspectFit;
+static BOOL __masks_image_view = false;
+
++ (void) cc_set_image_view_content_mode : (UIViewContentMode) mode {
+    __mode_image_view = mode;
+}
++ (void) cc_set_image_view_masks_to_bounds : (BOOL) masks {
+    __masks_image_view = masks;
+}
+
 + (instancetype)common:(CGRect)frame {
     UIImageView *v = [[self alloc] initWithFrame:frame];
     v.backgroundColor = [UIColor clearColor];
-    v.contentMode = UIViewContentModeScaleAspectFit;
+    v.contentMode = __mode_image_view;
+    v.layer.masksToBounds = __masks_image_view;
     return v;
 }
 
-- (instancetype)ccImageT:(UIImage *)image {
+- (instancetype)cc_image:(UIImage *)image {
     self.image = image;
     return self;
 }

@@ -61,6 +61,7 @@
 		70A3CC6B1F6B89FE00CCD480 /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3CC691F6B89FE00CCD480 /* CCRLMBaseModel.m */; };
 		70A3CC731F6BBE4900CCD480 /* CCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3CC721F6BBE4900CCD480 /* CCRuntime.m */; };
 		70A3CC761F6BCCA900CCD480 /* CCProxyDealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3CC751F6BCCA900CCD480 /* CCProxyDealer.m */; };
+		70B48FC8208F33A9005D0054 /* UISwitch+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FC7208F33A9005D0054 /* UISwitch+CCExtension.m */; };
 		70BD28911F6272BF008C2C9A /* UIControl+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28901F6272BF008C2C9A /* UIControl+CCExtension.m */; };
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
@@ -166,7 +167,6 @@
 		7034D6851F5FBF3C0005D1E1 /* UIView+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CCExtension.m"; sourceTree = "<group>"; };
 		7034D6871F5FBF3C0005D1E1 /* UIViewController+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CCExtension.h"; sourceTree = "<group>"; };
 		7034D6881F5FBF3C0005D1E1 /* UIViewController+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CCExtension.m"; sourceTree = "<group>"; };
-		7034D68C1F5FBF3C0005D1E1 /* CCExtensionKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCExtensionKit.h; path = /Users/elwinfrederick/Desktop/SourceTree/CCLocalLibrary/CCExtensionKit/CCExtensionKit.h; sourceTree = "<absolute>"; };
 		7034D6B51F5FCAA00005D1E1 /* CCCommonExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCCommonExtension.h; sourceTree = "<group>"; };
 		7034D6B61F5FCC040005D1E1 /* CCAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAuthorize.h; sourceTree = "<group>"; };
 		7034D6B71F5FCC040005D1E1 /* CCAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAuthorize.m; sourceTree = "<group>"; };
@@ -191,6 +191,9 @@
 		70A3CC741F6BCCA900CCD480 /* CCProxyDealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCProxyDealer.h; sourceTree = "<group>"; };
 		70A3CC751F6BCCA900CCD480 /* CCProxyDealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCProxyDealer.m; sourceTree = "<group>"; };
 		70A3CC771F6BCE3C00CCD480 /* CCProxyDealerMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProxyDealerMacro.h; sourceTree = "<group>"; };
+		70B48FC4208F3367005D0054 /* CCExtensionKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCExtensionKit.h; path = ../CCExtensionKit.h; sourceTree = "<group>"; };
+		70B48FC6208F33A9005D0054 /* UISwitch+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISwitch+CCExtension.h"; sourceTree = "<group>"; };
+		70B48FC7208F33A9005D0054 /* UISwitch+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+CCExtension.m"; sourceTree = "<group>"; };
 		70BD288F1F6272BF008C2C9A /* UIControl+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+CCExtension.h"; sourceTree = "<group>"; };
 		70BD28901F6272BF008C2C9A /* UIControl+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+CCExtension.m"; sourceTree = "<group>"; };
 		70BD28931F628F6C008C2C9A /* UIFont+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+CCExtension.h"; sourceTree = "<group>"; };
@@ -399,7 +402,7 @@
 		7034D6141F5FBF3C0005D1E1 /* CCExtensionKit */ = {
 			isa = PBXGroup;
 			children = (
-				7034D68C1F5FBF3C0005D1E1 /* CCExtensionKit.h */,
+				70B48FC4208F3367005D0054 /* CCExtensionKit.h */,
 				3785D0E01FECC67200245F26 /* CCOrigin */,
 				7034D63E1F5FBF3C0005D1E1 /* CCProtocol */,
 				7034D61B1F5FBF3C0005D1E1 /* CCData */,
@@ -569,6 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				7034D6C51F5FD4C20005D1E1 /* CCViewExtension.h */,
+				70B48FC5208F3389005D0054 /* UISwitch */,
 				3785D0F21FECDA4B00245F26 /* WKWebView */,
 				37ECA3701F8F24D700A82BA5 /* UIVisualEffectView */,
 				7034D6831F5FBF3C0005D1E1 /* UIView */,
@@ -833,6 +837,15 @@
 			path = NSProxy;
 			sourceTree = "<group>";
 		};
+		70B48FC5208F3389005D0054 /* UISwitch */ = {
+			isa = PBXGroup;
+			children = (
+				70B48FC6208F33A9005D0054 /* UISwitch+CCExtension.h */,
+				70B48FC7208F33A9005D0054 /* UISwitch+CCExtension.m */,
+			);
+			path = UISwitch;
+			sourceTree = "<group>";
+		};
 		70BD288E1F62729E008C2C9A /* UIControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -997,8 +1010,7 @@
 				TargetAttributes = {
 					37C69E141ED6684D00531ED3 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = Y6QZNMQWRN;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1118,6 +1130,7 @@
 				70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */,
 				7034D6941F5FBF3C0005D1E1 /* NSFileManager+CCExtension.m in Sources */,
 				37C69E201ED6684D00531ED3 /* ViewController.m in Sources */,
+				70B48FC8208F33A9005D0054 /* UISwitch+CCExtension.m in Sources */,
 				7034D6951F5FBF3C0005D1E1 /* NSNumber+CCExtension.m in Sources */,
 				37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */,
 				7034D6B11F5FBF3C0005D1E1 /* UIViewController+CCExtension.m in Sources */,
@@ -1297,11 +1310,13 @@
 			baseConfigurationReference = 3D5CA2FFF5E357F90100D989 /* Pods-CCLocalLibrary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y6QZNMQWRN;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CCLocalLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CC.CCLocalLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1310,11 +1325,13 @@
 			baseConfigurationReference = 06F3945F3B247350FA607CEF /* Pods-CCLocalLibrary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y6QZNMQWRN;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CCLocalLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CC.CCLocalLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

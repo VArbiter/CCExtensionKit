@@ -16,8 +16,8 @@
 
 @implementation UINavigationItem (CCExtension_FixedSpace)
 
-- (void) ccLeftOffset : (CGFloat) fOffset
-                 item : (UIBarButtonItem *) item {
+- (void) cc_left_offset : (CGFloat) fOffset
+                   item : (UIBarButtonItem *) item {
     if (fOffset >= 0) return;
     UIBarButtonItem *itemBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                                              target:nil
@@ -26,8 +26,8 @@
     NSArray *array = [NSArray arrayWithObjects:itemBar, item, nil];
     [self setLeftBarButtonItems:array];
 }
-- (void) ccRightOffset : (CGFloat) fOffset
-                  item : (UIBarButtonItem *) item {
+- (void) cc_right_offset : (CGFloat) fOffset
+                    item : (UIBarButtonItem *) item {
     if (fOffset >= 0) return;
     UIBarButtonItem *itemBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                                              target:nil

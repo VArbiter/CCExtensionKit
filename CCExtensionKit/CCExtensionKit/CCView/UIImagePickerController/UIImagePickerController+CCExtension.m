@@ -21,12 +21,12 @@
     return c;
 }
 
-- (instancetype) ccDelegateT : (id) delegate {
+- (instancetype) cc_delegate : (id) delegate {
     if (delegate) self.delegate = delegate;
     return self;
 }
 
-- (instancetype) ccCameraT : (void (^)(void)) notAllowed {
+- (instancetype) cc_camera : (void (^)(void)) notAllowed {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         if (notAllowed) notAllowed();
         return self;
@@ -37,7 +37,7 @@
               UIImagePickerController will change \"sourceType\" \
               \t from \"UIImagePickerControllerSourceTypeCamera\" \
               \t to \"UIImagePickerControllerSourceTypePhotoLibrary\". \n");
-        return [self ccPhotoLibraryT:notAllowed];
+        return [self cc_photo_library:notAllowed];
     } else {
         self.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
@@ -46,7 +46,7 @@
     }
 }
 
-- (instancetype) ccSavedPhotosAlbumT : (void (^)(void)) notAllowed {
+- (instancetype) cc_saved_photos_album : (void (^)(void)) notAllowed {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
         if (notAllowed) notAllowed();
         return self;
@@ -55,7 +55,7 @@
     return self;
 }
 
-- (instancetype) ccPhotoLibraryT : (void (^)(void)) notAllowed {
+- (instancetype) cc_photo_library : (void (^)(void)) notAllowed {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         if (notAllowed) notAllowed();
         return self;
@@ -64,32 +64,32 @@
     return self;
 }
 
-- (instancetype) ccEnableEditing {
+- (instancetype) cc_enable_editing {
     self.allowsEditing = YES;
     return self;
 }
 
-- (instancetype) ccSave : (CCImageSaveType) type {
+- (instancetype) cc_save : (CCImageSaveType) type {
     objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_SAVE_TYPE_", @(type), OBJC_ASSOCIATION_ASSIGN);
     return self;
 }
 
-- (instancetype) ccCancel : (void (^)(void)) action {
+- (instancetype) cc_cancel : (void (^)(void)) action {
     objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_USER_DID_CANCEL_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
 
-- (instancetype) ccErrorIn : (void (^)(NSError *error)) action {
+- (instancetype) cc_error_in : (void (^)(NSError *error)) action {
     objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_SAVING_ERROR_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
 
-- (instancetype) ccOriginal : (void (^)(UIImage *image)) action {
+- (instancetype) cc_original : (void (^)(UIImage *image)) action {
     objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_GET_ORIGINAL_IMAGE_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
 
-- (instancetype) ccEdited : (void (^)(UIImage *image , CGRect cropRect)) action {
+- (instancetype) cc_edited : (void (^)(UIImage *image , CGRect cropRect)) action {
     objc_setAssociatedObject(self, "_CC_IMAGE_PICKER_GET_EDITED_IMAGE_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }

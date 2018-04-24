@@ -10,6 +10,17 @@
 
 #import <CoreGraphics/CoreGraphics.h>
 
+UIImage * CC_CAPTURE_WINDOW(UIWindow *window) {
+    UIWindow *w = [UIApplication sharedApplication].windows.firstObject;
+    if (window) w = window;
+    
+    UIGraphicsBeginImageContext(w.frame.size);
+    [w.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @implementation UIImage (CCExtension)
 
 /// for image size && width
@@ -21,7 +32,7 @@
 }
 
 /// scale size with radius
-- (CGSize) ccZoom : (CGFloat) fRadius {
+- (CGSize) cc_zoom : (CGFloat) fRadius {
     if (fRadius > .0f) {
         CGFloat ratio = self.height / self.width;
         CGFloat ratioWidth = self.width * fRadius;
@@ -30,26 +41,26 @@
     }
     return self.size;
 }
-- (instancetype) ccResizable : (UIEdgeInsets) insets {
+- (instancetype) cc_resizable : (UIEdgeInsets) insets {
     return [self resizableImageWithCapInsets:insets];
 }
-- (instancetype) ccRendaring : (UIImageRenderingMode) mode {
+- (instancetype) cc_rendaring : (UIImageRenderingMode) mode {
     return [self imageWithRenderingMode:mode];
 }
-- (instancetype) ccAlwaysOriginal {
+- (instancetype) cc_always_original {
     return [self imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 /// class , imageName
-+ (instancetype) ccBundle : (Class) cls
-                     name : (NSString *) sName {
-    return [self ccBundle:cls
-                   module:nil
-                     name:sName];
++ (instancetype) cc_bundle : (Class) cls
+                      name : (NSString *) sName {
+    return [self cc_bundle:cls
+                    module:nil
+                      name:sName];
 }
-+ (instancetype) ccBundle : (Class) cls
-                   module : (NSString *) sModule
-                     name : (NSString *) sName {
++ (instancetype) cc_bundle : (Class) cls
+                    module : (NSString *) sModule
+                      name : (NSString *) sName {
     NSBundle *b = [NSBundle bundleForClass:cls];
     NSString *bName = b.infoDictionary[@"CFBundleName"];
     NSString *sc = [NSString stringWithFormat:@"%ld",(NSInteger)UIScreen.mainScreen.scale];
@@ -70,26 +81,21 @@
 #endif
     return (image ? image : UIImage.new);
 }
-+ (instancetype) ccName : (NSString *) sName {
++ (instancetype) cc_name : (NSString *) sName {
     return [self imageNamed:sName];
 }
-+ (instancetype) ccName : (NSString *) sName
-                 bundle : (NSBundle *) bundle {
++ (instancetype) cc_name : (NSString *) sName
+                  bundle : (NSBundle *) bundle {
     return [self imageNamed:sName
                    inBundle:bundle
 compatibleWithTraitCollection:nil];
 }
-+ (instancetype) ccFile : (NSString *) sPath {
++ (instancetype) cc_file : (NSString *) sPath {
     return [UIImage imageWithContentsOfFile:sPath];
 }
 
-+ (instancetype) ccCaptureCurrent {
-    UIWindow *w = [UIApplication sharedApplication].windows.firstObject;
-    UIGraphicsBeginImageContext(w.frame.size);
-    [w.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
++ (instancetype) cc_capture_current {
+    return CC_CAPTURE_WINDOW(nil);
 }
 
 @end
@@ -103,14 +109,14 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 
 @implementation UIImage (CCExtension_Gaussian)
 
-- (instancetype) ccGaussianAcc {
-    return [self ccGaussianAcc:_CC_GAUSSIAN_BLUR_VALUE_];
+- (instancetype) cc_gaussian_acc {
+    return [self cc_gaussian_acc:_CC_GAUSSIAN_BLUR_VALUE_];
 }
-- (instancetype) ccGaussianAcc : (CGFloat) fRadius {
-    return [self ccGaussianAcc:fRadius tint:UIColor.clearColor];
+- (instancetype) cc_gaussian_acc : (CGFloat) fRadius {
+    return [self cc_gaussian_acc:fRadius tint:UIColor.clearColor];
 }
-- (instancetype) ccGaussianAcc : (CGFloat) fRadius
-                          tint : (UIColor *) tint {
+- (instancetype) cc_gaussian_acc : (CGFloat) fRadius
+                            tint : (UIColor *) tint {
     UIImage *imageOriginal = [self copy];
     
     CGFloat fSaturationDeltaFactor = 1;
@@ -210,12 +216,12 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
     
     return imageOutput;
 }
-- (instancetype) ccGaussianAcc : (CGFloat)fRadius
-                          tint : (UIColor *) tint
-                      complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
+- (instancetype) cc_gaussian_acc : (CGFloat)fRadius
+                            tint : (UIColor *) tint
+                        complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
     __weak typeof(self) pSelf = self;
     void (^tp)(void) = ^ {
-        UIImage *m = [pSelf ccGaussianAcc:fRadius tint:tint];
+        UIImage *m = [pSelf cc_gaussian_acc:fRadius tint:tint];
         if (NSThread.isMainThread) {
             if (complete) complete(pSelf , m);
         } else dispatch_sync(dispatch_get_main_queue(), ^{
@@ -235,10 +241,10 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
     return pSelf;
 }
 
-- (instancetype) ccGaussianCI {
-    return [self ccGaussianCI:_CC_GAUSSIAN_BLUR_VALUE_];
+- (instancetype) cc_gaussian_CI {
+    return [self cc_gaussian_CI:_CC_GAUSSIAN_BLUR_VALUE_];
 }
-- (instancetype) ccGaussianCI : (CGFloat) fRadius {
+- (instancetype) cc_gaussian_CI : (CGFloat) fRadius {
     UIImage *image = [self copy];
     if (!image) return self;
     
@@ -256,11 +262,11 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
     
     return imageBlur;
 }
-- (instancetype) ccGaussianCI : (CGFloat) fRadius
-                     complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
+- (instancetype) cc_gaussian_CI : (CGFloat) fRadius
+                       complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
     __weak typeof(self) pSelf = self;
     void (^tp)(void) = ^ {
-        UIImage *m = [pSelf ccGaussianCI:fRadius];
+        UIImage *m = [pSelf cc_gaussian_CI:fRadius];
         if (NSThread.isMainThread) {
             if (complete) complete(pSelf , m);
         } else dispatch_sync(dispatch_get_main_queue(), ^{
@@ -295,7 +301,7 @@ CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
     return d;
 }
 
-- (NSData *) ccCompresssJPEG : (CGFloat) fQuility {
+- (NSData *) cc_compresss_JPEG : (CGFloat) fQuility {
     NSData *dO = UIImageJPEGRepresentation(self, .0f); // dataOrigin
     if (!dO) return nil;
     NSData *dC = dO ; // dataCompress
@@ -315,7 +321,7 @@ CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
     return dR;
 }
 
-- (BOOL) ccIsOverLimitFor : (CGFloat) fMBytes {
+- (BOOL) cc_is_over_limit_for : (CGFloat) fMBytes {
     return self.toData.length / powl(1024, 2) > fMBytes;
 }
 
@@ -362,12 +368,12 @@ CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
 
 @implementation UIImageView (CCExtension_Gaussian)
 
-- (instancetype) ccGaussian {
-    if (self.image) self.image = [self.image ccGaussianAcc];
+- (instancetype) cc_gaussian {
+    if (self.image) self.image = [self.image cc_gaussian_acc];
     return self;
 }
-- (instancetype) ccGaussian : (CGFloat) fRadius {
-    if (self.image) self.image = [self.image ccGaussianAcc:fRadius];
+- (instancetype) cc_gaussian : (CGFloat) fRadius {
+    if (self.image) self.image = [self.image cc_gaussian_acc:fRadius];
     return self;
 }
 

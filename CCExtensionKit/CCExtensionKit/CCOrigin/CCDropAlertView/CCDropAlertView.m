@@ -38,8 +38,8 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
         self.enableOffEdgePop = false;
         self.viewCustom = view;
         self.viewOn = viewOn;
-        self.layer.backgroundColor = [UIColor.blackColor ccAlpha:.2f].CGColor;
-        [self ccAdd:[[self.viewCustom ccBottom:self.top] ccCenterX:self.inCenterX]];
+        self.layer.backgroundColor = [UIColor.blackColor cc_alpha:.2f].CGColor;
+        [self cc_add:[[self.viewCustom cc_bottom:self.top] cc_center_x:self.inCenterX]];
     }
     return self;
 }
@@ -155,7 +155,7 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
         && [color isKindOfClass:UIColor.class]
         && fAlpha >= 0
         && fAlpha <= 1) {
-        self.layer.backgroundColor = [color ccAlpha:fAlpha].CGColor;
+        self.layer.backgroundColor = [color cc_alpha:fAlpha].CGColor;
     }
 }
 

@@ -38,11 +38,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *image = [CC_IMAGE_NAME(@"0ZG63407-0") ccGaussianAcc];
+    UIImage *image = [CC_IMAGE_NAME(@"0ZG63407-0") cc_gaussian_acc];
     UIImageView *imageView = [UIImageView common:CGRectZero];
     imageView.image = image;
     imageView.y = 80;
-    imageView.size = [image ccZoom:0.5];
+    imageView.size = [image cc_zoom:0.5];
     [self.view addSubview:imageView];
     /*
     imageView.tap(^(UIView *v, UITapGestureRecognizer *gr) {
@@ -60,11 +60,11 @@
     
     UITextField *t = [UITextField common:CGRectMake(0, 0, 100, 100)];
     t.placeholder = @"123456789";
-    [self.view ccAdd:[[t ccLeft:.0f] ccTop:400.f]];
-    [t ccTextDidChange:^(__kindof UITextField *sender) {
+    [self.view cc_add:[[t cc_left:.0f] cc_top:400.f]];
+    [t cc_text_did_change:^(__kindof UITextField *sender) {
         NSLog(@"%@",sender.text);
     }];
-    [t ccTextSharedEvent:UIControlEventEditingDidBegin | UIControlEventEditingDidEndOnExit | UIControlEventEditingChanged action:^(__kindof UITextField *sender) {
+    [t cc_text_shared_event:UIControlEventEditingDidBegin | UIControlEventEditingDidEndOnExit | UIControlEventEditingChanged action:^(__kindof UITextField *sender) {
         NSLog(@"editing did begin / end ----- %@" , sender.text);
     }];
 //    [t ccRemoveEvent:UIControlEventEditingChanged];
@@ -79,7 +79,7 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CCTestViewController *c = [[CCTestViewController alloc] init];
     c.view.backgroundColor = UIColor.cyanColor;
-    [self ccPresent:c complete:nil];
+    [self cc_present:c complete:nil];
 }
 
 

@@ -12,21 +12,21 @@
 
 + (instancetype) common : (CGRect) frame ;
 
-- (instancetype) ccContentSize : (CGSize) size ;
-- (instancetype) ccDelegateT : (id) delegate ;
+- (instancetype) cc_content_size : (CGSize) size ;
+- (instancetype) cc_delegate : (id) delegate ;
 
 /// animated is YES . // 启用 动画
-- (instancetype) ccAnimatedOffset : (CGPoint) offSet ;
-- (instancetype) ccAnimatedOffset : (CGPoint) offSet
-                         animated : (BOOL) isAnimated ;
+- (instancetype) cc_animated_offset : (CGPoint) offSet ;
+- (instancetype) cc_animated_offset : (CGPoint) offSet
+                           animated : (BOOL) isAnimated ;
 
-- (instancetype) hideVerticalIndicator ;
-- (instancetype) hideHorizontalIndicator ;
-- (instancetype) disableBounces ;
-- (instancetype) disableScroll ;
-- (instancetype) disableScrollsToTop ;
+- (instancetype) cc_hide_vertical_indicator ;
+- (instancetype) cc_hide_horizontal_indicator ;
+- (instancetype) cc_disable_bounces ;
+- (instancetype) cc_disable_scroll ;
+- (instancetype) cc_disable_scrolls_to_top ;
 
-- (instancetype) enablePaging ;
-- (instancetype) enableDirectionLock ;
+- (instancetype) cc_enable_paging ;
+- (instancetype) cc_enable_direction_lock ;
 
 @end

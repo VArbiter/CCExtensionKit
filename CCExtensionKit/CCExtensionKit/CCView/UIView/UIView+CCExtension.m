@@ -111,13 +111,13 @@ CGFloat CCHScale(CGFloat h) {
     CGRect g = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     return [[self alloc] initWithFrame:g];
 }
-+ (void) ccSetScale : (CGFloat) fWidth
++ (void) cc_set_scale : (CGFloat) fWidth
              height : (CGFloat) fHeight {
     _CC_DEFAULT_SCALE_WIDTH_ = fWidth;
     _CC_DEFAULT_SCALE_HEIGHT_ = fHeight;
 }
 
-+ (void) ccDisableAnimation : (void (^)(void)) action {
++ (void) cc_disable_animation : (void (^)(void)) action {
     if (action) {
         [UIView setAnimationsEnabled:false];
         action();
@@ -261,76 +261,76 @@ CGFloat CCHScale(CGFloat h) {
     return CGPointMake(self.inCenterX, self.inCenterY);
 }
 
-- (instancetype) ccFrame : (CGRect) frame {
+- (instancetype) cc_frame : (CGRect) frame {
     self.frame = frame;
     return self;
 }
-- (instancetype) ccSize : (CGSize) size {
+- (instancetype) cc_size : (CGSize) size {
     self.size = size;
     return self;
 }
-- (instancetype) ccOrigin : (CGPoint) point {
+- (instancetype) cc_origin : (CGPoint) point {
     self.origin = point;
     return self;
 }
 
-- (instancetype) ccWidth : (CGFloat) fWidth {
+- (instancetype) cc_width : (CGFloat) fWidth {
     self.width = fWidth;
     return self;
 }
-- (instancetype) ccHeight : (CGFloat) fHeight {
+- (instancetype) cc_height : (CGFloat) fHeight {
     self.height = fHeight;
     return self;
 }
 
-- (instancetype) ccX : (CGFloat) fX {
+- (instancetype) cc_x : (CGFloat) fX {
     self.x = fX;
     return self;
 }
-- (instancetype) ccY : (CGFloat) fY {
+- (instancetype) cc_y : (CGFloat) fY {
     self.y = fY;
     return self;
 }
 
-- (instancetype) ccCenterX : (CGFloat) fCenterX {
+- (instancetype) cc_center_x : (CGFloat) fCenterX {
     self.centerX = fCenterX;
     return self;
 }
-- (instancetype) ccCenterY : (CGFloat) fCenterY {
+- (instancetype) cc_center_y : (CGFloat) fCenterY {
     self.centerY = fCenterY;
     return self;
 }
-- (instancetype) ccCenter : (CGPoint) pCenter {
+- (instancetype) cc_center : (CGPoint) pCenter {
     self.center = pCenter;
     return self;
 }
 
-- (instancetype) ccTop : (CGFloat) fTop {
+- (instancetype) cc_top : (CGFloat) fTop {
     self.top = fTop;
     return self;
 }
-- (instancetype) ccLeft : (CGFloat) fLeft {
+- (instancetype) cc_left : (CGFloat) fLeft {
     self.left = fLeft;
     return self;
 }
-- (instancetype) ccBottom : (CGFloat) fBottom {
+- (instancetype) cc_bottom : (CGFloat) fBottom {
     self.bottom = fBottom;
     return self;
 }
-- (instancetype) ccRight : (CGFloat) fRight {
+- (instancetype) cc_right : (CGFloat) fRight {
     self.right = fRight;
     return self;
 }
 
 /// for xibs
-+ (instancetype) ccFromXib {
-    return [self ccFromXibB:nil];
++ (instancetype) cc_from_xib {
+    return [self cc_from_xib_b:nil];
 }
-+ (instancetype) ccFromXib : (Class) cls {
++ (instancetype) cc_from_xib : (Class) cls {
     
-    return [self ccFromXibB:[NSBundle bundleForClass:cls]];
+    return [self cc_from_xib_b:[NSBundle bundleForClass:cls]];
 }
-+ (instancetype) ccFromXibB : (NSBundle *) bundle {
++ (instancetype) cc_from_xib_b : (NSBundle *) bundle {
     if (!bundle) bundle = NSBundle.mainBundle;
     return [[bundle loadNibNamed:NSStringFromClass(self)
                            owner:nil
@@ -338,54 +338,54 @@ CGFloat CCHScale(CGFloat h) {
 }
 
 /// add && remove (return itself)
-- (instancetype) ccAdd : (__kindof UIView *) view {
+- (instancetype) cc_add : (__kindof UIView *) view {
     if (view) [self addSubview:view];
     return self;
 }
-- (void)ccRemoveFrom : (void (^)(__kindof UIView *)) action {
+- (void)cc_remove_from : (void (^)(__kindof UIView *)) action {
     if (action) action(self.superview);
     if (self.superview) [self removeFromSuperview];
 }
-- (instancetype) ccBringToFront : (__kindof UIView *) view {
+- (instancetype) cc_bring_to_front : (__kindof UIView *) view {
     if (view && [self.subviews containsObject:view]) [self bringSubviewToFront:view];
     return self;
 }
-- (instancetype) ccSendToBack : (__kindof UIView *) view {
+- (instancetype) cc_send_to_back : (__kindof UIView *) view {
     if (view && [self.subviews containsObject:view]) [self sendSubviewToBack:view];
     return self;
 }
-- (instancetype) ccMakeToFront {
+- (instancetype) cc_make_to_front {
     if (self.superview) [self.superview bringSubviewToFront:self];
     return self;
 }
-- (instancetype) ccMakeToBack {
+- (instancetype) cc_make_to_back {
     if (self.superview) [self.superview sendSubviewToBack:self];
     return self;
 }
 
 /// enable / disable userinteraction
-- (instancetype) ccEnable {
+- (instancetype) cc_enable {
     self.userInteractionEnabled = YES;
     return self;
 }
-- (instancetype) ccDisable {
+- (instancetype) cc_disable {
     self.userInteractionEnabled = false;
     return self;
 }
 
 /// color && cornerRadius && contentMode
-- (instancetype) ccColor : (UIColor *) color {
+- (instancetype) cc_color : (UIColor *) color {
     self.layer.backgroundColor = color ? color.CGColor : UIColor.clearColor.CGColor;
     return self;
 }
-- (instancetype) ccRadius : (CGFloat) fRadius
-                    masks : (BOOL) isMask {
+- (instancetype) cc_radius : (CGFloat) fRadius
+                     masks : (BOOL) isMask {
     self.layer.cornerRadius = fRadius;
     self.layer.masksToBounds = isMask;
     return self;
 }
-- (instancetype) ccEdgeRound : (UIRectCorner) corner
-                      radius : (CGFloat) fRadius {
+- (instancetype) cc_round_corner : (UIRectCorner) corner
+                          radius : (CGFloat) fRadius {
     UIBezierPath *p = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                             byRoundingCorners:corner
                                                   cornerRadii:CGSizeMake(CCScaleW(fRadius), CCScaleH(fRadius))];
@@ -395,12 +395,12 @@ CGFloat CCHScale(CGFloat h) {
     self.layer.mask = l;
     return self;
 }
-- (instancetype) ccContentMode : (UIViewContentMode) mode {
+- (instancetype) cc_content_mode : (UIViewContentMode) mode {
     self.contentMode = mode;
     return self;
 }
 
-- (instancetype) ccDuplicate {
+- (instancetype) cc_duplicate {
     NSData * dt = [NSKeyedArchiver archivedDataWithRootObject:self];
     return [NSKeyedUnarchiver unarchiveObjectWithData:dt];
 }
@@ -410,7 +410,6 @@ CGFloat CCHScale(CGFloat h) {
 #pragma mark - -----
 
 @implementation UIView (CCExtension_FitHeight)
-
 
 CGFloat CC_TEXT_HEIGHT_S(CGFloat fWidth , CGFloat fEstimateHeight , NSString *string) {
     return CC_TEXT_HEIGHT_C(fWidth,

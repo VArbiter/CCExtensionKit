@@ -16,8 +16,8 @@
 + (instancetype) common : (CGRect) frame NS_UNAVAILABLE;
 
 /// default , selectable = false // 不可选择
-- (instancetype) ccMakeDefault ;
-- (instancetype) ccDelegateT : (id <UITextViewDelegate>) delegate ;
-- (instancetype) ccContainerInsets : (UIEdgeInsets) insets ;
+- (instancetype) cc_make_default ;
+- (instancetype) cc_delegate : (id <UITextViewDelegate>) delegate ;
+- (instancetype) cc_container_insets : (UIEdgeInsets) insets ;
 
 @end

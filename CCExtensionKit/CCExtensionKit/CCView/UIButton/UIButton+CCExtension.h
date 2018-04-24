@@ -15,19 +15,19 @@
 + (instancetype) common : (UIButtonType) type ;
 
 /// titles && images // title 和 images
-- (instancetype) ccTitle : (NSString *) sTitle
-                   state : (UIControlState) state ;
-- (instancetype) ccImage : (UIImage *) image
-                   state : (UIControlState) state ;
+- (instancetype) cc_title : (NSString *) sTitle
+                    state : (UIControlState) state ;
+- (instancetype) cc_image : (UIImage *) image
+                    state : (UIControlState) state ;
 
 /// actions , default is touchUpInside // 动作  默认 touchUpInside
-- (instancetype) ccAction : (void (^)( __kindof UIButton *sender)) action ;
-- (instancetype) ccTarget : (id) target
-                   action : (void (^)( __kindof UIButton *sender)) action ;
+- (instancetype) cc_action : (void (^)( __kindof UIButton *sender)) action ;
+- (instancetype) cc_target : (id) target
+                    action : (void (^)( __kindof UIButton *sender)) action ;
 
 /// custom actions . // 自定义动作
-- (instancetype) ccCustom : (id) target
-                      sel : (SEL) sel
-                   events : (UIControlEvents) events ;
+- (instancetype) cc_custom : (id) target
+                       sel : (SEL) sel
+                    events : (UIControlEvents) events ;
 
 @end

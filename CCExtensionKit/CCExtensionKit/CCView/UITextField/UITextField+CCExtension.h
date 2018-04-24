@@ -13,23 +13,23 @@
 
 + (instancetype) common : (CGRect) frame ;
 
-- (instancetype) ccDelegateT : (id <UITextFieldDelegate>) delegete ;
-- (instancetype) ccPlaceHolder : (NSDictionary <NSString * , id> *) dAttributes
-                        string : (NSString *) string ;
+- (instancetype) cc_delegate : (id <UITextFieldDelegate>) delegete ;
+- (instancetype) cc_place_holder : (NSDictionary <NSString * , id> *) dAttributes
+                          string : (NSString *) string ;
 
 /// default with a image View that already size-to-fit with original image . // 默认使用一个 sizeToFit 的 imageView (original) .
-- (instancetype) ccLeftView : (UIImage *) image
-                       mode : (UITextFieldViewMode) mode ;
-- (instancetype) ccRightView : (UIImage *) image
-                        mode : (UITextFieldViewMode) mode ;
+- (instancetype) cc_left_view : (UIImage *) image
+                         mode : (UITextFieldViewMode) mode ;
+- (instancetype) cc_right_view : (UIImage *) image
+                          mode : (UITextFieldViewMode) mode ;
 
-@property (nonatomic , readonly) BOOL resignFirstResponderT;
+@property (nonatomic , readonly) BOOL cc_resign_first_responder;
 
 /// observer text did change // 监听 textField 输入变化
 /// note : it has no conflict on [UITextField.instance ccTextEvent:action:] // 和 [UITextField.instance ccTextEvent:action:] 没有冲突
 /// note : therefore when use [UITextField.instance ccTextDidChange:] // 所以使用 [UITextField.instance ccTextDidChange:] 的时候
 /// note : [UITextField.instance ccTextEvent:UIControlEventEditingChanged action:***] not should be done . // [UITextField.instance ccTextEvent:UIControlEventEditingChanged action:***] 不应该被实现
-- (instancetype) ccTextDidChange : (void (^)(__kindof UITextField *sender)) bChanged ;
+- (instancetype) cc_text_did_change : (void (^)(__kindof UITextField *sender)) bChanged ;
 
 /// note : only events below allowed // 仅仅下列事件被允许
 /// note : if you accidently removed the event of 'UIControlEventEditingChanged' // 如果你不小心移除了 UIControlEventEditingChanged
@@ -40,7 +40,7 @@
 // UIControlEventEditingChanged
 // UIControlEventEditingDidEnd
 // UIControlEventEditingDidEndOnExit , return key to end it .
-- (instancetype) ccTextSharedEvent : (UIControlEvents) event
-                            action : (void (^)(__kindof UITextField *sender)) bEvent ;
+- (instancetype) cc_text_shared_event : (UIControlEvents) event
+                               action : (void (^)(__kindof UITextField *sender)) bEvent ;
 
 @end

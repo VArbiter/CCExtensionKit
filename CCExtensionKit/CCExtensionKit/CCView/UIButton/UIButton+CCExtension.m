@@ -41,23 +41,23 @@ static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN
 }
 
 /// titles && images
-- (instancetype) ccTitle : (NSString *) sTitle
-                   state : (UIControlState) state {
+- (instancetype) cc_title : (NSString *) sTitle
+                    state : (UIControlState) state {
     [self setTitle:sTitle forState:state];
     return self;
 }
-- (instancetype) ccImage : (UIImage *) image
-                   state : (UIControlState) state {
+- (instancetype) cc_image : (UIImage *) image
+                    state : (UIControlState) state {
     [self setImage:image forState:state];
     return self;
 }
 
 /// actions , default is touchUpInside
-- (instancetype) ccAction : (void (^)( __kindof UIButton *sender)) action {
-    return [self ccTarget:self action:action];
+- (instancetype) cc_action : (void (^)( __kindof UIButton *sender)) action {
+    return [self cc_target:self action:action];
 }
-- (instancetype) ccTarget : (id) target
-                   action : (void (^)( __kindof UIButton *sender)) action {
+- (instancetype) cc_target : (id) target
+                    action : (void (^)( __kindof UIButton *sender)) action {
     objc_setAssociatedObject(self, _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self addTarget:target
               action:@selector(ccButtonExtensionAction:)
@@ -66,9 +66,9 @@ static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN
 }
 
 /// custom actions .
-- (instancetype) ccCustom : (id) target
-                      sel : (SEL) sel
-                   events : (UIControlEvents) events {
+- (instancetype) cc_custom : (id) target
+                       sel : (SEL) sel
+                    events : (UIControlEvents) events {
     [self addTarget:(target ? target : self)
              action:sel
    forControlEvents:events];

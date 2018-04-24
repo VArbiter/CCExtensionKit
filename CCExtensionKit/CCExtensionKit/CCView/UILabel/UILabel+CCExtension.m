@@ -21,24 +21,31 @@
     return label;
 }
 
-- (instancetype) ccAutoHeight : (CGFloat) fEstimate {
+- (instancetype) cc_auto_height : (CGFloat) fEstimate {
     if (self.attributedText
-        && self.attributedText.length) return [self ccAttributedTextHeight:fEstimate];
-    if (self.text && self.text.length) return [self ccTextHeight:fEstimate];
+        && self.attributedText.length) return [self cc_attributed_text_height:fEstimate];
+    if (self.text && self.text.length) return [self cc_text_height:fEstimate];
     return self;
 }
-- (instancetype) ccAttributedTextHeight : (CGFloat) fEstimate {
+- (instancetype) cc_attributed_text_height : (CGFloat) fEstimate {
     self.height = CC_TEXT_HEIGHT_A(self.width,
                                    fEstimate,
                                    self.attributedText);
     return self;
 }
-- (instancetype) ccTextHeight : (CGFloat) fEstimate {
+- (instancetype) cc_text_height : (CGFloat) fEstimate {
     self.height = CC_TEXT_HEIGHT_C(self.width,
                                    fEstimate,
                                    self.text,
                                    self.font,
                                    self.lineBreakMode);
+    return self;
+}
+
+- (instancetype) cc_attributed_text_height_t : (CGFloat)fEstimate {
+    CGSize size = [self sizeThatFits:CGSizeMake(self.width, MAXFLOAT)];
+    if (size.height > fEstimate) self.height = size.height;
+    else self.height = fEstimate;
     return self;
 }
 

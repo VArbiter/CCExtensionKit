@@ -9,24 +9,26 @@
 #import <UIKit/UIKit.h>
 
 #ifndef CC_IMAGE_B
-    #define CC_IMAGE_B(_value_) [UIImage ccBundle:self.class name:(_value_)]
+    #define CC_IMAGE_B(_value_) [UIImage cc_bundle:self.class name:(_value_)]
 #endif
 
 #ifndef CC_IMAGE_MODULE_B
-    #define CC_IMAGE_MODULE_B(_module_,_value_) [UIImage ccBundle:self.class module:(_module_) name:(_value_)]
+    #define CC_IMAGE_MODULE_B(_module_,_value_) [UIImage cc_bundle:self.class module:(_module_) name:(_value_)]
 #endif
 
 #ifndef CC_IMAGE_NAME
-    #define CC_IMAGE_NAME(_value_) [UIImage ccName:(_value_)]
+    #define CC_IMAGE_NAME(_value_) [UIImage cc_name:(_value_)]
 #endif
 
 #ifndef CC_IMAGE_FILE
-    #define CC_IMAGE_FILE(_value_) [UIImage ccFile:(_value_)]
+    #define CC_IMAGE_FILE(_value_) [UIImage cc_file:(_value_)]
 #endif
 
 #ifndef CC_IMAGE_BUNDLE
-    #define CC_IMAGE_BUNDLE(_vName_,_vBundle_) [UIImage ccName:(_vName_) bundle:(_vBundle_)]
+    #define CC_IMAGE_BUNDLE(_vName_,_vBundle_) [UIImage cc_name:(_vName_) bundle:(_vBundle_)]
 #endif
+
+UIImage * CC_CAPTURE_WINDOW(UIWindow *window);
 
 @interface UIImage (CCExtension)
 
@@ -35,24 +37,24 @@
 @property (nonatomic , readonly) CGFloat height ;
 
 /// scale size with radius // 按比例缩放图片
-- (CGSize) ccZoom : (CGFloat) fRadius ;
-- (instancetype) ccResizable : (UIEdgeInsets) insets ;
-- (instancetype) ccRendaring : (UIImageRenderingMode) mode ;
-- (instancetype) ccAlwaysOriginal ;
+- (CGSize) cc_zoom : (CGFloat) fRadius ;
+- (instancetype) cc_resizable : (UIEdgeInsets) insets ;
+- (instancetype) cc_rendaring : (UIImageRenderingMode) mode ;
+- (instancetype) cc_always_original ;
 
 /// class , imageName // 类名 , 图片名称
-+ (instancetype) ccBundle : (Class) cls
-                     name : (NSString *) sName;
-+ (instancetype) ccBundle : (Class) cls
-                   module : (NSString *) sModule // the module for archiving bundle . // 用来打包的 module
-                     name : (NSString *) sName ;
-+ (instancetype) ccName : (NSString *) sName ;
-+ (instancetype) ccName : (NSString *) sName
-                 bundle : (NSBundle *) bundle ;
-+ (instancetype) ccFile : (NSString *) sPath ;
++ (instancetype) cc_bundle : (Class) cls
+                      name : (NSString *) sName;
++ (instancetype) cc_bundle : (Class) cls
+                    module : (NSString *) sModule // the module for archiving bundle . // 用来打包的 module
+                      name : (NSString *) sName ;
++ (instancetype) cc_name : (NSString *) sName ;
++ (instancetype) cc_name : (NSString *) sName
+                  bundle : (NSBundle *) bundle ;
++ (instancetype) cc_file : (NSString *) sPath ;
 
 /// create an image with current window // 对当前 window 进行截图
-+ (instancetype) ccCaptureCurrent ;
++ (instancetype) cc_capture_current ;
 
 @end
 
@@ -66,19 +68,19 @@ FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 // for blur issues // 针对模糊
 
 /// using Accelerate // 使用 Accelerate 框架
-- (instancetype) ccGaussianAcc ;
-- (instancetype) ccGaussianAcc : (CGFloat) fRadius ;
-- (instancetype) ccGaussianAcc : (CGFloat) fRadius
-                          tint : (UIColor *) tint ;
-- (instancetype) ccGaussianAcc : (CGFloat) fRadius
-                          tint : (UIColor *) tint
-                      complete : (void(^)(UIImage *origin , UIImage *processed)) complete ;
+- (instancetype) cc_gaussian_acc ;
+- (instancetype) cc_gaussian_acc : (CGFloat) fRadius ;
+- (instancetype) cc_gaussian_acc : (CGFloat) fRadius
+                            tint : (UIColor *) tint ;
+- (instancetype) cc_gaussian_acc : (CGFloat) fRadius
+                            tint : (UIColor *) tint
+                        complete : (void(^)(UIImage *origin , UIImage *processed)) complete ;
 
 /// using CoreImage // 使用 CoreImage 框架
-- (instancetype) ccGaussianCI ; // sync , not recommended // 同步 , 不建议
-- (instancetype) ccGaussianCI : (CGFloat) fRadius ; // sync , not recommended // 同步 , 不建议
-- (instancetype) ccGaussianCI : (CGFloat) fRadius
-                     complete : (void(^)(UIImage *origin , UIImage *processed)) complete ; // async
+- (instancetype) cc_gaussian_CI ; // sync , not recommended // 同步 , 不建议
+- (instancetype) cc_gaussian_CI : (CGFloat) fRadius ; // sync , not recommended // 同步 , 不建议
+- (instancetype) cc_gaussian_CI : (CGFloat) fRadius
+                       complete : (void(^)(UIImage *origin , UIImage *processed)) complete ; // async
 
 
 @end
@@ -93,9 +95,9 @@ FOUNDATION_EXPORT CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
 
 @property (nonatomic , readonly) NSData *toData ;
 /// compress and limit it with in a fitable range . // 压缩 , 并限制图片在合适的大小
-- (NSData *) ccCompresssJPEG : (CGFloat) fQuility;
+- (NSData *) cc_compresss_JPEG : (CGFloat) fQuility;
 /// arguments with Mbytes . // 参数是 兆 为单位的
-- (BOOL) ccIsOverLimitFor : (CGFloat) fMBytes ;
+- (BOOL) cc_is_over_limit_for : (CGFloat) fMBytes ;
 
 @end
 
@@ -124,7 +126,7 @@ typedef NS_ENUM(NSInteger , CCImageType) {
 
 /// using Accelerate // 使用 Accelerate 框架
 
-- (instancetype) ccGaussian ;
-- (instancetype) ccGaussian : (CGFloat) fRadius;
+- (instancetype) cc_gaussian ;
+- (instancetype) cc_gaussian : (CGFloat) fRadius;
 
 @end

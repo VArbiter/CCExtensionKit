@@ -30,5 +30,6 @@
     #import "UITextView+CCExtension.h"
     #import "UIViewController+CCExtension.h"
     #import "UIVisualEffectView+CCExtension.h"
+    #import "UISwitch+CCExtension.h"
 
 #endif /* CCViewExtension_h */

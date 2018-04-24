@@ -16,52 +16,52 @@
     return v;
 }
 
-- (instancetype) ccContentSize : (CGSize) size {
+- (instancetype) cc_content_size : (CGSize) size {
     self.contentSize = size;
     return self;
 }
-- (instancetype) ccDelegateT : (id) delegate {
+- (instancetype) cc_delegate : (id) delegate {
     self.delegate = delegate;
     return self;
 }
 
 /// animated is YES .
-- (instancetype) ccAnimatedOffset : (CGPoint) offSet {
-    return [self ccAnimatedOffset:offSet animated:YES];
+- (instancetype) cc_animated_offset : (CGPoint) offSet {
+    return [self cc_animated_offset:offSet animated:YES];
 }
-- (instancetype) ccAnimatedOffset : (CGPoint) offSet
-                         animated : (BOOL) isAnimated {
+- (instancetype) cc_animated_offset : (CGPoint) offSet
+                           animated : (BOOL) isAnimated {
     [self setContentOffset:offSet
                   animated:isAnimated];
     return self;
 }
 
-- (instancetype) hideVerticalIndicator {
+- (instancetype) cc_hide_vertical_indicator {
     self.showsVerticalScrollIndicator = false;
     return self;
 }
-- (instancetype) hideHorizontalIndicator {
+- (instancetype) cc_hide_horizontal_indicator {
     self.showsHorizontalScrollIndicator = false;
     return self;
 }
-- (instancetype) disableBounces {
+- (instancetype) cc_disable_bounces {
     self.bounces = false;
     return self;
 }
-- (instancetype) disableScroll {
+- (instancetype) cc_disable_scroll {
     self.scrollEnabled = false;
     return self;
 }
-- (instancetype) disableScrollsToTop {
+- (instancetype) cc_disable_scrolls_to_top {
     self.scrollsToTop = false;
     return self;
 }
 
-- (instancetype) enablePaging {
+- (instancetype) cc_enable_paging {
     self.pagingEnabled = YES;
     return self;
 }
-- (instancetype) enableDirectionLock {
+- (instancetype) cc_enable_direction_lock {
     self.directionalLockEnabled = YES;
     return self;
 }

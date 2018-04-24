@@ -22,6 +22,9 @@
 /// c function type , same as + (instancetype)CC_Non_NULL:
 id CC_NON_NULL(Class clazz , void (^setting)(id value));
 
++ (void) cc_end ;
+- (void) cc_end ;
+
 @end
 
 @interface NSObject (CCProtocol) < CCExtensionProtocol >

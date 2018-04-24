@@ -20,42 +20,42 @@
                                         preferredStyle:style];
 }
 
-- (instancetype) ccTitle : (NSString *) sTitle {
+- (instancetype) cc_title : (NSString *) sTitle {
     self.title = sTitle;
     return self;
 }
-- (instancetype) ccMessage : (NSString *) sMessage {
+- (instancetype) cc_message : (NSString *) sMessage {
     self.message = sMessage;
     return self;
 }
 
-- (instancetype) ccAction : (CCAlertActionInfo *) info
-                   action : (void(^)( __kindof UIAlertAction *action)) action {
+- (instancetype) cc_action : (CCAlertActionInfo *) info
+                    action : (void(^)( __kindof UIAlertAction *action)) action {
     CCAlertActionEntity *m = [[CCAlertActionEntity alloc] init];
-    m.sTitle = info[@"title"];
+    m.s_title = info[@"title"];
     m.style = (UIAlertActionStyle)[info[@"style"] integerValue];
     
-    UIAlertAction *a = [UIAlertAction actionWithTitle:m.sTitle
+    UIAlertAction *a = [UIAlertAction actionWithTitle:m.s_title
                                                 style:m.style
                                               handler:action];
-    a.actionM = m;
+    a.action_m = m;
     if (a) [self addAction:a];
     return self;
 }
-- (instancetype) ccActions : (NSArray < CCAlertActionInfo *> *) array
-                    action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) actionT {
+- (instancetype) cc_action_s : (NSArray < CCAlertActionInfo *> *) array
+                      action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) actionT {
     __weak typeof(self) pSelf = self;
     [array enumerateObjectsUsingBlock:^(CCAlertActionInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         CCAlertActionEntity *m = [[CCAlertActionEntity alloc] init];
-        m.sTitle = obj[@"title"];
+        m.s_title = obj[@"title"];
         m.style = (UIAlertActionStyle)[obj[@"style"] integerValue];
         
-        UIAlertAction *a = [UIAlertAction actionWithTitle:m.sTitle
+        UIAlertAction *a = [UIAlertAction actionWithTitle:m.s_title
                                                     style:m.style
                                                   handler:^(UIAlertAction * _Nonnull action) {
                                                       if (actionT) actionT(action , idx);
                                                   }];
-        a.actionM = m;
+        a.action_m = m;
         if (a) [pSelf addAction:a];
     }];
     return pSelf;
@@ -79,10 +79,10 @@ CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle s
 
 @implementation UIAlertAction (CCExtension)
 
-- (void)setActionM:(CCAlertActionEntity *)actionM {
-    objc_setAssociatedObject(self, @selector(actionM), actionM, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setAction_m:(CCAlertActionEntity *)action_m {
+    objc_setAssociatedObject(self, @selector(action_m), action_m, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-- (CCAlertActionEntity *)actionM {
+- (CCAlertActionEntity *)action_m {
     return objc_getAssociatedObject(self, _cmd);
 }
 

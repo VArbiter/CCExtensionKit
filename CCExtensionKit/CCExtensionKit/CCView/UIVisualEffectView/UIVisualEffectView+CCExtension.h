@@ -18,9 +18,9 @@
 
 @interface UIVisualEffect (CCExtension)
 
-+ (instancetype) ccBlurDark ;
-+ (instancetype) ccBlurLight ;
-+ (instancetype) ccBlurExtraLight ;
++ (instancetype) cc_blur_dark ;
++ (instancetype) cc_blur_light ;
++ (instancetype) cc_blur_extra_light ;
 
 @end
 
@@ -28,8 +28,8 @@
 
 @interface UIVibrancyEffect (CCExtension)
 
-+ (instancetype) ccVibrancyDark ;
-+ (instancetype) ccVibrancyLight ;
-+ (instancetype) ccVibrancyExtraLight ;
++ (instancetype) cc_vibrancy_dark ;
++ (instancetype) cc_vibrancy_light ;
++ (instancetype) cc_vibrancy_extra_light ;
 
 @end

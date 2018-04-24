@@ -38,16 +38,16 @@ forCellReuseIdentifier:_CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
     return v;
 }
 
-- (instancetype) ccDelegateT : (id) delegate {
+- (instancetype) cc_delegate : (id) delegate {
     self.delegate = delegate;
     return self;
 }
-- (instancetype) ccDataSourceT : (id) dataSource {
+- (instancetype) cc_datasource : (id) dataSource {
     self.dataSource = dataSource;
     return self;
 }
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-- (instancetype) ccPrefetchingT : (id) prefetch {
+- (instancetype) cc_prefetching : (id) prefetch {
     if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
         self.prefetchDataSource = prefetch;
     }
@@ -55,10 +55,10 @@ forCellReuseIdentifier:_CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
 }
 #endif
 
-- (instancetype) ccRegistNib : (NSString *) sNib {
-    return [self ccRegistNib:sNib bundle:nil];
+- (instancetype) cc_regist_nib : (NSString *) sNib {
+    return [self cc_regist_nib:sNib bundle:nil];
 }
-- (instancetype) ccRegistNib : (NSString *) sNib
+- (instancetype) cc_regist_nib : (NSString *) sNib
                       bundle : (NSBundle *) bundle {
     if (!bundle) bundle = NSBundle.mainBundle;
     [self registerNib:[UINib nibWithNibName:sNib
@@ -67,17 +67,17 @@ forCellReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) ccRegistCls : (Class) cls {
+- (instancetype) cc_regist_cls : (Class) cls {
     [self registerClass:cls
   forCellReuseIdentifier:NSStringFromClass(cls)];
     return self;
 }
 
-- (instancetype) ccRegistHeaderFooterNib : (NSString *) sNib {
-    return [self ccRegistHeaderFooterNib:sNib bundle:nil];
+- (instancetype) cc_regist_header_footer_nib : (NSString *) sNib {
+    return [self cc_regist_header_footer_nib:sNib bundle:nil];
 }
-- (instancetype) ccRegistHeaderFooterNib : (NSString *) sNib
-                                  bundle : (NSBundle *) bundle {
+- (instancetype) cc_regist_header_footer_nib : (NSString *) sNib
+                                      bundle : (NSBundle *) bundle {
     if (NSClassFromString(sNib) == UITableViewHeaderFooterView.class
         || [NSClassFromString(sNib) isSubclassOfClass:UITableViewHeaderFooterView.class]) {
         if (!bundle) bundle = NSBundle.mainBundle;
@@ -87,7 +87,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
     }
     return self;
 }
-- (instancetype) ccRegistHeaderFooterCls : (Class) cls {
+- (instancetype) cc_regist_header_footer_cls : (Class) cls {
     if (cls == UITableViewHeaderFooterView.class
         || [cls isSubclassOfClass:UITableViewHeaderFooterView.class]){
         [self registerClass:cls forHeaderFooterViewReuseIdentifier:NSStringFromClass(cls)];
@@ -95,7 +95,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) ccUpdating : (void (^)(void)) updating {
+- (instancetype) cc_updating : (void (^)(void)) updating {
     if (updating) {
         [self beginUpdates];
         updating();
@@ -104,16 +104,16 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) ccReloading : (UITableViewRowAnimation) animation {
+- (instancetype) cc_reloading : (UITableViewRowAnimation) animation {
     if ((NSInteger)animation > 0 && animation != UITableViewRowAnimationNone) {
-        return [self ccReloadSectionsT:[NSIndexSet indexSetWithIndex:0]
-                               animate:animation];
+        return [self cc_reload_sections:[NSIndexSet indexSetWithIndex:0]
+                                animate:animation];
     }
     else [self reloadData];
     return self;
 }
-- (instancetype) ccReloadSectionsT : (NSIndexSet *) set
-                           animate : (UITableViewRowAnimation) animation {
+- (instancetype) cc_reload_sections : (NSIndexSet *) set
+                            animate : (UITableViewRowAnimation) animation {
     if (!set) return self;
     if ((NSInteger)animation > 0 && animation != UITableViewRowAnimationNone) {
         [self reloadSections:set
@@ -139,8 +139,8 @@ forHeaderFooterViewReuseIdentifier:sNib];
     }
     return self;
 }
-- (instancetype) ccReloadItemsT : (NSArray <NSIndexPath *> *) array
-                        animate : (UITableViewRowAnimation) animation {
+- (instancetype) cc_reload_items : (NSArray <NSIndexPath *> *) array
+                         animate : (UITableViewRowAnimation) animation {
     if (array && array.count) {
         if ((NSInteger)animation > 0 && animation != UITableViewRowAnimationNone) {
             [self reloadRowsAtIndexPaths:array
@@ -168,16 +168,16 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (__kindof UITableViewCell *) ccDeqCell : (NSString *) sIdentifier {
+- (__kindof UITableViewCell *) cc_deq_cell : (NSString *) sIdentifier {
     return [self dequeueReusableCellWithIdentifier:sIdentifier];
 }
 
-- (__kindof UITableViewCell *) ccDeqCell : (NSString *) sIdentifier
-                               indexPath : (NSIndexPath *) indexPath {
+- (__kindof UITableViewCell *) cc_deq_cell : (NSString *) sIdentifier
+                                 indexPath : (NSIndexPath *) indexPath {
     return [self dequeueReusableCellWithIdentifier:sIdentifier
                                       forIndexPath:indexPath];
 }
-- (__kindof UITableViewHeaderFooterView *) ccDeqReusableView : (NSString *) sIdentifier {
+- (__kindof UITableViewHeaderFooterView *) cc_deq_reusable_view : (NSString *) sIdentifier {
     return [self dequeueReusableHeaderFooterViewWithIdentifier:sIdentifier];
 }
 
@@ -213,56 +213,56 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) ccCellHeight : (CGFloat (^)(__kindof UITableView * tableView , NSIndexPath *indexPath)) cellHeight {
+- (instancetype) cc_cell_height : (CGFloat (^)(__kindof UITableView * tableView , NSIndexPath *indexPath)) cellHeight {
     self.bCellHeight = [cellHeight copy];
     return self;
 }
-- (instancetype) ccSectionHeaderHeight : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionHeaderHeight {
+- (instancetype) cc_section_header_height : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionHeaderHeight {
     self.bSectionHeaderHeight = [sectionHeaderHeight copy];
     return self;
 }
-- (instancetype) ccSectionHeader : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionHeader {
+- (instancetype) cc_section_header : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionHeader {
     self.bSectionHeader = [sectionHeader copy];
     return self;
 }
-- (instancetype) ccSectionFooterHeight : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionFooterHeight {
+- (instancetype) cc_section_footer_height : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionFooterHeight {
     self.bSectionFooterHeight = [sectionFooterHeight copy];
     return self;
 }
-- (instancetype) ccSectionFooter : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionFooter {
+- (instancetype) cc_section_footer : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionFooter {
     self.bSectionFooter = [sectionFooter copy];
     return self;
 }
-- (instancetype) ccDidSelect : (BOOL (^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) didSelect {
+- (instancetype) cc_did_select : (BOOL (^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) didSelect {
     self.bDidSelect = [didSelect copy];
     return self;
 }
 
-- (instancetype) ccDidScroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll {
+- (instancetype) cc_did_scroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll {
     self.bDidScroll = [didScroll copy];
     return self;
 }
-- (instancetype) ccWillBeginDecelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating {
+- (instancetype) cc_will_begin_decelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating {
     self.bWillBeginDecelerating = [willBeginDecelerating copy];
     return self;
 }
-- (instancetype) ccDidEndDecelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating {
+- (instancetype) cc_did_end_decelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating {
     self.bDidEndDecelerating = [didEndDecelerating copy];
     return self;
 }
-- (instancetype) ccShouldScrollToTop : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop {
+- (instancetype) cc_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop {
     self.bShouldScrollToTop = [shouldScrollToTop copy];
     return self;
 }
-- (instancetype) ccDidScrollToTop : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop {
+- (instancetype) cc_did_scroll_to_top : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop {
     self.bDidScrollToTop = [didScrollToTop copy];
     return self;
 }
-- (instancetype) ccWillBeginDragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging {
+- (instancetype) cc_will_begin_dragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging {
     self.bWillBeginDragging = [willBeginDragging copy];
     return self;
 }
-- (instancetype) ccDidEndDragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging {
+- (instancetype) cc_did_end_dragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging {
     self.bDidEndDragging = [didEndDragging copy];
     return self;
 }
@@ -346,19 +346,19 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) ccSections : (NSInteger (^)(__kindof UITableView *tableView)) sections {
+- (instancetype) cc_sections : (NSInteger (^)(__kindof UITableView *tableView)) sections {
     self.bSections = [sections copy];
     return self;
 }
-- (instancetype) ccRowsInSections : (NSInteger (^)(__kindof UITableView * tableView , NSInteger iSection)) rowsInSections {
+- (instancetype) cc_rows_in_sections : (NSInteger (^)(__kindof UITableView * tableView , NSInteger iSection)) rowsInSections {
     self.bRowsInSections = [rowsInSections copy];
     return self;
 }
-- (instancetype) ccCellIdentifier : (NSString *(^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) cellIdentifier {
+- (instancetype) cc_cell_identifier : (NSString *(^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) cellIdentifier {
     self.bCellIdentifier = [cellIdentifier copy];
     return self;
 }
-- (instancetype) ccConfiguration : (__kindof UITableViewCell *(^)(__kindof UITableView *tableView , __kindof UITableViewCell *tCell , NSIndexPath *indexPath)) configuration {
+- (instancetype) cc_configuration : (__kindof UITableViewCell *(^)(__kindof UITableView *tableView , __kindof UITableViewCell *tCell , NSIndexPath *indexPath)) configuration {
     self.bConfigCell = [configuration copy];
     return self;
 }
@@ -394,15 +394,15 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 @implementation NSArray (CCExtension_Table_Refresh)
 
-- (instancetype) ccReload : (__kindof UITableView *) tableView {
-    if (self.count) [tableView ccReloading:UITableViewRowAnimationFade];
+- (instancetype) cc_reload : (__kindof UITableView *) tableView {
+    if (self.count) [tableView cc_reloading:UITableViewRowAnimationFade];
     else [tableView reloadData];
     return self;
 }
-- (instancetype) ccReload : (__kindof UITableView *) tableView
-                 sections : (NSIndexSet *) set {
-    if (self.count) [tableView ccReloadSectionsT:set animate:UITableViewRowAnimationFade];
-    else [tableView ccReloadSectionsT:set animate:UITableViewRowAnimationNone];
+- (instancetype) cc_reload : (__kindof UITableView *) tableView
+                  sections : (NSIndexSet *) set {
+    if (self.count) [tableView cc_reload_sections:set animate:UITableViewRowAnimationFade];
+    else [tableView cc_reload_sections:set animate:UITableViewRowAnimationNone];
     return self;
 }
 
@@ -431,15 +431,15 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) ccDisableBackgroundMode {
+- (instancetype) cc_disable_background_mode {
     self.isDisableBackground = YES;
     return self;
 }
-- (instancetype) ccPrefetchAt : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) prefetchAt {
+- (instancetype) cc_prefetch_at : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) prefetchAt {
     self.prefetching = [prefetchAt copy];
     return self;
 }
-- (instancetype) ccCancelPrefetchAt : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) cancelPrefetchAt {
+- (instancetype) cc_cancel_prefetch_at : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) cancelPrefetchAt {
     self.canceling = [cancelPrefetchAt copy];
     return self;
 }

@@ -34,13 +34,13 @@
     v.clearButtonMode = UITextFieldViewModeWhileEditing ;
     return v;
 }
-- (instancetype) ccDelegateT : (id <UITextFieldDelegate>) delegete {
+- (instancetype) cc_delegate : (id <UITextFieldDelegate>) delegete {
     if (delegete) self.delegate = delegete;
     else self.delegate = nil;
     return self;
 }
-- (instancetype) ccPlaceHolder : (NSDictionary <NSString * , id> *) dAttributes
-                        string : (NSString *) string {
+- (instancetype) cc_place_holder : (NSDictionary <NSString * , id> *) dAttributes
+                          string : (NSString *) string {
     if (![string isKindOfClass:NSString.class] || !string || !string.length) return self;
     NSAttributedString *sAttr = [[NSAttributedString alloc] initWithString:string
                                                                 attributes:dAttributes];
@@ -48,8 +48,8 @@
     return self;
 }
 
-- (instancetype) ccLeftView : (UIImage *) image
-                       mode : (UITextFieldViewMode) mode {
+- (instancetype) cc_left_view : (UIImage *) image
+                         mode : (UITextFieldViewMode) mode {
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImageView *v = [[UIImageView alloc] initWithImage:image];
     v.contentMode = UIViewContentModeScaleAspectFit;
@@ -58,8 +58,8 @@
     self.rightView = v;
     return self;
 }
-- (instancetype) ccRightView : (UIImage *) image
-                        mode : (UITextFieldViewMode) mode {
+- (instancetype) cc_right_view : (UIImage *) image
+                          mode : (UITextFieldViewMode) mode {
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImageView *v = [[UIImageView alloc] initWithImage:image];
     v.contentMode = UIViewContentModeScaleAspectFit;
@@ -69,13 +69,13 @@
     return self;
 }
 
-- (BOOL)resignFirstResponderT {
+- (BOOL)cc_resign_first_responder {
     BOOL b = [self canResignFirstResponder];
     if (b) [self resignFirstResponder];
     return b;
 }
 
-- (instancetype) ccTextDidChange : (void (^)(__kindof UITextField *sender)) bChanged {
+- (instancetype) cc_text_did_change : (void (^)(__kindof UITextField *sender)) bChanged {
     if (!bChanged) return self;
     objc_setAssociatedObject(self, "CC_TEXT_FIELD_TEXT_DID_CHANGE_ACTION", bChanged, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self addTarget:self
@@ -84,13 +84,13 @@
     return self;
 }
 
-- (instancetype) ccTextSharedEvent : (UIControlEvents) event
-                            action : (void (^)(__kindof UITextField *sender)) bEvent {
+- (instancetype) cc_text_shared_event : (UIControlEvents) event
+                               action : (void (^)(__kindof UITextField *sender)) bEvent {
     if (event & UIControlEventEditingDidBegin
         || event & UIControlEventEditingChanged
         || event & UIControlEventEditingDidEnd
         || event & UIControlEventEditingDidEndOnExit) {
-        return [self ccSharedControlEvent:event actions:^(__kindof UIControl *sender) {
+        return [self cc_shared_control_event:event actions:^(__kindof UIControl *sender) {
             if (bEvent) bEvent(((UITextField *) sender));
         }];
     }

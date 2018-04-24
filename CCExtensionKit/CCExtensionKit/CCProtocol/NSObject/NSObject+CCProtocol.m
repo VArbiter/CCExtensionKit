@@ -31,4 +31,7 @@ id CC_NON_NULL(Class clazz , void (^setting)(id value)) {
     return value;
 }
 
++ (void) cc_end {}
+- (void) cc_end {}
+
 @end

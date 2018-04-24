@@ -85,13 +85,13 @@
     #if _CC_DEBUG_MODE_
         #define CC(_value_) \
             if (_CC_NIL_ASSERT_ENABLE_) { \
-                CCLog(@"_CC_NIL_TERMINATION_\n instance that used in CCChain Kit can't be nil. \n"); \
+                CCLog(@"_CC_NIL_TERMINATION_\n instance that used in CCExtension Kit can't be nil. \n"); \
                 NSAssert(_value_ != nil , @"instance can't be nil"); \
             } \
-            if (_value_ && [_value_ conformsToProtocol:@protocol(CCChainOperateProtocol)]) ([_value_ cc])
+            if (_value_ && [_value_ conformsToProtocol:@protocol(CCExtensionProtocol)]) ([_value_ cc])
     #else
         #define CC(_value_) \
-            if (_value_ && [_value_ conformsToProtocol:@protocol(CCChainOperateProtocol)]) ([_value_ cc])
+            if (_value_ && [_value_ conformsToProtocol:@protocol(CCExtensionProtocol)]) ([_value_ cc])
     #endif
 #endif
 

@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self ccEnablePushingPopingStyleWhenPresentOrDismiss];
+    [self cc_enable_pushing_poping_style_when_present_or_dismiss];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,7 +27,7 @@
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self ccDismiss];
+    [self cc_dismiss];
 }
 
 @end

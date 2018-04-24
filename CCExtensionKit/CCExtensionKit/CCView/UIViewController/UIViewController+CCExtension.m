@@ -14,45 +14,45 @@
 
 @implementation UIViewController (CCExtension) 
 
-- (instancetype) ccDisableAnimated {
+- (instancetype) cc_disable_animated {
     objc_setAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_", @(false), OBJC_ASSOCIATION_ASSIGN);
     return self;
 }
-- (instancetype) ccEnableAnimated {
+- (instancetype) cc_enable_animated {
     objc_setAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_", @(YES), OBJC_ASSOCIATION_ASSIGN);
     return self;
 }
 
-- (void) ccGoBack {
-    if (self.navigationController) [self ccPop];
-    else if (self.presentingViewController) [self ccDismiss];
+- (void) cc_go_back {
+    if (self.navigationController) [self cc_pop];
+    else if (self.presentingViewController) [self cc_dismiss];
 }
-- (void) ccDismiss {
-    [self ccDismiss:.0f];
+- (void) cc_dismiss {
+    [self cc_dismiss:.0f];
 }
-- (void) ccDismiss : (CGFloat) fDelay {
-    [self ccDismiss:fDelay complete:nil];
+- (void) cc_dismiss : (CGFloat) fDelay {
+    [self cc_dismiss:fDelay complete:nil];
 }
-- (void) ccDismiss : (CGFloat) fDelay
-          complete : (void(^)(void)) complete {
+- (void) cc_dismiss : (CGFloat) fDelay
+           complete : (void(^)(void)) complete {
     id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     if (self.presentingViewController) {
         if (fDelay <= .0f) [self dismissViewControllerAnimated:b
                                                     completion:complete];
     }
-    else [self ccGoBack];
+    else [self cc_go_back];
 }
 
-- (void) ccPop {
+- (void) cc_pop {
     if (self.navigationController) {
         id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
         BOOL b = o ? [o boolValue] : YES;
         [self.navigationController popViewControllerAnimated:b];
     }
-    else [self ccGoBack];
+    else [self cc_go_back];
 }
-- (void) ccPopTo : (__kindof UIViewController *) controller {
+- (void) cc_pop_to : (__kindof UIViewController *) controller {
     id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     if (controller
@@ -61,23 +61,23 @@
         if (self.navigationController) [self.navigationController popToViewController:controller
                                                                              animated:b];
     }
-    else [self ccGoBack];
+    else [self cc_go_back];
 }
-- (void) ccPopToRoot {
+- (void) cc_pop_to_root {
     id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     if (self.navigationController) [self.navigationController popToRootViewControllerAnimated:b];
-    else [self ccGoBack];
+    else [self cc_go_back];
 }
 
-- (instancetype) ccPush : (__kindof UIViewController *) controller {
+- (instancetype) cc_push : (__kindof UIViewController *) controller {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
-    if (self.navigationController) return [self ccPush:controller
-                                            hideBottom:YES];
-    return [self ccPresent:controller];
+    if (self.navigationController) return [self cc_push:controller
+                                            hide_bottom:YES];
+    return [self cc_present:controller];
 }
-- (instancetype) ccPush : (__kindof UIViewController *) controller
-             hideBottom : (BOOL) isHide {
+- (instancetype) cc_push : (__kindof UIViewController *) controller
+             hide_bottom : (BOOL) isHide {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
     if (self.navigationController) {
         id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
@@ -87,15 +87,15 @@
                                               animated:b];
         return self;
     }
-    return [self ccPresent:controller];
+    return [self cc_present:controller];
 }
 
-- (instancetype) ccPresent : (__kindof UIViewController *) controller {
+- (instancetype) cc_present : (__kindof UIViewController *) controller {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
-    return [self ccPresent:controller complete:nil];
+    return [self cc_present:controller complete:nil];
 }
-- (instancetype) ccPresent : (__kindof UIViewController *) controller
-                  complete : (void (^)(void)) complete {
+- (instancetype) cc_present : (__kindof UIViewController *) controller
+                   complete : (void (^)(void)) complete {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
     id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
@@ -108,17 +108,17 @@
     });
     return self;
 }
-- (instancetype) ccPresentClear : (__kindof UIViewController *) controller
-                       complete : (void (^)(void)) complete {
+- (instancetype) cc_present_clear : (__kindof UIViewController *) controller
+                         complete : (void (^)(void)) complete {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
     controller.providesPresentationContextTransitionStyle = YES;
     controller.definesPresentationContext = YES;
     [controller setModalPresentationStyle:UIModalPresentationOverCurrentContext];
-    return [self ccPresent:controller complete:complete];
+    return [self cc_present:controller complete:complete];
 }
 
-- (instancetype) ccAddViewFrom : (__kindof UIViewController *) controller
-                      duration : (CGFloat) fAnimationDuration {
+- (instancetype) cc_add_view_from : (__kindof UIViewController *) controller
+                         duration : (CGFloat) fAnimationDuration {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
     for (id item in self.view.subviews) {
         if (item == controller.view) return self;
@@ -137,9 +137,9 @@
     return self;
 }
 
-+ (void) ccCoverViewWith : (__kindof UIViewController *) controller
-                animated : (BOOL) isAminated
-                duration : (CGFloat) fAnimationDuration {
++ (void) cc_cover_view_with : (__kindof UIViewController *) controller
+                   animated : (BOOL) isAminated
+                   duration : (CGFloat) fAnimationDuration {
     UIWindow *w = UIApplication.sharedApplication.delegate.window;
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return ;
     for (id item in w.subviews) {
@@ -155,30 +155,30 @@
     else [w addSubview:controller.view];
 }
 
-+ (__kindof UIViewController *) ccCurrent {
-    return [self ccCurrentFrom:UIViewController.ccRootViewController];
++ (__kindof UIViewController *) cc_current {
+    return [self cc_current_from:UIViewController.cc_current_root];
 }
-+ (__kindof UIViewController *) ccRootViewController {
++ (__kindof UIViewController *) cc_current_root {
     return UIApplication.sharedApplication.delegate.window.rootViewController;
 }
-+ (__kindof UINavigationController *) ccCurrentNavigationController {
-    return self.ccCurrent.navigationController;
++ (__kindof UINavigationController *) cc_current_navigation {
+    return self.cc_current.navigationController;
 }
-+ (__kindof UIViewController *) ccCurrentFrom : (UIViewController *) controller {
++ (__kindof UIViewController *) cc_current_from : (UIViewController *) controller {
     if ([controller isKindOfClass:UINavigationController.class]) {
         UINavigationController *nvc = (UINavigationController *)controller;
-        return [self ccCurrentFrom:nvc.viewControllers.lastObject];
+        return [self cc_current_from:nvc.viewControllers.lastObject];
     }
     else if([controller isKindOfClass:UITabBarController.class]) {
         UITabBarController *tbvc = (UITabBarController *)controller;
-        return [self ccCurrentFrom:tbvc.selectedViewController];
+        return [self cc_current_from:tbvc.selectedViewController];
     }
     else if(controller.presentedViewController != nil) {
-        return [self ccCurrentFrom:controller.presentedViewController];
+        return [self cc_current_from:controller.presentedViewController];
     }
     else return controller;
 }
-+ (UIViewController *)ccWindowedCurrentController {
++ (UIViewController *)cc_windowed_current {
     id vc = nil;
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];
     if (window.windowLevel != UIWindowLevelNormal) {
@@ -193,11 +193,11 @@
     UIView *viewFront = [[window subviews] firstObject];
     vc = [viewFront nextResponder];
     if ([vc isKindOfClass:[UIViewController class]])
-        return [UIViewController ccCurrentFrom:vc];
+        return [UIViewController cc_current_from:vc];
     else return window.rootViewController;
 }
 
-- (instancetype) ccEnablePushingPopingStyleWhenPresentOrDismiss {
+- (instancetype) cc_enable_pushing_poping_style_when_present_or_dismiss {
     self.transitioningDelegate = self;
     return self;
 }
@@ -229,7 +229,7 @@
 - (instancetype)init {
     if ((self = [super init])) {
         self.intervalDuration = _CC_DEFAULT_ANIMATION_COMMON_DURATION_;
-        self.sAnimationType = kCATransitionFromRight;
+        self.s_animation_type = kCATransitionFromRight;
     }
     return self;
 }
@@ -249,7 +249,7 @@
     
     CATransition *transition = [CATransition animation];
     transition.type = kCATransitionPush;
-    transition.subtype = self.sAnimationType.length > 0 ? self.sAnimationType : kCATransitionFromRight;
+    transition.subtype = self.s_animation_type.length > 0 ? self.s_animation_type : kCATransitionFromRight;
     transition.duration = [self transitionDuration:transitionContext];
     transition.delegate = self;
     [vcTo.view.layer addAnimation:transition forKey:@"pushAnimation"];

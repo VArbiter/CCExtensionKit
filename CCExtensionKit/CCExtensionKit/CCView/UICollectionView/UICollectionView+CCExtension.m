@@ -30,19 +30,19 @@
 forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
     return c;
 }
-- (instancetype) ccDelegate : (id <UICollectionViewDelegateFlowLayout>) delegate {
+- (instancetype) cc_delegate : (id <UICollectionViewDelegateFlowLayout>) delegate {
     if (delegate) self.delegate = delegate;
     else self.delegate = nil;
     return self;
 }
-- (instancetype) ccDataSource : (id <UICollectionViewDataSource>) dataSource {
+- (instancetype) cc_datasource : (id <UICollectionViewDataSource>) dataSource {
     if (dataSource) self.dataSource = dataSource;
     else self.dataSource = nil;
     return self;
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-- (instancetype) ccPrefetching : (id <UICollectionViewDataSourcePrefetching>) prefetch {
+- (instancetype) cc_prefetching : (id <UICollectionViewDataSourcePrefetching>) prefetch {
     if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {    
         if (prefetch) self.prefetchDataSource = prefetch;
         else self.prefetchDataSource = nil;
@@ -51,11 +51,11 @@ forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
 }
 #endif
 
-- (instancetype) ccRegistNib : (NSString *) sNib {
-    return [self ccRegistNib:sNib bundle:nil];
+- (instancetype) cc_regist_nib : (NSString *) sNib {
+    return [self cc_regist_nib:sNib bundle:nil];
 }
-- (instancetype) ccRegistNib : (NSString *) sNib
-                      bundle : (NSBundle *) bundle {
+- (instancetype) cc_regist_nib : (NSString *) sNib
+                        bundle : (NSBundle *) bundle {
     if (!bundle) bundle = NSBundle.mainBundle;
     [self registerNib:[UINib nibWithNibName:sNib
                                      bundle:bundle]
@@ -63,21 +63,21 @@ forCellWithReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) ccRegistCls : (Class) cls {
+- (instancetype) cc_regist_cls : (Class) cls {
     [self registerClass:cls
 forCellWithReuseIdentifier:NSStringFromClass(cls)];
     return self;
 }
 
-- (instancetype) ccReloading : (BOOL) isAnimated {
+- (instancetype) cc_reloading : (BOOL) isAnimated {
     if (isAnimated) {
-        [self ccReloadSections:[NSIndexSet indexSetWithIndex:0]
-                      animated:isAnimated];
+        [self cc_reload_sections:[NSIndexSet indexSetWithIndex:0]
+                        animated:isAnimated];
     } else [self reloadData];
     return self;
 }
-- (instancetype) ccReloadSections : (NSIndexSet *) set
-                         animated : (BOOL) isAnimated {
+- (instancetype) cc_reload_sections : (NSIndexSet *) set
+                           animated : (BOOL) isAnimated {
     if (isAnimated) {
         [self reloadSections:set];
     } else {
@@ -97,23 +97,23 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
     }
     return self;
 }
-- (instancetype) ccReloadItems : (NSArray <NSIndexPath *> *) arrayItems {
+- (instancetype) cc_reload_items : (NSArray <NSIndexPath *> *) arrayItems {
     [self reloadItemsAtIndexPaths:(arrayItems ? arrayItems : @[])];
     return self;
 }
 
 /// for cell that register in collection
-- (__kindof UICollectionViewCell *) ccDeqCell : (NSString *) sIdentifier
-                                    indexPath : (NSIndexPath *) indexPath {
+- (__kindof UICollectionViewCell *) cc_deq_cell : (NSString *) sIdentifier
+                                      indexPath : (NSIndexPath *) indexPath {
     if (sIdentifier && sIdentifier.length && indexPath)
         return [self dequeueReusableCellWithReuseIdentifier:sIdentifier
                                                forIndexPath:indexPath];
     return nil;
 }
 /// for reusable view
-- (__kindof UICollectionReusableView *) ccDeqReuseableView : (NSString *) sElementKind
-                                                identifier : (NSString *) sIdentifier
-                                                 indexPath : (NSIndexPath *) indexPath {
+- (__kindof UICollectionReusableView *) cc_deq_reuseable_view : (NSString *) sElementKind
+                                                   identifier : (NSString *) sIdentifier
+                                                    indexPath : (NSIndexPath *) indexPath {
     if (sElementKind && sElementKind.length && sIdentifier && sIdentifier.length && indexPath)
         return [self dequeueReusableSupplementaryViewOfKind:sElementKind
                                         withReuseIdentifier:sIdentifier
@@ -132,15 +132,15 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
 }
 
 /// for default sizes
-- (instancetype) ccItemSize : (CGSize) size {
+- (instancetype) cc_item_size : (CGSize) size {
     self.itemSize = size;
     return self;
 }
-- (instancetype) ccSectionsInsets : (UIEdgeInsets) insets {
+- (instancetype) cc_sections_insets : (UIEdgeInsets) insets {
     self.sectionInset = insets;
     return self;
 }
-- (instancetype) ccHeaderSize : (CGSize) size {
+- (instancetype) cc_header_size : (CGSize) size {
     self.headerReferenceSize = size;
     return self;
 }
@@ -179,65 +179,65 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
     return self;
 }
 
-- (instancetype) ccDidSelect : (BOOL (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) cc_did_select : (BOOL (^)(__kindof UICollectionView *collectionView ,
                                          NSIndexPath *indexPath)) didSelect {
     self.bDidSelect = [didSelect copy];
     return self;
 }
-- (instancetype) ccDidHighted : (void (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) cc_did_highted : (void (^)(__kindof UICollectionView *collectionView ,
                                           NSIndexPath *indexPath)) didHighLighted {
     self.bDidHightedCell = [didHighLighted copy];
     return self;
 }
-- (instancetype) ccDidUnHighted : (void (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) cc_did_un_highted : (void (^)(__kindof UICollectionView *collectionView ,
                                             NSIndexPath *indexPath)) didUnHighLighted {
     self.bDidUnhigntedCell = [didUnHighLighted copy];
     return self;
 }
-- (instancetype) ccMinimumLineSpacingInSection : (CGFloat (^)(__kindof UICollectionView *collectionView ,
-                                                              __kindof UICollectionViewLayout *layout ,
-                                                              NSInteger iSection)) minimumLineSpacingInSection {
+- (instancetype) cc_minimum_line_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+                                                                   __kindof UICollectionViewLayout *layout ,
+                                                                   NSInteger iSection)) minimumLineSpacingInSection {
     self.bMinimumLineSpacingInSection = [minimumLineSpacingInSection copy];
     return self;
 }
-- (instancetype) ccMinimumInteritemSpacingInSection : (CGFloat (^)(__kindof UICollectionView *collectionView ,
-                                                                   __kindof UICollectionViewLayout *layout ,
-                                                                   NSInteger iSection)) minimumInteritemSpacingInSection {
+- (instancetype) cc_minimum_inter_item_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+                                                                         __kindof UICollectionViewLayout *layout ,
+                                                                         NSInteger iSection)) minimumInteritemSpacingInSection {
     self.bMinimumInteritemSpacingInSection = [minimumInteritemSpacingInSection copy];
     return self;
 }
-- (instancetype) ccSpacingBetweenSections : (UIEdgeInsets(^)(__kindof UICollectionView *collectionView ,
-                                                             __kindof UICollectionViewLayout *layout ,
-                                                             NSInteger iSection)) spacingBetweenSections {
+- (instancetype) cc_spacing_between_sections : (UIEdgeInsets(^)(__kindof UICollectionView *collectionView ,
+                                                                __kindof UICollectionViewLayout *layout ,
+                                                                NSInteger iSection)) spacingBetweenSections {
     self.bSpacingBetweenSections = [spacingBetweenSections copy];
     return self;
 }
 
-- (instancetype) ccDidScroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll {
+- (instancetype) cc_did_scroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll {
     self.bDidScroll = [didScroll copy];
     return self;
 }
-- (instancetype) ccWillBeginDecelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating {
+- (instancetype) cc_will_begin_decelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating {
     self.bWillBeginDecelerating = [willBeginDecelerating copy];
     return self;
 }
-- (instancetype) ccDidEndDecelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating {
+- (instancetype) cc_did_end_decelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating {
     self.bDidEndDecelerating = [didEndDecelerating copy];
     return self;
 }
-- (instancetype) ccShouldScrollToTop : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop {
+- (instancetype) cc_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop {
     self.bShouldScrollToTop = [shouldScrollToTop copy];
     return self;
 }
-- (instancetype) ccDidScrollToTop : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop {
+- (instancetype) cc_did_scroll_to_top : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop {
     self.bDidScrollToTop = [didScrollToTop copy];
     return self;
 }
-- (instancetype) ccWillBeginDragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging {
+- (instancetype) cc_will_begin_dragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging {
     self.bWillBeginDragging = [willBeginDragging copy];
     return self;
 }
-- (instancetype) ccDidEndDragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging {
+- (instancetype) cc_did_end_dragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging {
     self.bDidEndDragging = [didEndDragging copy];
     return self;
 }
@@ -318,21 +318,21 @@ _CC_DETECT_DEALLOC_
     }
     return self;
 }
-- (instancetype) ccSections : (NSInteger (^)(__kindof UICollectionView *collectionView)) sections {
+- (instancetype) cc_sections : (NSInteger (^)(__kindof UICollectionView *collectionView)) sections {
     self.bSections = [sections copy];
     return self;
 }
-- (instancetype) ccItemsInSections : (NSInteger (^)(__kindof UICollectionView * collectionView ,
+- (instancetype) cc_items_in_sections : (NSInteger (^)(__kindof UICollectionView * collectionView ,
                                                     NSInteger iSections)) itemInSections {
     self.bItemsInSections = [itemInSections copy];
     return self;
 }
-- (instancetype) ccCellIdentifier : (NSString *(^)(__kindof UICollectionView * collectionView ,
+- (instancetype) cc_cell_identifier : (NSString *(^)(__kindof UICollectionView * collectionView ,
                                                    NSIndexPath * indexPath)) identifier {
     self.bCellIdentifier = [identifier copy];
     return self;
 }
-- (instancetype) ccConfiguration : (__kindof UICollectionViewCell *(^)(__kindof UICollectionView * collectionView ,
+- (instancetype) cc_configuration : (__kindof UICollectionViewCell *(^)(__kindof UICollectionView * collectionView ,
                                                                        __kindof UICollectionViewCell * cell ,
                                                                        NSIndexPath * indexPath)) configuration {
     self.bConfigCell = [configuration copy];
@@ -362,17 +362,17 @@ _CC_DETECT_DEALLOC_
 
 @implementation NSArray (CCExtension_Collection_Refresh)
 
-- (instancetype) ccReload : (UICollectionView *) collectionView {
-    if (self.count) [collectionView ccReloading:YES];
+- (instancetype) cc_reload : (UICollectionView *) collectionView {
+    if (self.count) [collectionView cc_reloading:YES];
     else [collectionView reloadData];
     return self;
 }
-- (instancetype) ccReload : (UICollectionView *) collectionView
-                 sections : (NSIndexSet *) set {
-    if (self.count) [collectionView ccReloadSections:set
-                                            animated:YES];
-    else [collectionView ccReloadSections:set
-                                 animated:false];
+- (instancetype) cc_reload : (UICollectionView *) collectionView
+                  sections : (NSIndexSet *) set {
+    if (self.count) [collectionView cc_reload_sections:set
+                                              animated:YES];
+    else [collectionView cc_reload_sections:set
+                                   animated:false];
     return self;
 }
 
@@ -402,16 +402,16 @@ _CC_DETECT_DEALLOC_
     }
     return self;
 }
-- (instancetype) ccDisableBackgroundMode {
+- (instancetype) cc_disable_background_mode {
     self.isDisableBackground = YES;
     return self;
 }
-- (instancetype) ccPrefetchAt : (void (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) cc_prefetch_at : (void (^)(__kindof UICollectionView *collectionView ,
                                           NSArray <NSIndexPath *> *array)) fetch {
     self.prefetching = [fetch copy];
     return self;
 }
-- (instancetype) ccCancelPrefetchAt : (void (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) cc_cancel_prefetch_at : (void (^)(__kindof UICollectionView *collectionView ,
                                                 NSArray <NSIndexPath *> *array)) cancel {
     self.canceling = [cancel copy];
     return self;

@@ -10,19 +10,19 @@
 
 @implementation UITextView (CCExtension)
 
-- (instancetype) ccMakeDefault {
+- (instancetype) cc_make_default {
     self.layer.backgroundColor = UIColor.clearColor.CGColor;
     self.editable = YES;
     self.selectable = false;
     return self;
 }
 
-- (instancetype) ccDelegateT : (id <UITextViewDelegate>) delegate {
+- (instancetype) cc_delegate : (id <UITextViewDelegate>) delegate {
     if (delegate) self.delegate = delegate;
     else self.delegate = nil;
     return self;
 }
-- (instancetype) ccContainerInsets : (UIEdgeInsets) insets {
+- (instancetype) cc_container_insets : (UIEdgeInsets) insets {
     self.textContainerInset = insets;
     return self;
 }

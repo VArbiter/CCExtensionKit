@@ -20,13 +20,13 @@
 
 @implementation UIVisualEffect (CCExtension)
 
-+ (instancetype) ccBlurDark {
++ (instancetype) cc_blur_dark {
     return [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
 }
-+ (instancetype) ccBlurLight {
++ (instancetype) cc_blur_light {
      return [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
 }
-+ (instancetype) ccBlurExtraLight {
++ (instancetype) cc_blur_extra_light {
      return [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
 }
 
@@ -36,14 +36,14 @@
 
 @implementation UIVibrancyEffect (CCExtension)
 
-+ (instancetype) ccVibrancyDark {
-    return [UIVibrancyEffect effectForBlurEffect:UIBlurEffect.ccBlurDark];
++ (instancetype) cc_vibrancy_dark {
+    return [UIVibrancyEffect effectForBlurEffect:UIBlurEffect.cc_blur_dark];
 }
-+ (instancetype) ccVibrancyLight {
-    return [UIVibrancyEffect effectForBlurEffect:UIBlurEffect.ccBlurLight];
++ (instancetype) cc_vibrancy_light {
+    return [UIVibrancyEffect effectForBlurEffect:UIBlurEffect.cc_blur_light];
 }
-+ (instancetype) ccVibrancyExtraLight {
-    return [UIVibrancyEffect effectForBlurEffect:UIBlurEffect.ccBlurExtraLight];
++ (instancetype) cc_vibrancy_extra_light {
+    return [UIVibrancyEffect effectForBlurEffect:UIBlurEffect.cc_blur_extra_light];
 }
 
 @end

@@ -13,13 +13,13 @@
 static const char * _CC_NSTIMER_ASSOCIATE_TIMER_KEY_ = "CC_NSTIMER_ASSOCIATE_TIMER_KEY";
 static const char * _CC_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "CC_NSTIMER_ASSOCIATE_SCHEDULED_KEY";
 
-@interface NSTimer (CCChain_Assit)
+@interface NSTimer (CCExtension_Assit)
 
 + (void) ccTimerAction : (NSTimer *) sender ;
 
 @end
 
-@implementation NSTimer (CCChain_Assit)
+@implementation NSTimer (CCExtension_Assit)
 
 + (void) ccTimerAction : (NSTimer *) sender {
     void (^t)(NSTimer *) = objc_getAssociatedObject(sender, _CC_NSTIMER_ASSOCIATE_TIMER_KEY_);

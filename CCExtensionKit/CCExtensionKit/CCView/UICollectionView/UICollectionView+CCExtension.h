@@ -13,37 +13,37 @@
 /// auto enable prefetchiong if support // 如果支持 , 自动启用 预取 ,
 + (instancetype) common : (CGRect) frame
                  layout : (UICollectionViewFlowLayout *) layout;
-- (instancetype) ccDelegate : (id <UICollectionViewDelegateFlowLayout>) delegate ;
-- (instancetype) ccDataSource : (id <UICollectionViewDataSource>) dataSource ;
+- (instancetype) cc_delegate : (id <UICollectionViewDelegateFlowLayout>) delegate ;
+- (instancetype) cc_datasource : (id <UICollectionViewDataSource>) dataSource ;
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 /// data source that pre-fetching // 预取的代理
-- (instancetype) ccPrefetching : (id <UICollectionViewDataSourcePrefetching>) prefetch ;
+- (instancetype) cc_prefetching : (id <UICollectionViewDataSourcePrefetching>) prefetch ;
 #endif
 
 /// requires that nib name is equal to cell's idetifier . // 要求 nib 的名称 和 cell 的标记保持一致
-- (instancetype) ccRegistNib : (NSString *) sNib ;
-- (instancetype) ccRegistNib : (NSString *) sNib
-                      bundle : (NSBundle *) bundle ;
+- (instancetype) cc_regist_nib : (NSString *) sNib ;
+- (instancetype) cc_regist_nib : (NSString *) sNib
+                        bundle : (NSBundle *) bundle ;
 /// requires that class name is equal to cell's idetifier . // 要求类名要和 cell 的标记保持一致
-- (instancetype) ccRegistCls : (Class) cls ;
+- (instancetype) cc_regist_cls : (Class) cls ;
 
 /// for non-animated , only section 0 was available. // 如果是无动画 , 只有分区 0 是有效的
 /// note : means reloading without hidden animations . // 意味着 reloading 没有 collectionView 默认动画
 /// note : if animated is setting to YES , only section 0 will be reloaded . // 如果动画被设置为 YES , 只有 0 分区起效
 /// note : if reloeded muti sections , using "ccReloadSections:animated:" down below // 如果要重载多个分区 , 使用下方的 "ccReloadSections:animated:"
-- (instancetype) ccReloading : (BOOL) isAnimated;
-- (instancetype) ccReloadSections : (NSIndexSet *) set
-                         animated : (BOOL) isAnimated ;
-- (instancetype) ccReloadItems : (NSArray <NSIndexPath *> *) arrayItems;
+- (instancetype) cc_reloading : (BOOL) isAnimated;
+- (instancetype) cc_reload_sections : (NSIndexSet *) set
+                           animated : (BOOL) isAnimated ;
+- (instancetype) cc_reload_items : (NSArray <NSIndexPath *> *) arrayItems;
 
 /// for cell that register in collection // 针对 注册在 collection 的 cell .
-- (__kindof UICollectionViewCell *) ccDeqCell : (NSString *) sIdentifier
-                                    indexPath : (NSIndexPath *) indexPath ;
+- (__kindof UICollectionViewCell *) cc_deq_cell : (NSString *) sIdentifier
+                                      indexPath : (NSIndexPath *) indexPath ;
 /// for reusable view // 针对重用 view
-- (__kindof UICollectionReusableView *) ccDeqReuseableView : (NSString *) sElementKind
-                                                identifier : (NSString *) sIdentifier
-                                                 indexPath : (NSIndexPath *) indexPath ;
+- (__kindof UICollectionReusableView *) cc_deq_reuseable_view : (NSString *) sElementKind
+                                                   identifier : (NSString *) sIdentifier
+                                                    indexPath : (NSIndexPath *) indexPath ;
 
 @end
 
@@ -54,9 +54,9 @@
 + (instancetype) common ;
 
 /// for default sizes // 默认大小
-- (instancetype) ccItemSize : (CGSize) size ;
-- (instancetype) ccSectionsInsets : (UIEdgeInsets) insets ;
-- (instancetype) ccHeaderSize : (CGSize) size ;
+- (instancetype) cc_item_size : (CGSize) size ;
+- (instancetype) cc_sections_insets : (UIEdgeInsets) insets ;
+- (instancetype) cc_header_size : (CGSize) size ;
 
 @end
 
@@ -65,29 +65,29 @@
 @interface CCCollectionExtensionDelegate : NSObject < UICollectionViewDelegateFlowLayout >
 
 - (id < UICollectionViewDelegateFlowLayout > ) init;
-- (instancetype) ccDidSelect : (BOOL (^)(__kindof UICollectionView *collectionView ,
-                                         NSIndexPath *indexPath)) didSelect;
-- (instancetype) ccDidHighted : (void (^)(__kindof UICollectionView *collectionView ,
-                                          NSIndexPath *indexPath)) didHighLighted ;
-- (instancetype) ccDidUnHighted : (void (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) cc_did_select : (BOOL (^)(__kindof UICollectionView *collectionView ,
+                                           NSIndexPath *indexPath)) didSelect;
+- (instancetype) cc_did_highted : (void (^)(__kindof UICollectionView *collectionView ,
+                                            NSIndexPath *indexPath)) didHighLighted ;
+- (instancetype) cc_did_un_highted : (void (^)(__kindof UICollectionView *collectionView ,
                                             NSIndexPath *indexPath)) didUnHighLighted ;
-- (instancetype) ccMinimumLineSpacingInSection : (CGFloat (^)(__kindof UICollectionView *collectionView ,
-                                                              __kindof UICollectionViewLayout *layout ,
-                                                              NSInteger iSection)) minimumLineSpacingInSection;
-- (instancetype) ccMinimumInteritemSpacingInSection : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) cc_minimum_line_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collectionView ,
                                                                    __kindof UICollectionViewLayout *layout ,
-                                                                   NSInteger iSection)) minimumInteritemSpacingInSection;
-- (instancetype) ccSpacingBetweenSections : (UIEdgeInsets(^)(__kindof UICollectionView *collectionView ,
-                                                             __kindof UICollectionViewLayout *layout ,
-                                                             NSInteger iSection)) spacingBetweenSections;
+                                                                   NSInteger iSection)) minimumLineSpacingInSection;
+- (instancetype) cc_minimum_inter_item_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+                                                                         __kindof UICollectionViewLayout *layout ,
+                                                                         NSInteger iSection)) minimumInteritemSpacingInSection;
+- (instancetype) cc_spacing_between_sections : (UIEdgeInsets(^)(__kindof UICollectionView *collectionView ,
+                                                                __kindof UICollectionViewLayout *layout ,
+                                                                NSInteger iSection)) spacingBetweenSections;
 
-- (instancetype) ccDidScroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll ;
-- (instancetype) ccWillBeginDecelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating;
-- (instancetype) ccDidEndDecelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating;
-- (instancetype) ccShouldScrollToTop : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop;
-- (instancetype) ccDidScrollToTop : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop;
-- (instancetype) ccWillBeginDragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging;
-- (instancetype) ccDidEndDragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging;
+- (instancetype) cc_did_scroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll ;
+- (instancetype) cc_will_begin_decelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating;
+- (instancetype) cc_did_end_decelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating;
+- (instancetype) cc_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop;
+- (instancetype) cc_did_scroll_to_top : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop;
+- (instancetype) cc_will_begin_dragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging;
+- (instancetype) cc_did_end_dragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging;
 
 @end
 
@@ -96,14 +96,14 @@
 @interface CCCollectionExtensionDataSource : NSObject < UICollectionViewDataSource >
 
 - (id < UICollectionViewDataSource >) init ;
-- (instancetype) ccSections : (NSInteger (^)(__kindof UICollectionView *collectionView)) sections ;
-- (instancetype) ccItemsInSections : (NSInteger (^)(__kindof UICollectionView * collectionView ,
-                                                    NSInteger iSections)) itemInSections ;
-- (instancetype) ccCellIdentifier : (NSString *(^)(__kindof UICollectionView * collectionView ,
-                                                   NSIndexPath * indexPath)) identifier ;
-- (instancetype) ccConfiguration : (__kindof UICollectionViewCell *(^)(__kindof UICollectionView * collectionView ,
-                                                                       __kindof UICollectionViewCell * cell ,
-                                                                       NSIndexPath * indexPath)) configuration ;
+- (instancetype) cc_sections : (NSInteger (^)(__kindof UICollectionView *collectionView)) sections ;
+- (instancetype) cc_items_in_sections : (NSInteger (^)(__kindof UICollectionView * collectionView ,
+                                                       NSInteger iSections)) itemInSections ;
+- (instancetype) cc_cell_identifier : (NSString *(^)(__kindof UICollectionView * collectionView ,
+                                                     NSIndexPath * indexPath)) identifier ;
+- (instancetype) cc_configuration : (__kindof UICollectionViewCell *(^)(__kindof UICollectionView * collectionView ,
+                                                                        __kindof UICollectionViewCell * cell ,
+                                                                        NSIndexPath * indexPath)) configuration ;
 
 @end
 
@@ -111,9 +111,9 @@
 
 @interface NSArray (CCExtension_Collection_Refresh)
 
-- (instancetype) ccReload : (__kindof UICollectionView *) collectionView ;
-- (instancetype) ccReload : (__kindof UICollectionView *) collectionView
-                 sections : (NSIndexSet *) set ;
+- (instancetype) cc_reload : (__kindof UICollectionView *) collectionView ;
+- (instancetype) cc_reload : (__kindof UICollectionView *) collectionView
+                  sections : (NSIndexSet *) set ;
 
 @end
 
@@ -130,17 +130,17 @@
 /// note: for canceling , when users interested in sth , or reverse it scroll directions , // 对于取消 , 当用户对某些东西感兴趣 , 或者翻转了滑动方向
 ///     or press to make system reponse an event , then , canceling was active . // 或者按下了必须要系统响应的时间 , 这时 , 取消动作生效
 /// note: sometimes canceling was not used in actual. // 不过有时候 , 取消并不被真正的使用
-/// note: when canceling has recall values , maybe it's a subset of 'ccPrefetchAt:' // 如果取消有了回调值 , 可能这个回调值是 'ccPrefetchAt:' 的一个子集
+/// note: when canceling has recall values , maybe it's a subset of 'cc_prefetch_at:' // 如果取消有了回调值 , 可能这个回调值是 'cc_prefetch_at:' 的一个子集
 
 @interface CCCollectionExtensionDataPrefetching : NSObject < UICollectionViewDataSourcePrefetching >
 
 /// auto enable prefetch in background thread
 - (id <UICollectionViewDataSourcePrefetching> ) init ;
-- (instancetype) ccDisableBackgroundMode;
-- (instancetype) ccPrefetchAt : (void (^)(__kindof UICollectionView *collectionView ,
-                                          NSArray <NSIndexPath *> *array)) fetch ;
-- (instancetype) ccCancelPrefetchAt : (void (^)(__kindof UICollectionView *collectionView ,
-                                                NSArray <NSIndexPath *> *array)) cancel ;
+- (instancetype) cc_disable_background_mode;
+- (instancetype) cc_prefetch_at : (void (^)(__kindof UICollectionView *collectionView ,
+                                            NSArray <NSIndexPath *> *array)) fetch ;
+- (instancetype) cc_cancel_prefetch_at : (void (^)(__kindof UICollectionView *collectionView ,
+                                                   NSArray <NSIndexPath *> *array)) cancel ;
 
 @end
 

@@ -80,11 +80,11 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
     return c;
 }
 /// actions , default is touchUpInside
-- (instancetype) ccActions : (void (^)( __kindof UIControl *sender)) action {
-    return [self ccTarget:self actions:action];
+- (instancetype) cc_actions : (void (^)( __kindof UIControl *sender)) action {
+    return [self cc_target:self actions:action];
 }
-- (instancetype) ccTarget : (id) target
-                  actions : (void (^)( __kindof UIControl *sender)) action {
+- (instancetype) cc_target : (id) target
+                   actions : (void (^)( __kindof UIControl *sender)) action {
     objc_setAssociatedObject(self, _CC_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self addTarget:target
               action:@selector(ccControlExtensionAction:)
@@ -92,16 +92,16 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
     return self;
 }
 /// custom actions .
-- (instancetype) ccTarget : (id) target
-                 selector : (SEL) sel
-                   events : (UIControlEvents) events {
+- (instancetype) cc_target : (id) target
+                  selector : (SEL) sel
+                    events : (UIControlEvents) events {
     [self addTarget:(target ? target : self)
               action:sel
     forControlEvents:events];
     return self;
 }
 /// increase trigger rect .
-- (instancetype) ccIncrease : (UIEdgeInsets) insets {
+- (instancetype) cc_increase : (UIEdgeInsets) insets {
     objc_setAssociatedObject(self, _CC_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY_,
                              @(insets.top), OBJC_ASSOCIATION_COPY_NONATOMIC);
     objc_setAssociatedObject(self, _CC_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY_,
@@ -134,8 +134,8 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
     return CGRectContainsPoint(rect, point) ? self : nil;
 }
 
-- (instancetype) ccSharedControlEvent : (UIControlEvents) event
-                              actions : (void (^)( __kindof UIControl *sender)) action {
+- (instancetype) cc_shared_control_event : (UIControlEvents) event
+                                 actions : (void (^)( __kindof UIControl *sender)) action {
     if (!action) return self;
     NSString *s = [@"CC_UICONTROL_EVENT_TRIGGER_ACTION_" stringByAppendingString:[NSString stringWithFormat:@"%@",@(event).stringValue]];
     
@@ -148,7 +148,7 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
     return self;
 }
 
-- (instancetype) ccRemoveEvent : (UIControlEvents) event {
+- (instancetype) cc_remove_event : (UIControlEvents) event {
     if (self.eventControlAssist & event) {
         NSString *s = @"CC_UICONTROL_EVENT_TRIGGER_ACTION_";
         NSString *ts = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(self.eventControlAssist).stringValue]];

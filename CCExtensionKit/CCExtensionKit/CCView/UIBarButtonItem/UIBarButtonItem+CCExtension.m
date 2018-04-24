@@ -40,22 +40,22 @@ static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONIT
 + (instancetype) common {
     return UIBarButtonItem.alloc.init;
 }
-- (instancetype) ccTitle : (NSString *) sTitle {
+- (instancetype) cc_title : (NSString *) sTitle {
     self.title = sTitle;
     return self;
 }
-- (instancetype) ccImage : (UIImage *) image {
+- (instancetype) cc_image : (UIImage *) image {
     if (!CGSizeEqualToSize(image.size, CGSizeZero)) {
         self.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     else self.image = image;
     return self;
 }
-- (instancetype) ccAction : (void (^)( __kindof UIBarButtonItem *sender)) action {
-    if (action) return [self ccTarget:self action:action];
+- (instancetype) cc_action : (void (^)( __kindof UIBarButtonItem *sender)) action {
+    if (action) return [self cc_target:self action:action];
     return self;
 }
-- (instancetype) ccTarget : (id) target
+- (instancetype) cc_target : (id) target
                    action : (void (^)( __kindof UIBarButtonItem *sender)) action {
     if (action) objc_setAssociatedObject(self, _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self setTarget:target];
