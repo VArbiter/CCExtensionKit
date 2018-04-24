@@ -29,33 +29,33 @@ typedef NS_ENUM(NSInteger , CCHudExtensionType) {
 
 /// generate a hud with its bounds . default with application window . // 生成一个 hud , 默认是 应用主窗口
 /// also , you have to add it after generate compete , and deploy showing action "ccShow" . // 需要在生成完毕后添加 , 然后调用 "ccShow"
-+ (instancetype) ccGenerate ;
-+ (instancetype) ccGenerate : (UIView *) view ;
++ (instancetype) cc_generate ;
++ (instancetype) cc_generate : (UIView *) view ;
 
 /// for block interact for user operate action . // 是否阻挡用户点击
-- (instancetype) ccEnable ;
-- (instancetype) ccDisable ;
+- (instancetype) cc_enable ;
+- (instancetype) cc_disable ;
 
-+ (BOOL) ccHasHud ;
-+ (BOOL) ccHasHud : (UIView *) view ;
++ (BOOL) cc_has_hud ;
++ (BOOL) cc_has_hud : (UIView *) view ;
 
 /// for showing action // 展示类操作
-- (instancetype) ccShow ; // if needed , default showing after chain complete // 如果需要 , 默认展示在 链 完成后战术
-- (void) ccHide ; // default 2 seconds . and hide will trigger dealloc . last step . // 默认两秒钟 . hide 会触发 dealloc , 最后一步
-- (void) ccHide : (NSTimeInterval) interval ;
+- (instancetype) cc_show ; // if needed , default showing after chain complete // 如果需要 , 默认展示在 链 完成后战术
+- (void) cc_hide ; // default 2 seconds . and hide will trigger dealloc . last step . // 默认两秒钟 . hide 会触发 dealloc , 最后一步
+- (void) cc_hide : (NSTimeInterval) interval ;
 
 /// messages && indicator // 文本和指示器
-- (instancetype) ccIndicator ;
-- (instancetype) ccSimple ; // default // 默认
-- (instancetype) ccTitle : (NSString *) sTitle ;
-- (instancetype) ccMessage : (NSString *) sMessage ;
-- (instancetype) ccType : (CCHudExtensionType) type ;
+- (instancetype) cc_indicator ;
+- (instancetype) cc_simple ; // default // 默认
+- (instancetype) cc_title : (NSString *) sTitle ;
+- (instancetype) cc_message : (NSString *) sMessage ;
+- (instancetype) cc_type : (CCHudExtensionType) type ;
 
 /// if deploy , make sure you DO NOT delpoied "ccShow"; // 如果实现下方这些 , 不能调用 "ccShow"
-- (instancetype) ccDelay : (CGFloat) fDelay ;
-- (instancetype) ccGrace : (NSTimeInterval) interval ; // same as MBProgressHud // 和 MBProgressHud 相同
-- (instancetype) ccMin : (NSTimeInterval) interval ; // same as MBProgressHud // 和 MBProgressHud 相同
-- (instancetype) ccComplete : (void (^)(void)) complete ;
+- (instancetype) cc_delay : (CGFloat) fDelay ;
+- (instancetype) cc_grace : (NSTimeInterval) interval ; // same as MBProgressHud // 和 MBProgressHud 相同
+- (instancetype) cc_min : (NSTimeInterval) interval ; // same as MBProgressHud // 和 MBProgressHud 相同
+- (instancetype) cc_complete : (void (^)(void)) complete ;
 
 @end
 
@@ -63,8 +63,8 @@ typedef NS_ENUM(NSInteger , CCHudExtensionType) {
 
 @interface UIView (CCExtension_Hud)
 
-- (__kindof MBProgressHUD *) ccHud ;
-+ (__kindof MBProgressHUD *) ccHud : (UIView *) view ;
+- (__kindof MBProgressHUD *) cc_hud ;
++ (__kindof MBProgressHUD *) cc_hud : (UIView *) view ;
 
 @end
 

@@ -89,7 +89,7 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
     return environment;
 }
 
-- (CCNetworkEnvironment) ccEnvironmentType {
+- (CCNetworkEnvironment) cc_environment_type {
     NSInteger integerStatus = [[NSUserDefaults standardUserDefaults] integerForKey:_CC_NETWORK_STATUS_KEY_NEW_];
     if (integerStatus <= 0)
         return CCNetworkEnvironmentNotConnected;

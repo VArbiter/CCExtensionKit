@@ -13,34 +13,34 @@
 
 @implementation UICollectionView (CCExtension_Refresh)
 
-- (instancetype) ccEndLoading {
-    return [self.ccEndRefresh.ccEndLoadMore cc];
+- (instancetype) cc_end_loading {
+    return [self.cc_end_refresh.cc_end_load_more cc];
 }
-- (instancetype) ccEndRefresh {
+- (instancetype) cc_end_refresh {
     [self.mj_header endRefreshing];
     return self;
 }
-- (instancetype) ccEndLoadMore {
+- (instancetype) cc_end_load_more {
     [self.mj_footer endRefreshing];
     return self;
 }
 
-- (instancetype) ccResetLoadingStatus {
+- (instancetype) cc_reset_loading_status {
     [self.mj_footer resetNoMoreData];
     return self;
 }
-- (instancetype) ccNoMoreData {
+- (instancetype) cc_no_more_data {
     [self.mj_footer endRefreshingWithNoMoreData];
     return self;
 }
 
-- (instancetype) ccRefreshing : (void (^)(void)) refreshing {
+- (instancetype) cc_refreshing : (void (^)(void)) refreshing {
     [self.mj_header beginRefreshingWithCompletionBlock:^{
         if (refreshing) refreshing();
     }];
     return self;
 }
-- (instancetype) ccLoadingMore : (void (^)(void)) loading {
+- (instancetype) cc_loading_more : (void (^)(void)) loading {
     [self.mj_footer beginRefreshingWithCompletionBlock:^{
         if (loading) loading();
     }];

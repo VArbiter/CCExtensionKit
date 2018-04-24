@@ -21,8 +21,8 @@ static BOOL __isEnableLoading = YES;
 
 @implementation UIImageView (CCExtension_WeakNetwork)
 
-- (instancetype) ccWeakImage : (NSURL *) url
-                      holder : (UIImage *) imageHolder {
+- (instancetype) cc_weak_image : (NSURL *) url
+                        holder : (UIImage *) imageHolder {
     BOOL isStrong = CCNetworkMoniter.shared.ccEnvironmentType == CCNetworkEnvironmentStrong;
     if (isStrong && __isEnableLoading) {
         [self sd_setImageWithURL:url
@@ -32,7 +32,7 @@ static BOOL __isEnableLoading = YES;
     return self;
 }
 
-+ (void) ccEnableLoading : (BOOL) isEnable {
++ (void) cc_enable_loading : (BOOL) isEnable {
     __isEnableLoading = isEnable;
 }
 

@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger , CCNetworkEnvironment) {
 
 + (instancetype) shared;
 
-- (CCNetworkEnvironment) ccEnvironmentType ;
+- (CCNetworkEnvironment) cc_environment_type ;
 
 extern NSString * const _CC_NETWORK_STATUS_CHANGE_NOTIFICATION_ ;
 extern NSString * const _CC_NETWORK_STATUS_KEY_NEW_ ;

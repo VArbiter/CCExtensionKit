@@ -18,15 +18,15 @@
 @interface UITableView (CCExtension_Refresh)
 
 /// equals : endRefresh + endLoadMore  // 等同于 endRefresh + endLoadMore
-- (instancetype) ccEndLoading ;
-- (instancetype) ccEndRefresh ;
-- (instancetype) ccEndLoadMore ;
+- (instancetype) cc_end_loading ;
+- (instancetype) cc_end_refresh ;
+- (instancetype) cc_end_load_more ;
 
-- (instancetype) ccResetLoadingStatus ;
-- (instancetype) ccNoMoreData ;
+- (instancetype) cc_reset_loading_status ;
+- (instancetype) cc_no_more_data ;
 
-- (instancetype) ccRefreshing : (void (^)(void)) refreshing ;
-- (instancetype) ccLoadingMore : (void (^)(void)) loading ;
+- (instancetype) cc_refreshing : (void (^)(void)) refreshing ;
+- (instancetype) cc_loading_more : (void (^)(void)) loading ;
 
 @end
 
