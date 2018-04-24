@@ -11,5 +11,6 @@
 
     #import "CCRealmHandler.h"
     #import "CCRLMBaseModel.h"
+    #import "FCModel"
 
 #endif /* CCDataBaseExtension_h */

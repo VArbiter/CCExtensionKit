@@ -61,7 +61,7 @@
         return [[self alloc] init]; \
     } \
     + (instancetype) common : (NSArray <id> *) arrayTarget { \
-        return [[self common] ccRegistMethods:arrayTarget]; \
+        return [[self common] cc_regist_methods:arrayTarget]; \
     } \
 \
     - (instancetype) cc_regist_methods : (NSArray <id> *) arrayTarget { \

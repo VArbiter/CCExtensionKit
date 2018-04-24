@@ -17,7 +17,7 @@
 + (instancetype) common {
     UIImagePickerController *c = UIImagePickerController.alloc.init;
     CC_WEAK_INSTANCE(c);
-    c.delegate = weakTc;
+    c.delegate = weak_c;
     return c;
 }
 

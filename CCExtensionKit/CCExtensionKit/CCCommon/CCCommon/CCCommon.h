@@ -64,12 +64,12 @@
 
 /// weak instance on arc // arc 下的弱引用
 #ifndef CC_WEAK_INSTANCE
-    #define CC_WEAK_INSTANCE(_value_) __unsafe_unretained typeof(_value_) weakT##_value_ = _value_
+    #define CC_WEAK_INSTANCE(_value_) __unsafe_unretained typeof(_value_) weak_##_value_ = _value_
 #endif
 
 /// shortcut to weak self . // weak self 的便捷宏
 #ifndef CC_WEAK_SELF
-    #define CC_WEAK_SELF __weak typeof(&*self) pSelf = self
+    #define CC_WEAK_SELF __weak typeof(&*self) weak_self = self
 #endif
 
 /// transfer to a specific type by force. // 强制转换为一个特定类型 (不同类型会崩溃 , 这里多用于 id 转换为指定类型)

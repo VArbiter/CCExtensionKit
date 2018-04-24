@@ -48,6 +48,7 @@ Pod::Spec.new do |s|
       s.subspec 'CCDataBase' do |dataBase|
         dataBase.source_files = 'CCExtensionKit/CCExtensionKit/CCDataBase/**/*'
         dataBase.dependency 'Realm', '~> 2.10.0'
+        dataBase.dependency 'FMDB', '~> 2.7.2'
         dataBase.frameworks = "Foundation"
       end
 

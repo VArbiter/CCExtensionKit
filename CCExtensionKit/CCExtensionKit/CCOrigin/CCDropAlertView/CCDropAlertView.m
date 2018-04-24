@@ -71,14 +71,14 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
             CC_WEAK_SELF;
             void (^bCenter)(void) = ^ {
                 [UIView animateWithDuration:.2f animations:^{
-                    pSelf.viewCustom.center = pSelf.inCenter;
-                    if (pSelf.block_action_start_did_end) pSelf.block_action_start_did_end(pSelf);
+                    weak_self.viewCustom.center = weak_self.inCenter;
+                    if (weak_self.block_action_start_did_end) weak_self.block_action_start_did_end(weak_self);
                 }];
             };
             
             [UIView animateWithDuration:CC_DROP_ANIMATION_DURATION animations:^{
-                pSelf.alpha = 1.0f;
-                pSelf.viewCustom.center = (CGPoint){pSelf.inCenterX , pSelf.inCenterY + CCScaleH(80.f)};
+                weak_self.alpha = 1.0f;
+                weak_self.viewCustom.center = (CGPoint){weak_self.inCenterX , weak_self.inCenterY + CCScaleH(80.f)};
             } completion:^(BOOL finished) {
                 if (bCenter) bCenter();
             }];
@@ -86,9 +86,9 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
         case CCDropAnimate_Snap:{
             CC_WEAK_SELF;
             [UIView animateWithDuration:CC_DROP_ANIMATION_DURATION animations:^{
-                pSelf.alpha = 1.0f;
+                weak_self.alpha = 1.0f;
             } completion:^(BOOL finished) {
-                if (pSelf.block_action_start_did_end) pSelf.block_action_start_did_end(pSelf);
+                if (weak_self.block_action_start_did_end) weak_self.block_action_start_did_end(weak_self);
             }];
             
             UISnapBehavior *snapBehaviour = [[UISnapBehavior alloc] initWithItem:self.viewCustom
@@ -111,17 +111,17 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
     CC_WEAK_SELF;
     void (^bDismiss)(void) = ^ {
         [UIView animateWithDuration:CC_DROP_ANIMATION_DURATION animations:^{
-            pSelf.alpha = 0.0f;
+            weak_self.alpha = 0.0f;
         } completion:^(BOOL finished) {
-            [pSelf removeFromSuperview];
-            if (pSelf.block_action_did_end) pSelf.block_action_did_end(pSelf);
+            [weak_self removeFromSuperview];
+            if (weak_self.block_action_did_end) weak_self.block_action_did_end(weak_self);
         }];
     };
     
     void (^bAddGravity)(void) = ^ {
-        UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[pSelf.viewCustom]];
+        UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[weak_self.viewCustom]];
         gravityBehaviour.gravityDirection = CGVectorMake(0.0f, 10.0f);
-        [pSelf.animator addBehavior:gravityBehaviour];
+        [weak_self.animator addBehavior:gravityBehaviour];
     };
     
     switch (animate) {

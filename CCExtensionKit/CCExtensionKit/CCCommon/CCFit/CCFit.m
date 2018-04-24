@@ -39,7 +39,7 @@ CGFloat _CC_TABBAR_TOP_(void) {
 }
 
 BOOL _CC_IS_IPHONE_X_(void) {
-    return [[CCDevice ccDeviceType] isEqualToString:@"iPhone X"];
+    return [[CCDevice cc_device_type] isEqualToString:@"iPhone X"];
 }
 
 @end

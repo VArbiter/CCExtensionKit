@@ -57,11 +57,17 @@
 		7034D6CA1F5FD5280005D1E1 /* NSURL+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6C91F5FD5280005D1E1 /* NSURL+CCExtension.m */; };
 		7034D6CD1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6CC1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m */; };
 		7034D6D01F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6CF1F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m */; };
-		70A3CC6A1F6B89FE00CCD480 /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3CC661F6B89FE00CCD480 /* CCRealmHandler.m */; };
-		70A3CC6B1F6B89FE00CCD480 /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3CC691F6B89FE00CCD480 /* CCRLMBaseModel.m */; };
 		70A3CC731F6BBE4900CCD480 /* CCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3CC721F6BBE4900CCD480 /* CCRuntime.m */; };
 		70A3CC761F6BCCA900CCD480 /* CCProxyDealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3CC751F6BCCA900CCD480 /* CCProxyDealer.m */; };
 		70B48FC8208F33A9005D0054 /* UISwitch+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FC7208F33A9005D0054 /* UISwitch+CCExtension.m */; };
+		70B48FD3208F3F1F005D0054 /* FCModelCachedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FCB208F3F1E005D0054 /* FCModelCachedObject.m */; };
+		70B48FD4208F3F1F005D0054 /* FCModelNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FD0208F3F1F005D0054 /* FCModelNotificationCenter.m */; };
+		70B48FD5208F3F1F005D0054 /* FCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FD1208F3F1F005D0054 /* FCModel.m */; };
+		70B48FD6208F3F1F005D0054 /* FCModelDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FD2208F3F1F005D0054 /* FCModelDatabase.m */; };
+		70B48FDE208F3F55005D0054 /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FD9208F3F55005D0054 /* CCRLMBaseModel.m */; };
+		70B48FDF208F3F55005D0054 /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FDD208F3F55005D0054 /* CCRealmHandler.m */; };
+		70B48FE4208F4240005D0054 /* CCFCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FE3208F4240005D0054 /* CCFCModel.m */; };
+		70B48FE7208F424F005D0054 /* CCFCModelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FE6208F424F005D0054 /* CCFCModelHandler.m */; };
 		70BD28911F6272BF008C2C9A /* UIControl+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28901F6272BF008C2C9A /* UIControl+CCExtension.m */; };
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
@@ -180,10 +186,6 @@
 		7034D6CC1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+CCExtension.m"; sourceTree = "<group>"; };
 		7034D6CE1F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+CCExtension.h"; sourceTree = "<group>"; };
 		7034D6CF1F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+CCExtension.m"; sourceTree = "<group>"; };
-		70A3CC651F6B89FE00CCD480 /* CCRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRealmHandler.h; sourceTree = "<group>"; };
-		70A3CC661F6B89FE00CCD480 /* CCRealmHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRealmHandler.m; sourceTree = "<group>"; };
-		70A3CC681F6B89FE00CCD480 /* CCRLMBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRLMBaseModel.h; sourceTree = "<group>"; };
-		70A3CC691F6B89FE00CCD480 /* CCRLMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRLMBaseModel.m; sourceTree = "<group>"; };
 		70A3CC6C1F6B8A2400CCD480 /* CCDataBaseExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCDataBaseExtension.h; sourceTree = "<group>"; };
 		70A3CC6E1F6BBA5600CCD480 /* CCRuntimeExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCRuntimeExtension.h; sourceTree = "<group>"; };
 		70A3CC711F6BBE4900CCD480 /* CCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRuntime.h; sourceTree = "<group>"; };
@@ -194,6 +196,22 @@
 		70B48FC4208F3367005D0054 /* CCExtensionKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCExtensionKit.h; path = ../CCExtensionKit.h; sourceTree = "<group>"; };
 		70B48FC6208F33A9005D0054 /* UISwitch+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISwitch+CCExtension.h"; sourceTree = "<group>"; };
 		70B48FC7208F33A9005D0054 /* UISwitch+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+CCExtension.m"; sourceTree = "<group>"; };
+		70B48FCB208F3F1E005D0054 /* FCModelCachedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelCachedObject.m; sourceTree = "<group>"; };
+		70B48FCC208F3F1F005D0054 /* FCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModel.h; sourceTree = "<group>"; };
+		70B48FCD208F3F1F005D0054 /* FCModelNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModelNotificationCenter.h; sourceTree = "<group>"; };
+		70B48FCE208F3F1F005D0054 /* FCModelDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModelDatabase.h; sourceTree = "<group>"; };
+		70B48FCF208F3F1F005D0054 /* FCModelCachedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModelCachedObject.h; sourceTree = "<group>"; };
+		70B48FD0208F3F1F005D0054 /* FCModelNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelNotificationCenter.m; sourceTree = "<group>"; };
+		70B48FD1208F3F1F005D0054 /* FCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModel.m; sourceTree = "<group>"; };
+		70B48FD2208F3F1F005D0054 /* FCModelDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelDatabase.m; sourceTree = "<group>"; };
+		70B48FD9208F3F55005D0054 /* CCRLMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRLMBaseModel.m; sourceTree = "<group>"; };
+		70B48FDA208F3F55005D0054 /* CCRLMBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRLMBaseModel.h; sourceTree = "<group>"; };
+		70B48FDC208F3F55005D0054 /* CCRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRealmHandler.h; sourceTree = "<group>"; };
+		70B48FDD208F3F55005D0054 /* CCRealmHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRealmHandler.m; sourceTree = "<group>"; };
+		70B48FE2208F4240005D0054 /* CCFCModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCFCModel.h; sourceTree = "<group>"; };
+		70B48FE3208F4240005D0054 /* CCFCModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCFCModel.m; sourceTree = "<group>"; };
+		70B48FE5208F424F005D0054 /* CCFCModelHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCFCModelHandler.h; sourceTree = "<group>"; };
+		70B48FE6208F424F005D0054 /* CCFCModelHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCFCModelHandler.m; sourceTree = "<group>"; };
 		70BD288F1F6272BF008C2C9A /* UIControl+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+CCExtension.h"; sourceTree = "<group>"; };
 		70BD28901F6272BF008C2C9A /* UIControl+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+CCExtension.m"; sourceTree = "<group>"; };
 		70BD28931F628F6C008C2C9A /* UIFont+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+CCExtension.h"; sourceTree = "<group>"; };
@@ -784,28 +802,10 @@
 			isa = PBXGroup;
 			children = (
 				70A3CC6C1F6B8A2400CCD480 /* CCDataBaseExtension.h */,
-				70A3CC641F6B89FE00CCD480 /* CCRealmHandler */,
-				70A3CC671F6B89FE00CCD480 /* CCRealmModel */,
+				70B48FD7208F3F55005D0054 /* CCRealm */,
+				70B48FC9208F3F1E005D0054 /* CCFCModel */,
 			);
 			path = CCDataBase;
-			sourceTree = "<group>";
-		};
-		70A3CC641F6B89FE00CCD480 /* CCRealmHandler */ = {
-			isa = PBXGroup;
-			children = (
-				70A3CC651F6B89FE00CCD480 /* CCRealmHandler.h */,
-				70A3CC661F6B89FE00CCD480 /* CCRealmHandler.m */,
-			);
-			path = CCRealmHandler;
-			sourceTree = "<group>";
-		};
-		70A3CC671F6B89FE00CCD480 /* CCRealmModel */ = {
-			isa = PBXGroup;
-			children = (
-				70A3CC681F6B89FE00CCD480 /* CCRLMBaseModel.h */,
-				70A3CC691F6B89FE00CCD480 /* CCRLMBaseModel.m */,
-			);
-			path = CCRealmModel;
 			sourceTree = "<group>";
 		};
 		70A3CC6D1F6BBA4100CCD480 /* CCRuntime */ = {
@@ -844,6 +844,76 @@
 				70B48FC7208F33A9005D0054 /* UISwitch+CCExtension.m */,
 			);
 			path = UISwitch;
+			sourceTree = "<group>";
+		};
+		70B48FC9208F3F1E005D0054 /* CCFCModel */ = {
+			isa = PBXGroup;
+			children = (
+				70B48FE0208F4232005D0054 /* CCFCModel */,
+				70B48FE1208F4233005D0054 /* CCFCModelHandler */,
+				70B48FCA208F3F1E005D0054 /* FCModel */,
+			);
+			path = CCFCModel;
+			sourceTree = "<group>";
+		};
+		70B48FCA208F3F1E005D0054 /* FCModel */ = {
+			isa = PBXGroup;
+			children = (
+				70B48FCB208F3F1E005D0054 /* FCModelCachedObject.m */,
+				70B48FCC208F3F1F005D0054 /* FCModel.h */,
+				70B48FCD208F3F1F005D0054 /* FCModelNotificationCenter.h */,
+				70B48FCE208F3F1F005D0054 /* FCModelDatabase.h */,
+				70B48FCF208F3F1F005D0054 /* FCModelCachedObject.h */,
+				70B48FD0208F3F1F005D0054 /* FCModelNotificationCenter.m */,
+				70B48FD1208F3F1F005D0054 /* FCModel.m */,
+				70B48FD2208F3F1F005D0054 /* FCModelDatabase.m */,
+			);
+			path = FCModel;
+			sourceTree = "<group>";
+		};
+		70B48FD7208F3F55005D0054 /* CCRealm */ = {
+			isa = PBXGroup;
+			children = (
+				70B48FD8208F3F55005D0054 /* CCRealmModel */,
+				70B48FDB208F3F55005D0054 /* CCRealmHandler */,
+			);
+			path = CCRealm;
+			sourceTree = "<group>";
+		};
+		70B48FD8208F3F55005D0054 /* CCRealmModel */ = {
+			isa = PBXGroup;
+			children = (
+				70B48FD9208F3F55005D0054 /* CCRLMBaseModel.m */,
+				70B48FDA208F3F55005D0054 /* CCRLMBaseModel.h */,
+			);
+			path = CCRealmModel;
+			sourceTree = "<group>";
+		};
+		70B48FDB208F3F55005D0054 /* CCRealmHandler */ = {
+			isa = PBXGroup;
+			children = (
+				70B48FDC208F3F55005D0054 /* CCRealmHandler.h */,
+				70B48FDD208F3F55005D0054 /* CCRealmHandler.m */,
+			);
+			path = CCRealmHandler;
+			sourceTree = "<group>";
+		};
+		70B48FE0208F4232005D0054 /* CCFCModel */ = {
+			isa = PBXGroup;
+			children = (
+				70B48FE2208F4240005D0054 /* CCFCModel.h */,
+				70B48FE3208F4240005D0054 /* CCFCModel.m */,
+			);
+			path = CCFCModel;
+			sourceTree = "<group>";
+		};
+		70B48FE1208F4233005D0054 /* CCFCModelHandler */ = {
+			isa = PBXGroup;
+			children = (
+				70B48FE5208F424F005D0054 /* CCFCModelHandler.h */,
+				70B48FE6208F424F005D0054 /* CCFCModelHandler.m */,
+			);
+			path = CCFCModelHandler;
 			sourceTree = "<group>";
 		};
 		70BD288E1F62729E008C2C9A /* UIControl */ = {
@@ -1005,7 +1075,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CC;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "冯明庆";
 				TargetAttributes = {
 					37C69E141ED6684D00531ED3 = {
@@ -1055,6 +1125,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MGJRouter/MGJRouter.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -1064,6 +1135,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGJRouter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -1119,11 +1191,13 @@
 				70FF30611F6A79B3001B6407 /* CCBridgeWrapper.m in Sources */,
 				7034D6B01F5FBF3C0005D1E1 /* UIView+CCExtension.m in Sources */,
 				7034D6971F5FBF3C0005D1E1 /* NSPredicate+CCExtension.m in Sources */,
+				70B48FDF208F3F55005D0054 /* CCRealmHandler.m in Sources */,
 				7034D6AF1F5FBF3C0005D1E1 /* UITextField+CCExtension.m in Sources */,
-				70A3CC6A1F6B89FE00CCD480 /* CCRealmHandler.m in Sources */,
 				7034D6AB1F5FBF3C0005D1E1 /* UILabel+CCExtension.m in Sources */,
+				70B48FE7208F424F005D0054 /* CCFCModelHandler.m in Sources */,
 				375E52041F9C2F94007B057E /* CCTestViewController.m in Sources */,
 				7034D6991F5FBF3C0005D1E1 /* NSTimer+CCExtension.m in Sources */,
+				70B48FDE208F3F55005D0054 /* CCRLMBaseModel.m in Sources */,
 				70FF2FE41F6A4824001B6407 /* UIImageView+CCExtension_WeakNetwork.m in Sources */,
 				3773C2091FC0269700C7F384 /* NSUserDefaults+CCExtension.m in Sources */,
 				70FF2FDE1F6A46C1001B6407 /* MBProgressHUD+CCExtension.m in Sources */,
@@ -1137,7 +1211,6 @@
 				7034D6A91F5FBF3C0005D1E1 /* UIImagePickerController+CCExtension.m in Sources */,
 				3772441D1FBB05AD0006E83A /* CCDevice.m in Sources */,
 				7034D6B81F5FCC040005D1E1 /* CCAuthorize.m in Sources */,
-				70A3CC6B1F6B89FE00CCD480 /* CCRLMBaseModel.m in Sources */,
 				70A3CC731F6BBE4900CCD480 /* CCRuntime.m in Sources */,
 				7034D6AD1F5FBF3C0005D1E1 /* UIScrollView+CCExtension.m in Sources */,
 				7034D6AE1F5FBF3C0005D1E1 /* UITableView+CCExtension.m in Sources */,
@@ -1145,11 +1218,13 @@
 				37B52EDE1FC7D383009C17FF /* NSNotificationCenter+CCExtension.m in Sources */,
 				7034D6D01F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m in Sources */,
 				7034D6901F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m in Sources */,
+				70B48FD5208F3F1F005D0054 /* FCModel.m in Sources */,
 				3785D0EE1FECC67200245F26 /* CCDropAlertView.m in Sources */,
 				70FF305E1F6A7874001B6407 /* CCMediator.m in Sources */,
 				7034D6A31F5FBF3C0005D1E1 /* UIButton+CCExtension.m in Sources */,
 				37ECA3731F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.m in Sources */,
 				7034D6931F5FBF3C0005D1E1 /* NSDictionary+CCExtension.m in Sources */,
+				70B48FD6208F3F1F005D0054 /* FCModelDatabase.m in Sources */,
 				7034D6A51F5FBF3C0005D1E1 /* UIColor+CCExtension.m in Sources */,
 				7034D6A21F5FBF3C0005D1E1 /* UIBarButtonItem+CCExtension.m in Sources */,
 				7034D6A81F5FBF3C0005D1E1 /* UIImage+CCExtension.m in Sources */,
@@ -1166,14 +1241,17 @@
 				7034D6921F5FBF3C0005D1E1 /* NSDate+CCExtension.m in Sources */,
 				37C69E1A1ED6684D00531ED3 /* main.m in Sources */,
 				7034D68F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m in Sources */,
+				70B48FD4208F3F1F005D0054 /* FCModelNotificationCenter.m in Sources */,
 				3785D0F01FECC67200245F26 /* CCEasyWebView.m in Sources */,
 				3773C2111FC06CBC00C7F384 /* CCFit.m in Sources */,
+				70B48FE4208F4240005D0054 /* CCFCModel.m in Sources */,
 				70FF30541F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.m in Sources */,
 				7034D6AA1F5FBF3C0005D1E1 /* UIImageView+CCExtension.m in Sources */,
 				7034D6BB1F5FCE140005D1E1 /* CCCommon.m in Sources */,
 				3785D0F51FECDA4B00245F26 /* WKWebView+CCExtension.m in Sources */,
 				70A3CC761F6BCCA900CCD480 /* CCProxyDealer.m in Sources */,
 				70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */,
+				70B48FD3208F3F1F005D0054 /* FCModelCachedObject.m in Sources */,
 				7034D6911F5FBF3C0005D1E1 /* NSBundle+CCExtension.m in Sources */,
 				3785D0ED1FECC67200245F26 /* CCMenuView.m in Sources */,
 			);
@@ -1215,6 +1293,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1222,6 +1301,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1270,6 +1350,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1277,6 +1358,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
