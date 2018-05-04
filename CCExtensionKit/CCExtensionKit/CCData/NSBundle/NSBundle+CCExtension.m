@@ -44,4 +44,17 @@
     return self;
 }
 
++ (NSString *) cc_bundle_name {
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+}
++ (NSString *) cc_bundle_identifier {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+}
++ (NSString *) cc_app_build_version {
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+}
++ (NSString *) cc_app_version {
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+}
+
 @end

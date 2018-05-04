@@ -25,4 +25,9 @@
                     sub_path : (NSString *) sSubPath
                       action : (void(^)(NSArray <NSString *> *sPath)) action ;
 
++ (NSString *) cc_bundle_name ;
++ (NSString *) cc_bundle_identifier ;
++ (NSString *) cc_app_build_version ;
++ (NSString *) cc_app_version ;
+
 @end

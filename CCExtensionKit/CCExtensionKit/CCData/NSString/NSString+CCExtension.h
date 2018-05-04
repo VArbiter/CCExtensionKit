@@ -50,6 +50,8 @@
                           key : (NSString *) sKey
                       comment : (NSString *) sComment ;
 
+@property (nonatomic , assign , readonly) NSRange range_full ;
+
 @end
 
 #pragma mark - -----
@@ -67,7 +69,6 @@
 /// only numbers . // 只针对数字字符起效
 @property (nonatomic , readonly) NSDecimalNumber * toDecimal;
 
-- (instancetype) ccTimeStick : (BOOL) isNeedSpace ;
 /// mil-senconds -> yyyy-MM-dd HH:mm
 @property (nonatomic , readonly) NSString *toTimeStick ;
 @property (nonatomic , readonly) NSString *toMD5 ;

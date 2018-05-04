@@ -66,4 +66,75 @@
     return self;
 }
 
+- (void)setContent_width:(CGFloat)content_width {
+    self.contentSize = CGSizeMake(content_width, self.contentSize.height);
+}
+- (CGFloat)content_width {
+    return self.contentSize.width;
+}
+
+- (void)setContent_height:(CGFloat)content_height {
+    self.contentSize = CGSizeMake(self.contentSize.width, content_height);
+}
+- (CGFloat)content_height {
+    return self.contentSize.height;
+}
+
+- (void)setOffset_x:(CGFloat)offset_x {
+    self.contentOffset = CGPointMake(offset_x, self.contentOffset.y);
+}
+- (CGFloat)offset_x {
+    return self.contentOffset.x;
+}
+
+- (void)setOffset_y:(CGFloat)offset_y {
+    self.contentOffset = CGPointMake(self.contentOffset.x, offset_y);
+}
+- (CGFloat)offset_y {
+    return self.contentOffset.y;
+}
+
+- (UIImage *) image_capture {
+    CGFloat f_scale = [UIScreen mainScreen].scale;
+    
+    CGSize b_size = self.bounds.size;
+    CGFloat b_width = b_size.width;
+    CGFloat b_height = b_size.height;
+    
+    CGSize content_size = self.contentSize;
+    CGFloat content_h = content_size.height;
+    CGPoint p_offset = self.contentOffset;
+    
+    [self setContentOffset:CGPointMake(0, 0)];
+    NSMutableArray *a_images = [NSMutableArray array];
+    while (content_h > 0) {
+        UIGraphicsBeginImageContextWithOptions(b_size, NO, 0.0);
+        [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        [a_images addObject:image];
+        
+        CGFloat offsetY = self.contentOffset.y;
+        [self setContentOffset:CGPointMake(0, offsetY + b_height)];
+        
+        content_h -= b_height;
+    }
+    
+    self.contentOffset = p_offset;
+    
+    CGSize imageSize = CGSizeMake(content_size.width * f_scale,
+                                  content_size.height * f_scale);
+    UIGraphicsBeginImageContext(imageSize);
+    [a_images enumerateObjectsUsingBlock:^(UIImage *image, NSUInteger idx, BOOL *stop) {
+        [image drawInRect:CGRectMake(0,
+                                     f_scale * b_height * idx,
+                                     f_scale * b_width,
+                                     f_scale * b_height)];
+    }];
+    
+    UIImage *image_f = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image_f;
+}
+
 @end

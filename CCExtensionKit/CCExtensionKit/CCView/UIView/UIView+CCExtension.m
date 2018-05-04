@@ -412,6 +412,14 @@ CGFloat CCHScale(CGFloat h) {
     return rect;
 }
 
+- (UIImage *) cc_capture_image_after_screen_updates : (BOOL) is_after_updates {
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
+    [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:is_after_updates];
+    UIImage *t = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return t;
+}
+
 @end
 
 #pragma mark - -----

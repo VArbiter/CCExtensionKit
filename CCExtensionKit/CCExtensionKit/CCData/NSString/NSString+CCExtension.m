@@ -139,6 +139,10 @@
     return ((s && s.length) ? s : @"");
 }
 
+- (NSRange)range_full {
+    return NSMakeRange(0, self.length);
+}
+
 @end
 
 #pragma mark - -----
@@ -169,16 +173,6 @@
 
 - (NSDecimalNumber *)toDecimal {
     return [NSDecimalNumber decimalNumberWithString:self];
-}
-
-- (NSDate *)toDate {
-    if (!CC_IS_STRING_VALUED(self) || !self.is_time) {
-        return [NSDate date];
-    }
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
-    return [formatter dateFromString:self];
 }
 
 - (NSString *)toMD5 {

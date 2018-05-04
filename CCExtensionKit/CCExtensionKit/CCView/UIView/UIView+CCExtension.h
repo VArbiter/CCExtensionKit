@@ -133,6 +133,8 @@ CGSize CCScaleSize(CGSize size);
 /// find its absolute location in screen . // 找到 view 在屏幕中的绝对位置 
 - (CGRect) cc_location_in_window ;
 
+- (UIImage *) cc_capture_image_after_screen_updates : (BOOL) is_after_updates ;
+
 @end
 
 #pragma mark - -----

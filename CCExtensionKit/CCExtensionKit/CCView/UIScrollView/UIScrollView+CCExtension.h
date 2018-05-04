@@ -29,4 +29,12 @@
 - (instancetype) cc_enable_paging ;
 - (instancetype) cc_enable_direction_lock ;
 
+@property (nonatomic , assign) CGFloat content_width ;
+@property (nonatomic , assign) CGFloat content_height ;
+
+@property (nonatomic , assign) CGFloat offset_x ;
+@property (nonatomic , assign) CGFloat offset_y ;
+
+- (UIImage *) image_capture ;
+
 @end
