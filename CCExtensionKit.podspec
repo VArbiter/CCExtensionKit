@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "CCExtensionKit"
-    s.version      = "3.7.0"
+    s.version      = "4.0.0"
     s.summary      = "CCExtensionKit."
 
     s.description  = <<-DESC
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
     s.default_subspec = 'CCCore'
 
     s.subspec 'CCCore' do |coreT|
-      coreT.source_files = 'CCExtensionKit/*.h'
+      coreT.source_files = 'CCExtensionKit/*.{h}'
       coreT.dependency 'CCExtensionKit/CCData'
       coreT.dependency 'CCExtensionKit/CCView'
       coreT.dependency 'CCExtensionKit/CCRuntime'
@@ -73,6 +73,7 @@ Pod::Spec.new do |s|
       s.subspec 'CCOrigin' do |origin|
         origin.source_files = 'CCExtensionKit/CCExtensionKit/CCOrigin/**/*'
         origin.dependency 'CCExtensionKit/CCCore'
+        origin.frameworks = "StoreKit"
       end
 
       s.subspec 'CCCustom' do |custom|

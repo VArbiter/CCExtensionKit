@@ -57,6 +57,7 @@
 		7034D6CA1F5FD5280005D1E1 /* NSURL+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6C91F5FD5280005D1E1 /* NSURL+CCExtension.m */; };
 		7034D6CD1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6CC1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m */; };
 		7034D6D01F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6CF1F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m */; };
+		7080184C209C834500349FA8 /* CCIAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080184B209C834500349FA8 /* CCIAPManager.m */; };
 		70A3CC731F6BBE4900CCD480 /* CCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3CC721F6BBE4900CCD480 /* CCRuntime.m */; };
 		70A3CC761F6BCCA900CCD480 /* CCProxyDealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3CC751F6BCCA900CCD480 /* CCProxyDealer.m */; };
 		70B48FC8208F33A9005D0054 /* UISwitch+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B48FC7208F33A9005D0054 /* UISwitch+CCExtension.m */; };
@@ -187,6 +188,8 @@
 		7034D6CC1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+CCExtension.m"; sourceTree = "<group>"; };
 		7034D6CE1F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+CCExtension.h"; sourceTree = "<group>"; };
 		7034D6CF1F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+CCExtension.m"; sourceTree = "<group>"; };
+		7080184A209C834500349FA8 /* CCIAPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCIAPManager.h; sourceTree = "<group>"; };
+		7080184B209C834500349FA8 /* CCIAPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCIAPManager.m; sourceTree = "<group>"; };
 		70A3CC6C1F6B8A2400CCD480 /* CCDataBaseExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCDataBaseExtension.h; sourceTree = "<group>"; };
 		70A3CC6E1F6BBA5600CCD480 /* CCRuntimeExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCRuntimeExtension.h; sourceTree = "<group>"; };
 		70A3CC711F6BBE4900CCD480 /* CCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRuntime.h; sourceTree = "<group>"; };
@@ -294,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				3785D0F11FECC69300245F26 /* CCOriginCustom.h */,
+				70801849209C833300349FA8 /* CCIAPManager */,
 				3785D0E11FECC67200245F26 /* UIMenuController */,
 				3785D0E41FECC67200245F26 /* CCDropAlertView */,
 				3785D0E71FECC67200245F26 /* CCGradientView */,
@@ -802,6 +806,15 @@
 			path = NSURLRequest;
 			sourceTree = "<group>";
 		};
+		70801849209C833300349FA8 /* CCIAPManager */ = {
+			isa = PBXGroup;
+			children = (
+				7080184A209C834500349FA8 /* CCIAPManager.h */,
+				7080184B209C834500349FA8 /* CCIAPManager.m */,
+			);
+			path = CCIAPManager;
+			sourceTree = "<group>";
+		};
 		70A3CC631F6B89FE00CCD480 /* CCDataBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -1266,6 +1279,7 @@
 				70A3CC761F6BCCA900CCD480 /* CCProxyDealer.m in Sources */,
 				70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */,
 				70B48FD3208F3F1F005D0054 /* FCModelCachedObject.m in Sources */,
+				7080184C209C834500349FA8 /* CCIAPManager.m in Sources */,
 				7034D6911F5FBF3C0005D1E1 /* NSBundle+CCExtension.m in Sources */,
 				3785D0ED1FECC67200245F26 /* CCMenuView.m in Sources */,
 			);
