@@ -56,6 +56,10 @@
 
 ### What's new ?
 ---
+**2018-05-04 21:55:33**
+
+> added `CCAuthentication` (CCCommon) for touch id && face id verify , `CCIAPManager`(CCOrigin) for in app purchase  .
+
 **2018-04-23 18:53:35**
 
 > make prefix all `cc_` . remove CCDataBase && CCCustom from CCFull .

@@ -54,6 +54,10 @@
 
 ### 上新 ?
 ---
+**2018-05-04 21:55:33**
+
+> 增加 `CCAuthentication` (CCCommon) 用来做指纹 / 面部验证 , `CCIAPManager`(CCOrigin) 用来做内购相关 .
+
 **2018-04-23 18:53:35**
 
 > 更换所有的前缀为 `cc_` , 将 CCDataBase 和 CCCustom 从 CCFull 中移除
