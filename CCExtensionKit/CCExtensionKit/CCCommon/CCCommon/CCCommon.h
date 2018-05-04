@@ -59,7 +59,7 @@
 
 /// returns another same value // 返回另一个相同的值
 #ifndef CC_SAME
-    #define CC_SAME(_value_) typeof(_value_) sameT##_value_ = _value_
+    #define CC_SAME(_value_) typeof(_value_) same_##_value_ = _value_
 #endif
 
 /// weak instance on arc // arc 下的弱引用

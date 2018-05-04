@@ -405,6 +405,13 @@ CGFloat CCHScale(CGFloat h) {
     return [NSKeyedUnarchiver unarchiveObjectWithData:dt];
 }
 
+- (CGRect) cc_location_in_window {
+    UIWindow * window = UIApplication.sharedApplication.delegate.window;
+    CGRect rect = [self convertRect:self.bounds
+                             toView:window];
+    return rect;
+}
+
 @end
 
 #pragma mark - -----

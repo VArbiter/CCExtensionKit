@@ -130,6 +130,9 @@ CGSize CCScaleSize(CGSize size);
 /// copy it self . // 复制自身
 - (instancetype) cc_duplicate ;
 
+/// find its absolute location in screen . // 找到 view 在屏幕中的绝对位置 
+- (CGRect) cc_location_in_window ;
+
 @end
 
 #pragma mark - -----

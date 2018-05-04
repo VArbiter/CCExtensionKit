@@ -244,6 +244,10 @@
     return sDecode;
 }
 
+- (CGRect)toRect {
+    return CGRectFromString(self);
+}
+
 - (const char *)toUTF8 {
     return self.UTF8String;
 }

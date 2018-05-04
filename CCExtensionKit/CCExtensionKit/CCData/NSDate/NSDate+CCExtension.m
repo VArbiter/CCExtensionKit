@@ -67,10 +67,20 @@
     }
 }
 
+- (NSTimeInterval)toTimeStickInterval {
+    return self.timeIntervalSinceReferenceDate ;
+}
+
 - (NSString *) cc_time_since_1970 : (NSTimeInterval) interval {
+    return [self cc_time_since_1970:interval
+                             format:@"yyyy-MM-dd HH:mm"];
+}
+
+- (NSString *) cc_time_since_1970 : (NSTimeInterval) interval
+                           format : (NSString *) s_format {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    formatter.dateFormat = s_format;
     NSString *string = [formatter stringFromDate:date];
     return string;
 }
@@ -83,7 +93,37 @@
     if (!CC_IS_STRING_VALUED(self)) return [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    return [formatter dateFromString:self];
+    NSDate *date = [formatter dateFromString:self] ;
+    if (date) return date;
+    
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    date = [formatter dateFromString:self] ;
+    if (date) return date;
+    
+    formatter.dateFormat = @"yyyy-MM-dd HH";
+    date = [formatter dateFromString:self] ;
+    if (date) return date;
+    
+    formatter.dateFormat = @"yyyy-MM-dd";
+    date = [formatter dateFromString:self] ;
+    if (date) return date;
+    
+    formatter.dateFormat = @"yyyy-MM";
+    date = [formatter dateFromString:self] ;
+    if (date) return date;
+    
+    formatter.dateFormat = @"yyyy";
+    date = [formatter dateFromString:self] ;
+    if (date) return date;
+    
+    return nil;
+}
+
+- (NSDate *) cc_to_date_with_format : (NSString *) s_format {
+    if (!CC_IS_STRING_VALUED(self)) return [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = s_format;
+    return [formatter dateFromString:self] ;
 }
 
 - (CCTimeStick)toTimeStick {

@@ -10,36 +10,37 @@
 
 @implementation CCFit
 
-CGRect _CC_STATUS_BAR_FRAME_() {
+CGRect CC_STATUS_BAR_FRAME() {
     return UIApplication.sharedApplication.statusBarFrame;
 }
-CGFloat _CC_STATUS_BAR_HEIGHT_() {
-    return _CC_STATUS_BAR_FRAME_().size.height ;
+CGFloat CC_STATUS_BAR_HEIGHT() {
+    return CC_STATUS_BAR_FRAME().size.height ;
 }
-CGFloat _CC_STATUS_BAR_BOTTOM_() {
-    return CGRectGetMaxY(_CC_STATUS_BAR_FRAME_());
+CGFloat CC_STATUS_BAR_BOTTOM() {
+    return CGRectGetMaxY(CC_STATUS_BAR_FRAME());
 }
-CGFloat _CC_NAVIGATION_HEIGHT_(void) {
+CGFloat CC_NAVIGATION_HEIGHT(void) {
     return 44.f;
 }
-CGFloat _CC_NAVIGATION_BOTTOM_(void) {
-    if (_CC_IS_IPHONE_X_()) {
-        return 88.f;
-    }
-    else return 64.f;
+CGFloat CC_NAVIGATION_BOTTOM(void) {
+    return CC_IS_IPHONE_X() ? 88.f : 64.f ;
 }
-CGFloat _CC_TABBAR_HEIGHT_(void) {
-    if (_CC_IS_IPHONE_X_()) {
-        return 83.f;
-    }
-    else return 49.f;
+CGFloat CC_TABBAR_HEIGHT(void) {
+    return CC_IS_IPHONE_X() ? 83.f : 49.f ;
 }
-CGFloat _CC_TABBAR_TOP_(void) {
-    return UIScreen.mainScreen.bounds.size.height - _CC_TABBAR_HEIGHT_();
+CGFloat CC_TABBAR_TOP(void) {
+    return UIScreen.mainScreen.bounds.size.height - CC_TABBAR_HEIGHT();
 }
 
-BOOL _CC_IS_IPHONE_X_(void) {
+BOOL CC_IS_IPHONE_X(void) {
     return [[CCDevice cc_device_type] isEqualToString:@"iPhone X"];
+}
+
+CGFloat CC_SAFE_AREA_TOP_HEIGHT(void) {
+    return CC_IS_IPHONE_X() ? 24.f : 0.f ;
+}
+CGFloat CC_SAFE_AREA_BOTTOM_HEIGHT(void) {
+    return CC_IS_IPHONE_X() ? 44.f : 0.f ;
 }
 
 @end

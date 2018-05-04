@@ -76,6 +76,7 @@
 @property (nonatomic , readonly) NSString *toBase64Decode ; // decode base 64 using origin // 使用原生进行 base 64 解码
 @property (nonatomic , readonly) NSString *toUrlEncoded ; // encode chinese character using origin // 针对中文进行 url 编码
 @property (nonatomic , readonly) NSString *toUrlDecoded ; // decode chinese character using origin // 针对中文进行 url 解码
+@property (nonatomic , readonly) CGRect toRect ; // only worked in which NSStringFromCGRect(CGRect rect) converted . 只针对 NSStringFromCGRect(CGRect rect) 转换的有效
 
 @property (nonatomic , readonly) const char * toUTF8 NS_RETURNS_INNER_POINTER ; // might null if can't be convert // 如果不能被转换 , 返回 NULL
 NSString * CC_STRING_FROM_UTF8(const char * cUTF8) ; // if params doesn't exist , return @"". // 如果参数不存在 , 返回 @"" 
