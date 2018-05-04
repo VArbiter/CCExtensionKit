@@ -8,6 +8,13 @@
 
 #import "CCIAPManager.h"
 
+typedef NS_ENUM(NSInteger , CCIAPStatus) {
+    CCIAPStatus_Purchase_Fail = 0,
+    CCIAPStatus_Purchase_Success ,
+    CCIAPStatus_Restore_Fail ,
+    CCIAPStatus_Restore_Success
+};
+
 @interface CCIAPManager () < NSCopying , NSMutableCopying , SKPaymentTransactionObserver , SKProductsRequestDelegate >
 
 @property (nonatomic , copy) void (^cc_result_block)(CCIAPManager *manager , id t , NSError *error) ;
@@ -200,7 +207,7 @@ static NSString *cc_IAP_error_domain = @"ElwinFrederick.CCIAPManager";
         }
     } else {
         
-        NSString *s_hint = @"user cancel purchase.";
+        NSString *s_hint = @"user cancelled purchase payment.";
         NSError *e = [NSError errorWithDomain:cc_IAP_error_domain.copy
                                          code:-100003
                                      userInfo:@{ NSLocalizedDescriptionKey : s_hint }];

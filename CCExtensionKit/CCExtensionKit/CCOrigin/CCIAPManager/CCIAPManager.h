@@ -10,13 +10,6 @@
 
 @import StoreKit;
 
-typedef NS_ENUM(NSInteger , CCIAPStatus) {
-    CCIAPStatus_Purchase_Fail = 0,
-    CCIAPStatus_Purchase_Success ,
-    CCIAPStatus_Restore_Fail ,
-    CCIAPStatus_Restore_Success
-};
-
 @class CCIAPManager ;
 
 @protocol CCIAPManagerDelegate <NSObject>
@@ -77,4 +70,4 @@ FOUNDATION_EXPORT CCIAPParamsKey CC_IAP_PARAMS_TRANSACTION_ID_KEY ; // @"transac
     21006 - receipt is available , but data is out of date . when this message received , the decoded receipt also included in the response body. // 收据是有效的，但订阅服务已经过期。当收到这个信息时，解码后的收据信息也包含在返回内容中
     21007 - receipt is for sandbox , but found in product environmet . // 收据信息是测试用（sandbox），但却被发送到产品环境中验证
     21008 - receipt is for product environment , but found in sandbox . // 收据信息是产品环境中使用，但却被发送到测试环境中验证
- */
+*/
