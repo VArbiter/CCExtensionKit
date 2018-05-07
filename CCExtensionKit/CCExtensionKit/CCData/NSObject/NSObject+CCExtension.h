@@ -23,3 +23,24 @@ BOOL CC_IS_ARRAY_VALUED(__kindof NSArray * array) ;
 BOOL CC_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) ;
 BOOL CC_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) ;
 BOOL CC_IS_NULL(id object) ;
+
+@interface NSObject (CCExtension_KVO)
+
+/// a block way to manage KVO .
++ (instancetype) cc_common ;
+
+/// default options : NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld ;
+- (instancetype) cc_add_observer_for : (NSString *) s_key_path
+                            observer : (void (^)(NSString * s_key_path , id object , NSDictionary * change , void * context)) block_observer ;
+- (instancetype) cc_add_observer_for : (NSString *) s_key_path
+                             options : (NSKeyValueObservingOptions) options
+                            observer : (void (^)(NSString * s_key_path , id object , NSDictionary * change , void * context)) block_observer ;
+- (instancetype) cc_add_observer_for : (NSString *) s_key_path
+                             options : (NSKeyValueObservingOptions) options
+                             context : (void *) context
+                            observer : (void (^)(NSString * s_key_path , id object , NSDictionary * change , void * context)) block_observer ;
+
+- (void) cc_remove_observer_for : (NSString *) s_key_path ;
+- (void) cc_remove_all_observers_and_destory ;
+
+@end

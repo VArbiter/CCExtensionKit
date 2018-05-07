@@ -74,3 +74,100 @@ BOOL CC_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) {
 BOOL CC_IS_NULL(id object) {
     return (object && ![object isKindOfClass:[NSNull class]] && (object != NSNull.null));
 }
+
+#pragma mark - -----
+
+#import <objc/runtime.h>
+
+static NSString * CC_EXTENSION_KVO_ALL_KEY_PATHS_KEY = @"CC_EXTENSION_KVO_ALL_KEY_PATHS_KEY";
+
+@interface NSObject (CCExtension_KVO_Assist)
+
+@property (nonatomic , strong , readonly) NSMutableDictionary <NSString * ,id > *d_all_key_paths ;
+
+- (void) cc_destory_all_blocks_targets ;
+
+@end
+
+@implementation NSObject (CCExtension_KVO_Assist)
+
+- (NSMutableDictionary<NSString *,id> *)d_all_key_paths {
+    id t = objc_getAssociatedObject(self, CC_EXTENSION_KVO_ALL_KEY_PATHS_KEY.UTF8String);
+    if (t) return t;
+    else {
+        NSMutableDictionary *d = [NSMutableDictionary dictionary];
+        objc_setAssociatedObject(self,
+                                 CC_EXTENSION_KVO_ALL_KEY_PATHS_KEY.UTF8String,
+                                 d,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return d;
+    }
+}
+
+- (void) cc_destory_all_blocks_targets {
+    __weak typeof(self) weak_self = self;
+    [self.d_all_key_paths enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        [weak_self removeObserver:weak_self forKeyPath:key];
+    }];
+    [self.d_all_key_paths removeAllObjects];
+}
+
+@end
+
+@implementation NSObject (CCExtension_KVO)
+
++ (instancetype) cc_common {
+    return [[self alloc] init];
+}
+- (instancetype) cc_add_observer_for : (NSString *) s_key_path
+                            observer : (void (^)(NSString * s_key_path , id object , NSDictionary * change , void * context)) block_observer {
+    return [self cc_add_observer_for:s_key_path
+                             options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                            observer:block_observer];
+}
+
+- (instancetype) cc_add_observer_for : (NSString *) s_key_path
+                             options : (NSKeyValueObservingOptions) options
+                            observer : (void (^)(NSString * s_key_path , id object , NSDictionary * change , void * context)) block_observer {
+    return [self cc_add_observer_for:s_key_path
+                             options:options
+                             context:NULL
+                            observer:block_observer];
+}
+- (instancetype) cc_add_observer_for : (NSString *) s_key_path
+                             options : (NSKeyValueObservingOptions) options
+                             context : (void *) context
+                            observer : (void (^)(NSString * s_key_path , id object , NSDictionary * change , void * context)) block_observer {
+    if (!s_key_path || s_key_path.length <= 0 || !block_observer) return self;
+    
+    [self.d_all_key_paths setValue:block_observer forKey:s_key_path];
+    
+    [self addObserver:self
+           forKeyPath:s_key_path
+              options:options
+              context:context];
+    
+    return self;
+}
+
+- (void) cc_remove_observer_for : (NSString *) s_key_path {
+    if (!s_key_path || s_key_path.length <= 0) return ;
+    [self removeObserver:self forKeyPath:s_key_path];
+    [self.d_all_key_paths removeObjectForKey:s_key_path];
+}
+
+- (void) cc_remove_all_observers_and_destory {
+    [self cc_destory_all_blocks_targets];
+}
+
+#pragma mark - -----
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    
+    void (^cc_observer_block)(NSString * s_key_path , id object , NSDictionary * change , void * context) = [self.d_all_key_paths valueForKey:keyPath];
+    
+    if (!cc_observer_block) return ;
+    if (cc_observer_block) cc_observer_block(keyPath , object , change , context);
+}
+
+@end

@@ -19,11 +19,11 @@
 #endif
 
 /// formatStrings. // 格式化字符串
-#ifndef ccStringFormat
-    #define ccStringFormat(...) [NSString stringWithFormat:__VA_ARGS__]
+#ifndef CC_STRING_FORMAT
+    #define CC_STRING_FORMAT(...) [NSString stringWithFormat:__VA_ARGS__]
 #endif
-#ifndef ccString
-    #define ccString(_value_) [NSString stringWithFormat:@"%@",(_value_)]
+#ifndef CC_STRING
+    #define CC_STRING(_value_) [NSString stringWithFormat:@"%@",(_value_)]
 #endif
 
 /// manually control debug mode . // 手动控制 debug 模式
@@ -70,6 +70,11 @@
 /// shortcut to weak self . // weak self 的便捷宏
 #ifndef CC_WEAK_SELF
     #define CC_WEAK_SELF __weak typeof(&*self) weak_self = self
+#endif
+
+/// only applied for those named weak_self . // 只针对那些命名为 weak_self 的 self .
+#ifndef CC_STRONG_SELF
+    #define CC_STRONG_SELF __strong typeof(weak_self) strong_self = weak_self
 #endif
 
 /// transfer to a specific type by force. // 强制转换为一个特定类型 (不同类型会崩溃 , 这里多用于 id 转换为指定类型)
