@@ -37,7 +37,7 @@ static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONIT
 
 @implementation UIBarButtonItem (CCExtension)
 
-+ (instancetype) common {
++ (instancetype) cc_common {
     return UIBarButtonItem.alloc.init;
 }
 - (instancetype) cc_title : (NSString *) sTitle {

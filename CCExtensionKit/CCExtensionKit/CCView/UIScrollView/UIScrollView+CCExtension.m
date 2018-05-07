@@ -10,7 +10,7 @@
 
 @implementation UIScrollView (CCExtension)
 
-+ (instancetype)common:(CGRect)frame{
++ (instancetype)cc_common:(CGRect)frame{
     UIScrollView *v = [[UIScrollView alloc] initWithFrame:frame];
     v.backgroundColor = UIColor.clearColor;
     return v;

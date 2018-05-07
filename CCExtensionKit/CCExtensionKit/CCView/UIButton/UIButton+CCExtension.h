@@ -11,8 +11,8 @@
 @interface UIButton (CCExtension)
 
 /// default type is custom // 默认是 custom 类型
-+ (instancetype) common ;
-+ (instancetype) common : (UIButtonType) type ;
++ (instancetype) cc_common ;
++ (instancetype) cc_common : (UIButtonType) type ;
 
 /// titles && images // title 和 images
 - (instancetype) cc_title : (NSString *) sTitle

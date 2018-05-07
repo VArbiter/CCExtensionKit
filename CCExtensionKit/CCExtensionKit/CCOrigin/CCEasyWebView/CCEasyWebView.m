@@ -43,11 +43,11 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 
 @implementation CCEasyWebView
 
-+ (instancetype) common : (CGRect) frame {
-    return [self common:frame configuration:nil];
++ (instancetype) cc_common : (CGRect) frame {
+    return [self cc_common:frame configuration:nil];
 }
-+ (instancetype) common : (CGRect) frame
-          configuration : (WKWebViewConfiguration *) configuration {
++ (instancetype) cc_common : (CGRect) frame
+             configuration : (WKWebViewConfiguration *) configuration {
     return [[self alloc] init:frame configuration:configuration];
 }
 

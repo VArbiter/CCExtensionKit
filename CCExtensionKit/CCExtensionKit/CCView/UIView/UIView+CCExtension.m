@@ -107,7 +107,7 @@ CGFloat CCHScale(CGFloat h) {
 
 @implementation UIView (CCExtension)
 
-+ (instancetype) common : (CGRect) frame {
++ (instancetype) cc_common : (CGRect) frame {
     CGRect g = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     return [[self alloc] initWithFrame:g];
 }

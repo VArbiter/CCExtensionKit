@@ -23,7 +23,7 @@ static BOOL __isEnableLoading = YES;
 
 - (instancetype) cc_weak_image : (NSURL *) url
                         holder : (UIImage *) imageHolder {
-    BOOL isStrong = CCNetworkMoniter.shared.cc_environment_type == CCNetworkEnvironmentStrong;
+    BOOL isStrong = CCNetworkMoniter.cc_shared.cc_environment_type == CCNetworkEnvironmentStrong;
     if (isStrong && __isEnableLoading) {
         [self sd_setImageWithURL:url
                 placeholderImage:imageHolder

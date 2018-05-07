@@ -10,7 +10,7 @@
 
 @interface NSPredicate (CCExtension)
 
-+ (instancetype) common : (NSString *) sRegex ;
++ (instancetype) cc_common : (NSString *) sRegex ;
 
 /// YYYY-MM-DD HH:mm:ss
 + (instancetype) cc_time ;

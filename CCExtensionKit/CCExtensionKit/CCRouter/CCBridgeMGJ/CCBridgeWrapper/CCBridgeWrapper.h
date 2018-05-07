@@ -16,7 +16,7 @@ typedef NSDictionary CCRouterPatternInfo;
 typedef void (^CCRouterCompletionBlock)(id result);
 
 #ifndef CC_ROUTER_W
-    #define CC_ROUTER_W CCBridgeWrapper.shared
+    #define CC_ROUTER_W CCBridgeWrapper.cc_shared
 #endif
 
 @import MGJRouter;
@@ -28,11 +28,11 @@ typedef void (^CCRouterCompletionBlock)(id result);
 /// note : absolute singleton // 绝对单例
 
 + (instancetype) new NS_UNAVAILABLE;
-+ (instancetype) shared ;
++ (instancetype) cc_shared ;
 
 // begin with scheme , like "scheme://do sth" // 用一个 scheme 来初始化 , 比如 "scheme://do sth"
 // note : only the first time have its effect (scheme can't be re-configured again) . // 只第一次使用有效 , scheme 不能被重新设置
-+ (instancetype) shared_with_scheme : (CCRouterRegistKey) sScheme ;
++ (instancetype) cc_shared_with_scheme : (CCRouterRegistKey) sScheme ;
 
 // regist // 注册
 - (instancetype) cc_regist_fallback : (void (^)(CCRouterPatternInfo *dInfos)) fallBack ;
@@ -55,7 +55,7 @@ typedef void (^CCRouterCompletionBlock)(id result);
 FOUNDATION_EXPORT CCRouterOperateKey const _CC_ROUTER_PARAMS_URL_;
 FOUNDATION_EXPORT CCRouterOperateKey const _CC_ROUTER_PARAMS_COMPLETION_;
 FOUNDATION_EXPORT CCRouterOperateKey const _CC_ROUTER_PARAMS_USER_INFO_;
-FOUNDATION_EXPORT CCRouterOperateKey _CC_ROUTER_FALL_BACK_URL_ ; // can be customed by user with 'sharedWithScheme:' methods // 可以被开发者使用 'sharedWithScheme:' 来设置
+FOUNDATION_EXPORT CCRouterOperateKey _CC_ROUTER_FALL_BACK_URL_ ; // can be customed by user with 'cc_sharedWithScheme:' methods // 可以被开发者使用 'cc_sharedWithScheme:' 来设置
 
 CCRouterPatternInfo * CC_URL_PATTERN_MAKE(CCRouterRegistKey sURL ,
                                           NSDictionary *dUserInfo) ;

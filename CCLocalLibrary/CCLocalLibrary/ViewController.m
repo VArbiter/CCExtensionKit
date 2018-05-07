@@ -39,7 +39,7 @@
     [super viewDidLoad];
     
     UIImage *image = [CC_IMAGE_NAME(@"0ZG63407-0") cc_gaussian_acc];
-    UIImageView *imageView = [UIImageView common:CGRectZero];
+    UIImageView *imageView = [UIImageView cc_common:CGRectZero];
     imageView.image = image;
     imageView.y = 80;
     imageView.size = [image cc_zoom:0.5];
@@ -58,7 +58,7 @@
 //    self.view.cc.hud().message(@"SHOWING").type(CCHudChainTypeDarkDeep);
      */
     
-    UITextField *t = [UITextField common:CGRectMake(0, 0, 100, 100)];
+    UITextField *t = [UITextField cc_common:CGRectMake(0, 0, 100, 100)];
     t.placeholder = @"123456789";
     [self.view cc_add:[[t cc_left:.0f] cc_top:400.f]];
     [t cc_text_did_change:^(__kindof UITextField *sender) {

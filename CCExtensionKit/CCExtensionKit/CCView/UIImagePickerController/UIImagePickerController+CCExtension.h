@@ -22,7 +22,7 @@ typedef NS_OPTIONS(NSInteger , CCImageSaveType) {
 @interface UIImagePickerController (CCExtension) < UINavigationControllerDelegate , UIImagePickerControllerDelegate >
 
 /// default : allowEditing = false; // 默认不允许编辑
-+ (instancetype) common ;
++ (instancetype) cc_common ;
 /// default is itself . // 默认是它本身
 /// note : if specific , reload method to get images will be handled by developers , extension kit will do nothing // 如果指定 , 重载方法将会交由开发者控制 , 框架将不会做任何事情
 - (instancetype) cc_delegate : (id) delegate ;

@@ -10,7 +10,7 @@
 
 @interface UILabel (CCExtension)
 
-+ (instancetype) common : (CGRect) frame;
++ (instancetype) cc_common : (CGRect) frame;
 
 /// auto fit with text || attributed Text , // 自适应 文本 , 富文本高度
 /// params fEstimate that determins if the height after calculate ,  was lesser than original . // 参数 fEstimate 决定了计算高度后 , 是否比原来的高度小

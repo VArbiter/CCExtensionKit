@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger , CCNetworkEnvironment) {
 
 @interface CCNetworkMoniter : NSObject
 
-+ (instancetype) shared;
++ (instancetype) cc_shared;
 
 - (CCNetworkEnvironment) cc_environment_type ;
 

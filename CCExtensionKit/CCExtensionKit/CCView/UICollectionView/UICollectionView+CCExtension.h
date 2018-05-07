@@ -11,8 +11,8 @@
 @interface UICollectionView (CCExtension)
 
 /// auto enable prefetchiong if support // 如果支持 , 自动启用 预取 ,
-+ (instancetype) common : (CGRect) frame
-                 layout : (UICollectionViewFlowLayout *) layout;
++ (instancetype) cc_common : (CGRect) frame
+                    layout : (UICollectionViewFlowLayout *) layout;
 - (instancetype) cc_delegate : (id <UICollectionViewDelegateFlowLayout>) delegate ;
 - (instancetype) cc_datasource : (id <UICollectionViewDataSource>) dataSource ;
 

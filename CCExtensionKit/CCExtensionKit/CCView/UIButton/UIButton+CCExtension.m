@@ -33,10 +33,10 @@ static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN
 
 @implementation UIButton (CCExtension)
 
-+ (instancetype) common {
-    return [self common:UIButtonTypeCustom];
++ (instancetype) cc_common {
+    return [self cc_common:UIButtonTypeCustom];
 }
-+ (instancetype) common : (UIButtonType) type {
++ (instancetype) cc_common : (UIButtonType) type {
     return [UIButton buttonWithType:type];
 }
 

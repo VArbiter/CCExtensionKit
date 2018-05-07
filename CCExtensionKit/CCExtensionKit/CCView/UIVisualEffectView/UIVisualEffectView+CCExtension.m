@@ -10,7 +10,7 @@
 
 @implementation UIVisualEffectView (CCExtension)
 
-+ (instancetype) common : (UIVisualEffect *) effect {
++ (instancetype) cc_common : (UIVisualEffect *) effect {
     return [[self alloc] initWithEffect:effect];
 }
 

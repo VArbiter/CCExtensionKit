@@ -12,9 +12,9 @@
 
 @interface WKWebView (CCExtension)
 
-+ (instancetype) common : (CGRect) frame;
-+ (instancetype) common : (CGRect) frame
-          configuration : (WKWebViewConfiguration *) configuration ;
++ (instancetype) cc_common : (CGRect) frame;
++ (instancetype) cc_common : (CGRect) frame
+             configuration : (WKWebViewConfiguration *) configuration ;
 - (instancetype) cc_navigation_delegate : (id <WKNavigationDelegate>) delegate ;
 - (instancetype) cc_script : (CCScriptMessageDelegate *) delegate
                        key : (NSString *) sKey;

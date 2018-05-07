@@ -13,26 +13,26 @@ static NSMutableDictionary * __dictionary = nil;
 
 @implementation NSNotificationCenter (CCExtension)
 
-+ (instancetype) common {
++ (instancetype) cc_common {
     if (!__dictionary) __dictionary = [NSMutableDictionary dictionary];
     return NSNotificationCenter.defaultCenter;
 }
 
 + (instancetype) cc_post : (NSNotificationName) sNotification {
-    id t = self.common;
+    id t = self.cc_common;
     [t postNotificationName:sNotification object:nil userInfo:nil];
     return t;
 }
 
 + (instancetype) cc_post_t : (NSNotification *) notification {
-    id t = self.common;
+    id t = self.cc_common;
     [t postNotification:notification];
     return t;
 }
 
 + (instancetype) cc_async_post_on_queue : (dispatch_queue_t) queue
                        notification : (NSNotificationName) sNofification {
-    id t = self.common;
+    id t = self.cc_common;
     dispatch_async(queue, ^{
         [t postNotificationName:sNofification object:nil userInfo:nil];
     });
@@ -44,7 +44,7 @@ static NSMutableDictionary * __dictionary = nil;
                                       sel : (SEL) selector
                              notification : (NSNotificationName) sNotificationName
                                       obj : (id) object {
-    id t = self.common;
+    id t = self.cc_common;
     void (^bAdding)(void) = ^ {
         [t addObserver:target selector:selector name:sNotificationName object:object];
     };

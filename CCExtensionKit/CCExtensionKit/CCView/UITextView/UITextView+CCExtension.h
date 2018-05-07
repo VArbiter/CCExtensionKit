@@ -12,8 +12,8 @@
 
 /// use these initializer might cause a problem that make UITextView can't responding to user's tap .
 // 使用这些初始化方式可能会导致 UITextField 无法响应用户事件
-+ (instancetype) common NS_UNAVAILABLE ;
-+ (instancetype) common : (CGRect) frame NS_UNAVAILABLE;
++ (instancetype) cc_common NS_UNAVAILABLE ;
++ (instancetype) cc_common : (CGRect) frame NS_UNAVAILABLE;
 
 /// default , selectable = false // 不可选择
 - (instancetype) cc_make_default ;

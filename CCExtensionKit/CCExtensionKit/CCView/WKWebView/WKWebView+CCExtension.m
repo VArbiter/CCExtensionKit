@@ -10,11 +10,11 @@
 
 @implementation WKWebView (CCExtension)
 
-+ (instancetype) common : (CGRect) frame {
-    return [self common:frame configuration:nil];
++ (instancetype) cc_common : (CGRect) frame {
+    return [self cc_common:frame configuration:nil];
 }
-+ (instancetype) common : (CGRect) frame
-          configuration : (WKWebViewConfiguration *) configuration {
++ (instancetype) cc_common : (CGRect) frame
+             configuration : (WKWebViewConfiguration *) configuration {
     WKWebView *v = nil;
     if (configuration) {
         v = [[WKWebView alloc] initWithFrame:frame

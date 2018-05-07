@@ -27,7 +27,7 @@ static CCAuthorize *_instance = nil;
 
 @implementation CCAuthorize
 
-+ (CCAuthorize *)shared {
++ (CCAuthorize *)cc_shared {
     if (_instance) return _instance;
     _instance = [[CCAuthorize alloc] init];
     return _instance;
@@ -58,7 +58,7 @@ static CCAuthorize *_instance = nil;
         if (g()) {
             if (success) success();
         } else if (fail) {
-            if (fail()) [CCAuthorize.shared ccGuideTo];
+            if (fail()) [CCAuthorize.cc_shared ccGuideTo];
         }
     }
     return self;

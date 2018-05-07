@@ -20,7 +20,7 @@ static BOOL __masks_image_view = false;
     __masks_image_view = masks;
 }
 
-+ (instancetype)common:(CGRect)frame {
++ (instancetype)cc_common:(CGRect)frame {
     UIImageView *v = [[self alloc] initWithFrame:frame];
     v.backgroundColor = [UIColor clearColor];
     v.contentMode = __mode_image_view;

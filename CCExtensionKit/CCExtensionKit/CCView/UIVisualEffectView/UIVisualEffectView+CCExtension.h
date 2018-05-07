@@ -10,7 +10,7 @@
 
 @interface UIVisualEffectView (CCExtension)
 
-+ (instancetype) common : (UIVisualEffect *) effect;
++ (instancetype) cc_common : (UIVisualEffect *) effect;
 
 @end
 

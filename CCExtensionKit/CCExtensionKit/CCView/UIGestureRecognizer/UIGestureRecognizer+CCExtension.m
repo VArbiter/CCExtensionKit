@@ -39,7 +39,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 
 @implementation UIGestureRecognizer (CCExtension)
 
-+ (instancetype) common {
++ (instancetype) cc_common {
     return [[self alloc] init];
 }
 
@@ -107,7 +107,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
                  action : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action {
     __weak typeof(self) pSelf = self;
     self.userInteractionEnabled = YES;
-    return [self cc_gesture:[UITapGestureRecognizer.common cc_tap:1 action:^(UITapGestureRecognizer *tapGR) {
+    return [self cc_gesture:[UITapGestureRecognizer.cc_common cc_tap:1 action:^(UITapGestureRecognizer *tapGR) {
         if (action) action(pSelf , tapGR);
     }]];
 }
@@ -118,7 +118,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
                    action : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action {
     __weak typeof(self) pSelf = self;
     self.userInteractionEnabled = YES;
-    return [self cc_gesture:[UILongPressGestureRecognizer.common cc_press:fSeconds action:^(UILongPressGestureRecognizer *pressGR) {
+    return [self cc_gesture:[UILongPressGestureRecognizer.cc_common cc_press:fSeconds action:^(UILongPressGestureRecognizer *pressGR) {
         if (action) action(pSelf , pressGR);
     }]];
 }

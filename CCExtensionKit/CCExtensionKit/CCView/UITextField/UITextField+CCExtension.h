@@ -11,7 +11,7 @@
 
 @interface UITextField (CCExtension)
 
-+ (instancetype) common : (CGRect) frame ;
++ (instancetype) cc_common : (CGRect) frame ;
 
 - (instancetype) cc_delegate : (id <UITextFieldDelegate>) delegete ;
 - (instancetype) cc_place_holder : (NSDictionary <NSString * , id> *) dAttributes

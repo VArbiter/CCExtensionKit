@@ -13,8 +13,8 @@
 
     // ARC
     #if __has_feature(objc_arc)
-        #define ccSingletonInterface(name)  +(instancetype)shared##name
-        #define ccSingletonImplementation(name)  +(instancetype)shared##name \
+        #define ccSingletonInterface(name)  +(instancetype)cc_shared##name
+        #define ccSingletonImplementation(name)  +(instancetype)cc_shared##name \
         { \
             id instance = [[self alloc] init]; \
             return instance; \

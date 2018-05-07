@@ -43,7 +43,7 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
 
 @implementation CCNetworkMoniter
 
-+ (instancetype) shared {
++ (instancetype) cc_shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _moniter = [[CCNetworkMoniter alloc] init];

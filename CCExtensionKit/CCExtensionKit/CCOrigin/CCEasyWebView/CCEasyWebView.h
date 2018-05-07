@@ -12,9 +12,9 @@
 
 - (instancetype) init NS_UNAVAILABLE ;
 
-+ (instancetype) common : (CGRect) frame ;
-+ (instancetype) common : (CGRect) frame
-          configuration : (WKWebViewConfiguration *) configuration ;
++ (instancetype) cc_common : (CGRect) frame ;
++ (instancetype) cc_common : (CGRect) frame
+             configuration : (WKWebViewConfiguration *) configuration ;
 
 @property (nonatomic , strong) WKWebView *webView ;
 

@@ -32,7 +32,7 @@ static CCIAPManager *__manager_IAP = nil;
 
 static NSString *cc_IAP_error_domain = @"ElwinFrederick.CCIAPManager";
 
-+ (instancetype) shared {
++ (instancetype) cc_shared {
     if (__manager_IAP) return __manager_IAP;
     __manager_IAP = [[CCIAPManager alloc] init];
     [SKPaymentQueue.defaultQueue addTransactionObserver:__manager_IAP];

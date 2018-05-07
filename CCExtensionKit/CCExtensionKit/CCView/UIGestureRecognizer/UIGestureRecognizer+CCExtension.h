@@ -10,7 +10,7 @@
 
 @interface UIGestureRecognizer (CCExtension)
 
-+ (instancetype) common ;
++ (instancetype) cc_common ;
 
 - (instancetype) cc_action : (void(^)( __kindof UIGestureRecognizer *gr)) action ;
 - (instancetype) cc_target : (id) target

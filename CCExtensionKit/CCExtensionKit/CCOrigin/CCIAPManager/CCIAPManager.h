@@ -48,7 +48,7 @@ FOUNDATION_EXPORT CCIAPParamsKey CC_IAP_PARAMS_TRANSACTION_ID_KEY ; // @"transac
 @interface CCIAPManager : NSObject
 
 /// absolute singleton // 绝对单例
-+ (instancetype) shared ;
++ (instancetype) cc_shared ;
 @property (nonatomic , assign) id <CCIAPManagerDelegate> delegate ;
 
 - (void) cc_purchase : (NSString *) s_product_id ; // use it with delegate // 这个和代理一起使用

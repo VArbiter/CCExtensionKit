@@ -28,7 +28,7 @@
 
 @implementation UITextField (CCExtension)
 
-+ (instancetype) common : (CGRect) frame {
++ (instancetype) cc_common : (CGRect) frame {
     UITextField *v = [[UITextField alloc] initWithFrame:frame];
     v.clearsOnBeginEditing = YES;
     v.clearButtonMode = UITextFieldViewModeWhileEditing ;

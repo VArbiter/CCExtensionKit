@@ -10,7 +10,7 @@
 
 @interface UIScrollView (CCExtension)
 
-+ (instancetype) common : (CGRect) frame ;
++ (instancetype) cc_common : (CGRect) frame ;
 
 - (instancetype) cc_content_size : (CGSize) size ;
 - (instancetype) cc_delegate : (id) delegate ;

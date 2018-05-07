@@ -10,7 +10,7 @@
 
 @interface UIControl (CCExtension)
 
-+ (instancetype) common : (CGRect) frame ;
++ (instancetype) cc_common : (CGRect) frame ;
 /// actions , default is touchUpInside // 动作 , 默认 touchUpInside
 - (instancetype) cc_actions : (void (^)( __kindof UIControl *sender)) action ;
 - (instancetype) cc_target : (id) target

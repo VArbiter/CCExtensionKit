@@ -74,7 +74,7 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
 
 @implementation UIControl (CCExtension)
 
-+ (instancetype) common : (CGRect) frame {
++ (instancetype) cc_common : (CGRect) frame {
     UIControl *c = [[self alloc] initWithFrame:frame];
     c.userInteractionEnabled = YES;
     return c;

@@ -14,11 +14,11 @@
 
 @implementation UITableView (CCExtension)
 
-+ (instancetype) common : (CGRect) frame {
-    return [self common:frame style:UITableViewStylePlain];
++ (instancetype) cc_common : (CGRect) frame {
+    return [self cc_common:frame style:UITableViewStylePlain];
 }
-+ (instancetype) common : (CGRect) frame
-                  style : (UITableViewStyle) style {
++ (instancetype) cc_common : (CGRect) frame
+                     style : (UITableViewStyle) style {
     UITableView *v  = [[UITableView alloc] initWithFrame:frame
                                                    style:style];
     v.showsVerticalScrollIndicator = false;

@@ -27,18 +27,18 @@ static CCBridgeWrapper *__router = nil;
 @implementation CCBridgeWrapper
 
 //+ (void)initialize {
-//    [CCBridgeWrapper shared];
+//    [CCBridgeWrapper cc_shared];
 //}
 
-+ (instancetype) shared {
++ (instancetype) cc_shared {
     if (__router) return __router;
     __router = [[CCBridgeWrapper alloc] init]; 
     return __router;
 }
-+ (instancetype) shared_with_scheme : (CCRouterRegistKey) sScheme {
++ (instancetype) cc_shared_with_scheme : (CCRouterRegistKey) sScheme {
     if (!__router) {
         _CC_ROUTER_FALL_BACK_URL_ = sScheme;
-        return self.shared;
+        return self.cc_shared;
     }
     return __router;
 }

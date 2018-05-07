@@ -10,7 +10,7 @@
 
 @implementation NSPredicate (CCExtension)
 
-+ (instancetype) common : (NSString *) sRegex {
++ (instancetype) cc_common : (NSString *) sRegex {
     if ([sRegex isKindOfClass:NSString.class] && sRegex && sRegex.length) {
         return [NSPredicate predicateWithFormat:sRegex];
     }
@@ -18,51 +18,51 @@
 }
 
 + (instancetype) cc_time {
-    return [NSPredicate common:@"^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)\\s+([01][0-9]|2[0-3]):[0-5][0-9]$"];
+    return [NSPredicate cc_common:@"^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)\\s+([01][0-9]|2[0-3]):[0-5][0-9]$"];
 }
 + (instancetype) cc_mac_address {
-    return [NSPredicate common:@"([A-Fa-f\\d]{2}:){5}[A-Fa-f\\d]{2}"];
+    return [NSPredicate cc_common:@"([A-Fa-f\\d]{2}:){5}[A-Fa-f\\d]{2}"];
 }
 + (instancetype) cc_web_URL {
-    return [NSPredicate common:@"^((http)|(https))+:[^\\s]+\\.[^\\s]*$"];
+    return [NSPredicate cc_common:@"^((http)|(https))+:[^\\s]+\\.[^\\s]*$"];
 }
 
 + (instancetype) cc_cell_phone {
-    return [NSPredicate common:@"^1((3//d|5[0-35-9]|8[025-9])//d|70[059])\\d{7}$"];
+    return [NSPredicate cc_common:@"^1((3//d|5[0-35-9]|8[025-9])//d|70[059])\\d{7}$"];
 }
 + (instancetype) cc_china_mobile {
-    return [NSPredicate common:@"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d|705)\\d{7}$"];
+    return [NSPredicate cc_common:@"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d|705)\\d{7}$"];
 }
 + (instancetype) cc_china_unicom {
-    return [NSPredicate common:@"^1((3[0-2]|5[256]|8[56])\\d|709)\\d{7}$"];
+    return [NSPredicate cc_common:@"^1((3[0-2]|5[256]|8[56])\\d|709)\\d{7}$"];
 }
 + (instancetype) cc_china_telecom {
-    return [NSPredicate common:@"^1((33|53|8[09])\\d|349|700)\\d{7}$"];
+    return [NSPredicate cc_common:@"^1((33|53|8[09])\\d|349|700)\\d{7}$"];
 }
 
 + (instancetype) cc_email {
-    return [NSPredicate common:@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"];
+    return [NSPredicate cc_common:@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"];
 }
 + (instancetype) cc_telephone {
-    return [NSPredicate common:@"^0(10|2[0-5789]|\\d{3})\\d{7,8}$"];
+    return [NSPredicate cc_common:@"^0(10|2[0-5789]|\\d{3})\\d{7,8}$"];
 }
 
 + (instancetype) cc_chinese_identity_number {
-    return [NSPredicate common:@"^(\\d{14}|\\d{17})(\\d|[xX])$"];
+    return [NSPredicate cc_common:@"^(\\d{14}|\\d{17})(\\d|[xX])$"];
 }
 + (instancetype) cc_chinese_car_number {
     // \u4e00-\u9fa5 indicates that's a encoded unicode , \u9fa5-\u9fff reserve for future addition .
     // \u4e00-\u9fa5 判断是否是 unicode 编码 , \u9fa5-\u9fff 为未来添加所保留
-    return [NSPredicate common:@"^[\u4e00-\u9fff]{1}[a-zA-Z]{1}[-][a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fff]$"];
+    return [NSPredicate cc_common:@"^[\u4e00-\u9fff]{1}[a-zA-Z]{1}[-][a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fff]$"];
 }
 + (instancetype) cc_chinese_character {
-    return [NSPredicate common:@"^[\u4e00-\u9fa5]+$"];
+    return [NSPredicate cc_common:@"^[\u4e00-\u9fa5]+$"];
 }
 + (instancetype) cc_chinese_postal_code {
-    return [NSPredicate common:@"^[0-8]\\d{5}(?!\\d)$"];
+    return [NSPredicate cc_common:@"^[0-8]\\d{5}(?!\\d)$"];
 }
 + (instancetype) cc_chinese_tax_number {
-    return [NSPredicate common:@"[0-9]\\d{13}([0-9]|X)$"];
+    return [NSPredicate cc_common:@"[0-9]\\d{13}([0-9]|X)$"];
 }
 
 - (id) cc_evalute : (id) object {

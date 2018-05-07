@@ -44,7 +44,7 @@ CGSize CCScaleSize(CGSize size);
 
 @interface UIView (CCExtension)
 
-+ (instancetype) common : (CGRect) frame ;
++ (instancetype) cc_common : (CGRect) frame ;
 
 /// for some designer use basic UI that is not for iPhone 6/6s/7/8 // 针对于一些设计人员基于 iPhone 6/6s/7/8 所设计的尺寸
 /// set H && W only once in somewhere for "+ (void) load" // 设置基准 宽 && 高 , 在 "+ (void) load "设置里调用一次即可

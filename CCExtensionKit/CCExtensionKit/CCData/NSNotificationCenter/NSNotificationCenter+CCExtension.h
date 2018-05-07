@@ -11,7 +11,7 @@
 @interface NSNotificationCenter (CCExtension)
 
 /// euqals NSNotificationCenter.defaultCenter // 和 NSNotificationCenter.defaultCenter 等价
-+ (instancetype) common ;
++ (instancetype) cc_common ;
 /// an easy way to post a notification object : nil , userInfo : nil // 一个简便的发送通知的方式 object : nil , userInfo : nil
 + (instancetype) cc_post : (NSNotificationName) sNotification ;
 + (instancetype) cc_post_t : (NSNotification *) notification ;

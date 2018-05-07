@@ -14,7 +14,7 @@
 
 @implementation UIImagePickerController (CCExtension)
 
-+ (instancetype) common {
++ (instancetype) cc_common {
     UIImagePickerController *c = UIImagePickerController.alloc.init;
     CC_WEAK_INSTANCE(c);
     c.delegate = weak_c;

@@ -11,7 +11,7 @@
 
 @implementation UILabel (CCExtension)
 
-+ (instancetype) common : (CGRect) frame {
++ (instancetype) cc_common : (CGRect) frame {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentLeft;

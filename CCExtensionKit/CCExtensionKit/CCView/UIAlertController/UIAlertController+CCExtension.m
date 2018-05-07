@@ -11,10 +11,10 @@
 
 @implementation UIAlertController (CCExtension)
 
-+ (instancetype) common {
-    return [self common:UIAlertControllerStyleAlert];
++ (instancetype) cc_common {
+    return [self cc_common:UIAlertControllerStyleAlert];
 }
-+ (instancetype) common : (UIAlertControllerStyle) style {
++ (instancetype) cc_common : (UIAlertControllerStyle) style {
     return [UIAlertController alertControllerWithTitle:nil
                                                message:nil
                                         preferredStyle:style];

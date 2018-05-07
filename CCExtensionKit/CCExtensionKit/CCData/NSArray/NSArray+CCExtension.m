@@ -57,6 +57,24 @@
 
 @implementation NSMutableArray (CCExtension)
 
+- (instancetype) cc_add : (id) value {
+    if (value) [self addObject:value];
+    return self;
+}
+- (instancetype) cc_remove_t : (id) value {
+    if (value && [self containsObject:value]) [self removeObject:value];
+    return self;
+}
+- (instancetype) cc_remove_all_t {
+    if (self.count > 0) [self removeAllObjects];
+    return self;
+}
+- (instancetype) cc_remove_at : (NSUInteger) i_index {
+    id t = [self cc_value_at:i_index];
+    if (t) [self removeObjectAtIndex:i_index];
+    return self;
+}
+
 - (instancetype) cc_type : (NSString *) cls {
     objc_setAssociatedObject(self, "_CC_ARRAY_CLAZZ_", cls, OBJC_ASSOCIATION_ASSIGN);
     return self;

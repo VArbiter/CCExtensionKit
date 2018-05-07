@@ -14,7 +14,7 @@
 + (void) cc_set_image_view_content_mode : (UIViewContentMode) mode ;
 + (void) cc_set_image_view_masks_to_bounds : (BOOL) masks ;
 
-+ (instancetype) common : (CGRect) frame ;
++ (instancetype) cc_common : (CGRect) frame ;
 - (instancetype) cc_image : (UIImage *) image ;
 
 @end

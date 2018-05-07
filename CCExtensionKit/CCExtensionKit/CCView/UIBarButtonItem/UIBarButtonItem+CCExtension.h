@@ -10,7 +10,7 @@
 
 @interface UIBarButtonItem (CCExtension)
 
-+ (instancetype) common ;
++ (instancetype) cc_common ;
 - (instancetype) cc_title : (NSString *) sTitle ;
 - (instancetype) cc_image : (UIImage *) image ;
 - (instancetype) cc_action : (void (^)( __kindof UIBarButtonItem *sender)) action ;

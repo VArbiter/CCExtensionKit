@@ -15,8 +15,8 @@
 
 @implementation UICollectionView (CCExtension)
 
-+ (instancetype) common : (CGRect) frame
-                 layout : (UICollectionViewFlowLayout *) layout {
++ (instancetype) cc_common : (CGRect) frame
+                    layout : (UICollectionViewFlowLayout *) layout {
     UICollectionView *c = [[UICollectionView alloc] initWithFrame:frame
                                              collectionViewLayout:layout];
     c.backgroundColor = UIColor.clearColor;

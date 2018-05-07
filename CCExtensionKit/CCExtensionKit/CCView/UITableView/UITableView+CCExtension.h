@@ -11,9 +11,9 @@
 @interface UITableView (CCExtension)
 
 /// default plain. // 默认为 plain
-+ (instancetype) common : (CGRect) frame ;
-+ (instancetype) common : (CGRect) frame
-                  style : (UITableViewStyle) style ;
++ (instancetype) cc_common : (CGRect) frame ;
++ (instancetype) cc_common : (CGRect) frame
+                     style : (UITableViewStyle) style ;
 
 - (instancetype) cc_delegate : (id) delegate ;
 - (instancetype) cc_datasource : (id) dataSource ;
