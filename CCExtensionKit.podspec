@@ -76,6 +76,12 @@ Pod::Spec.new do |s|
         origin.frameworks = "StoreKit"
       end
 
+      s.subspec 'CCMedia' do |media|
+        media.source_files = 'CCExtensionKit/CCExtensionKit/CCMedia/**/*'
+        media.dependency 'CCExtensionKit/CCCore'
+        media.frameworks = 'AVFoundation'
+      end
+
       s.subspec 'CCCustom' do |custom|
         custom.source_files = 'CCExtensionKit/CCExtensionKit/CCCustom/**/*'
         custom.dependency 'CCExtensionKit/CCCore'
