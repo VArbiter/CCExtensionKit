@@ -79,6 +79,13 @@
 @property (nonatomic , readonly) NSString *toUrlDecoded ; // decode chinese character using origin // 针对中文进行 url 解码
 @property (nonatomic , readonly) CGRect toRect ; // only worked in which NSStringFromCGRect(CGRect rect) converted . 只针对 NSStringFromCGRect(CGRect rect) 转换的有效
 
+/// only for chinese charactors . // 只针对汉字有效
+/// default uppercase . // 默认大写 .
+@property (nonatomic , readonly) NSString * toPinYin ; // without marks . // 不带音标
+@property (nonatomic , readonly) NSString * toPinYin_marks ; // with marks . // 带音标
+- (instancetype) cc_convert_to_PinYin : (BOOL) is_uppercase
+                                marks : (BOOL) is_need_marks ;
+
 @property (nonatomic , readonly) const char * toUTF8 NS_RETURNS_INNER_POINTER ; // might null if can't be convert // 如果不能被转换 , 返回 NULL
 NSString * CC_STRING_FROM_UTF8(const char * cUTF8) ; // if params doesn't exist , return @"". // 如果参数不存在 , 返回 @"" 
 

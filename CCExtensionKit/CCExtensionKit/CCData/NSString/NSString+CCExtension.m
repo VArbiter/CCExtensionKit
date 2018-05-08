@@ -242,6 +242,25 @@
     return CGRectFromString(self);
 }
 
+- (NSString *)toPinYin {
+    return [self cc_convert_to_PinYin:YES
+                                marks:false];
+}
+- (NSString *)toPinYin_marks {
+    return [self cc_convert_to_PinYin:YES
+                                marks:YES];
+}
+- (instancetype) cc_convert_to_PinYin : (BOOL) is_uppercase
+                                marks : (BOOL) is_need_marks {
+    NSMutableString *s_mutable = [self mutableCopy];
+    CFStringTransform((__bridge CFMutableStringRef)s_mutable, NULL, kCFStringTransformMandarinLatin, NO);
+    if (!is_need_marks) {
+        // remove marks . // 去除音标 .
+        CFStringTransform((__bridge CFMutableStringRef)s_mutable, NULL, kCFStringTransformStripCombiningMarks , NO);
+    }
+    return is_uppercase ? [s_mutable uppercaseString] : [s_mutable lowercaseString];
+}
+
 - (const char *)toUTF8 {
     return self.UTF8String;
 }
