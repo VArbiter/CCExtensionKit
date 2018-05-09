@@ -74,6 +74,8 @@
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
 		70FEF1AE20A02BDA008A47D4 /* UIResponder+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */; };
+		70FEF1DD20A29B56008A47D4 /* UIApplication+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1DC20A29B56008A47D4 /* UIApplication+CCExtension.m */; };
+		70FEF1E120A2AE2D008A47D4 /* CCUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1E020A2AE2D008A47D4 /* CCUpdateManager.m */; };
 		70FF2FBA1F6A1BD5001B6407 /* UITextView+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FB91F6A1BD5001B6407 /* UITextView+CCExtension.m */; };
 		70FF2FDE1F6A46C1001B6407 /* MBProgressHUD+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FDA1F6A46C1001B6407 /* MBProgressHUD+CCExtension.m */; };
 		70FF2FDF1F6A46C1001B6407 /* CCNetworkMoniter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FDD1F6A46C1001B6407 /* CCNetworkMoniter.m */; };
@@ -227,6 +229,10 @@
 		70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CCExtension.m"; sourceTree = "<group>"; };
 		70FEF1AC20A02BDA008A47D4 /* UIResponder+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+CCExtension.h"; sourceTree = "<group>"; };
 		70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+CCExtension.m"; sourceTree = "<group>"; };
+		70FEF1DB20A29B56008A47D4 /* UIApplication+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+CCExtension.h"; sourceTree = "<group>"; };
+		70FEF1DC20A29B56008A47D4 /* UIApplication+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+CCExtension.m"; sourceTree = "<group>"; };
+		70FEF1DF20A2AE2D008A47D4 /* CCUpdateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCUpdateManager.h; sourceTree = "<group>"; };
+		70FEF1E020A2AE2D008A47D4 /* CCUpdateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCUpdateManager.m; sourceTree = "<group>"; };
 		70FF2FB81F6A1BD5001B6407 /* UITextView+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+CCExtension.h"; sourceTree = "<group>"; };
 		70FF2FB91F6A1BD5001B6407 /* UITextView+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CCExtension.m"; sourceTree = "<group>"; };
 		70FF2FBB1F6A1D4F001B6407 /* CCAdvanceMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAdvanceMacro.h; sourceTree = "<group>"; };
@@ -300,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				3785D0F11FECC69300245F26 /* CCOriginCustom.h */,
+				70FEF1DE20A2AE1B008A47D4 /* CCUpdateManager */,
 				70801849209C833300349FA8 /* CCIAPManager */,
 				3785D0E11FECC67200245F26 /* UIMenuController */,
 				3785D0E41FECC67200245F26 /* CCDropAlertView */,
@@ -601,6 +608,7 @@
 			isa = PBXGroup;
 			children = (
 				7034D6C51F5FD4C20005D1E1 /* CCViewExtension.h */,
+				70FEF1DA20A29B36008A47D4 /* UIApplication */,
 				70FEF1A820A02AD1008A47D4 /* UIResponder */,
 				70B48FC5208F3389005D0054 /* UISwitch */,
 				3785D0F21FECDA4B00245F26 /* WKWebView */,
@@ -973,6 +981,24 @@
 			path = UIResponder;
 			sourceTree = "<group>";
 		};
+		70FEF1DA20A29B36008A47D4 /* UIApplication */ = {
+			isa = PBXGroup;
+			children = (
+				70FEF1DB20A29B56008A47D4 /* UIApplication+CCExtension.h */,
+				70FEF1DC20A29B56008A47D4 /* UIApplication+CCExtension.m */,
+			);
+			path = UIApplication;
+			sourceTree = "<group>";
+		};
+		70FEF1DE20A2AE1B008A47D4 /* CCUpdateManager */ = {
+			isa = PBXGroup;
+			children = (
+				70FEF1DF20A2AE2D008A47D4 /* CCUpdateManager.h */,
+				70FEF1E020A2AE2D008A47D4 /* CCUpdateManager.m */,
+			);
+			path = CCUpdateManager;
+			sourceTree = "<group>";
+		};
 		70FF2FB71F6A1BBB001B6407 /* UITextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1244,6 +1270,7 @@
 				70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */,
 				7034D6941F5FBF3C0005D1E1 /* NSFileManager+CCExtension.m in Sources */,
 				37C69E201ED6684D00531ED3 /* ViewController.m in Sources */,
+				70FEF1DD20A29B56008A47D4 /* UIApplication+CCExtension.m in Sources */,
 				70B48FC8208F33A9005D0054 /* UISwitch+CCExtension.m in Sources */,
 				7034D6951F5FBF3C0005D1E1 /* NSNumber+CCExtension.m in Sources */,
 				37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */,
@@ -1289,6 +1316,7 @@
 				70FF30541F6A6B7A001B6407 /* UITableView+CCExtension_Refresh.m in Sources */,
 				7034D6AA1F5FBF3C0005D1E1 /* UIImageView+CCExtension.m in Sources */,
 				7034D6BB1F5FCE140005D1E1 /* CCCommon.m in Sources */,
+				70FEF1E120A2AE2D008A47D4 /* CCUpdateManager.m in Sources */,
 				3785D0F51FECDA4B00245F26 /* WKWebView+CCExtension.m in Sources */,
 				70A3CC761F6BCCA900CCD480 /* CCProxyDealer.m in Sources */,
 				70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */,
