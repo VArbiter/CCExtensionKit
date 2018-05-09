@@ -35,6 +35,9 @@
 @property (nonatomic , assign) CGFloat offset_x ;
 @property (nonatomic , assign) CGFloat offset_y ;
 
+/// monitor that whether if scrollview reach the end . // 监听是否滚动到底部
+@property (nonatomic , readonly) BOOL is_reach_end ;
+
 - (UIImage *) image_capture ;
 
 @end

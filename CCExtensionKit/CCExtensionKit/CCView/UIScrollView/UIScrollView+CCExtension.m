@@ -94,6 +94,13 @@
     return self.contentOffset.y;
 }
 
+- (BOOL)is_reach_end {
+    CGFloat f_h = self.frame.size.height;
+    CGFloat f_y_offset = self.contentOffset.y;
+    CGFloat f_distance_from_bottom = self.contentSize.height - f_y_offset;
+    return f_distance_from_bottom < f_h ;
+}
+
 - (UIImage *) image_capture {
     CGFloat f_scale = [UIScreen mainScreen].scale;
     
