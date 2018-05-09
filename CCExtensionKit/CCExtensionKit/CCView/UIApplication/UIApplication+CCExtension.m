@@ -63,6 +63,38 @@
 
 @end
 
+@implementation UIApplication (CCExtension_Schemes)
+
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_QQ = @"mqq://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_WECHAT = @"weixin://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_SINA_WEIBO = @"sinaweibo://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_ALIPAY = @"alipay://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_FIND_MY_IPHONE = @"fmip1://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_JINGDONG = @"openapp.jdmoble://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_DAZHONGDIANPING = @"dianping://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_DAZHONGDIANPING_SEARCH = @"dianping://search";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_MEITUAN = @"imeituan://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_WOCHACHA = @"wcc://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_1_HAODIAN = @"wccbyihaodian://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_ZHIHU = @"zhihu://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_YOUKU = @"youku://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_YOUDAO_DICT = @"yddictproapp://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_NET_EASE_OPEN = @"ntesopen://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_TAOBAO = @"taobao://";
+CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_RENREN = @"renren://";
+
++ (BOOL) cc_can_open_QQ {
+    return [self cc_can_open:CC_THIRD_PARTY_SCHEME_QQ];
+}
++ (BOOL) cc_can_open_WeChat {
+    return [self cc_can_open:CC_THIRD_PARTY_SCHEME_WECHAT];
+}
++ (BOOL) cc_can_open_Sina_WeiBo {
+    return [self cc_can_open:CC_THIRD_PARTY_SCHEME_SINA_WEIBO];
+}
+
+@end
+
 #pragma mark - -----
 
 @implementation NSURL (CCExtension_Open_Scheme)
