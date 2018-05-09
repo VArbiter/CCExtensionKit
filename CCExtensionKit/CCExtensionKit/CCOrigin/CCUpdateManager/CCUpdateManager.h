@@ -21,6 +21,7 @@ FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_
 FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_NAME ; // @"trackName"
 FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL ; // @"trackViewUrl"
 
+/// execute in async thread . // 在异步线程内执行
 - (void) cc_check_update_with_link : (NSString *) s_link
                     need_to_update : (void (^)(BOOL is_need ,
                                                NSString * s_version_current ,
