@@ -23,6 +23,7 @@ Pod::Spec.new do |s|
       coreT.dependency 'CCExtensionKit/CCData'
       coreT.dependency 'CCExtensionKit/CCView'
       coreT.dependency 'CCExtensionKit/CCRuntime'
+      coreT.dependency 'CCExtensionKit/CCMedia'
     end
 
     s.subspec 'CCFull' do |fullT|
@@ -79,7 +80,8 @@ Pod::Spec.new do |s|
       s.subspec 'CCMedia' do |media|
         media.source_files = 'CCExtensionKit/CCExtensionKit/CCMedia/**/*'
         media.dependency 'CCExtensionKit/CCCore'
-        media.frameworks = 'AVFoundation'
+        media.frameworks = 'AVFoundation' , "AssetsLibrary"
+        origin.weak_frameworks = "Photos"
       end
 
       s.subspec 'CCCustom' do |custom|
@@ -90,7 +92,8 @@ Pod::Spec.new do |s|
         custom.dependency 'SDWebImage', '~> 4.2.0'
         custom.dependency 'MJRefresh', '~> 3.1.12'
         custom.dependency 'MBProgressHUD', '~> 1.0.0'
-        custom.frameworks = "WebKit" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
+        custom.frameworks =  "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
+        origin.weak_frameworks = "WebKit"
       end
 
     s.requires_arc = true

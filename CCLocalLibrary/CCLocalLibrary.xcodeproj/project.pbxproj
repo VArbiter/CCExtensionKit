@@ -20,6 +20,10 @@
 		3785D0F51FECDA4B00245F26 /* WKWebView+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3785D0F31FECDA4B00245F26 /* WKWebView+CCExtension.m */; };
 		37B52EDE1FC7D383009C17FF /* NSNotificationCenter+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B52EDD1FC7D382009C17FF /* NSNotificationCenter+CCExtension.m */; };
 		37C509CB20B15898004F0911 /* CALayer+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509CA20B15898004F0911 /* CALayer+CCExtension.m */; };
+		37C509F320B19651004F0911 /* CCPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509F120B19651004F0911 /* CCPhotoManager.m */; };
+		37C509F820B196B0004F0911 /* PHAsset+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509F720B196B0004F0911 /* PHAsset+CCExtension.m */; };
+		37C509FC20B19790004F0911 /* PHAssetCollection+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509FB20B19790004F0911 /* PHAssetCollection+CCExtension.m */; };
+		37C50A0020B199BA004F0911 /* PHImageRequestOptions+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509FF20B199BA004F0911 /* PHImageRequestOptions+CCExtension.m */; };
 		37C69E1A1ED6684D00531ED3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E191ED6684D00531ED3 /* main.m */; };
 		37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E1C1ED6684D00531ED3 /* AppDelegate.m */; };
 		37C69E201ED6684D00531ED3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E1F1ED6684D00531ED3 /* ViewController.m */; };
@@ -114,6 +118,15 @@
 		37B52EDD1FC7D382009C17FF /* NSNotificationCenter+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+CCExtension.m"; sourceTree = "<group>"; };
 		37C509C920B15898004F0911 /* CALayer+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+CCExtension.h"; sourceTree = "<group>"; };
 		37C509CA20B15898004F0911 /* CALayer+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+CCExtension.m"; sourceTree = "<group>"; };
+		37C509F120B19651004F0911 /* CCPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPhotoManager.m; sourceTree = "<group>"; };
+		37C509F220B19651004F0911 /* CCPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPhotoManager.h; sourceTree = "<group>"; };
+		37C509F420B19661004F0911 /* CCMediaExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCMediaExtension.h; sourceTree = "<group>"; };
+		37C509F620B196B0004F0911 /* PHAsset+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHAsset+CCExtension.h"; sourceTree = "<group>"; };
+		37C509F720B196B0004F0911 /* PHAsset+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+CCExtension.m"; sourceTree = "<group>"; };
+		37C509FA20B19790004F0911 /* PHAssetCollection+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHAssetCollection+CCExtension.h"; sourceTree = "<group>"; };
+		37C509FB20B19790004F0911 /* PHAssetCollection+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHAssetCollection+CCExtension.m"; sourceTree = "<group>"; };
+		37C509FE20B199BA004F0911 /* PHImageRequestOptions+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHImageRequestOptions+CCExtension.h"; sourceTree = "<group>"; };
+		37C509FF20B199BA004F0911 /* PHImageRequestOptions+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHImageRequestOptions+CCExtension.m"; sourceTree = "<group>"; };
 		37C69E151ED6684D00531ED3 /* CCLocalLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCLocalLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C69E191ED6684D00531ED3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37C69E1B1ED6684D00531ED3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -382,6 +395,54 @@
 			path = CALayer;
 			sourceTree = "<group>";
 		};
+		37C509EF20B19651004F0911 /* CCMedia */ = {
+			isa = PBXGroup;
+			children = (
+				37C509F420B19661004F0911 /* CCMediaExtension.h */,
+				37C509FD20B199AB004F0911 /* PHImageRequestOptions */,
+				37C509F920B1977C004F0911 /* PHAssetCollection */,
+				37C509F520B19699004F0911 /* PHAsset */,
+				37C509F020B19651004F0911 /* CCPhotoManager */,
+			);
+			path = CCMedia;
+			sourceTree = "<group>";
+		};
+		37C509F020B19651004F0911 /* CCPhotoManager */ = {
+			isa = PBXGroup;
+			children = (
+				37C509F120B19651004F0911 /* CCPhotoManager.m */,
+				37C509F220B19651004F0911 /* CCPhotoManager.h */,
+			);
+			path = CCPhotoManager;
+			sourceTree = "<group>";
+		};
+		37C509F520B19699004F0911 /* PHAsset */ = {
+			isa = PBXGroup;
+			children = (
+				37C509F620B196B0004F0911 /* PHAsset+CCExtension.h */,
+				37C509F720B196B0004F0911 /* PHAsset+CCExtension.m */,
+			);
+			path = PHAsset;
+			sourceTree = "<group>";
+		};
+		37C509F920B1977C004F0911 /* PHAssetCollection */ = {
+			isa = PBXGroup;
+			children = (
+				37C509FA20B19790004F0911 /* PHAssetCollection+CCExtension.h */,
+				37C509FB20B19790004F0911 /* PHAssetCollection+CCExtension.m */,
+			);
+			path = PHAssetCollection;
+			sourceTree = "<group>";
+		};
+		37C509FD20B199AB004F0911 /* PHImageRequestOptions */ = {
+			isa = PBXGroup;
+			children = (
+				37C509FE20B199BA004F0911 /* PHImageRequestOptions+CCExtension.h */,
+				37C509FF20B199BA004F0911 /* PHImageRequestOptions+CCExtension.m */,
+			);
+			path = PHImageRequestOptions;
+			sourceTree = "<group>";
+		};
 		37C69E0C1ED6684D00531ED3 = {
 			isa = PBXGroup;
 			children = (
@@ -450,6 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				70B48FC4208F3367005D0054 /* CCExtensionKit.h */,
+				37C509EF20B19651004F0911 /* CCMedia */,
 				3785D0E01FECC67200245F26 /* CCOrigin */,
 				7034D63E1F5FBF3C0005D1E1 /* CCProtocol */,
 				7034D61B1F5FBF3C0005D1E1 /* CCData */,
@@ -1300,6 +1362,7 @@
 				7034D6901F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m in Sources */,
 				70B48FD5208F3F1F005D0054 /* FCModel.m in Sources */,
 				3785D0EE1FECC67200245F26 /* CCDropAlertView.m in Sources */,
+				37C509F820B196B0004F0911 /* PHAsset+CCExtension.m in Sources */,
 				70FEF1AE20A02BDA008A47D4 /* UIResponder+CCExtension.m in Sources */,
 				70FF305E1F6A7874001B6407 /* CCMediator.m in Sources */,
 				7034D6A31F5FBF3C0005D1E1 /* UIButton+CCExtension.m in Sources */,
@@ -1313,10 +1376,12 @@
 				70FF30511F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m in Sources */,
 				7034D6961F5FBF3C0005D1E1 /* NSObject+CCExtension.m in Sources */,
 				7034D6CD1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m in Sources */,
+				37C509F320B19651004F0911 /* CCPhotoManager.m in Sources */,
 				70FF2FBA1F6A1BD5001B6407 /* UITextView+CCExtension.m in Sources */,
 				7034D6981F5FBF3C0005D1E1 /* NSString+CCExtension.m in Sources */,
 				7034D6A11F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m in Sources */,
 				7034D69A1F5FBF3C0005D1E1 /* NSObject+CCProtocol.m in Sources */,
+				37C50A0020B199BA004F0911 /* PHImageRequestOptions+CCExtension.m in Sources */,
 				70FF2FDF1F6A46C1001B6407 /* CCNetworkMoniter.m in Sources */,
 				7034D6CA1F5FD5280005D1E1 /* NSURL+CCExtension.m in Sources */,
 				7034D6921F5FBF3C0005D1E1 /* NSDate+CCExtension.m in Sources */,
@@ -1331,6 +1396,7 @@
 				7034D6AA1F5FBF3C0005D1E1 /* UIImageView+CCExtension.m in Sources */,
 				7034D6BB1F5FCE140005D1E1 /* CCCommon.m in Sources */,
 				70FEF1E120A2AE2D008A47D4 /* CCUpdateManager.m in Sources */,
+				37C509FC20B19790004F0911 /* PHAssetCollection+CCExtension.m in Sources */,
 				3785D0F51FECDA4B00245F26 /* WKWebView+CCExtension.m in Sources */,
 				70A3CC761F6BCCA900CCD480 /* CCProxyDealer.m in Sources */,
 				70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */,
