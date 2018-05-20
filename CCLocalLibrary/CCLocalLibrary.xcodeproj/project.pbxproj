@@ -19,6 +19,7 @@
 		3785D0F01FECC67200245F26 /* CCEasyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3785D0EB1FECC67200245F26 /* CCEasyWebView.m */; };
 		3785D0F51FECDA4B00245F26 /* WKWebView+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3785D0F31FECDA4B00245F26 /* WKWebView+CCExtension.m */; };
 		37B52EDE1FC7D383009C17FF /* NSNotificationCenter+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B52EDD1FC7D382009C17FF /* NSNotificationCenter+CCExtension.m */; };
+		37C509CB20B15898004F0911 /* CALayer+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509CA20B15898004F0911 /* CALayer+CCExtension.m */; };
 		37C69E1A1ED6684D00531ED3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E191ED6684D00531ED3 /* main.m */; };
 		37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E1C1ED6684D00531ED3 /* AppDelegate.m */; };
 		37C69E201ED6684D00531ED3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C69E1F1ED6684D00531ED3 /* ViewController.m */; };
@@ -111,6 +112,8 @@
 		3785D0F41FECDA4B00245F26 /* WKWebView+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+CCExtension.h"; sourceTree = "<group>"; };
 		37B52EDC1FC7D382009C17FF /* NSNotificationCenter+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+CCExtension.h"; sourceTree = "<group>"; };
 		37B52EDD1FC7D382009C17FF /* NSNotificationCenter+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+CCExtension.m"; sourceTree = "<group>"; };
+		37C509C920B15898004F0911 /* CALayer+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+CCExtension.h"; sourceTree = "<group>"; };
+		37C509CA20B15898004F0911 /* CALayer+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+CCExtension.m"; sourceTree = "<group>"; };
 		37C69E151ED6684D00531ED3 /* CCLocalLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCLocalLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C69E191ED6684D00531ED3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37C69E1B1ED6684D00531ED3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -370,6 +373,15 @@
 			path = NSNotificationCenter;
 			sourceTree = "<group>";
 		};
+		37C509C820B1588A004F0911 /* CALayer */ = {
+			isa = PBXGroup;
+			children = (
+				37C509C920B15898004F0911 /* CALayer+CCExtension.h */,
+				37C509CA20B15898004F0911 /* CALayer+CCExtension.m */,
+			);
+			path = CALayer;
+			sourceTree = "<group>";
+		};
 		37C69E0C1ED6684D00531ED3 = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				7034D6C51F5FD4C20005D1E1 /* CCViewExtension.h */,
+				37C509C820B1588A004F0911 /* CALayer */,
 				70FEF1DA20A29B36008A47D4 /* UIApplication */,
 				70FEF1A820A02AD1008A47D4 /* UIResponder */,
 				70B48FC5208F3389005D0054 /* UISwitch */,
@@ -1307,6 +1320,7 @@
 				70FF2FDF1F6A46C1001B6407 /* CCNetworkMoniter.m in Sources */,
 				7034D6CA1F5FD5280005D1E1 /* NSURL+CCExtension.m in Sources */,
 				7034D6921F5FBF3C0005D1E1 /* NSDate+CCExtension.m in Sources */,
+				37C509CB20B15898004F0911 /* CALayer+CCExtension.m in Sources */,
 				37C69E1A1ED6684D00531ED3 /* main.m in Sources */,
 				7034D68F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m in Sources */,
 				70B48FD4208F3F1F005D0054 /* FCModelNotificationCenter.m in Sources */,
