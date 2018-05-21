@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 
+/// storage standard unit size . // 标准储存单元大小
+#ifndef CC_STANDARD_LENGTH
+    #define CC_STANDARD_LENGTH 1024.f
+#endif
+
 /// if is simulator . // 判定是否是模拟器
 #ifndef _CC_IS_SIMULATOR_
     #if TARGET_IPHONE_SIMULATOR
@@ -148,5 +153,11 @@ void CC_DETECT_SIMULATOR(void (^y)(void) , void (^n)(void));
 /// make sure that if a chain has started , // 保证链开始不是空的
 /// non 'nil' return for next chain actions . (if does , system will crash immediately (with block)) . // 链中不允许 空存在 , 如果存在 , 会崩溃(在 block 中)
 void CC_SAFED_CHAIN(id object , void (^safe)(id object));
+
+/// @return MB / KB / B . // 返回 MB , KB , B
+NSString * CC_SIZE_FOR_LENGTH(NSUInteger i_length);
+
+/// if object == nil , make insure_object replace it .// 如果 object 为 nil , 用 insure_object 替换它.
+id CC_Default_Object(id object , id insure_object);
 
 @end

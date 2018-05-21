@@ -33,7 +33,10 @@ CGFloat CC_TABBAR_TOP(void) {
 }
 
 BOOL CC_IS_IPHONE_X(void) {
-    return [[CCDevice cc_device_type] isEqualToString:@"iPhone X"];
+//    return [[CCDevice cc_device_type] isEqualToString:@"iPhone X"];
+    CGFloat f_s_w = UIScreen.mainScreen.bounds.size.width ,
+    f_s_h = UIScreen.mainScreen.bounds.size.height ;
+    return ((f_s_w == 375.f) && (f_s_h == 812.f));
 }
 
 CGFloat CC_SAFE_AREA_TOP_HEIGHT(void) {

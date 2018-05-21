@@ -93,6 +93,13 @@ CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_RENREN = @"renren://";
     return [self cc_can_open:CC_THIRD_PARTY_SCHEME_SINA_WEIBO];
 }
 
++ (void) cc_make_call : (NSString *) s_call_num {
+    NSString *s_tel = [NSString stringWithFormat:@"tel:%@",s_call_num];
+    [UIApplication cc_open_url:s_tel
+                       options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @(false)}
+                    completion:nil];
+}
+
 @end
 
 #pragma mark - -----

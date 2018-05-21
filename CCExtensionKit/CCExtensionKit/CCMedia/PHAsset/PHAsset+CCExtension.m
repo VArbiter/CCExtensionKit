@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
-
+/*
 @interface PHAsset (CCExtension_Cache)
 
 @property (nonatomic , strong , readwrite) NSMutableDictionary *cc_phasset_dict_normal_cache ;
@@ -77,11 +77,32 @@
 }
 
 @end
+ */
 
 #pragma mark - -----
 
 @implementation PHAsset (CCExtension)
 
+CCPHAssetType CCPHAssetType_Unknow = @"CCPHAssetType_Unknow" ;
+CCPHAssetType CCPHAssetType_Video = @"CCPHAssetType_Video" ;
+CCPHAssetType CCPHAssetType_Photo = @"CCPHAssetType_Photo" ;
+CCPHAssetType CCPHAssetType_Audio = @"CCPHAssetType_Audio" ;
+CCPHAssetType CCPHAssetType_Live_Photo = @"CCPHAssetType_Live_Photo" ;
+
+- (CCPHAssetType)type_asset {
+    if (self.mediaType == PHAssetMediaTypeVideo) return CCPHAssetType_Video;
+    else if (self.mediaType == PHAssetMediaTypeImage) {
+        if (UIDevice.currentDevice.systemVersion.floatValue >= 9.1) {
+            return self.mediaSubtypes == PHAssetMediaSubtypePhotoLive ?
+            CCPHAssetType_Live_Photo : CCPHAssetType_Photo;
+        }
+        return CCPHAssetType_Photo;
+    }
+    else if (self.mediaType == PHAssetMediaTypeAudio) return CCPHAssetType_Audio;
+    
+    return CCPHAssetType_Unknow;
+}
+/*
 - (void) cc_cache_image_size : (CGSize) size
                         type : (CCPHAssetCacheType) type
                     complete : (void (^)(UIImage * image ,
@@ -114,7 +135,7 @@
     [self cc_destory_high_quality_cache];
     [self cc_destory_fast_cache];
 }
-
+*/
 @end
 
 #endif

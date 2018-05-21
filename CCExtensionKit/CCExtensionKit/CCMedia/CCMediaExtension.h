@@ -12,5 +12,6 @@
     #import "CCPhotoManager.h"
     #import "PHAsset+CCExtension.h"
     #import "PHAssetCollection+CCExtension.h"
+    #import "PHFetchResult+CCExtension.h"
 
 #endif /* CCMediaExtension_h */

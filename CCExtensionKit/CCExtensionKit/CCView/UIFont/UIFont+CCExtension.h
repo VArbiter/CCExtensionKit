@@ -16,6 +16,12 @@
     #define CC_FONT_ASPECT_BOLD(_value_) [UIFont cc_bold:CCScaleH(_value_)]
 #endif
 
+typedef NSString * CCFontFamilyName;
+
+FOUNDATION_EXPORT CCFontFamilyName CCFontFamily_PingFangSC_Regular ;
+FOUNDATION_EXPORT CCFontFamilyName CCFontFamily_PingFangSC_Medium ;
+FOUNDATION_EXPORT CCFontFamilyName CCFontFamily_PingFangSC_Bold ;
+
 @interface UIFont (CCExtension)
 
 /// when you determin to make a font that auto adjust it self for different screens // 当你决定让字体也跟着屏幕做自适应的时候

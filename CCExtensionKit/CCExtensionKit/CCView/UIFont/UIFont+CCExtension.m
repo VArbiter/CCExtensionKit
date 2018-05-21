@@ -8,6 +8,10 @@
 
 #import "UIFont+CCExtension.h"
 
+CCFontFamilyName CCFontFamily_PingFangSC_Regular = @"PingFangSC-Regular";
+CCFontFamilyName CCFontFamily_PingFangSC_Medium = @"PingFangSC-Medium";
+CCFontFamilyName CCFontFamily_PingFangSC_Bold = @"PingFangSC-Bold";
+
 @implementation UIFont (CCExtension)
 
 - (instancetype) cc_size : (CGFloat) fSize {

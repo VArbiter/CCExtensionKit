@@ -78,6 +78,7 @@
 		70BD28911F6272BF008C2C9A /* UIControl+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28901F6272BF008C2C9A /* UIControl+CCExtension.m */; };
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
+		70C00EAA20B272FF00A86377 /* PHFetchResult+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C00EA920B272FF00A86377 /* PHFetchResult+CCExtension.m */; };
 		70FEF1AE20A02BDA008A47D4 /* UIResponder+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */; };
 		70FEF1DD20A29B56008A47D4 /* UIApplication+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1DC20A29B56008A47D4 /* UIApplication+CCExtension.m */; };
 		70FEF1E120A2AE2D008A47D4 /* CCUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1E020A2AE2D008A47D4 /* CCUpdateManager.m */; };
@@ -243,6 +244,8 @@
 		70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+CCExtension.m"; sourceTree = "<group>"; };
 		70BD28961F6297F2008C2C9A /* UINavigationItem+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+CCExtension.h"; sourceTree = "<group>"; };
 		70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CCExtension.m"; sourceTree = "<group>"; };
+		70C00EA820B272FF00A86377 /* PHFetchResult+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHFetchResult+CCExtension.h"; sourceTree = "<group>"; };
+		70C00EA920B272FF00A86377 /* PHFetchResult+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHFetchResult+CCExtension.m"; sourceTree = "<group>"; };
 		70FEF1AC20A02BDA008A47D4 /* UIResponder+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+CCExtension.h"; sourceTree = "<group>"; };
 		70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+CCExtension.m"; sourceTree = "<group>"; };
 		70FEF1DB20A29B56008A47D4 /* UIApplication+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+CCExtension.h"; sourceTree = "<group>"; };
@@ -399,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				37C509F420B19661004F0911 /* CCMediaExtension.h */,
+				70C00EA720B272EC00A86377 /* PHFetchResult */,
 				37C509FD20B199AB004F0911 /* PHImageRequestOptions */,
 				37C509F920B1977C004F0911 /* PHAssetCollection */,
 				37C509F520B19699004F0911 /* PHAsset */,
@@ -1047,6 +1051,15 @@
 			path = UIFont;
 			sourceTree = "<group>";
 		};
+		70C00EA720B272EC00A86377 /* PHFetchResult */ = {
+			isa = PBXGroup;
+			children = (
+				70C00EA820B272FF00A86377 /* PHFetchResult+CCExtension.h */,
+				70C00EA920B272FF00A86377 /* PHFetchResult+CCExtension.m */,
+			);
+			path = PHFetchResult;
+			sourceTree = "<group>";
+		};
 		70FEF1A820A02AD1008A47D4 /* UIResponder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1350,6 +1363,7 @@
 				7034D6951F5FBF3C0005D1E1 /* NSNumber+CCExtension.m in Sources */,
 				37C69E1D1ED6684D00531ED3 /* AppDelegate.m in Sources */,
 				7034D6B11F5FBF3C0005D1E1 /* UIViewController+CCExtension.m in Sources */,
+				70C00EAA20B272FF00A86377 /* PHFetchResult+CCExtension.m in Sources */,
 				7034D6A91F5FBF3C0005D1E1 /* UIImagePickerController+CCExtension.m in Sources */,
 				3772441D1FBB05AD0006E83A /* CCDevice.m in Sources */,
 				7034D6B81F5FCC040005D1E1 /* CCAuthorize.m in Sources */,

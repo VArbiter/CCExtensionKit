@@ -272,3 +272,30 @@ NSString * CC_STRING_FROM_UTF8(const char * cUTF8) {
 }
 
 @end
+
+#pragma mark - ----- 
+
+@implementation NSString (CCExtension_Filter)
+
+- (BOOL)is_pure_letter {
+    NSString *s_letter = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return [self cc_is_constructed_by:s_letter];
+}
+
+- (BOOL)is_pure_number {
+    NSString *s_number = @"0123456789";
+    return [self cc_is_constructed_by:s_number];
+}
+
+- (BOOL)is_pure_number_and_letter {
+    NSString *s_number_letter = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    return [self cc_is_constructed_by:s_number_letter];
+}
+
+- (BOOL) cc_is_constructed_by : (NSString *) s_content {
+    NSCharacterSet *t_set = [[NSCharacterSet characterSetWithCharactersInString:s_content] invertedSet];
+    NSString *s_filter = [[self componentsSeparatedByCharactersInSet:t_set] componentsJoinedByString:@""];
+    return [self isEqualToString:s_filter];
+}
+
+@end

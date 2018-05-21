@@ -51,6 +51,8 @@ FOUNDATION_EXPORT CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_RENREN ; // 人人
 + (BOOL) cc_can_open_WeChat ;
 + (BOOL) cc_can_open_Sina_WeiBo ;
 
++ (void) cc_make_call : (NSString *) s_call_num ;
+
 @end
 
 #pragma mark - -----

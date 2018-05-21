@@ -497,3 +497,30 @@ CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
 }
 
 @end
+
+@implementation UIView (CCExtension_Delay_Operate)
+
+- (instancetype) cc_cold : (NSTimeInterval) interval {
+    return [self cc_cold:YES time:interval complete:nil];
+}
+
+- (instancetype) cc_hot : (NSTimeInterval) interval {
+    return [self cc_cold:false time:interval complete:nil];
+}
+
+- (instancetype) cc_cold : (BOOL) is_cold
+                    time : (NSTimeInterval) interval
+                complete : (void(^)(__kindof UIView *v_t , BOOL is_enable)) cc_complete_block {
+    
+    self.userInteractionEnabled = !is_cold ;
+    __weak typeof(self) weak_self = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        __strong typeof(weak_self) strong_self = weak_self;
+        strong_self.userInteractionEnabled = is_cold;
+        if (cc_complete_block) cc_complete_block(strong_self , strong_self.userInteractionEnabled);
+    });
+    
+    return self;
+}
+
+@end

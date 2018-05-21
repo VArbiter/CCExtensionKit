@@ -69,4 +69,16 @@ void CC_SAFED_CHAIN(id object , void (^safe)(id object)) {
     if (object && safe) safe(object);
 }
 
+NSString * CC_SIZE_FOR_LENGTH(NSUInteger i_length) {
+    if (i_length > pow(CC_STANDARD_LENGTH, 2))
+        return [NSString stringWithFormat:@"%.2fMB",i_length / pow(CC_STANDARD_LENGTH, 2)];
+    else if (i_length > CC_STANDARD_LENGTH)
+        return [NSString stringWithFormat:@"%.0fKB",i_length / CC_STANDARD_LENGTH];
+    else return [NSString stringWithFormat:@"%@B",@(i_length)];
+}
+
+id CC_Default_Object(id object , id insure_object) {
+    return object ? object : insure_object;
+}
+
 @end

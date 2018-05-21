@@ -25,7 +25,7 @@ CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
 CCRect CCMakeRectFrom(CGRect rect);
 CGRect CGMakeRectFrom(CCRect rect);
 
-CGRect CGRectFull(void); // main screen bounds . // 等于屏幕的便捷
+CGRect CGRectFull(void); // main screen bounds . // 等于屏幕的边界
 
 typedef UIEdgeInsets CCEdgeInsets;
 CCEdgeInsets CCEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
@@ -166,5 +166,22 @@ CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
                           NSLineBreakMode mode ,
                           CGFloat fLineSpacing ,
                           CGFloat fCharacterSpacing);
+
+@end
+
+@interface UIView (CCExtension_Delay_Operate)
+
+/// make user interaction disable for a certain time . // 使得用户交互在特定的时间内禁止
+// using dispatch_after . // 使用 dispatch_after
+- (instancetype) cc_cold : (NSTimeInterval) interval ;
+
+/// make user interaction enable for a certain time . // 使得用户交互在特定的时间内允许
+// using dispatch_after . // 使用 dispatch_after
+- (instancetype) cc_hot : (NSTimeInterval) interval ;
+
+- (instancetype) cc_cold : (BOOL) is_cold
+                    time : (NSTimeInterval) interval
+                complete : (void(^)(__kindof UIView *v_t , BOOL is_enable)) cc_complete_block ;
+
 
 @end
