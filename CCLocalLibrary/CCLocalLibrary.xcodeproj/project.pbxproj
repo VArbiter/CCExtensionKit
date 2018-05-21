@@ -79,6 +79,7 @@
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
 		70C00EAA20B272FF00A86377 /* PHFetchResult+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C00EA920B272FF00A86377 /* PHFetchResult+CCExtension.m */; };
+		70C00EAE20B287DB00A86377 /* CCVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C00EAD20B287DB00A86377 /* CCVideoManager.m */; };
 		70FEF1AE20A02BDA008A47D4 /* UIResponder+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */; };
 		70FEF1DD20A29B56008A47D4 /* UIApplication+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1DC20A29B56008A47D4 /* UIApplication+CCExtension.m */; };
 		70FEF1E120A2AE2D008A47D4 /* CCUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1E020A2AE2D008A47D4 /* CCUpdateManager.m */; };
@@ -246,6 +247,8 @@
 		70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CCExtension.m"; sourceTree = "<group>"; };
 		70C00EA820B272FF00A86377 /* PHFetchResult+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHFetchResult+CCExtension.h"; sourceTree = "<group>"; };
 		70C00EA920B272FF00A86377 /* PHFetchResult+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHFetchResult+CCExtension.m"; sourceTree = "<group>"; };
+		70C00EAC20B287DB00A86377 /* CCVideoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVideoManager.h; sourceTree = "<group>"; };
+		70C00EAD20B287DB00A86377 /* CCVideoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVideoManager.m; sourceTree = "<group>"; };
 		70FEF1AC20A02BDA008A47D4 /* UIResponder+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+CCExtension.h"; sourceTree = "<group>"; };
 		70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+CCExtension.m"; sourceTree = "<group>"; };
 		70FEF1DB20A29B56008A47D4 /* UIApplication+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+CCExtension.h"; sourceTree = "<group>"; };
@@ -402,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				37C509F420B19661004F0911 /* CCMediaExtension.h */,
+				70C00EAB20B287C900A86377 /* CCVideoManager */,
 				70C00EA720B272EC00A86377 /* PHFetchResult */,
 				37C509FD20B199AB004F0911 /* PHImageRequestOptions */,
 				37C509F920B1977C004F0911 /* PHAssetCollection */,
@@ -1060,6 +1064,15 @@
 			path = PHFetchResult;
 			sourceTree = "<group>";
 		};
+		70C00EAB20B287C900A86377 /* CCVideoManager */ = {
+			isa = PBXGroup;
+			children = (
+				70C00EAC20B287DB00A86377 /* CCVideoManager.h */,
+				70C00EAD20B287DB00A86377 /* CCVideoManager.m */,
+			);
+			path = CCVideoManager;
+			sourceTree = "<group>";
+		};
 		70FEF1A820A02AD1008A47D4 /* UIResponder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1396,6 +1409,7 @@
 				7034D6A11F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m in Sources */,
 				7034D69A1F5FBF3C0005D1E1 /* NSObject+CCProtocol.m in Sources */,
 				37C50A0020B199BA004F0911 /* PHImageRequestOptions+CCExtension.m in Sources */,
+				70C00EAE20B287DB00A86377 /* CCVideoManager.m in Sources */,
 				70FF2FDF1F6A46C1001B6407 /* CCNetworkMoniter.m in Sources */,
 				7034D6CA1F5FD5280005D1E1 /* NSURL+CCExtension.m in Sources */,
 				7034D6921F5FBF3C0005D1E1 /* NSDate+CCExtension.m in Sources */,

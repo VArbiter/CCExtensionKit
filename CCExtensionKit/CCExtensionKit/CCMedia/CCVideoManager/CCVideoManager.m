@@ -1,0 +1,113 @@
+//
+//  CCVideoManager.m
+//  CCLocalLibrary
+//
+//  Created by ElwinFrederick on 21/05/2018.
+//  Copyright © 2018 冯明庆. All rights reserved.
+//
+
+#import "CCVideoManager.h"
+
+@implementation CCVideoManager
+
+- (void)cc_merge_export_videos : (NSString *) s_path
+                   data_stream : (NSArray <CCVideoInfoEntity *> *) array_file_urls {
+    
+    if (!array_file_urls || !array_file_urls.count) return ;
+    
+    NSError *error = nil;
+    CGSize renderSize = CGSizeMake(0, 0);
+    NSMutableArray *layerInstructionArray = [[NSMutableArray alloc] init];
+    AVMutableComposition *mixComposition = [[AVMutableComposition alloc] init];
+    CMTime totalDuration = kCMTimeZero;
+    NSMutableArray *assetTrackArray = [[NSMutableArray alloc] init];
+    NSMutableArray *assetArray = [[NSMutableArray alloc] init];
+    for (CCVideoInfoEntity *videoInfo in array_file_urls) {
+        AVAsset *asset = [AVAsset assetWithURL:videoInfo.url_file_path];
+        if (!asset) continue;
+        
+        [assetArray addObject:asset];
+        
+        AVAssetTrack *assetTrack = [[asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+        [assetTrackArray addObject:assetTrack];
+        
+        renderSize.width = MAX(renderSize.width, assetTrack.naturalSize.height);
+        renderSize.height = MAX(renderSize.height, assetTrack.naturalSize.width);
+    }
+    
+    CGFloat renderW = MIN(renderSize.width, renderSize.height);
+    
+    for (int i = 0; i < [assetArray count] && i < [assetTrackArray count]; i++) {
+        
+        AVAsset *asset = [assetArray objectAtIndex:i];
+        AVAssetTrack *assetTrack = [assetTrackArray objectAtIndex:i];
+        
+        CGFloat floatEndTime = CMTimeGetSeconds(asset.duration);
+        CGFloat floatStartTime = .0f;
+        CMTime timeStart = CMTimeMakeWithSeconds(floatStartTime, asset.duration.timescale);
+        CMTime timeDuration = CMTimeMakeWithSeconds(floatEndTime - floatStartTime, asset.duration.timescale);
+        CMTimeRange timeRange = CMTimeRangeMake(timeStart, timeDuration);
+        
+        AVMutableCompositionTrack *audioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+        [audioTrack insertTimeRange:timeRange
+                            ofTrack:[[asset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0]
+                             atTime:totalDuration
+                              error:nil];
+        
+        AVMutableCompositionTrack *videoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+        [videoTrack insertTimeRange:timeRange
+                            ofTrack:assetTrack
+                             atTime:totalDuration
+                              error:&error];
+        
+        //fix orientationissue
+        AVMutableVideoCompositionLayerInstruction *layerInstruciton = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];
+        
+        totalDuration = CMTimeAdd(totalDuration, timeDuration);
+        
+        CGFloat rate;
+        rate = renderW / MIN(assetTrack.naturalSize.width, assetTrack.naturalSize.height);
+        
+        CGAffineTransform layerTransform = CGAffineTransformMake(assetTrack.preferredTransform.a, assetTrack.preferredTransform.b, assetTrack.preferredTransform.c, assetTrack.preferredTransform.d, assetTrack.preferredTransform.tx * rate, assetTrack.preferredTransform.ty * rate);
+        
+        layerTransform = CGAffineTransformConcat(layerTransform, CGAffineTransformMake(1, 0, 0, 1, 0, (assetTrack.naturalSize.width - assetTrack.naturalSize.height) / 2.0));
+        layerTransform = CGAffineTransformScale(layerTransform, rate, rate);
+        
+        [layerInstruciton setTransform:layerTransform atTime:kCMTimeZero];
+        [layerInstruciton setOpacity:0.0 atTime:totalDuration];
+        
+        //data
+        [layerInstructionArray addObject:layerInstruciton];
+    }
+
+    NSURL *s_merged_url = [NSURL fileURLWithPath:s_path];
+    
+    //export
+    AVMutableVideoCompositionInstruction *mainInstruciton = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+    mainInstruciton.timeRange = CMTimeRangeMake(kCMTimeZero, totalDuration);
+    mainInstruciton.layerInstructions = layerInstructionArray;
+    AVMutableVideoComposition *mainCompositionInst = [AVMutableVideoComposition videoComposition];
+    mainCompositionInst.instructions = @[mainInstruciton];
+    mainCompositionInst.frameDuration = CMTimeMake(1, 30);
+    mainCompositionInst.renderSize = CGSizeMake(renderW, renderW);
+    
+    AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetMediumQuality];
+    exporter.videoComposition = mainCompositionInst;
+    exporter.outputURL = s_merged_url;
+    exporter.outputFileType = AVFileTypeMPEG4;
+    exporter.shouldOptimizeForNetworkUse = YES;
+    __weak typeof(self) pSelf = self;
+    [exporter exportAsynchronouslyWithCompletionHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(pSelf) strong_self = pSelf;
+            if ([strong_self.delegate respondsToSelector:@selector(cc_video_manager:did_finish_with_output_url:)]) {
+                [strong_self.delegate cc_video_manager:strong_self did_finish_with_output_url:s_merged_url];
+            }
+        });
+    }];
+}
+@end
+    
+@implementation CCVideoInfoEntity
+
+@end
