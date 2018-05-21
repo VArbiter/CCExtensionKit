@@ -51,3 +51,13 @@ FOUNDATION_EXPORT CCPHAssetType CCPHAssetType_Live_Photo ;
 @end
 
 #endif
+
+@interface UIImage (CCExtension_Orientation)
+
+// borrowed from : http://www.cnblogs.com/jiangyazhou/archive/2012/03/22/2412343.html ;
+/// fix image orientation . for which EXIF info can be lost . // 修复 图片的方向 . 因为 图片的 EXIF 可能丢失 .
+- (UIImage *) cc_fix_orientation ;
+
+- (UIImage *) cc_fix_orientation : (UIImageOrientation) orientation ;
+
+@end
