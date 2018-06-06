@@ -321,6 +321,7 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
     
     WKWebView *v = [[WKWebView alloc] initWithFrame:(CGRect){0,0,self.frame.size.width,self.frame.size.height}
                                       configuration:self.config];
+    v.navigationDelegate = self;
     _webView = v;
     
     [_webView addObserver:self
