@@ -54,6 +54,10 @@
 
 ### 上新 ?
 ---
+**2018-06-25 19:22:00**
+
+> 增加 `CCTaskManager` (CCData) 简易队列任务.
+
 **2018-05-04 21:55:33**
 
 > 增加 `CCAuthentication` (CCCommon) 用来做指纹 / 面部验证 , `CCIAPManager`(CCOrigin) 用来做内购相关 .

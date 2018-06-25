@@ -56,6 +56,10 @@
 
 ### What's new ?
 ---
+**2018-06-25 19:22:00**
+
+> added `CCTaskManager` (CCData) for easy queue tasks .
+
 **2018-05-04 21:55:33**
 
 > added `CCAuthentication` (CCCommon) for touch id && face id verify , `CCIAPManager`(CCOrigin) for in app purchase  .
