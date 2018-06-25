@@ -33,6 +33,7 @@
 		7003128320E0F5530093B08F /* CCPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7003127E20E0F5530093B08F /* CCPhotoManager.m */; };
 		7003128420E0F5530093B08F /* CCVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7003128220E0F5530093B08F /* CCVideoManager.m */; };
 		7003128920E0F9590093B08F /* CCTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7003128820E0F9590093B08F /* CCTaskManager.m */; };
+		7003128D20E108B00093B08F /* CCAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7003128C20E108B00093B08F /* CCAudioRecorder.m */; };
 		7034D68F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D61F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m */; };
 		7034D6901F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6221F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m */; };
 		7034D6911F5FBF3C0005D1E1 /* NSBundle+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6251F5FBF3C0005D1E1 /* NSBundle+CCExtension.m */; };
@@ -147,6 +148,8 @@
 		7003128220E0F5530093B08F /* CCVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCVideoManager.m; sourceTree = "<group>"; };
 		7003128720E0F9590093B08F /* CCTaskManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTaskManager.h; sourceTree = "<group>"; };
 		7003128820E0F9590093B08F /* CCTaskManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTaskManager.m; sourceTree = "<group>"; };
+		7003128B20E108B00093B08F /* CCAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCAudioRecorder.h; sourceTree = "<group>"; };
+		7003128C20E108B00093B08F /* CCAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCAudioRecorder.m; sourceTree = "<group>"; };
 		7034D61C1F5FBF3C0005D1E1 /* CCDataExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDataExtension.h; sourceTree = "<group>"; };
 		7034D61E1F5FBF3C0005D1E1 /* NSArray+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCExtension.h"; sourceTree = "<group>"; };
 		7034D61F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CCExtension.m"; sourceTree = "<group>"; };
@@ -502,6 +505,7 @@
 		7003127C20E0F5530093B08F /* CCMediaManager */ = {
 			isa = PBXGroup;
 			children = (
+				7003128A20E108A60093B08F /* CCAudioRecorder */,
 				7003127D20E0F5530093B08F /* CCPhotoManager */,
 				7003128020E0F5530093B08F /* CCVideoManager */,
 			);
@@ -541,6 +545,15 @@
 				7003128820E0F9590093B08F /* CCTaskManager.m */,
 			);
 			path = CCTaskManager;
+			sourceTree = "<group>";
+		};
+		7003128A20E108A60093B08F /* CCAudioRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				7003128B20E108B00093B08F /* CCAudioRecorder.h */,
+				7003128C20E108B00093B08F /* CCAudioRecorder.m */,
+			);
+			path = CCAudioRecorder;
 			sourceTree = "<group>";
 		};
 		7034D6121F5FBF3C0005D1E1 /* CCExtensionKit */ = {
@@ -1432,6 +1445,7 @@
 				7034D6A41F5FBF3C0005D1E1 /* UICollectionView+CCExtension.m in Sources */,
 				70FF30511F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m in Sources */,
 				7034D6961F5FBF3C0005D1E1 /* NSObject+CCExtension.m in Sources */,
+				7003128D20E108B00093B08F /* CCAudioRecorder.m in Sources */,
 				7034D6CD1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m in Sources */,
 				70FF2FBA1F6A1BD5001B6407 /* UITextView+CCExtension.m in Sources */,
 				7034D6981F5FBF3C0005D1E1 /* NSString+CCExtension.m in Sources */,
