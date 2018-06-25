@@ -20,6 +20,7 @@
 
 BOOL CC_IS_STRING_VALUED(__kindof NSString * string) ;
 BOOL CC_IS_ARRAY_VALUED(__kindof NSArray * array) ;
+BOOL CC_IS_SET_VALUED(__kindof NSSet * set) ;
 BOOL CC_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) ;
 BOOL CC_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) ;
 BOOL CC_IS_NULL(id object) ;

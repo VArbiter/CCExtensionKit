@@ -32,6 +32,7 @@ BOOL CC_IS_STRING_VALUED(__kindof NSString * string) {
         if ([string isKindOfClass:[NSString class]]) {
             if (string.length
                 && ![string isEqualToString:@"(null)"]
+                && ![string isEqualToString:@"null"]
                 && ![string isEqualToString:@"<null>"]
                 && ![string isKindOfClass:NSNull.class]) {
                 return YES;
@@ -44,6 +45,16 @@ BOOL CC_IS_ARRAY_VALUED(__kindof NSArray * array) {
     if (array) {
         if ([array isKindOfClass:[NSArray class]]) {
             if (array.count) {
+                return YES;
+            }
+        }
+    }
+    return false;
+}
+BOOL CC_IS_SET_VALUED(__kindof NSSet * set) {
+    if (set) {
+        if ([set isKindOfClass:[NSSet class]]) {
+            if (set.count) {
                 return YES;
             }
         }
