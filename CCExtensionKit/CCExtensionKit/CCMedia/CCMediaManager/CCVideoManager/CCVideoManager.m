@@ -106,6 +106,34 @@
         });
     }];
 }
+
+- (void) cc_convert_to_MP4 : (NSURL *) url_file_path
+                      path : (NSString *) s_convert_file_path
+                  complete : (void(^)(AVAssetExportSessionStatus status , BOOL is_complete)) complete_block {
+    AVURLAsset *av_asset = [AVURLAsset URLAssetWithURL:url_file_path options:nil];
+    NSArray *compatible_presets = [AVAssetExportSession exportPresetsCompatibleWithAsset:av_asset];
+    
+    if ([compatible_presets containsObject:AVAssetExportPresetLowQuality]) {
+        
+        AVAssetExportSession *export_session = [[AVAssetExportSession alloc]initWithAsset:av_asset presetName:AVAssetExportPresetPassthrough];
+        NSString *exportPath = s_convert_file_path;
+        export_session.outputURL = [NSURL fileURLWithPath:exportPath];
+        export_session.outputFileType = AVFileTypeMPEG4;
+        __weak typeof(self) pSelf = self;
+        [export_session exportAsynchronouslyWithCompletionHandler:^{
+            if (complete_block) complete_block([export_session status]
+                                               , [export_session status] == AVAssetExportSessionStatusCompleted);
+                if (pSelf.delegate
+                    && [pSelf.delegate respondsToSelector:@selector(cc_video_manager:status:complete:file_path:)]){
+                    [pSelf.delegate cc_video_manager:pSelf
+                                              status:[export_session status]
+                                            complete:[export_session status] == AVAssetExportSessionStatusCompleted
+                                           file_path:s_convert_file_path];
+                }
+        }];
+    }
+}
+
 @end
     
 @implementation CCVideoInfoEntity

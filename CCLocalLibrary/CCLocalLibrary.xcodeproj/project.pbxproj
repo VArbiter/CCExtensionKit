@@ -20,7 +20,6 @@
 		3785D0F51FECDA4B00245F26 /* WKWebView+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3785D0F31FECDA4B00245F26 /* WKWebView+CCExtension.m */; };
 		37B52EDE1FC7D383009C17FF /* NSNotificationCenter+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B52EDD1FC7D382009C17FF /* NSNotificationCenter+CCExtension.m */; };
 		37C509CB20B15898004F0911 /* CALayer+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509CA20B15898004F0911 /* CALayer+CCExtension.m */; };
-		37C509F320B19651004F0911 /* CCPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509F120B19651004F0911 /* CCPhotoManager.m */; };
 		37C509F820B196B0004F0911 /* PHAsset+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509F720B196B0004F0911 /* PHAsset+CCExtension.m */; };
 		37C509FC20B19790004F0911 /* PHAssetCollection+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509FB20B19790004F0911 /* PHAssetCollection+CCExtension.m */; };
 		37C50A0020B199BA004F0911 /* PHImageRequestOptions+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C509FF20B199BA004F0911 /* PHImageRequestOptions+CCExtension.m */; };
@@ -31,6 +30,9 @@
 		37C69E251ED6684D00531ED3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E241ED6684D00531ED3 /* Assets.xcassets */; };
 		37C69E281ED6684D00531ED3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C69E261ED6684D00531ED3 /* LaunchScreen.storyboard */; };
 		37ECA3731F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ECA3721F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.m */; };
+		7003128320E0F5530093B08F /* CCPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7003127E20E0F5530093B08F /* CCPhotoManager.m */; };
+		7003128420E0F5530093B08F /* CCVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7003128220E0F5530093B08F /* CCVideoManager.m */; };
+		7003128920E0F9590093B08F /* CCTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7003128820E0F9590093B08F /* CCTaskManager.m */; };
 		7034D68F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D61F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m */; };
 		7034D6901F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6221F5FBF3C0005D1E1 /* NSAttributedString+CCExtension.m */; };
 		7034D6911F5FBF3C0005D1E1 /* NSBundle+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6251F5FBF3C0005D1E1 /* NSBundle+CCExtension.m */; };
@@ -79,7 +81,6 @@
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
 		70C00EAA20B272FF00A86377 /* PHFetchResult+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C00EA920B272FF00A86377 /* PHFetchResult+CCExtension.m */; };
-		70C00EAE20B287DB00A86377 /* CCVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C00EAD20B287DB00A86377 /* CCVideoManager.m */; };
 		70FEF1AE20A02BDA008A47D4 /* UIResponder+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */; };
 		70FEF1DD20A29B56008A47D4 /* UIApplication+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1DC20A29B56008A47D4 /* UIApplication+CCExtension.m */; };
 		70FEF1E120A2AE2D008A47D4 /* CCUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1E020A2AE2D008A47D4 /* CCUpdateManager.m */; };
@@ -120,8 +121,6 @@
 		37B52EDD1FC7D382009C17FF /* NSNotificationCenter+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+CCExtension.m"; sourceTree = "<group>"; };
 		37C509C920B15898004F0911 /* CALayer+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+CCExtension.h"; sourceTree = "<group>"; };
 		37C509CA20B15898004F0911 /* CALayer+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+CCExtension.m"; sourceTree = "<group>"; };
-		37C509F120B19651004F0911 /* CCPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPhotoManager.m; sourceTree = "<group>"; };
-		37C509F220B19651004F0911 /* CCPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPhotoManager.h; sourceTree = "<group>"; };
 		37C509F420B19661004F0911 /* CCMediaExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCMediaExtension.h; sourceTree = "<group>"; };
 		37C509F620B196B0004F0911 /* PHAsset+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHAsset+CCExtension.h"; sourceTree = "<group>"; };
 		37C509F720B196B0004F0911 /* PHAsset+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+CCExtension.m"; sourceTree = "<group>"; };
@@ -142,6 +141,12 @@
 		37ECA3711F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIVisualEffectView+CCExtension.h"; sourceTree = "<group>"; };
 		37ECA3721F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIVisualEffectView+CCExtension.m"; sourceTree = "<group>"; };
 		3D5CA2FFF5E357F90100D989 /* Pods-CCLocalLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCLocalLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCLocalLibrary/Pods-CCLocalLibrary.debug.xcconfig"; sourceTree = "<group>"; };
+		7003127E20E0F5530093B08F /* CCPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPhotoManager.m; sourceTree = "<group>"; };
+		7003127F20E0F5530093B08F /* CCPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPhotoManager.h; sourceTree = "<group>"; };
+		7003128120E0F5530093B08F /* CCVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCVideoManager.h; sourceTree = "<group>"; };
+		7003128220E0F5530093B08F /* CCVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCVideoManager.m; sourceTree = "<group>"; };
+		7003128720E0F9590093B08F /* CCTaskManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTaskManager.h; sourceTree = "<group>"; };
+		7003128820E0F9590093B08F /* CCTaskManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTaskManager.m; sourceTree = "<group>"; };
 		7034D61C1F5FBF3C0005D1E1 /* CCDataExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDataExtension.h; sourceTree = "<group>"; };
 		7034D61E1F5FBF3C0005D1E1 /* NSArray+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCExtension.h"; sourceTree = "<group>"; };
 		7034D61F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CCExtension.m"; sourceTree = "<group>"; };
@@ -247,8 +252,6 @@
 		70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CCExtension.m"; sourceTree = "<group>"; };
 		70C00EA820B272FF00A86377 /* PHFetchResult+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHFetchResult+CCExtension.h"; sourceTree = "<group>"; };
 		70C00EA920B272FF00A86377 /* PHFetchResult+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHFetchResult+CCExtension.m"; sourceTree = "<group>"; };
-		70C00EAC20B287DB00A86377 /* CCVideoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVideoManager.h; sourceTree = "<group>"; };
-		70C00EAD20B287DB00A86377 /* CCVideoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVideoManager.m; sourceTree = "<group>"; };
 		70FEF1AC20A02BDA008A47D4 /* UIResponder+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+CCExtension.h"; sourceTree = "<group>"; };
 		70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+CCExtension.m"; sourceTree = "<group>"; };
 		70FEF1DB20A29B56008A47D4 /* UIApplication+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+CCExtension.h"; sourceTree = "<group>"; };
@@ -405,23 +408,13 @@
 			isa = PBXGroup;
 			children = (
 				37C509F420B19661004F0911 /* CCMediaExtension.h */,
-				70C00EAB20B287C900A86377 /* CCVideoManager */,
+				7003127C20E0F5530093B08F /* CCMediaManager */,
 				70C00EA720B272EC00A86377 /* PHFetchResult */,
 				37C509FD20B199AB004F0911 /* PHImageRequestOptions */,
 				37C509F920B1977C004F0911 /* PHAssetCollection */,
 				37C509F520B19699004F0911 /* PHAsset */,
-				37C509F020B19651004F0911 /* CCPhotoManager */,
 			);
 			path = CCMedia;
-			sourceTree = "<group>";
-		};
-		37C509F020B19651004F0911 /* CCPhotoManager */ = {
-			isa = PBXGroup;
-			children = (
-				37C509F120B19651004F0911 /* CCPhotoManager.m */,
-				37C509F220B19651004F0911 /* CCPhotoManager.h */,
-			);
-			path = CCPhotoManager;
 			sourceTree = "<group>";
 		};
 		37C509F520B19699004F0911 /* PHAsset */ = {
@@ -506,6 +499,50 @@
 			path = UIVisualEffectView;
 			sourceTree = "<group>";
 		};
+		7003127C20E0F5530093B08F /* CCMediaManager */ = {
+			isa = PBXGroup;
+			children = (
+				7003127D20E0F5530093B08F /* CCPhotoManager */,
+				7003128020E0F5530093B08F /* CCVideoManager */,
+			);
+			path = CCMediaManager;
+			sourceTree = "<group>";
+		};
+		7003127D20E0F5530093B08F /* CCPhotoManager */ = {
+			isa = PBXGroup;
+			children = (
+				7003127E20E0F5530093B08F /* CCPhotoManager.m */,
+				7003127F20E0F5530093B08F /* CCPhotoManager.h */,
+			);
+			path = CCPhotoManager;
+			sourceTree = "<group>";
+		};
+		7003128020E0F5530093B08F /* CCVideoManager */ = {
+			isa = PBXGroup;
+			children = (
+				7003128120E0F5530093B08F /* CCVideoManager.h */,
+				7003128220E0F5530093B08F /* CCVideoManager.m */,
+			);
+			path = CCVideoManager;
+			sourceTree = "<group>";
+		};
+		7003128520E0F9460093B08F /* CCDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				7003128620E0F9460093B08F /* CCTaskManager */,
+			);
+			path = CCDataManager;
+			sourceTree = "<group>";
+		};
+		7003128620E0F9460093B08F /* CCTaskManager */ = {
+			isa = PBXGroup;
+			children = (
+				7003128720E0F9590093B08F /* CCTaskManager.h */,
+				7003128820E0F9590093B08F /* CCTaskManager.m */,
+			);
+			path = CCTaskManager;
+			sourceTree = "<group>";
+		};
 		7034D6121F5FBF3C0005D1E1 /* CCExtensionKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +587,7 @@
 			isa = PBXGroup;
 			children = (
 				7034D61C1F5FBF3C0005D1E1 /* CCDataExtension.h */,
+				7003128520E0F9460093B08F /* CCDataManager */,
 				37B52EDB1FC7D382009C17FF /* NSNotificationCenter */,
 				3773C2061FC0265F00C7F384 /* NSUserDefaults */,
 				7034D61D1F5FBF3C0005D1E1 /* NSArray */,
@@ -1064,15 +1102,6 @@
 			path = PHFetchResult;
 			sourceTree = "<group>";
 		};
-		70C00EAB20B287C900A86377 /* CCVideoManager */ = {
-			isa = PBXGroup;
-			children = (
-				70C00EAC20B287DB00A86377 /* CCVideoManager.h */,
-				70C00EAD20B287DB00A86377 /* CCVideoManager.m */,
-			);
-			path = CCVideoManager;
-			sourceTree = "<group>";
-		};
 		70FEF1A820A02AD1008A47D4 /* UIResponder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1391,6 +1420,7 @@
 				3785D0EE1FECC67200245F26 /* CCDropAlertView.m in Sources */,
 				37C509F820B196B0004F0911 /* PHAsset+CCExtension.m in Sources */,
 				70FEF1AE20A02BDA008A47D4 /* UIResponder+CCExtension.m in Sources */,
+				7003128320E0F5530093B08F /* CCPhotoManager.m in Sources */,
 				70FF305E1F6A7874001B6407 /* CCMediator.m in Sources */,
 				7034D6A31F5FBF3C0005D1E1 /* UIButton+CCExtension.m in Sources */,
 				37ECA3731F8F24EA00A82BA5 /* UIVisualEffectView+CCExtension.m in Sources */,
@@ -1403,18 +1433,18 @@
 				70FF30511F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m in Sources */,
 				7034D6961F5FBF3C0005D1E1 /* NSObject+CCExtension.m in Sources */,
 				7034D6CD1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m in Sources */,
-				37C509F320B19651004F0911 /* CCPhotoManager.m in Sources */,
 				70FF2FBA1F6A1BD5001B6407 /* UITextView+CCExtension.m in Sources */,
 				7034D6981F5FBF3C0005D1E1 /* NSString+CCExtension.m in Sources */,
 				7034D6A11F5FBF3C0005D1E1 /* UIAlertController+CCExtension.m in Sources */,
 				7034D69A1F5FBF3C0005D1E1 /* NSObject+CCProtocol.m in Sources */,
 				37C50A0020B199BA004F0911 /* PHImageRequestOptions+CCExtension.m in Sources */,
-				70C00EAE20B287DB00A86377 /* CCVideoManager.m in Sources */,
+				7003128420E0F5530093B08F /* CCVideoManager.m in Sources */,
 				70FF2FDF1F6A46C1001B6407 /* CCNetworkMoniter.m in Sources */,
 				7034D6CA1F5FD5280005D1E1 /* NSURL+CCExtension.m in Sources */,
 				7034D6921F5FBF3C0005D1E1 /* NSDate+CCExtension.m in Sources */,
 				37C509CB20B15898004F0911 /* CALayer+CCExtension.m in Sources */,
 				37C69E1A1ED6684D00531ED3 /* main.m in Sources */,
+				7003128920E0F9590093B08F /* CCTaskManager.m in Sources */,
 				7034D68F1F5FBF3C0005D1E1 /* NSArray+CCExtension.m in Sources */,
 				70B48FD4208F3F1F005D0054 /* FCModelNotificationCenter.m in Sources */,
 				3785D0F01FECC67200245F26 /* CCEasyWebView.m in Sources */,

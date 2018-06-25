@@ -10,8 +10,10 @@
 #define CCMediaExtension_h
 
     #import "CCPhotoManager.h"
+    #import "CCVideoManager.h"
     #import "PHAsset+CCExtension.h"
     #import "PHAssetCollection+CCExtension.h"
+    #import "PHImageRequestOptions+CCExtension.h"
     #import "PHFetchResult+CCExtension.h"
 
 #endif /* CCMediaExtension_h */
