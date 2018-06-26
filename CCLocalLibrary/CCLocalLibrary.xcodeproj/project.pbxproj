@@ -82,6 +82,7 @@
 		70BD28951F628F6C008C2C9A /* UIFont+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28941F628F6C008C2C9A /* UIFont+CCExtension.m */; };
 		70BD28981F6297F2008C2C9A /* UINavigationItem+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */; };
 		70C00EAA20B272FF00A86377 /* PHFetchResult+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C00EA920B272FF00A86377 /* PHFetchResult+CCExtension.m */; };
+		70EA914520E25CAF00539FD1 /* CCCrashCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EA914420E25CAF00539FD1 /* CCCrashCatcher.m */; };
 		70FEF1AE20A02BDA008A47D4 /* UIResponder+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */; };
 		70FEF1DD20A29B56008A47D4 /* UIApplication+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1DC20A29B56008A47D4 /* UIApplication+CCExtension.m */; };
 		70FEF1E120A2AE2D008A47D4 /* CCUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1E020A2AE2D008A47D4 /* CCUpdateManager.m */; };
@@ -255,6 +256,8 @@
 		70BD28971F6297F2008C2C9A /* UINavigationItem+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CCExtension.m"; sourceTree = "<group>"; };
 		70C00EA820B272FF00A86377 /* PHFetchResult+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHFetchResult+CCExtension.h"; sourceTree = "<group>"; };
 		70C00EA920B272FF00A86377 /* PHFetchResult+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHFetchResult+CCExtension.m"; sourceTree = "<group>"; };
+		70EA914320E25CAF00539FD1 /* CCCrashCatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCCrashCatcher.h; sourceTree = "<group>"; };
+		70EA914420E25CAF00539FD1 /* CCCrashCatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCCrashCatcher.m; sourceTree = "<group>"; };
 		70FEF1AC20A02BDA008A47D4 /* UIResponder+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+CCExtension.h"; sourceTree = "<group>"; };
 		70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+CCExtension.m"; sourceTree = "<group>"; };
 		70FEF1DB20A29B56008A47D4 /* UIApplication+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+CCExtension.h"; sourceTree = "<group>"; };
@@ -533,6 +536,7 @@
 		7003128520E0F9460093B08F /* CCDataManager */ = {
 			isa = PBXGroup;
 			children = (
+				70EA914220E25CA600539FD1 /* CCCrashCatcher */,
 				7003128620E0F9460093B08F /* CCTaskManager */,
 			);
 			path = CCDataManager;
@@ -1115,6 +1119,15 @@
 			path = PHFetchResult;
 			sourceTree = "<group>";
 		};
+		70EA914220E25CA600539FD1 /* CCCrashCatcher */ = {
+			isa = PBXGroup;
+			children = (
+				70EA914320E25CAF00539FD1 /* CCCrashCatcher.h */,
+				70EA914420E25CAF00539FD1 /* CCCrashCatcher.m */,
+			);
+			path = CCCrashCatcher;
+			sourceTree = "<group>";
+		};
 		70FEF1A820A02AD1008A47D4 /* UIResponder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1425,6 +1438,7 @@
 				70A3CC731F6BBE4900CCD480 /* CCRuntime.m in Sources */,
 				7034D6AD1F5FBF3C0005D1E1 /* UIScrollView+CCExtension.m in Sources */,
 				7034D6AE1F5FBF3C0005D1E1 /* UITableView+CCExtension.m in Sources */,
+				70EA914520E25CAF00539FD1 /* CCCrashCatcher.m in Sources */,
 				70BD28911F6272BF008C2C9A /* UIControl+CCExtension.m in Sources */,
 				37B52EDE1FC7D383009C17FF /* NSNotificationCenter+CCExtension.m in Sources */,
 				7034D6D01F5FE42F0005D1E1 /* UIGestureRecognizer+CCExtension.m in Sources */,

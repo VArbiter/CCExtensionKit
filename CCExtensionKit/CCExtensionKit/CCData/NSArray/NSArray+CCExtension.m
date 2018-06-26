@@ -61,6 +61,20 @@
     if (value) [self addObject:value];
     return self;
 }
+- (instancetype) cc_add_array : (id) value {
+    if ([value isKindOfClass:[NSArray class]]) {
+        if (((NSArray *)value).count) {
+            [self addObjectsFromArray:((NSArray *)value)];
+        }
+    }
+    else if ([value isKindOfClass:[NSSet class]]) {
+        __weak typeof(self) weak_self = self;
+        [((NSSet *)value) enumerateObjectsUsingBlock:^(id  _Nonnull obj, BOOL * _Nonnull stop) {
+            [weak_self addObject:obj];
+        }];
+    }
+    return self;
+}
 - (instancetype) cc_remove_t : (id) value {
     if (value && [self containsObject:value]) [self removeObject:value];
     return self;

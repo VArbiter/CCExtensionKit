@@ -35,6 +35,7 @@ typedef struct CCArrayChangeInfo CCArrayChangeInfo;
 @interface NSMutableArray (CCExtension)
 
 - (instancetype) cc_add : (id) value ;
+- (instancetype) cc_add_array : (id) value ;
 - (instancetype) cc_remove_t : (id) value ;
 - (instancetype) cc_remove_all_t ;
 - (instancetype) cc_remove_at : (NSUInteger) i_index ;
