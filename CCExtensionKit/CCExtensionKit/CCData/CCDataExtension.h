@@ -25,4 +25,7 @@
     #import "NSUserDefaults+CCExtension.h"
     #import "NSNotificationCenter+CCExtension.h"
 
+    #import "CCTaskManager.h"
+    #import "CCCrashCatcher.h"
+
 #endif /* CCDataExtension_h */

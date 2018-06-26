@@ -14,5 +14,6 @@
     #import "CCGradientLayerView.h"
     #import "CCDropAlertView.h"
     #import "CCIAPManager.h"
+    #import "CCUpdateManager.h"
 
 #endif /* CCOriginCustom_h */
