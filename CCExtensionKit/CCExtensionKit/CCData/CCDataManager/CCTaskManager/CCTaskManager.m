@@ -101,7 +101,7 @@
                 if (is_error_occured) {
                     [pSelf cc_pause];
                 }
-                else if (is_continue) {
+                else if (is_continue && pSelf.is_running) {
                     if (pSelf.array_tasks.count > 0) {
                         [pSelf.array_tasks removeObjectAtIndex:0];
                         if (pSelf.array_tasks.count > 0) [pSelf cc_resume];
