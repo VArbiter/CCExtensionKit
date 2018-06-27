@@ -89,9 +89,9 @@ Pod::Spec.new do |s|
       s.subspec 'CCCustom' do |custom|
         custom.source_files = 'CCExtensionKit/CCExtensionKit/CCCustom/**/*'
         custom.dependency 'CCExtensionKit/CCCore'
-        custom.dependency 'AFNetworking/Reachability', '~> 3.1.0'
-        custom.dependency 'AFNetworking/UIKit', '~> 3.1.0'
-        custom.dependency 'SDWebImage', '~> 4.2.0'
+        custom.dependency 'AFNetworking/Reachability', '~> 3.2.1'
+        custom.dependency 'AFNetworking/UIKit', '~> 3.2.1'
+        custom.dependency 'SDWebImage', '~> 4.4.1'
         custom.dependency 'MJRefresh', '~> 3.1.12'
         custom.dependency 'MBProgressHUD', '~> 1.0.0'
         custom.frameworks =  "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
