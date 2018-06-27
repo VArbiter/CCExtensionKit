@@ -54,3 +54,28 @@ typedef NS_ENUM(NSInteger , CCTimeStick) {
 @property (nonatomic , readonly) CCTimeStick toTimeStick;
 
 @end
+
+typedef NSString * CCDateFormatterTypeKey NS_EXTENSIBLE_STRING_ENUM;
+
+FOUNDATION_EXPORT CCDateFormatterTypeKey cc_date_formatter_type_1 ; // @"yyyy-MM-dd HH:mm:ss"
+FOUNDATION_EXPORT CCDateFormatterTypeKey cc_date_formatter_type_2 ; // @"yyyy-MM-dd HH:mm:ss.SSS"
+FOUNDATION_EXPORT CCDateFormatterTypeKey cc_date_formatter_type_3 ; // @"yyyy-MM-dd HH:mm:ss.ssssss"
+FOUNDATION_EXPORT CCDateFormatterTypeKey cc_date_formatter_type_4 ; // @"yyyy-MM-dd hh:mm:ss tt"
+FOUNDATION_EXPORT CCDateFormatterTypeKey cc_date_formatter_type_5 ; // @"yyyy-MM-dd HH:mm:ss"
+FOUNDATION_EXPORT CCDateFormatterTypeKey cc_date_formatter_type_6 ; // @"yyyy-MMMM-dd HH:mm:ss"
+FOUNDATION_EXPORT CCDateFormatterTypeKey cc_date_formatter_type_7 ; // @"yyyy-MMM-dd HH:mm:ss"
+
+@interface NSDateFormatter (CCExtension)
+
++ (instancetype) cc_common ;
++ (instancetype) cc_common_using_Asia_Shanghai ;
+
+/// if user chose another calendar (not local) , use it to recorrect it .
+// 如果用户选择的是不是本地的日历 , 调用此方法来纠正 .
+- (void) cc_recorrect_timezone ;
+
+/// append format from another . // 从另一个 NSDateFormatter 实例中添加
+- (instancetype) cc_appending_format : (__kindof NSDateFormatter *) format
+                          need_space : (BOOL) is_need ;
+
+@end

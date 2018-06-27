@@ -155,3 +155,47 @@
 }
 
 @end
+
+#pragma mark - -----
+
+CCDateFormatterTypeKey cc_date_formatter_type_1 = @"yyyy-MM-dd HH:mm:ss" ;
+CCDateFormatterTypeKey cc_date_formatter_type_2 = @"yyyy-MM-dd HH:mm:ss.SSS";
+CCDateFormatterTypeKey cc_date_formatter_type_3 = @"yyyy-MM-dd HH:mm:ss.ssssss";
+CCDateFormatterTypeKey cc_date_formatter_type_4 = @"yyyy-MM-dd hh:mm:ss tt";
+CCDateFormatterTypeKey cc_date_formatter_type_5 = @"yyyy-MM-dd HH:mm:ss";
+CCDateFormatterTypeKey cc_date_formatter_type_6 = @"yyyy-MMMM-dd HH:mm:ss";
+CCDateFormatterTypeKey cc_date_formatter_type_7 = @"yyyy-MMM-dd HH:mm:ss";
+
+@implementation NSDateFormatter (CCExtension)
+
++ (instancetype) cc_common {
+    return [[self alloc] init];
+}
++ (instancetype) cc_common_using_Asia_Shanghai {
+    NSDateFormatter *format = [self cc_common];
+    [format setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
+    return format;
+}
+
+- (void) cc_recorrect_timezone {
+    [self setCalendar:[[NSCalendar alloc]
+                       initWithCalendarIdentifier:NSCalendarIdentifierGregorian]];
+}
+- (instancetype) cc_appending_format : (__kindof NSDateFormatter *) format
+                          need_space : (BOOL) is_need {
+    NSString *s_format = format.dateFormat;
+    if (!s_format || !s_format.length) return self;
+    NSString *s = (self.dateFormat && self.dateFormat.length) ? self.dateFormat : @"" ;
+    if (is_need) {
+        [[s stringByAppendingString:@" "] stringByAppendingString:s_format];
+    }
+    else {
+        [s stringByAppendingString:s_format];
+    }
+    
+    [self setDateFormat:s];
+    return self;
+}
+
+@end
+
