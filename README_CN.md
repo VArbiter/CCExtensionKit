@@ -18,21 +18,26 @@
 > CCLocalLib 在版本 `2.2.3` 后就失效了
 > 
 > 因为版本`3.0.0`之后 , CCLocalLib 被重命名为 `'CCExtensionKit'` .
+> 
+> CCExtensionKit 引入了 `AdSupport.framework`
+> 
+> 所以 , 当你提交应用到 App Store 的时候要注意 .
 
 ### Note
 > 安装的时候 , 默认是 `CCCore` , `CCCore` 包含了 
 > 
 > > `CCCommon` (宏) , `CCProtocol` (协议) , `CCData` (NS族群), `CCView` (UI 族群), `CCRuntime` (objc/ runtime 相关)
 > 
-> 如果你想安装全部 , 安装 `"CCExtensionKit/CCFull"` (须知: `CCFull` 依赖了一些第三方库.)
+> 如果你想安装全部 , 安装 `"CCExtensionKit/CCFull"` 
 > 
-> **说明**
+
+**说明**
 > 
 > > CCCore : 核心拓展 . 一个抽象集合.
 > 
 > > CCFull : 全部 (不包括 CCDataBase && CCCustom) . 一个抽象集合 .
 > 
-> > CCExtensionAssets : 资源集合 , 为未来的使用做准备 . (当前为启用).
+> > CCExtensionAssets : 资源集合 , 为未来的使用做准备 . (当前还未启用).
 > 
 > > CCCommon : 宏 和 公共的工具类 .
 > 
@@ -40,7 +45,7 @@
 > 
 > > CCRuntime : 一些 runtime 的封装合集 .
 > 
-> > CCDataBase :  [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.0')  && && [`FCModel`](https://github.com/marcoarment/FCModel) 的包裹 . 
+> > CCDataBase :  [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.2')  && && [`FCModel`](https://github.com/marcoarment/FCModel) 的包裹 . 
 > 
 > > CCRouter : 一个路由的拓展, 依赖了 [`MGJRouter`](https://github.com/meili/MGJRouter) ('~> 0.9.3') && perform actions .
 > 
@@ -48,15 +53,25 @@
 > 
 > > CCView : UI 族群类库 .
 > 
-> > CCOrigin : 一个由自己开发的自定义视图库
+> > CCOrigin : 一个由自己开发的自定义视图 / 媒体 / 数据 库.
 > 
 > > CCCustom :  一些自定义的类和功能 , 依赖或者基于一些其它的第三方 .
 
 ### 上新 ?
 ---
+**2018-06-27 20:03:04**
+
+> 增加 `CCPointMarker ` (CCOrigin) 来让自己收集信息 ,
+> 
+> 增加 `CCCrashCatcher` (CCOrigin) 以捕获崩溃 ,
+> 
+> 增加 `CCPhotoManager` (CCOrigin) 用来从相册选择 图片 / 视频 ,
+> 
+> 增加 `CCAudioRecorder` (CCOrigin) 用来录音 .
+
 **2018-06-25 19:22:00**
 
-> 增加 `CCTaskManager` (CCData) 简易队列任务.
+> 增加 `CCTaskManager` (CCOrigin) 简易队列任务.
 
 **2018-05-04 21:55:33**
 

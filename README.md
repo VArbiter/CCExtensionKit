@@ -20,15 +20,19 @@
 > CCLocalLib has no longer effect after version `2.2.3`
 > 
 > cause after `3.0.0` , CCLocalLib was renamed to `'CCExtensionKit'` .
+> 
+> CCExtensionKit had import the `AdSupport.framework`.
+> 
+> therefore , be ware when submit your app to App Store .
 
 ### Note
 > when install , default is `CCCore` , `CCCore` contains 
 > 
 > > `CCCommon` (Macros) , `CCProtocol` (Protocol) , `CCData` (NS Family), `CCView` (UI Family), `CCRuntime` (objc/ runtime associate)
 > 
-> when you wanna get to Full , install with `"CCExtensionKit/CCFull"` (note: `CCFull` had dependend on other vendors.)
-> 
-> **Instructions**
+> when you wanna get to Full , install with `"CCExtensionKit/CCFull"`
+
+**Instructions**
 > 
 > > CCCore : Core extensions . a abstract collection .
 > 
@@ -42,7 +46,7 @@
 > 
 > > CCRuntime : Packaged for some runtime functions .
 > 
-> > CCDataBase : Wrappers for [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.0') && [`FCModel`](https://github.com/marcoarment/FCModel)
+> > CCDataBase : Wrappers for [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.2') && [`FCModel`](https://github.com/marcoarment/FCModel)
 > 
 > > CCRouter : a extension Package Router for [`MGJRouter`](https://github.com/meili/MGJRouter) ('~> 0.9.3') && perform actions .
 > 
@@ -50,15 +54,25 @@
 > 
 > > CCView :  a extension actions for UI family .
 > 
-> > CCOrigin : a kit that for develop for custom views .
+> > CCOrigin : a kit that for develop for custom views / medias / datas .
 > 
 > > CCCustom :  Custom classes or functions , dependend or based on other vendors .
 
 ### What's new ?
 ---
+**2018-06-27 20:03:04**
+
+> added `CCPointMarker` (CCOrigin) for collect infos on our own ,
+> 
+> added `CCCrashCatcher` (CCOrigin) for catch crashes , 
+> 
+> added `CCPhotoManager` (CCOrigin) for pick photos / videos in album ,
+> 
+> added `CCAudioRecorder` (CCOrigin) for recording audios .
+
 **2018-06-25 19:22:00**
 
-> added `CCTaskManager` (CCData) for easy queue tasks .
+> added `CCTaskManager` (CCOrigin) for easy queue tasks .
 
 **2018-05-04 21:55:33**
 
