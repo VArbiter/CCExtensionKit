@@ -8,8 +8,10 @@
 
 #import "CCDevice.h"
 
-@import UIKit;
 #import <sys/utsname.h>
+@import Darwin;
+#import <SystemConfiguration/CaptiveNetwork.h>
+@import AdSupport;
 
 @implementation CCDevice
 
@@ -111,12 +113,44 @@
 #endif
 }
 
-+ (NSString *) cc_system_version {
-    return @(UIDevice.currentDevice.systemVersion.floatValue).stringValue ;
++ (NSString *) cc_device_model {
+    return UIDevice.currentDevice.model;
+}
+
++ (NSString *) cc_device_ip {
+    NSString *s_address = @"an error occurred when obtaining ip address";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    
+    success = getifaddrs(&interfaces);
+    
+    if (success == 0) { // 0 = success
+        
+        temp_addr = interfaces;
+        while (temp_addr != NULL) {
+            if( temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if ([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String
+                    s_address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
+            }
+            
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    
+    freeifaddrs(interfaces);
+    return s_address;
 }
 
 + (NSString *) cc_device_UUID {
     return UIDevice.currentDevice.identifierForVendor.UUIDString;
+}
+
++ (NSString *) cc_device_IDFA {
+    return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
 }
 
 + (NSString *) cc_device_resolution {
@@ -128,6 +162,89 @@
 
 + (NSString *) cc_device_rect {
     return NSStringFromCGRect(UIScreen.mainScreen.bounds);
+}
+
++ (NSString *) cc_system_version {
+    return @(UIDevice.currentDevice.systemVersion.floatValue).stringValue ;
+}
+
++ (float) cc_battery_level {
+    return [[UIDevice currentDevice] batteryLevel];
+}
+
++ (UIDeviceBatteryState) cc_battery_state {
+    return [UIDevice currentDevice].batteryState;
+}
+
++ (unsigned long long) cc_disk_total_size {
+    struct statfs buf;
+    unsigned long long s_total_space = -1;
+    if (statfs("/var", &buf) >= 0)
+    {
+        s_total_space = (unsigned long long)(buf.f_bsize * buf.f_blocks);
+    }
+    return s_total_space;
+}
++ (unsigned long long) cc_available_disk_size {
+    struct statfs buf;
+    unsigned long long ull_free_space = -1;
+    if (statfs("/var", &buf) >= 0)
+    {
+        ull_free_space = (unsigned long long)(buf.f_bsize * buf.f_bavail);
+    }
+    return ull_free_space;
+}
++ (unsigned long long) cc_available_memory {
+    vm_statistics_data_t vmStats;
+    mach_msg_type_number_t infoCount = HOST_VM_INFO_COUNT;
+    kern_return_t kernReturn = host_statistics(mach_host_self(), HOST_VM_INFO, (host_info_t)&vmStats, &infoCount);
+    if (kernReturn != KERN_SUCCESS) {
+        return NSNotFound;
+    }
+    return ((vm_page_size * vmStats.free_count + vm_page_size * vmStats.inactive_count));
+}
++ (unsigned long long) cc_current_memory_in_use {
+    task_basic_info_data_t taskInfo;
+    mach_msg_type_number_t infoCount = TASK_BASIC_INFO_COUNT;
+    kern_return_t kernReturn = task_info(mach_task_self(),
+                                         TASK_BASIC_INFO,
+                                         (task_info_t)&taskInfo,
+                                         &infoCount);
+    
+    if (kernReturn != KERN_SUCCESS) {
+        return NSNotFound;
+    }
+    
+    return taskInfo.resident_size;
+}
++ (unsigned long long) cc_total_memory {
+    return [NSProcessInfo processInfo].physicalMemory;
+}
+
++ (NSString *) cc_current_linked_ssid {
+    NSString *s_wifi_name = nil;
+    
+    CFArrayRef wifiInterfaces = CNCopySupportedInterfaces();
+    if (!wifiInterfaces) {
+        return nil;
+    }
+    
+    NSArray *interfaces = (__bridge NSArray *)wifiInterfaces;
+    
+    for (NSString *interfaceName in interfaces) {
+        CFDictionaryRef dictRef = CNCopyCurrentNetworkInfo((__bridge CFStringRef)(interfaceName));
+        
+        if (dictRef) {
+            NSDictionary *networkInfo = (__bridge NSDictionary *)dictRef;
+            
+            s_wifi_name = [networkInfo objectForKey:(__bridge NSString *)kCNNetworkInfoKeySSID];
+            
+            CFRelease(dictRef);
+        }
+    }
+    
+    CFRelease(wifiInterfaces);
+    return s_wifi_name;
 }
 
 @end

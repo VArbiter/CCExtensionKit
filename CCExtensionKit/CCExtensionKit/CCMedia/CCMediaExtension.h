@@ -9,10 +9,6 @@
 #ifndef CCMediaExtension_h
 #define CCMediaExtension_h
 
-    #import "CCPhotoManager.h"
-    #import "CCVideoManager.h"
-    #import "CCAudioRecorder.h"
-
     #import "PHAsset+CCExtension.h"
     #import "PHAssetCollection+CCExtension.h"
     #import "PHImageRequestOptions+CCExtension.h"

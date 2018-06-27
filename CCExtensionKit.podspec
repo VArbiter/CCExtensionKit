@@ -18,23 +18,23 @@ Pod::Spec.new do |s|
 
     s.default_subspec = 'CCCore'
 
-    s.subspec 'CCCore' do |coreT|
-      coreT.source_files = 'CCExtensionKit/*.{h}'
-      coreT.dependency 'CCExtensionKit/CCData'
-      coreT.dependency 'CCExtensionKit/CCView'
-      coreT.dependency 'CCExtensionKit/CCRuntime'
-      coreT.dependency 'CCExtensionKit/CCMedia'
+    s.subspec 'CCCore' do |core|
+      core.source_files = 'CCExtensionKit/*.{h}'
+      core.dependency 'CCExtensionKit/CCData'
+      core.dependency 'CCExtensionKit/CCView'
+      core.dependency 'CCExtensionKit/CCRuntime'
     end
 
-    s.subspec 'CCFull' do |fullT|
-      fullT.dependency 'CCExtensionKit/CCCore'
-      fullT.dependency 'CCExtensionKit/CCRouter'
-      fullT.dependency 'CCExtensionKit/CCOrigin'
+    s.subspec 'CCFull' do |full|
+      full.dependency 'CCExtensionKit/CCCore'
+      full.dependency 'CCExtensionKit/CCRouter'
+      full.dependency 'CCExtensionKit/CCOrigin'
     end
 
       s.subspec 'CCCommon' do |common|
         common.source_files = 'CCExtensionKit/CCExtensionKit/CCCommon/**/*'
-        common.frameworks = "Foundation", "UIKit", "AssetsLibrary" , "Photos" , "AVFoundation"
+        common.frameworks = "Foundation", "UIKit", "AVFoundation" , "Darwin" , "SystemConfiguration" , "AdSupport"
+        common.weak_frameworks = "Photos" , "AssetsLibrary"
       end
 
       s.subspec 'CCProtocol' do |protocol|
@@ -44,13 +44,6 @@ Pod::Spec.new do |s|
 
       s.subspec 'CCRuntime' do |runtime|
         runtime.source_files = 'CCExtensionKit/CCExtensionKit/CCRuntime/**/*'
-      end
-
-      s.subspec 'CCDataBase' do |dataBase|
-        dataBase.source_files = 'CCExtensionKit/CCExtensionKit/CCDataBase/**/*'
-        dataBase.dependency 'Realm', '~> 2.10.0'
-        dataBase.dependency 'FMDB', '~> 2.7.2'
-        dataBase.frameworks = "Foundation"
       end
 
       s.subspec 'CCRouter' do |router|
@@ -74,14 +67,23 @@ Pod::Spec.new do |s|
       s.subspec 'CCOrigin' do |origin|
         origin.source_files = 'CCExtensionKit/CCExtensionKit/CCOrigin/**/*'
         origin.dependency 'CCExtensionKit/CCCore'
-        origin.frameworks = "StoreKit"
+        origin.dependency 'CCExtensionKit/CCMedia'
+        origin.frameworks = "StoreKit" , "AdSupport" , "AVFoundation" , "CoreLocation"
+        origin.weak_frameworks = "Photos" , "WebKit"
       end
 
       s.subspec 'CCMedia' do |media|
         media.source_files = 'CCExtensionKit/CCExtensionKit/CCMedia/**/*'
         media.dependency 'CCExtensionKit/CCCore'
         media.frameworks = 'AVFoundation' , "AssetsLibrary"
-        origin.weak_frameworks = "Photos"
+        media.weak_frameworks = "Photos"
+      end
+
+      s.subspec 'CCDataBase' do |dataBase|
+        dataBase.source_files = 'CCExtensionKit/CCExtensionKit/CCDataBase/**/*'
+        dataBase.dependency 'Realm', '~> 2.10.2'
+        dataBase.dependency 'FMDB', '~> 2.7.2'
+        dataBase.frameworks = "Foundation"
       end
 
       s.subspec 'CCCustom' do |custom|
@@ -93,7 +95,7 @@ Pod::Spec.new do |s|
         custom.dependency 'MJRefresh', '~> 3.1.12'
         custom.dependency 'MBProgressHUD', '~> 1.0.0'
         custom.frameworks =  "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
-        origin.weak_frameworks = "WebKit"
+        custom.weak_frameworks = "WebKit"
       end
 
     s.requires_arc = true

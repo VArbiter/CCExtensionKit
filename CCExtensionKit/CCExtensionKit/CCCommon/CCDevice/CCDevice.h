@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@import UIKit;
+
 #ifndef CC_DEVICE_TYPE_S
     #define CC_DEVICE_TYPE_S [CCDevice cc_device_type]
 #endif
@@ -31,15 +33,27 @@
 @interface CCDevice : NSObject
 
 + (NSString *) cc_device_info ;
-
 + (NSString *) cc_device_type ;
++ (NSString *) cc_device_model ;
++ (NSString *) cc_device_ip ;
+
++ (NSString *) cc_device_UUID ;
++ (NSString *) cc_device_IDFA ;
+
++ (NSString *) cc_device_resolution ;
++ (NSString *) cc_device_rect ;
 
 + (NSString *) cc_system_version ;
 
-+ (NSString *) cc_device_UUID ;
++ (float) cc_battery_level ;
++ (UIDeviceBatteryState) cc_battery_state ;
 
-+ (NSString *) cc_device_resolution ;
++ (unsigned long long) cc_disk_total_size ;
++ (unsigned long long) cc_available_disk_size ;
++ (unsigned long long) cc_available_memory ;
++ (unsigned long long) cc_current_memory_in_use ;
++ (unsigned long long) cc_total_memory ;
 
-+ (NSString *) cc_device_rect ;
++ (NSString *) cc_current_linked_ssid ;
 
 @end
