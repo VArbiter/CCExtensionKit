@@ -91,6 +91,17 @@ CGFloat CCScaleW(CGFloat w) {
 CGFloat CCScaleH(CGFloat h) {
     return h / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
 }
+
+CGFloat CCAspectRatio(void) {
+    return UIScreen.mainScreen.bounds.size.width * UIScreen.mainScreen.scale / _CC_DEFAULT_SCALE_WIDTH_ ;
+}
+CGFloat CCAspectW(CGFloat w) {
+    return w * CCAspectRatio();
+}
+CGFloat CCAspectH(CGFloat h) {
+    return h * CCAspectRatio();
+}
+
 CGPoint CCScaleOrigin(CGPoint origin) {
     return CGPointMake(CCScaleW(origin.x), CCScaleH(origin.y));
 }

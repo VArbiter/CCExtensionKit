@@ -153,11 +153,17 @@
     return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
 }
 
-+ (NSString *) cc_device_resolution {
++ (CCDeviceResolution) cc_device_resolution {
     CGFloat w = UIScreen.mainScreen.bounds.size.width;
     CGFloat h = UIScreen.mainScreen.bounds.size.height;
     CGFloat scale = UIScreen.mainScreen.scale;
-    return [NSString stringWithFormat:@"%ld*%ld",(long)(h * scale),(NSInteger)(w * scale)];
+    
+    CCDeviceResolution resolution ;
+    resolution.width = w * scale ;
+    resolution.height = h * scale ;
+    resolution.scale = scale ;
+    
+    return resolution;
 }
 
 + (NSString *) cc_device_rect {
@@ -165,15 +171,15 @@
 }
 
 + (NSString *) cc_system_version {
-    return @(UIDevice.currentDevice.systemVersion.floatValue).stringValue ;
+    return UIDevice.currentDevice.systemVersion ;
 }
 
 + (float) cc_battery_level {
-    return [[UIDevice currentDevice] batteryLevel];
+    return UIDevice.currentDevice.batteryLevel;
 }
 
 + (UIDeviceBatteryState) cc_battery_state {
-    return [UIDevice currentDevice].batteryState;
+    return UIDevice.currentDevice.batteryState;
 }
 
 + (unsigned long long) cc_disk_total_size {

@@ -46,9 +46,11 @@ static void CC_ON_EXIT_BLOCK(__strong void(^*block)(void)) {
 /// used to decorate the c-functions (c-functions only) // 用来修饰 C 函数
 /// excute before main was intialized . // 在 main 函数前初始化
 /// note : if specific '_priority_' , the functions will execute in the level you gave (and counted destructor). // 如果指定 '_priority_' , 这个函数将会在你指定的级别内执行 , 并且算入 销毁器中
-#ifndef CC_VERY_FIRST_BEGINNING
-    #define CC_VERY_FIRST_BEGINNING __attribute__((constructor))
-    #define CC_VERY_FIRST_BEGINNING_PRIORITY(_priority_) __attribute__((constructor(##_priority_)))
+/// note : '_priority_' must be int , and not less than 100 (1~100 was remained by system). // '_priority_' 必须是 int 类型 , 而且不小于 100 (1~100 为系统所保留)
+/// note : the lesser '_priority_' is , the higher priority it has . // '_priority_' 的值越小 , 优先级越高
+#ifndef CC_AFTER_LOADING
+    #define CC_AFTER_LOADING __attribute__((constructor))
+    #define CC_AFTER_LOADING_PRIORITY(_priority_) __attribute__((constructor(##_priority_)))
 #endif
 
 /// used to decorate the c-functions (c-functions only) // 仅仅只能用来修饰 C 函数
@@ -90,6 +92,14 @@ static void CC_ON_EXIT_BLOCK(__strong void(^*block)(void)) {
     #else
         # define CC_FINAL
     #endif
+#endif
+
+/// make a new name for a class during runtime . // 动态为类更名
+/// in some project , if using random strings for classes , it just simply help you to mixed codes . // 在一些工程中 , 如果使用动态随机字符串来进行命名 , 那么 , 这个宏可以帮你完成简单的代码混淆
+/// note : prefix can be numbers . // 前缀可以是数字
+/// note : '_name_' can be a C-function (runable && return value as UTF8 string) .
+#ifndef CC_RUNTIME_NAME
+    #define CC_RUNTIME_NAME(_name_) __attribute__((objc_runtime_name(_name_)))
 #endif
 
 #endif /* CCAdvanceMacro_h */

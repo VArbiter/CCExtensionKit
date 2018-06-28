@@ -32,9 +32,14 @@ CCEdgeInsets CCEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFl
 CCEdgeInsets CCMakeEdgeInsetsFrom(UIEdgeInsets insets);
 UIEdgeInsets UIMakeEdgeInsetsFrom(CCEdgeInsets insets);
 
-/// scaled width && height // 按比例缩放后的 宽/高
+/// scaled width && height (based on main screen's width && height resolution) // 按比例缩放后的 宽/高 (基于屏幕宽和高的分辨率)
 CGFloat CCScaleW(CGFloat w);
 CGFloat CCScaleH(CGFloat h);
+
+/// aspect fit the width && height . (based on main screen's width resolution) // 按照特定比例缩放后的 宽 / 高 (基于屏幕宽的分辨率)
+CGFloat CCAspectRatio(void);
+CGFloat CCAspectW(CGFloat w);
+CGFloat CCAspectH(CGFloat h);
 
 /// length scale // 计算 宽/高 所占屏幕比例
 CGFloat CCWScale(CGFloat w);

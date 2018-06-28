@@ -30,6 +30,13 @@
     #define CC_DEVICE_RECT_S [CCDevice cc_device_rect]
 #endif
 
+struct CCDeviceResolution {
+    CGFloat width;
+    CGFloat height;
+    CGFloat scale;
+};
+typedef struct CG_BOXABLE CCDeviceResolution CCDeviceResolution;
+
 @interface CCDevice : NSObject
 
 + (NSString *) cc_device_info ;
@@ -40,7 +47,7 @@
 + (NSString *) cc_device_UUID ;
 + (NSString *) cc_device_IDFA ;
 
-+ (NSString *) cc_device_resolution ;
++ (CCDeviceResolution) cc_device_resolution ;
 + (NSString *) cc_device_rect ;
 
 + (NSString *) cc_system_version ;
