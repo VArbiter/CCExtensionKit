@@ -220,6 +220,8 @@ FOUNDATION_EXPORT CCMarkerEventDefaultExtraInfoKey cc_event_default_extra_info_p
 FOUNDATION_EXPORT CCMarkerEventDefaultExtraInfoKey cc_event_default_extra_info_app_total_use_time_key ;
 /// how long user stay in this page . (millseconds) // 用户在这个页面待了多久 (毫秒)
 FOUNDATION_EXPORT CCMarkerEventDefaultExtraInfoKey cc_event_default_extra_info_page_use_time_key ;
+/// the sequence that entering the page . // 用户进入界面序列
+FOUNDATION_EXPORT CCMarkerEventDefaultExtraInfoKey cc_event_default_extra_info_page_sequence_key ;
 
 
 /// an abstract event for all events . // 所有 event 的聚合类

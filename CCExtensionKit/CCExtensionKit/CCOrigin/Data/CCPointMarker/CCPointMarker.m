@@ -319,6 +319,7 @@ void cc_debug_print_logging(id t_log) {
     }
 }
 
+static NSInteger __page_sequence = 0;
 + (void) cc_track_page_begin :  (NSString *) s_page
                        extra : (NSDictionary *) d_extra {
     __marker.ull_page_use_time = NSDate.date.timeIntervalSince1970 * 1000.f;
@@ -326,6 +327,10 @@ void cc_debug_print_logging(id t_log) {
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     [d setValue:__marker.s_previous_page forKey:cc_event_default_extra_info_page_previous_key];
     [d setValue:s_page forKey:cc_event_default_extra_info_page_begin_key];
+    [d setValue:@(__page_sequence) forKey:cc_event_default_extra_info_page_sequence_key];
+    
+    __page_sequence ++ ;
+    
     CCMarkerEvent_Common *t = [[CCMarkerEvent_Common alloc]
                                init_event_id:cc_point_marker_track_page_begin_event_key
                                extra:d];
@@ -416,6 +421,7 @@ CCMarkerEventDefaultExtraInfoKey cc_event_default_extra_info_page_begin_key = @"
 CCMarkerEventDefaultExtraInfoKey cc_event_default_extra_info_page_end_key = @"cc_page_end_key" ;
 CCMarkerEventDefaultExtraInfoKey cc_event_default_extra_info_app_total_use_time_key = @"cc_app_total_use_time_key";
 CCMarkerEventDefaultExtraInfoKey cc_event_default_extra_info_page_use_time_key = @"cc_page_use_time_key";
+CCMarkerEventDefaultExtraInfoKey cc_event_default_extra_info_page_sequence_key = @"cc_page_sequence_key";
 
 @interface CCMarkerEvent ()
 
