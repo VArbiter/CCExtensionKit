@@ -85,6 +85,24 @@
     return string;
 }
 
++ (BOOL) cc_is_24_hours_settings {
+    return NSDate.date.is_24_hour_settings;
+}
+
+- (BOOL)is_24_hour_settings {
+    BOOL is_24_hours = YES;
+    NSString *s_date = [self descriptionWithLocale:NSLocale.currentLocale];
+    NSArray  *t_symbols = @[NSCalendar.currentCalendar.AMSymbol ,
+                            NSCalendar.currentCalendar.PMSymbol];
+    for (NSString *s_symbol in t_symbols) {
+        if ([s_date rangeOfString:s_symbol].location != NSNotFound) {
+            is_24_hours = NO;
+            break;
+        }
+    }
+    return is_24_hours;
+}
+
 @end
 
 @implementation NSString (CCExtension_String_Convert)
@@ -175,6 +193,11 @@ CCDateFormatterTypeKey cc_date_formatter_type_7 = @"yyyy-MMM-dd HH:mm:ss";
     NSDateFormatter *format = [self cc_common];
     [format setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
     return format;
+}
+
+- (instancetype) cc_set_locale_to_en_US {
+    [self setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    return self;
 }
 
 - (void) cc_recorrect_timezone {

@@ -32,6 +32,10 @@ typedef NS_ENUM(NSInteger , CCWeekType) {
 - (NSString *) cc_time_since_1970 : (NSTimeInterval) interval
                            format : (NSString *) s_format;
 
+/// return whether if its display as 24 hours . // 决定时间是否显示为 24 小时制
++ (BOOL) cc_is_24_hours_settings ;
+@property (nonatomic , readonly) BOOL is_24_hour_settings ;
+
 @end
 
 typedef NS_ENUM(NSInteger , CCTimeStick) {
@@ -69,6 +73,10 @@ FOUNDATION_EXPORT CCDateFormatterTypeKey cc_date_formatter_type_7 ; // @"yyyy-MM
 
 + (instancetype) cc_common ;
 + (instancetype) cc_common_using_Asia_Shanghai ;
+
+/// make sure you get the right format of time . // 来保证你获得的时间格式是对的
+// for : user set time to 12 and you want get it with 24 . // 针对 : 用户设置时间是12小时制 , 而你想得到的是24小时制
+- (instancetype) cc_set_locale_to_en_US ;
 
 /// if user chose another calendar (not local) , use it to recorrect it .
 // 如果用户选择的是不是本地的日历 , 调用此方法来纠正 .
