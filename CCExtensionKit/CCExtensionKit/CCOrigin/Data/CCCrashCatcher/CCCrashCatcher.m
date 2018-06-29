@@ -71,7 +71,7 @@ void cc_uncaught_exception_handler(NSException *exception);
     NSString *s_catch_path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory ,
                                                                   NSUserDomainMask,
                                                                   YES).firstObject
-                              stringByAppendingString:@"CCCrashLog"];
+                              stringByAppendingPathComponent:@"CCCrashLog"];
     return s_catch_path;
 }
 

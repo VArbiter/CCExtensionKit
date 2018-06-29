@@ -112,7 +112,7 @@ void cc_debug_print_logging(NSString * s_log) ;
     NSString *s_logging_path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory ,
                                                                     NSUserDomainMask,
                                                                     YES).firstObject
-                                stringByAppendingString:@"CCPointMarkerLog"];
+                                stringByAppendingPathComponent:@"CCPointMarkerLog"];
     return s_logging_path;
 }
 + (NSArray <NSString *> *) cc_all_logging_file {
