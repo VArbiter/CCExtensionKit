@@ -113,9 +113,9 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
         @throw @"Realm is already in transaction .";
 #else
         void (^e)(NSError *) = objc_getAssociatedObject(self, _CC_RLM_ERROR_KEY_);
-        if (e) {e([NSError errorWithDomain:@"Realm is already in transaction ."
-                                      code:-101
-                                  userInfo:nil]);}
+        if (e) {e([NSError errorWithDomain:@"ElwinFrederick.CCRealmHandler"
+                                      code:-100001
+                                  userInfo:@{NSLocalizedDescriptionKey : @"Realm is already in transaction ."}]);}
 #endif
     } else {
         [self.realm transactionWithBlock:^{

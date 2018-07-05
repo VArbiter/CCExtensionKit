@@ -16,7 +16,7 @@ void cc_uncaught_exception_handler(NSException *exception);
 
 @implementation CCCrashCatcher
 
-+ (void)load {
++ (void)initialize {
     
     NSFileManager *manager = [NSFileManager defaultManager];
     
@@ -68,9 +68,10 @@ void cc_uncaught_exception_handler(NSException *exception);
 }
 
 + (NSString *) cc_crash_folder_path {
-    NSString *s_catch_path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory ,
-                                                                  NSUserDomainMask,
-                                                                  YES).firstObject
+    NSString *s_catch_path = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory ,
+                                                                   NSUserDomainMask,
+                                                                   YES).firstObject
+                               stringByAppendingPathComponent:@"CCExtensionKit"]
                               stringByAppendingPathComponent:@"CCCrashLog"];
     return s_catch_path;
 }

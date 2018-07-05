@@ -109,9 +109,10 @@ void cc_debug_print_logging(NSString * s_log) ;
 }
 
 + (NSString *) cc_logging_folder_path {
-    NSString *s_logging_path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory ,
-                                                                    NSUserDomainMask,
-                                                                    YES).firstObject
+    NSString *s_logging_path = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory ,
+                                                                     NSUserDomainMask,
+                                                                     YES).firstObject
+                                 stringByAppendingPathComponent:@"CCExtensionKit"]
                                 stringByAppendingPathComponent:@"CCPointMarkerLog"];
     return s_logging_path;
 }
