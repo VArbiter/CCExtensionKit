@@ -214,6 +214,27 @@
     return animate;
 }
 
+static NSString * cc_controller_extension_animated_transition_key = @"cc_controller_extension_animated_transition_key";
+
+- (CATransition *) cc_set_animated_transition : (NSString *) s_type
+                              coming_position : (NSString *) s_position
+                                     duration : (NSTimeInterval) interval {
+    
+    CATransition *animation = [CATransition animation];
+    animation.duration = interval;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.type = s_type && s_type.length ? s_type : kCATransitionMoveIn;
+    animation.subtype = s_position && s_position.length ? s_position : kCATransitionFromTop;
+    [self.navigationController.view.layer addAnimation:animation
+                                                forKey:cc_controller_extension_animated_transition_key];
+    
+    return animation;
+}
+
+- (void) cc_reset_animated_transition : (CATransition *) animation {
+    [self.navigationController.view.layer removeAnimationForKey:cc_controller_extension_animated_transition_key];
+}
+
 @end
 
 #pragma mark - -----

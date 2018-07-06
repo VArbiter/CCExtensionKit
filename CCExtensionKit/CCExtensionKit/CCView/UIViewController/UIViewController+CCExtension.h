@@ -63,6 +63,15 @@
 /// note : deploy it in the controller is about to presented . not the presenting one . // 在将要被模态出的控制器使用 , 不是当前的控制器
 - (instancetype) cc_enable_pushing_poping_style_when_present_or_dismiss ;
 
+/// a simple animation for navigation controller when pushed . // 简单的 push 动画
+- (CATransition *) cc_set_animated_transition : (NSString *) s_type
+                              coming_position : (NSString *) s_position
+                                     duration : (NSTimeInterval) interval ;
+
+/// remove the animation you used with "[UIViewController cc_set_animated_transition:coming_position:duration:]"
+/// 去除你在 "[UIViewController cc_set_animated_transition:coming_position:duration:]" 使用的动画 
+- (void) cc_reset_animated_transition : (CATransition *) animation ;
+
 @end
 
 #pragma mark - -----
