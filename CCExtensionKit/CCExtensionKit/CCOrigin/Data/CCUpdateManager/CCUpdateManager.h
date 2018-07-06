@@ -28,7 +28,7 @@ FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_
                                                NSString * s_version_store ,
                                                NSString * s_open_link)) cc_update_block ;
 
-/// has to deploy them before "cc_check_update_with_link:need_to_update" was executed. // 必须在 "cc_check_update_with_link:need_to_update" 执行前调用这些 .
+/// has to invoke them before "cc_check_update_with_link:need_to_update" was executed. // 必须在 "cc_check_update_with_link:need_to_update" 执行前调用这些 .
 @property (nonatomic , copy) void (^cc_original_response_block)(id original_response) ;
 @property (nonatomic , copy) void (^cc_error_block)(NSError *error) ;
 

@@ -60,7 +60,7 @@
 
 /// make present modeled push / dismiss modeled pop // 使得 模态动画像是 导航栏的 push / pop
 /// only works in present . // 只针对 模态有效
-/// note : deploy it in the controller is about to presented . not the presenting one . // 在将要被模态出的控制器使用 , 不是当前的控制器
+/// note : invoke it in the controller is about to presented . not the presenting one . // 在将要被模态出的控制器使用 , 不是当前的控制器
 - (instancetype) cc_enable_pushing_poping_style_when_present_or_dismiss ;
 
 /// a simple animation for navigation controller when pushed . // 简单的 push 动画

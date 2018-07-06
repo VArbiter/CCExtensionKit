@@ -60,8 +60,8 @@
 
 // simple two-ways interact with JaveScript && Native in webview. // 简易的 webView 双向加载 (JaveScript <-> Native)
 
-/// Can deploy it for muti times . // 可以多次调用
-/// deploy nil for message block to unregist a recall // 对 message block 传 nil 去取消一个注册
+/// Can invoke it for muti times . // 可以多次调用
+/// invoke nil for message block to unregist a recall // 对 message block 传 nil 去取消一个注册
 - (instancetype) cc_script : (NSString *) sKey
                    message : (void (^)(WKUserContentController * userContentController, WKScriptMessage *message)) message ;
 

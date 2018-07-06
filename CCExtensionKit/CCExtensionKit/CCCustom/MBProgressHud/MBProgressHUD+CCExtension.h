@@ -22,13 +22,13 @@ typedef NS_ENUM(NSInteger , CCHudExtensionType) {
 
 @interface MBProgressHUD (CCExtension)
 
-/// init , default showing after actions complete , no need to deploy showing action "ccShow".
+/// init , default showing after actions complete , no need to invoke showing action "ccShow".
 /// 初始化 . 默认在 动作完成后展示 , 不用实现 "ccShow"
 + (instancetype) init ;
 + (instancetype) init : (UIView *) view ;
 
 /// generate a hud with its bounds . default with application window . // 生成一个 hud , 默认是 应用主窗口
-/// also , you have to add it after generate compete , and deploy showing action "ccShow" . // 需要在生成完毕后添加 , 然后调用 "ccShow"
+/// also , you have to add it after generate compete , and invoke showing action "ccShow" . // 需要在生成完毕后添加 , 然后调用 "ccShow"
 + (instancetype) cc_generate ;
 + (instancetype) cc_generate : (UIView *) view ;
 
@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger , CCHudExtensionType) {
 - (instancetype) cc_message : (NSString *) sMessage ;
 - (instancetype) cc_type : (CCHudExtensionType) type ;
 
-/// if deploy , make sure you DO NOT delpoied "ccShow"; // 如果实现下方这些 , 不能调用 "ccShow"
+/// if invoked , make sure you DO NOT delpoied "ccShow"; // 如果实现下方这些 , 不能调用 "ccShow"
 - (instancetype) cc_delay : (CGFloat) fDelay ;
 - (instancetype) cc_grace : (NSTimeInterval) interval ; // same as MBProgressHud // 和 MBProgressHud 相同
 - (instancetype) cc_min : (NSTimeInterval) interval ; // same as MBProgressHud // 和 MBProgressHud 相同

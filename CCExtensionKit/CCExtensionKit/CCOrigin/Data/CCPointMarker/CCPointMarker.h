@@ -57,7 +57,7 @@ FOUNDATION_EXPORT CCPointMarkerEventKey cc_point_marker_track_location_event_key
                   event : (__kindof CCMarkerEvent *) event
                   error : (NSError *) error ;
 
-/// only worked when deploy "[CCPointMarker cc_enable_logging_to_local_file]"
+/// only worked when invoke "[CCPointMarker cc_enable_logging_to_local_file]"
 // 只有在 调用 "[CCPointMarker cc_enable_logging_to_local_file]"时 起效
 - (void) cc_point_maker : (CCPointMarker *) marker
 updating_local_logging_file_complete : (NSString *) s_file_path ;
@@ -74,7 +74,7 @@ updating_local_logging_file_error : (NSError *) error ;
 + (void) cc_is_product : (BOOL) is_production ;
 /// app's channel . // 用户下载应用的渠道
 + (void) cc_channel : (NSString *) s_channel ;
-/// have to deploy it before make any markers . // 必须在调用任何打点方法之前 调用它
+/// have to invoke it before make any markers . // 必须在调用任何打点方法之前 调用它
 + (void) cc_set_delegate : (id <CCPointMarkerDelegate>) delegate ;
 
 /// enable logging . default is NO // 启用日志 , 默认禁用

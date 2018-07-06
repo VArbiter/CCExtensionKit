@@ -10,7 +10,7 @@
 
 @interface CCCrashCatcher : NSObject
 
-/// initialize , deploy it in the very beginning (eg: AppDelegate / + (load) ).// 初始化. 在最开始调用
+/// initialize , invoke it in the very beginning (eg: AppDelegate / + (load) ).// 初始化. 在最开始调用
 + (void) cc_begin ;
 
 /// get all crash logs . // 获得所有的崩溃日志路径

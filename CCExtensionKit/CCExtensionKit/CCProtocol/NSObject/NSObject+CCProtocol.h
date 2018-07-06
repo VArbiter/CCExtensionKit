@@ -12,7 +12,7 @@
 
 - (instancetype) cc ;
 
-/// make sure that when blocks is deploy ,
+/// make sure that when blocks is invoked ,
 /// the object in blocks , was never can't be nil
 /// use CC_TYPE(_type_ , sameObject) to force 'sameObject' with aspecific value .
 - (instancetype) cc : (id (^)(id same_object)) sameObject;

@@ -71,12 +71,12 @@ dispatch_time_t CC_DISPATCH_AFTER(double fSeconds ,
                                   void (^bAction)(void)) ;
 /// async to main , 异步到主线
 void CC_DISPATCH_ASYNC_M(void (^bAction)(void)) ;
-/// sync to main . warning : do NOT deploy it in MAIN QUEUE , other wise will cause lock done . // 同步到主线 , 警告 : 在主线中使用 , 会引起死锁
+/// sync to main . warning : do NOT invoke it in MAIN QUEUE , other wise will cause lock done . // 同步到主线 , 警告 : 在主线中使用 , 会引起死锁
 void CC_DISPATCH_SYNC_M(void (^bAction)(void)) ;
 /// async to specific queue // 异步到指定线程
 void CC_DISPATCH_ASYNC(CCQueue queue ,
                        void (^bAction)(void)) ;
-/// sync to specific queue , warning : do NOT deploy it in MAIN QUEUE , other wise will cause lock done . // 同步到指定线程 , 警告 : 在主线中使用回调至主线 , 会引起死锁
+/// sync to specific queue , warning : do NOT invoke it in MAIN QUEUE , other wise will cause lock done . // 同步到指定线程 , 警告 : 在主线中使用回调至主线 , 会引起死锁
 void CC_DISPATCH_SYNC(CCQueue queue ,
                       void (^bAction)(void)) ;
 /// equals to dispatch_barrier_async // 等同于 dispatch_barrier_async
@@ -121,7 +121,7 @@ CCGroup CC_GROUP_INIT(void);
 
 - (instancetype) cc_group : (CCGroup) group
                     queue : (CCQueue) queue ;
-/// actions for group , can deploy it for muti times // group 的动作 , 可以多次添加
+/// actions for group , can invoke it for muti times // group 的动作 , 可以多次添加
 - (instancetype) cc_group_action : (void (^)(CCRuntime * sender)) action ;
 /// when all group actions finished // 当组中所有任务完成时调用
 - (instancetype) cc_notify : (CCQueue) queue
