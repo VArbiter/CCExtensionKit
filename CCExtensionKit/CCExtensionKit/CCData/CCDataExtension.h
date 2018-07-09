@@ -24,5 +24,6 @@
     #import "NSURLRequest+CCExtension.h"
     #import "NSUserDefaults+CCExtension.h"
     #import "NSNotificationCenter+CCExtension.h"
+    #import "NSLock+CCExtension.h"
 
 #endif /* CCDataExtension_h */
