@@ -60,6 +60,12 @@
 
 ### What's new ?
 ---
+**2018-07-09 17:37:21**
+
+> added `NSLock+CCExtension` (CCData) for lock issues .
+>
+> added `CCNull` (CCOrigin) for replace NSNull holding issues .
+
 **2018-06-27 20:03:04**
 
 > added `CCPointMarker` (CCOrigin) for collect infos on our own ,
