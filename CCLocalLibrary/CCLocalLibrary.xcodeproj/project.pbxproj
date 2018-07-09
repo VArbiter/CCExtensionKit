@@ -85,6 +85,8 @@
 		70EA918620E3AF3A00539FD1 /* CCAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EA917E20E3AF3A00539FD1 /* CCAudioRecorder.m */; };
 		70EA918720E3AF3A00539FD1 /* CCPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EA918120E3AF3A00539FD1 /* CCPhotoManager.m */; };
 		70EA918820E3AF3A00539FD1 /* CCVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EA918520E3AF3A00539FD1 /* CCVideoManager.m */; };
+		70F08B4820EE1D4E007B4D33 /* CCNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08B4720EE1D4E007B4D33 /* CCNull.m */; };
+		70F08B7020F3442A007B4D33 /* NSLock+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08B6F20F3442A007B4D33 /* NSLock+CCExtension.m */; };
 		70FEF1AE20A02BDA008A47D4 /* UIResponder+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */; };
 		70FEF1DD20A29B56008A47D4 /* UIApplication+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FEF1DC20A29B56008A47D4 /* UIApplication+CCExtension.m */; };
 		70FF2FBA1F6A1BD5001B6407 /* UITextView+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FF2FB91F6A1BD5001B6407 /* UITextView+CCExtension.m */; };
@@ -263,6 +265,10 @@
 		70EA918220E3AF3A00539FD1 /* CCPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPhotoManager.h; sourceTree = "<group>"; };
 		70EA918420E3AF3A00539FD1 /* CCVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCVideoManager.h; sourceTree = "<group>"; };
 		70EA918520E3AF3A00539FD1 /* CCVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCVideoManager.m; sourceTree = "<group>"; };
+		70F08B4620EE1D4E007B4D33 /* CCNull.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCNull.h; sourceTree = "<group>"; };
+		70F08B4720EE1D4E007B4D33 /* CCNull.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCNull.m; sourceTree = "<group>"; };
+		70F08B6E20F3442A007B4D33 /* NSLock+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLock+CCExtension.h"; sourceTree = "<group>"; };
+		70F08B6F20F3442A007B4D33 /* NSLock+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSLock+CCExtension.m"; sourceTree = "<group>"; };
 		70FEF1AC20A02BDA008A47D4 /* UIResponder+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+CCExtension.h"; sourceTree = "<group>"; };
 		70FEF1AD20A02BDA008A47D4 /* UIResponder+CCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+CCExtension.m"; sourceTree = "<group>"; };
 		70FEF1DB20A29B56008A47D4 /* UIApplication+CCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+CCExtension.h"; sourceTree = "<group>"; };
@@ -512,6 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				7034D61C1F5FBF3C0005D1E1 /* CCDataExtension.h */,
+				70F08B6D20F34406007B4D33 /* NSLock */,
 				37B52EDB1FC7D382009C17FF /* NSNotificationCenter */,
 				3773C2061FC0265F00C7F384 /* NSUserDefaults */,
 				7034D61D1F5FBF3C0005D1E1 /* NSArray */,
@@ -1020,6 +1027,7 @@
 		70EA915620E3AE5700539FD1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				70F08B4520EE1D42007B4D33 /* CCNull */,
 				70EA915720E3AE5700539FD1 /* CCIAPManager */,
 				70EA915A20E3AE5700539FD1 /* CCCrashCatcher */,
 				70EA915D20E3AE5700539FD1 /* CCUpdateManager */,
@@ -1156,6 +1164,24 @@
 				70EA918520E3AF3A00539FD1 /* CCVideoManager.m */,
 			);
 			path = CCVideoManager;
+			sourceTree = "<group>";
+		};
+		70F08B4520EE1D42007B4D33 /* CCNull */ = {
+			isa = PBXGroup;
+			children = (
+				70F08B4620EE1D4E007B4D33 /* CCNull.h */,
+				70F08B4720EE1D4E007B4D33 /* CCNull.m */,
+			);
+			path = CCNull;
+			sourceTree = "<group>";
+		};
+		70F08B6D20F34406007B4D33 /* NSLock */ = {
+			isa = PBXGroup;
+			children = (
+				70F08B6E20F3442A007B4D33 /* NSLock+CCExtension.h */,
+				70F08B6F20F3442A007B4D33 /* NSLock+CCExtension.m */,
+			);
+			path = NSLock;
 			sourceTree = "<group>";
 		};
 		70FEF1A820A02AD1008A47D4 /* UIResponder */ = {
@@ -1460,6 +1486,7 @@
 				70C00EAA20B272FF00A86377 /* PHFetchResult+CCExtension.m in Sources */,
 				7034D6A91F5FBF3C0005D1E1 /* UIImagePickerController+CCExtension.m in Sources */,
 				3772441D1FBB05AD0006E83A /* CCDevice.m in Sources */,
+				70F08B7020F3442A007B4D33 /* NSLock+CCExtension.m in Sources */,
 				7034D6B81F5FCC040005D1E1 /* CCAuthorize.m in Sources */,
 				70A3CC731F6BBE4900CCD480 /* CCRuntime.m in Sources */,
 				7034D6AD1F5FBF3C0005D1E1 /* UIScrollView+CCExtension.m in Sources */,
@@ -1486,6 +1513,7 @@
 				7034D6A81F5FBF3C0005D1E1 /* UIImage+CCExtension.m in Sources */,
 				7034D6A41F5FBF3C0005D1E1 /* UICollectionView+CCExtension.m in Sources */,
 				70FF30511F6A6984001B6407 /* UICollectionView+CCExtension_Refresh.m in Sources */,
+				70F08B4820EE1D4E007B4D33 /* CCNull.m in Sources */,
 				7034D6961F5FBF3C0005D1E1 /* NSObject+CCExtension.m in Sources */,
 				7034D6CD1F5FD5370005D1E1 /* NSURLRequest+CCExtension.m in Sources */,
 				70FF2FBA1F6A1BD5001B6407 /* UITextView+CCExtension.m in Sources */,
@@ -1654,7 +1682,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CCLocalLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CC.CCLocalLibrary;
+				PRODUCT_BUNDLE_IDENTIFIER = CC.ElwinFrederick.CCExtensionKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -1669,7 +1697,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CCLocalLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CC.CCLocalLibrary;
+				PRODUCT_BUNDLE_IDENTIFIER = CC.ElwinFrederick.CCExtensionKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
