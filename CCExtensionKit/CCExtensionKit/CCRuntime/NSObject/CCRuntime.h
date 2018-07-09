@@ -20,37 +20,31 @@ typedef NS_ENUM(unsigned long , CCAssociationPolicy) {
 typedef NS_ENUM(unsigned int , CCQueueQOS) {
     /// default , not for programmer . use it when you have to reset a serial tasks .
     // 默认 , 不是针对开发者来说 , 当重置队列任务时使用
-    CCQueueQOS_Default = 0 ,
+    CCQueue_Default = 0 ,
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
     /// user intercation , will finish as soon as possiable , DO NOT use it for large tasks !
     // 用户操作 , 将尽快完成 , 不要用它做大任务
-    CCQueueQOS_User_interaction ,
+    CCQueue_User_interaction ,
     /// what's user expacted , DO NOT use it for large tasks !
     // 用户期望 , 不要用它做大任务
-    CCQueueQOS_User_Initiated ,
+    CCQueue_User_Initiated ,
     /// recommended , (also availiable for large tasks)
     // 推荐 , 但也不要用它做大任务
-    CCQueueQOS_Utility ,
+    CCQueue_Utility ,
     /// background tasks .
     // 后台任务
-    CCQueueQOS_Background  ,
+    CCQueue_Background  ,
     /// unspecified , wait unit the system to specific one .
     // 未指定 , 系统将会在完成之前指定的之后再做
-    CCQueueQOS_Unspecified
+    CCQueue_Unspecified
 #else
-    CCQueueQOS_High = 1,
-    CCQueueQOS_Low = 2,
-    CCQueueQOS_Background
+    CCQueue_High = 1,
+    CCQueue_Low = 2,
+    CCQueue_Background
 #endif
 };
 
-typedef dispatch_queue_t CCQueue;
-typedef dispatch_group_t CCGroup;
-typedef dispatch_source_t CCSource;
-typedef dispatch_time_t CCTime;
-typedef size_t CCCount;
-
-CCQueue CC_MAIN_QUEUE(void);
+dispatch_queue_t CC_MAIN_QUEUE(void);
 
 /// class original selector , target selector // 原来的方法 , 目标方法
 void CC_SWIZZ_METHOD(SEL sel_original ,
@@ -63,24 +57,24 @@ dispatch_source_t CC_DISPATCH_TIMER(NSTimeInterval interval ,
                                     void (^cc_cancel_block)(void)) ;
 /// interval time , actions // 时间 , 动作
 dispatch_time_t CC_DISPATCH_AFTER(double f_seconds ,
-                                  void (^cc_action_block)(void)) ;
+                         void (^cc_action_block)(void)) ;
 /// async to main , 异步到主线
 void CC_DISPATCH_ASYNC_M(void (^cc_action_block)(void)) ;
 /// sync to main . warning : do NOT invoke it in MAIN QUEUE , other wise will cause lock done . // 同步到主线 , 警告 : 在主线中使用 , 会引起死锁
 void CC_DISPATCH_SYNC_M(void (^cc_action_block)(void)) ;
 /// async to specific queue // 异步到指定线程
-void CC_DISPATCH_ASYNC(CCQueue queue ,
+void CC_DISPATCH_ASYNC(dispatch_queue_t queue ,
                        void (^cc_action_block)(void)) ;
 /// sync to specific queue , warning : do NOT invoke it in MAIN QUEUE , other wise will cause lock done . // 同步到指定线程 , 警告 : 在主线中使用回调至主线 , 会引起死锁
-void CC_DISPATCH_SYNC(CCQueue queue ,
+void CC_DISPATCH_SYNC(dispatch_queue_t queue ,
                       void (^cc_action_block)(void)) ;
 /// equals to dispatch_barrier_async // 等同于 dispatch_barrier_async
-void CC_DISPATCH_BARRIER_ASYNC(CCQueue queue ,
+void CC_DISPATCH_BARRIER_ASYNC(dispatch_queue_t queue ,
                                void (^cc_action_block)(void)) ;
 /// equals to dispatch_apply // 等同于 dispatch_apply
-void CC_DISPATCH_APPLY_FOR(CCCount count ,
-                           CCQueue queue ,
-                           void (^cc_time_block)(CCCount t)) ;
+void CC_DISPATCH_APPLY_FOR(size_t count ,
+                           dispatch_queue_t queue ,
+                           void (^cc_time_block)(size_t t)) ;
 
 /// equals to objc_setAssociatedObject // 等同于 objc_setAssociatedObject
 void CC_DISPATCH_SET_ASSOCIATE(id object ,
@@ -96,42 +90,10 @@ void CC_DISPATCH_GET_ASSOCIATE_B(id object ,
 
 #pragma mark - ----- Queue
 
-CCQueue CC_DISPATCH_CREATE_SERIAL(const char * label , BOOL is_serial) ;
-CCQueue CC_DISPATCH_GLOBAL(CCQueueQOS qos) ;
+dispatch_queue_t CC_DISPATCH_CREATE_SERIAL(const char * label , BOOL is_serial) ;
+dispatch_queue_t CC_DISPATCH_GLOBAL(CCQueueQOS qos) ;
 
-CCGroup CC_GROUP_INIT(void);
-
-#pragma mark - ----- Group
-
-@interface CCRuntime : NSObject
-
-/// constructor // 构造器
-+ (instancetype) runtime ;
-
-@end
-
-@interface CCRuntime_Group : CCRuntime
-
-@property (nonatomic) CCGroup group;
-@property (nonatomic) CCQueue queue;
-
-- (instancetype) cc_group : (CCGroup) group
-                    queue : (CCQueue) queue ;
-/// actions for group , can invoke it for muti times // group 的动作 , 可以多次添加
-- (instancetype) cc_group_action : (void (^)(CCRuntime * sender)) action ;
-/// when all group actions finished // 当组中所有任务完成时调用
-- (instancetype) cc_notify : (CCQueue) queue
-                    finish : (void(^)(CCRuntime * sender)) finish ;
-
-/// enter and leave mast use it with a pair // 进入和离开必须成对调用
-/// enter a group // 进入组
-- (instancetype) cc_enter;
-/// leave a group // 离开组
-- (instancetype) cc_leave;
-/// do someting after delay . // 在延迟后做操作
-- (instancetype) cc_wait : (CCTime) time ;
-
-@end
+dispatch_group_t CC_GROUP_INIT(void);
 
 #pragma mark - ----- Class
 

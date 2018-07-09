@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 #import <pthread.h>
 
-CCQueue CC_MAIN_QUEUE(void) {
+dispatch_queue_t CC_MAIN_QUEUE(void) {
     return dispatch_get_main_queue();
 }
 
@@ -27,8 +27,6 @@ dispatch_source_t CC_DISPATCH_TIMER(NSTimeInterval interval ,
                                     BOOL (^cc_action_block)(void) ,
                                     void (^cc_cancel_block)(void)) {
     if (!cc_action_block) return NULL;
-    dispatch_group_t group = dispatch_group_create();
-    dispatch_group_enter(group);
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), interval * NSEC_PER_SEC, 0);
@@ -36,7 +34,6 @@ dispatch_source_t CC_DISPATCH_TIMER(NSTimeInterval interval ,
         if (cc_action_block()) dispatch_source_cancel(timer);
     });
     dispatch_source_set_cancel_handler(timer, ^{
-        dispatch_group_leave(group);
         if (cc_cancel_block) cc_cancel_block();
     });
     dispatch_resume(timer);
@@ -59,22 +56,22 @@ void CC_DISPATCH_ASYNC_M(void (^cc_action_block)(void)) {
 void CC_DISPATCH_SYNC_M(void (^cc_action_block)(void)) {
     CC_DISPATCH_SYNC(dispatch_get_main_queue(), cc_action_block);
 }
-void CC_DISPATCH_ASYNC(CCQueue queue , void (^cc_action_block)(void)) {
+void CC_DISPATCH_ASYNC(dispatch_queue_t queue , void (^cc_action_block)(void)) {
     if (!queue) return ;
     dispatch_async(queue ? queue : CC_MAIN_QUEUE(), cc_action_block);
 }
-void CC_DISPATCH_SYNC(CCQueue queue , void (^cc_action_block)(void)) {
+void CC_DISPATCH_SYNC(dispatch_queue_t queue , void (^cc_action_block)(void)) {
     if (pthread_main_np() != 0) {
         if (cc_action_block) cc_action_block();
     }
     else dispatch_sync(queue ? queue : CC_MAIN_QUEUE(), cc_action_block);
 }
 
-void CC_DISPATCH_BARRIER_ASYNC(CCQueue queue , void (^cc_action_block)(void)){
+void CC_DISPATCH_BARRIER_ASYNC(dispatch_queue_t queue , void (^cc_action_block)(void)){
     dispatch_barrier_async(queue ? queue : CC_MAIN_QUEUE(), cc_action_block);
 }
 
-void CC_DISPATCH_APPLY_FOR(CCCount count , CCQueue queue , void (^cc_time_block)(CCCount t)) {
+void CC_DISPATCH_APPLY_FOR(size_t count , dispatch_queue_t queue , void (^cc_time_block)(size_t t)) {
     dispatch_apply(count, queue ? queue : CC_MAIN_QUEUE(), cc_time_block);
 }
 void CC_DISPATCH_SET_ASSOCIATE(id object , const void * key , id value , CCAssociationPolicy policy) {
@@ -94,30 +91,28 @@ void CC_DISPATCH_GET_ASSOCIATE_B(id object ,
 #pragma mark - ----- 
 @import UIKit;
 
-@implementation CCRuntime (CCExtension_Queue)
-
-CCQueue CC_DISPATCH_CREATE_SERIAL(const char * label , BOOL is_serial) {
+dispatch_queue_t CC_DISPATCH_CREATE_SERIAL(const char * label , BOOL is_serial) {
     if (UIDevice.currentDevice.systemVersion.floatValue >= 10.0) {
         return dispatch_queue_create(label, is_serial ? NULL : DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL);
     } else return dispatch_queue_create(label, is_serial ? NULL : DISPATCH_QUEUE_CONCURRENT);
 }
-CCQueue CC_DISPATCH_GLOBAL(CCQueueQOS qos) {
+dispatch_queue_t CC_DISPATCH_GLOBAL(CCQueueQOS qos) {
     /// for unsigned long flags , what's DOCs told that , it use for reserves for future needs .
     /// thus , for now , it's always be 0 .
     
     unsigned int qos_t = 0x00; // equals nil / NIL / NULL
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_8_0
     switch (qos) {
-        case CCQueueQOS_Default:{
+        case CCQueue_Default:{
             qos_t = DISPATCH_QUEUE_PRIORITY_DEFAULT;
         }break;
-        case CCQueueQOS_High:{
+        case CCQueue_High:{
             qos_t = DISPATCH_QUEUE_PRIORITY_HIGH;
         }break;
-        case CCQueueQOS_Low:{
+        case CCQueue_Low:{
             qos_t = DISPATCH_QUEUE_PRIORITY_LOW;
         }break;
-        case CCQueueQOS_Background:{
+        case CCQueue_Background:{
             qos_t = DISPATCH_QUEUE_PRIORITY_BACKGROUND;
         }break;
             
@@ -127,22 +122,22 @@ CCQueue CC_DISPATCH_GLOBAL(CCQueueQOS qos) {
     }
 #else
     switch (qos) {
-        case CCQueueQOS_Default:{
+        case CCQueue_Default:{
             qos_t = QOS_CLASS_DEFAULT;
         }break;
-        case CCQueueQOS_User_interaction:{
+        case CCQueue_User_interaction:{
             qos_t = QOS_CLASS_USER_INTERACTIVE;
         }break;
-        case CCQueueQOS_User_Initiated:{
+        case CCQueue_User_Initiated:{
             qos_t = QOS_CLASS_USER_INITIATED;
         }break;
-        case CCQueueQOS_Utility:{
+        case CCQueue_Utility:{
             qos_t = QOS_CLASS_UTILITY;
         }break;
-        case CCQueueQOS_Background:{
+        case CCQueue_Background:{
             qos_t = QOS_CLASS_BACKGROUND;
         }break;
-        case CCQueueQOS_Unspecified:{
+        case CCQueue_Unspecified:{
             qos_t = QOS_CLASS_UNSPECIFIED;
         }break;
             
@@ -154,66 +149,9 @@ CCQueue CC_DISPATCH_GLOBAL(CCQueueQOS qos) {
     return dispatch_get_global_queue(qos_t, 0) ;
 }
 
-CCGroup CC_GROUP_INIT(void) {
+dispatch_group_t CC_GROUP_INIT(void) {
     return dispatch_group_create();
 }
-
-@end
-
-#pragma mark - -----
-
-@interface CCRuntime ()
-
-@end
-
-@implementation CCRuntime
-
-+ (instancetype) runtime {
-    return [[self alloc] init];
-}
-
-@end
-
-@implementation CCRuntime_Group
-
-- (instancetype) cc_group : (CCGroup) group
-                    queue : (CCQueue) queue {
-    self.group = group;
-    self.queue = queue;
-    return self;
-}
-
-- (instancetype) cc_group_action : (void (^)(CCRuntime * sender)) action {
-    dispatch_group_async(self.group, self.queue, ^{
-        if (action) action(self);
-    });
-    return self;
-}
-
-- (instancetype) cc_notify : (CCQueue) queue
-                    finish : (void(^)(CCRuntime * sender)) finish {
-    dispatch_group_notify(self.group, queue, ^{
-        if (finish) finish(self);
-    });
-    return self;
-}
-
-- (instancetype) cc_enter {
-    dispatch_group_enter(self.group);
-    return self;
-}
-
-- (instancetype) cc_leave {
-    dispatch_group_leave(self.group);
-    return self;
-}
-
-- (instancetype) cc_wait : (CCTime) time {
-    dispatch_group_wait(self.group, time);
-    return self;
-}
-
-@end
 
 #pragma mark - -----
 

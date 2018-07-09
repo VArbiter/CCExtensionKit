@@ -54,6 +54,11 @@ typedef NS_ENUM(NSInteger , CCUnlockType) {
 
 @end
 
+/// NSCondition was more like the relative with producter && consumer .
+// NSCondition 更多的是针对 类似生产者和消费者的问题
+/// dispatch_semaphore_t was more like the full parking lot facing a new come .
+// dispatch_semaphore_t 更多的是针对满停车场面对新来的车的时候 .
+
 @interface NSCondition (CCExtension)
 
 /// stored all conditions that created by "cc_common"
