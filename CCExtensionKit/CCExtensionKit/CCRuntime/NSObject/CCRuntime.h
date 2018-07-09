@@ -52,40 +52,35 @@ typedef size_t CCCount;
 
 CCQueue CC_MAIN_QUEUE(void);
 
-@interface CCRuntime : NSObject
-
-/// constructor // 构造器
-+ (instancetype) runtime ;
-
 /// class original selector , target selector // 原来的方法 , 目标方法
-void CC_SWIZZ_METHOD(SEL selOriginal ,
-                     SEL selTarget ,
+void CC_SWIZZ_METHOD(SEL sel_original ,
+                     SEL sel_target ,
                      Class cls) ;
 
 /// interval time , timer action , return yes to stop , cancel action (cancel timer to trigger it); // 时间 , 动作 , 返回 YES 来停止 , 取消时触发
 dispatch_source_t CC_DISPATCH_TIMER(NSTimeInterval interval ,
-                                    BOOL (^bAction)(void) ,
-                                    void (^bCancel)(void)) ;
+                                    BOOL (^cc_action_block)(void) ,
+                                    void (^cc_cancel_block)(void)) ;
 /// interval time , actions // 时间 , 动作
-dispatch_time_t CC_DISPATCH_AFTER(double fSeconds ,
-                                  void (^bAction)(void)) ;
+dispatch_time_t CC_DISPATCH_AFTER(double f_seconds ,
+                                  void (^cc_action_block)(void)) ;
 /// async to main , 异步到主线
-void CC_DISPATCH_ASYNC_M(void (^bAction)(void)) ;
+void CC_DISPATCH_ASYNC_M(void (^cc_action_block)(void)) ;
 /// sync to main . warning : do NOT invoke it in MAIN QUEUE , other wise will cause lock done . // 同步到主线 , 警告 : 在主线中使用 , 会引起死锁
-void CC_DISPATCH_SYNC_M(void (^bAction)(void)) ;
+void CC_DISPATCH_SYNC_M(void (^cc_action_block)(void)) ;
 /// async to specific queue // 异步到指定线程
 void CC_DISPATCH_ASYNC(CCQueue queue ,
-                       void (^bAction)(void)) ;
+                       void (^cc_action_block)(void)) ;
 /// sync to specific queue , warning : do NOT invoke it in MAIN QUEUE , other wise will cause lock done . // 同步到指定线程 , 警告 : 在主线中使用回调至主线 , 会引起死锁
 void CC_DISPATCH_SYNC(CCQueue queue ,
-                      void (^bAction)(void)) ;
+                      void (^cc_action_block)(void)) ;
 /// equals to dispatch_barrier_async // 等同于 dispatch_barrier_async
 void CC_DISPATCH_BARRIER_ASYNC(CCQueue queue ,
-                               void (^bAction)(void)) ;
+                               void (^cc_action_block)(void)) ;
 /// equals to dispatch_apply // 等同于 dispatch_apply
 void CC_DISPATCH_APPLY_FOR(CCCount count ,
                            CCQueue queue ,
-                           void (^bTime)(CCCount t)) ;
+                           void (^cc_time_block)(CCCount t)) ;
 
 /// equals to objc_setAssociatedObject // 等同于 objc_setAssociatedObject
 void CC_DISPATCH_SET_ASSOCIATE(id object ,
@@ -99,22 +94,23 @@ void CC_DISPATCH_GET_ASSOCIATE_B(id object ,
                                  const void * key ,
                                  void (^bValue)(id value)) ;
 
-@end
+#pragma mark - ----- Queue
 
-#pragma mark - -----
-
-@interface CCRuntime (CCExtension_Queue)
-
-CCQueue CC_DISPATCH_CREATE_SERIAL(const char * label , BOOL isSerial) ;
+CCQueue CC_DISPATCH_CREATE_SERIAL(const char * label , BOOL is_serial) ;
 CCQueue CC_DISPATCH_GLOBAL(CCQueueQOS qos) ;
 
+CCGroup CC_GROUP_INIT(void);
+
+#pragma mark - ----- Group
+
+@interface CCRuntime : NSObject
+
+/// constructor // 构造器
++ (instancetype) runtime ;
+
 @end
 
-#pragma mark - -----
-
-@interface CCRuntime (CCExtension_Group)
-
-CCGroup CC_GROUP_INIT(void);
+@interface CCRuntime_Group : CCRuntime
 
 @property (nonatomic) CCGroup group;
 @property (nonatomic) CCQueue queue;
@@ -137,24 +133,20 @@ CCGroup CC_GROUP_INIT(void);
 
 @end
 
-#pragma mark - -----
+#pragma mark - ----- Class
 
 @protocol CCExtensionClassProtocol <NSObject>
 
-/// for some properties that don't want be found . // 针对一些不想被找到的属性
-+ (NSArray <NSString *> *) CCIgnores ;
+/// for some properties that don't want to be found . // 针对一些不想被找到的属性
++ (NSArray <NSString *> *) cc_ignores ;
 
 @end
-
-@interface CCRuntime (CCExtension_Class) 
 
 /// class that want to be found , <types , properties> // 针对查找的类
 void CC_GET_IVAR(Class cls ,
-                 void (^bFinish)(NSDictionary <NSString * , NSString *> *dictionary)) ;
+                 void (^cc_finish_block)(NSDictionary <NSString * , NSString *> *dictionary)) ;
 /// add a method with one argument . // 添加一个有参数的方法
 BOOL CC_DYNAMIC_ADD_METHOD(Class cls ,
                            NSString * sName ,
-                           SEL selSupply ,
-                           void (^bFail)(void)) ;
-
-@end
+                           SEL sel_supply ,
+                           void (^cc_fail_block)(void)) ;
