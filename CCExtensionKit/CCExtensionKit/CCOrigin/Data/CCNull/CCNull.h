@@ -10,4 +10,6 @@
 
 @interface CCNull : NSObject
 
++ (void)cc_regist_class : (Class) clz ;
+
 @end

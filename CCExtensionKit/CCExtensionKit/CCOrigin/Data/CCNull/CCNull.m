@@ -7,6 +7,7 @@
 //
 
 #import "CCNull.h"
+#import <objc/runtime.h>
 
 static NSMutableArray * __unknow_message_post_as_objects = nil;
 
@@ -50,7 +51,12 @@ static NSMutableArray * __unknow_message_post_as_objects = nil;
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wnonnull"
+    
     [anInvocation invokeWithTarget:nil];
+    
+#pragma clang diagnostic pop
 }
 
 + (id)objectRespondToSelector:(SEL)aSelector {
@@ -76,10 +82,90 @@ static NSMutableArray * __unknow_message_post_as_objects = nil;
 
 #pragma mark - -----
 
+@interface CCNullValue : CCForwardingUnknowMessage < NSCopying , NSMutableCopying , NSCoding >
+
++ (id) cc_null_value ;
+
+- (BOOL) cc_is_NSNull : (Class)aClass ;
+
+@end
+
+@implementation CCNullValue
+
+static CCNullValue *__singleton_null_value = nil;
+
++ (id) cc_null_value {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __singleton_null_value = [[CCNullValue alloc] init];
+    });
+    
+    return __singleton_null_value;
+}
+
++ (Class)class {return [NSNull class];}
+
+#pragma mark NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    return [[self class] cc_null_value];
+}
+
+#pragma mark NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    return __singleton_null_value;
+}
+
+- (BOOL)cc_is_NSNull : (Class)aClass {
+    return aClass == [NSNull class];
+}
+
+- (BOOL)isKindOfClass:(Class)aClass {
+    return [self cc_is_NSNull:aClass] || [super isKindOfClass:aClass];
+}
+
+- (BOOL)isMemberOfClass:(Class)aClass {
+    return [self cc_is_NSNull:aClass];
+}
+
+- (id)mutableCopyWithZone:(nullable NSZone *)zone {
+    return __singleton_null_value;
+}
+
+@end
+
+#pragma mark - -----
+
 @interface CCNull ()
 
 @end
 
 @implementation CCNull
+
+__attribute__((constructor)) void createFakeNSNull() {
+    Class child_clz = [NSNull class];
+    Class parent_clz = [CCForwardingUnknowMessage class];
+    NSInteger child_clz_size = class_getInstanceSize(child_clz);
+    NSInteger parent_clz_size = class_getInstanceSize(parent_clz);
+    if (child_clz_size - parent_clz_size >= 0) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        class_setSuperclass(child_clz, parent_clz);
+#pragma clang diagnostic pop
+    } else {
+        Method method_null = class_getClassMethod([NSNull class], @selector(null));
+        Method method_value_null = class_getClassMethod([CCNullValue class], @selector(cc_null_value));
+        if (method_null != nil && method_value_null != nil) {
+            method_setImplementation(method_null, method_getImplementation(method_value_null));
+        }
+    }
+}
+
++ (void)cc_regist_class : (Class) clz {
+    [CCForwardingUnknowMessage cc_regist_class:clz];
+}
 
 @end
