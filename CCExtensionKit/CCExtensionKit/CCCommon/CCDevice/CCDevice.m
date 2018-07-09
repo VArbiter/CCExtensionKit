@@ -1,6 +1,6 @@
 //
 //  CCDevice.m
-//  CCLocalLibrary
+//  CCExtensionKit
 //
 //  Created by 冯明庆 on 14/11/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.

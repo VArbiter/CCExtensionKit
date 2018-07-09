@@ -1,6 +1,6 @@
 //
 //  UIResponder+CCExtension.h
-//  CCLocalLibrary
+//  CCExtensionKit
 //
 //  Created by ElwinFrederick on 07/05/2018.
 //  Copyright © 2018 冯明庆. All rights reserved.

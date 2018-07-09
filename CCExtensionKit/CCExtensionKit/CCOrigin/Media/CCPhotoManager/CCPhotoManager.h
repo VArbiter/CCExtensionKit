@@ -1,6 +1,6 @@
 //
 //  CCPhotoManager.h
-//  CCLocalLibrary
+//  CCExtensionKit
 //
 //  Created by 冯明庆 on 2018/5/20.
 //  Copyright © 2018 冯明庆. All rights reserved.

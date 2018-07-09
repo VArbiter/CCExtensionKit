@@ -1,6 +1,6 @@
 //
 //  UIViewController+CCExtension.m
-//  CCLocalLibrary
+//  CCExtensionKit
 //
 //  Created by 冯明庆 on 2017/4/5.
 //  Copyright © 2017年 冯明庆. All rights reserved.

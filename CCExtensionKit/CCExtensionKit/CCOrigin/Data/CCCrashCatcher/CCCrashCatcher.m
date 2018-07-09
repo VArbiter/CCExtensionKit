@@ -1,6 +1,6 @@
 //
 //  CCCrashCatcher.m
-//  CCLocalLibrary
+//  CCExtensionKit
 //
 //  Created by ElwinFrederick on 2018/6/26.
 //  Copyright © 2018 冯明庆. All rights reserved.

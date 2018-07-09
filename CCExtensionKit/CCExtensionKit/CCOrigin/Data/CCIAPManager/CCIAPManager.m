@@ -1,6 +1,6 @@
 //
 //  CCIAPManager.m
-//  CCLocalLibrary
+//  CCExtensionKit
 //
 //  Created by ElwinFrederick on 04/05/2018.
 //  Copyright © 2018 冯明庆. All rights reserved.

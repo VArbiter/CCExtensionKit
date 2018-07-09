@@ -1,6 +1,6 @@
 //
 //  CCPointMarker.m
-//  CCLocalLibrary
+//  CCExtensionKit
 //
 //  Created by ElwinFrederick on 2018/6/27.
 //  Copyright © 2018 冯明庆. All rights reserved.
