@@ -58,8 +58,8 @@ CGSize CCScaleSize(CGSize size);
 
 + (void) cc_disable_animation : (void (^)(void)) action ;
 
-@property (nonatomic , class , assign , readonly) CGFloat sWidth;
-@property (nonatomic , class , assign , readonly) CGFloat sHeight;
+@property (nonatomic , class , assign , readonly) CGFloat f_width;
+@property (nonatomic , class , assign , readonly) CGFloat f_height;
 
 @property (nonatomic , assign) CGSize size;
 @property (nonatomic , assign) CGPoint origin;
@@ -70,22 +70,22 @@ CGSize CCScaleSize(CGSize size);
 @property (nonatomic , assign) CGFloat x;
 @property (nonatomic , assign) CGFloat y;
 
-@property (nonatomic , assign) CGFloat centerX;
-@property (nonatomic , assign) CGFloat centerY;
+@property (nonatomic , assign) CGFloat center_x;
+@property (nonatomic , assign) CGFloat center_y;
 
-@property (nonatomic , assign , readonly) CGFloat inCenterX ;
-@property (nonatomic , assign , readonly) CGFloat inCenterY ;
-@property (nonatomic , assign , readonly) CGPoint inCenter ;
+@property (nonatomic , assign , readonly) CGFloat in_center_x ;
+@property (nonatomic , assign , readonly) CGFloat in_center_y ;
+@property (nonatomic , assign , readonly) CGPoint in_center ;
 
 @property (nonatomic , assign) CGFloat top;
 @property (nonatomic , assign) CGFloat left;
 @property (nonatomic , assign) CGFloat bottom;
 @property (nonatomic , assign) CGFloat right;
 
-@property (nonatomic , assign , readonly) CGFloat inTop;
-@property (nonatomic , assign , readonly) CGFloat inLeft;
-@property (nonatomic , assign , readonly) CGFloat inBottom;
-@property (nonatomic , assign , readonly) CGFloat inRight;
+@property (nonatomic , assign , readonly) CGFloat in_top;
+@property (nonatomic , assign , readonly) CGFloat in_left;
+@property (nonatomic , assign , readonly) CGFloat in_bottom;
+@property (nonatomic , assign , readonly) CGFloat in_right;
 
 /// an easy way to margin // 一个方便的方式进行校准
 - (instancetype) cc_frame : (CGRect) frame ;

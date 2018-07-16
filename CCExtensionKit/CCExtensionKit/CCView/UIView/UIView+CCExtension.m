@@ -191,17 +191,17 @@ CGFloat CCHScale(CGFloat h) {
     return self.frame.origin.y;
 }
 
-- (void)setCenterX:(CGFloat)centerX {
-    self.center = CGPointMake(centerX, self.center.y);
+- (void)setCenter_x:(CGFloat)center_x {
+    self.center = CGPointMake(center_x, self.center.y);
 }
-- (CGFloat)centerX {
+- (CGFloat)center_x {
     return self.center.x;
 }
 
-- (void)setCenterY:(CGFloat)centerY {
-    self.center = CGPointMake(self.center.x, centerY);
+- (void)setCenter_y:(CGFloat)center_y {
+    self.center = CGPointMake(self.center.x, center_y);
 }
-- (CGFloat)centerY {
+- (CGFloat)center_y {
     return self.center.y;
 }
 
@@ -241,35 +241,35 @@ CGFloat CCHScale(CGFloat h) {
     return self.frame.origin.x + self.frame.size.width;
 }
 
-- (CGFloat)inTop {
+- (CGFloat)in_top {
     return .0f;
 }
-- (CGFloat)inLeft {
+- (CGFloat)in_left {
     return .0f;
 }
-- (CGFloat)inBottom {
+- (CGFloat)in_bottom {
     return self.frame.size.height;
 }
-- (CGFloat)inRight {
+- (CGFloat)in_right {
     return self.frame.size.width;
 }
 
 #pragma mark - -----
-+ (CGFloat)sWidth {
++ (CGFloat)f_width {
     return UIScreen.mainScreen.bounds.size.width;
 }
-+ (CGFloat)sHeight {
++ (CGFloat)f_height {
     return UIScreen.mainScreen.bounds.size.height;
 }
 
--(CGFloat)inCenterX{
+-(CGFloat)in_center_x{
     return self.frame.size.width*0.5;
 }
--(CGFloat)inCenterY{
+-(CGFloat)in_center_y{
     return self.frame.size.height*0.5;
 }
--(CGPoint)inCenter{
-    return CGPointMake(self.inCenterX, self.inCenterY);
+-(CGPoint)in_center{
+    return CGPointMake(self.in_center_x, self.in_center_y);
 }
 
 - (instancetype) cc_frame : (CGRect) frame {
@@ -304,11 +304,11 @@ CGFloat CCHScale(CGFloat h) {
 }
 
 - (instancetype) cc_center_x : (CGFloat) fCenterX {
-    self.centerX = fCenterX;
+    self.center_x = fCenterX;
     return self;
 }
 - (instancetype) cc_center_y : (CGFloat) fCenterY {
-    self.centerY = fCenterY;
+    self.center_y = fCenterY;
     return self;
 }
 - (instancetype) cc_center : (CGPoint) pCenter {
