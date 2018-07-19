@@ -98,6 +98,7 @@ NSString * CC_STRING_FROM_UTF8(const char * cUTF8) ; // if params doesn't exist 
 @property (nonatomic , readonly) BOOL is_pure_letter ;
 @property (nonatomic , readonly) BOOL is_pure_number ;
 @property (nonatomic , readonly) BOOL is_pure_number_and_letter ;
+@property (nonatomic , readonly) BOOL is_contains_emoji ;
 
 /// detect that a string is constructed by the characters in params you gave . // 检查字符串是否由参数中所给定的字符串中的字符构成
 - (BOOL) cc_is_constructed_by : (NSString *) s_content ;

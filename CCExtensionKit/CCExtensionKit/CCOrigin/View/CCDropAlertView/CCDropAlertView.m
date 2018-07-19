@@ -39,7 +39,7 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
         self.viewCustom = view;
         self.viewOn = viewOn;
         self.layer.backgroundColor = [UIColor.blackColor cc_alpha:.2f].CGColor;
-        [self cc_add:[[self.viewCustom cc_bottom:self.top] cc_center_x:self.inCenterX]];
+        [self cc_add:[[self.viewCustom cc_bottom:self.top] cc_center_x:self.in_center_x]];
     }
     return self;
 }
@@ -64,21 +64,21 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
     
     switch (animate) {
         case CCDropAnimate_None:{
-            self.viewCustom.center = self.inCenter;
+            self.viewCustom.center = self.in_center;
             if (self.block_action_start_did_end) self.block_action_start_did_end(self);
         }break;
         case CCDropAnimate_Smooth:{
             CC_WEAK_SELF;
             void (^bCenter)(void) = ^ {
                 [UIView animateWithDuration:.2f animations:^{
-                    weak_self.viewCustom.center = weak_self.inCenter;
+                    weak_self.viewCustom.center = weak_self.in_center;
                     if (weak_self.block_action_start_did_end) weak_self.block_action_start_did_end(weak_self);
                 }];
             };
             
             [UIView animateWithDuration:CC_DROP_ANIMATION_DURATION animations:^{
                 weak_self.alpha = 1.0f;
-                weak_self.viewCustom.center = (CGPoint){weak_self.inCenterX , weak_self.inCenterY + CCScaleH(80.f)};
+                weak_self.viewCustom.center = (CGPoint){weak_self.in_center_x , weak_self.in_center_y + CCScaleH(80.f)};
             } completion:^(BOOL finished) {
                 if (bCenter) bCenter();
             }];
@@ -92,13 +92,13 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
             }];
             
             UISnapBehavior *snapBehaviour = [[UISnapBehavior alloc] initWithItem:self.viewCustom
-                                                                     snapToPoint:self.viewOn.inCenter];
+                                                                     snapToPoint:self.viewOn.in_center];
             snapBehaviour.damping = CC_SNAP_DAMPING_DURATION;
             [self.animator addBehavior:snapBehaviour];
         }break;
             
         default:{
-            self.viewCustom.center = self.inCenter;
+            self.viewCustom.center = self.in_center;
         }break;
     }
 }
