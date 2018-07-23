@@ -21,6 +21,7 @@
     #import "CCTaskManager.h"
     #import "CCCrashCatcher.h"
     #import "CCPointMarker.h"
+    #import "CCNull.h"
 
 // Media
     #import "CCPhotoManager.h"
