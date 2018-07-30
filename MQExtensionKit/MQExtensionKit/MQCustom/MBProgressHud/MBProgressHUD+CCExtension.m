@@ -83,21 +83,21 @@
     self.detailsLabel.text = sMessage;
     return self;
 }
-- (instancetype) mq_type : (CCHudExtensionType) type {
+- (instancetype) mq_type : (MQHudExtensionType) type {
     __weak typeof(self) pSelf = self;
-    NSDictionary *d = @{@(CCHudExtensionTypeLight).stringValue : ^{
+    NSDictionary *d = @{@(MQHudExtensionTypeLight).stringValue : ^{
                             pSelf.contentColor = UIColor.blackColor;
                         },
-                        @(CCHudExtensionTypeDarkDeep).stringValue : ^{
+                        @(MQHudExtensionTypeDarkDeep).stringValue : ^{
                             pSelf.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
                             pSelf.contentColor = UIColor.whiteColor;
                             pSelf.bezelView.backgroundColor = UIColor.blackColor;
                         },
-                        @(CCHudExtensionTypeDark).stringValue : ^{
+                        @(MQHudExtensionTypeDark).stringValue : ^{
                             pSelf.contentColor = UIColor.whiteColor;
                             pSelf.bezelView.backgroundColor = UIColor.blackColor;
                         },
-                        @(CCHudExtensionTypeNone).stringValue : ^{
+                        @(MQHudExtensionTypeNone).stringValue : ^{
                             pSelf.contentColor = UIColor.blackColor;
                         }};
     if (!d[@(type).stringValue]) return self;

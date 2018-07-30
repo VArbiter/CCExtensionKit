@@ -7,14 +7,14 @@
 //
 
 #import "UITableView+MQExtension_Refresh.h"
-#import "NSObject+CCProtocol.h"
+#import "NSObject+MQProtocol.h"
 
 #if __has_include(<MJRefresh/MJRefresh.h>)
 
 @implementation UITableView (MQExtension_Refresh)
 
 - (instancetype) mq_end_loading {
-    return [self.mq_end_refresh.mq_end_load_more cc];
+    return [self.mq_end_refresh.mq_end_load_more mq];
 }
 - (instancetype) mq_end_refresh {
     [self.mj_header endRefreshing];

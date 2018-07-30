@@ -1,12 +1,12 @@
 //
-//  CCNetworkMoniter.m
+//  MQNetworkMoniter.m
 //  MQExtensionKit
 //
 //  Created by 冯明庆 on 2017/4/27.
 //  Copyright © 2017年 冯明庆. All rights reserved.
 //
 
-#import "CCNetworkMoniter.h"
+#import "MQNetworkMoniter.h"
 
 #if __has_include(<AFNetworking/AFNetworkReachabilityManager.h>) \
     && __has_include(<AFNetworking/AFNetworkActivityIndicatorManager.h>)
@@ -19,13 +19,13 @@
 
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
-static CCNetworkMoniter *_moniter = nil;
+static MQNetworkMoniter *_moniter = nil;
 
-NSString * const _CC_NETWORK_STATUS_CHANGE_NOTIFICATION_ = @"_CC_NETWORK_STATUS_CHANGE_NOTIFICATION_";
-NSString * const _CC_NETWORK_STATUS_KEY_NEW_ = @"CC_NETWORK_STATUS_KEY_NEW";
-NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
+NSString * const _MQ_NETWORK_STATUS_CHANGE_NOTIFICATION_ = @"_MQ_NETWORK_STATUS_CHANGE_NOTIFICATION_";
+NSString * const _MQ_NETWORK_STATUS_KEY_NEW_ = @"MQ_NETWORK_STATUS_KEY_NEW";
+NSString * const _MQ_NETWORK_STATUS_KEY_OLD_ = @"MQ_NETWORK_STATUS_KEY_OLD";
 
-@interface CCNetworkMoniter ()
+@interface MQNetworkMoniter ()
 
 @property (nonatomic , strong) AFNetworkActivityIndicatorManager *activityManager ;
 @property (nonatomic , strong) AFNetworkReachabilityManager *reachabilityManager ;
@@ -37,16 +37,16 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
 
 - (void) ccReachabilityMoniter ;
 
-- (CCNetworkType) ccCaptureCurrentEnvironment : (AFNetworkReachabilityStatus) status ;
+- (MQNetworkType) ccCaptureCurrentEnvironment : (AFNetworkReachabilityStatus) status ;
 
 @end
 
-@implementation CCNetworkMoniter
+@implementation MQNetworkMoniter
 
 + (instancetype) mq_shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _moniter = [[CCNetworkMoniter alloc] init];
+        _moniter = [[MQNetworkMoniter alloc] init];
         [_moniter ccReachabilityMoniter];
     });
     return _moniter;
@@ -55,7 +55,7 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
 - (void) ccReachabilityMoniter {
     self.activityManager = [AFNetworkActivityIndicatorManager sharedManager];
     self.activityManager.enabled = YES;
-    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:_CC_NETWORK_STATUS_KEY_NEW_];
+    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:_MQ_NETWORK_STATUS_KEY_NEW_];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _moniter.reachabilityManager = [AFNetworkReachabilityManager sharedManager];
     __weak typeof(self) pSelf = self;
@@ -65,39 +65,39 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
     [_moniter.reachabilityManager startMonitoring];
 }
 
-- (CCNetworkType) ccCaptureCurrentEnvironment : (AFNetworkReachabilityStatus) status {
+- (MQNetworkType) ccCaptureCurrentEnvironment : (AFNetworkReachabilityStatus) status {
     NSString *stringAccess = self.netwotkInfo.currentRadioAccessTechnology ;
-    CCNetworkType environment = CCNetworkTypeUnknow ;
+    MQNetworkType environment = MQNetworkTypeUnknow ;
     if ([[UIDevice currentDevice] systemVersion].floatValue > 7.f) {
         if ([self.arrayString_4G containsObject:stringAccess])
-            environment = CCNetworkType4G;
+            environment = MQNetworkType4G;
         else if ([self.arrayString_3G containsObject:stringAccess])
-            environment = CCNetworkType3G;
+            environment = MQNetworkType3G;
         else if ([self.arrayString_2G containsObject:stringAccess])
-            environment = CCNetworkType2G;
+            environment = MQNetworkType2G;
         
     }
-    else environment = (CCNetworkType) status;
+    else environment = (MQNetworkType) status;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:_CC_NETWORK_STATUS_CHANGE_NOTIFICATION_
+    [[NSNotificationCenter defaultCenter] postNotificationName:_MQ_NETWORK_STATUS_CHANGE_NOTIFICATION_
                                                         object:nil
-                                                      userInfo:@{_CC_NETWORK_STATUS_KEY_NEW_ : @(environment),
-                                                                 _CC_NETWORK_STATUS_KEY_OLD_ : @([[NSUserDefaults standardUserDefaults] integerForKey:_CC_NETWORK_STATUS_KEY_NEW_])}];
+                                                      userInfo:@{_MQ_NETWORK_STATUS_KEY_NEW_ : @(environment),
+                                                                 _MQ_NETWORK_STATUS_KEY_OLD_ : @([[NSUserDefaults standardUserDefaults] integerForKey:_MQ_NETWORK_STATUS_KEY_NEW_])}];
     [[NSUserDefaults standardUserDefaults] setInteger:status
-                                               forKey:_CC_NETWORK_STATUS_KEY_NEW_];
+                                               forKey:_MQ_NETWORK_STATUS_KEY_NEW_];
     [[NSUserDefaults standardUserDefaults] synchronize];
     return environment;
 }
 
-- (CCNetworkEnvironment) mq_environment_type {
-    NSInteger integerStatus = [[NSUserDefaults standardUserDefaults] integerForKey:_CC_NETWORK_STATUS_KEY_NEW_];
+- (MQNetworkEnvironment) mq_environment_type {
+    NSInteger integerStatus = [[NSUserDefaults standardUserDefaults] integerForKey:_MQ_NETWORK_STATUS_KEY_NEW_];
     if (integerStatus <= 0)
-        return CCNetworkEnvironmentNotConnected;
+        return MQNetworkEnvironmentNotConnected;
     if (integerStatus == 1 || integerStatus == 3 || integerStatus == 4)
-        return CCNetworkEnvironmentWeak;
+        return MQNetworkEnvironmentWeak;
     if (integerStatus == 2 || integerStatus == 5)
-        return CCNetworkEnvironmentStrong;
-    return CCNetworkEnvironmentStrong;
+        return MQNetworkEnvironmentStrong;
+    return MQNetworkEnvironmentStrong;
 }
 
 #pragma mark - Getter

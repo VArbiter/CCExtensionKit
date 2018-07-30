@@ -13,11 +13,11 @@
     @import MBProgressHUD;
 #pragma clang diagnostic pop
 
-typedef NS_ENUM(NSInteger , CCHudExtensionType) {
-    CCHudExtensionTypeNone = 0 ,
-    CCHudExtensionTypeLight ,
-    CCHudExtensionTypeDark ,
-    CCHudExtensionTypeDarkDeep
+typedef NS_ENUM(NSInteger , MQHudExtensionType) {
+    MQHudExtensionTypeNone = 0 ,
+    MQHudExtensionTypeLight ,
+    MQHudExtensionTypeDark ,
+    MQHudExtensionTypeDarkDeep
 };
 
 @interface MBProgressHUD (MQExtension)
@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger , CCHudExtensionType) {
 - (instancetype) mq_simple ; // default // 默认
 - (instancetype) mq_title : (NSString *) sTitle ;
 - (instancetype) mq_message : (NSString *) sMessage ;
-- (instancetype) mq_type : (CCHudExtensionType) type ;
+- (instancetype) mq_type : (MQHudExtensionType) type ;
 
 /// if invoked , make sure you DO NOT delpoied "ccShow"; // 如果实现下方这些 , 不能调用 "ccShow"
 - (instancetype) mq_delay : (CGFloat) fDelay ;

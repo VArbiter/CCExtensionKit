@@ -10,7 +10,7 @@
 
 #if __has_include(<SDWebImage/UIImageView+WebCache.h>)
 
-#import "CCNetworkMoniter.h"
+#import "MQNetworkMoniter.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wstrict-prototypes"
@@ -22,8 +22,8 @@ static BOOL __isEnableLoading = YES;
 @implementation UIImageView (MQExtension_WeakNetwork)
 
 - (instancetype) mq_weak_image : (NSURL *) url
-                        holder : (UIImage *) imageHolder {
-    BOOL isStrong = CCNetworkMoniter.mq_shared.mq_environment_type == CCNetworkEnvironmentStrong;
+                        holder : (UIImage *) image_holder {
+    BOOL isStrong = MQNetworkMoniter.mq_shared.mq_environment_type == MQNetworkEnvironmentStrong;
     if (isStrong && __isEnableLoading) {
         [self sd_setImageWithURL:url
                 placeholderImage:imageHolder
@@ -32,8 +32,8 @@ static BOOL __isEnableLoading = YES;
     return self;
 }
 
-+ (void) mq_enable_loading : (BOOL) isEnable {
-    __isEnableLoading = isEnable;
++ (void) mq_enable_loading : (BOOL) is_enable {
+    __isEnableLoading = is_enable;
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  CCNetworkMoniter.h
+//  MQNetworkMoniter.h
 //  MQExtensionKit
 //
 //  Created by 冯明庆 on 2017/4/27.
@@ -11,33 +11,33 @@
 #if __has_include(<AFNetworking/AFNetworkReachabilityManager.h>) \
     && __has_include(<AFNetworking/AFNetworkActivityIndicatorManager.h>)
 
-typedef NS_ENUM(NSInteger , CCNetworkType) {
-    CCNetworkTypeUnknow = -1 ,
-    CCNetworkTypeFail = 0 ,
-    CCNetworkTypeWLAN = 1 ,
-    CCNetworkTypeWIFI = 2 ,
+typedef NS_ENUM(NSInteger , MQNetworkType) {
+    MQNetworkTypeUnknow = -1 ,
+    MQNetworkTypeFail = 0 ,
+    MQNetworkTypeWLAN = 1 ,
+    MQNetworkTypeWIFI = 2 ,
     
-    CCNetworkType2G = 3 ,
-    CCNetworkType3G = 4 ,
-    CCNetworkType4G = 5 ,
+    MQNetworkType2G = 3 ,
+    MQNetworkType3G = 4 ,
+    MQNetworkType4G = 5 ,
     // 5G ?
 };
 
-typedef NS_ENUM(NSInteger , CCNetworkEnvironment) {
-    CCNetworkEnvironmentStrong = 0,
-    CCNetworkEnvironmentWeak ,
-    CCNetworkEnvironmentNotConnected
+typedef NS_ENUM(NSInteger , MQNetworkEnvironment) {
+    MQNetworkEnvironmentStrong = 0,
+    MQNetworkEnvironmentWeak ,
+    MQNetworkEnvironmentNotConnected
 };
 
-@interface CCNetworkMoniter : NSObject
+@interface MQNetworkMoniter : NSObject
 
 + (instancetype) mq_shared;
 
-- (CCNetworkEnvironment) mq_environment_type ;
+- (MQNetworkEnvironment) mq_environment_type ;
 
-extern NSString * const _CC_NETWORK_STATUS_CHANGE_NOTIFICATION_ ;
-extern NSString * const _CC_NETWORK_STATUS_KEY_NEW_ ;
-extern NSString * const _CC_NETWORK_STATUS_KEY_OLD_ ;
+extern NSString * const _MQ_NETWORK_STATUS_CHANGE_NOTIFICATION_ ;
+extern NSString * const _MQ_NETWORK_STATUS_KEY_NEW_ ;
+extern NSString * const _MQ_NETWORK_STATUS_KEY_OLD_ ;
 
 @end
 
