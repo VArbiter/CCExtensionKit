@@ -1,13 +1,13 @@
 //
-//  CCFCModelHandler.m
+//  MQFCModelHandler.m
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 24/04/2018.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCFCModelHandler.h"
+#import "MQFCModelHandler.h"
 
-@implementation CCFCModelHandler
+@implementation MQFCModelHandler
 
 @end

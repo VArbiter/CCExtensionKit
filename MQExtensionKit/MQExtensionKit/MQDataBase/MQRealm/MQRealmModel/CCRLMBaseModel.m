@@ -1,16 +1,16 @@
 //
-//  CCRLMBaseModel.m
-//  CCAudioPlayer-Demo
+//  MQRLMBaseModel.m
+//  MQAudioPlayer-Demo
 //
 //  Created by 冯明庆 on 06/07/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#import "CCRLMBaseModel.h"
+#import "MQRLMBaseModel.h"
 
 #if __has_include(<Realm/Realm.h>)
 
-@interface CCRLMBaseModel ()
+@interface MQRLMBaseModel ()
 
 @property (nonatomic , copy) NSString * specificBase ;
 
@@ -18,7 +18,7 @@
 
 static RLMNotificationToken *__ccToken = nil;
 
-@implementation CCRLMBaseModel
+@implementation MQRLMBaseModel
 
 + (NSArray<NSString *> *)ignoredProperties {
     return @[@"specificBase",@"ccToken"];
@@ -28,11 +28,11 @@ static RLMNotificationToken *__ccToken = nil;
     return [self commonD:nil];
 }
 + (instancetype) commonD : (NSDictionary *) dictionary {
-    return [CCRealmHandler.shared ccDictionary:self
+    return [MQRealmHandler.shared ccDictionary:self
                                          value:dictionary];
 }
 + (instancetype) commonA : (NSArray *) array {
-    return [CCRealmHandler.shared ccArray:self
+    return [MQRealmHandler.shared ccArray:self
                                     value:array];
 }
 
@@ -40,38 +40,38 @@ static RLMNotificationToken *__ccToken = nil;
     if (specificDataBase.length > 0) self.specificBase = specificDataBase;
     return self;
 }
-+ (CCRealmHandler *) ccOperate : (void (^)(void)) transaction {
++ (MQRealmHandler *) ccOperate : (void (^)(void)) transaction {
     return [self ccOperate:nil
                transaction:transaction];
 }
-+ (CCRealmHandler *) ccOperate : (NSString *) specificDataBase
++ (MQRealmHandler *) ccOperate : (NSString *) specificDataBase
                    transaction : (void (^)(void)) transaction {
-    return [[CCRealmHandler.shared ccSpecific:specificDataBase] ccOperate:^{
+    return [[MQRealmHandler.shared ccSpecific:specificDataBase] ccOperate:^{
         if (transaction) transaction();
     }];
 }
-- (CCRealmHandler *) ccSave {
-    return [[CCRealmHandler.shared ccSpecific:self.specificBase] ccSave:self];
+- (MQRealmHandler *) ccSave {
+    return [[MQRealmHandler.shared ccSpecific:self.specificBase] ccSave:self];
 }
 
-- (CCRealmHandler *) ccDeleteT {
-    return [[CCRealmHandler.shared ccSpecific:self.specificBase] ccDeleteT:self];
+- (MQRealmHandler *) ccDeleteT {
+    return [[MQRealmHandler.shared ccSpecific:self.specificBase] ccDeleteT:self];
 }
-- (CCRealmHandler *) ccDeleteS {
-    return [[CCRealmHandler.shared ccSpecific:self.specificBase] ccDeleteS:self];
+- (MQRealmHandler *) ccDeleteS {
+    return [[MQRealmHandler.shared ccSpecific:self.specificBase] ccDeleteS:self];
 }
-+ (CCRealmHandler *) ccDeleteArray : (NSString *) specificDataBase
-                             array : (NSArray <__kindof CCRLMBaseModel *> *) array {
-    return [[CCRealmHandler.shared ccSpecific:specificDataBase] ccDeleteA:array];
++ (MQRealmHandler *) ccDeleteArray : (NSString *) specificDataBase
+                             array : (NSArray <__kindof MQRLMBaseModel *> *) array {
+    return [[MQRealmHandler.shared ccSpecific:specificDataBase] ccDeleteA:array];
 }
-+ (CCRealmHandler *) ccDeleteAll : (NSString *) specificDataBase {
-    return [[CCRealmHandler.shared ccSpecific:specificDataBase] ccDeleteAll];
++ (MQRealmHandler *) ccDeleteAll : (NSString *) specificDataBase {
+    return [[MQRealmHandler.shared ccSpecific:specificDataBase] ccDeleteAll];
 }
 
 + (RLMResults *) ccAll : (NSString *) specificDataBase {
-    return [[CCRealmHandler.shared ccSpecific:specificDataBase] ccAll:self];
+    return [[MQRealmHandler.shared ccSpecific:specificDataBase] ccAll:self];
 }
-+ (CCRealmHandler *) ccNotification : (NSString *) specificDataBase
++ (MQRealmHandler *) ccNotification : (NSString *) specificDataBase
                              change : (void (^)(RLMResults * results,
                                                 RLMCollectionChange * change,
                                                 NSError * error)) changeN {
@@ -87,7 +87,7 @@ static RLMNotificationToken *__ccToken = nil;
             changeN(results , change , error);
         }
     }];
-    return CCRealmHandler.shared;
+    return MQRealmHandler.shared;
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {}

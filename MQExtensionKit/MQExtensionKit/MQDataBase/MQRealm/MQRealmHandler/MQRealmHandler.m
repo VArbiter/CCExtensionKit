@@ -1,18 +1,18 @@
 //
-//  CCRealmHandler.m
-//  CCAudioPlayer-Demo
+//  MQRealmHandler.m
+//  MQAudioPlayer-Demo
 //
 //  Created by 冯明庆 on 06/07/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#import "CCRealmHandler.h"
+#import "MQRealmHandler.h"
 
 #if __has_include(<Realm/Realm.h>)
 
 #import <objc/runtime.h>
 
-@interface CCRealmHandler () < NSCopying , NSMutableCopying >
+@interface MQRealmHandler () < NSCopying , NSMutableCopying >
 
 - (instancetype) ccDefaultSettings : (void (^)(void)) action ;
 @property (nonatomic , strong) RLMRealm *realm;
@@ -21,16 +21,16 @@
 
 @end
 
-static CCRealmHandler *__handler = nil;
-static const char * _CC_RLM_ERROR_KEY_ = "_CC_RLM_ERROR_KEY_";
-static const char * _CC_RLM_SUCCEED_KEY_ = "_CC_RLM_SUCCEED_KEY_";
-static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
+static MQRealmHandler *__handler = nil;
+static const char * _MQ_RLM_ERROR_KEY_ = "_MQ_RLM_ERROR_KEY_";
+static const char * _MQ_RLM_SUCCEED_KEY_ = "_MQ_RLM_SUCCEED_KEY_";
+static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
 
-@implementation CCRealmHandler
+@implementation MQRealmHandler
 
 + (instancetype) shared {
     if (__handler) return __handler;
-    __handler = [[CCRealmHandler alloc] init];
+    __handler = [[MQRealmHandler alloc] init];
     return __handler;
 }
 
@@ -80,13 +80,13 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
         // c.readOnly = YES; // read only or not
         self.realm = [RLMRealm realmWithConfiguration:c
                                                 error:&error];
-        void (^b)(BOOL) = objc_getAssociatedObject(self, _CC_RLM_SUCCEED_KEY_);
+        void (^b)(BOOL) = objc_getAssociatedObject(self, _MQ_RLM_SUCCEED_KEY_);
         if (b) {b(error ? false : YES);}
         if (error) {
 #if DEBUG
             @throw @"open database failed.";
 #else
-            void (^e)(NSError *) = objc_getAssociatedObject(self, _CC_RLM_ERROR_KEY_);
+            void (^e)(NSError *) = objc_getAssociatedObject(self, _MQ_RLM_ERROR_KEY_);
             if (e) {e(error);}
 #endif
             return self;
@@ -95,7 +95,7 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
     else self.realm = [RLMRealm defaultRealm];
     
     __weak typeof(self) pSelf = self;
-    void (^t)(RLMNotification n, RLMRealm *r) = objc_getAssociatedObject(pSelf, _CC_RLM_NOTIFICATION_KEY_);
+    void (^t)(RLMNotification n, RLMRealm *r) = objc_getAssociatedObject(pSelf, _MQ_RLM_NOTIFICATION_KEY_);
     if (t) {
         self.token = [pSelf.realm addNotificationBlock:^(RLMNotification  _Nonnull notification, RLMRealm * _Nonnull realm) {
             if (t) {
@@ -112,8 +112,8 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 #if DEBUG
         @throw @"Realm is already in transaction .";
 #else
-        void (^e)(NSError *) = objc_getAssociatedObject(self, _CC_RLM_ERROR_KEY_);
-        if (e) {e([NSError errorWithDomain:@"ElwinFrederick.CCRealmHandler"
+        void (^e)(NSError *) = objc_getAssociatedObject(self, _MQ_RLM_ERROR_KEY_);
+        if (e) {e([NSError errorWithDomain:@"ElwinFrederick.MQRealmHandler"
                                       code:-100001
                                   userInfo:@{NSLocalizedDescriptionKey : @"Realm is already in transaction ."}]);}
 #endif
@@ -122,10 +122,10 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
             if (operate) operate();
         } error:&error];
     }
-    void (^b)(BOOL) = objc_getAssociatedObject(self, _CC_RLM_SUCCEED_KEY_);
+    void (^b)(BOOL) = objc_getAssociatedObject(self, _MQ_RLM_SUCCEED_KEY_);
     if (b) {b(error ? false : YES);}
     if (error) {
-        void (^e)(NSError *) = objc_getAssociatedObject(self, _CC_RLM_ERROR_KEY_);
+        void (^e)(NSError *) = objc_getAssociatedObject(self, _MQ_RLM_ERROR_KEY_);
         if (e) {e(error);}
     }
     return self;
@@ -238,16 +238,16 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 #if DEBUG
             @throw @"delete Error .";
 #else
-            void (^b)(BOOL) = objc_getAssociatedObject(pSelf, _CC_RLM_SUCCEED_KEY_);
+            void (^b)(BOOL) = objc_getAssociatedObject(pSelf, _MQ_RLM_SUCCEED_KEY_);
             if (b) {b(error ? false : YES);}
             if (error) {
-                void (^e)(NSError *) = objc_getAssociatedObject(pSelf, _CC_RLM_ERROR_KEY_);
+                void (^e)(NSError *) = objc_getAssociatedObject(pSelf, _MQ_RLM_ERROR_KEY_);
                 if (e) {e(error);}
             }
 #endif
         }
     }];
-    return CCRealmHandler.shared;
+    return MQRealmHandler.shared;
 }
 
 - (RLMResults *) ccAll : (Class) cls {
@@ -289,7 +289,7 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 - (instancetype) ccMigrationT : (RLMRealmConfiguration *(^)(void)) configuration
                        action : (void (^)(RLMMigration *m , uint64_t vOld)) action {
     if (!configuration || !action) return self;
-    void (^b)(BOOL) = objc_getAssociatedObject(self, _CC_RLM_SUCCEED_KEY_);
+    void (^b)(BOOL) = objc_getAssociatedObject(self, _MQ_RLM_SUCCEED_KEY_);
     RLMRealmConfiguration *config = configuration();
     config.migrationBlock = ^(RLMMigration * _Nonnull migration, uint64_t oldSchemaVersion) {
         action(migration , oldSchemaVersion);
@@ -302,20 +302,20 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 
 - (instancetype) ccError : (void (^)(NSError *e)) error {
     if (error) {
-        objc_setAssociatedObject(self, _CC_RLM_ERROR_KEY_, error, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(self, _MQ_RLM_ERROR_KEY_, error, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
     return self;
 }
 - (instancetype) ccSucceed : (void (^)(BOOL b)) succeed {
     if (succeed) {
-        objc_setAssociatedObject(self, _CC_RLM_SUCCEED_KEY_, succeed, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(self, _MQ_RLM_SUCCEED_KEY_, succeed, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
     return self;
 }
 
 - (instancetype) ccNotification : (void (^)(RLMNotification n, RLMRealm *r)) action {
     if (action) {
-        objc_setAssociatedObject(self, _CC_RLM_NOTIFICATION_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(self, _MQ_RLM_NOTIFICATION_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
     return self;
 }

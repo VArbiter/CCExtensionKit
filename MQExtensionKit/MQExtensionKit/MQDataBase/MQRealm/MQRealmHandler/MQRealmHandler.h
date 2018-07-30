@@ -1,6 +1,6 @@
 //
-//  CCRealmHandler.h
-//  CCAudioPlayer-Demo
+//  MQRealmHandler.h
+//  MQAudioPlayer-Demo
 //
 //  Created by 冯明庆 on 06/07/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
@@ -14,7 +14,7 @@
 // dependency : pod 'Realm', '~> 2.10.0'
 // 依赖于 : pod 'Realm', '~> 2.10.0'
 
-@interface CCRealmHandler : NSObject
+@interface MQRealmHandler : NSObject
 
 // ----- open ----- // 打开
 

@@ -1,5 +1,5 @@
 //
-//  CCFCModel.h
+//  MQFCModel.h
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 24/04/2018.
@@ -7,8 +7,8 @@
 //
 
 #import "FCModel.h"
-#import "CCFCModelHandler.h"
+#import "MQFCModelHandler.h"
 
-@interface CCFCModel : FCModel
+@interface MQFCModel : FCModel
 
 @end

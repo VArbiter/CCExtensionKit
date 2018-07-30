@@ -1,5 +1,5 @@
 //
-//  CCFCModelHandler.h
+//  MQFCModelHandler.h
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 24/04/2018.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCFCModelHandler : NSObject
+@interface MQFCModelHandler : NSObject
 
 @end
