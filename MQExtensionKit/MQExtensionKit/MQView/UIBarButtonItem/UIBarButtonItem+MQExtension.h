@@ -1,0 +1,20 @@
+//
+//  UIBarButtonItem+MQExtension.h
+//  MQExtensionKit
+//
+//  Created by 冯明庆 on 2017/4/26.
+//  Copyright © 2017年 冯明庆. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIBarButtonItem (CCExtension)
+
++ (instancetype) mq_common ;
+- (instancetype) mq_title : (NSString *) sTitle ;
+- (instancetype) mq_image : (UIImage *) image ;
+- (instancetype) mq_action : (void (^)( __kindof UIBarButtonItem *sender)) action ;
+- (instancetype) mq_target : (id) target
+                    action : (void (^)( __kindof UIBarButtonItem *sender)) action ;
+
+@end

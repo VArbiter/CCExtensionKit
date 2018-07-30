@@ -1,0 +1,1715 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3FE6F4D7C4B954FAD21408F9 /* Pods_MQExtension_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */; };
+		70F08BF0210EB2FF007B4D33 /* CCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08BEF210EB2FF007B4D33 /* CCAppDelegate.m */; };
+		70F08BF3210EB2FF007B4D33 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08BF2210EB2FF007B4D33 /* ViewController.m */; };
+		70F08BF6210EB2FF007B4D33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70F08BF4210EB2FF007B4D33 /* Main.storyboard */; };
+		70F08BF8210EB300007B4D33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70F08BF7210EB300007B4D33 /* Assets.xcassets */; };
+		70F08BFB210EB300007B4D33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70F08BF9210EB300007B4D33 /* LaunchScreen.storyboard */; };
+		70F08BFE210EB300007B4D33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08BFD210EB300007B4D33 /* main.m */; };
+		70F08D16210EB60E007B4D33 /* MQMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C08210EB60E007B4D33 /* MQMediator.m */; };
+		70F08D17210EB60E007B4D33 /* MQBridgeWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C0D210EB60E007B4D33 /* MQBridgeWrapper.m */; };
+		70F08D18210EB60E007B4D33 /* UIImageView+MQExtension_WeakNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C11210EB60E007B4D33 /* UIImageView+MQExtension_WeakNetwork.m */; };
+		70F08D19210EB60E007B4D33 /* UICollectionView+MQExtension_Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C14210EB60E007B4D33 /* UICollectionView+MQExtension_Refresh.m */; };
+		70F08D1A210EB60E007B4D33 /* MQNetworkMoniter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C18210EB60E007B4D33 /* MQNetworkMoniter.m */; };
+		70F08D1B210EB60E007B4D33 /* UITableView+MQExtension_Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C1B210EB60E007B4D33 /* UITableView+MQExtension_Refresh.m */; };
+		70F08D1C210EB60E007B4D33 /* MBProgressHUD+CCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C1D210EB60E007B4D33 /* MBProgressHUD+CCExtension.m */; };
+		70F08D1D210EB60E007B4D33 /* MQMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C25210EB60E007B4D33 /* MQMenuView.m */; };
+		70F08D1E210EB60E007B4D33 /* MQDropAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C27210EB60E007B4D33 /* MQDropAlertView.m */; };
+		70F08D1F210EB60E007B4D33 /* MQGradientLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C2B210EB60E007B4D33 /* MQGradientLayerView.m */; };
+		70F08D20210EB60E007B4D33 /* MQEasyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C2D210EB60E007B4D33 /* MQEasyWebView.m */; };
+		70F08D21210EB60E007B4D33 /* MQCrashCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C31210EB60E007B4D33 /* MQCrashCatcher.m */; };
+		70F08D22210EB60E007B4D33 /* MQUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C35210EB60E007B4D33 /* MQUpdateManager.m */; };
+		70F08D23210EB60E007B4D33 /* MQIAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C38210EB60E007B4D33 /* MQIAPManager.m */; };
+		70F08D24210EB60E007B4D33 /* MQPointMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C3B210EB60E007B4D33 /* MQPointMarker.m */; };
+		70F08D25210EB60E007B4D33 /* MQNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C3D210EB60E007B4D33 /* MQNull.m */; };
+		70F08D26210EB60E007B4D33 /* MQTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C40210EB60E007B4D33 /* MQTaskManager.m */; };
+		70F08D27210EB60E007B4D33 /* MQPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C44210EB60E007B4D33 /* MQPhotoManager.m */; };
+		70F08D28210EB60E007B4D33 /* MQAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C48210EB60E007B4D33 /* MQAudioRecorder.m */; };
+		70F08D29210EB60E007B4D33 /* MQVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C4B210EB60E007B4D33 /* MQVideoManager.m */; };
+		70F08D2A210EB60E007B4D33 /* MQDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C4E210EB60E007B4D33 /* MQDevice.m */; };
+		70F08D2B210EB60E007B4D33 /* MQAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C52210EB60E007B4D33 /* MQAuthentication.m */; };
+		70F08D2C210EB60E007B4D33 /* MQAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C56210EB60E007B4D33 /* MQAuthorize.m */; };
+		70F08D2D210EB60E007B4D33 /* MQCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C5B210EB60E007B4D33 /* MQCommon.m */; };
+		70F08D2E210EB60E007B4D33 /* MQFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C5E210EB60E007B4D33 /* MQFit.m */; };
+		70F08D2F210EB60E007B4D33 /* NSObject+MQProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C62210EB60E007B4D33 /* NSObject+MQProtocol.m */; };
+		70F08D30210EB60E007B4D33 /* NSDictionary+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C67210EB60E007B4D33 /* NSDictionary+MQExtension.m */; };
+		70F08D31210EB60E007B4D33 /* NSBundle+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C69210EB60E007B4D33 /* NSBundle+MQExtension.m */; };
+		70F08D32210EB60E007B4D33 /* NSNotificationCenter+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C6C210EB60E007B4D33 /* NSNotificationCenter+MQExtension.m */; };
+		70F08D33210EB60E007B4D33 /* NSFileManager+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C70210EB60E007B4D33 /* NSFileManager+MQExtension.m */; };
+		70F08D34210EB60E007B4D33 /* NSURL+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C72210EB60E007B4D33 /* NSURL+MQExtension.m */; };
+		70F08D35210EB60E007B4D33 /* NSString+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C76210EB60E007B4D33 /* NSString+MQExtension.m */; };
+		70F08D36210EB60E007B4D33 /* NSArray+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C79210EB60E007B4D33 /* NSArray+MQExtension.m */; };
+		70F08D37210EB60E007B4D33 /* NSURLRequest+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C7B210EB60E007B4D33 /* NSURLRequest+MQExtension.m */; };
+		70F08D38210EB60E007B4D33 /* NSPredicate+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C7F210EB60E007B4D33 /* NSPredicate+MQExtension.m */; };
+		70F08D39210EB60E007B4D33 /* NSUserDefaults+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C82210EB60E007B4D33 /* NSUserDefaults+MQExtension.m */; };
+		70F08D3A210EB60E007B4D33 /* NSLock+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C84210EB60E007B4D33 /* NSLock+MQExtension.m */; };
+		70F08D3B210EB60E007B4D33 /* NSNumber+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C88210EB60E007B4D33 /* NSNumber+MQExtension.m */; };
+		70F08D3C210EB60E007B4D33 /* NSTimer+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C8A210EB60E007B4D33 /* NSTimer+MQExtension.m */; };
+		70F08D3D210EB60E007B4D33 /* NSAttributedString+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C8D210EB60E007B4D33 /* NSAttributedString+MQExtension.m */; };
+		70F08D3E210EB60E007B4D33 /* NSObject+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C91210EB60E007B4D33 /* NSObject+MQExtension.m */; };
+		70F08D3F210EB60E007B4D33 /* NSDate+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C94210EB60E007B4D33 /* NSDate+MQExtension.m */; };
+		70F08D40210EB60E007B4D33 /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C9A210EB60E007B4D33 /* CCRLMBaseModel.m */; };
+		70F08D41210EB60E007B4D33 /* MQRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08C9E210EB60E007B4D33 /* MQRealmHandler.m */; };
+		70F08D42210EB60E007B4D33 /* MQFCModelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CA2210EB60E007B4D33 /* MQFCModelHandler.m */; };
+		70F08D43210EB60E007B4D33 /* FCModelCachedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CA4210EB60E007B4D33 /* FCModelCachedObject.m */; };
+		70F08D44210EB60E007B4D33 /* FCModelNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CA9210EB60E007B4D33 /* FCModelNotificationCenter.m */; };
+		70F08D45210EB60E007B4D33 /* FCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CAA210EB60E007B4D33 /* FCModel.m */; };
+		70F08D46210EB60E007B4D33 /* FCModelDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CAB210EB60E007B4D33 /* FCModelDatabase.m */; };
+		70F08D47210EB60E007B4D33 /* MQFCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CAD210EB60E007B4D33 /* MQFCModel.m */; };
+		70F08D48210EB60E007B4D33 /* PHAsset+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CB1210EB60E007B4D33 /* PHAsset+MQExtension.m */; };
+		70F08D49210EB60E007B4D33 /* PHImageRequestOptions+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CB5210EB60E007B4D33 /* PHImageRequestOptions+MQExtension.m */; };
+		70F08D4A210EB60E007B4D33 /* PHFetchResult+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CB7210EB60E007B4D33 /* PHFetchResult+MQExtension.m */; };
+		70F08D4B210EB60E007B4D33 /* PHAssetCollection+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CBC210EB60E007B4D33 /* PHAssetCollection+MQExtension.m */; };
+		70F08D4C210EB60E007B4D33 /* UIImage+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CC0210EB60E007B4D33 /* UIImage+MQExtension.m */; };
+		70F08D4D210EB60E007B4D33 /* UISwitch+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CC3210EB60E007B4D33 /* UISwitch+MQExtension.m */; };
+		70F08D4E210EB60E007B4D33 /* UIScrollView+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CC7210EB60E007B4D33 /* UIScrollView+MQExtension.m */; };
+		70F08D4F210EB60E007B4D33 /* UILabel+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CC9210EB60E007B4D33 /* UILabel+MQExtension.m */; };
+		70F08D50210EB60E007B4D33 /* UIApplication+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CCD210EB60E007B4D33 /* UIApplication+MQExtension.m */; };
+		70F08D51210EB60E007B4D33 /* UIResponder+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CCF210EB60E007B4D33 /* UIResponder+MQExtension.m */; };
+		70F08D52210EB60E007B4D33 /* UIButton+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CD2210EB60E007B4D33 /* UIButton+MQExtension.m */; };
+		70F08D53210EB60E007B4D33 /* UIColor+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CD5210EB60E007B4D33 /* UIColor+MQExtension.m */; };
+		70F08D54210EB60E007B4D33 /* UIAlertController+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CD8210EB60E007B4D33 /* UIAlertController+MQExtension.m */; };
+		70F08D55210EB60E007B4D33 /* UIView+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CDC210EB60E007B4D33 /* UIView+MQExtension.m */; };
+		70F08D56210EB60E007B4D33 /* UIFont+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CDF210EB60E007B4D33 /* UIFont+MQExtension.m */; };
+		70F08D57210EB60E007B4D33 /* UINavigationItem+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CE2210EB60E007B4D33 /* UINavigationItem+MQExtension.m */; };
+		70F08D58210EB60E007B4D33 /* WKWebView+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CE4210EB60E007B4D33 /* WKWebView+MQExtension.m */; };
+		70F08D59210EB60E007B4D33 /* UITextView+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CE8210EB60E007B4D33 /* UITextView+MQExtension.m */; };
+		70F08D5A210EB60E007B4D33 /* UICollectionView+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CEB210EB60E007B4D33 /* UICollectionView+MQExtension.m */; };
+		70F08D5B210EB60E007B4D33 /* UIImagePickerController+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CEE210EB60E007B4D33 /* UIImagePickerController+MQExtension.m */; };
+		70F08D5C210EB60E007B4D33 /* UIBarButtonItem+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CF1210EB60E007B4D33 /* UIBarButtonItem+MQExtension.m */; };
+		70F08D5D210EB60E007B4D33 /* UIImageView+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CF4210EB60E007B4D33 /* UIImageView+MQExtension.m */; };
+		70F08D5E210EB60E007B4D33 /* UIViewController+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CF8210EB60E007B4D33 /* UIViewController+MQExtension.m */; };
+		70F08D5F210EB60E007B4D33 /* UITableView+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CFA210EB60E007B4D33 /* UITableView+MQExtension.m */; };
+		70F08D60210EB60E007B4D33 /* UIControl+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08CFD210EB60E007B4D33 /* UIControl+MQExtension.m */; };
+		70F08D61210EB60E007B4D33 /* UIGestureRecognizer+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D00210EB60E007B4D33 /* UIGestureRecognizer+MQExtension.m */; };
+		70F08D62210EB60E007B4D33 /* UIVisualEffectView+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D03210EB60E007B4D33 /* UIVisualEffectView+MQExtension.m */; };
+		70F08D63210EB60E007B4D33 /* CALayer+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D07210EB60E007B4D33 /* CALayer+MQExtension.m */; };
+		70F08D64210EB60E007B4D33 /* UITextField+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D0A210EB60E007B4D33 /* UITextField+MQExtension.m */; };
+		70F08D65210EB60E007B4D33 /* MQProxyDealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D0F210EB60E007B4D33 /* MQProxyDealer.m */; };
+		70F08D66210EB60E007B4D33 /* MQRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D13210EB60E007B4D33 /* MQRuntime.m */; };
+		70F08D67210EB60E007B4D33 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 70F08D14210EB60E007B4D33 /* .swift-version */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3234B751F3D87C878A5DA387 /* Pods-MQExtension_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQExtension_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example.release.xcconfig"; sourceTree = "<group>"; };
+		65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MQExtension_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70F08BEB210EB2FF007B4D33 /* MQExtension_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MQExtension_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		70F08BEE210EB2FF007B4D33 /* CCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCAppDelegate.h; sourceTree = "<group>"; };
+		70F08BEF210EB2FF007B4D33 /* CCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCAppDelegate.m; sourceTree = "<group>"; };
+		70F08BF1210EB2FF007B4D33 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		70F08BF2210EB2FF007B4D33 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		70F08BF5210EB2FF007B4D33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		70F08BF7210EB300007B4D33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		70F08BFA210EB300007B4D33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		70F08BFC210EB300007B4D33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70F08BFD210EB300007B4D33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		70F08C08210EB60E007B4D33 /* MQMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQMediator.m; sourceTree = "<group>"; };
+		70F08C09210EB60E007B4D33 /* MQMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQMediator.h; sourceTree = "<group>"; };
+		70F08C0A210EB60E007B4D33 /* MQRouterExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRouterExtension.h; sourceTree = "<group>"; };
+		70F08C0D210EB60E007B4D33 /* MQBridgeWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQBridgeWrapper.m; sourceTree = "<group>"; };
+		70F08C0E210EB60E007B4D33 /* MQBridgeWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQBridgeWrapper.h; sourceTree = "<group>"; };
+		70F08C11210EB60E007B4D33 /* UIImageView+MQExtension_WeakNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MQExtension_WeakNetwork.m"; sourceTree = "<group>"; };
+		70F08C12210EB60E007B4D33 /* UIImageView+MQExtension_WeakNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MQExtension_WeakNetwork.h"; sourceTree = "<group>"; };
+		70F08C14210EB60E007B4D33 /* UICollectionView+MQExtension_Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+MQExtension_Refresh.m"; sourceTree = "<group>"; };
+		70F08C15210EB60E007B4D33 /* UICollectionView+MQExtension_Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+MQExtension_Refresh.h"; sourceTree = "<group>"; };
+		70F08C17210EB60E007B4D33 /* MQNetworkMoniter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQNetworkMoniter.h; sourceTree = "<group>"; };
+		70F08C18210EB60E007B4D33 /* MQNetworkMoniter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQNetworkMoniter.m; sourceTree = "<group>"; };
+		70F08C1A210EB60E007B4D33 /* UITableView+MQExtension_Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+MQExtension_Refresh.h"; sourceTree = "<group>"; };
+		70F08C1B210EB60E007B4D33 /* UITableView+MQExtension_Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+MQExtension_Refresh.m"; sourceTree = "<group>"; };
+		70F08C1D210EB60E007B4D33 /* MBProgressHUD+CCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CCExtension.m"; sourceTree = "<group>"; };
+		70F08C1E210EB60E007B4D33 /* MBProgressHUD+CCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CCExtension.h"; sourceTree = "<group>"; };
+		70F08C1F210EB60E007B4D33 /* MQCustomExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQCustomExtension.h; sourceTree = "<group>"; };
+		70F08C21210EB60E007B4D33 /* MQOriginCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQOriginCustom.h; sourceTree = "<group>"; };
+		70F08C24210EB60E007B4D33 /* MQMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQMenuView.h; sourceTree = "<group>"; };
+		70F08C25210EB60E007B4D33 /* MQMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQMenuView.m; sourceTree = "<group>"; };
+		70F08C27210EB60E007B4D33 /* MQDropAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQDropAlertView.m; sourceTree = "<group>"; };
+		70F08C28210EB60E007B4D33 /* MQDropAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQDropAlertView.h; sourceTree = "<group>"; };
+		70F08C2A210EB60E007B4D33 /* MQGradientLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQGradientLayerView.h; sourceTree = "<group>"; };
+		70F08C2B210EB60E007B4D33 /* MQGradientLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQGradientLayerView.m; sourceTree = "<group>"; };
+		70F08C2D210EB60E007B4D33 /* MQEasyWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQEasyWebView.m; sourceTree = "<group>"; };
+		70F08C2E210EB60E007B4D33 /* MQEasyWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQEasyWebView.h; sourceTree = "<group>"; };
+		70F08C31210EB60E007B4D33 /* MQCrashCatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQCrashCatcher.m; sourceTree = "<group>"; };
+		70F08C32210EB60E007B4D33 /* MQCrashCatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQCrashCatcher.h; sourceTree = "<group>"; };
+		70F08C34210EB60E007B4D33 /* MQUpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQUpdateManager.h; sourceTree = "<group>"; };
+		70F08C35210EB60E007B4D33 /* MQUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQUpdateManager.m; sourceTree = "<group>"; };
+		70F08C37210EB60E007B4D33 /* MQIAPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQIAPManager.h; sourceTree = "<group>"; };
+		70F08C38210EB60E007B4D33 /* MQIAPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQIAPManager.m; sourceTree = "<group>"; };
+		70F08C3A210EB60E007B4D33 /* MQPointMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQPointMarker.h; sourceTree = "<group>"; };
+		70F08C3B210EB60E007B4D33 /* MQPointMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQPointMarker.m; sourceTree = "<group>"; };
+		70F08C3D210EB60E007B4D33 /* MQNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQNull.m; sourceTree = "<group>"; };
+		70F08C3E210EB60E007B4D33 /* MQNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQNull.h; sourceTree = "<group>"; };
+		70F08C40210EB60E007B4D33 /* MQTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQTaskManager.m; sourceTree = "<group>"; };
+		70F08C41210EB60E007B4D33 /* MQTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQTaskManager.h; sourceTree = "<group>"; };
+		70F08C44210EB60E007B4D33 /* MQPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQPhotoManager.m; sourceTree = "<group>"; };
+		70F08C45210EB60E007B4D33 /* MQPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQPhotoManager.h; sourceTree = "<group>"; };
+		70F08C47210EB60E007B4D33 /* MQAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQAudioRecorder.h; sourceTree = "<group>"; };
+		70F08C48210EB60E007B4D33 /* MQAudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQAudioRecorder.m; sourceTree = "<group>"; };
+		70F08C4A210EB60E007B4D33 /* MQVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQVideoManager.h; sourceTree = "<group>"; };
+		70F08C4B210EB60E007B4D33 /* MQVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQVideoManager.m; sourceTree = "<group>"; };
+		70F08C4E210EB60E007B4D33 /* MQDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQDevice.m; sourceTree = "<group>"; };
+		70F08C4F210EB60E007B4D33 /* MQDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQDevice.h; sourceTree = "<group>"; };
+		70F08C51210EB60E007B4D33 /* MQAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQAuthentication.h; sourceTree = "<group>"; };
+		70F08C52210EB60E007B4D33 /* MQAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQAuthentication.m; sourceTree = "<group>"; };
+		70F08C53210EB60E007B4D33 /* MQCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQCommonExtension.h; sourceTree = "<group>"; };
+		70F08C55210EB60E007B4D33 /* MQAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQAuthorize.h; sourceTree = "<group>"; };
+		70F08C56210EB60E007B4D33 /* MQAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQAuthorize.m; sourceTree = "<group>"; };
+		70F08C58210EB60E007B4D33 /* MQAdvanceMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQAdvanceMacro.h; sourceTree = "<group>"; };
+		70F08C59210EB60E007B4D33 /* MQCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQCommon.h; sourceTree = "<group>"; };
+		70F08C5A210EB60E007B4D33 /* MQSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSingleton.h; sourceTree = "<group>"; };
+		70F08C5B210EB60E007B4D33 /* MQCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQCommon.m; sourceTree = "<group>"; };
+		70F08C5D210EB60E007B4D33 /* MQFit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQFit.h; sourceTree = "<group>"; };
+		70F08C5E210EB60E007B4D33 /* MQFit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQFit.m; sourceTree = "<group>"; };
+		70F08C61210EB60E007B4D33 /* NSObject+MQProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MQProtocol.h"; sourceTree = "<group>"; };
+		70F08C62210EB60E007B4D33 /* NSObject+MQProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MQProtocol.m"; sourceTree = "<group>"; };
+		70F08C63210EB60E007B4D33 /* MQProtocolExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProtocolExtension.h; sourceTree = "<group>"; };
+		70F08C66210EB60E007B4D33 /* NSDictionary+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C67210EB60E007B4D33 /* NSDictionary+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C69210EB60E007B4D33 /* NSBundle+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C6A210EB60E007B4D33 /* NSBundle+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C6C210EB60E007B4D33 /* NSNotificationCenter+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C6D210EB60E007B4D33 /* NSNotificationCenter+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C6F210EB60E007B4D33 /* NSFileManager+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C70210EB60E007B4D33 /* NSFileManager+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C72210EB60E007B4D33 /* NSURL+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C73210EB60E007B4D33 /* NSURL+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C75210EB60E007B4D33 /* NSString+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C76210EB60E007B4D33 /* NSString+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C78210EB60E007B4D33 /* NSArray+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C79210EB60E007B4D33 /* NSArray+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C7B210EB60E007B4D33 /* NSURLRequest+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C7C210EB60E007B4D33 /* NSURLRequest+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C7E210EB60E007B4D33 /* NSPredicate+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C7F210EB60E007B4D33 /* NSPredicate+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C81210EB60E007B4D33 /* NSUserDefaults+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C82210EB60E007B4D33 /* NSUserDefaults+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C84210EB60E007B4D33 /* NSLock+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLock+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C85210EB60E007B4D33 /* NSLock+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLock+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C87210EB60E007B4D33 /* NSNumber+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C88210EB60E007B4D33 /* NSNumber+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C8A210EB60E007B4D33 /* NSTimer+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C8B210EB60E007B4D33 /* NSTimer+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C8D210EB60E007B4D33 /* NSAttributedString+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C8E210EB60E007B4D33 /* NSAttributedString+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C90210EB60E007B4D33 /* NSObject+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C91210EB60E007B4D33 /* NSObject+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C92210EB60E007B4D33 /* MQDataExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQDataExtension.h; sourceTree = "<group>"; };
+		70F08C94210EB60E007B4D33 /* NSDate+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MQExtension.m"; sourceTree = "<group>"; };
+		70F08C95210EB60E007B4D33 /* NSDate+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MQExtension.h"; sourceTree = "<group>"; };
+		70F08C97210EB60E007B4D33 /* MQDataBaseExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQDataBaseExtension.h; sourceTree = "<group>"; };
+		70F08C9A210EB60E007B4D33 /* CCRLMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRLMBaseModel.m; sourceTree = "<group>"; };
+		70F08C9B210EB60E007B4D33 /* CCRLMBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRLMBaseModel.h; sourceTree = "<group>"; };
+		70F08C9D210EB60E007B4D33 /* MQRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRealmHandler.h; sourceTree = "<group>"; };
+		70F08C9E210EB60E007B4D33 /* MQRealmHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQRealmHandler.m; sourceTree = "<group>"; };
+		70F08CA1210EB60E007B4D33 /* MQFCModelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQFCModelHandler.h; sourceTree = "<group>"; };
+		70F08CA2210EB60E007B4D33 /* MQFCModelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQFCModelHandler.m; sourceTree = "<group>"; };
+		70F08CA4210EB60E007B4D33 /* FCModelCachedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelCachedObject.m; sourceTree = "<group>"; };
+		70F08CA5210EB60E007B4D33 /* FCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModel.h; sourceTree = "<group>"; };
+		70F08CA6210EB60E007B4D33 /* FCModelNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModelNotificationCenter.h; sourceTree = "<group>"; };
+		70F08CA7210EB60E007B4D33 /* FCModelDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModelDatabase.h; sourceTree = "<group>"; };
+		70F08CA8210EB60E007B4D33 /* FCModelCachedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModelCachedObject.h; sourceTree = "<group>"; };
+		70F08CA9210EB60E007B4D33 /* FCModelNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelNotificationCenter.m; sourceTree = "<group>"; };
+		70F08CAA210EB60E007B4D33 /* FCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModel.m; sourceTree = "<group>"; };
+		70F08CAB210EB60E007B4D33 /* FCModelDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelDatabase.m; sourceTree = "<group>"; };
+		70F08CAD210EB60E007B4D33 /* MQFCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQFCModel.m; sourceTree = "<group>"; };
+		70F08CAE210EB60E007B4D33 /* MQFCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQFCModel.h; sourceTree = "<group>"; };
+		70F08CB1210EB60E007B4D33 /* PHAsset+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CB2210EB60E007B4D33 /* PHAsset+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHAsset+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CB4210EB60E007B4D33 /* PHImageRequestOptions+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHImageRequestOptions+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CB5210EB60E007B4D33 /* PHImageRequestOptions+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHImageRequestOptions+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CB7210EB60E007B4D33 /* PHFetchResult+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHFetchResult+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CB8210EB60E007B4D33 /* PHFetchResult+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHFetchResult+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CBA210EB60E007B4D33 /* MQMediaExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQMediaExtension.h; sourceTree = "<group>"; };
+		70F08CBC210EB60E007B4D33 /* PHAssetCollection+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHAssetCollection+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CBD210EB60E007B4D33 /* PHAssetCollection+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHAssetCollection+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CC0210EB60E007B4D33 /* UIImage+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CC1210EB60E007B4D33 /* UIImage+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CC3210EB60E007B4D33 /* UISwitch+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CC4210EB60E007B4D33 /* UISwitch+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISwitch+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CC6210EB60E007B4D33 /* UIScrollView+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CC7210EB60E007B4D33 /* UIScrollView+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CC9210EB60E007B4D33 /* UILabel+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CCA210EB60E007B4D33 /* UILabel+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CCC210EB60E007B4D33 /* UIApplication+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CCD210EB60E007B4D33 /* UIApplication+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CCF210EB60E007B4D33 /* UIResponder+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CD0210EB60E007B4D33 /* UIResponder+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CD2210EB60E007B4D33 /* UIButton+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CD3210EB60E007B4D33 /* UIButton+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CD5210EB60E007B4D33 /* UIColor+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CD6210EB60E007B4D33 /* UIColor+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CD8210EB60E007B4D33 /* UIAlertController+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CD9210EB60E007B4D33 /* UIAlertController+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CDB210EB60E007B4D33 /* UIView+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CDC210EB60E007B4D33 /* UIView+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CDE210EB60E007B4D33 /* UIFont+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CDF210EB60E007B4D33 /* UIFont+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CE1210EB60E007B4D33 /* UINavigationItem+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CE2210EB60E007B4D33 /* UINavigationItem+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CE4210EB60E007B4D33 /* WKWebView+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CE5210EB60E007B4D33 /* WKWebView+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CE7210EB60E007B4D33 /* UITextView+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CE8210EB60E007B4D33 /* UITextView+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CEA210EB60E007B4D33 /* UICollectionView+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CEB210EB60E007B4D33 /* UICollectionView+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CED210EB60E007B4D33 /* UIImagePickerController+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CEE210EB60E007B4D33 /* UIImagePickerController+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CF0210EB60E007B4D33 /* UIBarButtonItem+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CF1210EB60E007B4D33 /* UIBarButtonItem+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CF3210EB60E007B4D33 /* UIImageView+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CF4210EB60E007B4D33 /* UIImageView+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CF5210EB60E007B4D33 /* MQViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQViewExtension.h; sourceTree = "<group>"; };
+		70F08CF7210EB60E007B4D33 /* UIViewController+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CF8210EB60E007B4D33 /* UIViewController+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CFA210EB60E007B4D33 /* UITableView+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CFB210EB60E007B4D33 /* UITableView+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+MQExtension.h"; sourceTree = "<group>"; };
+		70F08CFD210EB60E007B4D33 /* UIControl+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+MQExtension.m"; sourceTree = "<group>"; };
+		70F08CFE210EB60E007B4D33 /* UIControl+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+MQExtension.h"; sourceTree = "<group>"; };
+		70F08D00210EB60E007B4D33 /* UIGestureRecognizer+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+MQExtension.m"; sourceTree = "<group>"; };
+		70F08D01210EB60E007B4D33 /* UIGestureRecognizer+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+MQExtension.h"; sourceTree = "<group>"; };
+		70F08D03210EB60E007B4D33 /* UIVisualEffectView+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIVisualEffectView+MQExtension.m"; sourceTree = "<group>"; };
+		70F08D04210EB60E007B4D33 /* UIVisualEffectView+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIVisualEffectView+MQExtension.h"; sourceTree = "<group>"; };
+		70F08D06210EB60E007B4D33 /* CALayer+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+MQExtension.h"; sourceTree = "<group>"; };
+		70F08D07210EB60E007B4D33 /* CALayer+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+MQExtension.m"; sourceTree = "<group>"; };
+		70F08D09210EB60E007B4D33 /* UITextField+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+MQExtension.h"; sourceTree = "<group>"; };
+		70F08D0A210EB60E007B4D33 /* UITextField+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MQExtension.m"; sourceTree = "<group>"; };
+		70F08D0C210EB60E007B4D33 /* MQRuntimeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRuntimeExtension.h; sourceTree = "<group>"; };
+		70F08D0E210EB60E007B4D33 /* MQProxyDealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProxyDealer.h; sourceTree = "<group>"; };
+		70F08D0F210EB60E007B4D33 /* MQProxyDealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProxyDealer.m; sourceTree = "<group>"; };
+		70F08D10210EB60E007B4D33 /* MQProxyDealerMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProxyDealerMacro.h; sourceTree = "<group>"; };
+		70F08D12210EB60E007B4D33 /* MQRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRuntime.h; sourceTree = "<group>"; };
+		70F08D13210EB60E007B4D33 /* MQRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQRuntime.m; sourceTree = "<group>"; };
+		70F08D14210EB60E007B4D33 /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
+		70F08D15210EB60E007B4D33 /* MQExtensionKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQExtensionKit.h; sourceTree = "<group>"; };
+		92E189F8E0695DC2397746B7 /* Pods-MQExtension_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQExtension_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		70F08BE8210EB2FF007B4D33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FE6F4D7C4B954FAD21408F9 /* Pods_MQExtension_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B3ABE048C80030507D4712C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		53C42F97ECC1244305B475CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				92E189F8E0695DC2397746B7 /* Pods-MQExtension_Example.debug.xcconfig */,
+				3234B751F3D87C878A5DA387 /* Pods-MQExtension_Example.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		70F08BE2210EB2FF007B4D33 = {
+			isa = PBXGroup;
+			children = (
+				70F08C04210EB60E007B4D33 /* MQExtensionKit */,
+				70F08BED210EB2FF007B4D33 /* MQExtension_Example */,
+				70F08BEC210EB2FF007B4D33 /* Products */,
+				53C42F97ECC1244305B475CB /* Pods */,
+				2B3ABE048C80030507D4712C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		70F08BEC210EB2FF007B4D33 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70F08BEB210EB2FF007B4D33 /* MQExtension_Example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		70F08BED210EB2FF007B4D33 /* MQExtension_Example */ = {
+			isa = PBXGroup;
+			children = (
+				70F08BEE210EB2FF007B4D33 /* CCAppDelegate.h */,
+				70F08BEF210EB2FF007B4D33 /* CCAppDelegate.m */,
+				70F08BF1210EB2FF007B4D33 /* ViewController.h */,
+				70F08BF2210EB2FF007B4D33 /* ViewController.m */,
+				70F08BF4210EB2FF007B4D33 /* Main.storyboard */,
+				70F08BF7210EB300007B4D33 /* Assets.xcassets */,
+				70F08BF9210EB300007B4D33 /* LaunchScreen.storyboard */,
+				70F08BFC210EB300007B4D33 /* Info.plist */,
+				70F08BFD210EB300007B4D33 /* main.m */,
+			);
+			path = MQExtension_Example;
+			sourceTree = "<group>";
+		};
+		70F08C04210EB60E007B4D33 /* MQExtensionKit */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C05210EB60E007B4D33 /* MQExtensionKit */,
+				70F08D14210EB60E007B4D33 /* .swift-version */,
+				70F08D15210EB60E007B4D33 /* MQExtensionKit.h */,
+			);
+			name = MQExtensionKit;
+			path = ../MQExtensionKit;
+			sourceTree = "<group>";
+		};
+		70F08C05210EB60E007B4D33 /* MQExtensionKit */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C06210EB60E007B4D33 /* MQRouter */,
+				70F08C0F210EB60E007B4D33 /* MQCustom */,
+				70F08C20210EB60E007B4D33 /* MQOrigin */,
+				70F08C4C210EB60E007B4D33 /* MQCommon */,
+				70F08C5F210EB60E007B4D33 /* MQProtocol */,
+				70F08C64210EB60E007B4D33 /* MQData */,
+				70F08C96210EB60E007B4D33 /* MQDataBase */,
+				70F08CAF210EB60E007B4D33 /* MQMedia */,
+				70F08CBE210EB60E007B4D33 /* MQView */,
+				70F08D0B210EB60E007B4D33 /* MQRuntime */,
+			);
+			path = MQExtensionKit;
+			sourceTree = "<group>";
+		};
+		70F08C06210EB60E007B4D33 /* MQRouter */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C07210EB60E007B4D33 /* MQMediator */,
+				70F08C0A210EB60E007B4D33 /* MQRouterExtension.h */,
+				70F08C0B210EB60E007B4D33 /* MQBridgeMGJ */,
+			);
+			path = MQRouter;
+			sourceTree = "<group>";
+		};
+		70F08C07210EB60E007B4D33 /* MQMediator */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C08210EB60E007B4D33 /* MQMediator.m */,
+				70F08C09210EB60E007B4D33 /* MQMediator.h */,
+			);
+			path = MQMediator;
+			sourceTree = "<group>";
+		};
+		70F08C0B210EB60E007B4D33 /* MQBridgeMGJ */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C0C210EB60E007B4D33 /* MQBridgeWrapper */,
+			);
+			path = MQBridgeMGJ;
+			sourceTree = "<group>";
+		};
+		70F08C0C210EB60E007B4D33 /* MQBridgeWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C0D210EB60E007B4D33 /* MQBridgeWrapper.m */,
+				70F08C0E210EB60E007B4D33 /* MQBridgeWrapper.h */,
+			);
+			path = MQBridgeWrapper;
+			sourceTree = "<group>";
+		};
+		70F08C0F210EB60E007B4D33 /* MQCustom */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C10210EB60E007B4D33 /* MQWeakNetImageView */,
+				70F08C13210EB60E007B4D33 /* UICollectionView */,
+				70F08C16210EB60E007B4D33 /* NetworkMoniter */,
+				70F08C19210EB60E007B4D33 /* UITableView */,
+				70F08C1C210EB60E007B4D33 /* MBProgressHud */,
+				70F08C1F210EB60E007B4D33 /* MQCustomExtension.h */,
+			);
+			path = MQCustom;
+			sourceTree = "<group>";
+		};
+		70F08C10210EB60E007B4D33 /* MQWeakNetImageView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C11210EB60E007B4D33 /* UIImageView+MQExtension_WeakNetwork.m */,
+				70F08C12210EB60E007B4D33 /* UIImageView+MQExtension_WeakNetwork.h */,
+			);
+			path = MQWeakNetImageView;
+			sourceTree = "<group>";
+		};
+		70F08C13210EB60E007B4D33 /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C14210EB60E007B4D33 /* UICollectionView+MQExtension_Refresh.m */,
+				70F08C15210EB60E007B4D33 /* UICollectionView+MQExtension_Refresh.h */,
+			);
+			path = UICollectionView;
+			sourceTree = "<group>";
+		};
+		70F08C16210EB60E007B4D33 /* NetworkMoniter */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C17210EB60E007B4D33 /* MQNetworkMoniter.h */,
+				70F08C18210EB60E007B4D33 /* MQNetworkMoniter.m */,
+			);
+			path = NetworkMoniter;
+			sourceTree = "<group>";
+		};
+		70F08C19210EB60E007B4D33 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C1A210EB60E007B4D33 /* UITableView+MQExtension_Refresh.h */,
+				70F08C1B210EB60E007B4D33 /* UITableView+MQExtension_Refresh.m */,
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
+		70F08C1C210EB60E007B4D33 /* MBProgressHud */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C1D210EB60E007B4D33 /* MBProgressHUD+CCExtension.m */,
+				70F08C1E210EB60E007B4D33 /* MBProgressHUD+CCExtension.h */,
+			);
+			path = MBProgressHud;
+			sourceTree = "<group>";
+		};
+		70F08C20210EB60E007B4D33 /* MQOrigin */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C21210EB60E007B4D33 /* MQOriginCustom.h */,
+				70F08C22210EB60E007B4D33 /* View */,
+				70F08C2F210EB60E007B4D33 /* Data */,
+				70F08C42210EB60E007B4D33 /* Media */,
+			);
+			path = MQOrigin;
+			sourceTree = "<group>";
+		};
+		70F08C22210EB60E007B4D33 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C23210EB60E007B4D33 /* UIMenuController */,
+				70F08C26210EB60E007B4D33 /* MQDropAlertView */,
+				70F08C29210EB60E007B4D33 /* MQGradientView */,
+				70F08C2C210EB60E007B4D33 /* MQEasyWebView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		70F08C23210EB60E007B4D33 /* UIMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C24210EB60E007B4D33 /* MQMenuView.h */,
+				70F08C25210EB60E007B4D33 /* MQMenuView.m */,
+			);
+			path = UIMenuController;
+			sourceTree = "<group>";
+		};
+		70F08C26210EB60E007B4D33 /* MQDropAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C27210EB60E007B4D33 /* MQDropAlertView.m */,
+				70F08C28210EB60E007B4D33 /* MQDropAlertView.h */,
+			);
+			path = MQDropAlertView;
+			sourceTree = "<group>";
+		};
+		70F08C29210EB60E007B4D33 /* MQGradientView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C2A210EB60E007B4D33 /* MQGradientLayerView.h */,
+				70F08C2B210EB60E007B4D33 /* MQGradientLayerView.m */,
+			);
+			path = MQGradientView;
+			sourceTree = "<group>";
+		};
+		70F08C2C210EB60E007B4D33 /* MQEasyWebView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C2D210EB60E007B4D33 /* MQEasyWebView.m */,
+				70F08C2E210EB60E007B4D33 /* MQEasyWebView.h */,
+			);
+			path = MQEasyWebView;
+			sourceTree = "<group>";
+		};
+		70F08C2F210EB60E007B4D33 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C30210EB60E007B4D33 /* MQCrashCatcher */,
+				70F08C33210EB60E007B4D33 /* MQUpdateManager */,
+				70F08C36210EB60E007B4D33 /* MQIAPManager */,
+				70F08C39210EB60E007B4D33 /* MQPointMarker */,
+				70F08C3C210EB60E007B4D33 /* MQNull */,
+				70F08C3F210EB60E007B4D33 /* MQTaskManager */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		70F08C30210EB60E007B4D33 /* MQCrashCatcher */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C31210EB60E007B4D33 /* MQCrashCatcher.m */,
+				70F08C32210EB60E007B4D33 /* MQCrashCatcher.h */,
+			);
+			path = MQCrashCatcher;
+			sourceTree = "<group>";
+		};
+		70F08C33210EB60E007B4D33 /* MQUpdateManager */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C34210EB60E007B4D33 /* MQUpdateManager.h */,
+				70F08C35210EB60E007B4D33 /* MQUpdateManager.m */,
+			);
+			path = MQUpdateManager;
+			sourceTree = "<group>";
+		};
+		70F08C36210EB60E007B4D33 /* MQIAPManager */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C37210EB60E007B4D33 /* MQIAPManager.h */,
+				70F08C38210EB60E007B4D33 /* MQIAPManager.m */,
+			);
+			path = MQIAPManager;
+			sourceTree = "<group>";
+		};
+		70F08C39210EB60E007B4D33 /* MQPointMarker */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C3A210EB60E007B4D33 /* MQPointMarker.h */,
+				70F08C3B210EB60E007B4D33 /* MQPointMarker.m */,
+			);
+			path = MQPointMarker;
+			sourceTree = "<group>";
+		};
+		70F08C3C210EB60E007B4D33 /* MQNull */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C3D210EB60E007B4D33 /* MQNull.m */,
+				70F08C3E210EB60E007B4D33 /* MQNull.h */,
+			);
+			path = MQNull;
+			sourceTree = "<group>";
+		};
+		70F08C3F210EB60E007B4D33 /* MQTaskManager */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C40210EB60E007B4D33 /* MQTaskManager.m */,
+				70F08C41210EB60E007B4D33 /* MQTaskManager.h */,
+			);
+			path = MQTaskManager;
+			sourceTree = "<group>";
+		};
+		70F08C42210EB60E007B4D33 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C43210EB60E007B4D33 /* MQPhotoManager */,
+				70F08C46210EB60E007B4D33 /* MQAudioRecorder */,
+				70F08C49210EB60E007B4D33 /* MQVideoManager */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		70F08C43210EB60E007B4D33 /* MQPhotoManager */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C44210EB60E007B4D33 /* MQPhotoManager.m */,
+				70F08C45210EB60E007B4D33 /* MQPhotoManager.h */,
+			);
+			path = MQPhotoManager;
+			sourceTree = "<group>";
+		};
+		70F08C46210EB60E007B4D33 /* MQAudioRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C47210EB60E007B4D33 /* MQAudioRecorder.h */,
+				70F08C48210EB60E007B4D33 /* MQAudioRecorder.m */,
+			);
+			path = MQAudioRecorder;
+			sourceTree = "<group>";
+		};
+		70F08C49210EB60E007B4D33 /* MQVideoManager */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C4A210EB60E007B4D33 /* MQVideoManager.h */,
+				70F08C4B210EB60E007B4D33 /* MQVideoManager.m */,
+			);
+			path = MQVideoManager;
+			sourceTree = "<group>";
+		};
+		70F08C4C210EB60E007B4D33 /* MQCommon */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C4D210EB60E007B4D33 /* MQDevice */,
+				70F08C50210EB60E007B4D33 /* MQAuthentication */,
+				70F08C53210EB60E007B4D33 /* MQCommonExtension.h */,
+				70F08C54210EB60E007B4D33 /* MQAuthorize */,
+				70F08C57210EB60E007B4D33 /* MQCommon */,
+				70F08C5C210EB60E007B4D33 /* MQFit */,
+			);
+			path = MQCommon;
+			sourceTree = "<group>";
+		};
+		70F08C4D210EB60E007B4D33 /* MQDevice */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C4E210EB60E007B4D33 /* MQDevice.m */,
+				70F08C4F210EB60E007B4D33 /* MQDevice.h */,
+			);
+			path = MQDevice;
+			sourceTree = "<group>";
+		};
+		70F08C50210EB60E007B4D33 /* MQAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C51210EB60E007B4D33 /* MQAuthentication.h */,
+				70F08C52210EB60E007B4D33 /* MQAuthentication.m */,
+			);
+			path = MQAuthentication;
+			sourceTree = "<group>";
+		};
+		70F08C54210EB60E007B4D33 /* MQAuthorize */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C55210EB60E007B4D33 /* MQAuthorize.h */,
+				70F08C56210EB60E007B4D33 /* MQAuthorize.m */,
+			);
+			path = MQAuthorize;
+			sourceTree = "<group>";
+		};
+		70F08C57210EB60E007B4D33 /* MQCommon */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C58210EB60E007B4D33 /* MQAdvanceMacro.h */,
+				70F08C59210EB60E007B4D33 /* MQCommon.h */,
+				70F08C5A210EB60E007B4D33 /* MQSingleton.h */,
+				70F08C5B210EB60E007B4D33 /* MQCommon.m */,
+			);
+			path = MQCommon;
+			sourceTree = "<group>";
+		};
+		70F08C5C210EB60E007B4D33 /* MQFit */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C5D210EB60E007B4D33 /* MQFit.h */,
+				70F08C5E210EB60E007B4D33 /* MQFit.m */,
+			);
+			path = MQFit;
+			sourceTree = "<group>";
+		};
+		70F08C5F210EB60E007B4D33 /* MQProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C60210EB60E007B4D33 /* NSObject */,
+				70F08C63210EB60E007B4D33 /* MQProtocolExtension.h */,
+			);
+			path = MQProtocol;
+			sourceTree = "<group>";
+		};
+		70F08C60210EB60E007B4D33 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C61210EB60E007B4D33 /* NSObject+MQProtocol.h */,
+				70F08C62210EB60E007B4D33 /* NSObject+MQProtocol.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		70F08C64210EB60E007B4D33 /* MQData */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C65210EB60E007B4D33 /* NSDictionary */,
+				70F08C68210EB60E007B4D33 /* NSBundle */,
+				70F08C6B210EB60E007B4D33 /* NSNotificationCenter */,
+				70F08C6E210EB60E007B4D33 /* NSFileManager */,
+				70F08C71210EB60E007B4D33 /* NSURL */,
+				70F08C74210EB60E007B4D33 /* NSString */,
+				70F08C77210EB60E007B4D33 /* NSArray */,
+				70F08C7A210EB60E007B4D33 /* NSURLRequest */,
+				70F08C7D210EB60E007B4D33 /* NSPredicate */,
+				70F08C80210EB60E007B4D33 /* NSUserDefaults */,
+				70F08C83210EB60E007B4D33 /* NSLock */,
+				70F08C86210EB60E007B4D33 /* NSNumber */,
+				70F08C89210EB60E007B4D33 /* NSTimer */,
+				70F08C8C210EB60E007B4D33 /* NSAttributedString */,
+				70F08C8F210EB60E007B4D33 /* NSObject */,
+				70F08C92210EB60E007B4D33 /* MQDataExtension.h */,
+				70F08C93210EB60E007B4D33 /* NSDate */,
+			);
+			path = MQData;
+			sourceTree = "<group>";
+		};
+		70F08C65210EB60E007B4D33 /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C66210EB60E007B4D33 /* NSDictionary+MQExtension.h */,
+				70F08C67210EB60E007B4D33 /* NSDictionary+MQExtension.m */,
+			);
+			path = NSDictionary;
+			sourceTree = "<group>";
+		};
+		70F08C68210EB60E007B4D33 /* NSBundle */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C69210EB60E007B4D33 /* NSBundle+MQExtension.m */,
+				70F08C6A210EB60E007B4D33 /* NSBundle+MQExtension.h */,
+			);
+			path = NSBundle;
+			sourceTree = "<group>";
+		};
+		70F08C6B210EB60E007B4D33 /* NSNotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C6C210EB60E007B4D33 /* NSNotificationCenter+MQExtension.m */,
+				70F08C6D210EB60E007B4D33 /* NSNotificationCenter+MQExtension.h */,
+			);
+			path = NSNotificationCenter;
+			sourceTree = "<group>";
+		};
+		70F08C6E210EB60E007B4D33 /* NSFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C6F210EB60E007B4D33 /* NSFileManager+MQExtension.h */,
+				70F08C70210EB60E007B4D33 /* NSFileManager+MQExtension.m */,
+			);
+			path = NSFileManager;
+			sourceTree = "<group>";
+		};
+		70F08C71210EB60E007B4D33 /* NSURL */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C72210EB60E007B4D33 /* NSURL+MQExtension.m */,
+				70F08C73210EB60E007B4D33 /* NSURL+MQExtension.h */,
+			);
+			path = NSURL;
+			sourceTree = "<group>";
+		};
+		70F08C74210EB60E007B4D33 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C75210EB60E007B4D33 /* NSString+MQExtension.h */,
+				70F08C76210EB60E007B4D33 /* NSString+MQExtension.m */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		70F08C77210EB60E007B4D33 /* NSArray */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C78210EB60E007B4D33 /* NSArray+MQExtension.h */,
+				70F08C79210EB60E007B4D33 /* NSArray+MQExtension.m */,
+			);
+			path = NSArray;
+			sourceTree = "<group>";
+		};
+		70F08C7A210EB60E007B4D33 /* NSURLRequest */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C7B210EB60E007B4D33 /* NSURLRequest+MQExtension.m */,
+				70F08C7C210EB60E007B4D33 /* NSURLRequest+MQExtension.h */,
+			);
+			path = NSURLRequest;
+			sourceTree = "<group>";
+		};
+		70F08C7D210EB60E007B4D33 /* NSPredicate */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C7E210EB60E007B4D33 /* NSPredicate+MQExtension.h */,
+				70F08C7F210EB60E007B4D33 /* NSPredicate+MQExtension.m */,
+			);
+			path = NSPredicate;
+			sourceTree = "<group>";
+		};
+		70F08C80210EB60E007B4D33 /* NSUserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C81210EB60E007B4D33 /* NSUserDefaults+MQExtension.h */,
+				70F08C82210EB60E007B4D33 /* NSUserDefaults+MQExtension.m */,
+			);
+			path = NSUserDefaults;
+			sourceTree = "<group>";
+		};
+		70F08C83210EB60E007B4D33 /* NSLock */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C84210EB60E007B4D33 /* NSLock+MQExtension.m */,
+				70F08C85210EB60E007B4D33 /* NSLock+MQExtension.h */,
+			);
+			path = NSLock;
+			sourceTree = "<group>";
+		};
+		70F08C86210EB60E007B4D33 /* NSNumber */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C87210EB60E007B4D33 /* NSNumber+MQExtension.h */,
+				70F08C88210EB60E007B4D33 /* NSNumber+MQExtension.m */,
+			);
+			path = NSNumber;
+			sourceTree = "<group>";
+		};
+		70F08C89210EB60E007B4D33 /* NSTimer */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C8A210EB60E007B4D33 /* NSTimer+MQExtension.m */,
+				70F08C8B210EB60E007B4D33 /* NSTimer+MQExtension.h */,
+			);
+			path = NSTimer;
+			sourceTree = "<group>";
+		};
+		70F08C8C210EB60E007B4D33 /* NSAttributedString */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C8D210EB60E007B4D33 /* NSAttributedString+MQExtension.m */,
+				70F08C8E210EB60E007B4D33 /* NSAttributedString+MQExtension.h */,
+			);
+			path = NSAttributedString;
+			sourceTree = "<group>";
+		};
+		70F08C8F210EB60E007B4D33 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C90210EB60E007B4D33 /* NSObject+MQExtension.h */,
+				70F08C91210EB60E007B4D33 /* NSObject+MQExtension.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		70F08C93210EB60E007B4D33 /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C94210EB60E007B4D33 /* NSDate+MQExtension.m */,
+				70F08C95210EB60E007B4D33 /* NSDate+MQExtension.h */,
+			);
+			path = NSDate;
+			sourceTree = "<group>";
+		};
+		70F08C96210EB60E007B4D33 /* MQDataBase */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C97210EB60E007B4D33 /* MQDataBaseExtension.h */,
+				70F08C98210EB60E007B4D33 /* MQRealm */,
+				70F08C9F210EB60E007B4D33 /* MQFCModel */,
+			);
+			path = MQDataBase;
+			sourceTree = "<group>";
+		};
+		70F08C98210EB60E007B4D33 /* MQRealm */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C99210EB60E007B4D33 /* MQRealmModel */,
+				70F08C9C210EB60E007B4D33 /* MQRealmHandler */,
+			);
+			path = MQRealm;
+			sourceTree = "<group>";
+		};
+		70F08C99210EB60E007B4D33 /* MQRealmModel */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C9A210EB60E007B4D33 /* CCRLMBaseModel.m */,
+				70F08C9B210EB60E007B4D33 /* CCRLMBaseModel.h */,
+			);
+			path = MQRealmModel;
+			sourceTree = "<group>";
+		};
+		70F08C9C210EB60E007B4D33 /* MQRealmHandler */ = {
+			isa = PBXGroup;
+			children = (
+				70F08C9D210EB60E007B4D33 /* MQRealmHandler.h */,
+				70F08C9E210EB60E007B4D33 /* MQRealmHandler.m */,
+			);
+			path = MQRealmHandler;
+			sourceTree = "<group>";
+		};
+		70F08C9F210EB60E007B4D33 /* MQFCModel */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CA0210EB60E007B4D33 /* MQFCModelHandler */,
+				70F08CA3210EB60E007B4D33 /* FCModel */,
+				70F08CAC210EB60E007B4D33 /* MQFCModel */,
+			);
+			path = MQFCModel;
+			sourceTree = "<group>";
+		};
+		70F08CA0210EB60E007B4D33 /* MQFCModelHandler */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CA1210EB60E007B4D33 /* MQFCModelHandler.h */,
+				70F08CA2210EB60E007B4D33 /* MQFCModelHandler.m */,
+			);
+			path = MQFCModelHandler;
+			sourceTree = "<group>";
+		};
+		70F08CA3210EB60E007B4D33 /* FCModel */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CA4210EB60E007B4D33 /* FCModelCachedObject.m */,
+				70F08CA5210EB60E007B4D33 /* FCModel.h */,
+				70F08CA6210EB60E007B4D33 /* FCModelNotificationCenter.h */,
+				70F08CA7210EB60E007B4D33 /* FCModelDatabase.h */,
+				70F08CA8210EB60E007B4D33 /* FCModelCachedObject.h */,
+				70F08CA9210EB60E007B4D33 /* FCModelNotificationCenter.m */,
+				70F08CAA210EB60E007B4D33 /* FCModel.m */,
+				70F08CAB210EB60E007B4D33 /* FCModelDatabase.m */,
+			);
+			path = FCModel;
+			sourceTree = "<group>";
+		};
+		70F08CAC210EB60E007B4D33 /* MQFCModel */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CAD210EB60E007B4D33 /* MQFCModel.m */,
+				70F08CAE210EB60E007B4D33 /* MQFCModel.h */,
+			);
+			path = MQFCModel;
+			sourceTree = "<group>";
+		};
+		70F08CAF210EB60E007B4D33 /* MQMedia */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CB0210EB60E007B4D33 /* PHAsset */,
+				70F08CB3210EB60E007B4D33 /* PHImageRequestOptions */,
+				70F08CB6210EB60E007B4D33 /* PHFetchResult */,
+				70F08CB9210EB60E007B4D33 /* AVAsset */,
+				70F08CBA210EB60E007B4D33 /* MQMediaExtension.h */,
+				70F08CBB210EB60E007B4D33 /* PHAssetCollection */,
+			);
+			path = MQMedia;
+			sourceTree = "<group>";
+		};
+		70F08CB0210EB60E007B4D33 /* PHAsset */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CB1210EB60E007B4D33 /* PHAsset+MQExtension.m */,
+				70F08CB2210EB60E007B4D33 /* PHAsset+MQExtension.h */,
+			);
+			path = PHAsset;
+			sourceTree = "<group>";
+		};
+		70F08CB3210EB60E007B4D33 /* PHImageRequestOptions */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CB4210EB60E007B4D33 /* PHImageRequestOptions+MQExtension.h */,
+				70F08CB5210EB60E007B4D33 /* PHImageRequestOptions+MQExtension.m */,
+			);
+			path = PHImageRequestOptions;
+			sourceTree = "<group>";
+		};
+		70F08CB6210EB60E007B4D33 /* PHFetchResult */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CB7210EB60E007B4D33 /* PHFetchResult+MQExtension.m */,
+				70F08CB8210EB60E007B4D33 /* PHFetchResult+MQExtension.h */,
+			);
+			path = PHFetchResult;
+			sourceTree = "<group>";
+		};
+		70F08CB9210EB60E007B4D33 /* AVAsset */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AVAsset;
+			sourceTree = "<group>";
+		};
+		70F08CBB210EB60E007B4D33 /* PHAssetCollection */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CBC210EB60E007B4D33 /* PHAssetCollection+MQExtension.m */,
+				70F08CBD210EB60E007B4D33 /* PHAssetCollection+MQExtension.h */,
+			);
+			path = PHAssetCollection;
+			sourceTree = "<group>";
+		};
+		70F08CBE210EB60E007B4D33 /* MQView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CBF210EB60E007B4D33 /* UIImage */,
+				70F08CC2210EB60E007B4D33 /* UISwitch */,
+				70F08CC5210EB60E007B4D33 /* UIScrollView */,
+				70F08CC8210EB60E007B4D33 /* UILabel */,
+				70F08CCB210EB60E007B4D33 /* UIApplication */,
+				70F08CCE210EB60E007B4D33 /* UIResponder */,
+				70F08CD1210EB60E007B4D33 /* UIButton */,
+				70F08CD4210EB60E007B4D33 /* UIColor */,
+				70F08CD7210EB60E007B4D33 /* UIAlertController */,
+				70F08CDA210EB60E007B4D33 /* UIView */,
+				70F08CDD210EB60E007B4D33 /* UIFont */,
+				70F08CE0210EB60E007B4D33 /* UINavigationItem */,
+				70F08CE3210EB60E007B4D33 /* WKWebView */,
+				70F08CE6210EB60E007B4D33 /* UITextView */,
+				70F08CE9210EB60E007B4D33 /* UICollectionView */,
+				70F08CEC210EB60E007B4D33 /* UIImagePickerController */,
+				70F08CEF210EB60E007B4D33 /* UIBarButtonItem */,
+				70F08CF2210EB60E007B4D33 /* UIImageView */,
+				70F08CF5210EB60E007B4D33 /* MQViewExtension.h */,
+				70F08CF6210EB60E007B4D33 /* UIViewController */,
+				70F08CF9210EB60E007B4D33 /* UITableView */,
+				70F08CFC210EB60E007B4D33 /* UIControl */,
+				70F08CFF210EB60E007B4D33 /* UIGestureRecognizer */,
+				70F08D02210EB60E007B4D33 /* UIVisualEffectView */,
+				70F08D05210EB60E007B4D33 /* CALayer */,
+				70F08D08210EB60E007B4D33 /* UITextField */,
+			);
+			path = MQView;
+			sourceTree = "<group>";
+		};
+		70F08CBF210EB60E007B4D33 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CC0210EB60E007B4D33 /* UIImage+MQExtension.m */,
+				70F08CC1210EB60E007B4D33 /* UIImage+MQExtension.h */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
+		70F08CC2210EB60E007B4D33 /* UISwitch */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CC3210EB60E007B4D33 /* UISwitch+MQExtension.m */,
+				70F08CC4210EB60E007B4D33 /* UISwitch+MQExtension.h */,
+			);
+			path = UISwitch;
+			sourceTree = "<group>";
+		};
+		70F08CC5210EB60E007B4D33 /* UIScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CC6210EB60E007B4D33 /* UIScrollView+MQExtension.h */,
+				70F08CC7210EB60E007B4D33 /* UIScrollView+MQExtension.m */,
+			);
+			path = UIScrollView;
+			sourceTree = "<group>";
+		};
+		70F08CC8210EB60E007B4D33 /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CC9210EB60E007B4D33 /* UILabel+MQExtension.m */,
+				70F08CCA210EB60E007B4D33 /* UILabel+MQExtension.h */,
+			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
+		70F08CCB210EB60E007B4D33 /* UIApplication */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CCC210EB60E007B4D33 /* UIApplication+MQExtension.h */,
+				70F08CCD210EB60E007B4D33 /* UIApplication+MQExtension.m */,
+			);
+			path = UIApplication;
+			sourceTree = "<group>";
+		};
+		70F08CCE210EB60E007B4D33 /* UIResponder */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CCF210EB60E007B4D33 /* UIResponder+MQExtension.m */,
+				70F08CD0210EB60E007B4D33 /* UIResponder+MQExtension.h */,
+			);
+			path = UIResponder;
+			sourceTree = "<group>";
+		};
+		70F08CD1210EB60E007B4D33 /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CD2210EB60E007B4D33 /* UIButton+MQExtension.m */,
+				70F08CD3210EB60E007B4D33 /* UIButton+MQExtension.h */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
+		70F08CD4210EB60E007B4D33 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CD5210EB60E007B4D33 /* UIColor+MQExtension.m */,
+				70F08CD6210EB60E007B4D33 /* UIColor+MQExtension.h */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		70F08CD7210EB60E007B4D33 /* UIAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CD8210EB60E007B4D33 /* UIAlertController+MQExtension.m */,
+				70F08CD9210EB60E007B4D33 /* UIAlertController+MQExtension.h */,
+			);
+			path = UIAlertController;
+			sourceTree = "<group>";
+		};
+		70F08CDA210EB60E007B4D33 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CDB210EB60E007B4D33 /* UIView+MQExtension.h */,
+				70F08CDC210EB60E007B4D33 /* UIView+MQExtension.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		70F08CDD210EB60E007B4D33 /* UIFont */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CDE210EB60E007B4D33 /* UIFont+MQExtension.h */,
+				70F08CDF210EB60E007B4D33 /* UIFont+MQExtension.m */,
+			);
+			path = UIFont;
+			sourceTree = "<group>";
+		};
+		70F08CE0210EB60E007B4D33 /* UINavigationItem */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CE1210EB60E007B4D33 /* UINavigationItem+MQExtension.h */,
+				70F08CE2210EB60E007B4D33 /* UINavigationItem+MQExtension.m */,
+			);
+			path = UINavigationItem;
+			sourceTree = "<group>";
+		};
+		70F08CE3210EB60E007B4D33 /* WKWebView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CE4210EB60E007B4D33 /* WKWebView+MQExtension.m */,
+				70F08CE5210EB60E007B4D33 /* WKWebView+MQExtension.h */,
+			);
+			path = WKWebView;
+			sourceTree = "<group>";
+		};
+		70F08CE6210EB60E007B4D33 /* UITextView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CE7210EB60E007B4D33 /* UITextView+MQExtension.h */,
+				70F08CE8210EB60E007B4D33 /* UITextView+MQExtension.m */,
+			);
+			path = UITextView;
+			sourceTree = "<group>";
+		};
+		70F08CE9210EB60E007B4D33 /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CEA210EB60E007B4D33 /* UICollectionView+MQExtension.h */,
+				70F08CEB210EB60E007B4D33 /* UICollectionView+MQExtension.m */,
+			);
+			path = UICollectionView;
+			sourceTree = "<group>";
+		};
+		70F08CEC210EB60E007B4D33 /* UIImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CED210EB60E007B4D33 /* UIImagePickerController+MQExtension.h */,
+				70F08CEE210EB60E007B4D33 /* UIImagePickerController+MQExtension.m */,
+			);
+			path = UIImagePickerController;
+			sourceTree = "<group>";
+		};
+		70F08CEF210EB60E007B4D33 /* UIBarButtonItem */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CF0210EB60E007B4D33 /* UIBarButtonItem+MQExtension.h */,
+				70F08CF1210EB60E007B4D33 /* UIBarButtonItem+MQExtension.m */,
+			);
+			path = UIBarButtonItem;
+			sourceTree = "<group>";
+		};
+		70F08CF2210EB60E007B4D33 /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CF3210EB60E007B4D33 /* UIImageView+MQExtension.h */,
+				70F08CF4210EB60E007B4D33 /* UIImageView+MQExtension.m */,
+			);
+			path = UIImageView;
+			sourceTree = "<group>";
+		};
+		70F08CF6210EB60E007B4D33 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CF7210EB60E007B4D33 /* UIViewController+MQExtension.h */,
+				70F08CF8210EB60E007B4D33 /* UIViewController+MQExtension.m */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		70F08CF9210EB60E007B4D33 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CFA210EB60E007B4D33 /* UITableView+MQExtension.m */,
+				70F08CFB210EB60E007B4D33 /* UITableView+MQExtension.h */,
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
+		70F08CFC210EB60E007B4D33 /* UIControl */ = {
+			isa = PBXGroup;
+			children = (
+				70F08CFD210EB60E007B4D33 /* UIControl+MQExtension.m */,
+				70F08CFE210EB60E007B4D33 /* UIControl+MQExtension.h */,
+			);
+			path = UIControl;
+			sourceTree = "<group>";
+		};
+		70F08CFF210EB60E007B4D33 /* UIGestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				70F08D00210EB60E007B4D33 /* UIGestureRecognizer+MQExtension.m */,
+				70F08D01210EB60E007B4D33 /* UIGestureRecognizer+MQExtension.h */,
+			);
+			path = UIGestureRecognizer;
+			sourceTree = "<group>";
+		};
+		70F08D02210EB60E007B4D33 /* UIVisualEffectView */ = {
+			isa = PBXGroup;
+			children = (
+				70F08D03210EB60E007B4D33 /* UIVisualEffectView+MQExtension.m */,
+				70F08D04210EB60E007B4D33 /* UIVisualEffectView+MQExtension.h */,
+			);
+			path = UIVisualEffectView;
+			sourceTree = "<group>";
+		};
+		70F08D05210EB60E007B4D33 /* CALayer */ = {
+			isa = PBXGroup;
+			children = (
+				70F08D06210EB60E007B4D33 /* CALayer+MQExtension.h */,
+				70F08D07210EB60E007B4D33 /* CALayer+MQExtension.m */,
+			);
+			path = CALayer;
+			sourceTree = "<group>";
+		};
+		70F08D08210EB60E007B4D33 /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				70F08D09210EB60E007B4D33 /* UITextField+MQExtension.h */,
+				70F08D0A210EB60E007B4D33 /* UITextField+MQExtension.m */,
+			);
+			path = UITextField;
+			sourceTree = "<group>";
+		};
+		70F08D0B210EB60E007B4D33 /* MQRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				70F08D0C210EB60E007B4D33 /* MQRuntimeExtension.h */,
+				70F08D0D210EB60E007B4D33 /* NSProxy */,
+				70F08D11210EB60E007B4D33 /* NSObject */,
+			);
+			path = MQRuntime;
+			sourceTree = "<group>";
+		};
+		70F08D0D210EB60E007B4D33 /* NSProxy */ = {
+			isa = PBXGroup;
+			children = (
+				70F08D0E210EB60E007B4D33 /* MQProxyDealer.h */,
+				70F08D0F210EB60E007B4D33 /* MQProxyDealer.m */,
+				70F08D10210EB60E007B4D33 /* MQProxyDealerMacro.h */,
+			);
+			path = NSProxy;
+			sourceTree = "<group>";
+		};
+		70F08D11210EB60E007B4D33 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				70F08D12210EB60E007B4D33 /* MQRuntime.h */,
+				70F08D13210EB60E007B4D33 /* MQRuntime.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		70F08BEA210EB2FF007B4D33 /* MQExtension_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70F08C01210EB300007B4D33 /* Build configuration list for PBXNativeTarget "MQExtension_Example" */;
+			buildPhases = (
+				3DEB21CDEA4F9CACE45CFCBE /* [CP] Check Pods Manifest.lock */,
+				70F08BE7210EB2FF007B4D33 /* Sources */,
+				70F08BE8210EB2FF007B4D33 /* Frameworks */,
+				70F08BE9210EB2FF007B4D33 /* Resources */,
+				88E70E910DF5DEBDBCB10838 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MQExtension_Example;
+			productName = MQExtension_Example;
+			productReference = 70F08BEB210EB2FF007B4D33 /* MQExtension_Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		70F08BE3210EB2FF007B4D33 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MQ;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = ElwinFrederick;
+				TargetAttributes = {
+					70F08BEA210EB2FF007B4D33 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 70F08BE6210EB2FF007B4D33 /* Build configuration list for PBXProject "MQExtension_Example" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 70F08BE2210EB2FF007B4D33;
+			productRefGroup = 70F08BEC210EB2FF007B4D33 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				70F08BEA210EB2FF007B4D33 /* MQExtension_Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		70F08BE9210EB2FF007B4D33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70F08D67210EB60E007B4D33 /* .swift-version in Resources */,
+				70F08BFB210EB300007B4D33 /* LaunchScreen.storyboard in Resources */,
+				70F08BF8210EB300007B4D33 /* Assets.xcassets in Resources */,
+				70F08BF6210EB2FF007B4D33 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3DEB21CDEA4F9CACE45CFCBE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MQExtension_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88E70E910DF5DEBDBCB10838 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MGJRouter/MGJRouter.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGJRouter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		70F08BE7210EB2FF007B4D33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70F08D2F210EB60E007B4D33 /* NSObject+MQProtocol.m in Sources */,
+				70F08D39210EB60E007B4D33 /* NSUserDefaults+MQExtension.m in Sources */,
+				70F08D44210EB60E007B4D33 /* FCModelNotificationCenter.m in Sources */,
+				70F08D58210EB60E007B4D33 /* WKWebView+MQExtension.m in Sources */,
+				70F08D5F210EB60E007B4D33 /* UITableView+MQExtension.m in Sources */,
+				70F08D1F210EB60E007B4D33 /* MQGradientLayerView.m in Sources */,
+				70F08D57210EB60E007B4D33 /* UINavigationItem+MQExtension.m in Sources */,
+				70F08D2D210EB60E007B4D33 /* MQCommon.m in Sources */,
+				70F08D53210EB60E007B4D33 /* UIColor+MQExtension.m in Sources */,
+				70F08D1D210EB60E007B4D33 /* MQMenuView.m in Sources */,
+				70F08D61210EB60E007B4D33 /* UIGestureRecognizer+MQExtension.m in Sources */,
+				70F08D49210EB60E007B4D33 /* PHImageRequestOptions+MQExtension.m in Sources */,
+				70F08D30210EB60E007B4D33 /* NSDictionary+MQExtension.m in Sources */,
+				70F08D33210EB60E007B4D33 /* NSFileManager+MQExtension.m in Sources */,
+				70F08D26210EB60E007B4D33 /* MQTaskManager.m in Sources */,
+				70F08D47210EB60E007B4D33 /* MQFCModel.m in Sources */,
+				70F08D1B210EB60E007B4D33 /* UITableView+MQExtension_Refresh.m in Sources */,
+				70F08BF3210EB2FF007B4D33 /* ViewController.m in Sources */,
+				70F08D43210EB60E007B4D33 /* FCModelCachedObject.m in Sources */,
+				70F08D29210EB60E007B4D33 /* MQVideoManager.m in Sources */,
+				70F08D3F210EB60E007B4D33 /* NSDate+MQExtension.m in Sources */,
+				70F08D36210EB60E007B4D33 /* NSArray+MQExtension.m in Sources */,
+				70F08D52210EB60E007B4D33 /* UIButton+MQExtension.m in Sources */,
+				70F08D18210EB60E007B4D33 /* UIImageView+MQExtension_WeakNetwork.m in Sources */,
+				70F08D2C210EB60E007B4D33 /* MQAuthorize.m in Sources */,
+				70F08D19210EB60E007B4D33 /* UICollectionView+MQExtension_Refresh.m in Sources */,
+				70F08D1A210EB60E007B4D33 /* MQNetworkMoniter.m in Sources */,
+				70F08D4A210EB60E007B4D33 /* PHFetchResult+MQExtension.m in Sources */,
+				70F08D4D210EB60E007B4D33 /* UISwitch+MQExtension.m in Sources */,
+				70F08D28210EB60E007B4D33 /* MQAudioRecorder.m in Sources */,
+				70F08D1C210EB60E007B4D33 /* MBProgressHUD+CCExtension.m in Sources */,
+				70F08D4B210EB60E007B4D33 /* PHAssetCollection+MQExtension.m in Sources */,
+				70F08D50210EB60E007B4D33 /* UIApplication+MQExtension.m in Sources */,
+				70F08D5D210EB60E007B4D33 /* UIImageView+MQExtension.m in Sources */,
+				70F08D42210EB60E007B4D33 /* MQFCModelHandler.m in Sources */,
+				70F08D4E210EB60E007B4D33 /* UIScrollView+MQExtension.m in Sources */,
+				70F08D4F210EB60E007B4D33 /* UILabel+MQExtension.m in Sources */,
+				70F08D3B210EB60E007B4D33 /* NSNumber+MQExtension.m in Sources */,
+				70F08D46210EB60E007B4D33 /* FCModelDatabase.m in Sources */,
+				70F08D3E210EB60E007B4D33 /* NSObject+MQExtension.m in Sources */,
+				70F08D2A210EB60E007B4D33 /* MQDevice.m in Sources */,
+				70F08D31210EB60E007B4D33 /* NSBundle+MQExtension.m in Sources */,
+				70F08D48210EB60E007B4D33 /* PHAsset+MQExtension.m in Sources */,
+				70F08D56210EB60E007B4D33 /* UIFont+MQExtension.m in Sources */,
+				70F08D3D210EB60E007B4D33 /* NSAttributedString+MQExtension.m in Sources */,
+				70F08D34210EB60E007B4D33 /* NSURL+MQExtension.m in Sources */,
+				70F08D5B210EB60E007B4D33 /* UIImagePickerController+MQExtension.m in Sources */,
+				70F08D22210EB60E007B4D33 /* MQUpdateManager.m in Sources */,
+				70F08D35210EB60E007B4D33 /* NSString+MQExtension.m in Sources */,
+				70F08D5C210EB60E007B4D33 /* UIBarButtonItem+MQExtension.m in Sources */,
+				70F08D54210EB60E007B4D33 /* UIAlertController+MQExtension.m in Sources */,
+				70F08D23210EB60E007B4D33 /* MQIAPManager.m in Sources */,
+				70F08D4C210EB60E007B4D33 /* UIImage+MQExtension.m in Sources */,
+				70F08D64210EB60E007B4D33 /* UITextField+MQExtension.m in Sources */,
+				70F08D17210EB60E007B4D33 /* MQBridgeWrapper.m in Sources */,
+				70F08BFE210EB300007B4D33 /* main.m in Sources */,
+				70F08D21210EB60E007B4D33 /* MQCrashCatcher.m in Sources */,
+				70F08D16210EB60E007B4D33 /* MQMediator.m in Sources */,
+				70F08D1E210EB60E007B4D33 /* MQDropAlertView.m in Sources */,
+				70F08D63210EB60E007B4D33 /* CALayer+MQExtension.m in Sources */,
+				70F08D66210EB60E007B4D33 /* MQRuntime.m in Sources */,
+				70F08D38210EB60E007B4D33 /* NSPredicate+MQExtension.m in Sources */,
+				70F08D40210EB60E007B4D33 /* CCRLMBaseModel.m in Sources */,
+				70F08BF0210EB2FF007B4D33 /* CCAppDelegate.m in Sources */,
+				70F08D65210EB60E007B4D33 /* MQProxyDealer.m in Sources */,
+				70F08D3A210EB60E007B4D33 /* NSLock+MQExtension.m in Sources */,
+				70F08D5E210EB60E007B4D33 /* UIViewController+MQExtension.m in Sources */,
+				70F08D59210EB60E007B4D33 /* UITextView+MQExtension.m in Sources */,
+				70F08D2B210EB60E007B4D33 /* MQAuthentication.m in Sources */,
+				70F08D41210EB60E007B4D33 /* MQRealmHandler.m in Sources */,
+				70F08D2E210EB60E007B4D33 /* MQFit.m in Sources */,
+				70F08D24210EB60E007B4D33 /* MQPointMarker.m in Sources */,
+				70F08D32210EB60E007B4D33 /* NSNotificationCenter+MQExtension.m in Sources */,
+				70F08D25210EB60E007B4D33 /* MQNull.m in Sources */,
+				70F08D62210EB60E007B4D33 /* UIVisualEffectView+MQExtension.m in Sources */,
+				70F08D60210EB60E007B4D33 /* UIControl+MQExtension.m in Sources */,
+				70F08D3C210EB60E007B4D33 /* NSTimer+MQExtension.m in Sources */,
+				70F08D45210EB60E007B4D33 /* FCModel.m in Sources */,
+				70F08D27210EB60E007B4D33 /* MQPhotoManager.m in Sources */,
+				70F08D20210EB60E007B4D33 /* MQEasyWebView.m in Sources */,
+				70F08D5A210EB60E007B4D33 /* UICollectionView+MQExtension.m in Sources */,
+				70F08D37210EB60E007B4D33 /* NSURLRequest+MQExtension.m in Sources */,
+				70F08D55210EB60E007B4D33 /* UIView+MQExtension.m in Sources */,
+				70F08D51210EB60E007B4D33 /* UIResponder+MQExtension.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		70F08BF4210EB2FF007B4D33 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70F08BF5210EB2FF007B4D33 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		70F08BF9210EB300007B4D33 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70F08BFA210EB300007B4D33 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		70F08BFF210EB300007B4D33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		70F08C00210EB300007B4D33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		70F08C02210EB300007B4D33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92E189F8E0695DC2397746B7 /* Pods-MQExtension_Example.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MQExtension_Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elwinfrederick.MQExtension-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		70F08C03210EB300007B4D33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3234B751F3D87C878A5DA387 /* Pods-MQExtension_Example.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MQExtension_Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elwinfrederick.MQExtension-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		70F08BE6210EB2FF007B4D33 /* Build configuration list for PBXProject "MQExtension_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70F08BFF210EB300007B4D33 /* Debug */,
+				70F08C00210EB300007B4D33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70F08C01210EB300007B4D33 /* Build configuration list for PBXNativeTarget "MQExtension_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70F08C02210EB300007B4D33 /* Debug */,
+				70F08C03210EB300007B4D33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 70F08BE3210EB2FF007B4D33 /* Project object */;
+}
