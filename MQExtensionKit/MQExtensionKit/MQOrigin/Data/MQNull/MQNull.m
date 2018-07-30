@@ -1,17 +1,17 @@
 //
-//  CCNull.m
+//  MQNull.m
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 2018/7/5.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCNull.h"
+#import "MQNull.h"
 #import <objc/runtime.h>
 
 static NSMutableArray * __unknow_message_post_as_objects = nil;
 
-@interface CCForwardingUnknowMessage : NSObject
+@interface MQForwardingUnknowMessage : NSObject
 
 + (void) mq_regist_class : (Class) clz ;
 
@@ -19,10 +19,10 @@ static NSMutableArray * __unknow_message_post_as_objects = nil;
 
 @end
 
-@implementation CCForwardingUnknowMessage
+@implementation MQForwardingUnknowMessage
 
 + (void)initialize {
-    if (self == [CCForwardingUnknowMessage class]) {
+    if (self == [MQForwardingUnknowMessage class]) {
         NSMutableArray *t = [NSMutableArray array];
         [t addObject:NSString.class];
         [t addObject:NSNumber.class];
@@ -41,7 +41,7 @@ static NSMutableArray * __unknow_message_post_as_objects = nil;
         }
     }
     else {
-        [NSException raise:@"CCExtensionKit.CCForwardingUnknowMessage : InvalidArgumentException"
+        [NSException raise:@"MQExtensionKit.MQForwardingUnknowMessage : InvalidArgumentException"
                     format:@"class can't be nil"];
     }
 }
@@ -82,7 +82,7 @@ static NSMutableArray * __unknow_message_post_as_objects = nil;
 
 #pragma mark - -----
 
-@interface CCNullValue : CCForwardingUnknowMessage < NSCopying , NSMutableCopying , NSCoding >
+@interface MQNullValue : MQForwardingUnknowMessage < NSCopying , NSMutableCopying , NSCoding >
 
 + (id) mq_null_value ;
 
@@ -90,14 +90,14 @@ static NSMutableArray * __unknow_message_post_as_objects = nil;
 
 @end
 
-@implementation CCNullValue
+@implementation MQNullValue
 
-static CCNullValue *__singleton_null_value = nil;
+static MQNullValue *__singleton_null_value = nil;
 
 + (id) mq_null_value {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __singleton_null_value = [[CCNullValue alloc] init];
+        __singleton_null_value = [[MQNullValue alloc] init];
     });
     
     return __singleton_null_value;
@@ -139,15 +139,15 @@ static CCNullValue *__singleton_null_value = nil;
 
 #pragma mark - -----
 
-@interface CCNull ()
+@interface MQNull ()
 
 @end
 
-@implementation CCNull
+@implementation MQNull
 
 __attribute__((constructor)) void createFakeNSNull() {
     Class child_clz = [NSNull class];
-    Class parent_clz = [CCForwardingUnknowMessage class];
+    Class parent_clz = [MQForwardingUnknowMessage class];
     NSInteger child_clz_size = class_getInstanceSize(child_clz);
     NSInteger parent_clz_size = class_getInstanceSize(parent_clz);
     if (child_clz_size - parent_clz_size >= 0) {
@@ -157,7 +157,7 @@ __attribute__((constructor)) void createFakeNSNull() {
 #pragma clang diagnostic pop
     } else {
         Method method_null = class_getClassMethod([NSNull class], @selector(null));
-        Method method_value_null = class_getClassMethod([CCNullValue class], @selector(mq_null_value));
+        Method method_value_null = class_getClassMethod([MQNullValue class], @selector(mq_null_value));
         if (method_null != nil && method_value_null != nil) {
             method_setImplementation(method_null, method_getImplementation(method_value_null));
         }
@@ -165,7 +165,7 @@ __attribute__((constructor)) void createFakeNSNull() {
 }
 
 + (void)mq_regist_class : (Class) clz {
-    [CCForwardingUnknowMessage mq_regist_class:clz];
+    [MQForwardingUnknowMessage mq_regist_class:clz];
 }
 
 @end

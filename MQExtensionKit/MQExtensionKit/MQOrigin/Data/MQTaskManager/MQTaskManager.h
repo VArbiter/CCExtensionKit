@@ -1,5 +1,5 @@
 //
-//  CCTaskManager.h
+//  MQTaskManager.h
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 2018/6/25.
@@ -8,36 +8,36 @@
 
 #import <Foundation/Foundation.h>
 
-@class CCTaskObject , CCTaskManager;
+@class MQTaskObject , MQTaskManager;
 
-@protocol CCTaskManagerDelegate < NSObject >
+@protocol MQTaskManagerDelegate < NSObject >
 
 @required
 
 /**
  for excute tasks . // 执行任务用
 
- @param manager CCTaskManager
+ @param manager MQTaskManager
  @param mq_excute_block block excute // 执行块儿
  */
-- (void) mq_task_manager : (CCTaskManager *) manager
+- (void) mq_task_manager : (MQTaskManager *) manager
      excute_current_task : (void (^)(BOOL is_error_occured , BOOL is_continue)) mq_excute_block ;
 
 @end
 
-@interface CCTaskManager : NSObject
+@interface MQTaskManager : NSObject
 
 - (instancetype) init_with_async_thread : (dispatch_queue_t) queue;
-@property (nonatomic , assign) id < CCTaskManagerDelegate > delegate_t ;
+@property (nonatomic , assign) id < MQTaskManagerDelegate > delegate_t ;
 
 @property (nonatomic , readonly) dispatch_queue_t queue_current ;
 
-@property (nonatomic , strong , readonly) NSMutableArray <CCTaskObject *> *array_tasks ;
+@property (nonatomic , strong , readonly) NSMutableArray <MQTaskObject *> *array_tasks ;
 
 /// note : adding tasks will resume (if paused) the tasks .
-- (void) mq_add_tasks : (NSArray < __kindof CCTaskObject *> *) objects
+- (void) mq_add_tasks : (NSArray < __kindof MQTaskObject *> *) objects
         remain_status : (BOOL) is_remain ;
-- (void) mq_add_task : (__kindof CCTaskObject *) object
+- (void) mq_add_task : (__kindof MQTaskObject *) object
        remain_status : (BOOL) is_remain ;
 
 - (void) mq_start;
@@ -47,7 +47,7 @@
 
 @end
 
-@interface CCTaskObject : NSObject
+@interface MQTaskObject : NSObject
 
 /// in a task queue , you must have a unique task id and object. // 你必须拥有一个 task id 和 object
 /// otherwise , task object will generate failed . // 否则 task object 会生成失败

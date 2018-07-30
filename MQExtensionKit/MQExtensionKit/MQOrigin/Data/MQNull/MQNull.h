@@ -1,5 +1,5 @@
 //
-//  CCNull.h
+//  MQNull.h
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 2018/7/5.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCNull : NSObject
+@interface MQNull : NSObject
 
 + (void)mq_regist_class : (Class) clz ;
 

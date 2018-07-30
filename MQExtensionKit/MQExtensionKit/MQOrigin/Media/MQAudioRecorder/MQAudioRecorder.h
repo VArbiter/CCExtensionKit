@@ -1,5 +1,5 @@
 //
-//  CCAudioRecorder.h
+//  MQAudioRecorder.h
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 2018/6/25.
@@ -10,7 +10,7 @@
 
 @import AVFoundation;
 
-@interface CCAudioRecorder : NSObject
+@interface MQAudioRecorder : NSObject
 
 - (instancetype) init_default_path ;
 

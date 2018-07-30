@@ -1,5 +1,5 @@
 //
-//  CCCrashCatcher.h
+//  MQCrashCatcher.h
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 2018/6/26.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCCrashCatcher : NSObject
+@interface MQCrashCatcher : NSObject
 
 /// initialize , invoke it in the very beginning (eg: AppDelegate / + (load) ).// 初始化. 在最开始调用
 + (void) mq_begin ;

@@ -1,5 +1,5 @@
 //
-//  CCPhotoManager.h
+//  MQPhotoManager.h
 //  MQExtensionKit
 //
 //  Created by 冯明庆 on 2018/5/20.
@@ -14,23 +14,23 @@
 
 @import Photos;
 
-@class CCPhotoManager;
+@class MQPhotoManager;
 
-@protocol CCPhotoManagerDelegate < NSObject >
+@protocol MQPhotoManagerDelegate < NSObject >
 
 @required
 
 /// notify when delete or add a new image / video . // 当 删除 / 添加 新的 图片 / 视频 时通知.
-- (void) mq_photo_manager : (CCPhotoManager *) manager
+- (void) mq_photo_manager : (MQPhotoManager *) manager
                    change : (PHChange *) change_instance ;
 
 @end
 
-@interface CCPhotoManager : NSObject
+@interface MQPhotoManager : NSObject
 
 - (instancetype) init_image_size : (CGSize) size
                             type : (BOOL) is_image;
-@property (nonatomic , assign) id <CCPhotoManagerDelegate> delegate_t ;
+@property (nonatomic , assign) id <MQPhotoManagerDelegate> delegate_t ;
 
 /// photos is ascending or not . // 照片是否升序排列 .
 @property (nonatomic , assign) BOOL is_ascending ;
@@ -84,7 +84,7 @@ FOUNDATION_EXPORT NSString * mq_photo_manger_asset_key ;
 
 @import AssetsLibrary;
 
-@interface CCPhotoManager : NSObject
+@interface MQPhotoManager : NSObject
 
 @property (nonatomic , strong , readonly) ALAssetsLibrary * assets_library;
 

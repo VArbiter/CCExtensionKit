@@ -1,31 +1,31 @@
 //
-//  CCOriginCustom.h
+//  MQOriginCustom.h
 //  MQExtensionKit
 //
 //  Created by 冯明庆 on 22/12/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#ifndef CCOriginCustom_h
-    #define CCOriginCustom_h
+#ifndef MQOriginCustom_h
+    #define MQOriginCustom_h
 
 // View
-    #import "CCEasyWebView.h"
-    #import "CCMenuView.h"
-    #import "CCGradientLayerView.h"
-    #import "CCDropAlertView.h"
+    #import "MQEasyWebView.h"
+    #import "MQMenuView.h"
+    #import "MQGradientLayerView.h"
+    #import "MQDropAlertView.h"
 
 // Data
-    #import "CCIAPManager.h"
-    #import "CCUpdateManager.h"
-    #import "CCTaskManager.h"
-    #import "CCCrashCatcher.h"
-    #import "CCPointMarker.h"
-    #import "CCNull.h"
+    #import "MQIAPManager.h"
+    #import "MQUpdateManager.h"
+    #import "MQTaskManager.h"
+    #import "MQCrashCatcher.h"
+    #import "MQPointMarker.h"
+    #import "MQNull.h"
 
 // Media
-    #import "CCPhotoManager.h"
-    #import "CCVideoManager.h"
-    #import "CCAudioRecorder.h"
+    #import "MQPhotoManager.h"
+    #import "MQVideoManager.h"
+    #import "MQAudioRecorder.h"
 
-#endif /* CCOriginCustom_h */
+#endif /* MQOriginCustom_h */

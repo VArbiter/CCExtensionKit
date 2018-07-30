@@ -1,5 +1,5 @@
 //
-//  CCGradientLayerView.h
+//  MQGradientLayerView.h
 //  MQExtensionKit
 //
 //  Created by 冯明庆 on 18/11/2017.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CCGradientLayerView : UIView
+@interface MQGradientLayerView : UIView
 
 - (void) mq_begin_with : (CGPoint) pBegin // the point that gradient begins . (CGPoint){[0,1],[0,1]} // 渐变从哪开始
                    end : (CGPoint) pEnd // the point that gradient ends . (CGPoint){[0,1],[0,1]} // 渐变在哪结束

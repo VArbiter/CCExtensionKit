@@ -1,12 +1,12 @@
 //
-//  CCPointMarker.m
+//  MQPointMarker.m
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 2018/6/27.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCPointMarker.h"
+#import "MQPointMarker.h"
 #import "NSDictionary+MQExtension.h"
 
 @import UIKit;
@@ -14,20 +14,20 @@
 @import AdSupport;
 #import <sys/utsname.h>
 
-CCPointMarkerEventKey mq_point_marker_track_regist_event_key = @"mq_regist_event" ;
-CCPointMarkerEventKey mq_point_marker_track_login_event_key = @"mq_login_event" ;
-CCPointMarkerEventKey mq_point_marker_track_logout_event_key = @"mq_logout_event" ;
-CCPointMarkerEventKey mq_point_marker_track_page_begin_event_key = @"mq_page_begin_event" ;
-CCPointMarkerEventKey mq_point_marker_track_page_end_event_key = @"mq_page_end_event" ;
-CCPointMarkerEventKey mq_point_marker_track_app_active_event_key = @"mq_app_active_event" ;
-CCPointMarkerEventKey mq_point_marker_track_app_resign_active_event_key = @"mq_app_resign_active_event" ;
-CCPointMarkerEventKey mq_point_marker_track_location_event_key = @"mq_location_event";
+MQPointMarkerEventKey mq_point_marker_track_regist_event_key = @"mq_regist_event" ;
+MQPointMarkerEventKey mq_point_marker_track_login_event_key = @"mq_login_event" ;
+MQPointMarkerEventKey mq_point_marker_track_logout_event_key = @"mq_logout_event" ;
+MQPointMarkerEventKey mq_point_marker_track_page_begin_event_key = @"mq_page_begin_event" ;
+MQPointMarkerEventKey mq_point_marker_track_page_end_event_key = @"mq_page_end_event" ;
+MQPointMarkerEventKey mq_point_marker_track_app_active_event_key = @"mq_app_active_event" ;
+MQPointMarkerEventKey mq_point_marker_track_app_resign_active_event_key = @"mq_app_resign_active_event" ;
+MQPointMarkerEventKey mq_point_marker_track_location_event_key = @"mq_location_event";
 
-static CCPointMarker * __marker = nil;
+static MQPointMarker * __marker = nil;
 
-@interface CCPointMarker ()
+@interface MQPointMarker ()
 
-@property (nonatomic , assign) id < CCPointMarkerDelegate > delegate_t ;
+@property (nonatomic , assign) id < MQPointMarkerDelegate > delegate_t ;
 
 @property (nonatomic , assign) BOOL is_production ;
 @property (nonatomic , copy) NSString * s_channel ;
@@ -49,13 +49,13 @@ void mq_debug_print_logging(NSString * s_log) ;
 
 @end
 
-@implementation CCPointMarker
+@implementation MQPointMarker
 
 + (void)initialize {
     if (!__marker) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            __marker = [[CCPointMarker alloc] init];
+            __marker = [[MQPointMarker alloc] init];
             __marker.ull_app_use_time = 0;
             __marker.ull_page_use_time = 0;
         });
@@ -94,7 +94,7 @@ void mq_debug_print_logging(NSString * s_log) ;
     __marker.s_channel = s_channel;
 }
 
-+ (void) mq_set_delegate : (id <CCPointMarkerDelegate>) delegate {
++ (void) mq_set_delegate : (id <MQPointMarkerDelegate>) delegate {
     __marker.delegate_t = delegate;
 }
 
@@ -112,8 +112,8 @@ void mq_debug_print_logging(NSString * s_log) ;
     NSString *s_logging_path = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory ,
                                                                      NSUserDomainMask,
                                                                      YES).firstObject
-                                 stringByAppendingPathComponent:@"CCExtensionKit"]
-                                stringByAppendingPathComponent:@"CCPointMarkerLog"];
+                                 stringByAppendingPathComponent:@"MQExtensionKit"]
+                                stringByAppendingPathComponent:@"MQPointMarkerLog"];
     return s_logging_path;
 }
 + (NSArray <NSString *> *) mq_all_logging_file {
@@ -144,7 +144,7 @@ void mq_debug_print_logging(NSString * s_log) ;
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyy_MM_dd_HH_mm_ss"];
     NSString *s_date = [format stringFromDate:NSDate.date];
-    self.s_today_local_file_path = [[CCPointMarker mq_logging_folder_path]
+    self.s_today_local_file_path = [[MQPointMarker mq_logging_folder_path]
                                     stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@.log",NSStringFromClass(self.class),s_date]];
     
     NSFileManager *manager = [NSFileManager defaultManager];
@@ -170,8 +170,8 @@ void mq_debug_print_logging(NSString * s_log) ;
 void mq_debug_print_logging(id t_log) {
     if (!__marker.is_enable_logging) return ;
     NSString * s_log = [NSString stringWithFormat:@"%@",t_log];
-    NSString *s_output = [NSString stringWithFormat:@"%@ : \n %@",NSStringFromClass(CCPointMarker.class),s_log];
-    NSLog(@"%@ :\n %@", NSStringFromClass(CCPointMarker.class), s_output);
+    NSString *s_output = [NSString stringWithFormat:@"%@ : \n %@",NSStringFromClass(MQPointMarker.class),s_log];
+    NSLog(@"%@ :\n %@", NSStringFromClass(MQPointMarker.class), s_output);
     
     if (!__marker.is_enable_logging_to_local_file) return;
 
@@ -231,12 +231,12 @@ void mq_debug_print_logging(id t_log) {
 
 #pragma mark - ----- tracking method
 
-+ (void) mq_track_event : (__kindof CCMarkerEvent *) event {
++ (void) mq_track_event : (__kindof MQMarkerEvent *) event {
     
     if (!event || !event.s_event_id.length) {
         if (__marker.delegate_t
             && [__marker.delegate_t respondsToSelector:@selector(mq_point_maker:event:error:)]) {
-            NSError *e = [NSError errorWithDomain:@"elwinfrederick.CCExtensionKit.CCData.CCPointMarker"
+            NSError *e = [NSError errorWithDomain:@"elwinfrederick.MQExtensionKit.MQData.MQPointMarker"
                                              code:-1
                                          userInfo:@{NSLocalizedDescriptionKey : @"event is invalid."}];
             [__marker.delegate_t mq_point_maker:__marker
@@ -276,7 +276,7 @@ void mq_debug_print_logging(id t_log) {
                    extra : (NSDictionary *) d_extra {
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     [d setValue:s_account_id forKey:mq_event_default_extra_info_account_id_key];
-    CCMarkerEvent_Common *t = [[CCMarkerEvent_Common alloc] init_event_id:mq_point_marker_track_regist_event_key
+    MQMarkerEvent_Common *t = [[MQMarkerEvent_Common alloc] init_event_id:mq_point_marker_track_regist_event_key
                                                                     extra:d];
     [self mq_track_event:t];
 }
@@ -284,7 +284,7 @@ void mq_debug_print_logging(id t_log) {
                   extra : (NSDictionary *) d_extra {
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     [d setValue:s_account_id forKey:mq_event_default_extra_info_account_id_key];
-    CCMarkerEvent_Common *t = [[CCMarkerEvent_Common alloc] init_event_id:mq_point_marker_track_login_event_key
+    MQMarkerEvent_Common *t = [[MQMarkerEvent_Common alloc] init_event_id:mq_point_marker_track_login_event_key
                                                                     extra:d];
     [self mq_track_event:t];
 }
@@ -292,7 +292,7 @@ void mq_debug_print_logging(id t_log) {
                    extra : (NSDictionary *) d_extra {
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     [d setValue:s_account_id forKey:mq_event_default_extra_info_account_id_key];
-    CCMarkerEvent_Common *t = [[CCMarkerEvent_Common alloc] init_event_id:mq_point_marker_track_logout_event_key
+    MQMarkerEvent_Common *t = [[MQMarkerEvent_Common alloc] init_event_id:mq_point_marker_track_logout_event_key
                                                                     extra:d];
     [self mq_track_event:t];
 }
@@ -302,7 +302,7 @@ void mq_debug_print_logging(id t_log) {
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     [d setValue:@(latitude) forKey:mq_event_default_extra_info_latitude_key];
     [d setValue:@(longitude) forKey:mq_event_default_extra_info_longitude_key];
-    CCMarkerEvent_Common *t = [[CCMarkerEvent_Common alloc] init_event_id:mq_point_marker_track_location_event_key
+    MQMarkerEvent_Common *t = [[MQMarkerEvent_Common alloc] init_event_id:mq_point_marker_track_location_event_key
                                                                     extra:d];
     [self mq_track_event:t];
 }
@@ -332,7 +332,7 @@ static NSInteger __page_sequence = 0;
     
     __page_sequence ++ ;
     
-    CCMarkerEvent_Common *t = [[CCMarkerEvent_Common alloc]
+    MQMarkerEvent_Common *t = [[MQMarkerEvent_Common alloc]
                                init_event_id:mq_point_marker_track_page_begin_event_key
                                extra:d];
     [self mq_track_event:t];
@@ -347,7 +347,7 @@ static NSInteger __page_sequence = 0;
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     [d setValue:@(__marker.ull_page_use_time) forKey:mq_event_default_extra_info_page_use_time_key];
     [d setValue:s_page forKey:mq_event_default_extra_info_page_end_key];
-    CCMarkerEvent_Common *t = [[CCMarkerEvent_Common alloc]
+    MQMarkerEvent_Common *t = [[MQMarkerEvent_Common alloc]
                                init_event_id:mq_point_marker_track_page_end_event_key
                                extra:d];
     [self mq_track_event:t];
@@ -360,7 +360,7 @@ static unsigned long long __app_use_time_devide = 0;
     
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     [d setValue:@(__marker.ull_app_use_time) forKey:mq_event_default_extra_info_app_total_use_time_key];
-    CCMarkerEvent_Calculate *t = [[CCMarkerEvent_Calculate alloc]
+    MQMarkerEvent_Calculate *t = [[MQMarkerEvent_Calculate alloc]
                                   init_event_id:mq_point_marker_track_app_active_event_key
                                   extra:d];
     [self mq_track_event:t];
@@ -372,7 +372,7 @@ static unsigned long long __app_use_time_devide = 0;
     
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     [d setValue:@(__marker.ull_app_use_time) forKey:mq_event_default_extra_info_app_total_use_time_key];
-    CCMarkerEvent_Calculate *t = [[CCMarkerEvent_Calculate alloc]
+    MQMarkerEvent_Calculate *t = [[MQMarkerEvent_Calculate alloc]
                                   init_event_id:mq_point_marker_track_app_resign_active_event_key
                                   extra:d];
     [self mq_track_event:t];
@@ -382,49 +382,49 @@ static unsigned long long __app_use_time_devide = 0;
 
 #pragma mark - -----
 
-CCMarkerEventDefaultExtraInfoKey mq_event_default_info_channel_key = @"mq_channel_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_info_debug_key = @"mq_debug_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_extra_key = @"mq_extra_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_extra_default_key = @"mq_extra_default_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_channel_key = @"mq_channel_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_info_event_id_key = @"mq_event_id_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_type_key = @"mq_type_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_info_channel_key = @"mq_channel_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_info_debug_key = @"mq_debug_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_extra_key = @"mq_extra_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_extra_default_key = @"mq_extra_default_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_channel_key = @"mq_channel_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_info_event_id_key = @"mq_event_id_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_type_key = @"mq_type_key";
 
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_debug_key = @"mq_is_debug_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_method_key = @"mq_method_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_description_key = @"mq_description_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_debug_key = @"mq_is_debug_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_method_key = @"mq_method_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_description_key = @"mq_description_key";
 
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_type_common_key = @"mq_common_type_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_type_count_key = @"mq_count_type_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_type_calculate_key = @"mq_calculate_type_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_type_common_key = @"mq_common_type_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_type_count_key = @"mq_count_type_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_type_calculate_key = @"mq_calculate_type_key";
 
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_source_key = @"mq_source_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_bundle_id_key = @"mq_bundle_id_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_develop_team_key = @"mq_develop_team_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_occurrence_time_key = @"mq_occurrence_time_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_time_stamp_key = @"mq_time_stamp_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_UUID_key = @"mq_uuid_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_IDFA_key = @"mq_idfa_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_system_version_key = @"mq_system_version_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_device_info_key = @"mq_device_info_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_version_key = @"mq_version_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_build_version_key = @"mq_build_version_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_current_memory_key = @"mq_current_memory_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_memory_remain_key = @"mq_memory_remain_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_source_key = @"mq_source_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_bundle_id_key = @"mq_bundle_id_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_develop_team_key = @"mq_develop_team_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_occurrence_time_key = @"mq_occurrence_time_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_time_stamp_key = @"mq_time_stamp_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_UUID_key = @"mq_uuid_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_IDFA_key = @"mq_idfa_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_system_version_key = @"mq_system_version_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_device_info_key = @"mq_device_info_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_version_key = @"mq_version_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_build_version_key = @"mq_build_version_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_current_memory_key = @"mq_current_memory_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_memory_remain_key = @"mq_memory_remain_key" ;
 
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_account_id_key = @"mq_account_id_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_latitude_key = @"mq_latitude_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_longitude_key = @"mq_longitude_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_app_active_key = @"mq_app_active_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_app_resign_active_key = @"mq_app_resign_active_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_previous_key = @"mq_page_previous_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_begin_key = @"mq_page_begin_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_end_key = @"mq_page_end_key" ;
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_app_total_use_time_key = @"mq_app_total_use_time_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_use_time_key = @"mq_page_use_time_key";
-CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_sequence_key = @"mq_page_sequence_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_account_id_key = @"mq_account_id_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_latitude_key = @"mq_latitude_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_longitude_key = @"mq_longitude_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_app_active_key = @"mq_app_active_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_app_resign_active_key = @"mq_app_resign_active_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_previous_key = @"mq_page_previous_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_begin_key = @"mq_page_begin_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_end_key = @"mq_page_end_key" ;
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_app_total_use_time_key = @"mq_app_total_use_time_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_use_time_key = @"mq_page_use_time_key";
+MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_sequence_key = @"mq_page_sequence_key";
 
-@interface CCMarkerEvent ()
+@interface MQMarkerEvent ()
 
 @property (nonatomic , copy , readwrite) NSString * type ;
 @property (nonatomic , copy , readwrite) NSString * s_event_id ;
@@ -434,7 +434,7 @@ CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_sequence_key =
 
 @end
 
-@implementation CCMarkerEvent
+@implementation MQMarkerEvent
 
 - (instancetype) init_event_id : (NSString  * _Nonnull ) s_event_id {
     if (!s_event_id) return nil;
@@ -445,13 +445,13 @@ CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_sequence_key =
         self.s_event_id = s_event_id;
         self.is_adding_default_extra_info = YES;
         
-        if ([self isKindOfClass:CCMarkerEvent_Count.class]) {
+        if ([self isKindOfClass:MQMarkerEvent_Count.class]) {
             self.type = mq_event_default_extra_info_type_count_key;
         }
-        else if ([self isKindOfClass:CCMarkerEvent_Calculate.class]) {
+        else if ([self isKindOfClass:MQMarkerEvent_Calculate.class]) {
             self.type = mq_event_default_extra_info_type_calculate_key;
         }
-        else if ([self isKindOfClass:CCMarkerEvent.class]) {
+        else if ([self isKindOfClass:MQMarkerEvent.class]) {
             self.type = mq_event_default_extra_info_type_common_key;
         }
         
@@ -475,14 +475,14 @@ CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_sequence_key =
                          extra : (NSDictionary * _Nullable) d_extra {
     id t = [self init_event_id:s_event_id];
     if (t) {
-        ((CCMarkerEvent *)t).s_description = s_description;
+        ((MQMarkerEvent *)t).s_description = s_description;
         
         if (d_extra && [d_extra isKindOfClass:NSDictionary.class]) {
             [self.d_extra addEntriesFromDictionary:d_extra];
         }
 
     }
-    return ((CCMarkerEvent *)t);
+    return ((MQMarkerEvent *)t);
 }
 
 - (void)setS_event_id:(NSString *)s_event_id {
@@ -543,18 +543,18 @@ CCMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_sequence_key =
 
 #pragma mark - -----
 
-@implementation CCMarkerEvent_Count
+@implementation MQMarkerEvent_Count
 
 @end
 
 #pragma mark - -----
 
-@implementation CCMarkerEvent_Calculate
+@implementation MQMarkerEvent_Calculate
 
 @end
 
 #pragma mark - -----
 
-@implementation CCMarkerEvent_Common
+@implementation MQMarkerEvent_Common
 
 @end

@@ -1,5 +1,5 @@
 //
-//  CCEasyWebView.h
+//  MQEasyWebView.h
 //  MQExtensionKit
 //
 //  Created by Elwinfrederick on 14/09/2017.
@@ -8,7 +8,7 @@
 
 #import "WKWebView+MQExtension.h"
 
-@interface CCEasyWebView : NSObject
+@interface MQEasyWebView : NSObject
 
 - (instancetype) init NS_UNAVAILABLE ;
 

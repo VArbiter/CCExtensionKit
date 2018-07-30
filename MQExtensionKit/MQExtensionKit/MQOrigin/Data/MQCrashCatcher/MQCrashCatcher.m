@@ -1,20 +1,20 @@
 //
-//  CCCrashCatcher.m
+//  MQCrashCatcher.m
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 2018/6/26.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCCrashCatcher.h"
+#import "MQCrashCatcher.h"
 
-@interface CCCrashCatcher ()
+@interface MQCrashCatcher ()
 
 void mq_uncaught_exception_handler(NSException *exception);
 
 @end
 
-@implementation CCCrashCatcher
+@implementation MQCrashCatcher
 
 + (void)initialize {
     
@@ -42,7 +42,7 @@ void mq_uncaught_exception_handler(NSException *exception);
 + (void) mq_begin {
     NSSetUncaughtExceptionHandler(&mq_uncaught_exception_handler);
 #if DEBUG
-    NSLog(@"CCCrashCatcher Start");
+    NSLog(@"MQCrashCatcher Start");
 #endif
 }
 
@@ -60,7 +60,7 @@ void mq_uncaught_exception_handler(NSException *exception);
     
     if (e) {
 #if DEBUG
-        NSLog(@"CCException read crash log error :\n %@",e);
+        NSLog(@"MQException read crash log error :\n %@",e);
 #endif
         return nil;
     }
@@ -71,16 +71,16 @@ void mq_uncaught_exception_handler(NSException *exception);
     NSString *s_catch_path = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory ,
                                                                    NSUserDomainMask,
                                                                    YES).firstObject
-                               stringByAppendingPathComponent:@"CCExtensionKit"]
-                              stringByAppendingPathComponent:@"CCCrashLog"];
+                               stringByAppendingPathComponent:@"MQExtensionKit"]
+                              stringByAppendingPathComponent:@"MQCrashLog"];
     return s_catch_path;
 }
 
 void mq_uncaught_exception_handler(NSException *exception) {
-    NSString *s_exception = [NSString stringWithFormat:@"CCException name:%@\n \
-                             CCException reason:%@\n \
-                             CCException stack :%@\n \
-                             CCException time  :%lf",
+    NSString *s_exception = [NSString stringWithFormat:@"MQException name:%@\n \
+                             MQException reason:%@\n \
+                             MQException stack :%@\n \
+                             MQException time  :%lf",
                              exception.name,
                              exception.reason,
                              exception.callStackSymbols,
@@ -98,7 +98,7 @@ void mq_uncaught_exception_handler(NSException *exception) {
                         encoding:NSUTF8StringEncoding
                            error:&e]) {
 #if DEBUG
-        NSLog(@"CCException write error :\n %@",e);
+        NSLog(@"MQException write error :\n %@",e);
 #endif
     }
 }

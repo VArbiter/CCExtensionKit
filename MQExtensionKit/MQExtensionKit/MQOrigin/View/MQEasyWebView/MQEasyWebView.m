@@ -1,19 +1,19 @@
 //
-//  CCEasyWebView.m
+//  MQEasyWebView.m
 //  MQExtensionKit
 //
 //  Created by Elwinfrederick on 14/09/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#import "CCEasyWebView.h"
+#import "MQEasyWebView.h"
 
-@interface CCEasyWebView () <WKNavigationDelegate , WKScriptMessageHandler>
+@interface MQEasyWebView () <WKNavigationDelegate , WKScriptMessageHandler>
 
 @property (nonatomic , strong) WKWebViewConfiguration * config;
 @property (nonatomic , assign) CGRect frame ;
 @property (nonatomic , strong) WKUserContentController *userContentController ;
-@property (nonatomic , strong) CCScriptMessageDelegate *messageDelegate ;
+@property (nonatomic , strong) MQScriptMessageDelegate *messageDelegate ;
 
 @property (nonatomic , copy) NSString *sAppName ;
 @property (nonatomic , assign) BOOL isTrustWithoutAnyDoubt;
@@ -41,7 +41,7 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 
 @end
 
-@implementation CCEasyWebView
+@implementation MQEasyWebView
 
 + (instancetype) mq_common : (CGRect) frame {
     return [self mq_common:frame configuration:nil];
@@ -347,16 +347,16 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
     return _userContentController;
 }
 
-- (CCScriptMessageDelegate *)messageDelegate {
+- (MQScriptMessageDelegate *)messageDelegate {
     if (_messageDelegate) return _messageDelegate;
-    CCScriptMessageDelegate *delegate = [[CCScriptMessageDelegate alloc] init:self];
+    MQScriptMessageDelegate *delegate = [[MQScriptMessageDelegate alloc] init:self];
     _messageDelegate = delegate;
     return _messageDelegate;
 }
 
 - (void)dealloc {
 #if DEBUG
-    NSLog(@"\n_CC_%@_DEALLOC_",NSStringFromClass(self.class));
+    NSLog(@"\n_MQ_%@_DEALLOC_",NSStringFromClass(self.class));
 #endif
     [self.webView removeObserver:self
                       forKeyPath:@"estimatedProgress"

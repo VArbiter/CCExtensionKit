@@ -1,17 +1,17 @@
 //
-//  CCVideoManager.m
+//  MQVideoManager.m
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 21/05/2018.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCVideoManager.h"
+#import "MQVideoManager.h"
 
-@implementation CCVideoManager
+@implementation MQVideoManager
 
 - (void)mq_merge_export_videos : (NSString *) s_path
-                   data_stream : (NSArray <CCVideoInfoEntity *> *) array_file_urls {
+                   data_stream : (NSArray <MQVideoInfoEntity *> *) array_file_urls {
     
     if (!array_file_urls || !array_file_urls.count) return ;
     
@@ -22,7 +22,7 @@
     CMTime totalDuration = kCMTimeZero;
     NSMutableArray *assetTrackArray = [[NSMutableArray alloc] init];
     NSMutableArray *assetArray = [[NSMutableArray alloc] init];
-    for (CCVideoInfoEntity *videoInfo in array_file_urls) {
+    for (MQVideoInfoEntity *videoInfo in array_file_urls) {
         AVAsset *asset = [AVAsset assetWithURL:videoInfo.url_file_path];
         if (!asset) continue;
         
@@ -136,6 +136,6 @@
 
 @end
     
-@implementation CCVideoInfoEntity
+@implementation MQVideoInfoEntity
 
 @end

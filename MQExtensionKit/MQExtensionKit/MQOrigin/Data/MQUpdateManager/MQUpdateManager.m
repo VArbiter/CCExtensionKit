@@ -1,16 +1,16 @@
 //
-//  CCUpdateManager.m
+//  MQUpdateManager.m
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 09/05/2018.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCUpdateManager.h"
+#import "MQUpdateManager.h"
 
-static NSString * CC_UPDATE_MANAGER_DOMAIN = @"Elwinfrederick.CCUpdateManager";
+static NSString * MQ_UPDATE_MANAGER_DOMAIN = @"Elwinfrederick.MQUpdateManager";
 
-@interface CCUpdateManager ()
+@interface MQUpdateManager ()
 
 - (void) mq_error_with_code : (NSInteger) i_code
                 description : (NSString *) s_description ;
@@ -23,16 +23,16 @@ static NSString * CC_UPDATE_MANAGER_DOMAIN = @"Elwinfrederick.CCUpdateManager";
 
 @end
 
-@implementation CCUpdateManager
+@implementation MQUpdateManager
 
-CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_COUNT = @"resultCount" ;
-CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_RESULTS = @"results" ;
-CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_ID = @"artistId" ;
-CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_BUNDLE_ID = @"bundleId" ;
-CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_NAME = @"artistName" ;
-CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_VERSION = @"version" ;
-CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_NAME = @"trackName" ;
-CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL = @"trackViewUrl" ;
+MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_COUNT = @"resultCount" ;
+MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_RESULTS = @"results" ;
+MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_ID = @"artistId" ;
+MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_BUNDLE_ID = @"bundleId" ;
+MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_NAME = @"artistName" ;
+MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_VERSION = @"version" ;
+MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_NAME = @"trackName" ;
+MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL = @"trackViewUrl" ;
 
 - (void) mq_check_update_with_link : (NSString *) s_link
                     need_to_update : (void (^)(BOOL is_need ,
@@ -47,10 +47,10 @@ CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL
     }
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-    dispatch_queue_t queue = dispatch_queue_create("ElwinFrederick.CCUpdateManager.request.queue",
+    dispatch_queue_t queue = dispatch_queue_create("ElwinFrederick.MQUpdateManager.request.queue",
                                                    DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL);
 #else
-    dispatch_queue_t queue = dispatch_queue_create("ElwinFrederick.CCUpdateManager.request.queue",
+    dispatch_queue_t queue = dispatch_queue_create("ElwinFrederick.MQUpdateManager.request.queue",
                                                    DISPATCH_QUEUE_SERIAL);
 #endif
     
@@ -93,13 +93,13 @@ CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL
             return ;
         }
         
-        if ([[response_info_dic valueForKey:CC_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_COUNT] integerValue] == 0) {
+        if ([[response_info_dic valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_COUNT] integerValue] == 0) {
             [strong_self mq_error_with_code:-10001
                                 description:@"app didn't in store or can't reach in this links."];
             return;
         }
         
-        NSArray *array_infos = [response_info_dic valueForKey:CC_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_RESULTS];
+        NSArray *array_infos = [response_info_dic valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_RESULTS];
         if (![array_infos isKindOfClass:[NSArray class]] && array_infos.count <= 0) {
             [strong_self mq_error_with_code:-10002
                                 description:@"returned value doesn't have any results"];
@@ -122,18 +122,18 @@ CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL
               store version = %@ \n \
               app name = %@ \n \
               open link = %@",
-              [d_infos_detail valueForKey:CC_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_ID],
-              [d_infos_detail valueForKey:CC_UPDATE_RESPONSE_SERILZATION_KEY_BUNDLE_ID],
-              [d_infos_detail valueForKey:CC_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_NAME],
-              [d_infos_detail valueForKey:CC_UPDATE_RESPONSE_SERILZATION_KEY_VERSION],
-              [d_infos_detail valueForKey:CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_NAME],
-              [d_infos_detail valueForKey:CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL]);
+              [d_infos_detail valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_ID],
+              [d_infos_detail valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_BUNDLE_ID],
+              [d_infos_detail valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_NAME],
+              [d_infos_detail valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_VERSION],
+              [d_infos_detail valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_NAME],
+              [d_infos_detail valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL]);
 #endif
         
         NSDictionary *d_info = [NSBundle.mainBundle infoDictionary];
         NSString *s_version_current = [d_info valueForKey:@"CFBundleShortVersionString"];
         
-        NSString *s_app_store_version = [d_infos_detail valueForKey:CC_UPDATE_RESPONSE_SERILZATION_KEY_VERSION] ;
+        NSString *s_app_store_version = [d_infos_detail valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_VERSION] ;
         
         NSString *s_version_current_t = s_version_current.copy ;
         NSString *s_app_store_version_t = s_app_store_version.copy ;
@@ -155,7 +155,7 @@ CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL
         }
         
         BOOL is_need_update = s_version_current_t.floatValue < s_app_store_version_t.floatValue;
-        NSString *s_open_link = [d_infos_detail valueForKey:CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL];
+        NSString *s_open_link = [d_infos_detail valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (mq_update_block) mq_update_block(is_need_update ,
@@ -168,7 +168,7 @@ CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL
 
 - (void) mq_error_with_code : (NSInteger) i_code
                 description : (NSString *) s_description {
-    NSError *error_t = [NSError errorWithDomain:CC_UPDATE_MANAGER_DOMAIN
+    NSError *error_t = [NSError errorWithDomain:MQ_UPDATE_MANAGER_DOMAIN
                                            code:-10001
                                        userInfo:@{NSLocalizedDescriptionKey : s_description ? s_description : @""}];
     if (self.mq_error_block) self.mq_error_block(error_t);

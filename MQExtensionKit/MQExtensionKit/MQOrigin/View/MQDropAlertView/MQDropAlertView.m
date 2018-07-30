@@ -1,21 +1,21 @@
 //
-//  CCDropAlertView.m
-//  CCQueueDropAlertController_Example
+//  MQDropAlertView.m
+//  MQQueueDropAlertController_Example
 //
 //  Created by 冯明庆 on 04/12/2017.
 //  Copyright © 2017 elwin_frederick. All rights reserved.
 //
 
-#import "CCDropAlertView.h"
+#import "MQDropAlertView.h"
 
 #import "UIView+MQExtension.h"
 #import "UIColor+MQExtension.h"
-#import "CCCommon.h"
+#import "MQCommon.h"
 
-CGFloat CC_DROP_ANIMATION_DURATION = .4f;
-CGFloat CC_SNAP_DAMPING_DURATION = .85f;
+CGFloat MQ_DROP_ANIMATION_DURATION = .4f;
+CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
 
-@interface CCDropAlertView () < UIDynamicAnimatorDelegate >
+@interface MQDropAlertView () < UIDynamicAnimatorDelegate >
 
 @property (nonatomic , strong , readwrite) UIDynamicAnimator *animator ;
 @property (nonatomic , strong , readwrite) UIView *viewCustom ;
@@ -24,7 +24,7 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
 
 @end
 
-@implementation CCDropAlertView
+@implementation MQDropAlertView
 
 - (instancetype) initWithView : (__kindof UIView *) view {
     return [self initWithView:view
@@ -54,21 +54,21 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
 }
 
 - (void) mq_show {
-    [self mq_show:CCDropAnimate_Smooth];
+    [self mq_show:MQDropAnimate_Smooth];
 }
 
-- (void) mq_show : (CCDropAnimate) animate {
+- (void) mq_show : (MQDropAnimate) animate {
     [self.viewOn addSubview:self];
     
     if (self.block_action_start) self.block_action_start(self);
     
     switch (animate) {
-        case CCDropAnimate_None:{
+        case MQDropAnimate_None:{
             self.viewCustom.center = self.in_center;
             if (self.block_action_start_did_end) self.block_action_start_did_end(self);
         }break;
-        case CCDropAnimate_Smooth:{
-            CC_WEAK_SELF;
+        case MQDropAnimate_Smooth:{
+            MQ_WEAK_SELF;
             void (^bCenter)(void) = ^ {
                 [UIView animateWithDuration:.2f animations:^{
                     weak_self.viewCustom.center = weak_self.in_center;
@@ -76,16 +76,16 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
                 }];
             };
             
-            [UIView animateWithDuration:CC_DROP_ANIMATION_DURATION animations:^{
+            [UIView animateWithDuration:MQ_DROP_ANIMATION_DURATION animations:^{
                 weak_self.alpha = 1.0f;
-                weak_self.viewCustom.center = (CGPoint){weak_self.in_center_x , weak_self.in_center_y + CCScaleH(80.f)};
+                weak_self.viewCustom.center = (CGPoint){weak_self.in_center_x , weak_self.in_center_y + MQScaleH(80.f)};
             } completion:^(BOOL finished) {
                 if (bCenter) bCenter();
             }];
         }break;
-        case CCDropAnimate_Snap:{
-            CC_WEAK_SELF;
-            [UIView animateWithDuration:CC_DROP_ANIMATION_DURATION animations:^{
+        case MQDropAnimate_Snap:{
+            MQ_WEAK_SELF;
+            [UIView animateWithDuration:MQ_DROP_ANIMATION_DURATION animations:^{
                 weak_self.alpha = 1.0f;
             } completion:^(BOOL finished) {
                 if (weak_self.block_action_start_did_end) weak_self.block_action_start_did_end(weak_self);
@@ -93,7 +93,7 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
             
             UISnapBehavior *snapBehaviour = [[UISnapBehavior alloc] initWithItem:self.viewCustom
                                                                      snapToPoint:self.viewOn.in_center];
-            snapBehaviour.damping = CC_SNAP_DAMPING_DURATION;
+            snapBehaviour.damping = MQ_SNAP_DAMPING_DURATION;
             [self.animator addBehavior:snapBehaviour];
         }break;
             
@@ -104,13 +104,13 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
 }
 
 - (void) mq_dismiss {
-    [self mq_dismiss:CCDropAnimate_Snap];
+    [self mq_dismiss:MQDropAnimate_Snap];
 }
-- (void) mq_dismiss : (CCDropAnimate) animate {
+- (void) mq_dismiss : (MQDropAnimate) animate {
     
-    CC_WEAK_SELF;
+    MQ_WEAK_SELF;
     void (^bDismiss)(void) = ^ {
-        [UIView animateWithDuration:CC_DROP_ANIMATION_DURATION animations:^{
+        [UIView animateWithDuration:MQ_DROP_ANIMATION_DURATION animations:^{
             weak_self.alpha = 0.0f;
         } completion:^(BOOL finished) {
             [weak_self removeFromSuperview];
@@ -125,15 +125,15 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
     };
     
     switch (animate) {
-        case CCDropAnimate_None:{
+        case MQDropAnimate_None:{
             if (bDismiss) bDismiss();
         }break;
-        case CCDropAnimate_Smooth:{
+        case MQDropAnimate_Smooth:{
             [self.animator removeAllBehaviors];
             if (bAddGravity) bAddGravity();
             if (bDismiss) bDismiss();
         }break;
-        case CCDropAnimate_Snap:{
+        case MQDropAnimate_Snap:{
             [self.animator removeAllBehaviors];
             if (bAddGravity) bAddGravity();
             UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.viewCustom]];
@@ -175,6 +175,6 @@ CGFloat CC_SNAP_DAMPING_DURATION = .85f;
     if (self.block_action_paused) self.block_action_paused(self);
 }
 
-_CC_DETECT_DEALLOC_
+_MQ_DETECT_DEALLOC_
 
 @end

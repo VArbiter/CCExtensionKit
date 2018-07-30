@@ -1,14 +1,14 @@
 //
-//  CCAudioRecorder.m
+//  MQAudioRecorder.m
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 2018/6/25.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCAudioRecorder.h"
+#import "MQAudioRecorder.h"
 
-@interface CCAudioRecorder ()
+@interface MQAudioRecorder ()
 
 @property (nonatomic, strong) AVAudioSession *session ;
 @property (nonatomic, strong) AVAudioRecorder *recorder ;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation CCAudioRecorder
+@implementation MQAudioRecorder
 
 static NSString * __s_audio_path = nil;
 

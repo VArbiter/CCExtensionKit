@@ -1,15 +1,15 @@
 //
-//  CCMenuView.m
+//  MQMenuView.m
 //  MQExtensionKit
 //
 //  Created by Elwinfrederick on 14/09/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#import "CCMenuView.h"
+#import "MQMenuView.h"
 
 #import <objc/runtime.h>
-#import "CCCommon.h"
+#import "MQCommon.h"
 
 #pragma mark - -----
 
@@ -83,18 +83,18 @@
 
 #pragma mark - -----
 
-@interface CCMenuView (MQExtension_Assist_Generate)
+@interface MQMenuView (MQExtension_Assist_Generate)
 
 @property (nonatomic , copy) void(^blockTitle)(NSString *) ;
 @property (nonatomic , class) NSArray *arrayKeys ;
 
-- (void) _CC_METHOD_REPLACE_IMPL_ : (id) sender  ;
+- (void) _MQ_METHOD_REPLACE_IMPL_ : (id) sender  ;
 
 @end
 
 static NSArray *__arrayKeys = nil;
 
-@implementation CCMenuView (MQExtension_Assist_Generate)
+@implementation MQMenuView (MQExtension_Assist_Generate)
 
 + (BOOL) resolveInstanceMethod:(SEL)sel {
     for (id obj in self.arrayKeys) {
@@ -103,14 +103,14 @@ static NSArray *__arrayKeys = nil;
         if (sel == NSSelectorFromString(stringKey)) {
             return class_addMethod([self class],
                                    sel,
-                                   class_getMethodImplementation(self, @selector(_CC_METHOD_REPLACE_IMPL_:)),
+                                   class_getMethodImplementation(self, @selector(_MQ_METHOD_REPLACE_IMPL_:)),
                                    "s@:@");;
         }
     }
     return [super resolveInstanceMethod:sel];
 }
 
-- (void) _CC_METHOD_REPLACE_IMPL_ : (id) sender  {
+- (void) _MQ_METHOD_REPLACE_IMPL_ : (id) sender  {
     if (self.blockTitle) self.blockTitle([NSString stringWithUTF8String:sel_getName(_cmd)]);
 }
 
@@ -132,7 +132,7 @@ static NSArray *__arrayKeys = nil;
 
 #pragma mark - -----
 
-@interface CCMenuView ()
+@interface MQMenuView ()
 
 - (void) ccDefaultSettings ;
 - (void) ccAddMenuNotification ;
@@ -145,11 +145,11 @@ static NSArray *__arrayKeys = nil;
                                             NSString *sKey ,
                                             NSString *sValue ,
                                             NSInteger index) ;
-@property (nonatomic , assign) id < CCMenuViewProtocol > delegate ;
+@property (nonatomic , assign) id < MQMenuViewProtocol > delegate ;
 
 @end
 
-@implementation CCMenuView
+@implementation MQMenuView
 
 - (instancetype) mq_show : (CGRect) frame
                    items : (NSArray <NSDictionary <NSString * , NSString *> *> *) arrayTitles {
@@ -206,12 +206,12 @@ static NSArray *__arrayKeys = nil;
     self.click = [click copy];
     return self;
 }
-- (instancetype) mq_delegate : (id <CCMenuViewProtocol>) delegate {
+- (instancetype) mq_delegate : (id <MQMenuViewProtocol>) delegate {
     self.delegate = delegate;
     return self;
 }
 
-void CC_DESTORY_MENU_ITEM(CCMenuView *view) {
+void MQ_DESTORY_MENU_ITEM(MQMenuView *view) {
     [view removeFromSuperview];
     view = nil;
 }
@@ -268,7 +268,7 @@ void CC_DESTORY_MENU_ITEM(CCMenuView *view) {
     [c removeObserver:UIMenuControllerWillHideMenuNotification];
     [c removeObserver:UIMenuControllerDidHideMenuNotification];
     
-    CCLog(@"_CC_%@_DEALLOC_",NSStringFromClass(self.class));
+    MQLog(@"_MQ_%@_DEALLOC_",NSStringFromClass(self.class));
 }
 
 @end

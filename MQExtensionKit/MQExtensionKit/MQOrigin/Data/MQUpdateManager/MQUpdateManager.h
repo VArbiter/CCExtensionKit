@@ -1,5 +1,5 @@
 //
-//  CCUpdateManager.h
+//  MQUpdateManager.h
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 09/05/2018.
@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NSString * CCUpdateResponseSerilzationKey NS_EXTENSIBLE_STRING_ENUM;
+typedef NSString * MQUpdateResponseSerilzationKey NS_EXTENSIBLE_STRING_ENUM;
 
-@interface CCUpdateManager : NSObject
+@interface MQUpdateManager : NSObject
 
-FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_COUNT ; // @"resultCount"
-FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_RESULTS ; // @"results"
-FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_ID ; // @"artistId"
-FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_BUNDLE_ID ; // @"bundleId"
-FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_NAME ; // @"artistName"
-FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_VERSION ; // @"version"
-FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_NAME ; // @"trackName"
-FOUNDATION_EXPORT CCUpdateResponseSerilzationKey CC_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL ; // @"trackViewUrl"
+FOUNDATION_EXPORT MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_COUNT ; // @"resultCount"
+FOUNDATION_EXPORT MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_RESULT_RESULTS ; // @"results"
+FOUNDATION_EXPORT MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_ID ; // @"artistId"
+FOUNDATION_EXPORT MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_BUNDLE_ID ; // @"bundleId"
+FOUNDATION_EXPORT MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_ARTIST_NAME ; // @"artistName"
+FOUNDATION_EXPORT MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_VERSION ; // @"version"
+FOUNDATION_EXPORT MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_NAME ; // @"trackName"
+FOUNDATION_EXPORT MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL ; // @"trackViewUrl"
 
 /// execute in async thread . // 在异步线程内执行
 - (void) mq_check_update_with_link : (NSString *) s_link

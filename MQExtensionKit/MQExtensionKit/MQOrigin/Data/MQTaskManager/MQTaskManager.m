@@ -1,16 +1,16 @@
 //
-//  CCTaskManager.m
+//  MQTaskManager.m
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 2018/6/25.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCTaskManager.h"
+#import "MQTaskManager.h"
 
-@interface CCTaskManager ()
+@interface MQTaskManager ()
 
-@property (nonatomic , strong , readwrite) NSMutableArray <CCTaskObject *> *array_tasks ;
+@property (nonatomic , strong , readwrite) NSMutableArray <MQTaskObject *> *array_tasks ;
 @property (nonatomic , readwrite) dispatch_queue_t queue_current ;
 
 @property (nonatomic , assign) BOOL is_running ;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation CCTaskManager
+@implementation MQTaskManager
 
 - (instancetype) init_with_async_thread : (dispatch_queue_t) queue {
     if ((self = [super init])) {
@@ -29,7 +29,7 @@
     return self;
 }
 
-- (void) mq_add_tasks : (NSArray < __kindof CCTaskObject *> *) objects
+- (void) mq_add_tasks : (NSArray < __kindof MQTaskObject *> *) objects
         remain_status : (BOOL) is_remain {
     if (objects && objects.count) {
         
@@ -56,9 +56,9 @@
         
     }
 }
-- (void) mq_add_task : (__kindof CCTaskObject *) object
+- (void) mq_add_task : (__kindof MQTaskObject *) object
        remain_status : (BOOL) is_remain {
-    if (object && [object isKindOfClass:[CCTaskObject class]]) {
+    if (object && [object isKindOfClass:[MQTaskObject class]]) {
         if (is_remain) {
             if (self.is_running) {
                 [self mq_pause];
@@ -131,16 +131,16 @@
     if ([t isKindOfClass:[NSArray class]]) {
         [self.array_tasks addObjectsFromArray:t];
     }
-    if ([t isKindOfClass:[CCTaskObject class]]) {
+    if ([t isKindOfClass:[MQTaskObject class]]) {
         [self.array_tasks addObject:t];
     }
     
-    [self.array_tasks sortUsingComparator:^NSComparisonResult(CCTaskObject * obj1, CCTaskObject * obj2) {
+    [self.array_tasks sortUsingComparator:^NSComparisonResult(MQTaskObject * obj1, MQTaskObject * obj2) {
         return obj1.i_task_position > obj2.i_task_position ; // ascending
     }];
 }
 
-- (NSMutableArray<CCTaskObject *> *)array_tasks {
+- (NSMutableArray<MQTaskObject *> *)array_tasks {
     if (_array_tasks) return _array_tasks;
     NSMutableArray *t = [NSMutableArray array];
     _array_tasks = t;
@@ -151,7 +151,7 @@
 
 #pragma mark - -----
 
-@implementation CCTaskObject
+@implementation MQTaskObject
 
 - (instancetype)init_id : (NSString *) s_task_id
                position : (NSUInteger) i_task_position

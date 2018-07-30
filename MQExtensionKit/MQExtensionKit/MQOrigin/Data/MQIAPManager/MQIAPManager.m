@@ -1,40 +1,40 @@
 //
-//  CCIAPManager.m
+//  MQIAPManager.m
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 04/05/2018.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCIAPManager.h"
+#import "MQIAPManager.h"
 
-typedef NS_ENUM(NSInteger , CCIAPStatus) {
-    CCIAPStatus_Purchase_Fail = 0,
-    CCIAPStatus_Purchase_Success ,
-    CCIAPStatus_Restore_Fail ,
-    CCIAPStatus_Restore_Success
+typedef NS_ENUM(NSInteger , MQIAPStatus) {
+    MQIAPStatus_Purchase_Fail = 0,
+    MQIAPStatus_Purchase_Success ,
+    MQIAPStatus_Restore_Fail ,
+    MQIAPStatus_Restore_Success
 };
 
-@interface CCIAPManager () < NSCopying , NSMutableCopying , SKPaymentTransactionObserver , SKProductsRequestDelegate >
+@interface MQIAPManager () < NSCopying , NSMutableCopying , SKPaymentTransactionObserver , SKProductsRequestDelegate >
 
-@property (nonatomic , copy) void (^mq_result_block)(CCIAPManager *manager , id t , NSError *error) ;
+@property (nonatomic , copy) void (^mq_result_block)(MQIAPManager *manager , id t , NSError *error) ;
 
 - (void) mq_complete_transaction : (SKPaymentTransaction *) transaction
-                          status : (CCIAPStatus) status ;
+                          status : (MQIAPStatus) status ;
 
 - (void) mq_upload_receipt : (SKPaymentTransaction *) transaction ;
 
 @end
 
-static CCIAPManager *__manager_IAP = nil;
+static MQIAPManager *__manager_IAP = nil;
 
-@implementation CCIAPManager
+@implementation MQIAPManager
 
-static NSString *mq_IAP_error_domain = @"ElwinFrederick.CCIAPManager";
+static NSString *mq_IAP_error_domain = @"ElwinFrederick.MQIAPManager";
 
 + (instancetype) mq_shared {
     if (__manager_IAP) return __manager_IAP;
-    __manager_IAP = [[CCIAPManager alloc] init];
+    __manager_IAP = [[MQIAPManager alloc] init];
     [SKPaymentQueue.defaultQueue addTransactionObserver:__manager_IAP];
     return __manager_IAP;
 }
@@ -60,7 +60,7 @@ static NSString *mq_IAP_error_domain = @"ElwinFrederick.CCIAPManager";
     [self mq_purchase:s_product_id result:nil];
 }
 - (void) mq_purchase : (NSString *) s_product_id
-              result : (void(^)(CCIAPManager *manager , id result , NSError *error)) mq_result_block {
+              result : (void(^)(MQIAPManager *manager , id result , NSError *error)) mq_result_block {
     if (mq_result_block) self.mq_result_block = [mq_result_block copy];
     
     if ([SKPaymentQueue canMakePayments]) { // user allowed to purchase // 用户允许支付
@@ -134,18 +134,18 @@ static NSString *mq_IAP_error_domain = @"ElwinFrederick.CCIAPManager";
             case SKPaymentTransactionStatePurchased:{
                 // 1 , payment transaction success // 交易完成
                 [self mq_complete_transaction:transaction
-                                       status:CCIAPStatus_Purchase_Success];
+                                       status:MQIAPStatus_Purchase_Success];
             }break;
             case SKPaymentTransactionStateFailed:{
                 // 2 , payment transaction fail // 交易失败
                 [self mq_complete_transaction:transaction
-                                       status:CCIAPStatus_Purchase_Fail];
+                                       status:MQIAPStatus_Purchase_Fail];
             }break;
             case SKPaymentTransactionStateRestored:{
                 // 3 , restore payment transaction success , user has restored payment from history
                 // 恢复交易成功 , 从用户的购买历史中恢复了交易
                 [self mq_complete_transaction:transaction
-                                       status:CCIAPStatus_Restore_Success];
+                                       status:MQIAPStatus_Restore_Success];
             }break;
             case SKPaymentTransactionStateDeferred:{
                 // 4 , purchase failed , destory payment transaction // 购买失败 , 销毁交易
@@ -187,16 +187,16 @@ static NSString *mq_IAP_error_domain = @"ElwinFrederick.CCIAPManager";
 
 #pragma mark - -----
 - (void) mq_complete_transaction : (SKPaymentTransaction *) transaction
-                          status : (CCIAPStatus) status {
+                          status : (MQIAPStatus) status {
     // don't sent any notify when user cancel the purchase // 用户取消是不发送任何通知 .
     if (transaction.error.code != SKErrorPaymentCancelled){
         switch (status) {
-            case CCIAPStatus_Purchase_Success:
-            case CCIAPStatus_Restore_Success:{
+            case MQIAPStatus_Purchase_Success:
+            case MQIAPStatus_Restore_Success:{
                 [self mq_upload_receipt:transaction];
             }break;
-            case CCIAPStatus_Purchase_Fail:
-            case CCIAPStatus_Restore_Fail:
+            case MQIAPStatus_Purchase_Fail:
+            case MQIAPStatus_Restore_Fail:
             default:{
                 if(self.mq_result_block) self.mq_result_block(self, nil, transaction.error) ;
                 if (self.delegate && [self.delegate respondsToSelector:@selector(mq_IAP_manager:error:)]) {
@@ -234,8 +234,8 @@ static NSString *mq_IAP_error_domain = @"ElwinFrederick.CCIAPManager";
     NSString *s_base64_receipt = [data_receipt base64EncodedStringWithOptions:0];
     
     NSMutableDictionary *d_params = [NSMutableDictionary dictionary];
-    [d_params setObject:s_base64_receipt forKey:CC_IAP_PARAMS_RECEIPT_KEY];
-    [d_params setObject:transaction.transactionIdentifier forKey:CC_IAP_PARAMS_TRANSACTION_ID_KEY];
+    [d_params setObject:s_base64_receipt forKey:MQ_IAP_PARAMS_RECEIPT_KEY];
+    [d_params setObject:transaction.transactionIdentifier forKey:MQ_IAP_PARAMS_TRANSACTION_ID_KEY];
     
     if (self.mq_upload_receipt_block) {
         if (self.mq_upload_receipt_block(self, url_receipt, d_params)) {
@@ -258,5 +258,5 @@ static NSString *mq_IAP_error_domain = @"ElwinFrederick.CCIAPManager";
 
 @end
 
-CCIAPParamsKey CC_IAP_PARAMS_RECEIPT_KEY = @"receipt" ;
-CCIAPParamsKey CC_IAP_PARAMS_TRANSACTION_ID_KEY = @"transaction_id" ;
+MQIAPParamsKey MQ_IAP_PARAMS_RECEIPT_KEY = @"receipt" ;
+MQIAPParamsKey MQ_IAP_PARAMS_TRANSACTION_ID_KEY = @"transaction_id" ;

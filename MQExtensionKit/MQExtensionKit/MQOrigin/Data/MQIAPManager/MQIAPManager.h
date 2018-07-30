@@ -1,5 +1,5 @@
 //
-//  CCIAPManager.h
+//  MQIAPManager.h
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 04/05/2018.
@@ -10,53 +10,53 @@
 
 @import StoreKit;
 
-@class CCIAPManager ;
+@class MQIAPManager ;
 
-@protocol CCIAPManagerDelegate <NSObject>
+@protocol MQIAPManagerDelegate <NSObject>
 
 @required
-- (void) mq_IAP_manager : (CCIAPManager *) manager
+- (void) mq_IAP_manager : (MQIAPManager *) manager
                  result : (id) result ;
 
 /// when payment is done . // 支付完成调用
 /// return YES to end payment transaction .// 返回 YES 来结束支付事物
-- (BOOL) mq_IAP_manager : (CCIAPManager *)manager
+- (BOOL) mq_IAP_manager : (MQIAPManager *)manager
            original_url : (NSURL *) url_original
            final_result : (NSMutableDictionary *) d_result ;
 
 @optional
-- (void) mq_IAP_manager : (CCIAPManager *) manager
+- (void) mq_IAP_manager : (MQIAPManager *) manager
                   error : (NSError *) error ;
-- (void) mq_IAP_manager : (CCIAPManager *) manager
+- (void) mq_IAP_manager : (MQIAPManager *) manager
      request_did_finish : (SKRequest *) request ;
 
-- (void) mq_IAP_manager : (CCIAPManager *) manager
+- (void) mq_IAP_manager : (MQIAPManager *) manager
           payment_queue : (SKPaymentQueue *) queue
                 removed : (NSArray<SKPaymentTransaction *> *) transactions ;
-- (void) mq_IAP_manager : (CCIAPManager *) manager
+- (void) mq_IAP_manager : (MQIAPManager *) manager
           payment_queue : (SKPaymentQueue *) queue
  restore_completed_fail : (NSError *) error;
-- (void) mq_IAP_manager : (CCIAPManager *) manager
+- (void) mq_IAP_manager : (MQIAPManager *) manager
       restore_completed : (SKPaymentQueue *) queue ;
 
 @end
 
-typedef NSString * CCIAPParamsKey NS_EXTENSIBLE_STRING_ENUM ;
-FOUNDATION_EXPORT CCIAPParamsKey CC_IAP_PARAMS_RECEIPT_KEY ; // @"receipt"
-FOUNDATION_EXPORT CCIAPParamsKey CC_IAP_PARAMS_TRANSACTION_ID_KEY ; // @"transaction_id"
+typedef NSString * MQIAPParamsKey NS_EXTENSIBLE_STRING_ENUM ;
+FOUNDATION_EXPORT MQIAPParamsKey MQ_IAP_PARAMS_RECEIPT_KEY ; // @"receipt"
+FOUNDATION_EXPORT MQIAPParamsKey MQ_IAP_PARAMS_TRANSACTION_ID_KEY ; // @"transaction_id"
 
-@interface CCIAPManager : NSObject
+@interface MQIAPManager : NSObject
 
 /// absolute singleton // 绝对单例
 + (instancetype) mq_shared ;
-@property (nonatomic , assign) id <CCIAPManagerDelegate> delegate ;
+@property (nonatomic , assign) id <MQIAPManagerDelegate> delegate ;
 
 - (void) mq_purchase : (NSString *) s_product_id ; // use it with delegate // 这个和代理一起使用
 - (void) mq_purchase : (NSString *) s_product_id
-              result : (void(^)(CCIAPManager *manager , id result , NSError *error)) mq_result_block ;
+              result : (void(^)(MQIAPManager *manager , id result , NSError *error)) mq_result_block ;
 
 // return YES to end payment transaction .// 返回 YES 来结束支付事物
-@property (nonatomic , copy) BOOL (^mq_upload_receipt_block)(CCIAPManager *manager , NSURL * url_original , NSMutableDictionary *d_result) ;
+@property (nonatomic , copy) BOOL (^mq_upload_receipt_block)(MQIAPManager *manager , NSURL * url_original , NSMutableDictionary *d_result) ;
 
 @end
 

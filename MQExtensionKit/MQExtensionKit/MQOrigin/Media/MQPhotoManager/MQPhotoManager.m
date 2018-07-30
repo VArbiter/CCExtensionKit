@@ -1,16 +1,16 @@
 //
-//  CCPhotoManager.m
+//  MQPhotoManager.m
 //  MQExtensionKit
 //
 //  Created by 冯明庆 on 2018/5/20.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCPhotoManager.h"
+#import "MQPhotoManager.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
 
-@interface CCPhotoManager () < PHPhotoLibraryChangeObserver >
+@interface MQPhotoManager () < PHPhotoLibraryChangeObserver >
 
 @property (nonatomic , assign) CGSize size_image ;
 @property (nonatomic , assign) BOOL is_image ;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation CCPhotoManager
+@implementation MQPhotoManager
 
 NSString * mq_photo_manger_image_key = @"image";
 NSString * mq_photo_manger_info_key = @"info";
@@ -245,7 +245,7 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
 
 #else
 
-@interface CCPhotoManager ()
+@interface MQPhotoManager ()
 
 @property (nonatomic , strong , readwrite) ALAssetsLibrary * assets_library;
 
@@ -254,7 +254,7 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
 
 @end
 
-@implementation CCPhotoManager
+@implementation MQPhotoManager
 
 - (void) mq_create_photo_library : (NSString *) s_title
                         complete : (void (^)(ALAssetsGroup *group , NSError *error)) block_create {

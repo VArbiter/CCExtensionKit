@@ -1,5 +1,5 @@
 //
-//  CCMenuView.h
+//  MQMenuView.h
 //  MQExtensionKit
 //
 //  Created by Elwinfrederick on 14/09/2017.
@@ -10,16 +10,16 @@
 
 /// this file that makes UIMenuController's item can be managed && sorted . // 这个文件让 UIMenuController 的 item 可以被管理和控制顺序
 
-@class CCMenuView;
+@class MQMenuView;
 
-@protocol CCMenuViewProtocol <NSObject>
+@protocol MQMenuViewProtocol <NSObject>
 
 @optional
-- (void) ccMenuViewDidClose : (CCMenuView *) menuView ;
+- (void) ccMenuViewDidClose : (MQMenuView *) menuView ;
 
 @end
 
-@interface CCMenuView : UIView < CCMenuViewProtocol >
+@interface MQMenuView : UIView < MQMenuViewProtocol >
 
 /// show for frame , @[@{@"methodName" : @"showingTitle"}] , // 展示的 frame , 参数 @[@{@"方法名" : @" item 标题"}]
 /// note : it will shown exclusive in that order you've given in array . // 会严格按照数组给出的顺序来展示
@@ -32,9 +32,9 @@
                                       NSString *sKey ,
                                       NSString *sValue ,
                                       NSInteger index)) click ;
-- (instancetype) mq_delegate : (id <CCMenuViewProtocol>) delegate ;
+- (instancetype) mq_delegate : (id <MQMenuViewProtocol>) delegate ;
 
 /// remove form super view && destory (set to nil) . // 从父视图移除和销毁
-void CC_DESTORY_MENU_ITEM(CCMenuView *view);
+void MQ_DESTORY_MENU_ITEM(MQMenuView *view);
 
 @end

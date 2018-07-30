@@ -1,20 +1,20 @@
 //
-//  CCGradientLayerView.m
+//  MQGradientLayerView.m
 //  MQExtensionKit
 //
 //  Created by 冯明庆 on 18/11/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#import "CCGradientLayerView.h"
+#import "MQGradientLayerView.h"
 
-@interface CCGradientLayerView ()
+@interface MQGradientLayerView ()
 
 @property (nonatomic , strong) CAGradientLayer *layerGradient ;
 
 @end
 
-@implementation CCGradientLayerView
+@implementation MQGradientLayerView
 
 - (void) mq_begin_with : (CGPoint) pBegin
                    end : (CGPoint) pEnd
