@@ -1,19 +1,19 @@
 //
-//  CCDevice.m
+//  MQDevice.m
 //  MQExtensionKit
 //
 //  Created by 冯明庆 on 14/11/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#import "CCDevice.h"
+#import "MQDevice.h"
 
 #import <sys/utsname.h>
 @import Darwin;
 #import <SystemConfiguration/CaptiveNetwork.h>
 @import AdSupport;
 
-@implementation CCDevice
+@implementation MQDevice
 
 + (NSString *) mq_device_info {
     struct utsname systemInfo;
@@ -153,12 +153,12 @@
     return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
 }
 
-+ (CCDeviceResolution) mq_device_resolution {
++ (MQDeviceResolution) mq_device_resolution {
     CGFloat w = UIScreen.mainScreen.bounds.size.width;
     CGFloat h = UIScreen.mainScreen.bounds.size.height;
     CGFloat scale = UIScreen.mainScreen.scale;
     
-    CCDeviceResolution resolution ;
+    MQDeviceResolution resolution ;
     resolution.width = w * scale ;
     resolution.height = h * scale ;
     resolution.scale = scale ;

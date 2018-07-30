@@ -1,5 +1,5 @@
 //
-//  CCDevice.h
+//  MQDevice.h
 //  MQExtensionKit
 //
 //  Created by 冯明庆 on 14/11/2017.
@@ -10,34 +10,34 @@
 
 @import UIKit;
 
-#ifndef CC_DEVICE_TYPE_S
-    #define CC_DEVICE_TYPE_S [CCDevice mq_device_type]
+#ifndef MQ_DEVICE_TYPE_S
+    #define MQ_DEVICE_TYPE_S [MQDevice mq_device_type]
 #endif
 
-#ifndef CC_SYSTEM_VERSION_S
-    #define CC_SYSTEM_VERSION_S [CCDevice mq_system_version]
+#ifndef MQ_SYSTEM_VERSION_S
+    #define MQ_SYSTEM_VERSION_S [MQDevice mq_system_version]
 #endif
 
-#ifndef CC_DEVICE_UUID_S
-    #define CC_DEVICE_UUID_S [CCDevice mq_device_UUID]
+#ifndef MQ_DEVICE_UUID_S
+    #define MQ_DEVICE_UUID_S [MQDevice mq_device_UUID]
 #endif
 
-#ifndef CC_DEVICE_RESOLUTION_S
-    #define CC_DEVICE_RESOLUTION_S [CCDevice mq_device_resolution]
+#ifndef MQ_DEVICE_RESOLUTION_S
+    #define MQ_DEVICE_RESOLUTION_S [MQDevice mq_device_resolution]
 #endif
 
-#ifndef CC_DEVICE_RECT_S
-    #define CC_DEVICE_RECT_S [CCDevice mq_device_rect]
+#ifndef MQ_DEVICE_RECT_S
+    #define MQ_DEVICE_RECT_S [MQDevice mq_device_rect]
 #endif
 
-struct CCDeviceResolution {
+struct MQDeviceResolution {
     CGFloat width;
     CGFloat height;
     CGFloat scale;
 };
-typedef struct CG_BOXABLE CCDeviceResolution CCDeviceResolution;
+typedef struct CG_BOXABLE MQDeviceResolution MQDeviceResolution;
 
-@interface CCDevice : NSObject
+@interface MQDevice : NSObject
 
 + (NSString *) mq_device_info ;
 + (NSString *) mq_device_type ;
@@ -47,7 +47,7 @@ typedef struct CG_BOXABLE CCDeviceResolution CCDeviceResolution;
 + (NSString *) mq_device_UUID ;
 + (NSString *) mq_device_IDFA ;
 
-+ (CCDeviceResolution) mq_device_resolution ;
++ (MQDeviceResolution) mq_device_resolution ;
 + (NSString *) mq_device_rect ;
 
 + (NSString *) mq_system_version ;

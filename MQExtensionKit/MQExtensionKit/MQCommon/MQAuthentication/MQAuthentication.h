@@ -1,5 +1,5 @@
 //
-//  CCAuthentication.h
+//  MQAuthentication.h
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 24/04/2018.
@@ -10,7 +10,7 @@
 
 @class LAContext ;
 
-@interface CCAuthentication : NSObject
+@interface MQAuthentication : NSObject
 
 /// beware ,under 'LAPolicyDeviceOwnerAuthenticationWithBiometrics' , 'input password' won't have any effect .// 注意 , 在 LAPolicyDeviceOwnerAuthenticationWithBiometrics 下 , "输入密码" 按钮不会有任何效果
 /// if retried over 5 times . fall back block won't have any effect . // 如果尝试超过五次 , 回调 block 不会有任何效果 .

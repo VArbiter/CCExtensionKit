@@ -1,20 +1,20 @@
 //
-//  CCSingleton.h
+//  MQSingleton.h
 //  MQExtensionKit
 //
 //  Created by Elwinfrederick on 10/08/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#ifndef CCSingleton_h
-    #define CCSingleton_h
+#ifndef MQSingleton_h
+    #define MQSingleton_h
 
     /// absolute singleton // 绝对单例
 
     // ARC
     #if __has_feature(objc_arc)
-        #define ccSingletonInterface(name)  +(instancetype)mq_shared##name
-        #define ccSingletonImplementation(name)  +(instancetype)mq_shared##name \
+        #define mq_SingletonInterface(name)  +(instancetype)mq_shared##name
+        #define mq_SingletonImplementation(name)  +(instancetype)mq_shared##name \
         { \
             id instance = [[self alloc] init]; \
             return instance; \
@@ -39,4 +39,4 @@
         }
     #endif
 
-#endif /* CCSingleton_h */
+#endif /* MQSingleton_h */

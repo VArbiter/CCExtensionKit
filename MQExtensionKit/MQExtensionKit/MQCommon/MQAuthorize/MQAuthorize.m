@@ -1,12 +1,12 @@
 //
-//  CCAuthorize.m
+//  MQAuthorize.m
 //  MQExtensionKit
 //
 //  Created by Elwinfrederick on 06/09/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#import "CCAuthorize.h"
+#import "MQAuthorize.h"
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -16,20 +16,20 @@
     #import <AssetsLibrary/AssetsLibrary.h>
 #endif
 
-@interface CCAuthorize () < NSCopying , NSMutableCopying >
+@interface MQAuthorize () < NSCopying , NSMutableCopying >
 
-@property (nonatomic , strong) NSDictionary *dictionaryGuide ;
+@property (nonatomic , strong) NSDictionary *dictionary_guide ;
 - (void) ccGuideTo ;
 
 @end
 
-static CCAuthorize *_instance = nil;
+static MQAuthorize *_instance = nil;
 
-@implementation CCAuthorize
+@implementation MQAuthorize
 
-+ (CCAuthorize *)mq_shared {
++ (MQAuthorize *)mq_shared {
     if (_instance) return _instance;
-    _instance = [[CCAuthorize alloc] init];
+    _instance = [[MQAuthorize alloc] init];
     return _instance;
 }
 
@@ -50,15 +50,15 @@ static CCAuthorize *_instance = nil;
     return _instance;
 }
 
-- (instancetype) mq_has_authorize : (CCSupportType) type
+- (instancetype) mq_has_authorize : (MQSupportType) type
                           success : (void (^)(void)) success
                              fail : (BOOL (^)(void)) fail  {
-    BOOL (^g)(void) = self.dictionaryGuide[@(type).stringValue];
+    BOOL (^g)(void) = self.dictionary_guide[@(type).stringValue];
     if (g) {
         if (g()) {
             if (success) success();
         } else if (fail) {
-            if (fail()) [CCAuthorize.mq_shared ccGuideTo];
+            if (fail()) [MQAuthorize.mq_shared ccGuideTo];
         }
     }
     return self;
@@ -81,7 +81,7 @@ static CCAuthorize *_instance = nil;
 }
 
 - (NSDictionary *)dictionaryGuide {
-    if (_dictionaryGuide) return _dictionaryGuide;
+    if (_dictionary_guide) return _dictionary_guide;
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     
     [d setValue:^BOOL {
@@ -92,20 +92,20 @@ static CCAuthorize *_instance = nil;
         ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
         return !(author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied) ;
 #endif
-    } forKey:@(CCSupportTypePhotoLibrary).stringValue];
+    } forKey:@(MQSupportTypePhotoLibrary).stringValue];
     
     [d setValue:^BOOL {
         AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
         return !(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied);
-    } forKey:@(CCSupportTypeVideo).stringValue];
+    } forKey:@(MQSupportTypeVideo).stringValue];
     
     [d setValue:^BOOL {
         AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
         return !(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied);
-    } forKey:@(CCSupportTypeAudio).stringValue];
+    } forKey:@(MQSupportTypeAudio).stringValue];
     
-    _dictionaryGuide = d;
-    return _dictionaryGuide;
+    _dictionary_guide = d;
+    return _dictionary_guide;
 }
 
 #pragma clang diagnostic pop

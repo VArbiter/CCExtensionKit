@@ -1,17 +1,17 @@
 //
-//  CCAuthentication.m
+//  MQAuthentication.m
 //  MQExtensionKit
 //
 //  Created by ElwinFrederick on 24/04/2018.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
 
-#import "CCAuthentication.h"
+#import "MQAuthentication.h"
 
 @import LocalAuthentication;
 @import UIKit;
 
-@interface CCAuthentication ()
+@interface MQAuthentication ()
 
 @property (nonatomic , copy , readwrite) NSString * s_authentication_reason ;
 @property (nonatomic , copy , readwrite) NSString * s_show ;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation CCAuthentication
+@implementation MQAuthentication
 
 - (instancetype) init_with_reason : (NSString *) s_authentication_reason
         show_password_if_bio_fail : (NSString *) s_show {
@@ -44,7 +44,7 @@
         if (is_can) {
             [self mq_start_authentication_password:success_block fail:fail_block];
 #if DEBUG
-            NSLog(@"CCAuthentication ERROR :\n %@",error);
+            NSLog(@"MQAuthentication ERROR :\n %@",error);
 #endif
         }
         else [self mq_start_authentication_touch_id:success_block fail:fail_block];

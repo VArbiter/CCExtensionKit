@@ -1,18 +1,18 @@
 //
-//  CCCommonExtension.h
+//  MQCommonExtension.h
 //  MQExtensionKit
 //
 //  Created by Elwinfrederick on 06/09/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#ifndef CCCommonExtension_h
-#define CCCommonExtension_h
+#ifndef MQCommonExtension_h
+#define MQCommonExtension_h
 
-    #import "CCAuthorize.h"   
-    #import "CCCommon.h"
-    #import "CCSingleton.h"
-    #import "CCDevice.h"
-    #import "CCFit.h"
+    #import "MQAuthorize.h"
+    #import "MQCommon.h"
+    #import "MQSingleton.h"
+    #import "MQDevice.h"
+    #import "MQFit.h"
 
-#endif /* CCCommonExtension_h */
+#endif /* MQCommonExtension_h */
