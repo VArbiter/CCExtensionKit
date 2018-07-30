@@ -8,8 +8,8 @@
 
 #import "UITableView+MQExtension.h"
 
-#ifndef _CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_
-    #define _CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_ @"CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER"
+#ifndef _MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_
+    #define _MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_ @"MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER"
 #endif
 
 @implementation UITableView (MQExtension)
@@ -26,7 +26,7 @@
     v.separatorStyle = UITableViewCellSeparatorStyleNone;
     v.backgroundColor = UIColor.clearColor;
     [v registerClass:UITableViewCell.class
-forCellReuseIdentifier:_CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
+forCellReuseIdentifier:_MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
     
     // for shaking problem under iOS 11 . rewrite them when needed .
     if (UIDevice.currentDevice.systemVersion.floatValue >= 11.f) {
@@ -185,7 +185,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 #pragma mark - -----
 
-@interface CCTableExtensionDelegate ()
+@interface MQTableExtensionDelegate ()
 
 @property (nonatomic , copy) CGFloat (^bCellHeight)(__kindof UITableView * tableView , NSIndexPath *indexPath) ;
 @property (nonatomic , copy) CGFloat (^bSectionHeaderHeight)(__kindof UITableView * tableView , NSInteger integerSection) ;
@@ -204,7 +204,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 @end
 
-@implementation CCTableExtensionDelegate
+@implementation MQTableExtensionDelegate
 
 - (id < UITableViewDelegate >) init {
     if ((self = [super init])) {
@@ -320,7 +320,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 - (void)dealloc {
 #if DEBUG
-    NSLog(@"_CC_%@_DEALLOC_" , NSStringFromClass(self.class));
+    NSLog(@"_MQ_%@_DEALLOC_" , NSStringFromClass(self.class));
 #endif
 }
 
@@ -328,7 +328,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 #pragma mark - -----
 
-@interface CCTableExtensionDataSource ()
+@interface MQTableExtensionDataSource ()
 
 @property (nonatomic , copy) NSInteger (^bSections)(__kindof UITableView *tableView);
 @property (nonatomic , copy) NSInteger (^bRowsInSections)(__kindof UITableView * tableView , NSInteger integerSection);
@@ -337,7 +337,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 @end
 
-@implementation CCTableExtensionDataSource
+@implementation MQTableExtensionDataSource
 
 - (id < UITableViewDataSource >) init {
     if ((self = [super init])) {
@@ -371,7 +371,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self.bRowsInSections ? self.bRowsInSections(tableView , section) : 0 ;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *stringCellIdentifer = self.bCellIdentifier ? self.bCellIdentifier(tableView , indexPath) : _CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_;
+    NSString *stringCellIdentifer = self.bCellIdentifier ? self.bCellIdentifier(tableView , indexPath) : _MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_;
     
     UITableViewCell *cell = nil;
     if (self.bCellIdentifier) cell = [tableView dequeueReusableCellWithIdentifier:stringCellIdentifer
@@ -384,7 +384,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 - (void)dealloc {
 #if DEBUG
-    NSLog(@"_CC_%@_DEALLOC_" , NSStringFromClass(self.class));
+    NSLog(@"_MQ_%@_DEALLOC_" , NSStringFromClass(self.class));
 #endif
 }
 
@@ -412,7 +412,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 
-@interface CCTableExtensionDataPrefetching ()
+@interface MQTableExtensionDataPrefetching ()
 
 @property (nonatomic , assign) BOOL isDisableBackground ;
 @property (nonatomic , copy) void (^prefetching)(__kindof UITableView *, NSArray<NSIndexPath *> *);
@@ -422,7 +422,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 @end
 
-@implementation CCTableExtensionDataPrefetching
+@implementation MQTableExtensionDataPrefetching
 
 - (id < UITableViewDataSourcePrefetching >) init {
     if ((self = [super init])) {
@@ -466,7 +466,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 - (void)dealloc {
 #if DEBUG
-    NSLog(@"_CC_%@_DEALLOC_" , NSStringFromClass(self.class));
+    NSLog(@"_MQ_%@_DEALLOC_" , NSStringFromClass(self.class));
 #endif
 }
 

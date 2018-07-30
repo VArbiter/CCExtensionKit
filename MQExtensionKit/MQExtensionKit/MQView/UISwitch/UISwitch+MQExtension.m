@@ -19,7 +19,7 @@
 @implementation UISwitch (MQExtension_Assist)
 
 - (void) mq_switch_holder_action : (UISwitch *) sender {
-    void (^mq_switch_block)(UISwitch *) = objc_getAssociatedObject(self, "CC_UISWITCH_ACTION_ASSOCIATE_KEY");
+    void (^mq_switch_block)(UISwitch *) = objc_getAssociatedObject(self, "MQ_UISWITCH_ACTION_ASSOCIATE_KEY");
     if (mq_switch_block) mq_switch_block(self);
 }
 
@@ -68,7 +68,7 @@
     
     if (block_swicth)
         objc_setAssociatedObject(self,
-                                 "CC_UISWITCH_ACTION_ASSOCIATE_KEY",
+                                 "MQ_UISWITCH_ACTION_ASSOCIATE_KEY",
                                  block_swicth,
                                  OBJC_ASSOCIATION_COPY_NONATOMIC);
 }

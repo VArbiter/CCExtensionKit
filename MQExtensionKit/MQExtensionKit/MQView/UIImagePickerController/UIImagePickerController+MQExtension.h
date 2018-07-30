@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_OPTIONS(NSInteger , CCImageSaveType) {
+typedef NS_OPTIONS(NSInteger , MQImageSaveType) {
     /// 1 save nothing , if options contains none , will ignore other save types // 什么也不保存 , 如果选项包含了它 , 将会无视掉其他类型
-    CCImageSaveTypeNone = 1 << 0 ,
+    MQImageSaveTypeNone = 1 << 0 ,
     /// 2
-    CCImageSaveTypeOriginal = 1 << 1,
+    MQImageSaveTypeOriginal = 1 << 1,
     /// 4
-    CCImageSaveTypeEdited = 1 << 2,
+    MQImageSaveTypeEdited = 1 << 2,
     /// 8 both original && edited // 原来的 和 编辑过的
-    CCImageSaveTypeAll = 1 << 3
+    MQImageSaveTypeAll = 1 << 3
 };
 
 @interface UIImagePickerController (MQExtension) < UINavigationControllerDelegate , UIImagePickerControllerDelegate >
@@ -36,7 +36,7 @@ typedef NS_OPTIONS(NSInteger , CCImageSaveType) {
 /// allowEditing = YES ; // 启用编辑
 - (instancetype) mq_enable_editing ;
 /// save specific type of images // 保存 图片
-- (instancetype) mq_save : (CCImageSaveType) type ;
+- (instancetype) mq_save : (MQImageSaveType) type ;
 /// if user cancelled // 如果用户取消了操作
 - (instancetype) mq_cancel : (void (^)(void)) action ;
 /// if an error on saving process // 如果处理过程中出现了错误

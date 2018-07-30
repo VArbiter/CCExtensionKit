@@ -8,44 +8,44 @@
 
 #import <UIKit/UIKit.h>
 
-FOUNDATION_EXPORT CGFloat const _CC_DEFAULT_ANIMATION_COMMON_DURATION_;
+FOUNDATION_EXPORT CGFloat const _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
 
-typedef CGPoint CCPoint;
-CCPoint CCPointMake(CGFloat x , CGFloat y);
-CCPoint CCMakePointFrom(CGPoint point);
-CGPoint CGMakePointFrom(CCPoint point);
+typedef CGPoint MQPoint;
+MQPoint MQPointMake(CGFloat x , CGFloat y);
+MQPoint MQMakePointFrom(CGPoint point);
+CGPoint CGMakePointFrom(MQPoint point);
 
-typedef CGSize CCSize;
-CCSize CCSizeMake(CGFloat width , CGFloat height);
-CCSize CCMakeSizeFrom(CGSize size);
-CGSize CGMakeSizeFrom(CCSize size);
+typedef CGSize MQSize;
+MQSize MQSizeMake(CGFloat width , CGFloat height);
+MQSize MQMakeSizeFrom(CGSize size);
+CGSize CGMakeSizeFrom(MQSize size);
 
-typedef CGRect CCRect;
-CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
-CCRect CCMakeRectFrom(CGRect rect);
-CGRect CGMakeRectFrom(CCRect rect);
+typedef CGRect MQRect;
+MQRect MQRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
+MQRect MQMakeRectFrom(CGRect rect);
+CGRect CGMakeRectFrom(MQRect rect);
 
 CGRect CGRectFull(void); // main screen bounds . // 等于屏幕的边界
 
-typedef UIEdgeInsets CCEdgeInsets;
-CCEdgeInsets CCEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
-CCEdgeInsets CCMakeEdgeInsetsFrom(UIEdgeInsets insets);
-UIEdgeInsets UIMakeEdgeInsetsFrom(CCEdgeInsets insets);
+typedef UIEdgeInsets MQEdgeInsets;
+MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
+MQEdgeInsets MQMakeEdgeInsetsFrom(UIEdgeInsets insets);
+UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets);
 
 /// scaled width && height (based on main screen's width && height resolution) // 按比例缩放后的 宽/高 (基于屏幕宽和高的分辨率)
-CGFloat CCScaleW(CGFloat w);
-CGFloat CCScaleH(CGFloat h);
+CGFloat MQScaleW(CGFloat w);
+CGFloat MQScaleH(CGFloat h);
 
 /// aspect fit the width && height . (based on main screen's width resolution) // 按照特定比例缩放后的 宽 / 高 (基于屏幕宽的分辨率)
-CGFloat CCAspectRatio(void);
-CGFloat CCAspectW(CGFloat w);
-CGFloat CCAspectH(CGFloat h);
+CGFloat MQAspectRatio(void);
+CGFloat MQAspectW(CGFloat w);
+CGFloat MQAspectH(CGFloat h);
 
 /// length scale // 计算 宽/高 所占屏幕比例
-CGFloat CCWScale(CGFloat w);
-CGFloat CCHScale(CGFloat h);
-CGPoint CCScaleOrigin(CGPoint origin);
-CGSize CCScaleSize(CGSize size);
+CGFloat MQWScale(CGFloat w);
+CGFloat MQHScale(CGFloat h);
+CGPoint MQScaleOrigin(CGPoint origin);
+CGSize MQScaleSize(CGSize size);
 
 @interface UIView (MQExtension)
 
@@ -149,22 +149,22 @@ CGSize CCScaleSize(CGSize size);
 /// note: all the fit recalls ignores the text-indent . // 所有适应无视缩进
 
 /// system font size , default line break mode , system font size // 默认 系统字体 , line break mode
-CGFloat CC_TEXT_HEIGHT_S(CGFloat fWidth ,
+CGFloat MQ_TEXT_HEIGHT_S(CGFloat fWidth ,
                          CGFloat fEstimateHeight , // height that defualt to , if less than , return's it. (same below) // 默认高度 , 小于则返回它 (下同)
                          NSString *string);
-CGFloat CC_TEXT_HEIGHT_C(CGFloat fWidth ,
+CGFloat MQ_TEXT_HEIGHT_C(CGFloat fWidth ,
                          CGFloat fEstimateHeight ,
                          NSString *string ,
                          UIFont *font ,
                          NSLineBreakMode mode);
 
 /// for attributed string , Using system attributed auto fit // 针对富文本 , 使用系统进行自适应
-CGFloat CC_TEXT_HEIGHT_A(CGFloat fWidth ,
+CGFloat MQ_TEXT_HEIGHT_A(CGFloat fWidth ,
                          CGFloat fEstimateHeight ,
                          NSAttributedString *aString);
 
 /// using default for NSString // 使用 NSString 的默认设置
-CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
+CGFloat MQ_TEXT_HEIGHT_AS(CGFloat fWidth ,
                           CGFloat fEstimateHeight ,
                           NSString *aString ,
                           UIFont *font ,

@@ -1,23 +1,23 @@
 //
-//  CCProxyDealer.m
+//  MQProxyDealer.m
 //  MQExtensionKit
 //
 //  Created by Elwinfrederick on 15/09/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#import "CCProxyDealer.h"
+#import "MQProxyDealer.h"
 
-#ifdef _CC_PROXY_DELER_PROTOCOL_TEST_EXAMPLE_
+#ifdef _MQ_PROXY_DELER_PROTOCOL_TEST_EXAMPLE_
 #import <objc/runtime.h>
 
-@interface CCProxyDealer ()
+@interface MQProxyDealer ()
 
 @property (nonatomic , strong) NSMutableDictionary *dMapMethods ;
 
 @end
 
-@implementation CCProxyDealer
+@implementation MQProxyDealer
 
 + (instancetype) common {
     return [[self alloc] init];

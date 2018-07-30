@@ -62,7 +62,7 @@
 
 #pragma mark - -----
 
-@interface CCCollectionExtensionDelegate : NSObject < UICollectionViewDelegateFlowLayout >
+@interface MQCollectionExtensionDelegate : NSObject < UICollectionViewDelegateFlowLayout >
 
 - (id < UICollectionViewDelegateFlowLayout > ) init;
 - (instancetype) mq_did_select : (BOOL (^)(__kindof UICollectionView *collectionView ,
@@ -93,7 +93,7 @@
 
 #pragma mark - -----
 
-@interface CCCollectionExtensionDataSource : NSObject < UICollectionViewDataSource >
+@interface MQCollectionExtensionDataSource : NSObject < UICollectionViewDataSource >
 
 - (id < UICollectionViewDataSource >) init ;
 - (instancetype) mq_sections : (NSInteger (^)(__kindof UICollectionView *collectionView)) sections ;
@@ -132,7 +132,7 @@
 /// note: sometimes canceling was not used in actual. // 不过有时候 , 取消并不被真正的使用
 /// note: when canceling has recall values , maybe it's a subset of 'mq_prefetch_at:' // 如果取消有了回调值 , 可能这个回调值是 'mq_prefetch_at:' 的一个子集
 
-@interface CCCollectionExtensionDataPrefetching : NSObject < UICollectionViewDataSourcePrefetching >
+@interface MQCollectionExtensionDataPrefetching : NSObject < UICollectionViewDataSourcePrefetching >
 
 /// auto enable prefetch in background thread
 - (id <UICollectionViewDataSourcePrefetching> ) init ;

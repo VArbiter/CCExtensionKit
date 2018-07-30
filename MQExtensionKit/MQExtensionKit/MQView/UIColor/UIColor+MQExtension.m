@@ -95,7 +95,7 @@
 }
 
 - (NSArray<NSNumber *> *)RGBA {
-    NSArray *t = objc_getAssociatedObject(self, "CC_UICOLOR_GET_RGBA_ASSOCIATE_KEY");
+    NSArray *t = objc_getAssociatedObject(self, "MQ_UICOLOR_GET_RGBA_ASSOCIATE_KEY");
     if (t) return t;
     CGFloat r = .0f,
     g = .0f,
@@ -104,7 +104,7 @@
     
     if ([self getRed:&r green:&g blue:&b alpha:&a]) {
         NSMutableArray *t = [NSMutableArray arrayWithObjects:@(r),@(g),@(b),@(a), nil];
-        objc_setAssociatedObject(self, "CC_UICOLOR_GET_RGBA_ASSOCIATE_KEY", t, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, "MQ_UICOLOR_GET_RGBA_ASSOCIATE_KEY", t, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return t;
     }
     return nil;

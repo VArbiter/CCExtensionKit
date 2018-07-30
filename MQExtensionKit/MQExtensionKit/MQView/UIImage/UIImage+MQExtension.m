@@ -10,7 +10,7 @@
 
 #import <CoreGraphics/CoreGraphics.h>
 
-UIImage * CC_CAPTURE_WINDOW(UIWindow *window) {
+UIImage * MQ_CAPTURE_WINDOW(UIWindow *window) {
     UIWindow *w = [UIApplication sharedApplication].windows.firstObject;
     if (window) w = window;
     
@@ -77,7 +77,7 @@ UIImage * CC_CAPTURE_WINDOW(UIWindow *window) {
                     inDirectory:[bName stringByAppendingString:@".bundle"]];
     UIImage *image = [UIImage imageWithContentsOfFile:p];
 #if DEBUG
-    if (!image) NSLog(@"\n ----- [CCExtensionKit] image Named \"%@\" with class \"%@\" not found , return new image istead",sName,NSStringFromClass(cls));
+    if (!image) NSLog(@"\n ----- [MQExtensionKit] image Named \"%@\" with class \"%@\" not found , return new image istead",sName,NSStringFromClass(cls));
 #endif
     return (image ? image : UIImage.new);
 }
@@ -95,7 +95,7 @@ compatibleWithTraitCollection:nil];
 }
 
 + (instancetype) mq_capture_current {
-    return CC_CAPTURE_WINDOW(nil);
+    return MQ_CAPTURE_WINDOW(nil);
 }
 
 @end
@@ -104,13 +104,13 @@ compatibleWithTraitCollection:nil];
 @import Accelerate;
 @import CoreImage;
 
-CGFloat _CC_GAUSSIAN_BLUR_VALUE_ = 4.f;
-CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
+CGFloat _MQ_GAUSSIAN_BLUR_VALUE_ = 4.f;
+CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 
 @implementation UIImage (MQExtension_Gaussian)
 
 - (instancetype) mq_gaussian_acc {
-    return [self mq_gaussian_acc:_CC_GAUSSIAN_BLUR_VALUE_];
+    return [self mq_gaussian_acc:_MQ_GAUSSIAN_BLUR_VALUE_];
 }
 - (instancetype) mq_gaussian_acc : (CGFloat) fRadius {
     return [self mq_gaussian_acc:fRadius tint:UIColor.clearColor];
@@ -242,7 +242,7 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 }
 
 - (instancetype) mq_gaussian_CI {
-    return [self mq_gaussian_CI:_CC_GAUSSIAN_BLUR_VALUE_];
+    return [self mq_gaussian_CI:_MQ_GAUSSIAN_BLUR_VALUE_];
 }
 - (instancetype) mq_gaussian_CI : (CGFloat) fRadius {
     UIImage *image = [self copy];
@@ -292,7 +292,7 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 
 @implementation UIImage (MQExtension_Data)
 
-CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
+CGFloat _MQ_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
 
 - (NSData *)toData {
     NSData *d = nil;
@@ -331,35 +331,35 @@ CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
 
 @implementation NSData (MQExtension_Image)
 
-- (CCImageType)type {
+- (MQImageType)type {
     NSData *data = [self copy];
-    if (!data) return CCImageType_Unknow;
+    if (!data) return MQImageType_Unknow;
     
     UInt8 c = 0;
     [data getBytes:&c length:1];
     switch (c) {
-        case 0xFF: return CCImageType_JPEG;
-        case 0x89: return CCImageType_PNG;
-        case 0x47: return CCImageType_Gif;
+        case 0xFF: return MQImageType_JPEG;
+        case 0x89: return MQImageType_PNG;
+        case 0x47: return MQImageType_Gif;
         case 0x49:
-        case 0x4D: return CCImageType_Tiff;
+        case 0x4D: return MQImageType_Tiff;
         case 0x52:{
             if (data.length < 12) {
-                return CCImageType_Unknow;
+                return MQImageType_Unknow;
             }
             // 0x52 == 'R' , and R is Riff for WEBP 
             NSString *s = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 12)]
                                                 encoding:NSASCIIStringEncoding];
             if ([s hasPrefix:@"RIFF"] && [s hasSuffix:@"WEBP"]) {
-                return CCImageType_WebP;
+                return MQImageType_WebP;
             }
         }
             
         default:
-            return CCImageType_Unknow;
+            return MQImageType_Unknow;
             break;
     }
-    return CCImageType_Unknow;
+    return MQImageType_Unknow;
 }
 
 @end

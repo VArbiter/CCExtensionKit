@@ -8,27 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
-#ifndef CC_IMAGE_B
-    #define CC_IMAGE_B(_value_) [UIImage mq_bundle:self.class name:(_value_)]
+#ifndef MQ_IMAGE_B
+    #define MQ_IMAGE_B(_value_) [UIImage mq_bundle:self.class name:(_value_)]
 #endif
 
-#ifndef CC_IMAGE_MODULE_B
-    #define CC_IMAGE_MODULE_B(_module_,_value_) [UIImage mq_bundle:self.class module:(_module_) name:(_value_)]
+#ifndef MQ_IMAGE_MODULE_B
+    #define MQ_IMAGE_MODULE_B(_module_,_value_) [UIImage mq_bundle:self.class module:(_module_) name:(_value_)]
 #endif
 
-#ifndef CC_IMAGE_NAME
-    #define CC_IMAGE_NAME(_value_) [UIImage mq_name:(_value_)]
+#ifndef MQ_IMAGE_NAME
+    #define MQ_IMAGE_NAME(_value_) [UIImage mq_name:(_value_)]
 #endif
 
-#ifndef CC_IMAGE_FILE
-    #define CC_IMAGE_FILE(_value_) [UIImage mq_file:(_value_)]
+#ifndef MQ_IMAGE_FILE
+    #define MQ_IMAGE_FILE(_value_) [UIImage mq_file:(_value_)]
 #endif
 
-#ifndef CC_IMAGE_BUNDLE
-    #define CC_IMAGE_BUNDLE(_vName_,_vBundle_) [UIImage mq_name:(_vName_) bundle:(_vBundle_)]
+#ifndef MQ_IMAGE_BUNDLE
+    #define MQ_IMAGE_BUNDLE(_vName_,_vBundle_) [UIImage mq_name:(_vName_) bundle:(_vBundle_)]
 #endif
 
-UIImage * CC_CAPTURE_WINDOW(UIWindow *window);
+UIImage * MQ_CAPTURE_WINDOW(UIWindow *window);
 
 @interface UIImage (MQExtension)
 
@@ -62,8 +62,8 @@ UIImage * CC_CAPTURE_WINDOW(UIWindow *window);
 
 @interface UIImage (MQExtension_Gaussian)
 
-FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_VALUE_ ;
-FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
+FOUNDATION_EXPORT CGFloat _MQ_GAUSSIAN_BLUR_VALUE_ ;
+FOUNDATION_EXPORT CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 
 // for blur issues // 针对模糊
 
@@ -89,7 +89,7 @@ FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 
 @interface UIImage (MQExtension_Data)
 
-FOUNDATION_EXPORT CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
+FOUNDATION_EXPORT CGFloat _MQ_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
 
 // available for PNG && JPEG // 对于 PNG 和 JPEG 起效
 
@@ -103,20 +103,20 @@ FOUNDATION_EXPORT CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
 
 #pragma mark - -----
 
-typedef NS_ENUM(NSInteger , CCImageType) {
-    CCImageType_Unknow = 0 ,
-    CCImageType_JPEG ,
-    CCImageType_PNG ,
-    CCImageType_Gif ,
-    CCImageType_Tiff ,
-    CCImageType_WebP
+typedef NS_ENUM(NSInteger , MQImageType) {
+    MQImageType_Unknow = 0 ,
+    MQImageType_JPEG ,
+    MQImageType_PNG ,
+    MQImageType_Gif ,
+    MQImageType_Tiff ,
+    MQImageType_WebP
 };
 
 @interface NSData (MQExtension_Image)
 
 /// technically , you have to read all 8-Bytes length to specific an imageType . // 从技术角度上来说 , 你必须读取所有的 8 个字节才能确定一张图片的类型
 /// for now , i just use the first to decide is type . (borrowed from SDWebImage) . // 目前 , 我只是读取了首个 , (借鉴自 SDWebImage)
-@property (nonatomic , readonly) CCImageType type ;
+@property (nonatomic , readonly) MQImageType type ;
 
 @end
 

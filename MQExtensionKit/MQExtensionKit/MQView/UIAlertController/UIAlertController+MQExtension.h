@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NSDictionary CCAlertActionInfo;
+typedef NSDictionary MQAlertActionInfo;
 
 @interface UIAlertController (MQExtension)
 
@@ -19,18 +19,18 @@ typedef NSDictionary CCAlertActionInfo;
 - (instancetype) mq_title : (NSString *) sTitle ;
 - (instancetype) mq_message : (NSString *) sMessage ;
 
-- (instancetype) mq_action : (CCAlertActionInfo *) info
+- (instancetype) mq_action : (MQAlertActionInfo *) info
                     action : (void(^)( __kindof UIAlertAction *action)) action ;
-- (instancetype) mq_action_s : (NSArray < CCAlertActionInfo *> *) array
+- (instancetype) mq_action_s : (NSArray < MQAlertActionInfo *> *) array
                       action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) actionT ;
 
-CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle style) ;
+MQAlertActionInfo * MQAlertActionInfoMake(NSString * title, UIAlertActionStyle style) ;
 
 @end
 
 #pragma mark - -----
 
-@interface CCAlertActionEntity : NSObject
+@interface MQAlertActionEntity : NSObject
 
 @property (nonatomic , strong) NSString *s_title ;
 @property (nonatomic , assign) UIAlertActionStyle style;
@@ -42,6 +42,6 @@ CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle s
 
 @interface UIAlertAction (MQExtension)
 
-@property (nonatomic , strong) CCAlertActionEntity *action_m ;
+@property (nonatomic , strong) MQAlertActionEntity *action_m ;
 
 @end

@@ -8,7 +8,7 @@
 
 #import <WebKit/WebKit.h>
 
-@class  CCScriptMessageDelegate;
+@class  MQScriptMessageDelegate;
 
 @interface WKWebView (MQExtension)
 
@@ -16,7 +16,7 @@
 + (instancetype) mq_common : (CGRect) frame
              configuration : (WKWebViewConfiguration *) configuration ;
 - (instancetype) mq_navigation_delegate : (id <WKNavigationDelegate>) delegate ;
-- (instancetype) mq_script : (CCScriptMessageDelegate *) delegate
+- (instancetype) mq_script : (MQScriptMessageDelegate *) delegate
                        key : (NSString *) sKey;
 
 /// Only "http://" && "https://" will be loaded online . // 只有 "http://" && "https://" 会被当做网址
@@ -34,7 +34,7 @@
 
 #pragma mark - -----
 
-@interface CCScriptMessageDelegate : NSObject < WKScriptMessageHandler >
+@interface MQScriptMessageDelegate : NSObject < WKScriptMessageHandler >
 
 @property (nonatomic , assign) id < WKScriptMessageHandler > scriptDelegate;
 

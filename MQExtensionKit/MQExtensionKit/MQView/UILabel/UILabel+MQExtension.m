@@ -28,13 +28,13 @@
     return self;
 }
 - (instancetype) mq_attributed_text_height : (CGFloat) fEstimate {
-    self.height = CC_TEXT_HEIGHT_A(self.width,
+    self.height = MQ_TEXT_HEIGHT_A(self.width,
                                    fEstimate,
                                    self.attributedText);
     return self;
 }
 - (instancetype) mq_text_height : (CGFloat) fEstimate {
-    self.height = CC_TEXT_HEIGHT_C(self.width,
+    self.height = MQ_TEXT_HEIGHT_C(self.width,
                                    fEstimate,
                                    self.text,
                                    self.font,

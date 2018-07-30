@@ -9,8 +9,8 @@
 #import "UICollectionView+MQExtension.h"
 #import <objc/runtime.h>
 
-#ifndef _CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_
-    #define _CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_ @"CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER"
+#ifndef _MQ_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_
+    #define _MQ_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_ @"MQ_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER"
 #endif
 
 @implementation UICollectionView (MQExtension)
@@ -27,7 +27,7 @@
     }
     
     [c registerClass:UICollectionViewCell.class
-forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
+forCellWithReuseIdentifier:_MQ_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
     return c;
 }
 - (instancetype) mq_delegate : (id <UICollectionViewDelegateFlowLayout>) delegate {
@@ -149,9 +149,9 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
 
 #pragma mark - -----
 
-#import "CCCommon.h"
+#import "MQCommon.h"
 
-@interface CCCollectionExtensionDelegate ()
+@interface MQCollectionExtensionDelegate ()
 
 @property (nonatomic , copy) BOOL (^bDidSelect)(__kindof UICollectionView *collectionView , NSIndexPath *indexPath) ;
 @property (nonatomic , copy) void (^bDidHightedCell)(__kindof UICollectionView *collectionView , NSIndexPath *indexPath) ;
@@ -170,7 +170,7 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
 
 @end
 
-@implementation CCCollectionExtensionDelegate
+@implementation MQCollectionExtensionDelegate
 
 - (id < UICollectionViewDelegateFlowLayout > ) init {
     if (self = [super init]) {
@@ -295,13 +295,13 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
     if (self.bDidEndDragging) self.bDidEndDragging(scrollView, decelerate);
 }
 
-_CC_DETECT_DEALLOC_
+_MQ_DETECT_DEALLOC_
 
 @end
 
 #pragma mark - -----
 
-@interface CCCollectionExtensionDataSource ()
+@interface MQCollectionExtensionDataSource ()
 
 @property (nonatomic , copy) NSInteger (^bSections)(__kindof UICollectionView *collectionView) ;
 @property (nonatomic , copy) NSInteger (^bItemsInSections)(__kindof UICollectionView * collectionView , NSInteger integerSections) ;
@@ -310,7 +310,7 @@ _CC_DETECT_DEALLOC_
 
 @end
 
-@implementation CCCollectionExtensionDataSource
+@implementation MQCollectionExtensionDataSource
 
 - (id < UICollectionViewDataSource >) init {
     if ((self = [super init])) {
@@ -347,14 +347,14 @@ _CC_DETECT_DEALLOC_
     return self.bItemsInSections ? self.bItemsInSections(collectionView , section) : 0;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *stringCellIdentifier = self.bCellIdentifier ? self.bCellIdentifier(collectionView , indexPath) : _CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_;
+    NSString *stringCellIdentifier = self.bCellIdentifier ? self.bCellIdentifier(collectionView , indexPath) : _MQ_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_;
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:stringCellIdentifier
                                                                            forIndexPath:indexPath];
     if (!cell) cell = [[UICollectionViewCell alloc] init];
     return self.bConfigCell ? self.bConfigCell(collectionView , cell , indexPath) : cell;
 }
 
-_CC_DETECT_DEALLOC_
+_MQ_DETECT_DEALLOC_
 
 @end
 
@@ -384,7 +384,7 @@ _CC_DETECT_DEALLOC_
 
 #import <objc/runtime.h>
 
-@interface CCCollectionExtensionDataPrefetching ()
+@interface MQCollectionExtensionDataPrefetching ()
 
 @property (nonatomic , assign) BOOL isDisableBackground ;
 @property (nonatomic , copy) void (^prefetching)(__kindof UICollectionView *, NSArray<NSIndexPath *> *);
@@ -394,7 +394,7 @@ _CC_DETECT_DEALLOC_
 
 @end
 
-@implementation CCCollectionExtensionDataPrefetching
+@implementation MQCollectionExtensionDataPrefetching
 
 - (id <UICollectionViewDataSourcePrefetching> ) init {
     if ((self = [super init])) {

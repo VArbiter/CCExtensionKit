@@ -31,7 +31,7 @@
     self.navigationDelegate = delegate;
     return self;
 }
-- (instancetype) mq_script : (CCScriptMessageDelegate *) delegate
+- (instancetype) mq_script : (MQScriptMessageDelegate *) delegate
                        key : (NSString *) sKey  {
     if (delegate && sKey) {
         [self.configuration.userContentController addScriptMessageHandler:delegate
@@ -69,7 +69,7 @@
 
 #pragma mark - -----
 
-@implementation CCScriptMessageDelegate
+@implementation MQScriptMessageDelegate
 
 - (instancetype)init:(id<WKScriptMessageHandler>)scriptDelegate{
     if ((self = [super init])) {

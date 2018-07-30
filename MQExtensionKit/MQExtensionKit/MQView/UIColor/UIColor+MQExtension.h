@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#ifndef CC_COLOR_HEX
-    #define CC_COLOR_HEX(_hex_,_alpha_) [UIColor mq_hex:(_hex_) alpha:(_alpha_)]
+#ifndef MQ_COLOR_HEX
+    #define MQ_COLOR_HEX(_hex_,_alpha_) [UIColor mq_hex:(_hex_) alpha:(_alpha_)]
 #endif
 
-#ifndef CC_COLOR_HEX_S
-    #define CC_COLOR_HEX_S(_hex_,_alpha_) [[UIColor mq_hex_s:(_hex_)] ccAlpha:(_alpha_)]
+#ifndef MQ_COLOR_HEX_S
+    #define MQ_COLOR_HEX_S(_hex_,_alpha_) [[UIColor mq_hex_s:(_hex_)] ccAlpha:(_alpha_)]
 #endif
 
 @interface UIColor (MQExtension)

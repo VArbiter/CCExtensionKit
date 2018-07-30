@@ -76,7 +76,7 @@
 
 #pragma mark - -----
 
-@interface CCAnimatedTransitionPresent : NSObject < UIViewControllerAnimatedTransitioning >
+@interface MQAnimatedTransitionPresent : NSObject < UIViewControllerAnimatedTransitioning >
 
 @property (nonatomic , assign) NSTimeInterval intervalDuration ;
 @property (nonatomic , copy) NSString * s_animation_type; // default kCATransitionFromRight // 默认 kCATransitionFromRight
@@ -85,7 +85,7 @@
 
 #pragma mark - -----
 
-@interface CCAnimatedTransitionDismiss : NSObject < UIViewControllerAnimatedTransitioning >
+@interface MQAnimatedTransitionDismiss : NSObject < UIViewControllerAnimatedTransitioning >
 
 @property (nonatomic , assign) NSTimeInterval intervalDuration ;
 @property (nonatomic , assign , getter=isDirectionRight) BOOL directionRight; // default YES // 默认为 YES

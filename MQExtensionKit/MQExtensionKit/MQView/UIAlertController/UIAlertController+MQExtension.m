@@ -29,9 +29,9 @@
     return self;
 }
 
-- (instancetype) mq_action : (CCAlertActionInfo *) info
+- (instancetype) mq_action : (MQAlertActionInfo *) info
                     action : (void(^)( __kindof UIAlertAction *action)) action {
-    CCAlertActionEntity *m = [[CCAlertActionEntity alloc] init];
+    MQAlertActionEntity *m = [[MQAlertActionEntity alloc] init];
     m.s_title = info[@"title"];
     m.style = (UIAlertActionStyle)[info[@"style"] integerValue];
     
@@ -42,11 +42,11 @@
     if (a) [self addAction:a];
     return self;
 }
-- (instancetype) mq_action_s : (NSArray < CCAlertActionInfo *> *) array
+- (instancetype) mq_action_s : (NSArray < MQAlertActionInfo *> *) array
                       action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) actionT {
     __weak typeof(self) pSelf = self;
-    [array enumerateObjectsUsingBlock:^(CCAlertActionInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        CCAlertActionEntity *m = [[CCAlertActionEntity alloc] init];
+    [array enumerateObjectsUsingBlock:^(MQAlertActionInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        MQAlertActionEntity *m = [[MQAlertActionEntity alloc] init];
         m.s_title = obj[@"title"];
         m.style = (UIAlertActionStyle)[obj[@"style"] integerValue];
         
@@ -61,7 +61,7 @@
     return pSelf;
 }
 
-CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle style) {
+MQAlertActionInfo * MQAlertActionInfoMake(NSString * title, UIAlertActionStyle style) {
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     [d setValue:title forKey:@"title"];
     [d setValue:@(style) forKey:@"style"];
@@ -72,17 +72,17 @@ CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle s
 
 #pragma mark - -----
 
-@implementation CCAlertActionEntity
+@implementation MQAlertActionEntity
 @end
 
 #pragma mark - -----
 
 @implementation UIAlertAction (MQExtension)
 
-- (void)setAction_m:(CCAlertActionEntity *)action_m {
+- (void)setAction_m:(MQAlertActionEntity *)action_m {
     objc_setAssociatedObject(self, @selector(action_m), action_m, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-- (CCAlertActionEntity *)action_m {
+- (MQAlertActionEntity *)action_m {
     return objc_getAssociatedObject(self, _cmd);
 }
 

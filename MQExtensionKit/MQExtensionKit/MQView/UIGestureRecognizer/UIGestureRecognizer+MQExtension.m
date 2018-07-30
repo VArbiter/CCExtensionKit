@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY";
+static const char * _MQ_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "MQ_UIGESTURERECOGNIZER_ASSOCIATE_KEY";
 
 @interface UIGestureRecognizer (MQExtension_Assit)
 
@@ -21,7 +21,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 @implementation UIGestureRecognizer (MQExtension_Assit)
 
 - (void)ccGestureExtensionAction:( __kindof UIGestureRecognizer *)sender {
-    UIGestureRecognizer *(^t)( __kindof UIGestureRecognizer *) = objc_getAssociatedObject(self, _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_);
+    UIGestureRecognizer *(^t)( __kindof UIGestureRecognizer *) = objc_getAssociatedObject(self, _MQ_UIGESTURERECOGNIZER_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) t(self);
         else {
@@ -44,7 +44,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 }
 
 - (instancetype) mq_action : (void(^)( __kindof UIGestureRecognizer *gr)) action {
-    if (action) objc_setAssociatedObject(self, _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    if (action) objc_setAssociatedObject(self, _MQ_UIGESTURERECOGNIZER_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
 - (instancetype) mq_target : (id) target
@@ -127,7 +127,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 
 #pragma mark - -----
 
-static const char * _CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY_ = "CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY";
+static const char * _MQ_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY_ = "MQ_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY";
 
 @interface UIViewController (MQExtension_Gesture_Actions_Assit)
 
@@ -140,16 +140,16 @@ static const char * _CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK
 
 - (void)setScreenEdgePanGR:(UIScreenEdgePanGestureRecognizer *)screenEdgePanGR {
     objc_setAssociatedObject(self,
-                             "CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_ASSOCIATE_KEY",
+                             "MQ_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_ASSOCIATE_KEY",
                              screenEdgePanGR,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 - (UIScreenEdgePanGestureRecognizer *)screenEdgePanGR {
-    return objc_getAssociatedObject(self, "CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_ASSOCIATE_KEY");
+    return objc_getAssociatedObject(self, "MQ_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_ASSOCIATE_KEY");
 }
 
 - (void) ccScreenEdgePanGestureAction : (UIScreenEdgePanGestureRecognizer *) sender {
-    void(^t)(__kindof UIViewController *sender , __kindof UIScreenEdgePanGestureRecognizer *edgePanGR) = objc_getAssociatedObject(self, _CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY_);
+    void(^t)(__kindof UIViewController *sender , __kindof UIScreenEdgePanGestureRecognizer *edgePanGR) = objc_getAssociatedObject(self, _MQ_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) t(self,sender);
         else {
@@ -168,7 +168,7 @@ static const char * _CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK
 - (instancetype) mq_modal_pop_gesture : (void(^)(__kindof UIViewController *sender ,
                                               __kindof UIScreenEdgePanGestureRecognizer *edgePanGR)) bEdgePanGR {
     objc_setAssociatedObject(self,
-                             _CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY_,
+                             _MQ_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY_,
                              bEdgePanGR,
                              OBJC_ASSOCIATION_COPY_NONATOMIC);
     if (self.screenEdgePanGR) {

@@ -65,32 +65,32 @@
 
 @implementation UIApplication (MQExtension_Schemes)
 
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_QQ = @"mqq://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_WECHAT = @"weixin://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_SINA_WEIBO = @"sinaweibo://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_ALIPAY = @"alipay://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_FIND_MY_IPHONE = @"fmip1://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_JINGDONG = @"openapp.jdmoble://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_DAZHONGDIANPING = @"dianping://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_DAZHONGDIANPING_SEARCH = @"dianping://search";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_MEITUAN = @"imeituan://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_WOCHACHA = @"wcc://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_1_HAODIAN = @"wccbyihaodian://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_ZHIHU = @"zhihu://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_YOUKU = @"youku://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_YOUDAO_DICT = @"yddictproapp://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_NET_EASE_OPEN = @"ntesopen://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_TAOBAO = @"taobao://";
-CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_RENREN = @"renren://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_QQ = @"mqq://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_WECHAT = @"weixin://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_SINA_WEIBO = @"sinaweibo://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_ALIPAY = @"alipay://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_FIND_MY_IPHONE = @"fmip1://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_JINGDONG = @"openapp.jdmoble://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_DAZHONGDIANPING = @"dianping://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_DAZHONGDIANPING_SEARCH = @"dianping://search";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_MEITUAN = @"imeituan://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_WOCHACHA = @"wcc://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_1_HAODIAN = @"wccbyihaodian://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_ZHIHU = @"zhihu://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_YOUKU = @"youku://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_YOUDAO_DICT = @"yddictproapp://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_NET_EASE_OPEN = @"ntesopen://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_TAOBAO = @"taobao://";
+MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_RENREN = @"renren://";
 
 + (BOOL) mq_can_open_QQ {
-    return [self mq_can_open:CC_THIRD_PARTY_SCHEME_QQ];
+    return [self mq_can_open:MQ_THIRD_PARTY_SCHEME_QQ];
 }
 + (BOOL) mq_can_open_WeChat {
-    return [self mq_can_open:CC_THIRD_PARTY_SCHEME_WECHAT];
+    return [self mq_can_open:MQ_THIRD_PARTY_SCHEME_WECHAT];
 }
 + (BOOL) mq_can_open_Sina_WeiBo {
-    return [self mq_can_open:CC_THIRD_PARTY_SCHEME_SINA_WEIBO];
+    return [self mq_can_open:MQ_THIRD_PARTY_SCHEME_SINA_WEIBO];
 }
 
 + (void) mq_make_call : (NSString *) s_call_num {

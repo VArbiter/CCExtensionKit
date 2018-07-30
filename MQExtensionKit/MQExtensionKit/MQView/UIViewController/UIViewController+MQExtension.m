@@ -15,11 +15,11 @@
 @implementation UIViewController (MQExtension) 
 
 - (instancetype) mq_disable_animated {
-    objc_setAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_", @(false), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_", @(false), OBJC_ASSOCIATION_ASSIGN);
     return self;
 }
 - (instancetype) mq_enable_animated {
-    objc_setAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_", @(YES), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_", @(YES), OBJC_ASSOCIATION_ASSIGN);
     return self;
 }
 
@@ -35,7 +35,7 @@
 }
 - (void) mq_dismiss : (CGFloat) fDelay
            complete : (void(^)(void)) complete {
-    id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
+    id o = objc_getAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     if (self.presentingViewController) {
         if (fDelay <= .0f) [self dismissViewControllerAnimated:b
@@ -46,14 +46,14 @@
 
 - (void) mq_pop {
     if (self.navigationController) {
-        id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
+        id o = objc_getAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
         BOOL b = o ? [o boolValue] : YES;
         [self.navigationController popViewControllerAnimated:b];
     }
     else [self mq_go_back];
 }
 - (void) mq_pop_to : (__kindof UIViewController *) controller {
-    id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
+    id o = objc_getAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     if (controller
         && [controller isKindOfClass:UIViewController.class]
@@ -64,7 +64,7 @@
     else [self mq_go_back];
 }
 - (void) mq_pop_to_root {
-    id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
+    id o = objc_getAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     if (self.navigationController) [self.navigationController popToRootViewControllerAnimated:b];
     else [self mq_go_back];
@@ -80,7 +80,7 @@
              hide_bottom : (BOOL) isHide {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
     if (self.navigationController) {
-        id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
+        id o = objc_getAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
         BOOL b = o ? [o boolValue] : YES;
         controller.hidesBottomBarWhenPushed = isHide;
         [self.navigationController pushViewController:controller
@@ -97,7 +97,7 @@
 - (instancetype) mq_present : (__kindof UIViewController *) controller
                    complete : (void (^)(void)) complete {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
-    id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
+    id o = objc_getAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     // solve the delay problem .
     __weak typeof(self) pSelf = self;
@@ -123,12 +123,12 @@
     for (id item in self.view.subviews) {
         if (item == controller.view) return self;
     }
-    id o = objc_getAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
+    id o = objc_getAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     if (b) {
         controller.view.alpha = .01f;
         [self.view addSubview:controller.view];
-        [UIView animateWithDuration:(fAnimationDuration > .0f ? fAnimationDuration : _CC_DEFAULT_ANIMATION_COMMON_DURATION_) animations:^{
+        [UIView animateWithDuration:(fAnimationDuration > .0f ? fAnimationDuration : _MQ_DEFAULT_ANIMATION_COMMON_DURATION_) animations:^{
             controller.view.alpha = 1.f;
         }];
     }
@@ -148,7 +148,7 @@
     if (isAminated) {
         controller.view.alpha = .01f;
         [w addSubview:controller.view];
-        [UIView animateWithDuration:(fAnimationDuration > .0f ? fAnimationDuration : _CC_DEFAULT_ANIMATION_COMMON_DURATION_) animations:^{
+        [UIView animateWithDuration:(fAnimationDuration > .0f ? fAnimationDuration : _MQ_DEFAULT_ANIMATION_COMMON_DURATION_) animations:^{
             controller.view.alpha = 1.f;
         }];
     }
@@ -204,12 +204,12 @@
 
 // - UIViewControllerTransitioningDelegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    CCAnimatedTransitionPresent *animate = CCAnimatedTransitionPresent.alloc.init;
+    MQAnimatedTransitionPresent *animate = MQAnimatedTransitionPresent.alloc.init;
     animate.intervalDuration = .2f;
     return animate;
 }
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    CCAnimatedTransitionDismiss *animate = CCAnimatedTransitionDismiss.alloc.init;
+    MQAnimatedTransitionDismiss *animate = MQAnimatedTransitionDismiss.alloc.init;
     animate.intervalDuration = .2f;
     return animate;
 }
@@ -239,17 +239,17 @@ static NSString * mq_controller_extension_animated_transition_key = @"mq_control
 
 #pragma mark - -----
 
-@interface CCAnimatedTransitionPresent () < CAAnimationDelegate >
+@interface MQAnimatedTransitionPresent () < CAAnimationDelegate >
 
 @property (nonatomic , assign) id < UIViewControllerContextTransitioning > transition;
 
 @end
 
-@implementation CCAnimatedTransitionPresent
+@implementation MQAnimatedTransitionPresent
 
 - (instancetype)init {
     if ((self = [super init])) {
-        self.intervalDuration = _CC_DEFAULT_ANIMATION_COMMON_DURATION_;
+        self.intervalDuration = _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
         self.s_animation_type = kCATransitionFromRight;
     }
     return self;
@@ -284,17 +284,17 @@ static NSString * mq_controller_extension_animated_transition_key = @"mq_control
 
 #pragma mark - -----
 
-@interface CCAnimatedTransitionDismiss () < CAAnimationDelegate >
+@interface MQAnimatedTransitionDismiss () < CAAnimationDelegate >
 
 @property (nonatomic , assign) id < UIViewControllerContextTransitioning > transition;
 
 @end
 
-@implementation CCAnimatedTransitionDismiss
+@implementation MQAnimatedTransitionDismiss
 
 - (instancetype)init {
     if ((self = [super init])) {
-        self.intervalDuration = _CC_DEFAULT_ANIMATION_COMMON_DURATION_;
+        self.intervalDuration = _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
         self.directionRight = YES;
     }
     return self;

@@ -10,7 +10,7 @@
 
 @interface UIImageView (MQExtension)
 
-/// set contentMode && masksToBounds in app-wide with CCExtensionKit . // 在 app 中, 全局设置由 CCExtensionKit 创建 的 imageView 的 contentMode 和 masksToBounds .
+/// set contentMode && masksToBounds in app-wide with MQExtensionKit . // 在 app 中, 全局设置由 MQExtensionKit 创建 的 imageView 的 contentMode 和 masksToBounds .
 + (void) mq_set_image_view_content_mode : (UIViewContentMode) mode ;
 + (void) mq_set_image_view_masks_to_bounds : (BOOL) masks ;
 

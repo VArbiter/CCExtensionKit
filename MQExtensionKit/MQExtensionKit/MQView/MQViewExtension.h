@@ -1,13 +1,13 @@
 //
-//  CCViewExtension.h
+//  MQViewExtension.h
 //  MQExtensionKit
 //
 //  Created by Elwinfrederick on 06/09/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#ifndef CCViewExtension_h
-#define CCViewExtension_h
+#ifndef MQViewExtension_h
+#define MQViewExtension_h
 
     #import "UIView+MQExtension.h"
     #import "WKWebView+MQExtension.h"
@@ -34,4 +34,4 @@
     #import "UIResponder+MQExtension.h"
     #import "UIApplication+MQExtension.h"
 
-#endif /* CCViewExtension_h */
+#endif /* MQViewExtension_h */

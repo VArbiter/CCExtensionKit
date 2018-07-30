@@ -59,7 +59,7 @@
 
 #pragma mark - -----
 
-@interface CCTableExtensionDelegate : NSObject < UITableViewDelegate >
+@interface MQTableExtensionDelegate : NSObject < UITableViewDelegate >
 
 - (id < UITableViewDelegate > ) init ;
 
@@ -82,7 +82,7 @@
 
 #pragma mark - -----
 
-@interface CCTableExtensionDataSource : NSObject < UITableViewDataSource >
+@interface MQTableExtensionDataSource : NSObject < UITableViewDataSource >
 
 - (id < UITableViewDataSource >) init ;
 
@@ -110,10 +110,10 @@
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 
-/// instructions && notes are the same with 'CCCollectionExtensionDataPrefetching' in 'UICollectionView+MQExtension'
-// 说明详见 'UICollectionView+MQExtension' 文件中的 'CCCollectionExtensionDataPrefetching'  , 因为是相同的
+/// instructions && notes are the same with 'MQCollectionExtensionDataPrefetching' in 'UICollectionView+MQExtension'
+// 说明详见 'UICollectionView+MQExtension' 文件中的 'MQCollectionExtensionDataPrefetching'  , 因为是相同的
 
-@interface CCTableExtensionDataPrefetching : NSObject < UITableViewDataSourcePrefetching >
+@interface MQTableExtensionDataPrefetching : NSObject < UITableViewDataSourcePrefetching >
 
 /// auto enable prefetch in background thread // 已在后台线程启用
 - (id < UITableViewDataSourcePrefetching >) init ;

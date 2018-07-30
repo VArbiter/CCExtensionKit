@@ -9,7 +9,7 @@
 #import "UIBarButtonItem+MQExtension.h"
 #import <objc/runtime.h>
 
-static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY";
+static const char * _MQ_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "MQ_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY";
 
 @interface UIBarButtonItem (MQExtension_Assit)
 
@@ -20,7 +20,7 @@ static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONIT
 @implementation UIBarButtonItem (MQExtension_Assit)
 
 - (void) ccBarButtonItemExtensionAction : ( __kindof UIBarButtonItem *) sender {
-    void (^t)( __kindof UIBarButtonItem *) = objc_getAssociatedObject(self, _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_);
+    void (^t)( __kindof UIBarButtonItem *) = objc_getAssociatedObject(self, _MQ_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) {
             t(sender);
@@ -57,7 +57,7 @@ static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONIT
 }
 - (instancetype) mq_target : (id) target
                    action : (void (^)( __kindof UIBarButtonItem *sender)) action {
-    if (action) objc_setAssociatedObject(self, _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    if (action) objc_setAssociatedObject(self, _MQ_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self setTarget:target];
     [self setAction:@selector(ccBarButtonItemExtensionAction:)];
     return self;

@@ -9,50 +9,50 @@
 #import "UIView+MQExtension.h"
 #import "UIGestureRecognizer+MQExtension.h"
 
-static CGFloat _CC_DEFAULT_SCALE_WIDTH_ = 750.f;
-static CGFloat _CC_DEFAULT_SCALE_HEIGHT_ = 1334.f;
-CGFloat const _CC_DEFAULT_ANIMATION_COMMON_DURATION_ = .3f;
+static CGFloat _MQ_DEFAULT_SCALE_WIDTH_ = 750.f;
+static CGFloat _MQ_DEFAULT_SCALE_HEIGHT_ = 1334.f;
+CGFloat const _MQ_DEFAULT_ANIMATION_COMMON_DURATION_ = .3f;
 
 #pragma mark - Struct
-CCPoint CCPointMake(CGFloat x , CGFloat y) {
-    CCPoint o;
-    o.x = x / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
-    o.y = y / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+MQPoint MQPointMake(CGFloat x , CGFloat y) {
+    MQPoint o;
+    o.x = x / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    o.y = y / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
     return o;
 }
-CCPoint CCMakePointFrom(CGPoint point) {
-    return CCPointMake(point.x, point.y);
+MQPoint MQMakePointFrom(CGPoint point) {
+    return MQPointMake(point.x, point.y);
 }
-CGPoint CGMakePointFrom(CCPoint point) {
+CGPoint CGMakePointFrom(MQPoint point) {
     return CGPointMake(point.x, point.y);
 }
 
-CCSize CCSizeMake(CGFloat width , CGFloat height) {
-    CCSize s;
-    s.width = width / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
-    s.height = height / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+MQSize MQSizeMake(CGFloat width , CGFloat height) {
+    MQSize s;
+    s.width = width / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    s.height = height / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
     return s;
 }
-CCSize CCMakeSizeFrom(CGSize size) {
-    return CCSizeMake(size.width, size.height);
+MQSize MQMakeSizeFrom(CGSize size) {
+    return MQSizeMake(size.width, size.height);
 }
-CGSize CGMakeSizeFrom(CCSize size) {
+CGSize CGMakeSizeFrom(MQSize size) {
     return CGSizeMake(size.width, size.height);
 }
 
-CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
-    CCRect r;
-    r.origin = CCPointMake(x, y);
-    r.size = CCSizeMake(width, height);
+MQRect MQRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
+    MQRect r;
+    r.origin = MQPointMake(x, y);
+    r.size = MQSizeMake(width, height);
     return r;
 }
-CCRect CCMakeRectFrom(CGRect rect) {
-    return CCRectMake(rect.origin.x,
+MQRect MQMakeRectFrom(CGRect rect) {
+    return MQRectMake(rect.origin.x,
                       rect.origin.y,
                       rect.size.width,
                       rect.size.height);
 }
-CGRect CGMakeRectFrom(CCRect rect) {
+CGRect CGMakeRectFrom(MQRect rect) {
     return CGRectMake(rect.origin.x,
                       rect.origin.y,
                       rect.size.width,
@@ -63,21 +63,21 @@ CGRect CGRectFull(void){
     return UIScreen.mainScreen.bounds;
 }
 
-CCEdgeInsets CCEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
-    CCEdgeInsets i;
-    i.top = top / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
-    i.left = left / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
-    i.bottom = bottom / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
-    i.right = right / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
+    MQEdgeInsets i;
+    i.top = top / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    i.left = left / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    i.bottom = bottom / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    i.right = right / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
     return i;
 }
-CCEdgeInsets CCMakeEdgeInsetsFrom(UIEdgeInsets insets) {
-    return CCEdgeInsetsMake(insets.top,
+MQEdgeInsets MQMakeEdgeInsetsFrom(UIEdgeInsets insets) {
+    return MQEdgeInsetsMake(insets.top,
                             insets.left,
                             insets.bottom,
                             insets.right);
 }
-UIEdgeInsets UIMakeEdgeInsetsFrom(CCEdgeInsets insets) {
+UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets) {
     return UIEdgeInsetsMake(insets.top,
                             insets.left,
                             insets.bottom,
@@ -85,35 +85,35 @@ UIEdgeInsets UIMakeEdgeInsetsFrom(CCEdgeInsets insets) {
 }
 
 #pragma mark - Scale
-CGFloat CCScaleW(CGFloat w) {
-    return w / _CC_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+CGFloat MQScaleW(CGFloat w) {
+    return w / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
 }
-CGFloat CCScaleH(CGFloat h) {
-    return h / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
-}
-
-CGFloat CCAspectRatio(void) {
-    return UIScreen.mainScreen.bounds.size.width * UIScreen.mainScreen.scale / _CC_DEFAULT_SCALE_WIDTH_ ;
-}
-CGFloat CCAspectW(CGFloat w) {
-    return w * CCAspectRatio();
-}
-CGFloat CCAspectH(CGFloat h) {
-    return h * CCAspectRatio();
+CGFloat MQScaleH(CGFloat h) {
+    return h / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
 }
 
-CGPoint CCScaleOrigin(CGPoint origin) {
-    return CGPointMake(CCScaleW(origin.x), CCScaleH(origin.y));
+CGFloat MQAspectRatio(void) {
+    return UIScreen.mainScreen.bounds.size.width * UIScreen.mainScreen.scale / _MQ_DEFAULT_SCALE_WIDTH_ ;
 }
-CGSize CCScaleSize(CGSize size) {
-    return CGSizeMake(CCScaleW(size.width), CCScaleH(size.height));
+CGFloat MQAspectW(CGFloat w) {
+    return w * MQAspectRatio();
+}
+CGFloat MQAspectH(CGFloat h) {
+    return h * MQAspectRatio();
 }
 
-CGFloat CCWScale(CGFloat w) {
-    return w / _CC_DEFAULT_SCALE_WIDTH_;
+CGPoint MQScaleOrigin(CGPoint origin) {
+    return CGPointMake(MQScaleW(origin.x), MQScaleH(origin.y));
 }
-CGFloat CCHScale(CGFloat h) {
-    return h / _CC_DEFAULT_SCALE_HEIGHT_;
+CGSize MQScaleSize(CGSize size) {
+    return CGSizeMake(MQScaleW(size.width), MQScaleH(size.height));
+}
+
+CGFloat MQWScale(CGFloat w) {
+    return w / _MQ_DEFAULT_SCALE_WIDTH_;
+}
+CGFloat MQHScale(CGFloat h) {
+    return h / _MQ_DEFAULT_SCALE_HEIGHT_;
 }
 
 @implementation UIView (MQExtension)
@@ -124,8 +124,8 @@ CGFloat CCHScale(CGFloat h) {
 }
 + (void) mq_set_scale : (CGFloat) fWidth
              height : (CGFloat) fHeight {
-    _CC_DEFAULT_SCALE_WIDTH_ = fWidth;
-    _CC_DEFAULT_SCALE_HEIGHT_ = fHeight;
+    _MQ_DEFAULT_SCALE_WIDTH_ = fWidth;
+    _MQ_DEFAULT_SCALE_HEIGHT_ = fHeight;
 }
 
 + (void) mq_disable_animation : (void (^)(void)) action {
@@ -399,7 +399,7 @@ CGFloat CCHScale(CGFloat h) {
                           radius : (CGFloat) fRadius {
     UIBezierPath *p = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                             byRoundingCorners:corner
-                                                  cornerRadii:CGSizeMake(CCScaleW(fRadius), CCScaleH(fRadius))];
+                                                  cornerRadii:CGSizeMake(MQScaleW(fRadius), MQScaleH(fRadius))];
     CAShapeLayer *l = [[CAShapeLayer alloc] init];
     l.frame = self.bounds;
     l.path = p.CGPath;
@@ -437,19 +437,19 @@ CGFloat CCHScale(CGFloat h) {
 
 @implementation UIView (MQExtension_FitHeight)
 
-CGFloat CC_TEXT_HEIGHT_S(CGFloat fWidth , CGFloat fEstimateHeight , NSString *string) {
-    return CC_TEXT_HEIGHT_C(fWidth,
+CGFloat MQ_TEXT_HEIGHT_S(CGFloat fWidth , CGFloat fEstimateHeight , NSString *string) {
+    return MQ_TEXT_HEIGHT_C(fWidth,
                             fEstimateHeight ,
                             string,
                             [UIFont systemFontOfSize:UIFont.systemFontSize],
                             NSLineBreakByWordWrapping);
 }
-CGFloat CC_TEXT_HEIGHT_C(CGFloat fWidth ,
+CGFloat MQ_TEXT_HEIGHT_C(CGFloat fWidth ,
                          CGFloat fEstimateHeight ,
                          NSString *string ,
                          UIFont *font ,
                          NSLineBreakMode mode) {
-    return CC_TEXT_HEIGHT_AS(fWidth,
+    return MQ_TEXT_HEIGHT_AS(fWidth,
                              fEstimateHeight,
                              string,
                              font,
@@ -458,13 +458,13 @@ CGFloat CC_TEXT_HEIGHT_C(CGFloat fWidth ,
                              -1);
 }
 
-CGFloat CC_TEXT_HEIGHT_A(CGFloat fWidth , CGFloat fEstimateHeight , NSAttributedString *aString) {
+CGFloat MQ_TEXT_HEIGHT_A(CGFloat fWidth , CGFloat fEstimateHeight , NSAttributedString *aString) {
     CGRect rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
                                         options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
                                         context:nil];
     return rect.size.height >= fEstimateHeight ? rect.size.height : fEstimateHeight;
 }
-CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
+CGFloat MQ_TEXT_HEIGHT_AS(CGFloat fWidth ,
                           CGFloat fEstimateHeight ,
                           NSString *aString ,
                           UIFont *font ,

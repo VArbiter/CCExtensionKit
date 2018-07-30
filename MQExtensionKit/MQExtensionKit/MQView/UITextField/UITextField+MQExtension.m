@@ -18,7 +18,7 @@
 @implementation UITextField (MQExtension_Assist)
 
 - (void) ccTextFieldTextDidChange : (__kindof UITextField *) textField {
-    void (^bChanged)(__kindof UITextField *sender) = objc_getAssociatedObject(self, "CC_TEXT_FIELD_TEXT_DID_CHANGE_ACTION");
+    void (^bChanged)(__kindof UITextField *sender) = objc_getAssociatedObject(self, "MQ_TEXT_FIELD_TEXT_DID_CHANGE_ACTION");
     if (bChanged) bChanged(textField);
 }
 
@@ -77,7 +77,7 @@
 
 - (instancetype) mq_text_did_change : (void (^)(__kindof UITextField *sender)) bChanged {
     if (!bChanged) return self;
-    objc_setAssociatedObject(self, "CC_TEXT_FIELD_TEXT_DID_CHANGE_ACTION", bChanged, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, "MQ_TEXT_FIELD_TEXT_DID_CHANGE_ACTION", bChanged, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self addTarget:self
              action:@selector(ccTextFieldTextDidChange:)
    forControlEvents:UIControlEventEditingChanged];
