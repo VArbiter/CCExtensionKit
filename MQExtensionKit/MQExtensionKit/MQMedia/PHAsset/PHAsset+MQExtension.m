@@ -83,28 +83,28 @@
 
 @implementation PHAsset (MQExtension)
 
-CCPHAssetType CCPHAssetType_Unknow = @"CCPHAssetType_Unknow" ;
-CCPHAssetType CCPHAssetType_Video = @"CCPHAssetType_Video" ;
-CCPHAssetType CCPHAssetType_Photo = @"CCPHAssetType_Photo" ;
-CCPHAssetType CCPHAssetType_Audio = @"CCPHAssetType_Audio" ;
-CCPHAssetType CCPHAssetType_Live_Photo = @"CCPHAssetType_Live_Photo" ;
+MQPHAssetType MQPHAssetType_Unknow = @"MQPHAssetType_Unknow" ;
+MQPHAssetType MQPHAssetType_Video = @"MQPHAssetType_Video" ;
+MQPHAssetType MQPHAssetType_Photo = @"MQPHAssetType_Photo" ;
+MQPHAssetType MQPHAssetType_Audio = @"MQPHAssetType_Audio" ;
+MQPHAssetType MQPHAssetType_Live_Photo = @"MQPHAssetType_Live_Photo" ;
 
-- (CCPHAssetType)type_asset {
-    if (self.mediaType == PHAssetMediaTypeVideo) return CCPHAssetType_Video;
+- (MQPHAssetType)type_asset {
+    if (self.mediaType == PHAssetMediaTypeVideo) return MQPHAssetType_Video;
     else if (self.mediaType == PHAssetMediaTypeImage) {
         if (UIDevice.currentDevice.systemVersion.floatValue >= 9.1) {
             return self.mediaSubtypes == PHAssetMediaSubtypePhotoLive ?
-            CCPHAssetType_Live_Photo : CCPHAssetType_Photo;
+            MQPHAssetType_Live_Photo : MQPHAssetType_Photo;
         }
-        return CCPHAssetType_Photo;
+        return MQPHAssetType_Photo;
     }
-    else if (self.mediaType == PHAssetMediaTypeAudio) return CCPHAssetType_Audio;
+    else if (self.mediaType == PHAssetMediaTypeAudio) return MQPHAssetType_Audio;
     
-    return CCPHAssetType_Unknow;
+    return MQPHAssetType_Unknow;
 }
 /*
 - (void) mq_cache_image_size : (CGSize) size
-                        type : (CCPHAssetCacheType) type
+                        type : (MQPHAssetCacheType) type
                     complete : (void (^)(UIImage * image ,
                                          PHAsset * asset ,
                                          NSDictionary *dict_info)) mq_complete_block {
@@ -112,16 +112,16 @@ CCPHAssetType CCPHAssetType_Live_Photo = @"CCPHAssetType_Live_Photo" ;
     // image cache .
 }
 
-- (void) mq_destory_cache : (CCPHAssetCacheType) type {
+- (void) mq_destory_cache : (MQPHAssetCacheType) type {
     switch (type) {
-        case CCPHAssetCacheType_default:
-        case CCPHAssetCacheType_Normal:{
+        case MQPHAssetCacheType_default:
+        case MQPHAssetCacheType_Normal:{
             [self mq_destory_normal_cache];
         }break;
-        case CCPHAssetCacheType_High_Quality:{
+        case MQPHAssetCacheType_High_Quality:{
             [self mq_destory_high_quality_cache];
         }break;
-        case CCPHAssetCacheType_Fast:{
+        case MQPHAssetCacheType_Fast:{
             [self mq_destory_fast_cache];
         }break;
             

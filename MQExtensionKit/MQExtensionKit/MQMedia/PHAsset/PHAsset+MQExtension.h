@@ -13,25 +13,25 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
 
 /*
-typedef NS_ENUM(NSInteger , CCPHAssetCacheType) {
-    CCPHAssetCacheType_default = 0,
-    CCPHAssetCacheType_Normal ,
-    CCPHAssetCacheType_High_Quality ,
-    CCPHAssetCacheType_Fast
+typedef NS_ENUM(NSInteger , MQPHAssetCacheType) {
+    MQPHAssetCacheType_default = 0,
+    MQPHAssetCacheType_Normal ,
+    MQPHAssetCacheType_High_Quality ,
+    MQPHAssetCacheType_Fast
 };
  */
 
-typedef NSString * CCPHAssetType;
+typedef NSString * MQPHAssetType;
 
-FOUNDATION_EXPORT CCPHAssetType CCPHAssetType_Unknow ;
-FOUNDATION_EXPORT CCPHAssetType CCPHAssetType_Video ;
-FOUNDATION_EXPORT CCPHAssetType CCPHAssetType_Photo ;
-FOUNDATION_EXPORT CCPHAssetType CCPHAssetType_Audio ;
-FOUNDATION_EXPORT CCPHAssetType CCPHAssetType_Live_Photo ;
+FOUNDATION_EXPORT MQPHAssetType MQPHAssetType_Unknow ;
+FOUNDATION_EXPORT MQPHAssetType MQPHAssetType_Video ;
+FOUNDATION_EXPORT MQPHAssetType MQPHAssetType_Photo ;
+FOUNDATION_EXPORT MQPHAssetType MQPHAssetType_Audio ;
+FOUNDATION_EXPORT MQPHAssetType MQPHAssetType_Live_Photo ;
 
 @interface PHAsset (MQExtension)
 
-@property (readonly) CCPHAssetType type_asset;
+@property (readonly) MQPHAssetType type_asset;
 
 /*
 @property (nonatomic , strong , readonly) NSMutableDictionary *mq_phasset_dict_normal_cache ;
@@ -39,12 +39,12 @@ FOUNDATION_EXPORT CCPHAssetType CCPHAssetType_Live_Photo ;
 @property (nonatomic , strong , readonly) NSMutableDictionary *mq_phasset_dict_fast_cache ;
 
 - (void) mq_cache_image_size : (CGSize) size
-                        type : (CCPHAssetCacheType) type
+                        type : (MQPHAssetCacheType) type
                     complete : (void (^)(UIImage * image ,
                                          PHAsset * asset ,
                                          NSDictionary *dict_info)) mq_complete_block ;
 
-- (void) mq_destory_cache : (CCPHAssetCacheType) type ;
+- (void) mq_destory_cache : (MQPHAssetCacheType) type ;
 - (void) mq_destory_all_cache ;
 
  */
