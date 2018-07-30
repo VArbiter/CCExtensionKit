@@ -1,22 +1,27 @@
-# CCExtensionKit
+# MQExtensionKit
 
 ##### Some custom categories for iOS with Objective-C. 
 
-[![Version](https://img.shields.io/cocoapods/v/CCExtensionKit.svg?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+[![Version](https://img.shields.io/cocoapods/v/MQExtensionKit.svg?style=flat)](http://cocoapods.org/pods/MQExtensionKit)
 
-[![License](https://img.shields.io/cocoapods/l/CCExtensionKit.svg?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+[![License](https://img.shields.io/cocoapods/l/MQExtensionKit.svg?style=flat)](http://cocoapods.org/pods/MQExtensionKit)
 
-[![Platform](https://img.shields.io/cocoapods/p/CCExtensionKit.svg?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+[![Platform](https://img.shields.io/cocoapods/p/MQExtensionKit.svg?style=flat)](http://cocoapods.org/pods/MQExtensionKit)
 
-### 中文说明请点击[[这里](https://github.com/VArbiter/CCExtensionKit/blob/master/README_CN.md)]
+### 中文说明请点击[[这里](https://github.com/VArbiter/MQExtensionKit/blob/master/README_CN.md)]
 
 ### Current Version 3.7.0
 
-> pod 'CCExtensionKit' , '~> 3.7.0' // default is CCCore
+> pod 'MQExtensionKit' , '~> 3.7.0' // default is MQCore
 > 
-> > pod 'CCExtensionKit/CCFull' , '~> 3.7.0' . if you wanna install the whole Kit .
+> > pod 'MQExtensionKit/MQFull' , '~> 3.7.0' . if you wanna install the whole Kit .
 
-### Warning 
+### Warning
+>
+> CCExtensionKit has no longer effect after version `3.7.0`
+> 
+> cause after `3.7.0` , CCLocalLib was renamed to `'MQExtensionKit'` .
+>
 > CCLocalLib has no longer effect after version `2.2.3`
 > 
 > cause after `3.0.0` , CCLocalLib was renamed to `'CCExtensionKit'` .
@@ -26,40 +31,45 @@
 > therefore , be ware when submit your app to App Store .
 
 ### Note
-> when install , default is `CCCore` , `CCCore` contains 
+> when install , default is `MQCore` , `MQCore` contains 
 > 
-> > `CCCommon` (Macros) , `CCProtocol` (Protocol) , `CCData` (NS Family), `CCView` (UI Family), `CCRuntime` (objc/ runtime associate)
+> > `MQCommon` (Macros) , `MQProtocol` (Protocol) , `MQData` (NS Family), `MQView` (UI Family), `MQRuntime` (objc/ runtime associate)
 > 
-> when you wanna get to Full , install with `"CCExtensionKit/CCFull"`
+> when you wanna get to Full , install with `"MQExtensionKit/MQFull"`
 
 **Instructions**
 > 
-> > CCCore : Core extensions . a abstract collection .
+> > MQCore : Core extensions . a abstract collection .
 > 
-> > CCFull : Full extensions (not included CCDataBase && CCCustom) . a abstract collection .
+> > MQFull : Full extensions (not included MQDataBase && MQCustom) . a abstract collection .
 > 
-> > CCExtensionAssets : Assets collection , preserve for future needs . (not available for now).
+> > MQExtensionAssets : Assets collection , preserve for future needs . (not available for now).
 > 
-> > CCCommon : Macros && Common tools .
+> > MQCommon : Macros && Common tools .
 > 
-> > CCProtocol : CCProtocol . for CC . make all the sub-class of NSObject conforms to it .
+> > MQProtocol : MQProtocol . for MQ . make all the sub-class of NSObject conforms to it .
 > 
-> > CCRuntime : Packaged for some runtime functions .
+> > MQRuntime : Packaged for some runtime functions .
 > 
-> > CCDataBase : Wrappers for [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.2') && [`FCModel`](https://github.com/marcoarment/FCModel)
+> > MQDataBase : Wrappers for [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.2') && [`FCModel`](https://github.com/marcoarment/FCModel)
 > 
-> > CCRouter : a extension Package Router for [`MGJRouter`](https://github.com/meili/MGJRouter) ('~> 0.9.3') && perform actions .
+> > MQRouter : a extension Package Router for [`MGJRouter`](https://github.com/meili/MGJRouter) ('~> 0.9.3') && perform actions .
 > 
-> > CCData :  a extension actions for NS family .
+> > MQData :  a extension actions for NS family .
 > 
-> > CCView :  a extension actions for UI family .
+> > MQView :  a extension actions for UI family .
 > 
-> > CCOrigin : a kit that for develop for custom views / medias / datas .
+> > MQOrigin : a kit that for develop for custom views / medias / datas .
 > 
-> > CCCustom :  Custom classes or functions , dependend or based on other vendors .
+> > MQCustom :  Custom classes or functions , dependend or based on other vendors .
 
 ### What's new ?
 ---
+---
+**2018-07-30 12:52:51**
+
+> using new prefix  `MQ` .
+
 **2018-07-09 17:37:21**
 
 > added `NSLock+CCExtension` (CCData) for lock issues .
@@ -146,7 +156,7 @@ CCExtensionKit is available through [CocoaPods](http://cocoapods.org). To instal
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "CCExtensionKit"
+pod "MQExtensionKit"
 ```
 
 ### Author

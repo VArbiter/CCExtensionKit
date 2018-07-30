@@ -1,65 +1,74 @@
-# CCExtensionKit
+# MQExtensionKit
 
 ##### 一些以 Objective-C 书写的为 iOS 添加的自定义类库. 
 
-[![Version](https://img.shields.io/cocoapods/v/CCExtensionKit.svg?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+[![Version](https://img.shields.io/cocoapods/v/MQExtensionKit.svg?style=flat)](http://cocoapods.org/pods/MQExtensionKit)
 
-[![License](https://img.shields.io/cocoapods/l/CCExtensionKit.svg?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+[![License](https://img.shields.io/cocoapods/l/MQExtensionKit.svg?style=flat)](http://cocoapods.org/pods/MQExtensionKit)
 
-[![Platform](https://img.shields.io/cocoapods/p/CCExtensionKit.svg?style=flat)](http://cocoapods.org/pods/CCExtensionKit)
+[![Platform](https://img.shields.io/cocoapods/p/MQExtensionKit.svg?style=flat)](http://cocoapods.org/pods/MQExtensionKit)
 
 ### 当前版本 3.7.0
 
-> pod 'CCExtensionKit' , '~> 3.7.0' // 默认是 CCCore
+> pod 'MQExtensionKit' , '~> 3.7.0' // 默认是 MQCore
 > 
-> > pod 'CCExtensionKit/CCFull' , '~> 3.7.0' . 如果你想安装整个框架.
+> > pod 'MQExtensionKit/MQFull' , '~> 3.7.0' . 如果你想安装整个框架.
 
-### Warning 
+### Warning
+>
+> CCExtensionKit 在版本 `3.7.0` 后就失效了
+>
+> 因为版本`3.7.0`之后 , CCExtensionKit 被重命名为 `'MQExtensionKit'` .
+>
 > CCLocalLib 在版本 `2.2.3` 后就失效了
 > 
 > 因为版本`3.0.0`之后 , CCLocalLib 被重命名为 `'CCExtensionKit'` .
 > 
-> CCExtensionKit 引入了 `AdSupport.framework`
+> MQExtensionKit 引入了 `AdSupport.framework`
 > 
 > 所以 , 当你提交应用到 App Store 的时候要注意 .
 
 ### Note
-> 安装的时候 , 默认是 `CCCore` , `CCCore` 包含了 
+> 安装的时候 , 默认是 `MQCore` , `MQCore` 包含了 
 > 
-> > `CCCommon` (宏) , `CCProtocol` (协议) , `CCData` (NS族群), `CCView` (UI 族群), `CCRuntime` (objc/ runtime 相关)
+> > `MQCommon` (宏) , `MQProtocol` (协议) , `MQData` (NS族群), `MQView` (UI 族群), `MQRuntime` (objc/ runtime 相关)
 > 
-> 如果你想安装全部 , 安装 `"CCExtensionKit/CCFull"` 
+> 如果你想安装全部 , 安装 `"MQExtensionKit/MQFull"` 
 > 
 
 **说明**
 > 
-> > CCCore : 核心拓展 . 一个抽象集合.
+> > MQCore : 核心拓展 . 一个抽象集合.
 > 
-> > CCFull : 全部 (不包括 CCDataBase && CCCustom) . 一个抽象集合 .
+> > MQFull : 全部 (不包括 MQDataBase && MQCustom) . 一个抽象集合 .
 > 
-> > CCExtensionAssets : 资源集合 , 为未来的使用做准备 . (当前还未启用).
+> > MQExtensionAssets : 资源集合 , 为未来的使用做准备 . (当前还未启用).
 > 
-> > CCCommon : 宏 和 公共的工具类 .
+> > MQCommon : 宏 和 公共的工具类 .
 > 
-> > CCProtocol : CCProtocol . 为了 CC . 让所有 NSObject 的子类都遵循它 .
+> > MQProtocol : MQProtocol . 为了 MQ . 让所有 NSObject 的子类都遵循它 .
 > 
-> > CCRuntime : 一些 runtime 的封装合集 .
+> > MQRuntime : 一些 runtime 的封装合集 .
 > 
-> > CCDataBase :  [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.2')  && && [`FCModel`](https://github.com/marcoarment/FCModel) 的包裹 . 
+> > MQDataBase :  [`Realm`](https://github.com/realm/realm-cocoa) ('~> 2.10.2')  && && [`FCModel`](https://github.com/marcoarment/FCModel) 的包裹 . 
 > 
-> > CCRouter : 一个路由的拓展, 依赖了 [`MGJRouter`](https://github.com/meili/MGJRouter) ('~> 0.9.3') && perform actions .
+> > MQRouter : 一个路由的拓展, 依赖了 [`MGJRouter`](https://github.com/meili/MGJRouter) ('~> 0.9.3') && perform actions .
 > 
-> > CCData : NS 族群类库 .
+> > MQData : NS 族群类库 .
 > 
-> > CCView : UI 族群类库 .
+> > MQView : UI 族群类库 .
 > 
-> > CCOrigin : 一个由自己开发的自定义视图 / 媒体 / 数据 库.
+> > MQOrigin : 一个由自己开发的自定义视图 / 媒体 / 数据 库.
 > 
-> > CCCustom :  一些自定义的类和功能 , 依赖或者基于一些其它的第三方 .
+> > MQCustom :  一些自定义的类和功能 , 依赖或者基于一些其它的第三方 .
 
 ### 上新 ?
 ---
 ---
+**2018-07-30 12:52:51**
+
+> 使用新的前缀 `MQ` .
+
 **2018-07-09 17:37:21**
 
 > 增加  `NSLock+CCExtension` (CCData) 针对锁相关.
@@ -144,7 +153,7 @@
 CCExtensionKit 已经上传到了 [CocoaPods](http://cocoapods.org). 若安装,只需要在你的 Podfile 添加下列代码:
 
 ```ruby
-pod "CCExtensionKit"
+pod "MQExtensionKit"
 ```
 
 ### 作者
