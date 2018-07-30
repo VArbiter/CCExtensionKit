@@ -9,18 +9,18 @@
 #import "NSNumber+MQExtension.h"
 #import "NSObject+MQExtension.h"
 
-@implementation NSNumber (CCExtension)
+@implementation NSNumber (MQExtension)
 
-- (NSDecimalNumber *)toDecimal {
+- (NSDecimalNumber *)to_decimal {
     NSDecimalNumber *t = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%@",self]];
-    return CC_IS_DECIMAL_VALUED(t) ? t : nil;
+    return MQ_IS_DECIMAL_VALUED(t) ? t : nil;
 }
 
 @end
 
 #pragma mark - -----
 
-@implementation NSDecimalNumber (CCExtension)
+@implementation NSDecimalNumber (MQExtension)
 
 - (NSString *)round {
     return [self mq_round:2];
@@ -53,12 +53,12 @@
 
 - (instancetype) mq_mutiply : (NSDecimalNumber *) decimal {
     if (![decimal isKindOfClass:[NSDecimalNumber class]]) return self;
-    if (!CC_IS_DECIMAL_VALUED(decimal) || !CC_IS_DECIMAL_VALUED(self)) return self;
+    if (!MQ_IS_DECIMAL_VALUED(decimal) || !MQ_IS_DECIMAL_VALUED(self)) return self;
     return [self decimalNumberByMultiplyingBy:decimal];
 }
 - (instancetype) mq_devide : (NSDecimalNumber *) decimal {
     if (![decimal isKindOfClass:[NSDecimalNumber class]]) return self;
-    if (!CC_IS_DECIMAL_VALUED(decimal) || !CC_IS_DECIMAL_VALUED(self)) return self;
+    if (!MQ_IS_DECIMAL_VALUED(decimal) || !MQ_IS_DECIMAL_VALUED(self)) return self;
     if ([decimal isEqual:NSDecimalNumber.zero]) return self; // 0 can't be devided
     return [self decimalNumberByDividingBy:decimal];
 }

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UITableView (CCExtension)
+@interface UITableView (MQExtension)
 
 /// default plain. // 默认为 plain
 + (instancetype) mq_common : (CGRect) frame ;
@@ -98,7 +98,7 @@
 /// instructions && notes are the same with 'NSArray+MQExtension_Collection_Refresh' in 'UICollectionView+MQExtension'
 // 说明详见 'UICollectionView+MQExtension' 文件中的 'NSArray+MQExtension_Collection_Refresh' , 因为是相同的
 
-@interface NSArray (CCExtension_Table_Refresh)
+@interface NSArray (MQExtension_Table_Refresh)
 
 - (instancetype) mq_reload : (__kindof UITableView *) tableView ;
 - (instancetype) mq_reload : (__kindof UITableView *) tableView

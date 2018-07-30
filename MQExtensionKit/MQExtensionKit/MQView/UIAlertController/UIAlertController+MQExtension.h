@@ -10,7 +10,7 @@
 
 typedef NSDictionary CCAlertActionInfo;
 
-@interface UIAlertController (CCExtension)
+@interface UIAlertController (MQExtension)
 
 /// default alert // 默认 alert 样式
 + (instancetype) mq_common ;
@@ -40,7 +40,7 @@ CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle s
 
 #pragma mark - -----
 
-@interface UIAlertAction (CCExtension)
+@interface UIAlertAction (MQExtension)
 
 @property (nonatomic , strong) CCAlertActionEntity *action_m ;
 

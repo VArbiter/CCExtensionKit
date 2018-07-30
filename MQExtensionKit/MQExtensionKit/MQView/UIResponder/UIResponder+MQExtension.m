@@ -8,7 +8,7 @@
 
 #import "UIResponder+MQExtension.h"
 
-@implementation UIResponder (CCExtension)
+@implementation UIResponder (MQExtension)
 
 - (void) mq_deliver_message_with_sel : (SEL) selector
                                using : (void (^)(__kindof UIResponder *responder)) message_block {

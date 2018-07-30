@@ -9,11 +9,11 @@
 #import "NSAttributedString+MQExtension.h"
 #import "NSObject+MQExtension.h"
 
-@implementation NSAttributedString (CCExtension)
+@implementation NSAttributedString (MQExtension)
 
 + (NSMutableAttributedString *) mq_color : (UIColor *) color
                                  string : (NSString *) string {
-    if (CC_IS_STRING_VALUED(string)) {
+    if (MQ_IS_STRING_VALUED(string)) {
         return [[NSMutableAttributedString alloc] initWithString:string
                                                       attributes:@{NSForegroundColorAttributeName : color}];
     }
@@ -45,7 +45,7 @@
 }
 
 - (NSMutableAttributedString *) mq_append_c : (NSString *) string {
-    if (CC_IS_STRING_VALUED(string)) {
+    if (MQ_IS_STRING_VALUED(string)) {
         NSMutableAttributedString *sc = self.mutableCopy;
         [sc appendAttributedString:[[NSMutableAttributedString alloc] initWithString:string]];
         return sc;
@@ -57,7 +57,7 @@
 
 #pragma mark - -----
 
-@implementation NSMutableAttributedString (CCExtension)
+@implementation NSMutableAttributedString (MQExtension)
 
 - (NSMutableAttributedString *) mq_attribute_c : (NSAttributedStringKey) sKey
                                        value : (id) value {
@@ -74,13 +74,13 @@
 
 #pragma mark - -----
 
-@implementation NSString (CCExtension_AttributedString)
+@implementation NSString (MQExtension_AttributedString)
 
-- (NSMutableAttributedString *)toAttribute {
-    return CC_IS_STRING_VALUED(self) ? [[NSMutableAttributedString alloc] initWithString:self] : nil;
+- (NSMutableAttributedString *)to_attribute {
+    return MQ_IS_STRING_VALUED(self) ? [[NSMutableAttributedString alloc] initWithString:self] : nil;
 }
 - (NSMutableAttributedString *) mq_color : (UIColor *) color {
-    return [self.toAttribute mq_color:color];
+    return [self.to_attribute mq_color:color];
 }
 
 @end

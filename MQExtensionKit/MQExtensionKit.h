@@ -6,49 +6,49 @@
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#ifndef CCExtensionKit_h
-#define CCExtensionKit_h
+#ifndef MQExtensionKit_h
+#define MQExtensionKit_h
 
-    #if __has_include(<CCExtensionKit/CCExtensionKit.h>)
+    #if __has_include(<MQExtensionKit/MQExtensionKit.h>)
 
-        #import <CCExtensionKit/CCProtocolExtension.h>
-        #import <CCExtensionKit/CCDataExtension.h>
-        #import <CCExtensionKit/CCViewExtension.h>
-        #import <CCExtensionKit/CCCommonExtension.h>
-        #import <CCExtensionKit/CCRuntimeExtension.h>
+        #import <MQExtensionKit/MQProtocolExtension.h>
+        #import <MQExtensionKit/MQDataExtension.h>
+        #import <MQExtensionKit/MQViewExtension.h>
+        #import <MQExtensionKit/MQCommonExtension.h>
+        #import <MQExtensionKit/MQRuntimeExtension.h>
 
-        #ifdef _CCCustomExtension_
-            #import <CCExtensionKit/CCCustomExtension.h>
+        #ifdef _MQCustomExtension_
+            #import <MQExtensionKit/MQCustomExtension.h>
         #endif
 
-        #ifdef _CCCRouterExtension_
-            #import <CCExtensionKit/CCRouterExtension.h>
+        #ifdef _MQCRouterExtension_
+            #import <MQExtensionKit/MQRouterExtension.h>
         #endif
 
-        #ifdef _CCCDataBaseExtension_
-            #import <CCExtensionKit/CCDataBaseExtension.h>
+        #ifdef _MQCDataBaseExtension_
+            #import <MQExtensionKit/MQDataBaseExtension.h>
         #endif
 
     #else
 
-        #import "CCProtocolExtension.h"
-        #import "CCDataExtension.h"
-        #import "CCViewExtension.h"
-        #import "CCCommonExtension.h"
-        #import "CCRuntimeExtension.h"
+        #import "MQProtocolExtension.h"
+        #import "MQDataExtension.h"
+        #import "MQViewExtension.h"
+        #import "MQCommonExtension.h"
+        #import "MQRuntimeExtension.h"
 
-        #ifdef _CCCustomExtension_
-            #import "CCCustomExtension.h"
+        #ifdef _MQCustomExtension_
+            #import "MQCustomExtension.h"
         #endif
 
-        #ifdef _CCCRouterExtension_
-            #import "CCRouterExtension.h"
+        #ifdef _MQCRouterExtension_
+            #import "MQRouterExtension.h"
         #endif
 
-        #ifdef _CCCDataBaseExtension_
-            #import "CCDataBaseExtension.h"
+        #ifdef _MQCDataBaseExtension_
+            #import "MQDataBaseExtension.h"
         #endif
 
     #endif
 
-#endif /* CCExtensionKit_h */
+#endif /* MQExtensionKit_h */

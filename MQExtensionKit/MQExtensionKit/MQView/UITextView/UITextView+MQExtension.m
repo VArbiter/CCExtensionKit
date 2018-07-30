@@ -8,7 +8,7 @@
 
 #import "UITextView+MQExtension.h"
 
-@implementation UITextView (CCExtension)
+@implementation UITextView (MQExtension)
 
 - (instancetype) mq_make_default {
     self.layer.backgroundColor = UIColor.clearColor.CGColor;

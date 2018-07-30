@@ -19,7 +19,7 @@ typedef NS_OPTIONS(NSInteger , CCImageSaveType) {
     CCImageSaveTypeAll = 1 << 3
 };
 
-@interface UIImagePickerController (CCExtension) < UINavigationControllerDelegate , UIImagePickerControllerDelegate >
+@interface UIImagePickerController (MQExtension) < UINavigationControllerDelegate , UIImagePickerControllerDelegate >
 
 /// default : allowEditing = false; // 默认不允许编辑
 + (instancetype) mq_common ;

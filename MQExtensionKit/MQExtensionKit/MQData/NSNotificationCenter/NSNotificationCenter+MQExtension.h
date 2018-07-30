@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSNotificationCenter (CCExtension)
+@interface NSNotificationCenter (MQExtension)
 
 /// euqals NSNotificationCenter.defaultCenter // 和 NSNotificationCenter.defaultCenter 等价
 + (instancetype) mq_common ;
 /// an easy way to post a notification object : nil , userInfo : nil // 一个简便的发送通知的方式 object : nil , userInfo : nil
-+ (instancetype) mq_post : (NSNotificationName) sNotification ;
++ (instancetype) mq_post : (NSNotificationName) s_notification ;
 + (instancetype) mq_post_t : (NSNotification *) notification ;
 
 /// note : when post using method below , // 如果使用下面这种发送方式
@@ -28,14 +28,14 @@
 + (instancetype) mq_async_observer_target : (id) target
                                     queue : (dispatch_queue_t) queue
                                       sel : (SEL) selector
-                             notification : (NSNotificationName) sNotificationName
+                             notification : (NSNotificationName) s_notification_name
                                       obj : (id) object ;
 
 @end
 
 #pragma mark - -----
 
-@interface NSNotification (CCExtension_Notification)
+@interface NSNotification (MQExtension_Notification)
 
 /// note : need invoke && execute . // 需要实现这个 block
 /// note : if muti receiver execute the block , // 如果接收方有多个
@@ -44,4 +44,4 @@
 
 @end
 
-void CC_SEND_NOTIFICATION_USING_DEFAULT(void (^block_notification)(NSNotificationCenter * sender)) ;
+void MQ_SEND_NOTIFICATION_USING_DEFAULT(void (^block_notification)(NSNotificationCenter * sender)) ;

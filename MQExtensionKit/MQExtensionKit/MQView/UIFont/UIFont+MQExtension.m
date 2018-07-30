@@ -12,7 +12,7 @@ CCFontFamilyName CCFontFamily_PingFangSC_Regular = @"PingFangSC-Regular";
 CCFontFamilyName CCFontFamily_PingFangSC_Medium = @"PingFangSC-Medium";
 CCFontFamilyName CCFontFamily_PingFangSC_Bold = @"PingFangSC-Bold";
 
-@implementation UIFont (CCExtension)
+@implementation UIFont (MQExtension)
 
 - (instancetype) mq_size : (CGFloat) fSize {
     return [self fontWithSize:fSize];

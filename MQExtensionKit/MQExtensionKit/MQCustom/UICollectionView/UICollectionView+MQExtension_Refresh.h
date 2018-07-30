@@ -15,7 +15,7 @@
     @import MJRefresh;
 #pragma clang diagnostic pop
 
-@interface UICollectionView (CCExtension_Refresh)
+@interface UICollectionView (MQExtension_Refresh)
 
 /// equals : endRefresh + endLoadMore // 等同于 endRefresh + endLoadMore
 - (instancetype) mq_end_loading ;

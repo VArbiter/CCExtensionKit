@@ -10,7 +10,7 @@
 
 #if __has_include(<SDWebImage/UIImageView+WebCache.h>)
 
-@interface UIImageView (CCExtension_WeakNetwork)
+@interface UIImageView (MQExtension_WeakNetwork)
 
 /// if network was not strong enough , stop loading web image . // 如果网络不够强 , 停止加载网络图片
 - (instancetype) mq_weak_image : (NSURL *) url

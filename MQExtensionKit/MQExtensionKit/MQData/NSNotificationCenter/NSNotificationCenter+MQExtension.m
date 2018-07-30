@@ -11,16 +11,16 @@
 
 static NSMutableDictionary * __dictionary = nil;
 
-@implementation NSNotificationCenter (CCExtension)
+@implementation NSNotificationCenter (MQExtension)
 
 + (instancetype) mq_common {
     if (!__dictionary) __dictionary = [NSMutableDictionary dictionary];
     return NSNotificationCenter.defaultCenter;
 }
 
-+ (instancetype) mq_post : (NSNotificationName) sNotification {
++ (instancetype) mq_post : (NSNotificationName) s_notification {
     id t = self.mq_common;
-    [t postNotificationName:sNotification object:nil userInfo:nil];
+    [t postNotificationName:s_notification object:nil userInfo:nil];
     return t;
 }
 
@@ -42,11 +42,11 @@ static NSMutableDictionary * __dictionary = nil;
 + (instancetype) mq_async_observer_target : (id) target
                                     queue : (dispatch_queue_t) queue
                                       sel : (SEL) selector
-                             notification : (NSNotificationName) sNotificationName
+                             notification : (NSNotificationName) s_notification_name
                                       obj : (id) object {
     id t = self.mq_common;
     void (^bAdding)(void) = ^ {
-        [t addObserver:target selector:selector name:sNotificationName object:object];
+        [t addObserver:target selector:selector name:s_notification_name object:object];
     };
     dispatch_async(queue, ^{
         if (bAdding) bAdding();
@@ -58,21 +58,21 @@ static NSMutableDictionary * __dictionary = nil;
 
 #pragma mark - -----
 
-const char * _CC_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY_ = "CC_NSNOTIFICATION_ASSOCITE_KEY";
+const char * _MQ_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY_ = "MQ_NSNOTIFICATION_ASSOCITE_KEY";
 
-@implementation NSNotification (CCExtension_Notification)
+@implementation NSNotification (MQExtension_Notification)
 
 - (void)setBlock_execute:(void (^)(__kindof NSNotification *))block_execute {
     if (block_execute)
-    objc_setAssociatedObject(self, _CC_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY_, block_execute, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, _MQ_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY_, block_execute, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void (^)(__kindof NSNotification *))block_execute {
-    return objc_getAssociatedObject(self, _CC_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY_);
+    return objc_getAssociatedObject(self, _MQ_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY_);
 }
 
 @end
 
-void CC_SEND_NOTIFICATION_USING_DEFAULT(void (^block_notification)(NSNotificationCenter * sender)) {
+void MQ_SEND_NOTIFICATION_USING_DEFAULT(void (^block_notification)(NSNotificationCenter * sender)) {
     if (!block_notification) return ;
     NSNotificationCenter *t_notification = [NSNotificationCenter defaultCenter];
     block_notification(t_notification);

@@ -11,7 +11,7 @@
 
 #if __has_include(<MJRefresh/MJRefresh.h>)
 
-@implementation UITableView (CCExtension_Refresh)
+@implementation UITableView (MQExtension_Refresh)
 
 - (instancetype) mq_end_loading {
     return [self.mq_end_refresh.mq_end_load_more cc];

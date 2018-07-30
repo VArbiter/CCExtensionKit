@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDictionary (CCExtension)
+@interface NSDictionary (MQExtension)
 
-@property (nonatomic , readonly) NSString * toJson;
-+ (instancetype) mq_json : (NSString *) sJson ;
+@property (nonatomic , readonly) NSString * to_json;
++ (instancetype) mq_json : (NSString *) s_json ;
 
 @end
 
 #pragma mark - -----
 
-@interface NSMutableDictionary (CCExtension)
+@interface NSMutableDictionary (MQExtension)
 
 - (instancetype) mq_set : (id) key
                   value : (id) value ;
@@ -28,6 +28,6 @@
                                 value : (id) value ;
 
 - (instancetype) mq_observer : (void (^)(id key , id value)) action ;
-- (instancetype) mq_observer_t : (void (^)(void(^t)(id key , id value , NSArray * aAllKeys , NSArray * aAllValues))) action ;
+- (instancetype) mq_observer_t : (void (^)(void(^t)(id key , id value , NSArray * a_all_keys , NSArray * a_all_values))) action ;
 
 @end

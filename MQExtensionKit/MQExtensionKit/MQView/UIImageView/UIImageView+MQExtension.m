@@ -8,7 +8,7 @@
 
 #import "UIImageView+MQExtension.h"
 
-@implementation UIImageView (CCExtension)
+@implementation UIImageView (MQExtension)
 
 static UIViewContentMode __mode_image_view = UIViewContentModeScaleAspectFit;
 static BOOL __masks_image_view = false;

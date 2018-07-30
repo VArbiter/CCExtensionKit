@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSPredicate (CCExtension)
+@interface NSPredicate (MQExtension)
 
 + (instancetype) mq_common : (NSString *) sRegex ;
 
 /// YYYY-MM-DD HH:mm:ss
 + (instancetype) mq_time ;
 + (instancetype) mq_mac_address ;
-+ (instancetype) mq_web_URL ;
++ (instancetype) mq_web_url ;
 
 // only in china // 仅在中国有效
 
@@ -38,7 +38,7 @@
 
 @end
 
-@interface NSString (CCExtension_Regex)
+@interface NSString (MQExtension_Regex)
 
 /// YYYY-MM-DD HH:mm:ss
 - (BOOL) is_time ;

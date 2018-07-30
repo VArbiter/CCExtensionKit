@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSURLRequest (CCExtension)
+@interface NSURLRequest (MQExtension)
 
-+ (instancetype) mq_request : (NSString *) sURL ;
-+ (instancetype) mq_local : (NSString *) sURL ;
++ (instancetype) mq_request : (NSString *) s_url ;
++ (instancetype) mq_local : (NSString *) s_url ;
 
 @end
 
 #pragma mark - -----
 
-@interface NSMutableURLRequest (CCExtension)
+@interface NSMutableURLRequest (MQExtension)
 
 @end

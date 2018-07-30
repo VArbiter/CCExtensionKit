@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIButton (CCExtension)
+@interface UIButton (MQExtension)
 
 /// default type is custom // 默认是 custom 类型
 + (instancetype) mq_common ;

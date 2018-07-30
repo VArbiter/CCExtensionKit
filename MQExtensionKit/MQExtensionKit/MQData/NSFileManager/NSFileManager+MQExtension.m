@@ -11,22 +11,22 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
+NSInteger const _MQ_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
 
-NSString * CC_HOME_DIRECTORY(void) {
+NSString * MQ_HOME_DIRECTORY(void) {
     return NSHomeDirectory();
 }
-NSString * CC_TEMP_DIRECTORY(void) {
+NSString * MQ_TEMP_DIRECTORY(void) {
     return NSTemporaryDirectory();
 }
-NSString * CC_CACHE_DIRECTORY(void) {
+NSString * MQ_CACHE_DIRECTORY(void) {
     return NSSearchPathForDirectoriesInDomains(NSCachesDirectory , NSUserDomainMask, YES).firstObject;
 }
-NSString * CC_LIBRARY_DIRECTORY(void) {
+NSString * MQ_LIBRARY_DIRECTORY(void) {
     return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory , NSUserDomainMask, YES).firstObject;
 }
 
-@implementation NSFileManager (CCExtension)
+@implementation NSFileManager (MQExtension)
 
 - (BOOL)mq_is_directory_t:(NSString *)sPath {
     if (!sPath || !sPath.length) return false;
@@ -149,7 +149,7 @@ NSString * CC_LIBRARY_DIRECTORY(void) {
         CC_MD5_Init(&hashObject);
         // Make sure chunkSizeForReadingData is valid // 保证 读取对象的 会大小是有效的
         if (!sizeChunk) {
-            sizeChunk = _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_;
+            sizeChunk = _MQ_FILE_HASH_DEFAULT_CHUNK_SIZE_;
         }
         // Feed the data to the hash object // 将 data 给 哈希对象
         bool hasMoreData = true;
@@ -185,7 +185,7 @@ NSString * CC_LIBRARY_DIRECTORY(void) {
         if (fileURL) CFRelease(fileURL);
         return (__bridge_transfer NSString *) result;
     };
-    return t ? t(((__bridge CFStringRef)sPath) , _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_) : nil;
+    return t ? t(((__bridge CFStringRef)sPath) , _MQ_FILE_HASH_DEFAULT_CHUNK_SIZE_) : nil;
 }
 - (NSString *)mq_mime_type:(NSString *)sPath {
     if (!sPath || !sPath.length) return nil;
@@ -203,7 +203,7 @@ NSString * CC_LIBRARY_DIRECTORY(void) {
 
 #pragma mark - -----
 
-@implementation NSString (CCExtension_File_Extension)
+@implementation NSString (MQExtension_File_Extension)
 
 - (BOOL)is_directory_t {
     return [NSFileManager.defaultManager mq_is_directory_t:self];

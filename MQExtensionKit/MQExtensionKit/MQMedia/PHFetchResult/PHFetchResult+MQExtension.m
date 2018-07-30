@@ -8,7 +8,7 @@
 
 #import "PHFetchResult+MQExtension.h"
 
-@implementation PHFetchResult (CCExtension)
+@implementation PHFetchResult (MQExtension)
 
 - (NSArray <PHAsset *> *) mq_filter_type : (PHAssetMediaType) type_media {
     

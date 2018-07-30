@@ -8,7 +8,7 @@
 
 #import "UIApplication+MQExtension.h"
 
-@implementation UIApplication (CCExtension)
+@implementation UIApplication (MQExtension)
 
 + (BOOL) mq_can_open : (id) s_url {
     UIApplication *t = [UIApplication sharedApplication];
@@ -63,7 +63,7 @@
 
 @end
 
-@implementation UIApplication (CCExtension_Schemes)
+@implementation UIApplication (MQExtension_Schemes)
 
 CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_QQ = @"mqq://";
 CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_WECHAT = @"weixin://";
@@ -104,7 +104,7 @@ CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_RENREN = @"renren://";
 
 #pragma mark - -----
 
-@implementation NSURL (CCExtension_Open_Scheme)
+@implementation NSURL (MQExtension_Open_Scheme)
 
 - (BOOL) mq_can_open {
     return [UIApplication mq_can_open:self];
@@ -119,7 +119,7 @@ CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_RENREN = @"renren://";
 
 #pragma mark - -----
 
-@implementation NSString (CCExtension_Open_Scheme)
+@implementation NSString (MQExtension_Open_Scheme)
 
 - (BOOL) mq_can_open {
     return [UIApplication mq_can_open:self];

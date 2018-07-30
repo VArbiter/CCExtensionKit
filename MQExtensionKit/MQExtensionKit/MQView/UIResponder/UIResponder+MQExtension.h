@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIResponder (CCExtension)
+@interface UIResponder (MQExtension)
 
 /// deliver the UI messages . // 传递 UI 消息 .
 /// selector is used for identifier the message to be sent . // 方法是用来标识将要被发送的消息

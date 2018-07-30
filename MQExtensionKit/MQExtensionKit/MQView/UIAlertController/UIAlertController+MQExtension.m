@@ -9,7 +9,7 @@
 #import "UIAlertController+MQExtension.h"
 #import <objc/runtime.h>
 
-@implementation UIAlertController (CCExtension)
+@implementation UIAlertController (MQExtension)
 
 + (instancetype) mq_common {
     return [self mq_common:UIAlertControllerStyleAlert];
@@ -77,7 +77,7 @@ CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle s
 
 #pragma mark - -----
 
-@implementation UIAlertAction (CCExtension)
+@implementation UIAlertAction (MQExtension)
 
 - (void)setAction_m:(CCAlertActionEntity *)action_m {
     objc_setAssociatedObject(self, @selector(action_m), action_m, OBJC_ASSOCIATION_RETAIN_NONATOMIC);

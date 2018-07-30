@@ -12,7 +12,7 @@
 
 #import <objc/runtime.h>
 
-@implementation UIImagePickerController (CCExtension)
+@implementation UIImagePickerController (MQExtension)
 
 + (instancetype) mq_common {
     UIImagePickerController *c = UIImagePickerController.alloc.init;

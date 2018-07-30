@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIScrollView (CCExtension)
+@interface UIScrollView (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame ;
 

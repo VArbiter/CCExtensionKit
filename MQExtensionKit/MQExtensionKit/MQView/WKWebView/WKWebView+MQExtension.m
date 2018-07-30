@@ -8,7 +8,7 @@
 
 #import "WKWebView+MQExtension.h"
 
-@implementation WKWebView (CCExtension)
+@implementation WKWebView (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame {
     return [self mq_common:frame configuration:nil];

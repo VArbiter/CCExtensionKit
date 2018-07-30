@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIVisualEffectView (CCExtension)
+@interface UIVisualEffectView (MQExtension)
 
 + (instancetype) mq_common : (UIVisualEffect *) effect;
 
@@ -16,7 +16,7 @@
 
 #pragma mark - -----
 
-@interface UIVisualEffect (CCExtension)
+@interface UIVisualEffect (MQExtension)
 
 + (instancetype) mq_blur_dark ;
 + (instancetype) mq_blur_light ;
@@ -26,7 +26,7 @@
 
 #pragma mark - -----
 
-@interface UIVibrancyEffect (CCExtension)
+@interface UIVibrancyEffect (MQExtension)
 
 + (instancetype) mq_vibrancy_dark ;
 + (instancetype) mq_vibrancy_light ;

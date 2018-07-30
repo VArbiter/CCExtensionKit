@@ -10,7 +10,7 @@
 
 #if __has_include(<MBProgressHUD/MBProgressHUD.h>)
 
-@implementation MBProgressHUD (CCExtension)
+@implementation MBProgressHUD (MQExtension)
 
 + (instancetype) init {
     return [self init:nil];
@@ -131,7 +131,7 @@
 
 #pragma mark - -----
 
-@implementation UIView (CCExtension_Hud)
+@implementation UIView (MQExtension_Hud)
 
 - (__kindof MBProgressHUD *) mq_hud {
     return [UIView mq_hud:self];

@@ -9,13 +9,13 @@
 #import "UITextField+MQExtension.h"
 #import <objc/runtime.h>
 
-@interface UITextField (CCExtension_Assist)
+@interface UITextField (MQExtension_Assist)
 
 - (void) ccTextFieldTextDidChange : (__kindof UITextField *) textField ;
 
 @end
 
-@implementation UITextField (CCExtension_Assist)
+@implementation UITextField (MQExtension_Assist)
 
 - (void) ccTextFieldTextDidChange : (__kindof UITextField *) textField {
     void (^bChanged)(__kindof UITextField *sender) = objc_getAssociatedObject(self, "CC_TEXT_FIELD_TEXT_DID_CHANGE_ACTION");
@@ -26,7 +26,7 @@
 
 #pragma mark - -----
 
-@implementation UITextField (CCExtension)
+@implementation UITextField (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame {
     UITextField *v = [[UITextField alloc] initWithFrame:frame];

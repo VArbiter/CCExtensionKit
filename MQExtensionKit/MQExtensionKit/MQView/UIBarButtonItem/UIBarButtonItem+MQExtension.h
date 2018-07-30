@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIBarButtonItem (CCExtension)
+@interface UIBarButtonItem (MQExtension)
 
 + (instancetype) mq_common ;
 - (instancetype) mq_title : (NSString *) sTitle ;

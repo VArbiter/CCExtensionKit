@@ -8,13 +8,13 @@
 
 #import "CALayer+MQExtension.h"
 
-@implementation CALayer (CCExtension)
+@implementation CALayer (MQExtension)
 
 @end
 
 #pragma mark - -----
 
-@implementation UIView (CCExtension_Layer)
+@implementation UIView (MQExtension_Layer)
 
 - (void) mq_make_dash : (NSArray <NSNumber *> *) t_dash_pattern
                radius : (CGFloat) f_corner_radius

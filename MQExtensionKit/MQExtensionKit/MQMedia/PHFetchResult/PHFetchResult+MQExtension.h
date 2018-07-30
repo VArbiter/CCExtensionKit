@@ -8,7 +8,7 @@
 
 #import <Photos/Photos.h>
 
-@interface PHFetchResult (CCExtension)
+@interface PHFetchResult (MQExtension)
 
 // return nil if results has nothing . // 如果没有任何值 , 返回 nil .
 - (NSArray <PHAsset *> *) mq_filter_type : (PHAssetMediaType) type_media ;

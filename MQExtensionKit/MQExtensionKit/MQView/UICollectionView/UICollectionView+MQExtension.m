@@ -13,7 +13,7 @@
     #define _CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_ @"CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER"
 #endif
 
-@implementation UICollectionView (CCExtension)
+@implementation UICollectionView (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame
                     layout : (UICollectionViewFlowLayout *) layout {
@@ -125,7 +125,7 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
 
 #pragma mark - UICollectionViewFlowLayout --------------------------------------
 
-@implementation UICollectionViewFlowLayout (CCExtension)
+@implementation UICollectionViewFlowLayout (MQExtension)
 
 + (instancetype) common {
     return UICollectionViewFlowLayout.alloc.init;
@@ -360,7 +360,7 @@ _CC_DETECT_DEALLOC_
 
 #pragma mark - -----
 
-@implementation NSArray (CCExtension_Collection_Refresh)
+@implementation NSArray (MQExtension_Collection_Refresh)
 
 - (instancetype) mq_reload : (UICollectionView *) collectionView {
     if (self.count) [collectionView mq_reloading:YES];

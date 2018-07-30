@@ -30,7 +30,7 @@
 
 UIImage * CC_CAPTURE_WINDOW(UIWindow *window);
 
-@interface UIImage (CCExtension)
+@interface UIImage (MQExtension)
 
 /// for image size && width // 获得 image 的宽和高
 @property (nonatomic , readonly) CGFloat width ;
@@ -60,7 +60,7 @@ UIImage * CC_CAPTURE_WINDOW(UIWindow *window);
 
 #pragma mark - -----
 
-@interface UIImage (CCExtension_Gaussian)
+@interface UIImage (MQExtension_Gaussian)
 
 FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_VALUE_ ;
 FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
@@ -87,7 +87,7 @@ FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 
 #pragma mark - -----
 
-@interface UIImage (CCExtension_Data)
+@interface UIImage (MQExtension_Data)
 
 FOUNDATION_EXPORT CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
 
@@ -112,7 +112,7 @@ typedef NS_ENUM(NSInteger , CCImageType) {
     CCImageType_WebP
 };
 
-@interface NSData (CCExtension_Image)
+@interface NSData (MQExtension_Image)
 
 /// technically , you have to read all 8-Bytes length to specific an imageType . // 从技术角度上来说 , 你必须读取所有的 8 个字节才能确定一张图片的类型
 /// for now , i just use the first to decide is type . (borrowed from SDWebImage) . // 目前 , 我只是读取了首个 , (借鉴自 SDWebImage)
@@ -122,7 +122,7 @@ typedef NS_ENUM(NSInteger , CCImageType) {
 
 #pragma mark - -----
 
-@interface UIImageView (CCExtension_Gaussian)
+@interface UIImageView (MQExtension_Gaussian)
 
 /// using Accelerate // 使用 Accelerate 框架
 

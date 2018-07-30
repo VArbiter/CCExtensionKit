@@ -12,7 +12,7 @@
 
 #import <objc/runtime.h>
 
-@implementation UIViewController (CCExtension) 
+@implementation UIViewController (MQExtension) 
 
 - (instancetype) mq_disable_animated {
     objc_setAssociatedObject(self, "_CC_EXTENSION_CONTROLLER_DISABLE_ANIMATED_", @(false), OBJC_ASSOCIATION_ASSIGN);

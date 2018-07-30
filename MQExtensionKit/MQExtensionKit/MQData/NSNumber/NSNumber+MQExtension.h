@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSNumber (CCExtension)
+@interface NSNumber (MQExtension)
 
-@property (nonatomic , readonly) NSDecimalNumber * toDecimal ;
+@property (nonatomic , readonly) NSDecimalNumber * to_decimal ;
 
 @end
 
 #pragma mark - ------
 
-@interface NSDecimalNumber (CCExtension)
+@interface NSDecimalNumber (MQExtension)
 
 /// default two after point . // 默认小数点后两位
 @property (nonatomic , readonly) NSString * round ;

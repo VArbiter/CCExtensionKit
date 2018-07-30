@@ -8,13 +8,13 @@
 
 #import "UINavigationItem+MQExtension.h"
 
-@implementation UINavigationItem (CCExtension)
+@implementation UINavigationItem (MQExtension)
 
 @end
 
 #pragma mark - -----
 
-@implementation UINavigationItem (CCExtension_FixedSpace)
+@implementation UINavigationItem (MQExtension_FixedSpace)
 
 - (void) mq_left_offset : (CGFloat) fOffset
                    item : (UIBarButtonItem *) item {

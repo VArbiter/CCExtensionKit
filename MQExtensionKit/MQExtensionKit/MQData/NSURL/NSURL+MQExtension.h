@@ -9,22 +9,22 @@
 #import <Foundation/Foundation.h>
 
 #ifndef CC_URL_S
-    #define CC_URL_S(_value_) [NSURL ccURL:_value_]
+    #define CC_URL_S(_value_) [NSURL mq_URL:_value_]
 #endif
 #ifndef CC_URL_L
-    #define CC_URL_L(_value_) [NSURL ccLocal:_value_]
+    #define CC_URL_L(_value_) [NSURL mq_local:_value_]
 #endif
 
-@interface NSURL (CCExtension)
+@interface NSURL (MQExtension)
 
-+ (instancetype) mq_URL : (NSString *) sURL ;
-+ (instancetype) mq_local : (NSString *) sURL ;
++ (instancetype) mq_url : (NSString *) s_url ;
++ (instancetype) mq_local : (NSString *) s_url ;
 
 @end
 
-@interface NSString (CCExtension_UrlEncode)
+@interface NSString (MQExtension_UrlEncode)
 
-@property (nonatomic , readonly) NSURL *toWebURL ; // encode chinese character using origin // 使用原生转换为 在线 URL
-@property (nonatomic , readonly) NSURL *toLocalURL ; // decode chinese character using origin // 使用原生转换为 本地 URL
+@property (nonatomic , readonly) NSURL *to_web_url ; // encode chinese character using origin // 使用原生转换为 在线 URL
+@property (nonatomic , readonly) NSURL *to_local_url ; // decode chinese character using origin // 使用原生转换为 本地 URL
 
 @end

@@ -9,13 +9,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 
-@interface CALayer (CCExtension)
+@interface CALayer (MQExtension)
 
 @end
 
 #pragma mark - -----
 
-@interface UIView (CCExtension_Layer)
+@interface UIView (MQExtension_Layer)
 
 /// make view has a dash border , give nil to params for line // 使得 view 拥有一个 虚线边框 , 参数为 nil , 是实线边框 .
 /// use this method after your custom for layer is finished . // 在自定义 layer 结束后 , 方可使用.

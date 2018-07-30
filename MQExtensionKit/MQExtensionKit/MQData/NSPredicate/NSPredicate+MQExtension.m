@@ -8,7 +8,7 @@
 
 #import "NSPredicate+MQExtension.h"
 
-@implementation NSPredicate (CCExtension)
+@implementation NSPredicate (MQExtension)
 
 + (instancetype) mq_common : (NSString *) sRegex {
     if ([sRegex isKindOfClass:NSString.class] && sRegex && sRegex.length) {
@@ -23,7 +23,7 @@
 + (instancetype) mq_mac_address {
     return [NSPredicate mq_common:@"([A-Fa-f\\d]{2}:){5}[A-Fa-f\\d]{2}"];
 }
-+ (instancetype) mq_web_URL {
++ (instancetype) mq_web_url {
     return [NSPredicate mq_common:@"^((http)|(https))+:[^\\s]+\\.[^\\s]*$"];
 }
 
@@ -76,7 +76,7 @@
 
 #pragma mark - -----
 
-@implementation NSString (CCExtension_Regex)
+@implementation NSString (MQExtension_Regex)
 
 - (BOOL) is_time {
     return [NSPredicate.mq_time mq_evalute:self] ? YES : false;
@@ -85,7 +85,7 @@
     return [NSPredicate.mq_mac_address mq_evalute:self] ? YES : false;
 }
 - (BOOL) is_web_URL {
-    return [NSPredicate.mq_web_URL mq_evalute:self] ? YES : false;
+    return [NSPredicate.mq_web_url mq_evalute:self] ? YES : false;
 }
 
 // only in china
@@ -109,43 +109,43 @@
         }
     }
     if (!areaFlag) return false;
-    NSRegularExpression *regularExpression;
-    NSUInteger numberofMatch;
+    NSRegularExpression *regular_expression;
+    NSUInteger number_of_match;
     int year =0;
     switch (length) {
         case 15:{
             year = [value substringWithRange:NSMakeRange(6,2)].intValue +1900;
             if (year % 4 ==0 || (year % 100 == 0 && year % 4 ==0)) {
-                regularExpression = [[NSRegularExpression alloc] initWithPattern:@"^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}$"
+                regular_expression = [[NSRegularExpression alloc] initWithPattern:@"^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}$"
                                                                          options:NSRegularExpressionCaseInsensitive
                                                                            error:nil]; // if birthDay legal // 生日是否有效
             } else {
-                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}$"
+                regular_expression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}$"
                                                                         options:NSRegularExpressionCaseInsensitive
                                                                           error:nil]; // if birthDay legal // 生日是否有效
             }
-            numberofMatch = [regularExpression numberOfMatchesInString:value
+            number_of_match = [regular_expression numberOfMatchesInString:value
                                                                options:NSMatchingReportProgress
                                                                  range:NSMakeRange(0, value.length)];
-            if(numberofMatch >0) return YES;
+            if(number_of_match >0) return YES;
             else return NO;
         }break;
             
         case 18:{
             year = [value substringWithRange:NSMakeRange(6,4)].intValue;
             if (year % 4 ==0 || (year % 100 == 0 && year % 4 ==0)) {
-                regularExpression = [[NSRegularExpression alloc] initWithPattern:@"^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$"
+                regular_expression = [[NSRegularExpression alloc] initWithPattern:@"^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$"
                                                                          options:NSRegularExpressionCaseInsensitive
                                                                            error:nil]; // if birthDay legal // 生日是否有效
             } else {
-                regularExpression = [[NSRegularExpression alloc] initWithPattern:@"^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$"
+                regular_expression = [[NSRegularExpression alloc] initWithPattern:@"^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$"
                                                                          options:NSRegularExpressionCaseInsensitive
                                                                            error:nil]; // if birthDay legal
             }
-            numberofMatch = [regularExpression numberOfMatchesInString:value
+            number_of_match = [regular_expression numberOfMatchesInString:value
                                                                options:NSMatchingReportProgress
                                                                  range:NSMakeRange(0, value.length)];
-            if(numberofMatch >0) {
+            if(number_of_match >0) {
                 int S = ([value substringWithRange:NSMakeRange(0,1)].intValue
                          + [value substringWithRange:NSMakeRange(10,1)].intValue) * 7
                 + ([value substringWithRange:NSMakeRange(1,1)].intValue

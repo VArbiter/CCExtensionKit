@@ -1,13 +1,13 @@
 //
-//  CCDataExtension.h
+//  MQDataExtension.h
 //  MQExtensionKit
 //
 //  Created by Elwinfrederick on 06/09/2017.
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#ifndef CCDataExtension_h
-#define CCDataExtension_h
+#ifndef MQDataExtension_h
+#define MQDataExtension_h
 
     #import "NSObject+MQExtension.h"
     #import "NSTimer+MQExtension.h"
@@ -26,4 +26,4 @@
     #import "NSNotificationCenter+MQExtension.h"
     #import "NSLock+MQExtension.h"
 
-#endif /* CCDataExtension_h */
+#endif /* MQDataExtension_h */

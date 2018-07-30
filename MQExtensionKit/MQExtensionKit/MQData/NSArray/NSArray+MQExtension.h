@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSArray (CCExtension)
+@interface NSArray (MQExtension)
 
 // only the object that inherit from NSObject (in Foundation framework) allowed . // 只有继承自 NSObject (Foundation 框架) 的被允许 .
-@property (nonatomic , readonly) NSString * toJson;
-@property (nonatomic , readonly) NSData * toData;
+@property (nonatomic , readonly) NSString * to_json;
+@property (nonatomic , readonly) NSData * to_data;
 
 - (id) mq_value_at : (NSInteger) index ;
 
@@ -20,19 +20,19 @@
 
 #pragma mark - -----
 
-typedef NS_ENUM(NSInteger, CCArrayChangeType) {
-    CCArrayChangeTypeNone = 0 ,
-    CCArrayChangeTypeAppend ,
-    CCArrayChangeTypeRemoved
+typedef NS_ENUM(NSInteger, MQArrayChangeType) {
+    MQArrayChangeTypeNone = 0 ,
+    MQArrayChangeTypeAppend ,
+    MQArrayChangeTypeRemoved
 };
 
-struct CCArrayChangeInfo {
-    CCArrayChangeType type ;
+struct MQArrayChangeInfo {
+    MQArrayChangeType type ;
     long long count ;
 };
-typedef struct CCArrayChangeInfo CCArrayChangeInfo;
+typedef struct MQArrayChangeInfo MQArrayChangeInfo;
 
-@interface NSMutableArray (CCExtension)
+@interface NSMutableArray (MQExtension)
 
 - (instancetype) mq_add : (id) value ;
 - (instancetype) mq_add_array : (id) value ;
@@ -50,7 +50,7 @@ typedef struct CCArrayChangeInfo CCArrayChangeInfo;
 - (instancetype) mq_remove_all : (BOOL (^)(BOOL isCompare , id obj)) action ;
 
 /// Observers , like all observers , need added before it used . // 监听者 , 就像所有的监听者那样 , 需要先实现 , 再使用 
-- (instancetype) mq_change : (void (^)(id value , CCArrayChangeInfo type)) action ;
-- (instancetype) mq_complete : (void (^)(CCArrayChangeInfo type)) action ;
+- (instancetype) mq_change : (void (^)(id value , MQArrayChangeInfo type)) action ;
+- (instancetype) mq_complete : (void (^)(MQArrayChangeInfo type)) action ;
 
 @end

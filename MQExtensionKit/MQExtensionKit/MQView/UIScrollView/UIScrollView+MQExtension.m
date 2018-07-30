@@ -8,7 +8,7 @@
 
 #import "UIScrollView+MQExtension.h"
 
-@implementation UIScrollView (CCExtension)
+@implementation UIScrollView (MQExtension)
 
 + (instancetype)mq_common:(CGRect)frame{
     UIScrollView *v = [[UIScrollView alloc] initWithFrame:frame];

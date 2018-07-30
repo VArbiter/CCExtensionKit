@@ -10,13 +10,13 @@
 
 #import <objc/runtime.h>
 
-@interface UISwitch (CCExtension_Assist)
+@interface UISwitch (MQExtension_Assist)
 
 - (void) mq_switch_holder_action : (UISwitch *) sender ;
 
 @end
 
-@implementation UISwitch (CCExtension_Assist)
+@implementation UISwitch (MQExtension_Assist)
 
 - (void) mq_switch_holder_action : (UISwitch *) sender {
     void (^mq_switch_block)(UISwitch *) = objc_getAssociatedObject(self, "CC_UISWITCH_ACTION_ASSOCIATE_KEY");
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation UISwitch (CCExtension)
+@implementation UISwitch (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame {
     return [[self alloc] initWithFrame:frame];

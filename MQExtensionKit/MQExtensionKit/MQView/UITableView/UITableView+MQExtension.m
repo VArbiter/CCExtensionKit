@@ -12,7 +12,7 @@
     #define _CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_ @"CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER"
 #endif
 
-@implementation UITableView (CCExtension)
+@implementation UITableView (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame {
     return [self mq_common:frame style:UITableViewStylePlain];
@@ -392,7 +392,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 #pragma mark - -----
 
-@implementation NSArray (CCExtension_Table_Refresh)
+@implementation NSArray (MQExtension_Table_Refresh)
 
 - (instancetype) mq_reload : (__kindof UITableView *) tableView {
     if (self.count) [tableView mq_reloading:UITableViewRowAnimationFade];

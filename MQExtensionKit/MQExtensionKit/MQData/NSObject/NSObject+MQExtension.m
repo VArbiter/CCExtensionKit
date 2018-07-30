@@ -8,7 +8,7 @@
 
 #import "NSObject+MQExtension.h"
 
-@implementation NSObject (CCExtension)
+@implementation NSObject (MQExtension)
 
 + (NSString *)s_self {
     return NSStringFromClass(self);
@@ -27,7 +27,7 @@
 
 @end
 
-BOOL CC_IS_STRING_VALUED(__kindof NSString * string) {
+BOOL MQ_IS_STRING_VALUED(__kindof NSString * string) {
     if (string) {
         if ([string isKindOfClass:[NSString class]]) {
             if (string.length
@@ -41,7 +41,7 @@ BOOL CC_IS_STRING_VALUED(__kindof NSString * string) {
     }
     return false;
 }
-BOOL CC_IS_ARRAY_VALUED(__kindof NSArray * array) {
+BOOL MQ_IS_ARRAY_VALUED(__kindof NSArray * array) {
     if (array) {
         if ([array isKindOfClass:[NSArray class]]) {
             if (array.count) {
@@ -51,7 +51,7 @@ BOOL CC_IS_ARRAY_VALUED(__kindof NSArray * array) {
     }
     return false;
 }
-BOOL CC_IS_SET_VALUED(__kindof NSSet * set) {
+BOOL MQ_IS_SET_VALUED(__kindof NSSet * set) {
     if (set) {
         if ([set isKindOfClass:[NSSet class]]) {
             if (set.count) {
@@ -61,7 +61,7 @@ BOOL CC_IS_SET_VALUED(__kindof NSSet * set) {
     }
     return false;
 }
-BOOL CC_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) {
+BOOL MQ_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) {
     if (dictionary) {
         if ([dictionary isKindOfClass:[NSDictionary class]]) {
             if (dictionary && dictionary.allKeys.count && dictionary.allValues.count
@@ -72,7 +72,7 @@ BOOL CC_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) {
     }
     return false;
 }
-BOOL CC_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) {
+BOOL MQ_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) {
     if (decimal) {
         if ([decimal isKindOfClass:[NSDecimalNumber class]]) {
             if (![decimal isEqual:NSDecimalNumber.notANumber]) {
@@ -82,7 +82,7 @@ BOOL CC_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) {
     }
     return false;
 }
-BOOL CC_IS_NULL(id object) {
+BOOL MQ_IS_NULL(id object) {
     return (object && ![object isKindOfClass:[NSNull class]] && (object != NSNull.null));
 }
 
@@ -90,9 +90,9 @@ BOOL CC_IS_NULL(id object) {
 
 #import <objc/runtime.h>
 
-static NSString * CC_EXTENSION_KVO_ALL_KEY_PATHS_KEY = @"CC_EXTENSION_KVO_ALL_KEY_PATHS_KEY";
+static NSString * MQ_EXTENSION_KVO_ALL_KEY_PATHS_KEY = @"MQ_EXTENSION_KVO_ALL_KEY_PATHS_KEY";
 
-@interface NSObject (CCExtension_KVO_Assist)
+@interface NSObject (MQExtension_KVO_Assist)
 
 @property (nonatomic , strong , readonly) NSMutableDictionary <NSString * ,id > *d_all_key_paths ;
 
@@ -100,15 +100,15 @@ static NSString * CC_EXTENSION_KVO_ALL_KEY_PATHS_KEY = @"CC_EXTENSION_KVO_ALL_KE
 
 @end
 
-@implementation NSObject (CCExtension_KVO_Assist)
+@implementation NSObject (MQExtension_KVO_Assist)
 
 - (NSMutableDictionary<NSString *,id> *)d_all_key_paths {
-    id t = objc_getAssociatedObject(self, CC_EXTENSION_KVO_ALL_KEY_PATHS_KEY.UTF8String);
+    id t = objc_getAssociatedObject(self, MQ_EXTENSION_KVO_ALL_KEY_PATHS_KEY.UTF8String);
     if (t) return t;
     else {
         NSMutableDictionary *d = [NSMutableDictionary dictionary];
         objc_setAssociatedObject(self,
-                                 CC_EXTENSION_KVO_ALL_KEY_PATHS_KEY.UTF8String,
+                                 MQ_EXTENSION_KVO_ALL_KEY_PATHS_KEY.UTF8String,
                                  d,
                                  OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return d;
@@ -125,7 +125,7 @@ static NSString * CC_EXTENSION_KVO_ALL_KEY_PATHS_KEY = @"CC_EXTENSION_KVO_ALL_KE
 
 @end
 
-@implementation NSObject (CCExtension_KVO)
+@implementation NSObject (MQExtension_KVO)
 
 + (instancetype) mq_common {
     return [[self alloc] init];

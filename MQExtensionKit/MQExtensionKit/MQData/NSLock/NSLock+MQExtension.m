@@ -10,19 +10,19 @@
 
 #import <objc/runtime.h>
 
-@implementation NSLock (CCExtension)
+@implementation NSLock (MQExtension)
 
 + (instancetype) mq_commmon {
     return [[self alloc] init];
 }
 
-- (BOOL) mq_lock : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block; {
+- (BOOL) mq_lock : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block; {
     BOOL is_locked = [self tryLock];
     __block BOOL is_excuted = false;
     if (is_locked) {
         if (mq_lock_operate_block) {
-            mq_lock_operate_block(^(CCUnlockType type){
-                if (type == CCUnlockType_Auto) {
+            mq_lock_operate_block(^(MQUnlockType type){
+                if (type == MQUnlockType_Auto) {
                     [self unlock];
                 }
                 is_excuted = YES;
@@ -34,14 +34,14 @@
 }
 
 - (BOOL) mq_locked_before : (NSDate *) date
-                operation : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block;{
+                operation : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block;{
     if (!date) return false;
     BOOL is_locked = [self lockBeforeDate:date];
     __block BOOL is_excuted = false;
     if (is_locked) {
         if (mq_lock_operate_block) {
-            mq_lock_operate_block(^(CCUnlockType type){
-                if (type == CCUnlockType_Auto) {
+            mq_lock_operate_block(^(MQUnlockType type){
+                if (type == MQUnlockType_Auto) {
                     [self unlock];
                 }
                 is_excuted = YES;
@@ -54,19 +54,19 @@
 
 @end
 
-@implementation NSRecursiveLock (CCExtension)
+@implementation NSRecursiveLock (MQExtension)
 
 + (instancetype) mq_commmon {
     return [[self alloc] init];
 }
 
-- (BOOL) mq_lock : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block; {
+- (BOOL) mq_lock : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block; {
     BOOL is_locked = [self tryLock];
     __block BOOL is_excuted = false;
     if (is_locked) {
         if (mq_lock_operate_block) {
-            mq_lock_operate_block(^(CCUnlockType type){
-                if (type == CCUnlockType_Auto) {
+            mq_lock_operate_block(^(MQUnlockType type){
+                if (type == MQUnlockType_Auto) {
                     [self unlock];
                 }
                 is_excuted = YES;
@@ -78,14 +78,14 @@
 }
 
 - (BOOL) mq_locked_before : (NSDate *) date
-                operation : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block;{
+                operation : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block;{
     if (!date) return false;
     BOOL is_locked = [self lockBeforeDate:date];
     __block BOOL is_excuted = false;
     if (is_locked) {
         if (mq_lock_operate_block) {
-            mq_lock_operate_block(^(CCUnlockType type){
-                if (type == CCUnlockType_Auto) {
+            mq_lock_operate_block(^(MQUnlockType type){
+                if (type == MQUnlockType_Auto) {
                     [self unlock];
                 }
                 is_excuted = YES;
@@ -98,20 +98,20 @@
 
 @end
 
-@implementation NSConditionLock (CCExtension)
+@implementation NSConditionLock (MQExtension)
 
 + (instancetype) mq_common : (NSInteger) i_condition {
     return [[self alloc] initWithCondition:i_condition];
 }
 
 - (BOOL) mq_lock : (NSInteger) i_condition
-       operation : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block {
+       operation : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block {
     BOOL is_locked = [self tryLockWhenCondition:i_condition];
     __block BOOL is_excuted = false;
     if (is_locked) {
         if (mq_lock_operate_block) {
-            mq_lock_operate_block(^(CCUnlockType type){
-                if (type == CCUnlockType_Auto) {
+            mq_lock_operate_block(^(MQUnlockType type){
+                if (type == MQUnlockType_Auto) {
                     [self unlockWithCondition:i_condition];
                 }
                 is_excuted = YES;
@@ -124,7 +124,7 @@
 
 - (BOOL) mq_lock : (NSInteger) i_condition
           before : (NSDate *) date
-       operation : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block {
+       operation : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block {
     if (!date) return false;
     
     BOOL is_locked = [self lockWhenCondition:i_condition
@@ -132,8 +132,8 @@
     __block BOOL is_excuted = false;
     if (is_locked) {
         if (mq_lock_operate_block) {
-            mq_lock_operate_block(^(CCUnlockType type){
-                if (type == CCUnlockType_Auto) {
+            mq_lock_operate_block(^(MQUnlockType type){
+                if (type == MQUnlockType_Auto) {
                     [self unlockWithCondition:i_condition];
                 }
                 is_excuted = YES;
@@ -146,7 +146,7 @@
 
 @end
 
-@implementation NSCondition (CCExtension)
+@implementation NSCondition (MQExtension)
 
 static NSMutableArray * __array_all_conditions = nil;
 + (NSMutableArray<NSCondition *> *)array_all_conditions {

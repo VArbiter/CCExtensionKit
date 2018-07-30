@@ -9,7 +9,7 @@
 #import "UILabel+MQExtension.h"
 #import "UIView+MQExtension.h"
 
-@implementation UILabel (CCExtension)
+@implementation UILabel (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];

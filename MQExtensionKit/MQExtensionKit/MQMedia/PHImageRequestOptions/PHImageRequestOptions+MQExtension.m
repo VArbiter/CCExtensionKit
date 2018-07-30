@@ -10,7 +10,7 @@
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
 
-@implementation PHImageRequestOptions (CCExtension)
+@implementation PHImageRequestOptions (MQExtension)
 
 + (instancetype) mq_common : (PHImageRequestOptionsDeliveryMode) mode_delivery {
     PHImageRequestOptions * t = [[PHImageRequestOptions alloc] init];

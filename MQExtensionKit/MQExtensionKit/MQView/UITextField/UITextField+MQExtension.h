@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIControl+MQExtension.h"
 
-@interface UITextField (CCExtension)
+@interface UITextField (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame ;
 

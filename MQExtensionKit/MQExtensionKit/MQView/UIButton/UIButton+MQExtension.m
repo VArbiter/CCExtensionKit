@@ -11,13 +11,13 @@
 
 static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY";
 
-@interface UIButton (CCExtension_Assit)
+@interface UIButton (MQExtension_Assit)
 
 - (void) ccButtonExtensionAction : ( __kindof UIButton *) sender ;
 
 @end
 
-@implementation UIButton (CCExtension_Assit)
+@implementation UIButton (MQExtension_Assit)
 
 - (void) ccButtonExtensionAction : ( __kindof UIButton *) sender {
     void (^t)( __kindof UIButton *) = objc_getAssociatedObject(self, _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_);
@@ -31,7 +31,7 @@ static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN
 
 @end
 
-@implementation UIButton (CCExtension)
+@implementation UIButton (MQExtension)
 
 + (instancetype) mq_common {
     return [self mq_common:UIButtonTypeCustom];

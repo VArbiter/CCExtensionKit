@@ -8,7 +8,7 @@
 
 #import "UIVisualEffectView+MQExtension.h"
 
-@implementation UIVisualEffectView (CCExtension)
+@implementation UIVisualEffectView (MQExtension)
 
 + (instancetype) mq_common : (UIVisualEffect *) effect {
     return [[self alloc] initWithEffect:effect];
@@ -18,7 +18,7 @@
 
 #pragma mark - -----
 
-@implementation UIVisualEffect (CCExtension)
+@implementation UIVisualEffect (MQExtension)
 
 + (instancetype) mq_blur_dark {
     return [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
@@ -34,7 +34,7 @@
 
 #pragma mark - -----
 
-@implementation UIVibrancyEffect (CCExtension)
+@implementation UIVibrancyEffect (MQExtension)
 
 + (instancetype) mq_vibrancy_dark {
     return [UIVibrancyEffect effectForBlurEffect:UIBlurEffect.mq_blur_dark];

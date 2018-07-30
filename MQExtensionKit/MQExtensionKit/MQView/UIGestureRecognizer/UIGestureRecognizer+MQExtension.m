@@ -12,13 +12,13 @@
 
 static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY";
 
-@interface UIGestureRecognizer (CCExtension_Assit)
+@interface UIGestureRecognizer (MQExtension_Assit)
 
 - (void) ccGestureExtensionAction : ( __kindof UIGestureRecognizer *) sender ;
 
 @end
 
-@implementation UIGestureRecognizer (CCExtension_Assit)
+@implementation UIGestureRecognizer (MQExtension_Assit)
 
 - (void)ccGestureExtensionAction:( __kindof UIGestureRecognizer *)sender {
     UIGestureRecognizer *(^t)( __kindof UIGestureRecognizer *) = objc_getAssociatedObject(self, _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_);
@@ -37,7 +37,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 
 #pragma mark - -----
 
-@implementation UIGestureRecognizer (CCExtension)
+@implementation UIGestureRecognizer (MQExtension)
 
 + (instancetype) mq_common {
     return [[self alloc] init];
@@ -59,7 +59,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 
 #pragma mark - -----
 
-@implementation UITapGestureRecognizer (CCExtension)
+@implementation UITapGestureRecognizer (MQExtension)
 
 - (instancetype) mq_tap : (void(^)(UITapGestureRecognizer *tapGR)) action {
     return [self mq_tap:1 action:action];
@@ -75,7 +75,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 
 #pragma mark - -----
 
-@implementation UILongPressGestureRecognizer (CCExtension)
+@implementation UILongPressGestureRecognizer (MQExtension)
 
 - (instancetype) mq_press : (void(^)(UILongPressGestureRecognizer *pressGR)) action {
     return [self mq_press:.5f action:action];
@@ -92,7 +92,7 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 
 #pragma mark - -----
 
-@implementation UIView (CCExtension_Gesture_Actions)
+@implementation UIView (MQExtension_Gesture_Actions)
 
 /// for gesture actions
 - (instancetype) mq_gesture : (__kindof UIGestureRecognizer *) gesture {
@@ -129,14 +129,14 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 
 static const char * _CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY_ = "CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_ASSOCIATE_KEY";
 
-@interface UIViewController (CCExtension_Gesture_Actions_Assit)
+@interface UIViewController (MQExtension_Gesture_Actions_Assit)
 
 @property (nonatomic , strong) UIScreenEdgePanGestureRecognizer *screenEdgePanGR ;
 - (void) ccScreenEdgePanGestureAction : (UIScreenEdgePanGestureRecognizer *) sender ;
 
 @end
 
-@implementation UIViewController (CCExtension_Gesture_Actions_Assit)
+@implementation UIViewController (MQExtension_Gesture_Actions_Assit)
 
 - (void)setScreenEdgePanGR:(UIScreenEdgePanGestureRecognizer *)screenEdgePanGR {
     objc_setAssociatedObject(self,
@@ -163,7 +163,7 @@ static const char * _CC_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK
 
 @end
 
-@implementation UIViewController (CCExtension_Gesture_Actions)
+@implementation UIViewController (MQExtension_Gesture_Actions)
 
 - (instancetype) mq_modal_pop_gesture : (void(^)(__kindof UIViewController *sender ,
                                               __kindof UIScreenEdgePanGestureRecognizer *edgePanGR)) bEdgePanGR {

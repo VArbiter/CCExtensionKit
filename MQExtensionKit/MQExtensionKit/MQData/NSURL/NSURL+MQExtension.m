@@ -8,26 +8,26 @@
 
 #import "NSURL+MQExtension.h"
 
-@implementation NSURL (CCExtension)
+@implementation NSURL (MQExtension)
 
-+ (instancetype)mq_URL:(NSString *)sURL {
-    return [NSURL URLWithString:(sURL && sURL.length) ? sURL : @""];
++ (instancetype) mq_url : (NSString *) s_url {
+    return [NSURL URLWithString:(s_url && s_url.length) ? s_url : @""];
 }
 
-+ (instancetype)mq_local:(NSString *)sURL {
-    return [NSURL fileURLWithPath:(sURL && sURL.length) ? sURL : @""];
++ (instancetype)mq_local:(NSString *)s_url {
+    return [NSURL fileURLWithPath:(s_url && s_url.length) ? s_url : @""];
 }
 
 @end
 
 #pragma mark - -----
 
-@implementation NSString (CCExtension_UrlEncode)
+@implementation NSString (MQExtension_UrlEncode)
 
-- (NSURL *)toWebURL {
-    return [NSURL mq_URL:self];
+- (NSURL *)to_web_url {
+    return [NSURL mq_url:self];
 }
-- (NSURL *)toLocalURL {
+- (NSURL *)to_local_url {
     return [NSURL mq_local:self];
 }
 

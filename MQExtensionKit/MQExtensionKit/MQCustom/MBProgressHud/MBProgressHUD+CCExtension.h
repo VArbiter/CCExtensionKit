@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger , CCHudExtensionType) {
     CCHudExtensionTypeDarkDeep
 };
 
-@interface MBProgressHUD (CCExtension)
+@interface MBProgressHUD (MQExtension)
 
 /// init , default showing after actions complete , no need to invoke showing action "ccShow".
 /// 初始化 . 默认在 动作完成后展示 , 不用实现 "ccShow"
@@ -61,7 +61,7 @@ typedef NS_ENUM(NSInteger , CCHudExtensionType) {
 
 #pragma mark - -----
 
-@interface UIView (CCExtension_Hud)
+@interface UIView (MQExtension_Hud)
 
 - (__kindof MBProgressHUD *) mq_hud ;
 + (__kindof MBProgressHUD *) mq_hud : (UIView *) view ;

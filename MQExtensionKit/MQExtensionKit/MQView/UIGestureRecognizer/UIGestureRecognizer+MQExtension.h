@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIGestureRecognizer (CCExtension)
+@interface UIGestureRecognizer (MQExtension)
 
 + (instancetype) mq_common ;
 
@@ -20,7 +20,7 @@
 
 #pragma mark - -----
 
-@interface UITapGestureRecognizer (CCExtension)
+@interface UITapGestureRecognizer (MQExtension)
 
 /// default 1 tap // 默认点击 1 次
 - (instancetype) mq_tap : (void(^)(UITapGestureRecognizer *tapGR)) action ;
@@ -31,7 +31,7 @@
 
 #pragma mark - -----
 
-@interface UILongPressGestureRecognizer (CCExtension)
+@interface UILongPressGestureRecognizer (MQExtension)
 
 /// default .5f seconds // 默认 0.5 秒
 - (instancetype) mq_press : (void(^)(UILongPressGestureRecognizer *pressGR)) action ;
@@ -42,7 +42,7 @@
 
 #pragma mark - -----
 
-@interface UIView (CCExtension_Gesture_Actions)
+@interface UIView (MQExtension_Gesture_Actions)
 
 /// for gesture actions // 添加手势动作
 - (instancetype) mq_gesture : (__kindof UIGestureRecognizer *) gesture ;
@@ -57,7 +57,7 @@
 
 #pragma mark - -----
 
-@interface UIViewController (CCExtension_Gesture_Actions)
+@interface UIViewController (MQExtension_Gesture_Actions)
 
 /// make modaled controller can trigger pop action like UINavigationController. // 使得 模态出的控制器可以像导航控制器那样 pop
 /// highly recommend use it with [instance ccEnablePushingPopingStyleWhenPresentOrDismiss] . // 建议和 "[instance ccEnablePushingPopingStyleWhenPresentOrDismiss]" 一起使用

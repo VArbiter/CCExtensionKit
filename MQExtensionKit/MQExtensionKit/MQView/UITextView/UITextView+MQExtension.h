@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UITextView (CCExtension)
+@interface UITextView (MQExtension)
 
 /// use these initializer might cause a problem that make UITextView can't responding to user's tap .
 // 使用这些初始化方式可能会导致 UITextField 无法响应用户事件

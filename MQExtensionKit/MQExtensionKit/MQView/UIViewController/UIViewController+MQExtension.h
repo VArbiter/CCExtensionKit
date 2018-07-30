@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (CCExtension) < UIViewControllerTransitioningDelegate >
+@interface UIViewController (MQExtension) < UIViewControllerTransitioningDelegate >
 
 /// remove all animated for pushing && presenting . // 移除所有的 push 和 presenting 动画
 - (instancetype) mq_disable_animated ;

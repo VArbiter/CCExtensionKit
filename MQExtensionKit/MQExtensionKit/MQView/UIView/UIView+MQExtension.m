@@ -116,7 +116,7 @@ CGFloat CCHScale(CGFloat h) {
     return h / _CC_DEFAULT_SCALE_HEIGHT_;
 }
 
-@implementation UIView (CCExtension)
+@implementation UIView (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame {
     CGRect g = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
@@ -435,7 +435,7 @@ CGFloat CCHScale(CGFloat h) {
 
 #pragma mark - -----
 
-@implementation UIView (CCExtension_FitHeight)
+@implementation UIView (MQExtension_FitHeight)
 
 CGFloat CC_TEXT_HEIGHT_S(CGFloat fWidth , CGFloat fEstimateHeight , NSString *string) {
     return CC_TEXT_HEIGHT_C(fWidth,
@@ -509,7 +509,7 @@ CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
 
 @end
 
-@implementation UIView (CCExtension_Delay_Operate)
+@implementation UIView (MQExtension_Delay_Operate)
 
 - (instancetype) mq_cold : (NSTimeInterval) interval {
     return [self mq_cold:YES time:interval complete:nil];

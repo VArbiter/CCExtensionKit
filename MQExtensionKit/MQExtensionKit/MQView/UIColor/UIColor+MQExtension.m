@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-@implementation UIColor (CCExtension)
+@implementation UIColor (MQExtension)
 
 + (instancetype) mq_hex : (int) value {
     return [self mq_hex:value alpha:1.f];
@@ -112,7 +112,7 @@
 
 @end
 
-@implementation UIImage (CCExtension_Color)
+@implementation UIImage (MQExtension_Color)
 
 + (instancetype) mq_color : (UIColor *) color {
     return [self mq_color:color size:CGSizeZero];

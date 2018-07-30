@@ -14,7 +14,7 @@ static const char * _CC_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_ = "CC_UICONTROL
 static const char * _CC_UICONTROL_EVENT_DICTIONARY_STORED_KEY_ = "CC_UICONTROL_EVENT_DICTIONARY_STORED_KEY";
 static const char * _CC_UICONTROL_EVENT_STORED_KEY_ = "CC_UICONTROL_EVENT_STORED_KEY";
 
-@interface UIControl (CCExtension_Assit)
+@interface UIControl (MQExtension_Assit)
 
 - (void) ccControlExtensionAction : ( __kindof UIControl *) sender ;
 
@@ -24,7 +24,7 @@ static const char * _CC_UICONTROL_EVENT_STORED_KEY_ = "CC_UICONTROL_EVENT_STORED
 
 @end
 
-@implementation UIControl (CCExtension_Assit)
+@implementation UIControl (MQExtension_Assit)
 
 - (void)setDEvent:(NSMutableDictionary *)dEvent {
     objc_setAssociatedObject(self, _CC_UICONTROL_EVENT_DICTIONARY_STORED_KEY_, dEvent, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -72,7 +72,7 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY_ = "CC_UIVIEW_ASSOCIAT
 static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY_ = "CC_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY";
 static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY";
 
-@implementation UIControl (CCExtension)
+@implementation UIControl (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame {
     UIControl *c = [[self alloc] initWithFrame:frame];

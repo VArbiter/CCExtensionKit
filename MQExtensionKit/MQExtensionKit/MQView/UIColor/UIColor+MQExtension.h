@@ -16,7 +16,7 @@
     #define CC_COLOR_HEX_S(_hex_,_alpha_) [[UIColor mq_hex_s:(_hex_)] ccAlpha:(_alpha_)]
 #endif
 
-@interface UIColor (CCExtension)
+@interface UIColor (MQExtension)
 
 /// eg: 0xFFFFFF , 0x000000
 + (instancetype) mq_hex : (int) value ;
@@ -55,7 +55,7 @@
 
 #pragma mark - -----
 
-@interface UIImage (CCExtension_Color)
+@interface UIImage (MQExtension_Color)
 
 /// generate a image with colors.
 + (instancetype) mq_color : (UIColor *) color;

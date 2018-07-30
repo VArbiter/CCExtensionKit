@@ -13,7 +13,7 @@
 #import "NSPredicate+MQExtension.h"
 #import <CommonCrypto/CommonDigest.h>
 
-@implementation NSString (CCExtension)
+@implementation NSString (MQExtension)
 
 - (NSString *(^)(id))s {
     __weak typeof(self) pSelf = self;
@@ -35,14 +35,14 @@
     };
 }
 
-+ (instancetype) mq_merge : (BOOL) isNeedBreak
-                  spacing : (BOOL) isNeedSpacing
++ (instancetype) mq_merge : (BOOL) is_need_break
+                  spacing : (BOOL) is_need_spacing
                      with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION {
     if (!string || !string.length) return nil;
     
     NSMutableArray *arrayStrings = [NSMutableArray array];
     NSString *stringTemp;
-    va_list argumentList;
+    va_list argumentList = NULL;
     if (string) {
         [arrayStrings addObject:string];
         va_start(argumentList, string);
@@ -53,88 +53,88 @@
     }
     free(argumentList);
     return [self mq_merge:arrayStrings
-               need_break:isNeedBreak
-                  spacing:isNeedSpacing];
+               need_break:is_need_break
+                  spacing:is_need_spacing];
 }
-+ (instancetype) mq_merge : (NSArray <NSString *> *) arrayStrings
-               need_break : (BOOL) isNeedBreak
-                  spacing : (BOOL) isNeedSpacing {
-    __block NSString *stringResult = @"";
-    if (isNeedBreak) {
-        [arrayStrings enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
++ (instancetype) mq_merge : (NSArray <NSString *> *) array_strings
+               need_break : (BOOL) is_need_break
+                  spacing : (BOOL) is_need_spacing {
+    __block NSString *string_result = @"";
+    if (is_need_break) {
+        [array_strings enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj isKindOfClass:[NSString class]]) {
-                stringResult = [stringResult stringByAppendingString:(NSString *) obj];
-                if (idx != (arrayStrings.count - 1)) {
-                    stringResult = [stringResult stringByAppendingString:@"\n"];
+                string_result = [string_result stringByAppendingString:(NSString *) obj];
+                if (idx != (array_strings.count - 1)) {
+                    string_result = [string_result stringByAppendingString:@"\n"];
                 }
             }
         }];
     }
-    else if (isNeedSpacing) {
-        [arrayStrings enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    else if (is_need_spacing) {
+        [array_strings enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj isKindOfClass:[NSString class]]) {
-                stringResult = [stringResult stringByAppendingString:(NSString *) obj];
-                if (idx != (arrayStrings.count - 1)) {
-                    stringResult = [stringResult stringByAppendingString:@""];
+                string_result = [string_result stringByAppendingString:(NSString *) obj];
+                if (idx != (array_strings.count - 1)) {
+                    string_result = [string_result stringByAppendingString:@""];
                 }
             }
         }];
     }
     else {
-        for (NSString *tempString in arrayStrings) {
-            stringResult = [stringResult stringByAppendingString:tempString];
+        for (NSString *temp_string in array_strings) {
+            string_result = [string_result stringByAppendingString:temp_string];
         }
     }
-    return stringResult;
+    return string_result;
 }
 
 /// for localizedString
-+ (instancetype) mq_localized : (NSString *) sKey
-                      comment : (NSString *) sComment {
-    return [self mq_localized:sKey
++ (instancetype) mq_localized : (NSString *) s_key
+                      comment : (NSString *) s_comment {
+    return [self mq_localized:s_key
                        bundle:NSBundle.mainBundle
-                      comment:sComment];
+                      comment:s_comment];
 }
-+ (instancetype) mq_localized : (NSString *) sKey
++ (instancetype) mq_localized : (NSString *) s_key
                        bundle : (NSBundle *) bundle
-                      comment : (NSString *) sComment {
-    return [self mq_localized:sKey
+                      comment : (NSString *) s_comment {
+    return [self mq_localized:s_key
                       strings:@"Localizable"
                        bundle:bundle
-                      comment:sComment];
+                      comment:s_comment];
 }
 /// key , strings file , bundle , comment
-+ (instancetype) mq_localized : (NSString *) sKey
-                      strings : (NSString *) sStrings
++ (instancetype) mq_localized : (NSString *) s_key
+                      strings : (NSString *) s_strings
                        bundle : (NSBundle *) bundle
-                      comment : (NSString *) sComment {
+                      comment : (NSString *) s_comment {
     if (!bundle) bundle = NSBundle.mainBundle;
-    if (!sStrings) sStrings = @"Localizable";
-    NSString *s = NSLocalizedStringFromTableInBundle(sKey, sStrings, bundle, nil);
+    if (!s_strings) s_strings = @"Localizable";
+    NSString *s = NSLocalizedStringFromTableInBundle(s_key, s_strings, bundle, nil);
 #if DEBUG
-    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" not found , return @\"\" istead",sKey);
+    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" not found , return @\"\" istead",s_key);
 #endif
     return ((s && s.length) ? s : @"");
 }
 
 + (instancetype) mq_localized : (Class) cls
-                       module : (NSString *) sModule
-                      strings : (NSString *) sStrings
-                          key : (NSString *) sKey
-                      comment : (NSString *) sComment {
+                       module : (NSString *) s_module
+                      strings : (NSString *) s_strings
+                          key : (NSString *) s_key
+                      comment : (NSString *) s_comment {
     NSBundle *b = [NSBundle bundleForClass:cls];
     NSString *s = nil;
-    if (sModule && sModule.length) {
-        sModule = [sModule stringByReplacingOccurrencesOfString:@"/" withString:@""];
-        NSString *p = [b pathForResource:sModule
+    if (s_module && s_module.length) {
+        s_module = [s_module stringByReplacingOccurrencesOfString:@"/" withString:@""];
+        NSString *p = [b pathForResource:s_module
                                   ofType:@"bundle"
                              inDirectory:nil];
         NSBundle *bS = [NSBundle bundleWithPath:p];
-        s = NSLocalizedStringFromTableInBundle(sKey, sStrings, bS, nil);
+        s = NSLocalizedStringFromTableInBundle(s_key, s_strings, bS, nil);
     }
-    else s = NSLocalizedStringFromTableInBundle(sKey, sStrings, b, nil);
+    else s = NSLocalizedStringFromTableInBundle(s_key, s_strings, b, nil);
 #if DEBUG
-    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" in module \"%@\" not found , return @\"\" istead",sKey,sModule);
+    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" in module \"%@\" not found , return @\"\" istead",s_key,s_module);
 #endif
     return ((s && s.length) ? s : @"");
 }
@@ -147,36 +147,36 @@
 
 #pragma mark - -----
 
-@implementation NSString (CCExtension_Convert)
+@implementation NSString (MQExtension_Convert)
 
-- (NSInteger)toInteger {
+- (NSInteger)to_integer {
     return self.integerValue;
 }
-- (long long)toLonglong {
+- (long long)to_longlong {
     return self.longLongValue;
 }
-- (int)toInt {
+- (int)to_int {
     return self.intValue;
 }
-- (BOOL)toBool {
+- (BOOL)to_bool {
     return self.boolValue;
 }
-- (float)toFloat {
+- (float)to_float {
     return self.floatValue;
 }
-- (double)toDouble {
+- (double)to_double {
     return self.doubleValue;
 }
-- (NSData *)toData {
+- (NSData *)to_data {
     return [self dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (NSDecimalNumber *)toDecimal {
+- (NSDecimalNumber *)to_decimal {
     return [NSDecimalNumber decimalNumberWithString:self];
 }
 
-- (NSString *)toMD5 {
-    if (!CC_IS_STRING_VALUED(self)) return nil;
+- (NSString *)to_MD5 {
+    if (!MQ_IS_STRING_VALUED(self)) return nil;
     const char *cStr = [self UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, (CC_LONG) strlen(cStr), digest );
@@ -185,8 +185,8 @@
         [stringOutput appendFormat:@"%02x", digest[i]];
     return  stringOutput;
 }
-- (NSString *)toSHA1 {
-    if (!CC_IS_STRING_VALUED(self)) return nil;
+- (NSString *)to_SHA1 {
+    if (!MQ_IS_STRING_VALUED(self)) return nil;
     const char *cstr = [self cStringUsingEncoding:NSUTF8StringEncoding];
     NSData *data = [NSData dataWithBytes:cstr length:self.length];
     // length
@@ -201,20 +201,20 @@
     for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++) [output appendFormat:@"%02x", digest[i]];
     return output;
 }
-- (NSString *)toBase64 {
-    if (!CC_IS_STRING_VALUED(self)) return nil;
-    NSData *d = self.toData;
+- (NSString *)to_base64 {
+    if (!MQ_IS_STRING_VALUED(self)) return nil;
+    NSData *d = self.to_data;
     if (d && d.length) {
         return [d base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     }
     else return nil;
 }
-- (NSString *)toBase64Decode {
+- (NSString *)to_base64_decode {
     NSData *d = [[NSData alloc] initWithBase64EncodedString:self
                                                     options:NSDataBase64DecodingIgnoreUnknownCharacters];
     return [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
 }
-- (NSString *)toUrlEncoded {
+- (NSString *)to_url_encoded {
     
     // CharactersToBeEscaped = @":/?&=;+!@#$()~',*";
     // CharactersToLeaveUnescaped = @"[].";
@@ -228,7 +228,7 @@
                                                               kCFStringEncodingUTF8));
     return sEncode;
 }
-- (NSString *)toUrlDecoded {
+- (NSString *)to_url_decoded {
     NSString *sEncode = self;
     NSString *sDecode = nil;
     sDecode = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
@@ -238,15 +238,15 @@
     return sDecode;
 }
 
-- (CGRect)toRect {
+- (CGRect)to_rect {
     return CGRectFromString(self);
 }
 
-- (NSString *)toPinYin {
+- (NSString *)to_pinyin {
     return [self mq_convert_to_PinYin:YES
                                 marks:false];
 }
-- (NSString *)toPinYin_marks {
+- (NSString *)to_pinyin_marks {
     return [self mq_convert_to_PinYin:YES
                                 marks:YES];
 }
@@ -264,7 +264,7 @@
 - (const char *)toUTF8 {
     return self.UTF8String;
 }
-NSString * CC_STRING_FROM_UTF8(const char * cUTF8) {
+NSString * MQ_STRING_FROM_UTF8(const char * cUTF8) {
     if (cUTF8 && (*cUTF8 != '\0')) {
         return [NSString stringWithUTF8String:cUTF8];
     }
@@ -275,7 +275,7 @@ NSString * CC_STRING_FROM_UTF8(const char * cUTF8) {
 
 #pragma mark - ----- 
 
-@implementation NSString (CCExtension_Filter)
+@implementation NSString (MQExtension_Filter)
 
 - (BOOL)is_pure_letter {
     NSString *s_letter = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

@@ -10,9 +10,9 @@
 
 #import "NSObject+MQExtension.h"
 
-@implementation NSArray (CCExtension)
+@implementation NSArray (MQExtension)
 
-- (NSString *)toJson {
+- (NSString *)to_json {
     NSError *error;
     NSData *t_data = [NSJSONSerialization dataWithJSONObject:self
                                                      options:NSJSONWritingPrettyPrinted
@@ -33,7 +33,7 @@
     return s_mutable;
 }
 
-- (NSData *)toData {
+- (NSData *)to_data {
     NSError *error;
     NSData *t_data = [NSJSONSerialization dataWithJSONObject:self
                                                      options:NSJSONWritingPrettyPrinted
@@ -43,7 +43,7 @@
 }
 
 - (id) mq_value_at : (NSInteger) index {
-    if (!CC_IS_ARRAY_VALUED(self)) return nil;
+    if (!MQ_IS_ARRAY_VALUED(self)) return nil;
     if (index >= 0 && index < self.count) {
         return self[index];
     }
@@ -55,7 +55,7 @@
 #pragma mark - -----
 #import <objc/runtime.h>
 
-@implementation NSMutableArray (CCExtension)
+@implementation NSMutableArray (MQExtension)
 
 - (instancetype) mq_add : (id) value {
     if (value) [self addObject:value];
@@ -90,30 +90,30 @@
 }
 
 - (instancetype) mq_type : (NSString *) cls {
-    objc_setAssociatedObject(self, "_CC_ARRAY_CLAZZ_", cls, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, "_MQ_ARRAY_CLAZZ_", cls, OBJC_ASSOCIATION_ASSIGN);
     return self;
 }
 - (instancetype) mq_append : (id) value {
     BOOL isCan = YES;
-    if (objc_getAssociatedObject(self, "_CC_ARRAY_CLAZZ_")) {
-        Class clazz = NSClassFromString([NSString stringWithFormat:@"%@",objc_getAssociatedObject(self, "_CC_ARRAY_CLAZZ_")]);
+    if (objc_getAssociatedObject(self, "_MQ_ARRAY_CLAZZ_")) {
+        Class clazz = NSClassFromString([NSString stringWithFormat:@"%@",objc_getAssociatedObject(self, "_MQ_ARRAY_CLAZZ_")]);
         isCan = [value isKindOfClass:clazz];
     }
-    CCArrayChangeInfo type ;
-    type.type = CCArrayChangeTypeAppend;
+    MQArrayChangeInfo type ;
+    type.type = MQArrayChangeTypeAppend;
     type.count = self.count;
     if (isCan) {
         [self addObject:value];
         type.count = self.count;
-        void (^t)(id , CCArrayChangeInfo) = objc_getAssociatedObject(self, "_CC_ARRAY_CHANGE_");
+        void (^t)(id , MQArrayChangeInfo) = objc_getAssociatedObject(self, "_MQ_ARRAY_CHANGE_");
         if (t) {
             t(value , type);
         }
     } else {
-        type.type = CCArrayChangeTypeNone;
+        type.type = MQArrayChangeTypeNone;
     }
     
-    void (^r)(CCArrayChangeInfo t) = objc_getAssociatedObject(self, "_CC_ARRAY_COMPLETE_");
+    void (^r)(MQArrayChangeInfo t) = objc_getAssociatedObject(self, "_MQ_ARRAY_COMPLETE_");
     if (r) {
         r(type);
     }
@@ -135,30 +135,30 @@
     return self;
 }
 - (instancetype) mq_remove : (id) value {
-    CCArrayChangeInfo type ;
-    type.type = CCArrayChangeTypeRemoved;
+    MQArrayChangeInfo type ;
+    type.type = MQArrayChangeTypeRemoved;
     type.count = self.count;
     if ([self containsObject:value]) {
         [self removeObject:value];
-        void (^t)(id , CCArrayChangeInfo) = objc_getAssociatedObject(self, "_CC_ARRAY_CHANGE_");
+        void (^t)(id , MQArrayChangeInfo) = objc_getAssociatedObject(self, "_MQ_ARRAY_CHANGE_");
         if (t) {
             t(value , type);
         }
     } else {
-        type.type = CCArrayChangeTypeNone;
+        type.type = MQArrayChangeTypeNone;
     }
-    void (^r)(CCArrayChangeInfo t) = objc_getAssociatedObject(self, "_CC_ARRAY_COMPLETE_");
+    void (^r)(MQArrayChangeInfo t) = objc_getAssociatedObject(self, "_MQ_ARRAY_COMPLETE_");
     if (r) {
         r(type);
     }
     return self;
 }
 - (instancetype) mq_remove_all : (BOOL (^)(BOOL isCompare , id obj)) action {
-    NSString *stringClazz = [NSString stringWithFormat:@"%@",objc_getAssociatedObject(self, "_CC_ARRAY_CLAZZ_")];
+    NSString *stringClazz = [NSString stringWithFormat:@"%@",objc_getAssociatedObject(self, "_MQ_ARRAY_CLAZZ_")];
     
     NSMutableArray *arrayRemove = [NSMutableArray array];
-    __block CCArrayChangeInfo type ;
-    type.type = CCArrayChangeTypeRemoved;
+    __block MQArrayChangeInfo type ;
+    type.type = MQArrayChangeTypeRemoved;
     
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         BOOL isCan = YES;
@@ -168,14 +168,14 @@
         if (isCan) {
             [arrayRemove addObject:obj];
             type.count = self.count;
-            void (^t)(id , CCArrayChangeInfo) = objc_getAssociatedObject(self, "_CC_ARRAY_CHANGE_");
+            void (^t)(id , MQArrayChangeInfo) = objc_getAssociatedObject(self, "_MQ_ARRAY_CHANGE_");
             if (t) {
                 t(obj , type);
             }
         }
     }];
     [self removeObjectsInArray:arrayRemove];
-    void (^r)(CCArrayChangeInfo t) = objc_getAssociatedObject(self, "_CC_ARRAY_COMPLETE_");
+    void (^r)(MQArrayChangeInfo t) = objc_getAssociatedObject(self, "_MQ_ARRAY_COMPLETE_");
     if (r) {
         r(type);
     }
@@ -184,12 +184,12 @@
 }
 
 
-- (instancetype) mq_change : (void (^)(id value , CCArrayChangeInfo type)) action {
-    objc_setAssociatedObject(self, "_CC_ARRAY_CHANGE_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (instancetype) mq_change : (void (^)(id value , MQArrayChangeInfo type)) action {
+    objc_setAssociatedObject(self, "_MQ_ARRAY_CHANGE_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
-- (instancetype) mq_complete : (void (^)(CCArrayChangeInfo type)) action {
-    objc_setAssociatedObject(self, "_CC_ARRAY_COMPLETE_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (instancetype) mq_complete : (void (^)(MQArrayChangeInfo type)) action {
+    objc_setAssociatedObject(self, "_MQ_ARRAY_COMPLETE_", action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
 

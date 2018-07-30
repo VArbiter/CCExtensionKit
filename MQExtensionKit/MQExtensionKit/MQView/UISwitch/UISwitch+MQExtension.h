@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UISwitch (CCExtension)
+@interface UISwitch (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame ;
 

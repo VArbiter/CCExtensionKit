@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIControl (CCExtension)
+@interface UIControl (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame ;
 /// actions , default is touchUpInside // 动作 , 默认 touchUpInside

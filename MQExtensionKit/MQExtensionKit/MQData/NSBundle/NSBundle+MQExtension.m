@@ -8,7 +8,7 @@
 
 #import "NSBundle+MQExtension.h"
 
-@implementation NSBundle (CCExtension)
+@implementation NSBundle (MQExtension)
 
 + (instancetype) mq_bundle_for : (Class) clazz {
     if (clazz) {
@@ -17,30 +17,30 @@
     return [NSBundle mainBundle];
 }
 
-- (instancetype) mq_resource : (NSString *) sName
-                   extension : (NSString *) sExtension
-                      action : (void(^)(NSString *sPath)) action {
-    return [self mq_resource:sName
-                   extension:sExtension
+- (instancetype) mq_resource : (NSString *) s_name
+                   extension : (NSString *) s_extension
+                      action : (void(^)(NSString *s_path)) action {
+    return [self mq_resource:s_name
+                   extension:s_extension
                     sub_path:nil
                       action:action];
 }
 
-- (instancetype) mq_resource : (NSString *) sName
-                   extension : (NSString *) sExtension
-                    sub_path : (NSString *) sSubPath
-                      action : (void(^)(NSString *sPath)) action {
-    if (action) action([self pathForResource:sName
-                                      ofType:sExtension
-                                 inDirectory:sSubPath]);
+- (instancetype) mq_resource : (NSString *) s_name
+                   extension : (NSString *) s_extension
+                    sub_path : (NSString *) s_sub_path
+                      action : (void(^)(NSString *s_path)) action {
+    if (action) action([self pathForResource:s_name
+                                      ofType:s_extension
+                                 inDirectory:s_sub_path]);
     return self;
 }
 
-- (instancetype) mq_resource : (NSString *) sExtension
-                    sub_path : (NSString *) sSubPath
-                      action : (void(^)(NSArray <NSString *> *sPath)) action {
-    if (action) action([self pathsForResourcesOfType:sExtension
-                                         inDirectory:sSubPath]);
+- (instancetype) mq_resource : (NSString *) s_extension
+                    sub_path : (NSString *) s_sub_path
+                      action : (void(^)(NSArray <NSString *> *s_path)) action {
+    if (action) action([self pathsForResourcesOfType:s_extension
+                                         inDirectory:s_sub_path]);
     return self;
 }
 

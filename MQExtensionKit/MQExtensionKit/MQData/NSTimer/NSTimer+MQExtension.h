@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSTimer (CCExtension)
+@interface NSTimer (MQExtension)
 
 /// timer
 + (instancetype) mq_timer : (NSTimeInterval) interval
@@ -37,7 +37,7 @@
                        action : (void (^)(NSTimer *sender)) action ;
 
 /// invalidate && set entity to nil. // 取消定时和销毁
-void CC_TIMER_DESTORY(NSTimer *timer);
+void MQ_TIMER_DESTORY(NSTimer *timer);
 
 // for additional actions // 额外功能
 - (instancetype) mq_fire ; // == fire

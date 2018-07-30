@@ -19,7 +19,7 @@
 
 static BOOL __isEnableLoading = YES;
 
-@implementation UIImageView (CCExtension_WeakNetwork)
+@implementation UIImageView (MQExtension_WeakNetwork)
 
 - (instancetype) mq_weak_image : (NSURL *) url
                         holder : (UIImage *) imageHolder {

@@ -47,7 +47,7 @@ CGFloat CCHScale(CGFloat h);
 CGPoint CCScaleOrigin(CGPoint origin);
 CGSize CCScaleSize(CGSize size);
 
-@interface UIView (CCExtension)
+@interface UIView (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame ;
 
@@ -144,7 +144,7 @@ CGSize CCScaleSize(CGSize size);
 
 #pragma mark - -----
 
-@interface UIView (CCExtension_FitHeight)
+@interface UIView (MQExtension_FitHeight)
 
 /// note: all the fit recalls ignores the text-indent . // 所有适应无视缩进
 
@@ -174,7 +174,7 @@ CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
 
 @end
 
-@interface UIView (CCExtension_Delay_Operate)
+@interface UIView (MQExtension_Delay_Operate)
 
 /// make user interaction disable for a certain time . // 使得用户交互在特定的时间内禁止
 // using dispatch_after . // 使用 dispatch_after

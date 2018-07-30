@@ -9,26 +9,26 @@
 #import "NSURLRequest+MQExtension.h"
 #import "NSURL+MQExtension.h"
 
-@implementation NSURLRequest (CCExtension)
+@implementation NSURLRequest (MQExtension)
 
-+ (instancetype) mq_request : (NSString *) sURL {
-    return [NSURLRequest requestWithURL:[NSURL mq_URL:sURL]];
++ (instancetype) mq_request : (NSString *) s_url {
+    return [NSURLRequest requestWithURL:[NSURL mq_url:s_url]];
 }
-+ (instancetype) mq_local : (NSString *) sURL {
-    return [NSURLRequest requestWithURL:[NSURL mq_local:sURL]];
++ (instancetype) mq_local : (NSString *) s_url {
+    return [NSURLRequest requestWithURL:[NSURL mq_local:s_url]];
 }
 
 @end
 
 #pragma mark - -----
 
-@implementation NSMutableURLRequest (CCExtension)
+@implementation NSMutableURLRequest (MQExtension)
 
-+ (instancetype)mq_request:(NSString *)sURL {
-    return [NSMutableURLRequest requestWithURL:[NSURL mq_URL:sURL]];
++ (instancetype)mq_request:(NSString *)s_url {
+    return [NSMutableURLRequest requestWithURL:[NSURL mq_url:s_url]];
 }
-+ (instancetype)mq_local:(NSString *)sURL {
-    return [NSMutableURLRequest requestWithURL:[NSURL mq_local:sURL]];
++ (instancetype)mq_local:(NSString *)s_url {
+    return [NSMutableURLRequest requestWithURL:[NSURL mq_local:s_url]];
 }
 
 @end

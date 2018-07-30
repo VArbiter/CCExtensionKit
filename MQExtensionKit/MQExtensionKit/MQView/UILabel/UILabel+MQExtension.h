@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UILabel (CCExtension)
+@interface UILabel (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame;
 

@@ -8,9 +8,9 @@
 
 #import "NSDictionary+MQExtension.h"
 
-@implementation NSDictionary (CCExtension)
+@implementation NSDictionary (MQExtension)
 
-- (NSString *)toJson {
+- (NSString *)to_json {
     NSError *error;
     NSData *t_data = [NSJSONSerialization dataWithJSONObject:self
                                                      options:NSJSONWritingPrettyPrinted
@@ -31,10 +31,10 @@
     return s_mutable;
 }
 
-+ (instancetype) mq_json : (NSString *) sJson {
-    if (!sJson || !sJson.length) return nil;
++ (instancetype) mq_json : (NSString *) s_json {
+    if (!s_json || !s_json.length) return nil;
     
-    NSData *dataJson = [sJson dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *dataJson = [s_json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
     NSDictionary *dicionary = [NSJSONSerialization JSONObjectWithData:dataJson
                                                               options:NSJSONReadingMutableContainers | NSJSONReadingAllowFragments
@@ -47,10 +47,10 @@
 #pragma mark - -----
 #import <objc/runtime.h>
 
-static const char * _CC_NSMUTABLEDICTIONARY_OBSERVER_KEY_S_ = "CC_NSMUTABLEDICTIONARY_OBSERVER_KEY_S";
-static const char * _CC_NSMUTABLEDICTIONARY_OBSERVER_KEY_T_ = "CC_NSMUTABLEDICTIONARY_OBSERVER_KEY_T";
+static const char * _MQ_NSMUTABLEDICTIONARY_OBSERVER_KEY_S_ = "MQ_NSMUTABLEDICTIONARY_OBSERVER_KEY_S";
+static const char * _MQ_NSMUTABLEDICTIONARY_OBSERVER_KEY_T_ = "MQ_NSMUTABLEDICTIONARY_OBSERVER_KEY_T";
 
-@implementation NSMutableDictionary (CCExtension)
+@implementation NSMutableDictionary (MQExtension)
 
 - (instancetype) mq_set : (id) key
                   value : (id) value {
@@ -61,20 +61,20 @@ static const char * _CC_NSMUTABLEDICTIONARY_OBSERVER_KEY_T_ = "CC_NSMUTABLEDICTI
 - (instancetype) mq_set_with_observer : (id) key
                                 value : (id) value {
     [self mq_set:key value:value];
-    void (^s)(id , id) = objc_getAssociatedObject(self, _CC_NSMUTABLEDICTIONARY_OBSERVER_KEY_S_);
+    void (^s)(id , id) = objc_getAssociatedObject(self, _MQ_NSMUTABLEDICTIONARY_OBSERVER_KEY_S_);
     if (s) s(key , value);
-    void (^t)(id , id , NSArray * , NSArray *) = objc_getAssociatedObject(self, _CC_NSMUTABLEDICTIONARY_OBSERVER_KEY_T_);
+    void (^t)(id , id , NSArray * , NSArray *) = objc_getAssociatedObject(self, _MQ_NSMUTABLEDICTIONARY_OBSERVER_KEY_T_);
     if (t) t(key , value , self.allKeys , self.allValues);
     return self;
 }
 
 - (instancetype) mq_observer : (void (^)(id key , id value)) action {
-    if (action) objc_setAssociatedObject(self, _CC_NSMUTABLEDICTIONARY_OBSERVER_KEY_S_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    if (action) objc_setAssociatedObject(self, _MQ_NSMUTABLEDICTIONARY_OBSERVER_KEY_S_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
 
-- (instancetype) mq_observer_t : (void (^)(void(^t)(id key , id value , NSArray * aAllKeys , NSArray * aAllValues))) action {
-    if (action) objc_setAssociatedObject(self, _CC_NSMUTABLEDICTIONARY_OBSERVER_KEY_T_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (instancetype) mq_observer_t : (void (^)(void(^t)(id key , id value , NSArray * a_all_keys , NSArray * a_all_values))) action {
+    if (action) objc_setAssociatedObject(self, _MQ_NSMUTABLEDICTIONARY_OBSERVER_KEY_T_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
 

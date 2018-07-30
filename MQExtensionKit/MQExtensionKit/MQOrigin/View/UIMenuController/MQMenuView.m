@@ -13,7 +13,7 @@
 
 #pragma mark - -----
 
-@interface UIMenuItem (CCExtension)
+@interface UIMenuItem (MQExtension)
 
 @property (nonatomic , strong) NSMutableDictionary *dictionary ;
 @property (nonatomic , assign) NSInteger iCurrent ;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation UIMenuItem (CCExtension)
+@implementation UIMenuItem (MQExtension)
 
 - (void)setDictionary:(NSMutableDictionary *)dictionary {
     objc_setAssociatedObject(self, @selector(dictionary), dictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -45,7 +45,7 @@
 
 #pragma mark - -----
 
-@interface UIMenuController (CCExtension)
+@interface UIMenuController (MQExtension)
 
 @property (nonatomic , assign , readonly) UIMenuItem *(^menuItemT)(NSInteger) ;
 
@@ -53,7 +53,7 @@
 
 @end
 
-@implementation UIMenuController (CCExtension)
+@implementation UIMenuController (MQExtension)
 
 - (UIMenuItem *(^)(NSInteger))menuItemT {
     __weak typeof(self) pSelf = self;
@@ -83,7 +83,7 @@
 
 #pragma mark - -----
 
-@interface CCMenuView (CCExtension_Assist_Generate)
+@interface CCMenuView (MQExtension_Assist_Generate)
 
 @property (nonatomic , copy) void(^blockTitle)(NSString *) ;
 @property (nonatomic , class) NSArray *arrayKeys ;
@@ -94,7 +94,7 @@
 
 static NSArray *__arrayKeys = nil;
 
-@implementation CCMenuView (CCExtension_Assist_Generate)
+@implementation CCMenuView (MQExtension_Assist_Generate)
 
 + (BOOL) resolveInstanceMethod:(SEL)sel {
     for (id obj in self.arrayKeys) {

@@ -10,7 +10,7 @@
 
 @class  CCScriptMessageDelegate;
 
-@interface WKWebView (CCExtension)
+@interface WKWebView (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame;
 + (instancetype) mq_common : (CGRect) frame

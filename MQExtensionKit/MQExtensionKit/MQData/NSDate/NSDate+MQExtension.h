@@ -8,24 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger , CCWeekType) {
-    CCWeekType_Unknow = 0,
-    CCWeekType_Monday ,
-    CCWeekType_Tuesday ,
-    CCWeekType_Wednesday ,
-    CCWeekType_Thursday ,
-    CCWeekType_Friday ,
-    CCWeekType_Saturday ,
-    CCWeekType_Sunday
+typedef NS_ENUM(NSInteger , MQWeekType) {
+    MQWeekType_Unknow = 0,
+    MQWeekType_Monday ,
+    MQWeekType_Tuesday ,
+    MQWeekType_Wednesday ,
+    MQWeekType_Thursday ,
+    MQWeekType_Friday ,
+    MQWeekType_Saturday ,
+    MQWeekType_Sunday
 };
 
-@interface NSDate (CCExtension)
+@interface NSDate (MQExtension)
 
-@property (nonatomic , readonly) NSInteger firstWeekdayInThisMonth ;
+@property (nonatomic , readonly) NSInteger first_weekday_in_this_month ;
 @property (nonatomic , readonly) NSInteger day ;
-@property (nonatomic , readonly) NSInteger toDateWeekday ;
-@property (nonatomic , readonly) CCWeekType toWeekday ; // returns current week days // 返回当前的日期
-@property (nonatomic , readonly) NSTimeInterval toTimeStickInterval ; // get time stick since refrence date . // 从公元 0 年开始计算 .
+@property (nonatomic , readonly) NSInteger to_date_weekday ;
+@property (nonatomic , readonly) MQWeekType to_weekday ; // returns current week days // 返回当前的日期
+@property (nonatomic , readonly) NSTimeInterval to_timestick_interval ; // get time stick since refrence date . // 从公元 0 年开始计算 .
 
 /// default @"yyyy-MM-dd HH:mm"
 - (NSString *) mq_time_since_1970 : (NSTimeInterval) interval;
@@ -38,38 +38,38 @@ typedef NS_ENUM(NSInteger , CCWeekType) {
 
 @end
 
-typedef NS_ENUM(NSInteger , CCTimeStick) {
-    CCTimeStick_Error = 0 ,
-    CCTimeStick_Seconds_Ago ,
-    CCTimeStick_Minutes_Ago ,
-    CCTimeStick_Today ,
-    CCTimeStick_Yesterday ,
-    CCTimeStick_This_Week ,
-    CCTimeStick_This_Month ,
-    CCTimeStick_Earlier ,
+typedef NS_ENUM(NSInteger , MQTimeStick) {
+    MQTimeStick_Error = 0 ,
+    MQTimeStick_Seconds_Ago ,
+    MQTimeStick_Minutes_Ago ,
+    MQTimeStick_Today ,
+    MQTimeStick_Yesterday ,
+    MQTimeStick_This_Week ,
+    MQTimeStick_This_Month ,
+    MQTimeStick_Earlier ,
 };
 
-@interface NSString (CCExtension_String_Convert)
+@interface NSString (MQExtension_String_Convert)
 
 /// eg: @"2018-03-28 15:31:42" , @"2018-03-28 15:31" , @"2018-03-28"
-@property (nonatomic , readonly) NSDate *toDate;
+@property (nonatomic , readonly) NSDate *to_date;
 - (NSDate *) mq_to_date_with_format : (NSString *) s_format ; /// custom format . // 自定义格式
 
-@property (nonatomic , readonly) CCTimeStick toTimeStick;
+@property (nonatomic , readonly) MQTimeStick to_timestick;
 
 @end
 
-typedef NSString * CCDateFormatterTypeKey NS_EXTENSIBLE_STRING_ENUM;
+typedef NSString * MQDateFormatterTypeKey NS_EXTENSIBLE_STRING_ENUM;
 
-FOUNDATION_EXPORT CCDateFormatterTypeKey mq_date_formatter_type_1 ; // @"yyyy-MM-dd HH:mm:ss"
-FOUNDATION_EXPORT CCDateFormatterTypeKey mq_date_formatter_type_2 ; // @"yyyy-MM-dd HH:mm:ss.SSS"
-FOUNDATION_EXPORT CCDateFormatterTypeKey mq_date_formatter_type_3 ; // @"yyyy-MM-dd HH:mm:ss.ssssss"
-FOUNDATION_EXPORT CCDateFormatterTypeKey mq_date_formatter_type_4 ; // @"yyyy-MM-dd hh:mm:ss tt"
-FOUNDATION_EXPORT CCDateFormatterTypeKey mq_date_formatter_type_5 ; // @"yyyy-MM-dd HH:mm:ss"
-FOUNDATION_EXPORT CCDateFormatterTypeKey mq_date_formatter_type_6 ; // @"yyyy-MMMM-dd HH:mm:ss"
-FOUNDATION_EXPORT CCDateFormatterTypeKey mq_date_formatter_type_7 ; // @"yyyy-MMM-dd HH:mm:ss"
+FOUNDATION_EXPORT MQDateFormatterTypeKey mq_date_formatter_type_1 ; // @"yyyy-MM-dd HH:mm:ss"
+FOUNDATION_EXPORT MQDateFormatterTypeKey mq_date_formatter_type_2 ; // @"yyyy-MM-dd HH:mm:ss.SSS"
+FOUNDATION_EXPORT MQDateFormatterTypeKey mq_date_formatter_type_3 ; // @"yyyy-MM-dd HH:mm:ss.ssssss"
+FOUNDATION_EXPORT MQDateFormatterTypeKey mq_date_formatter_type_4 ; // @"yyyy-MM-dd hh:mm:ss tt"
+FOUNDATION_EXPORT MQDateFormatterTypeKey mq_date_formatter_type_5 ; // @"yyyy-MM-dd HH:mm:ss"
+FOUNDATION_EXPORT MQDateFormatterTypeKey mq_date_formatter_type_6 ; // @"yyyy-MMMM-dd HH:mm:ss"
+FOUNDATION_EXPORT MQDateFormatterTypeKey mq_date_formatter_type_7 ; // @"yyyy-MMM-dd HH:mm:ss"
 
-@interface NSDateFormatter (CCExtension)
+@interface NSDateFormatter (MQExtension)
 
 + (instancetype) mq_common ;
 + (instancetype) mq_common_using_Asia_Shanghai ;

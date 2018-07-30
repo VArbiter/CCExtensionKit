@@ -11,13 +11,13 @@
 
 static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY";
 
-@interface UIBarButtonItem (CCExtension_Assit)
+@interface UIBarButtonItem (MQExtension_Assit)
 
 - (void) ccBarButtonItemExtensionAction : ( __kindof UIBarButtonItem *) sender ;
 
 @end
 
-@implementation UIBarButtonItem (CCExtension_Assit)
+@implementation UIBarButtonItem (MQExtension_Assit)
 
 - (void) ccBarButtonItemExtensionAction : ( __kindof UIBarButtonItem *) sender {
     void (^t)( __kindof UIBarButtonItem *) = objc_getAssociatedObject(self, _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_);
@@ -35,7 +35,7 @@ static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONIT
 
 #pragma mark - -----
 
-@implementation UIBarButtonItem (CCExtension)
+@implementation UIBarButtonItem (MQExtension)
 
 + (instancetype) mq_common {
     return UIBarButtonItem.alloc.init;

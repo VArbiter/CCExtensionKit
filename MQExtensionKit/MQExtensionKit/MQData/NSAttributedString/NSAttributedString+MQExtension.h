@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-@interface NSAttributedString (CCExtension)
+@interface NSAttributedString (MQExtension)
 
 + (NSMutableAttributedString *) mq_color : (UIColor *) color
                                   string : (NSString *) string ;
@@ -21,7 +21,7 @@
 
 #pragma mark - -----
 
-@interface NSMutableAttributedString (CCExtension)
+@interface NSMutableAttributedString (MQExtension)
 
 - (NSMutableAttributedString *) mq_attribute_c : (NSAttributedStringKey) sKey
                                        value : (id) value ;
@@ -31,9 +31,9 @@
 
 #pragma mark - -----
 
-@interface NSString (CCExtension_AttributedString)
+@interface NSString (MQExtension_AttributedString)
 
-@property (nonatomic , readonly) NSMutableAttributedString * toAttribute;
+@property (nonatomic , readonly) NSMutableAttributedString * to_attribute;
 - (NSMutableAttributedString *) mq_color : (UIColor *) color ;
 
 @end

@@ -11,7 +11,7 @@
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
 /*
-@interface PHAsset (CCExtension_Cache)
+@interface PHAsset (MQExtension_Cache)
 
 @property (nonatomic , strong , readwrite) NSMutableDictionary *mq_phasset_dict_normal_cache ;
 @property (nonatomic , strong , readwrite) NSMutableDictionary *mq_phasset_dict_high_quality_cache ;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation PHAsset (CCExtension_Cache)
+@implementation PHAsset (MQExtension_Cache)
 
 - (void)setCc_phasset_dict_normal_cache:(NSMutableDictionary *)mq_phasset_dict_normal_cache {
     objc_setAssociatedObject(self, @selector(mq_phasset_dict_normal_cache),
@@ -81,7 +81,7 @@
 
 #pragma mark - -----
 
-@implementation PHAsset (CCExtension)
+@implementation PHAsset (MQExtension)
 
 CCPHAssetType CCPHAssetType_Unknow = @"CCPHAssetType_Unknow" ;
 CCPHAssetType CCPHAssetType_Video = @"CCPHAssetType_Video" ;
@@ -140,7 +140,7 @@ CCPHAssetType CCPHAssetType_Live_Photo = @"CCPHAssetType_Live_Photo" ;
 
 #endif
 
-@implementation UIImage (CCExtension_Orientation)
+@implementation UIImage (MQExtension_Orientation)
 
 - (UIImage *) mq_fix_orientation : (UIImageOrientation) orientation {
     // No-op if the orientation is already correct

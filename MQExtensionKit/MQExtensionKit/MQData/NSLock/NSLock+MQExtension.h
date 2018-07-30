@@ -8,49 +8,49 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger , CCUnlockType) {
-    CCUnlockType_Ignore = 0, // default , do nothing . // 默认 , 什么也不做
-    CCUnlockType_Auto // auto unlock when invoke complete block . // 调用 完成 block 自动解锁 ;
+typedef NS_ENUM(NSInteger , MQUnlockType) {
+    MQUnlockType_Ignore = 0, // default , do nothing . // 默认 , 什么也不做
+    MQUnlockType_Auto // auto unlock when invoke complete block . // 调用 完成 block 自动解锁 ;
 };
 
-@interface NSLock (CCExtension)
+@interface NSLock (MQExtension)
 
 + (instancetype) mq_commmon ;
 
 /// wrapper for "tryLock" && "unlock" . // 针对 "tryLock" && "unlock" 的包裹
-- (BOOL) mq_lock : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block;
+- (BOOL) mq_lock : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block;
 /// wrapper for "lockBeforeDate:" && "unlock" . // 针对 "lockBeforeDate:" && "unlock" 的包裹
 - (BOOL) mq_locked_before : (NSDate *) date
-                operation : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block;
+                operation : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block;
 
 @end
 
-@interface NSRecursiveLock (CCExtension)
+@interface NSRecursiveLock (MQExtension)
 
 + (instancetype) mq_commmon ;
 
 /// wrapper for "tryLock" && "unlock" . // 针对 "tryLock" && "unlock" 的包裹
-- (BOOL) mq_lock : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block;
+- (BOOL) mq_lock : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block;
 /// wrapper for "lockBeforeDate:" && "unlock" . // 针对 "lockBeforeDate:" && "unlock" 的包裹
 - (BOOL) mq_locked_before : (NSDate *) date
-                operation : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block;
+                operation : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block;
 
 @end
 
-@interface NSConditionLock (CCExtension)
+@interface NSConditionLock (MQExtension)
 
 + (instancetype) mq_common : (NSInteger) i_condition ;
 
 /// wrapper for "tryLockWhenCondition:" && "unlockWithCondition:" .
 // 针对 "tryLockWhenCondition:" && "unlockWithCondition:"  的包裹
 - (BOOL) mq_lock : (NSInteger) i_condition
-       operation : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block;
+       operation : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block;
 
 /// wrapper for "lockWhenCondition:beforeDate:" && "unlockWithCondition:" .
 // 针对 "lockWhenCondition:beforeDate:" && "unlockWithCondition:" 的包裹
 - (BOOL) mq_lock : (NSInteger) i_condition
           before : (NSDate *) date
-       operation : (void (^)(void (^mq_complete_block)(CCUnlockType type))) mq_lock_operate_block;
+       operation : (void (^)(void (^mq_complete_block)(MQUnlockType type))) mq_lock_operate_block;
 
 @end
 
@@ -59,7 +59,7 @@ typedef NS_ENUM(NSInteger , CCUnlockType) {
 /// dispatch_semaphore_t was more like the full parking lot facing a new come .
 // dispatch_semaphore_t 更多的是针对满停车场面对新来的车的时候 .
 
-@interface NSCondition (CCExtension)
+@interface NSCondition (MQExtension)
 
 /// stored all conditions that created by "mq_common"
 @property (nonatomic , class , strong , readonly) NSMutableArray <__kindof NSCondition *> *array_all_conditions ;

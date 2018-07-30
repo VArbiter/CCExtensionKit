@@ -10,7 +10,7 @@
 
 #define CC_SHARED_APPLICATION [UIApplication sharedApplication]
 
-@interface UIApplication (CCExtension)
+@interface UIApplication (MQExtension)
 
 /// supported NSURL && NSString . // 支持 NSURL 和 NSString .
 + (BOOL) mq_can_open : (id) s_url ;
@@ -27,7 +27,7 @@
 
 typedef NSString * CCThirdPartiesScheme NS_EXTENSIBLE_STRING_ENUM;
 
-@interface UIApplication (CCExtension_Schemes)
+@interface UIApplication (MQExtension_Schemes)
 
 FOUNDATION_EXPORT CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_QQ ; // QQ
 FOUNDATION_EXPORT CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_WECHAT ; // 微信
@@ -57,7 +57,7 @@ FOUNDATION_EXPORT CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_RENREN ; // 人人
 
 #pragma mark - -----
 
-@interface NSURL (CCExtension_Open_Scheme)
+@interface NSURL (MQExtension_Open_Scheme)
 
 - (BOOL) mq_can_open ;
 - (void) mq_open_url_options : (NSDictionary *) options
@@ -67,7 +67,7 @@ FOUNDATION_EXPORT CCThirdPartiesScheme CC_THIRD_PARTY_SCHEME_RENREN ; // 人人
 
 #pragma mark - -----
 
-@interface NSString (CCExtension_Open_Scheme)
+@interface NSString (MQExtension_Open_Scheme)
 
 - (BOOL) mq_can_open ;
 - (void) mq_open_url_options : (NSDictionary *) options

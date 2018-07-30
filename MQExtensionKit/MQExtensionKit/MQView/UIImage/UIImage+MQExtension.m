@@ -21,7 +21,7 @@ UIImage * CC_CAPTURE_WINDOW(UIWindow *window) {
     return image;
 }
 
-@implementation UIImage (CCExtension)
+@implementation UIImage (MQExtension)
 
 /// for image size && width
 - (CGFloat)width {
@@ -107,7 +107,7 @@ compatibleWithTraitCollection:nil];
 CGFloat _CC_GAUSSIAN_BLUR_VALUE_ = 4.f;
 CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 
-@implementation UIImage (CCExtension_Gaussian)
+@implementation UIImage (MQExtension_Gaussian)
 
 - (instancetype) mq_gaussian_acc {
     return [self mq_gaussian_acc:_CC_GAUSSIAN_BLUR_VALUE_];
@@ -290,7 +290,7 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 
 #pragma mark - -----
 
-@implementation UIImage (CCExtension_Data)
+@implementation UIImage (MQExtension_Data)
 
 CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
 
@@ -329,7 +329,7 @@ CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
 
 #pragma mark - -----
 
-@implementation NSData (CCExtension_Image)
+@implementation NSData (MQExtension_Image)
 
 - (CCImageType)type {
     NSData *data = [self copy];
@@ -366,7 +366,7 @@ CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
 
 #pragma mark - -----
 
-@implementation UIImageView (CCExtension_Gaussian)
+@implementation UIImageView (MQExtension_Gaussian)
 
 - (instancetype) mq_gaussian {
     if (self.image) self.image = [self.image mq_gaussian_acc];

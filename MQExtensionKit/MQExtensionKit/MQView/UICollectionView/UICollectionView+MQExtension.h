@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UICollectionView (CCExtension)
+@interface UICollectionView (MQExtension)
 
 /// auto enable prefetchiong if support // 如果支持 , 自动启用 预取 ,
 + (instancetype) mq_common : (CGRect) frame
@@ -49,7 +49,7 @@
 
 #pragma mark - -----
 
-@interface UICollectionViewFlowLayout (CCExtension)
+@interface UICollectionViewFlowLayout (MQExtension)
 
 + (instancetype) common ;
 
@@ -109,7 +109,7 @@
 
 #pragma mark - -----
 
-@interface NSArray (CCExtension_Collection_Refresh)
+@interface NSArray (MQExtension_Collection_Refresh)
 
 - (instancetype) mq_reload : (__kindof UICollectionView *) collectionView ;
 - (instancetype) mq_reload : (__kindof UICollectionView *) collectionView
