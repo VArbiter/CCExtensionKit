@@ -22,7 +22,7 @@
     c.backgroundColor = UIColor.clearColor;
     c.showsVerticalScrollIndicator = false;
     c.showsHorizontalScrollIndicator = false;
-    if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
+    if (@available(iOS 10.0, *)) {
         c.prefetchingEnabled = YES;
     }
     
@@ -43,9 +43,10 @@ forCellWithReuseIdentifier:_MQ_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 - (instancetype) mq_prefetching : (id <UICollectionViewDataSourcePrefetching>) prefetch {
-    if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {    
-        if (prefetch) self.prefetchDataSource = prefetch;
-        else self.prefetchDataSource = nil;
+    if (prefetch) {
+        if (@available(iOS 10.0, *)) {
+            self.prefetchDataSource = prefetch;
+        }
     }
     return self;
 }

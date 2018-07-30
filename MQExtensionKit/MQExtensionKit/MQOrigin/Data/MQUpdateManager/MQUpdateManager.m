@@ -46,14 +46,15 @@ MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL
         return ;
     }
     
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-    dispatch_queue_t queue = dispatch_queue_create("ElwinFrederick.MQUpdateManager.request.queue",
-                                                   DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL);
-#else
-    dispatch_queue_t queue = dispatch_queue_create("ElwinFrederick.MQUpdateManager.request.queue",
-                                                   DISPATCH_QUEUE_SERIAL);
-#endif
-    
+    dispatch_queue_t queue ;
+    if (@available(iOS 10.0, *)) {
+        queue = dispatch_queue_create("ElwinFrederick.MQUpdateManager.request.queue",
+                                      DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL);
+    }
+    else {
+        queue = dispatch_queue_create("ElwinFrederick.MQUpdateManager.request.queue",
+                                      DISPATCH_QUEUE_SERIAL);
+    }
     __weak typeof(self) weak_self = self ;
     dispatch_async(queue, ^{
         __strong typeof(weak_self) strong_self = weak_self;

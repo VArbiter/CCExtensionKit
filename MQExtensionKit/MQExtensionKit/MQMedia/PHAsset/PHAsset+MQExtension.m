@@ -92,7 +92,7 @@ MQPHAssetType MQPHAssetType_Live_Photo = @"MQPHAssetType_Live_Photo" ;
 - (MQPHAssetType)type_asset {
     if (self.mediaType == PHAssetMediaTypeVideo) return MQPHAssetType_Video;
     else if (self.mediaType == PHAssetMediaTypeImage) {
-        if (UIDevice.currentDevice.systemVersion.floatValue >= 9.1) {
+        if (@available(iOS 9.1, *)) {
             return self.mediaSubtypes == PHAssetMediaSubtypePhotoLive ?
             MQPHAssetType_Live_Photo : MQPHAssetType_Photo;
         }

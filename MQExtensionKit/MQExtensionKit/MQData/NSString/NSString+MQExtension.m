@@ -42,7 +42,7 @@
     
     NSMutableArray *arrayStrings = [NSMutableArray array];
     NSString *stringTemp;
-    va_list argumentList = NULL;
+    va_list argumentList;
     if (string) {
         [arrayStrings addObject:string];
         va_start(argumentList, string);

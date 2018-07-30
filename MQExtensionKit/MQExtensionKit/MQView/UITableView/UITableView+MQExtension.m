@@ -49,7 +49,11 @@ forCellReuseIdentifier:_MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 - (instancetype) mq_prefetching : (id) prefetch {
     if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
-        self.prefetchDataSource = prefetch;
+        if (@available(iOS 10.0, *)) {
+            self.prefetchDataSource = prefetch;
+        } else {
+            // Fallback on earlier versions
+        }
     }
     return self;
 }

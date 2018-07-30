@@ -228,8 +228,7 @@ CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
             if (complete) complete(pSelf , m);
         });
     };
-    
-    if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
+    if (@available(iOS 10.0, *)) {
         dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
             if (tp) tp();
         });
@@ -238,6 +237,7 @@ CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
             if (tp) tp();
         });
     }
+    
     return pSelf;
 }
 
@@ -274,7 +274,7 @@ CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
         });
     };
     
-    if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
+    if (@available(iOS 10.0, *)) {
         dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
             if (tp) tp();
         });
@@ -283,6 +283,7 @@ CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
             if (tp) tp();
         });
     }
+
     return self;
 }
 

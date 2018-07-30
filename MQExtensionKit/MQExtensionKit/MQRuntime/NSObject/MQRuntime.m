@@ -92,7 +92,7 @@ void MQ_DISPATCH_GET_ASSOCIATE_B(id object ,
 @import UIKit;
 
 dispatch_queue_t MQ_DISPATCH_CREATE_SERIAL(const char * label , BOOL is_serial) {
-    if (UIDevice.currentDevice.systemVersion.floatValue >= 10.0) {
+    if (@available(iOS 10.0, *)) {
         return dispatch_queue_create(label, is_serial ? NULL : DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL);
     } else return dispatch_queue_create(label, is_serial ? NULL : DISPATCH_QUEUE_CONCURRENT);
 }

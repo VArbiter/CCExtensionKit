@@ -48,14 +48,14 @@
         return nil;
     };
     if (can_open_block) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-        [t openURL:can_open_block() options:options ? options : @{} completionHandler:^(BOOL success) {
-            if (mq_completion_block) mq_completion_block(success);
-        }];
-#else
-        BOOL is_success = [t openURL:can_open_block()] ;
-        if (mq_completion_block) mq_completion_block(is_success);
-#endif
+        if (@available(iOS 10.0, *)) {
+            [t openURL:can_open_block() options:options ? options : @{} completionHandler:^(BOOL success) {
+                if (mq_completion_block) mq_completion_block(success);
+            }];
+        } else {
+            BOOL is_success = [t openURL:can_open_block()] ;
+            if (mq_completion_block) mq_completion_block(is_success);
+        }
     }
     else if (mq_completion_block) mq_completion_block(false) ;
     
@@ -95,9 +95,15 @@ MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_RENREN = @"renren://";
 
 + (void) mq_make_call : (NSString *) s_call_num {
     NSString *s_tel = [NSString stringWithFormat:@"tel:%@",s_call_num];
-    [UIApplication mq_open_url:s_tel
-                       options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @(false)}
-                    completion:nil];
+    if (@available(iOS 10.0, *)) {
+        [UIApplication mq_open_url:s_tel
+                           options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @(false)}
+                        completion:nil];
+    } else {
+        [UIApplication mq_open_url:s_tel
+                           options:@{}
+                        completion:nil];
+    }
 }
 
 @end

@@ -73,9 +73,13 @@ static MQAuthorize *_instance = nil;
         if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
             [[UIApplication sharedApplication] openURL:url];
         } else {
-            [[UIApplication sharedApplication] openURL:url
-                                               options:NSDictionary.alloc.init
-                                     completionHandler:nil];
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:url
+                                                   options:NSDictionary.alloc.init
+                                         completionHandler:nil];
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ static BOOL __isEnableLoading = YES;
     BOOL isStrong = MQNetworkMoniter.mq_shared.mq_environment_type == MQNetworkEnvironmentStrong;
     if (isStrong && __isEnableLoading) {
         [self sd_setImageWithURL:url
-                placeholderImage:imageHolder
+                placeholderImage:image_holder
                          options:SDWebImageRetryFailed | SDWebImageAllowInvalidSSLCertificates | SDWebImageScaleDownLargeImages];
     };
     return self;

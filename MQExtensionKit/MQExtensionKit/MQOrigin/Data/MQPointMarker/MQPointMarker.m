@@ -268,7 +268,7 @@ void mq_debug_print_logging(id t_log) {
             [__marker.delegate_t mq_point_maker:__marker
                                           event:event
                                          params:d
-                                    upload_JSON:d.toJson];
+                                    upload_JSON:d.to_json];
     }
 }
 
