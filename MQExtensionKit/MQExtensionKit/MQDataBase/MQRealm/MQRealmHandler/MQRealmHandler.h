@@ -18,10 +18,10 @@
 
 // ----- open ----- // 打开
 
-+ (instancetype) shared ;
-- (instancetype) ccDefault ; // equal : ccSpecific : nil // 等同于 ccSpecific : nil
-- (instancetype) ccSpecific : (NSString *) specific ; // open a specific realm // 打开指定的数据库
-- (instancetype) ccOperate : (void(^)(void)) operate ; // do actions in transaction // 在事务中才做
++ (instancetype) mq_shared ;
+- (instancetype) mq_default ; // equal : ccSpecific : nil // 等同于 ccSpecific : nil
+- (instancetype) mq_specific : (NSString *) specific ; // open a specific realm // 打开指定的数据库
+- (instancetype) mq_operate : (void(^)(void)) operate ; // do actions in transaction // 在事务中才做
 
 // ----- insert ----- // 插入
 
@@ -31,60 +31,60 @@
 /// 使用字典来初始化 , key 必须要有一个值 , 但是不要求所有的key 都包含在其中
 /// 如果 dictionary 为空 , realm 仍然会创建对象
 
-- (id) ccDictionary : (Class) cls
-              value : (NSDictionary *) dictionary ;
+- (id) mq_dictionary : (Class) cls
+               value : (NSDictionary *) dictionary ;
 /// use an array as intializer , values must have the same order with keys , not much , not less // 使用数组来初始化 , 顺序必须全部一致
 /// if array == nil , realm will continue to create an object // 如果 dictionary 为空 , realm 仍然会创建对象
-- (id) ccArray : (Class) cls
-         value : (NSArray *) array ;
+- (id) mq_array : (Class) cls
+          value : (NSArray *) array ;
 /// if object has a primary key , then insert or update , otherwise , insert only // 如果有主键 , 可以插入或者更新 , 否则 , 只插入
-- (instancetype) ccSave : (id) object ;
+- (instancetype) mq_save : (id) object ;
 
 // ----- delete ----- // 删除
 
 /// delete an object according to object , might goes error // 根据对象来删除 , 可能出现错误
-- (instancetype) ccDeleteT : (id) object ;
+- (instancetype) mq_delete : (id) object ;
 /// delete an object according to a primary key . // 根据主键来删除
-- (instancetype) ccDeleteS : (id) object ;
+- (instancetype) mq_delete_promary_key : (id) object ;
 /// delete an array in realm // 从 realm 中删除 array 中的元素
-- (instancetype) ccDeleteA : (NSArray <__kindof RLMObject *>*) array ;
+- (instancetype) mq_delete_array : (NSArray <__kindof RLMObject *>*) array ;
 /// delete all the data in class // 删除某个表中所有的数据
-- (instancetype) ccDeleteC : (Class) cls ;
+- (instancetype) mq_delete_class : (Class) cls ;
 /// not it self , but the data in it // 删除不是本身 . 但是是所有的表
-- (instancetype) ccDeleteAll ;
+- (instancetype) mq_delete_all ;
 /// delete it self // 删除本身 (摧毁数据库)
-- (instancetype) ccDestory : (NSString *) specific;
+- (instancetype) mq_destory : (NSString *) specific;
 
 // ----- search ----- // 搜索
 
 /// RLMResults
 /// note : insert / delete will cause the change of this collection . // 插入/删除操作将导致这个集合产生变化
 /// note : cause this collection was mirrored in local disk // 因为这个集合是磁盘的映射
-- (RLMResults *) ccAll : (Class) cls ;
+- (RLMResults *) mq_all : (Class) cls ;
 
 // ----- sort ----- // 排序
 
 /// class that need sorted , property , ascending or not (have to use this action after sorting) // 类中需要排序的元素 ,
-- (RLMResults *) ccSorted : (Class) cls
-                      key : (NSString *) sKey
-                ascending : (BOOL) isAscending ;
+- (RLMResults *) mq_sorted : (Class) cls
+                       key : (NSString *) sKey
+                 ascending : (BOOL) isAscending ;
 
 // ----- migration ----- // 迁移
 
-- (instancetype) ccMigration : (uint64_t) version
-                      action : (void (^)(RLMRealmConfiguration *c , RLMMigration *m , uint64_t vOld)) action ;
-- (instancetype) ccMigrationT : (RLMRealmConfiguration *(^)(void)) configuration
-                       action : (void (^)(RLMMigration *m , uint64_t vOld)) action ;
+- (instancetype) mq_migration : (uint64_t) version
+                       action : (void (^)(RLMRealmConfiguration *c , RLMMigration *m , uint64_t v_old)) action ;
+- (instancetype) mq_migration_config : (RLMRealmConfiguration *(^)(void)) configuration
+                              action : (void (^)(RLMMigration *m , uint64_t v_old)) action ;
 
 // ----- status ----- // 状态
 
 // use them before every actions // 在每次操作前使用
-- (instancetype) ccError : (void (^)(NSError *e)) error ;
-- (instancetype) ccSucceed : (void (^)(BOOL b)) succeed ;
+- (instancetype) mq_error : (void (^)(NSError *e)) error ;
+- (instancetype) mq_succeed : (void (^)(BOOL b)) succeed ;
 
 // ----- notification ----- // 通知
 
-- (instancetype) ccNotification : (void (^)(RLMNotification n, RLMRealm *r)) action ;
+- (instancetype) mq_notification : (void (^)(RLMNotification n, RLMRealm *r)) action ;
 
 @end
 

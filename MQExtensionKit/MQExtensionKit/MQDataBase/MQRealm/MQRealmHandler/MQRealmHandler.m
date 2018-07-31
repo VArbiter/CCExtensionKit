@@ -14,7 +14,7 @@
 
 @interface MQRealmHandler () < NSCopying , NSMutableCopying >
 
-- (instancetype) ccDefaultSettings : (void (^)(void)) action ;
+- (instancetype) mq_default_settings : (void (^)(void)) action ;
 @property (nonatomic , strong) RLMRealm *realm;
 /// must decorate with strong , otherwise it will release before useing
 @property (nonatomic , strong) RLMNotificationToken *token;
@@ -28,7 +28,7 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
 
 @implementation MQRealmHandler
 
-+ (instancetype) shared {
++ (instancetype) mq_shared {
     if (__handler) return __handler;
     __handler = [[MQRealmHandler alloc] init];
     return __handler;
@@ -50,19 +50,19 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
 }
 - (instancetype)init {
     if ((self = [super init])) {
-        [self ccDefaultSettings:^{
+        [self mq_default_settings:^{
             
         }];
     }
     return self;
 }
 
-- (instancetype) ccDefault {
-    return [self ccSpecific:nil];
+- (instancetype) mq_default {
+    return [self mq_specific:nil];
 }
-- (instancetype) ccSpecific : (NSString *) specific {
+- (instancetype) mq_specific : (NSString *) specific {
     if (self.token) {
-        [self.token stop];
+        [self.token invalidate];
         self.token = nil;
     }
     
@@ -106,7 +106,7 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
     
     return pSelf;
 }
-- (instancetype) ccOperate : (void(^)(void)) operate {
+- (instancetype) mq_operate : (void(^)(void)) operate {
     NSError *error = nil;
     if ([self.realm inWriteTransaction]) {
 #if DEBUG
@@ -131,8 +131,8 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
     return self;
 }
 
-- (id) ccDictionary : (Class) cls
-              value : (NSDictionary *) dictionary {
+- (id) mq_dictionary : (Class) cls
+               value : (NSDictionary *) dictionary {
     if ([cls isSubclassOfClass:[RLMObject class]]) {
         id v = nil;
         if (dictionary.allKeys.count > 0) {
@@ -146,8 +146,8 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
     }
     return nil;
 }
-- (id) ccArray : (Class) cls
-         value : (NSArray *) array {
+- (id) mq_array : (Class) cls
+          value : (NSArray *) array {
     if ([cls isSubclassOfClass:[RLMObject class]]) {
         id v = nil;
         if (array.count > 0) {
@@ -158,10 +158,10 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
     };
     return nil;
 }
-- (instancetype) ccSave : (id) object {
+- (instancetype) mq_save : (id) object {
     if (![[object class] isSubclassOfClass:[RLMObject class]]) return self;
     __weak typeof(self) pSelf = self;
-    return [self ccOperate:^{
+    return [self mq_operate:^{
         void (^t)(void) = ^ {
             [pSelf.realm addObject:object]; // if not , insert only
         };
@@ -174,47 +174,47 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
     }];
 }
 
-- (instancetype) ccDeleteT : (id) object {
+- (instancetype) mq_delete : (id) object {
     if (![[object class] isSubclassOfClass:[RLMObject class]]) return self;
     __weak typeof(self) pSelf = self;
-    return [self ccOperate:^{
+    return [self mq_operate:^{
         [pSelf.realm deleteObject:object];
     }];
 }
-- (instancetype) ccDeleteS : (id) object {
+- (instancetype) mq_delete_promary_key : (id) object {
     if (![[object class] isSubclassOfClass:[RLMObject class]]) return self;
     __weak typeof(self) pSelf = self;
     if ([[object class] respondsToSelector:@selector(primaryKey)]) {
         NSString *pk = [[object class] performSelector:@selector(primaryKey)];
         RLMResults *r = [[object class] objectsWhere:[NSString stringWithFormat:@"%@ = %@" ,pk , [object valueForKeyPath:pk]]];
         if (r.count > 0) {
-            return [self ccOperate:^{
+            return [self mq_operate:^{
                 [pSelf.realm deleteObjects:r];
             }];
         }
     }
     return self;
 }
-- (instancetype) ccDeleteA : (NSArray <__kindof RLMObject *>*) array {
+- (instancetype) mq_delete_array : (NSArray <__kindof RLMObject *>*) array {
     __weak typeof(self) pSelf = self;
-    return [self ccOperate:^{
+    return [self mq_operate:^{
         [pSelf.realm deleteObjects:array];
     }];
 }
-- (instancetype) ccDeleteC : (Class) cls {
+- (instancetype) mq_delete_class : (Class) cls {
     if (![cls isKindOfClass:[RLMObject class]]) return self;
     __weak typeof(self) pSelf = self;
-    return [self ccOperate:^{
+    return [self mq_operate:^{
         [pSelf.realm deleteObjects:[cls allObjects]];
     }];
 }
-- (instancetype) ccDeleteAll {
+- (instancetype) mq_delete_all {
     __weak typeof(self) pSelf = self;
-    return [self ccOperate:^{
+    return [self mq_operate:^{
         [pSelf.realm deleteAllObjects];
     }];
 }
-- (instancetype) ccDestory : (NSString *) specific {
+- (instancetype) mq_destory : (NSString *) specific {
     // still default configuration
     RLMRealmConfiguration *c = [RLMRealmConfiguration defaultConfiguration];
     c.fileURL = [[[c.fileURL URLByDeletingLastPathComponent]
@@ -247,19 +247,19 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
 #endif
         }
     }];
-    return MQRealmHandler.shared;
+    return MQRealmHandler.mq_shared;
 }
 
-- (RLMResults *) ccAll : (Class) cls {
+- (RLMResults *) mq_all : (Class) cls {
     if (![cls isSubclassOfClass:[RLMObject class]]) return nil;
     id value = [cls allObjectsInRealm:self.realm];
     return value;
 }
 
-- (RLMResults *) ccSorted : (Class) cls
-                      key : (NSString *) sKey
-                ascending : (BOOL) isAscending {
-    RLMResults *r = [self ccAll:cls];
+- (RLMResults *) mq_sorted : (Class) cls
+                       key : (NSString *) sKey
+                 ascending : (BOOL) isAscending {
+    RLMResults *r = [self mq_all:cls];
     if ([r isKindOfClass:[RLMResults class]]) {
         RLMResults *t = [r sortedResultsUsingKeyPath:sKey
                                            ascending:isAscending];
@@ -268,8 +268,8 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
     return nil;
 }
 
-- (instancetype) ccMigration : (uint64_t) version
-                      action : (void (^)(RLMRealmConfiguration *c , RLMMigration *m , uint64_t vOld)) action {
+- (instancetype) mq_migration : (uint64_t) version
+                       action : (void (^)(RLMRealmConfiguration *c , RLMMigration *m , uint64_t vOld)) action {
     if (!action) return self;
     RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
     // config.deleteRealmIfMigrationNeeded = YES; // if needed , delete realm , currently , not need .
@@ -286,8 +286,8 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
     [RLMRealm defaultRealm];
     return self;
 }
-- (instancetype) ccMigrationT : (RLMRealmConfiguration *(^)(void)) configuration
-                       action : (void (^)(RLMMigration *m , uint64_t vOld)) action {
+- (instancetype) mq_migration_config : (RLMRealmConfiguration *(^)(void)) configuration
+                              action : (void (^)(RLMMigration *m , uint64_t vOld)) action {
     if (!configuration || !action) return self;
     void (^b)(BOOL) = objc_getAssociatedObject(self, _MQ_RLM_SUCCEED_KEY_);
     RLMRealmConfiguration *config = configuration();
@@ -300,20 +300,20 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
     return self;
 }
 
-- (instancetype) ccError : (void (^)(NSError *e)) error {
+- (instancetype) mq_error : (void (^)(NSError *e)) error {
     if (error) {
         objc_setAssociatedObject(self, _MQ_RLM_ERROR_KEY_, error, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
     return self;
 }
-- (instancetype) ccSucceed : (void (^)(BOOL b)) succeed {
+- (instancetype) mq_succeed : (void (^)(BOOL b)) succeed {
     if (succeed) {
         objc_setAssociatedObject(self, _MQ_RLM_SUCCEED_KEY_, succeed, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
     return self;
 }
 
-- (instancetype) ccNotification : (void (^)(RLMNotification n, RLMRealm *r)) action {
+- (instancetype) mq_notification : (void (^)(RLMNotification n, RLMRealm *r)) action {
     if (action) {
         objc_setAssociatedObject(self, _MQ_RLM_NOTIFICATION_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
@@ -322,7 +322,7 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
 
 #pragma mark - Private
 
-- (instancetype) ccDefaultSettings : (void (^)(void)) action {
+- (instancetype) mq_default_settings : (void (^)(void)) action {
     if (action) action();
     return self;
 }

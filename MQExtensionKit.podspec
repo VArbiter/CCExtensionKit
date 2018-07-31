@@ -49,7 +49,7 @@ Pod::Spec.new do |s|
       s.subspec 'MQRouter' do |router|
         router.source_files = 'MQExtensionKit/MQExtensionKit/MQRouter/**/*'
         router.frameworks = "Foundation"
-        router.dependency 'MGJRouter', '~> 0.9.3'
+        router.dependency 'MGJRouter', '~> 0.10.0'
       end
 
       s.subspec 'MQData' do |data|
@@ -81,7 +81,7 @@ Pod::Spec.new do |s|
 
       s.subspec 'MQDataBase' do |dataBase|
         dataBase.source_files = 'MQExtensionKit/MQExtensionKit/MQDataBase/**/*'
-        dataBase.dependency 'Realm', '~> 2.10.2'
+        dataBase.dependency 'Realm', '~> 3.7.5'
         dataBase.dependency 'FMDB', '~> 2.7.2'
         dataBase.frameworks = "Foundation"
       end
@@ -91,9 +91,9 @@ Pod::Spec.new do |s|
         custom.dependency 'MQExtensionKit/MQCore'
         custom.dependency 'AFNetworking/Reachability', '~> 3.2.1'
         custom.dependency 'AFNetworking/UIKit', '~> 3.2.1'
-        custom.dependency 'SDWebImage', '~> 4.4.1'
+        custom.dependency 'SDWebImage', '~> 4.4.2'
         custom.dependency 'MJRefresh', '~> 3.1.12'
-        custom.dependency 'MBProgressHUD', '~> 1.0.0'
+        custom.dependency 'MBProgressHUD', '~> 1.1.0'
         custom.frameworks =  "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
         custom.weak_frameworks = "WebKit"
       end

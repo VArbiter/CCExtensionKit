@@ -16,70 +16,70 @@
 
 @end
 
-static RLMNotificationToken *__ccToken = nil;
+static RLMNotificationToken *__mq_token = nil;
 
 @implementation MQRLMBaseModel
 
 + (NSArray<NSString *> *)ignoredProperties {
-    return @[@"specificBase",@"ccToken"];
+    return @[@"specificBase",@"mqToken"];
 }
 
-+ (instancetype) common {
-    return [self commonD:nil];
++ (instancetype) mq_common {
+    return [self mq_common_dictionary:nil];
 }
-+ (instancetype) commonD : (NSDictionary *) dictionary {
-    return [MQRealmHandler.shared ccDictionary:self
-                                         value:dictionary];
++ (instancetype) mq_common_dictionary : (NSDictionary *) dictionary {
+    return [MQRealmHandler.mq_shared mq_dictionary:self
+                                             value:dictionary];
 }
-+ (instancetype) commonA : (NSArray *) array {
-    return [MQRealmHandler.shared ccArray:self
-                                    value:array];
++ (instancetype) mq_common_array : (NSArray *) array {
+    return [MQRealmHandler.mq_shared mq_array:self
+                                        value:array];
 }
 
-- (instancetype) ccSpecific : (NSString *) specificDataBase {
-    if (specificDataBase.length > 0) self.specificBase = specificDataBase;
+- (instancetype) mq_specific : (NSString *) specific_database {
+    if (specific_database.length > 0) self.specificBase = specific_database;
     return self;
 }
-+ (MQRealmHandler *) ccOperate : (void (^)(void)) transaction {
-    return [self ccOperate:nil
-               transaction:transaction];
++ (MQRealmHandler *) mq_operate : (void (^)(void)) transaction {
+    return [self mq_operate:nil
+                transaction:transaction];
 }
-+ (MQRealmHandler *) ccOperate : (NSString *) specificDataBase
-                   transaction : (void (^)(void)) transaction {
-    return [[MQRealmHandler.shared ccSpecific:specificDataBase] ccOperate:^{
++ (MQRealmHandler *) mq_operate : (NSString *) specific_database
+                    transaction : (void (^)(void)) transaction {
+    return [[MQRealmHandler.mq_shared mq_specific:specific_database] mq_operate:^{
         if (transaction) transaction();
     }];
 }
-- (MQRealmHandler *) ccSave {
-    return [[MQRealmHandler.shared ccSpecific:self.specificBase] ccSave:self];
+- (MQRealmHandler *) mq_save {
+    return [[MQRealmHandler.mq_shared mq_specific:self.specificBase] mq_save:self];
 }
 
-- (MQRealmHandler *) ccDeleteT {
-    return [[MQRealmHandler.shared ccSpecific:self.specificBase] ccDeleteT:self];
+- (MQRealmHandler *) mq_delete {
+    return [[MQRealmHandler.mq_shared mq_specific:self.specificBase] mq_delete:self];
 }
-- (MQRealmHandler *) ccDeleteS {
-    return [[MQRealmHandler.shared ccSpecific:self.specificBase] ccDeleteS:self];
+- (MQRealmHandler *) mq_delete_according_to_primary_key {
+    return [[MQRealmHandler.mq_shared mq_specific:self.specificBase] mq_delete_promary_key:self];
 }
-+ (MQRealmHandler *) ccDeleteArray : (NSString *) specificDataBase
-                             array : (NSArray <__kindof MQRLMBaseModel *> *) array {
-    return [[MQRealmHandler.shared ccSpecific:specificDataBase] ccDeleteA:array];
++ (MQRealmHandler *) mq_delete_array : (NSString *) specificDataBase
+                               array : (NSArray <__kindof MQRLMBaseModel *> *) array {
+    return [[MQRealmHandler.mq_shared mq_specific:specificDataBase] mq_delete_array:array];
 }
-+ (MQRealmHandler *) ccDeleteAll : (NSString *) specificDataBase {
-    return [[MQRealmHandler.shared ccSpecific:specificDataBase] ccDeleteAll];
++ (MQRealmHandler *) mq_delete_all : (NSString *) specificDataBase {
+    return [[MQRealmHandler.mq_shared mq_specific:specificDataBase] mq_delete_all];
 }
 
-+ (RLMResults *) ccAll : (NSString *) specificDataBase {
-    return [[MQRealmHandler.shared ccSpecific:specificDataBase] ccAll:self];
++ (RLMResults *) mq_all : (NSString *) specificDataBase {
+    return [[MQRealmHandler.mq_shared mq_specific:specificDataBase] mq_all:self];
 }
-+ (MQRealmHandler *) ccNotification : (NSString *) specificDataBase
-                             change : (void (^)(RLMResults * results,
-                                                RLMCollectionChange * change,
-                                                NSError * error)) changeN {
-    if (__ccToken) {
-        [__ccToken stop];
-        __ccToken = nil;
++ (MQRealmHandler *) mq_notification : (NSString *) specific_database
+                              change : (void (^)(RLMResults * results,
+                                                 RLMCollectionChange * change,
+                                                 NSError * error)) changeN {
+    if (__mq_token) {
+        [__mq_token invalidate];
+        __mq_token = nil;
     }
-    __ccToken = [[self ccAll:specificDataBase] addNotificationBlock:^(RLMResults * _Nullable results, RLMCollectionChange * _Nullable change, NSError * _Nullable error) {
+    __mq_token = [[self mq_all:specific_database] addNotificationBlock:^(RLMResults * _Nullable results, RLMCollectionChange * _Nullable change, NSError * _Nullable error) {
         if (changeN) {
             // change.insertions; // insert
             // change.deletions; // delete
@@ -87,7 +87,7 @@ static RLMNotificationToken *__ccToken = nil;
             changeN(results , change , error);
         }
     }];
-    return MQRealmHandler.shared;
+    return MQRealmHandler.mq_shared;
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {}
