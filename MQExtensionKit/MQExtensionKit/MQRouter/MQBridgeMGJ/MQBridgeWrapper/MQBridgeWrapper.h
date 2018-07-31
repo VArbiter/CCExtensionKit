@@ -57,6 +57,7 @@ FOUNDATION_EXPORT MQRouterOperateKey const _MQ_ROUTER_PARAMS_COMPLETION_;
 FOUNDATION_EXPORT MQRouterOperateKey const _MQ_ROUTER_PARAMS_USER_INFO_;
 FOUNDATION_EXPORT MQRouterOperateKey _MQ_ROUTER_FALL_BACK_URL_ ; // can be customed by user with 'mq_sharedWithScheme:' methods // 可以被开发者使用 'mq_sharedWithScheme:' 来设置
 
+MQRouterPatternInfo * MQ_URL_MAKE(MQRouterRegistKey sURL) ;
 MQRouterPatternInfo * MQ_URL_PATTERN_MAKE(MQRouterRegistKey sURL ,
                                           NSDictionary *dUserInfo) ;
 

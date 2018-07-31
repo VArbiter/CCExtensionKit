@@ -33,8 +33,8 @@ typedef NS_ENUM(NSInteger , MQHudExtensionType) {
 + (instancetype) mq_generate : (UIView *) view ;
 
 /// for block interact for user operate action . // 是否阻挡用户点击
-- (instancetype) mq_enable ;
-- (instancetype) mq_disable ;
+- (instancetype) mq_responsd_user_interact ;
+- (instancetype) mq_block_user_interact ;
 
 + (BOOL) mq_has_hud ;
 + (BOOL) mq_has_hud : (UIView *) view ;

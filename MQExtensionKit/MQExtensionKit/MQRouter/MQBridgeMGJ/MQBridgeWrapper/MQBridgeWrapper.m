@@ -119,6 +119,9 @@ static MQBridgeWrapper *__router = nil;
     return nil;
 }
 
+MQRouterPatternInfo * MQ_URL_MAKE(MQRouterRegistKey sURL) {
+    return MQ_URL_PATTERN_MAKE(sURL, nil);
+}
 MQRouterPatternInfo * MQ_URL_PATTERN_MAKE(MQRouterRegistKey sURL , NSDictionary *dUserInfo) {
     return MQ_URL_PATTERN_COMPLETION_MAKE(sURL, dUserInfo, nil);
 }

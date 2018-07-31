@@ -31,11 +31,11 @@
     return [MBProgressHUD init:view];
 }
 
-- (instancetype) mq_enable {
+- (instancetype) mq_responsd_user_interact {
     self.userInteractionEnabled = false;
     return self;
 }
-- (instancetype) mq_disable {
+- (instancetype) mq_block_user_interact {
     self.userInteractionEnabled = YES;
     return self;
 }
