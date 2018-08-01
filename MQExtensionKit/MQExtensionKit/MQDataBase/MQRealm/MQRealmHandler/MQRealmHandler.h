@@ -66,8 +66,8 @@
 
 /// class that need sorted , property , ascending or not (have to use this action after sorting) // 类中需要排序的元素 ,
 - (RLMResults *) mq_sorted : (Class) cls
-                       key : (NSString *) sKey
-                 ascending : (BOOL) isAscending ;
+                       key : (NSString *) s_key
+                 ascending : (BOOL) is_ascending ;
 
 // ----- migration ----- // 迁移
 

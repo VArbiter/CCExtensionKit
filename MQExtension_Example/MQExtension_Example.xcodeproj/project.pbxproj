@@ -369,7 +369,6 @@
 		70F08D69210EC60C007B4D33 /* MQExtensionKit */ = {
 			isa = PBXGroup;
 			children = (
-				70F08F3D211152FC007B4D33 /* MQDatabase */,
 				70F08D6A210EC60C007B4D33 /* MQRouter */,
 				70F08D73210EC60C007B4D33 /* MQCustom */,
 				70F08D84210EC60C007B4D33 /* MQOrigin */,
@@ -377,6 +376,7 @@
 				70F08DC3210EC60C007B4D33 /* MQProtocol */,
 				70F08DC8210EC60C007B4D33 /* MQData */,
 				70F08E13210EC60C007B4D33 /* MQMedia */,
+				70F08F3D211152FC007B4D33 /* MQDatabase */,
 				70F08E22210EC60C007B4D33 /* MQView */,
 				70F08E6F210EC60C007B4D33 /* MQRuntime */,
 			);
@@ -1410,6 +1410,7 @@
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1420,6 +1421,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

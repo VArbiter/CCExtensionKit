@@ -47,12 +47,12 @@ typedef NS_ENUM(NSInteger , MQHudExtensionType) {
 /// messages && indicator // 文本和指示器
 - (instancetype) mq_indicator ;
 - (instancetype) mq_simple ; // default // 默认
-- (instancetype) mq_title : (NSString *) sTitle ;
-- (instancetype) mq_message : (NSString *) sMessage ;
+- (instancetype) mq_title : (NSString *) s_title ;
+- (instancetype) mq_message : (NSString *) s_message ;
 - (instancetype) mq_type : (MQHudExtensionType) type ;
 
-/// if invoked , make sure you DO NOT delpoied "ccShow"; // 如果实现下方这些 , 不能调用 "ccShow"
-- (instancetype) mq_delay : (CGFloat) fDelay ;
+/// if invoked , make sure you DO NOT delpoied "cc_show"; // 如果实现下方这些 , 不能调用 "ccShow"
+- (instancetype) mq_delay : (CGFloat) f_delay ;
 - (instancetype) mq_grace : (NSTimeInterval) interval ; // same as MBProgressHud // 和 MBProgressHud 相同
 - (instancetype) mq_min : (NSTimeInterval) interval ; // same as MBProgressHud // 和 MBProgressHud 相同
 - (instancetype) mq_complete : (void (^)(void)) complete ;

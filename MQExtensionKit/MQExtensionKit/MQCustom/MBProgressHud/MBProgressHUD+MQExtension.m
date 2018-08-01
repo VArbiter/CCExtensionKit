@@ -75,12 +75,12 @@
     self.mode = MBProgressHUDModeText;
     return self;
 }
-- (instancetype) mq_title : (NSString *) sTitle {
-    self.label.text = sTitle;
+- (instancetype) mq_title : (NSString *) s_title {
+    self.label.text = s_title;
     return self;
 }
-- (instancetype) mq_message : (NSString *) sMessage {
-    self.detailsLabel.text = sMessage;
+- (instancetype) mq_message : (NSString *) s_message {
+    self.detailsLabel.text = s_message;
     return self;
 }
 - (instancetype) mq_type : (MQHudExtensionType) type {
@@ -106,11 +106,12 @@
     return self;
 }
 
-- (instancetype) mq_delay : (CGFloat) fDelay {
-    dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fDelay * NSEC_PER_SEC));
-    __weak typeof(self) pSelf = self;
+- (instancetype) mq_delay : (CGFloat) f_delay {
+    dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(f_delay * NSEC_PER_SEC));
+    __weak typeof(self) weak_self = self;
     dispatch_after(t, dispatch_get_main_queue(), ^{
-        [pSelf mq_show];
+        __strong typeof(weak_self) strong_self = weak_self;
+        [strong_self mq_show];
     });
     return self;
 }

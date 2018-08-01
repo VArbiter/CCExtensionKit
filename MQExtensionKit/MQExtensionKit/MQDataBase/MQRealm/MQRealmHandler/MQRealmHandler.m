@@ -257,12 +257,12 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
 }
 
 - (RLMResults *) mq_sorted : (Class) cls
-                       key : (NSString *) sKey
-                 ascending : (BOOL) isAscending {
+                       key : (NSString *) s_key
+                 ascending : (BOOL) is_ascending {
     RLMResults *r = [self mq_all:cls];
     if ([r isKindOfClass:[RLMResults class]]) {
-        RLMResults *t = [r sortedResultsUsingKeyPath:sKey
-                                           ascending:isAscending];
+        RLMResults *t = [r sortedResultsUsingKeyPath:s_key
+                                           ascending:is_ascending];
         return t;
     }
     return nil;
