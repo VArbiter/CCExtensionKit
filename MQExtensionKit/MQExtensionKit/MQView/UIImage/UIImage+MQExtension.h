@@ -25,7 +25,7 @@
 #endif
 
 #ifndef MQ_IMAGE_BUNDLE
-    #define MQ_IMAGE_BUNDLE(_vName_,_vBundle_) [UIImage mq_name:(_vName_) bundle:(_vBundle_)]
+    #define MQ_IMAGE_BUNDLE(_vBundle_,_vName_) [UIImage mq_name:(_vName_) bundle:(_vBundle_)]
 #endif
 
 UIImage * MQ_CAPTURE_WINDOW(UIWindow *window);

@@ -22,13 +22,13 @@ typedef NS_ENUM(NSInteger , MQHudExtensionType) {
 
 @interface MBProgressHUD (MQExtension)
 
-/// init , default showing after actions complete , no need to invoke showing action "ccShow".
-/// 初始化 . 默认在 动作完成后展示 , 不用实现 "ccShow"
+/// init , default showing after actions complete , no need to invoke showing action "cc_show".
+/// 初始化 . 默认在 动作完成后展示 , 不用实现 "cc_show"
 + (instancetype) init ;
 + (instancetype) init : (UIView *) view ;
 
 /// generate a hud with its bounds . default with application window . // 生成一个 hud , 默认是 应用主窗口
-/// also , you have to add it after generate compete , and invoke showing action "ccShow" . // 需要在生成完毕后添加 , 然后调用 "ccShow"
+/// also , you have to add it after generate compete , and invoke showing action "cc_show" . // 需要在生成完毕后添加 , 然后调用 "cc_show"
 + (instancetype) mq_generate ;
 + (instancetype) mq_generate : (UIView *) view ;
 

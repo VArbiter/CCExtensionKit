@@ -19,3 +19,20 @@
 // colors 数组和 percents 数组个数必须相同 .
 
 @end
+
+@interface MQGradientLinearLayer : CALayer
+
+@property (nonatomic , strong) UIColor *color_begin ;
+@property (nonatomic , strong) UIColor *color_end ;
+@property (nonatomic , assign) CGPoint point_start;
+@property (nonatomic , assign) CGPoint point_end;
+
+@end
+
+@interface MQGradientRadialLayer : CALayer
+
+@property (nonatomic , strong) UIColor *color_begin ;
+@property (nonatomic , strong) UIColor *color_end ;
+@property (nonatomic , assign) CGPoint point_gradient_center;
+
+@end

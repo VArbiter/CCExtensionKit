@@ -45,3 +45,76 @@
 }
 
 @end
+
+#pragma mark - -----
+
+@interface MQGradientLinearLayer ()
+
+@end
+
+@implementation MQGradientLinearLayer
+
+- (void)drawInContext:(CGContextRef)ctx {
+    size_t locations_count = 2;
+    CGFloat locations[2] = {0.0f, 1.0f};
+    
+    CGFloat r_begin = .0f,
+    g_begin = .0f,
+    b_begin = .0f,
+    a_begin = .0f;
+    
+    CGFloat r_end = .0f,
+    g_end = .0f,
+    b_end = .0f,
+    a_end = .0f;
+    
+    [self.color_begin getRed:&r_begin green:&g_begin blue:&b_begin alpha:&a_begin];
+    [self.color_end getRed:&r_end green:&g_end blue:&b_end alpha:&a_end];
+    
+    CGFloat colors[8] = {r_begin, g_begin, b_begin, a_begin,
+        r_end, g_end, b_end, a_end};
+    CGColorSpaceRef color_space = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(color_space, colors, locations, locations_count);
+    CGContextDrawLinearGradient(ctx, gradient, self.point_start, self.point_end, 0);
+    CGGradientRelease(gradient);
+}
+
+@end
+
+#pragma mark - -----
+
+@interface MQGradientRadialLayer ()
+
+@end
+
+@implementation MQGradientRadialLayer
+
+- (void)drawInContext:(CGContextRef)ctx {
+    size_t locations_count = 2;
+    CGFloat locations[2] = {0.0f, 1.0f};
+    
+    CGFloat r_begin = .0f,
+    g_begin = .0f,
+    b_begin = .0f,
+    a_begin = .0f;
+    
+    CGFloat r_end = .0f,
+    g_end = .0f,
+    b_end = .0f,
+    a_end = .0f;
+    
+    [self.color_begin getRed:&r_begin green:&g_begin blue:&b_begin alpha:&a_begin];
+    [self.color_end getRed:&r_end green:&g_end blue:&b_end alpha:&a_end];
+    
+    CGFloat colors[8] = {r_begin, g_begin, b_begin, a_begin,
+        r_end, g_end, b_end, a_end};
+    CGColorSpaceRef color_space = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(color_space, colors, locations, locations_count);
+    CGColorSpaceRelease(color_space);
+    
+    float radius = MIN(self.bounds.size.width , self.bounds.size.height);
+    CGContextDrawRadialGradient (ctx, gradient, self.point_gradient_center, 0, self.point_gradient_center, radius, kCGGradientDrawsAfterEndLocation);
+    CGGradientRelease(gradient);
+}
+
+@end
