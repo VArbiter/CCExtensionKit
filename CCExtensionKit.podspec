@@ -99,5 +99,7 @@ Pod::Spec.new do |s|
       end
 
     s.requires_arc = true
+    s.deprecated = true
+    s.deprecated_in_favor_of = 'MQExtensionKit'
 
 end
