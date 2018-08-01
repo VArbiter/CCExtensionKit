@@ -19,7 +19,7 @@
     if (!view) view = UIApplication.sharedApplication.delegate.window;
     if (!view) view = UIApplication.sharedApplication.keyWindow;
     return [MBProgressHUD showHUDAddedTo:view
-                                animated:YES].mq_simple.mq_enable;
+                                animated:YES].mq_simple.mq_responsd_user_interact;
 }
 
 + (instancetype) mq_generate {

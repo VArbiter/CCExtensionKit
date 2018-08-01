@@ -79,11 +79,11 @@ Pod::Spec.new do |s|
         media.weak_frameworks = "Photos"
       end
 
-      s.subspec 'MQDataBase' do |dataBase|
-        dataBase.source_files = 'MQExtensionKit/MQExtensionKit/MQDataBase/**/*'
-        dataBase.dependency 'Realm', '~> 3.7.5'
-        dataBase.dependency 'FMDB', '~> 2.7.2'
-        dataBase.frameworks = "Foundation"
+      s.subspec 'MQDatabase' do |database|
+        database.source_files = 'MQExtensionKit/MQExtensionKit/MQDatabase/**/*'
+        database.dependency 'Realm', '~> 3.7.5'
+        database.dependency 'FMDB', '~> 2.7.2'
+        database.frameworks = "Foundation"
       end
 
       s.subspec 'MQCustom' do |custom|

@@ -26,7 +26,7 @@
         #endif
 
         #ifdef _MQCDataBaseExtension_
-            #import <MQExtensionKit/MQDataBaseExtension.h>
+            #import <MQExtensionKit/MQDatabaseExtension.h>
         #endif
 
     #else
@@ -46,7 +46,7 @@
         #endif
 
         #ifdef _MQCDataBaseExtension_
-            #import "MQDataBaseExtension.h"
+            #import "MQDatabaseExtension.h"
         #endif
 
     #endif
