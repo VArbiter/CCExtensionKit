@@ -1,6 +1,6 @@
 //
 //  MQAdvanceMacro.h
-//  MQChainKit
+//  MQExtensionKit
 //
 //  Created by 冯明庆 on 11/09/2017.
 //  Copyright © 2017 ElwinFrederick. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  MQDropAlertView.m
-//  MQQueueDropAlertController_Example
+//  MQExtensionKit
 //
 //  Created by 冯明庆 on 04/12/2017.
 //  Copyright © 2017 elwin_frederick. All rights reserved.
