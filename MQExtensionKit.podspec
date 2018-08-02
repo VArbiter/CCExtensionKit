@@ -94,7 +94,7 @@ Pod::Spec.new do |s|
         custom.dependency 'SDWebImage', '~> 4.4.2'
         custom.dependency 'MJRefresh', '~> 3.1.12'
         custom.dependency 'MBProgressHUD', '~> 1.1.0'
-        # custom.dependency 'SVProgressHUD', '~> 2.2.5'
+        custom.dependency 'SVProgressHUD', '~> 2.2.5'
         custom.frameworks =  "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
         custom.weak_frameworks = "WebKit"
       end
