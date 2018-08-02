@@ -10,11 +10,11 @@
 
 ### 中文说明请点击[[这里](https://github.com/VArbiter/MQExtensionKit/blob/master/README_CN.md)]
 
-### Current Version 3.7.0
+### Current Version 4.0.0
 
-> pod 'MQExtensionKit' , '~> 3.7.0' // default is MQCore
+> pod 'MQExtensionKit' , '~> 4.0.0' // default is MQCore
 > 
-> > pod 'MQExtensionKit/MQFull' , '~> 3.7.0' . if you wanna install the whole Kit .
+> > pod 'MQExtensionKit/MQFull' , '~> 4.0.0' . if you wanna install the whole Kit .
 
 ### Warning
 >

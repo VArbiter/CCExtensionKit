@@ -8,11 +8,11 @@
 
 [![Platform](https://img.shields.io/cocoapods/p/MQExtensionKit.svg?style=flat)](http://cocoapods.org/pods/MQExtensionKit)
 
-### 当前版本 3.7.0
+### 当前版本 4.0.0
 
-> pod 'MQExtensionKit' , '~> 3.7.0' // 默认是 MQCore
+> pod 'MQExtensionKit' , '~> 4.0.0' // 默认是 MQCore
 > 
-> > pod 'MQExtensionKit/MQFull' , '~> 3.7.0' . 如果你想安装整个框架.
+> > pod 'MQExtensionKit/MQFull' , '~> 4.0.0' . 如果你想安装整个框架.
 
 ### Warning
 >
