@@ -66,6 +66,10 @@
 ### What's new ?
 ---
 ---
+**2018-08-02 11:03:05**
+
+> added  `SVProgressHUD+MQExtension` for notification issues.
+
 **2018-07-30 12:52:51**
 
 > using new prefix  `MQ` .
