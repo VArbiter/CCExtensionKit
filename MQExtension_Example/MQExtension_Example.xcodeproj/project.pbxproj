@@ -95,6 +95,7 @@
 		70F08F5B211152FD007B4D33 /* FCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F51211152FC007B4D33 /* FCModel.m */; };
 		70F08F5C211152FD007B4D33 /* FCModelDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F52211152FC007B4D33 /* FCModelDatabase.m */; };
 		70F08F652112A374007B4D33 /* SVProgressHUD+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F632112A374007B4D33 /* SVProgressHUD+MQExtension.m */; };
+		70F08F692112CF63007B4D33 /* MQMultiArgumentPerformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F682112CF63007B4D33 /* MQMultiArgumentPerformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -285,6 +286,8 @@
 		70F08F52211152FC007B4D33 /* FCModelDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelDatabase.m; sourceTree = "<group>"; };
 		70F08F632112A374007B4D33 /* SVProgressHUD+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+MQExtension.m"; sourceTree = "<group>"; };
 		70F08F642112A374007B4D33 /* SVProgressHUD+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+MQExtension.h"; sourceTree = "<group>"; };
+		70F08F672112CF63007B4D33 /* MQMultiArgumentPerformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQMultiArgumentPerformer.h; sourceTree = "<group>"; };
+		70F08F682112CF63007B4D33 /* MQMultiArgumentPerformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQMultiArgumentPerformer.m; sourceTree = "<group>"; };
 		92E189F8E0695DC2397746B7 /* Pods-MQExtension_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQExtension_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -536,6 +539,7 @@
 		70F08D93210EC60C007B4D33 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				70F08F662112CF53007B4D33 /* MQMultiArgumentPerformer */,
 				70F08D94210EC60C007B4D33 /* MQCrashCatcher */,
 				70F08D97210EC60C007B4D33 /* MQUpdateManager */,
 				70F08D9A210EC60C007B4D33 /* MQIAPManager */,
@@ -1295,6 +1299,15 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		70F08F662112CF53007B4D33 /* MQMultiArgumentPerformer */ = {
+			isa = PBXGroup;
+			children = (
+				70F08F672112CF63007B4D33 /* MQMultiArgumentPerformer.h */,
+				70F08F682112CF63007B4D33 /* MQMultiArgumentPerformer.m */,
+			);
+			path = MQMultiArgumentPerformer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1469,6 +1482,7 @@
 				70F08E98210EC60C007B4D33 /* NSURL+MQExtension.m in Sources */,
 				70F08EBF210EC60C007B4D33 /* UIImagePickerController+MQExtension.m in Sources */,
 				70F08E86210EC60C007B4D33 /* MQUpdateManager.m in Sources */,
+				70F08F692112CF63007B4D33 /* MQMultiArgumentPerformer.m in Sources */,
 				70F08E99210EC60C007B4D33 /* NSString+MQExtension.m in Sources */,
 				70F08EC0210EC60C007B4D33 /* UIBarButtonItem+MQExtension.m in Sources */,
 				70F08EB8210EC60C007B4D33 /* UIAlertController+MQExtension.m in Sources */,

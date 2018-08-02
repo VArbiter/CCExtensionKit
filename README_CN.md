@@ -65,6 +65,10 @@
 ### 上新 ?
 ---
 ---
+**2018-08-02 14:04:53**
+
+> 增加 `MQMultiArgumentPerformer` 用来 perform 并携带多个参数 .
+
 **2018-08-02 11:03:05**
 
 > 增加 `SVProgressHUD+MQExtension` 的通知处理 .

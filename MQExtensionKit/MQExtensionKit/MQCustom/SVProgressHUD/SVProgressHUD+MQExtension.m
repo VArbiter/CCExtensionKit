@@ -165,13 +165,8 @@ static BOOL __SVProgressHUD_is_added_notification = false ;
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:singture];
         [invocation setTarget:self];
         [invocation setSelector:selector];
-        
-        // 0 is target , 1 is _cmd itself .
-        // 0 是执行的 目标 , 1 是方法本身 .
         [invocation setArgument:&f_progress atIndex:2];
         [invocation setArgument:&status atIndex:3];
-        // retain all arguments . prevent it dealloc too early .
-        // 对所有 参数 进行 retain , 防止被过早释放 .
         [invocation retainArguments];
         [invocation invoke];
     }

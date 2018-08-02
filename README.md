@@ -66,6 +66,10 @@
 ### What's new ?
 ---
 ---
+**2018-08-02 14:04:53**
+
+> added `MQMultiArgumentPerformer` for perfoming a selector with multi arguments .
+
 **2018-08-02 11:03:05**
 
 > added  `SVProgressHUD+MQExtension` for notification issues.
