@@ -27,6 +27,40 @@
 /// remove all notifications . // 移除所有的通知.
 + (void) mq_notification_remove_all ;
 
+/// not singleton , not in the stack of original SVProgressHUD , but can be customize without affect others.
+/// be sure to dismiss it .
+// 非单例 , 不会进入到 SVProgressHUD 的原始栈中 . 但是可以单独设置且不影响到其它 .
+// 要保证它会被 dismiss 掉 .
++ (instancetype) mq_instance ;
+
+/// these methods below only works for instances , not the SVProgressHUD singleton .
+// 下面方法只针对 实体 , 不对 SVProgressHUD 的 单例起效 .
+
+- (instancetype) mq_show ;
+
+- (instancetype) mq_show_with_status : (NSString *) status ;
+
+- (instancetype) mq_show_progress : (float) f_progress ;
+- (instancetype) mq_show_progress : (float) f_progress
+                           status : (NSString *) status ;
+
+- (instancetype) mq_set_status : (NSString *) status ;
+
+- (instancetype) mq_show_info : (NSString *) status ;
+- (instancetype) mq_show_success : (NSString *) status ;
+- (instancetype) mq_show_error : (NSString *) status ;
+
+- (instancetype) mq_show_image : (UIImage *) image
+                        status : (NSString *) status ;
+
+- (instancetype) mq_dismiss ;
+- (instancetype) mq_dismiss_delay : (NSTimeInterval) f_delay ;
+- (instancetype) mq_dismiss_completion : (SVProgressHUDDismissCompletion) completion ;
+- (instancetype) mq_dismiss_delay : (NSTimeInterval) f_delay
+                       completion : (SVProgressHUDDismissCompletion) completion ;
+
+- (BOOL) mq_is_visible ;
+
 @end
 
 #endif

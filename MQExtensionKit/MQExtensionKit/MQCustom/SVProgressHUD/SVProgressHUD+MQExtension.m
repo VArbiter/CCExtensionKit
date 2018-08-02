@@ -16,6 +16,10 @@
 + (void) mq_remove_notification ;
 + (void) mq_handle_notification : (NSNotification *) sender ;
 
+#if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+@property (nonatomic, readonly) UINotificationFeedbackGenerator *mq_hapticGenerator NS_AVAILABLE_IOS(10_0);
+#endif
+
 @end
 
 @implementation SVProgressHUD (MQExtension_Assist)
@@ -89,6 +93,16 @@ static NSMutableDictionary *__d_notification_block = nil;
     }];
 }
 
+#if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+- (UINotificationFeedbackGenerator *)mq_hapticGenerator {
+    UINotificationFeedbackGenerator *t = [self valueForKeyPath:@"hapticGenerator"];
+    if (t && [t isKindOfClass:UINotificationFeedbackGenerator.class]) {
+        return t;
+    }
+    return nil;
+}
+#endif
+
 @end
 
 #pragma mark - -----
@@ -123,6 +137,141 @@ static BOOL __SVProgressHUD_is_added_notification = false ;
     [self.dictionary_notification_block removeAllObjects];
     [self mq_remove_notification];
     __SVProgressHUD_is_added_notification = false;
+}
+
+#pragma mark - -----
+
++ (instancetype) mq_instance {
+    return [[self alloc] initWithFrame:[[[UIApplication sharedApplication] delegate] window].bounds];
+}
+
+- (instancetype) mq_show {
+    return [self mq_show_with_status:nil];
+}
+
+- (instancetype) mq_show_with_status : (NSString *) status {
+    return [self mq_show_progress:-1
+                           status:status];
+}
+
+- (instancetype) mq_show_progress : (float) f_progress {
+    return [self mq_show_progress:f_progress status:nil];
+}
+- (instancetype) mq_show_progress : (float) f_progress
+                           status : (NSString *) status {
+    SEL selector = NSSelectorFromString(@"showProgress:status:");
+    if ([self respondsToSelector:selector]) {
+        NSMethodSignature *singture = [[self class] instanceMethodSignatureForSelector:selector];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:singture];
+        [invocation setTarget:self];
+        [invocation setSelector:selector];
+        
+        // 0 is target , 1 is _cmd itself .
+        // 0 是执行的 目标 , 1 是方法本身 .
+        [invocation setArgument:&f_progress atIndex:2];
+        [invocation setArgument:&status atIndex:3];
+        // retain all arguments . prevent it dealloc too early .
+        // 对所有 参数 进行 retain , 防止被过早释放 .
+        [invocation retainArguments];
+        [invocation invoke];
+    }
+    return self;
+}
+
+- (instancetype) mq_set_status : (NSString *) status {
+    if ([self respondsToSelector:@selector(setStatus:)]) {
+        [self performSelector:@selector(setStatus:)
+                   withObject:status];
+    }
+    return self;
+}
+
+- (instancetype) mq_show_info : (NSString *) status {
+    [self mq_show_image:self.infoImage status:status];
+    
+#if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+    if (@available(iOS 10.0, *)) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.mq_hapticGenerator notificationOccurred:UINotificationFeedbackTypeWarning];
+        });
+    }
+#endif
+    return self;
+}
+- (instancetype) mq_show_success : (NSString *) status {
+    [self mq_show_image:self.successImage status:status];
+    
+#if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+    if (@available(iOS 10.0, *)) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.mq_hapticGenerator notificationOccurred:UINotificationFeedbackTypeSuccess];
+        });
+    }
+#endif
+    return self;
+}
+- (instancetype) mq_show_error : (NSString *) status {
+     [self mq_show_image:self.errorImage status:status];
+#if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+    if (@available(iOS 10.0, *)) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.mq_hapticGenerator notificationOccurred:UINotificationFeedbackTypeError];
+        });
+    }
+#endif
+    return self;
+}
+
+- (instancetype) mq_show_image : (UIImage *) image
+                        status : (NSString *) status {
+    NSTimeInterval interval_display = [SVProgressHUD displayDurationForString:status];
+    SEL selector = NSSelectorFromString(@"showImage:status:duration:");
+    if ([self respondsToSelector:selector]) {
+        NSMethodSignature *singture = [[self class] instanceMethodSignatureForSelector:selector];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:singture];
+        [invocation setTarget:self];
+        [invocation setSelector:selector];
+        [invocation setArgument:&image atIndex:2];
+        [invocation setArgument:&status atIndex:3];
+        [invocation setArgument:&interval_display atIndex:4];
+        [invocation retainArguments];
+        [invocation invoke];
+    }
+    return self;
+}
+
+- (instancetype) mq_dismiss {
+    if ([self respondsToSelector:@selector(dismiss)]) {
+        [self performSelector:@selector(dismiss)];
+    }
+    return self;
+}
+- (instancetype) mq_dismiss_delay : (NSTimeInterval) f_delay {
+    return [self mq_dismiss_delay:f_delay completion:nil];
+}
+- (instancetype) mq_dismiss_completion : (SVProgressHUDDismissCompletion) completion {
+    return [self mq_dismiss_delay:.0f completion:completion];
+}
+- (instancetype) mq_dismiss_delay : (NSTimeInterval) f_delay
+                       completion : (SVProgressHUDDismissCompletion) completion {
+    SEL selector = NSSelectorFromString(@"dismissWithDelay:completion:");
+    if ([self respondsToSelector:selector]) {
+        NSMethodSignature *singture = [[self class] instanceMethodSignatureForSelector:selector];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:singture];
+        [invocation setTarget:self];
+        [invocation setSelector:selector];
+        [invocation setArgument:&f_delay atIndex:2];
+        [invocation setArgument:&completion atIndex:3];
+        [invocation retainArguments];
+        [invocation invoke];
+    }
+    return self;
+}
+
+- (BOOL) mq_is_visible {
+    UIView *v = [self valueForKeyPath:@"backgroundView"] ;
+    if ([v isKindOfClass:UIView.class]) return v.alpha > 0.0f;
+    return false;
 }
 
 @end
