@@ -20,13 +20,13 @@
 >
 > CCExtensionKit has no longer effect after version `3.7.0`
 > 
-> cause after `3.7.0` , CCLocalLib was renamed to `'MQExtensionKit'` .
+> cause after `3.7.0` , CCExtensionKit was renamed to `'MQExtensionKit'` .
 >
 > CCLocalLib has no longer effect after version `2.2.3`
 > 
 > cause after `3.0.0` , CCLocalLib was renamed to `'CCExtensionKit'` .
 > 
-> CCExtensionKit had import the `AdSupport.framework`.
+> MQExtensionKit had import the `AdSupport.framework`.
 > 
 > therefore , be ware when submit your app to App Store .
 
@@ -80,31 +80,31 @@
 
 **2018-07-09 17:37:21**
 
-> added `NSLock+CCExtension` (CCData) for lock issues .
+> added `NSLock+MQExtension` (MQData) for lock issues .
 >
-> added `CCNull` (CCOrigin) for replace NSNull holding issues .
+> added `MQNull` (MQOrigin) for replace NSNull holding issues .
 
 **2018-06-27 20:03:04**
 
-> added `CCPointMarker` (CCOrigin) for collect infos on our own ,
+> added `MQPointMarker` (MQOrigin) for collect infos on our own ,
 > 
-> added `CCCrashCatcher` (CCOrigin) for catch crashes , 
+> added `MQCrashCatcher` (MQOrigin) for catch crashes , 
 > 
-> added `CCPhotoManager` (CCOrigin) for pick photos / videos in album ,
+> added `MQPhotoManager` (MQOrigin) for pick photos / videos in album ,
 > 
-> added `CCAudioRecorder` (CCOrigin) for recording audios .
+> added `MQAudioRecorder` (MQOrigin) for recording audios .
 
 **2018-06-25 19:22:00**
 
-> added `CCTaskManager` (CCOrigin) for easy queue tasks .
+> added `MQTaskManager` (MQOrigin) for easy queue tasks .
 
 **2018-05-04 21:55:33**
 
-> added `CCAuthentication` (CCCommon) for touch id && face id verify , `CCIAPManager`(CCOrigin) for in app purchase  .
+> added `MQAuthentication` (MQCommon) for touch id && face id verify , `MQIAPManager`(MQOrigin) for in app purchase  .
 
 **2018-04-23 18:53:35**
 
-> make prefix all `cc_` . remove CCDataBase && CCCustom from CCFull .
+> make prefix all `mq_` . remove MQDataBase && MQCustom from MQFull .
 
 **2017-12-22 15:59:44**
 
@@ -112,7 +112,7 @@
 
 **2017-11-28 12:39:59**
 
-> rebuilt `CCBridgeWrapper` in `CCRouter` .
+> rebuilt `MQBridgeWrapper` in `MQRouter` .
 
 **2017-11-01 19:24:27**
 
@@ -160,7 +160,7 @@ Already done in pod spec.
 
 ### Installation
 
-CCExtensionKit is available through [CocoaPods](http://cocoapods.org). To install
+MQExtensionKit is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
@@ -173,4 +173,4 @@ pod "MQExtensionKit"
 
 ### License
 
-CCExtensionKit is available under the MIT license. See the LICENSE file for more info.
+MQExtensionKit is available under the MIT license. See the LICENSE file for more info.

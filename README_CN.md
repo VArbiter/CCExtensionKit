@@ -79,31 +79,31 @@
 
 **2018-07-09 17:37:21**
 
-> 增加  `NSLock+CCExtension` (CCData) 针对锁相关.
+> 增加  `NSLock+MQExtension` (MQData) 针对锁相关.
 >
-> 增加 `CCNull` (CCOrigin) 用来替换 NSNull 空值占位  相关 .
+> 增加 `MQNull` (MQOrigin) 用来替换 NSNull 空值占位  相关 .
 
 **2018-06-27 20:03:04**
 
-> 增加 `CCPointMarker ` (CCOrigin) 来让自己收集信息 ,
+> 增加 `MQPointMarker ` (MQOrigin) 来让自己收集信息 ,
 > 
-> 增加 `CCCrashCatcher` (CCOrigin) 以捕获崩溃 ,
+> 增加 `MQCrashCatcher` (MQOrigin) 以捕获崩溃 ,
 > 
-> 增加 `CCPhotoManager` (CCOrigin) 用来从相册选择 图片 / 视频 ,
+> 增加 `MQPhotoManager` (MQOrigin) 用来从相册选择 图片 / 视频 ,
 > 
-> 增加 `CCAudioRecorder` (CCOrigin) 用来录音 .
+> 增加 `MQAudioRecorder` (MQOrigin) 用来录音 .
 
 **2018-06-25 19:22:00**
 
-> 增加 `CCTaskManager` (CCOrigin) 简易队列任务.
+> 增加 `MQTaskManager` (MQOrigin) 简易队列任务.
 
 **2018-05-04 21:55:33**
 
-> 增加 `CCAuthentication` (CCCommon) 用来做指纹 / 面部验证 , `CCIAPManager`(CCOrigin) 用来做内购相关 .
+> 增加 `MQAuthentication` (MQCommon) 用来做指纹 / 面部验证 , `MQIAPManager`(MQOrigin) 用来做内购相关 .
 
 **2018-04-23 18:53:35**
 
-> 更换所有的前缀为 `cc_` , 将 CCDataBase 和 CCCustom 从 CCFull 中移除
+> 更换所有的前缀为 `mq_` , 将 MQDataBase 和 MQCustom 从 MQFull 中移除
 
 **2017-12-22 15:59:44**
 
@@ -111,7 +111,7 @@
 
 **2017-11-28 12:39:59**
 
-> 重构 `CCRouter` 中的 `CCBridgeWrapper` .
+> 重构 `MQRouter` 中的 `MQBridgeWrapper` .
 
 **2017-11-01 19:24:27**
 
@@ -158,7 +158,7 @@
 
 ### 安装
 
-CCExtensionKit 已经上传到了 [CocoaPods](http://cocoapods.org). 若安装,只需要在你的 Podfile 添加下列代码:
+MQExtensionKit 已经上传到了 [CocoaPods](http://cocoapods.org). 若安装,只需要在你的 Podfile 添加下列代码:
 
 ```ruby
 pod "MQExtensionKit"
@@ -170,4 +170,4 @@ pod "MQExtensionKit"
 
 ### 许可协议
 
-CCExtensionKit 收到 MIT 协议保护. 详细请查看工程中的 LICENSE 文件.
+MQExtensionKit 收到 MIT 协议保护. 详细请查看工程中的 LICENSE 文件.
