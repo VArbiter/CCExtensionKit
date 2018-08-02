@@ -96,6 +96,7 @@
 		70F08F5B211152FD007B4D33 /* FCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F51211152FC007B4D33 /* FCModel.m */; };
 		70F08F5C211152FD007B4D33 /* FCModelDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F52211152FC007B4D33 /* FCModelDatabase.m */; };
 		70F08F5D211152FD007B4D33 /* MQFCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F54211152FC007B4D33 /* MQFCModel.m */; };
+		70F08F652112A374007B4D33 /* SVProgressHUD+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F632112A374007B4D33 /* SVProgressHUD+MQExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -288,6 +289,8 @@
 		70F08F52211152FC007B4D33 /* FCModelDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelDatabase.m; sourceTree = "<group>"; };
 		70F08F54211152FC007B4D33 /* MQFCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQFCModel.m; sourceTree = "<group>"; };
 		70F08F55211152FC007B4D33 /* MQFCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQFCModel.h; sourceTree = "<group>"; };
+		70F08F632112A374007B4D33 /* SVProgressHUD+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+MQExtension.m"; sourceTree = "<group>"; };
+		70F08F642112A374007B4D33 /* SVProgressHUD+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+MQExtension.h"; sourceTree = "<group>"; };
 		92E189F8E0695DC2397746B7 /* Pods-MQExtension_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQExtension_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -422,6 +425,7 @@
 		70F08D73210EC60C007B4D33 /* MQCustom */ = {
 			isa = PBXGroup;
 			children = (
+				70F08F622112A374007B4D33 /* SVProgressHUD */,
 				70F08D74210EC60C007B4D33 /* MQWeakNetImageView */,
 				70F08D77210EC60C007B4D33 /* UICollectionView */,
 				70F08D7A210EC60C007B4D33 /* NetworkMoniter */,
@@ -1308,6 +1312,15 @@
 			path = MQFCModel;
 			sourceTree = "<group>";
 		};
+		70F08F622112A374007B4D33 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				70F08F632112A374007B4D33 /* SVProgressHUD+MQExtension.m */,
+				70F08F642112A374007B4D33 /* SVProgressHUD+MQExtension.h */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1442,6 +1455,7 @@
 				70F08EC3210EC60C007B4D33 /* UITableView+MQExtension.m in Sources */,
 				70F08E83210EC60C007B4D33 /* MQGradientLayerView.m in Sources */,
 				70F08EBB210EC60C007B4D33 /* UINavigationItem+MQExtension.m in Sources */,
+				70F08F652112A374007B4D33 /* SVProgressHUD+MQExtension.m in Sources */,
 				70F08E91210EC60C007B4D33 /* MQCommon.m in Sources */,
 				70F08EB7210EC60C007B4D33 /* UIColor+MQExtension.m in Sources */,
 				70F08E81210EC60C007B4D33 /* MQMenuView.m in Sources */,
