@@ -11,23 +11,16 @@
 @interface MQEasyWebView () <WKNavigationDelegate , WKScriptMessageHandler>
 
 @property (nonatomic , strong) WKWebViewConfiguration * config;
-@property (nonatomic , assign) CGRect frame ;
 @property (nonatomic , strong) WKUserContentController *userContentController ;
 @property (nonatomic , strong) MQScriptMessageDelegate *messageDelegate ;
 
 @property (nonatomic , copy) NSString *sAppName ;
-@property (nonatomic , assign) BOOL isTrustWithoutAnyDoubt;
 @property (nonatomic , copy) void (^challenge)(WKWebView *webView ,
 NSURLAuthenticationChallenge * challenge,
 void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * credential));
 @property (nonatomic , copy) void (^alertS)(UIAlertController *controller);
 
 @property (nonatomic , strong) NSMutableDictionary <NSString * , void (^)(WKUserContentController *, WKScriptMessage *)> *dictionaryMessage ;
-
-- (instancetype) init : (CGRect) frame ;
-
-- (instancetype) init : (CGRect) frame
-        configuration : (WKWebViewConfiguration *) configuration NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic , copy) void (^progress)(double);
 @property (nonatomic , copy) WKNavigationActionPolicy (^decision)(WKNavigationAction * action);
@@ -43,32 +36,27 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 
 @implementation MQEasyWebView
 
-+ (instancetype) mq_common : (CGRect) frame {
-    return [self mq_common:frame configuration:nil];
-}
-+ (instancetype) mq_common : (CGRect) frame
-             configuration : (WKWebViewConfiguration *) configuration {
-    return [[self alloc] init:frame configuration:configuration];
-}
-
-- (instancetype) init : (CGRect) frame {
-    return [self init:frame configuration:nil];
-}
-
-- (instancetype) init : (CGRect) frame
-        configuration : (WKWebViewConfiguration *) configuration {
-    if ((self = [super init])) {
-        self.frame = frame;
-        self.config = configuration;
+- (instancetype)initWithFrame:(CGRect)frame {
+    if ((self = [super initWithFrame:frame])) {
         self.isTrustWithoutAnyDoubt = YES;
-        [self.webView addSubview:self.progressView];
     }
     return self;
 }
 
-- (instancetype) mq_auth_challenge : (BOOL) isWithoutAnyDoubt {
-    self.isTrustWithoutAnyDoubt = isWithoutAnyDoubt;
+- (instancetype) init : (CGRect) frame
+        configuration : (WKWebViewConfiguration *) configuration {
+    if ((self = [super initWithFrame:frame])) {
+        self.config = configuration;
+        self.isTrustWithoutAnyDoubt = YES;
+    }
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self addSubview:self.webView];
+    [self.webView addSubview:self.progressView];
 }
 
 - (instancetype) mq_deal_auth_challenge : (void (^)(WKWebView *webView , NSURLAuthenticationChallenge * challenge,

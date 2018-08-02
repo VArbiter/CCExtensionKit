@@ -8,13 +8,10 @@
 
 #import "WKWebView+MQExtension.h"
 
-@interface MQEasyWebView : NSObject
+@interface MQEasyWebView : UIView
 
-- (instancetype) init NS_UNAVAILABLE ;
-
-+ (instancetype) mq_common : (CGRect) frame ;
-+ (instancetype) mq_common : (CGRect) frame
-             configuration : (WKWebViewConfiguration *) configuration ;
+- (instancetype) init : (CGRect) frame
+        configuration : (WKWebViewConfiguration *) configuration;
 
 @property (nonatomic , strong) WKWebView *webView ;
 
@@ -25,7 +22,7 @@
 // a chain bridge for WKNavigationDelegate // 用来桥接 WKNavigationDelegate
 
 /// default is YES , allow all challenges . // 默认为 YES , 允许所有验证
-- (instancetype) mq_auth_challenge : (BOOL) isWithoutAnyDoubt ;
+@property (nonatomic , assign) BOOL isTrustWithoutAnyDoubt;
 
 /// if webview receive a auth challenge // 如果 webView 收到一个验证
 /// note : if not implemented 'ccDealAuthChallenge' , // 如果没有实现 'ccDealAuthChallenge'
