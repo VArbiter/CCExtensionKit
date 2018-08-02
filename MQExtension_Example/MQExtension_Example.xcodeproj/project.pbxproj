@@ -88,7 +88,7 @@
 		70F08EC9210EC60C007B4D33 /* MQProxyDealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08E73210EC60C007B4D33 /* MQProxyDealer.m */; };
 		70F08ECA210EC60C007B4D33 /* MQRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08E77210EC60C007B4D33 /* MQRuntime.m */; };
 		70F08ECB210EC60C007B4D33 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 70F08E78210EC60C007B4D33 /* .swift-version */; };
-		70F08F56211152FD007B4D33 /* MQRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F41211152FC007B4D33 /* MQRLMBaseModel.m */; };
+		70F08F56211152FD007B4D33 /* MQRLMBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F41211152FC007B4D33 /* MQRLMBaseEntity.m */; };
 		70F08F57211152FD007B4D33 /* MQRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F45211152FC007B4D33 /* MQRealmHandler.m */; };
 		70F08F58211152FD007B4D33 /* MQFCModelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F49211152FC007B4D33 /* MQFCModelHandler.m */; };
 		70F08F59211152FD007B4D33 /* FCModelCachedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F4B211152FC007B4D33 /* FCModelCachedObject.m */; };
@@ -273,8 +273,8 @@
 		70F08E78210EC60C007B4D33 /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
 		70F08E79210EC60C007B4D33 /* MQExtensionKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQExtensionKit.h; sourceTree = "<group>"; };
 		70F08F3E211152FC007B4D33 /* MQDatabaseExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQDatabaseExtension.h; sourceTree = "<group>"; };
-		70F08F41211152FC007B4D33 /* MQRLMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQRLMBaseModel.m; sourceTree = "<group>"; };
-		70F08F42211152FC007B4D33 /* MQRLMBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRLMBaseModel.h; sourceTree = "<group>"; };
+		70F08F41211152FC007B4D33 /* MQRLMBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQRLMBaseEntity.m; sourceTree = "<group>"; };
+		70F08F42211152FC007B4D33 /* MQRLMBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRLMBaseEntity.h; sourceTree = "<group>"; };
 		70F08F44211152FC007B4D33 /* MQRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRealmHandler.h; sourceTree = "<group>"; };
 		70F08F45211152FC007B4D33 /* MQRealmHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQRealmHandler.m; sourceTree = "<group>"; };
 		70F08F48211152FC007B4D33 /* MQFCModelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQFCModelHandler.h; sourceTree = "<group>"; };
@@ -1254,8 +1254,8 @@
 		70F08F40211152FC007B4D33 /* MQRealmModel */ = {
 			isa = PBXGroup;
 			children = (
-				70F08F41211152FC007B4D33 /* MQRLMBaseModel.m */,
-				70F08F42211152FC007B4D33 /* MQRLMBaseModel.h */,
+				70F08F41211152FC007B4D33 /* MQRLMBaseEntity.m */,
+				70F08F42211152FC007B4D33 /* MQRLMBaseEntity.h */,
 			);
 			path = MQRealmModel;
 			sourceTree = "<group>";
@@ -1500,7 +1500,7 @@
 				70F08EC0210EC60C007B4D33 /* UIBarButtonItem+MQExtension.m in Sources */,
 				70F08EB8210EC60C007B4D33 /* UIAlertController+MQExtension.m in Sources */,
 				70F08E87210EC60C007B4D33 /* MQIAPManager.m in Sources */,
-				70F08F56211152FD007B4D33 /* MQRLMBaseModel.m in Sources */,
+				70F08F56211152FD007B4D33 /* MQRLMBaseEntity.m in Sources */,
 				70F08EB0210EC60C007B4D33 /* UIImage+MQExtension.m in Sources */,
 				70F08EC8210EC60C007B4D33 /* UITextField+MQExtension.m in Sources */,
 				70F08E7B210EC60C007B4D33 /* MQBridgeWrapper.m in Sources */,

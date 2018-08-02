@@ -19,7 +19,7 @@
 // ----- open ----- // 打开
 
 + (instancetype) mq_shared ;
-- (instancetype) mq_default ; // equal : ccSpecific : nil // 等同于 ccSpecific : nil
+- (instancetype) mq_default ; // equal : mq_specific : nil // 等同于 mq_specific : nil
 - (instancetype) mq_specific : (NSString *) specific ; // open a specific realm // 打开指定的数据库
 - (instancetype) mq_operate : (void(^)(void)) operate ; // do actions in transaction // 在事务中才做
 
@@ -53,7 +53,7 @@
 /// not it self , but the data in it // 删除不是本身 . 但是是所有的表
 - (instancetype) mq_delete_all ;
 /// delete it self // 删除本身 (摧毁数据库)
-- (instancetype) mq_destory : (NSString *) specific;
+- (void) mq_destory : (NSString *) specific;
 
 // ----- search ----- // 搜索
 

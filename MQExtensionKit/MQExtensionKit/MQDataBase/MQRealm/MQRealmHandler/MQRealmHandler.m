@@ -12,49 +12,27 @@
 
 #import <objc/runtime.h>
 
-@interface MQRealmHandler () < NSCopying , NSMutableCopying >
+@interface MQRealmHandler ()
 
-- (instancetype) mq_default_settings : (void (^)(void)) action ;
 @property (nonatomic , strong) RLMRealm *realm;
 /// must decorate with strong , otherwise it will release before useing
 @property (nonatomic , strong) RLMNotificationToken *token;
 
 @end
 
-static MQRealmHandler *__handler = nil;
 static const char * _MQ_RLM_ERROR_KEY_ = "_MQ_RLM_ERROR_KEY_";
 static const char * _MQ_RLM_SUCCEED_KEY_ = "_MQ_RLM_SUCCEED_KEY_";
 static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
 
 @implementation MQRealmHandler
 
+static MQRealmHandler *__handler = nil;
 + (instancetype) mq_shared {
-    if (__handler) return __handler;
-    __handler = [[MQRealmHandler alloc] init];
-    return __handler;
-}
-
-+ (instancetype)allocWithZone:(struct _NSZone *)zone {
-    if (__handler) return __handler;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __handler = [super allocWithZone:zone];
+        __handler = [[MQRealmHandler alloc] init];
     });
     return __handler;
-}
-- (id)copyWithZone:(NSZone *)zone {
-    return __handler;
-}
-- (id)mutableCopyWithZone:(NSZone *)zone {
-    return __handler;
-}
-- (instancetype)init {
-    if ((self = [super init])) {
-        [self mq_default_settings:^{
-            
-        }];
-    }
-    return self;
 }
 
 - (instancetype) mq_default {
@@ -186,7 +164,7 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
     __weak typeof(self) pSelf = self;
     if ([[object class] respondsToSelector:@selector(primaryKey)]) {
         NSString *pk = [[object class] performSelector:@selector(primaryKey)];
-        RLMResults *r = [[object class] objectsWhere:[NSString stringWithFormat:@"%@ = %@" ,pk , [object valueForKeyPath:pk]]];
+        RLMResults *r = [[object class] objectsWhere:[NSString stringWithFormat:@"%@ = %@" , pk , [object valueForKeyPath:pk]]];
         if (r.count > 0) {
             return [self mq_operate:^{
                 [pSelf.realm deleteObjects:r];
@@ -214,7 +192,7 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
         [pSelf.realm deleteAllObjects];
     }];
 }
-- (instancetype) mq_destory : (NSString *) specific {
+- (void) mq_destory : (NSString *) specific {
     // still default configuration
     RLMRealmConfiguration *c = [RLMRealmConfiguration defaultConfiguration];
     c.fileURL = [[[c.fileURL URLByDeletingLastPathComponent]
@@ -247,7 +225,6 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
 #endif
         }
     }];
-    return MQRealmHandler.mq_shared;
 }
 
 - (RLMResults *) mq_all : (Class) cls {
@@ -317,13 +294,6 @@ static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
     if (action) {
         objc_setAssociatedObject(self, _MQ_RLM_NOTIFICATION_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
-    return self;
-}
-
-#pragma mark - Private
-
-- (instancetype) mq_default_settings : (void (^)(void)) action {
-    if (action) action();
     return self;
 }
 

@@ -10,7 +10,7 @@
 #define MQDatabaseExtension_h
 
     #import "MQRealmHandler.h"
-    #import "MQRLMBaseModel.h"
+    #import "MQRLMBaseEntity.h"
     #import "FCModel"
 
 #endif /* MQDatabaseExtension_h */
