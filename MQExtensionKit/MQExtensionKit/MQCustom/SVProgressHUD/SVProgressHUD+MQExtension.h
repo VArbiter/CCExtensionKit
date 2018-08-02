@@ -24,7 +24,8 @@
 /// be sure to remove the block when dealloc (like normal notifications) .
 // 一定记得 在 dealloc 的时候 remove 掉 这个 . (像普通的通知一样)
 + (void) mq_notification_remove_for_key : (NSString *) s_key ;
-+ (void) mq_notification_remove_all ; // 移除所有的通知
+/// remove all notifications . // 移除所有的通知.
++ (void) mq_notification_remove_all ;
 
 @end
 
