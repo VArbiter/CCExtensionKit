@@ -10,24 +10,24 @@
 
 FOUNDATION_EXPORT CGFloat const _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
 
-typedef CGPoint MQPoint;
+typedef struct CG_BOXABLE CGPoint MQPoint;
 MQPoint MQPointMake(CGFloat x , CGFloat y);
 MQPoint MQMakePointFrom(CGPoint point);
 CGPoint CGMakePointFrom(MQPoint point);
 
-typedef CGSize MQSize;
+typedef struct CG_BOXABLE CGSize MQSize;
 MQSize MQSizeMake(CGFloat width , CGFloat height);
 MQSize MQMakeSizeFrom(CGSize size);
 CGSize CGMakeSizeFrom(MQSize size);
 
-typedef CGRect MQRect;
+typedef struct CG_BOXABLE CGRect MQRect;
 MQRect MQRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
 MQRect MQMakeRectFrom(CGRect rect);
 CGRect CGMakeRectFrom(MQRect rect);
 
 CGRect CGRectFull(void); // main screen bounds . // 等于屏幕的边界
 
-typedef UIEdgeInsets MQEdgeInsets;
+typedef struct CG_BOXABLE UIEdgeInsets MQEdgeInsets;
 MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
 MQEdgeInsets MQMakeEdgeInsetsFrom(UIEdgeInsets insets);
 UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets);

@@ -25,11 +25,12 @@
     v.showsHorizontalScrollIndicator = false;
     v.separatorStyle = UITableViewCellSeparatorStyleNone;
     v.backgroundColor = UIColor.clearColor;
+    v.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     [v registerClass:UITableViewCell.class
 forCellReuseIdentifier:_MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
     
     // for shaking problem under iOS 11 . rewrite them when needed .
-    if (UIDevice.currentDevice.systemVersion.floatValue >= 11.f) {
+    if (@available(iOS 11.0, *)) {
         v.estimatedRowHeight = 0;
         v.estimatedSectionHeaderHeight = 0;
         v.estimatedSectionFooterHeight = 0;

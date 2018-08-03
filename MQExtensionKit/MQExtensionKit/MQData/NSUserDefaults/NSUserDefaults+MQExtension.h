@@ -10,6 +10,8 @@
 
 @interface NSUserDefaults (MQExtension)
 
+NSUserDefaults *MQ_STANDARD_USER_DEFAULTS(void);
+
 /// an easy way to do 'standardUserDefaults' && 'synchronize' // 一个简便的方式去调用 standardUserDefaults 和 synchronize
 BOOL MQ_USER_DEFAULLTS(void (^block_def)(NSUserDefaults *sender)) ;
 

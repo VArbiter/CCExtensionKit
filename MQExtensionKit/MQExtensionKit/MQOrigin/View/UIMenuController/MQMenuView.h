@@ -15,7 +15,7 @@
 @protocol MQMenuViewProtocol <NSObject>
 
 @optional
-- (void) ccMenuViewDidClose : (MQMenuView *) menuView ;
+- (void) mq_menu_view_did_close : (MQMenuView *) menu_view ;
 
 @end
 

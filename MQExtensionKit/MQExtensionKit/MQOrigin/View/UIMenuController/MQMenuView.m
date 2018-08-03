@@ -243,8 +243,8 @@ void MQ_DESTORY_MENU_ITEM(MQMenuView *view) {
             object:nil];
 }
 - (void) ccDidHideMenu : (NSNotification *) sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ccMenuViewDidClose:)]) {
-        [self.delegate ccMenuViewDidClose:self];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mq_menu_view_did_close:)]) {
+        [self.delegate mq_menu_view_did_close:self];
     }
 }
 - (void) ccWillHideMenu : (NSNotification *) sender {

@@ -12,6 +12,7 @@
 
 + (instancetype)mq_common:(CGRect)frame{
     UIScrollView *v = [[UIScrollView alloc] initWithFrame:frame];
+    v.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     v.backgroundColor = UIColor.clearColor;
     return v;
 }

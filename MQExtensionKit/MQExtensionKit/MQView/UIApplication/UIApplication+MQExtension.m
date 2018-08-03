@@ -10,6 +10,10 @@
 
 @implementation UIApplication (MQExtension)
 
+UIApplication *MQ_SHARED_APPLICATION(void) {
+    return [UIApplication sharedApplication];
+}
+
 + (BOOL) mq_can_open : (id) s_url {
     UIApplication *t = [UIApplication sharedApplication];
     if ([s_url isKindOfClass:[NSURL class]]) {

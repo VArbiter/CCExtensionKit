@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define MQ_SHARED_APPLICATION [UIApplication sharedApplication]
-
 @interface UIApplication (MQExtension)
+
+UIApplication *MQ_SHARED_APPLICATION(void) ;
 
 /// supported NSURL && NSString . // 支持 NSURL 和 NSString .
 + (BOOL) mq_can_open : (id) s_url ;

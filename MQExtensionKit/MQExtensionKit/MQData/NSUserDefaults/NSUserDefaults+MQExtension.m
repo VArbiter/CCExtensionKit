@@ -10,6 +10,10 @@
 
 @implementation NSUserDefaults (MQExtension)
 
+NSUserDefaults *MQ_STANDARD_USER_DEFAULTS(void) {
+    return [NSUserDefaults standardUserDefaults];
+}
+
 BOOL MQ_USER_DEFAULLTS(void (^bDef)(NSUserDefaults *sender)) {
     NSUserDefaults *def = NSUserDefaults.standardUserDefaults;
     if (bDef) bDef(def);

@@ -22,6 +22,7 @@
     c.backgroundColor = UIColor.clearColor;
     c.showsVerticalScrollIndicator = false;
     c.showsHorizontalScrollIndicator = false;
+    c.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     if (@available(iOS 10.0, *)) {
         c.prefetchingEnabled = YES;
     }
