@@ -14,7 +14,6 @@
 @property (nonatomic , class , readonly) Class Self;
 
 @property (nonatomic , copy , readonly) NSString * toString ;
-@property (nonatomic , copy , readonly) NSString * getClass ;
 
 @end
 

@@ -21,10 +21,6 @@
     return [NSString stringWithFormat:@"%@",self];
 }
 
-- (NSString *)getClass {
-    return NSStringFromClass(self.class);
-}
-
 @end
 
 BOOL MQ_IS_STRING_VALUED(__kindof NSString * string) {
