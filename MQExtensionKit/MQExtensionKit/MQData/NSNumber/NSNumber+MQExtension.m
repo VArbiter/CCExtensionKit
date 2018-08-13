@@ -20,6 +20,17 @@
 
 #pragma mark - -----
 
+@implementation NSString (MQExtension_Number_Assist)
+
+- (NSDecimalNumber *)to_decimal {
+    NSDecimalNumber *t = [NSDecimalNumber decimalNumberWithString:self];
+    return MQ_IS_DECIMAL_VALUED(t) ? t : nil;
+}
+
+@end
+
+#pragma mark - -----
+
 @implementation NSDecimalNumber (MQExtension)
 
 - (NSString *)round {

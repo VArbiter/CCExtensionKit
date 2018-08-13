@@ -14,6 +14,12 @@
 
 @end
 
+@interface NSString (MQExtension_Number_Assist)
+
+@property (nonatomic , readonly) NSDecimalNumber * to_decimal ;
+
+@end
+
 #pragma mark - ------
 
 @interface NSDecimalNumber (MQExtension)

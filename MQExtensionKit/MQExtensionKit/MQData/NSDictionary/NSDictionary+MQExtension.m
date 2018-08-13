@@ -31,6 +31,15 @@
     return s_mutable;
 }
 
+- (NSData *)to_data {
+    NSError *error;
+    NSData *t_data = [NSJSONSerialization dataWithJSONObject:self
+                                                     options:NSJSONWritingPrettyPrinted
+                                                       error:&error];
+    if (error) return nil;
+    else return t_data;
+}
+
 + (instancetype) mq_json : (NSString *) s_json {
     if (!s_json || !s_json.length) return nil;
     

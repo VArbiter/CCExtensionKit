@@ -10,7 +10,9 @@
 
 @interface NSDictionary (MQExtension)
 
+// only the object that inherit from NSObject (in Foundation framework) allowed . // 只有继承自 NSObject (Foundation 框架) 的被允许 .
 @property (nonatomic , readonly) NSString * to_json;
+@property (nonatomic , readonly) NSData * to_data;
 + (instancetype) mq_json : (NSString *) s_json ;
 
 @end
