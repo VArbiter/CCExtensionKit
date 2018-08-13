@@ -15,6 +15,6 @@
 
 + (instancetype) mq_error_with_domain : (NSString *) s_domain
                                  code : (NSInteger) i_code 
-                        description : (NSString *) s_description ;
+                          description : (NSString *) s_description ;
 
 @end
