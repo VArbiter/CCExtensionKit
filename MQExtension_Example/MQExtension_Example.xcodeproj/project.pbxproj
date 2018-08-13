@@ -96,6 +96,7 @@
 		70F08F5C211152FD007B4D33 /* FCModelDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F52211152FC007B4D33 /* FCModelDatabase.m */; };
 		70F08F652112A374007B4D33 /* SVProgressHUD+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F632112A374007B4D33 /* SVProgressHUD+MQExtension.m */; };
 		70F08F692112CF63007B4D33 /* MQMultiArgumentPerformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F682112CF63007B4D33 /* MQMultiArgumentPerformer.m */; };
+		70F08F7321217200007B4D33 /* NSError+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F7221217200007B4D33 /* NSError+MQExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -288,6 +289,8 @@
 		70F08F642112A374007B4D33 /* SVProgressHUD+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+MQExtension.h"; sourceTree = "<group>"; };
 		70F08F672112CF63007B4D33 /* MQMultiArgumentPerformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQMultiArgumentPerformer.h; sourceTree = "<group>"; };
 		70F08F682112CF63007B4D33 /* MQMultiArgumentPerformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQMultiArgumentPerformer.m; sourceTree = "<group>"; };
+		70F08F7121217200007B4D33 /* NSError+MQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+MQExtension.h"; sourceTree = "<group>"; };
+		70F08F7221217200007B4D33 /* NSError+MQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+MQExtension.m"; sourceTree = "<group>"; };
 		92E189F8E0695DC2397746B7 /* Pods-MQExtension_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQExtension_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -722,6 +725,7 @@
 		70F08DC8210EC60C007B4D33 /* MQData */ = {
 			isa = PBXGroup;
 			children = (
+				70F08F70212171EC007B4D33 /* NSError */,
 				70F08DC9210EC60C007B4D33 /* NSDictionary */,
 				70F08DCC210EC60C007B4D33 /* NSBundle */,
 				70F08DCF210EC60C007B4D33 /* NSNotificationCenter */,
@@ -1308,6 +1312,15 @@
 			path = MQMultiArgumentPerformer;
 			sourceTree = "<group>";
 		};
+		70F08F70212171EC007B4D33 /* NSError */ = {
+			isa = PBXGroup;
+			children = (
+				70F08F7121217200007B4D33 /* NSError+MQExtension.h */,
+				70F08F7221217200007B4D33 /* NSError+MQExtension.m */,
+			);
+			path = NSError;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1494,6 +1507,7 @@
 				70F08BFE210EB300007B4D33 /* main.m in Sources */,
 				70F08E85210EC60C007B4D33 /* MQCrashCatcher.m in Sources */,
 				70F08E7A210EC60C007B4D33 /* MQMediator.m in Sources */,
+				70F08F7321217200007B4D33 /* NSError+MQExtension.m in Sources */,
 				70F08E82210EC60C007B4D33 /* MQDropAlertView.m in Sources */,
 				70F08EC7210EC60C007B4D33 /* CALayer+MQExtension.m in Sources */,
 				70F08ECA210EC60C007B4D33 /* MQRuntime.m in Sources */,

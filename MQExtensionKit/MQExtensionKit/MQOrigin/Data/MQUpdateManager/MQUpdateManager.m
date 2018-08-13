@@ -170,7 +170,7 @@ MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL
 - (void) mq_error_with_code : (NSInteger) i_code
                 description : (NSString *) s_description {
     NSError *error_t = [NSError errorWithDomain:MQ_UPDATE_MANAGER_DOMAIN
-                                           code:-10001
+                                           code:i_code
                                        userInfo:@{NSLocalizedDescriptionKey : s_description ? s_description : @""}];
     if (self.mq_error_block) self.mq_error_block(error_t);
 }
