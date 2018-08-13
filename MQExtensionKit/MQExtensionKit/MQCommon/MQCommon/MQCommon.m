@@ -7,7 +7,7 @@
 //
 
 #import "MQCommon.h"
-#import <pthread.h>
+//#import <pthread.h>
 
 @implementation MQCommon
 
@@ -27,7 +27,8 @@ void MQ_Available_S(double version , void(^s)(void) , void(^f)(void)) {
 }
 
 BOOL MQ_IS_MAIN_QUEUE(void) {
-    return pthread_main_np() != 0;
+//    return pthread_main_np() != 0;
+    return NSThread.isMainThread;
 }
 
 void MQ_Main_Thread_Sync(void (^t)(void)) {
