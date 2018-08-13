@@ -120,7 +120,7 @@ void MQ_TIMER_DESTORY(NSTimer *timer) {
     }
     return self;
 }
-- (instancetype) mq_immediately {
+- (instancetype) mq_immediate {
     if (self.isValid) {
         self.fireDate = NSDate.date;
     }

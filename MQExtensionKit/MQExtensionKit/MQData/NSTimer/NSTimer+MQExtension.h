@@ -45,7 +45,7 @@ void MQ_TIMER_DESTORY(NSTimer *timer);
 // has to be a valid timer . // 必须是有效的 timer
 - (instancetype) mq_pause ;
 - (instancetype) mq_continue ;
-- (instancetype) mq_immediately ;
+- (instancetype) mq_immediate ;
 
 - (instancetype) mq_stop ; // == invalidate
 
