@@ -66,6 +66,10 @@
 ### What's new ?
 ---
 ---
+**2018-08-13 16:22:06**
+
+> added  `NSError+MQExtension` .
+
 **2018-08-02 14:04:53**
 
 > added `MQMultiArgumentPerformer` for perfoming a selector with multi arguments .

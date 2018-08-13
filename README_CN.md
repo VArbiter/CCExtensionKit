@@ -65,6 +65,10 @@
 ### 上新 ?
 ---
 ---
+**2018-08-13 16:22:06**
+
+> 添加 `NSError+MQExtension` .
+
 **2018-08-02 14:04:53**
 
 > 增加 `MQMultiArgumentPerformer` 用来 perform 并携带多个参数 .
