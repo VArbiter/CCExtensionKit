@@ -13,4 +13,8 @@
 + (instancetype) mq_error_with_code : (NSInteger) i_code
                         description : (NSString *) s_description ;
 
++ (instancetype) mq_error_with_domain : (NSString *) s_domain
+                                 code : (NSInteger) i_code 
+                        description : (NSString *) s_description ;
+
 @end

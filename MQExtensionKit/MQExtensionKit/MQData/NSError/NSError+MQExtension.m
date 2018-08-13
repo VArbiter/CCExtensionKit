@@ -14,10 +14,17 @@ static NSString * MQ_NSError_DOMAIN = @"MQExtensionKit.custom.error.domain";
 
 + (instancetype) mq_error_with_code : (NSInteger) i_code
                         description : (NSString *) s_description {
-    NSError *error_t = [NSError errorWithDomain:MQ_NSError_DOMAIN
-                                           code:i_code
-                                       userInfo:@{NSLocalizedDescriptionKey : s_description ? s_description : @""}];
-    return error_t;
+    return [self mq_error_with_domain:MQ_NSError_DOMAIN
+                                 code:i_code
+                          description:s_description];
+}
+
++ (instancetype) mq_error_with_domain : (NSString *) s_domain
+                                 code : (NSInteger) i_code
+                          description : (NSString *) s_description {
+    return [NSError errorWithDomain:s_domain
+                               code:i_code
+                           userInfo:@{NSLocalizedDescriptionKey : s_description ? s_description : @""}];
 }
 
 @end
