@@ -107,10 +107,20 @@ void MQ_TIMER_DESTORY(NSTimer *timer) {
 - (instancetype) mq_pause {
     if (self.isValid) {
         self.fireDate = NSDate.distantFuture;
+        objc_setAssociatedObject(self, "mq_extensionkit_timer_associate_firedate_key", self.fireDate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return self;
 }
-- (instancetype) mq_resume {
+- (instancetype)mq_continue {
+    if (self.isValid) {
+        NSDate *firedate = objc_getAssociatedObject(self, "mq_extensionkit_timer_associate_firedate_key");
+        if (firedate) {
+            self.fireDate = firedate;
+        }
+    }
+    return self;
+}
+- (instancetype) mq_immediately {
     if (self.isValid) {
         self.fireDate = NSDate.date;
     }

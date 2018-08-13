@@ -41,8 +41,12 @@ void MQ_TIMER_DESTORY(NSTimer *timer);
 
 // for additional actions // 额外功能
 - (instancetype) mq_fire ; // == fire
-- (instancetype) mq_pause ; // has to be a valid timer . // 必须是有效的 timer
-- (instancetype) mq_resume ; // has to be a valid timer . // 必须是有效的 timer
+
+// has to be a valid timer . // 必须是有效的 timer
+- (instancetype) mq_pause ;
+- (instancetype) mq_continue ;
+- (instancetype) mq_immediately ;
+
 - (instancetype) mq_stop ; // == invalidate
 
 @end
