@@ -19,7 +19,7 @@
 @interface MQAuthorize () < NSCopying , NSMutableCopying >
 
 @property (nonatomic , strong) NSDictionary *dictionary_guide ;
-- (void) ccGuideTo ;
+- (void) mq_guide_to ;
 
 @end
 
@@ -58,7 +58,7 @@ static MQAuthorize *_instance = nil;
         if (g()) {
             if (success) success();
         } else if (fail) {
-            if (fail()) [MQAuthorize.mq_shared ccGuideTo];
+            if (fail()) [MQAuthorize.mq_shared mq_guide_to];
         }
     }
     return self;
@@ -67,7 +67,7 @@ static MQAuthorize *_instance = nil;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-- (void)ccGuideTo {
+- (void)mq_guide_to {
     NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {

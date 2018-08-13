@@ -134,10 +134,10 @@ static NSArray *__arrayKeys = nil;
 
 @interface MQMenuView ()
 
-- (void) ccDefaultSettings ;
-- (void) ccAddMenuNotification ;
-- (void) ccDidHideMenu : (NSNotification *) sender ;
-- (void) ccWillHideMenu : (NSNotification *) sender ;
+- (void) mq_default_settings ;
+- (void) mq_add_menu_notification ;
+- (void) mq_did_hide_menu : (NSNotification *) sender ;
+- (void) mq_will_hide_menu : (NSNotification *) sender ;
 
 @property (nonatomic , strong) UIMenuController *menuController ;
 @property (nonatomic , strong) NSMutableArray *arrayMenuItem ;
@@ -216,8 +216,8 @@ void MQ_DESTORY_MENU_ITEM(MQMenuView *view) {
     view = nil;
 }
 
-- (void) ccDefaultSettings {
-    [self ccAddMenuNotification];
+- (void) mq_default_settings {
+    [self mq_add_menu_notification];
     
     __weak typeof(self) pSelf = self;
     self.blockTitle = ^(NSString *stringTitle) {
@@ -231,23 +231,23 @@ void MQ_DESTORY_MENU_ITEM(MQMenuView *view) {
     };
 }
 
-- (void) ccAddMenuNotification {
+- (void) mq_add_menu_notification {
     NSNotificationCenter *c = [NSNotificationCenter defaultCenter];
     [c addObserver:self
-          selector:@selector(ccWillHideMenu:)
+          selector:@selector(mq_will_hide_menu:)
               name:UIMenuControllerWillHideMenuNotification
             object:nil];
     [c addObserver:self
-          selector:@selector(ccDidHideMenu:)
+          selector:@selector(mq_did_hide_menu:)
               name:UIMenuControllerDidHideMenuNotification
             object:nil];
 }
-- (void) ccDidHideMenu : (NSNotification *) sender {
+- (void) mq_did_hide_menu : (NSNotification *) sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(mq_menu_view_did_close:)]) {
         [self.delegate mq_menu_view_did_close:self];
     }
 }
-- (void) ccWillHideMenu : (NSNotification *) sender {
+- (void) mq_will_hide_menu : (NSNotification *) sender {
     if ([self canResignFirstResponder]) [self resignFirstResponder];
 }
 

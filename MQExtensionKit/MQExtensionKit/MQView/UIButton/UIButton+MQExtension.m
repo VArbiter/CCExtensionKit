@@ -13,13 +13,13 @@ static const char * _MQ_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "MQ_UIBUTTON_CHAIN
 
 @interface UIButton (MQExtension_Assit)
 
-- (void) ccButtonExtensionAction : ( __kindof UIButton *) sender ;
+- (void) mq_button_extension_action : ( __kindof UIButton *) sender ;
 
 @end
 
 @implementation UIButton (MQExtension_Assit)
 
-- (void) ccButtonExtensionAction : ( __kindof UIButton *) sender {
+- (void) mq_button_extension_action : ( __kindof UIButton *) sender {
     void (^t)( __kindof UIButton *) = objc_getAssociatedObject(self, _MQ_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) t(sender);
@@ -60,7 +60,7 @@ static const char * _MQ_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "MQ_UIBUTTON_CHAIN
                     action : (void (^)( __kindof UIButton *sender)) action {
     objc_setAssociatedObject(self, _MQ_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self addTarget:target
-              action:@selector(ccButtonExtensionAction:)
+              action:@selector(mq_button_extension_action:)
     forControlEvents:UIControlEventTouchUpInside];
     return self;
 }

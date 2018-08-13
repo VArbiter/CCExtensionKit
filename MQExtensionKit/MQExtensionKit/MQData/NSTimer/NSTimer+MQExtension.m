@@ -15,13 +15,13 @@ static const char * _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "MQ_NSTIMER_ASSOCIATE
 
 @interface NSTimer (MQExtension_Assit)
 
-+ (void) ccTimerAction : (NSTimer *) sender ;
++ (void) mq_timer_action : (NSTimer *) sender ;
 
 @end
 
 @implementation NSTimer (MQExtension_Assit)
 
-+ (void) ccTimerAction : (NSTimer *) sender {
++ (void) mq_timer_action : (NSTimer *) sender {
     void (^t)(NSTimer *) = objc_getAssociatedObject(sender, _MQ_NSTIMER_ASSOCIATE_TIMER_KEY_);
     if (t) t(sender);
     void (^s)(NSTimer *) = objc_getAssociatedObject(sender, _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_);
@@ -55,7 +55,7 @@ static const char * _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "MQ_NSTIMER_ASSOCIATE
                    action : (void (^)(NSTimer *sender)) action {
     NSTimer *tTimer = [NSTimer timerWithTimeInterval:interval
                                               target:self
-                                            selector:@selector(ccTimerAction:)
+                                            selector:@selector(mq_timer_action:)
                                             userInfo:userInfo
                                              repeats:isRepeat];
     objc_setAssociatedObject(tTimer, _MQ_NSTIMER_ASSOCIATE_TIMER_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -85,7 +85,7 @@ static const char * _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "MQ_NSTIMER_ASSOCIATE
                        action : (void (^)(NSTimer *sender)) action {
     NSTimer *tTimer = [NSTimer scheduledTimerWithTimeInterval:interval
                                                        target:self
-                                                     selector:@selector(ccTimerAction:)
+                                                     selector:@selector(mq_timer_action:)
                                                      userInfo:userInfo
                                                       repeats:isRepeat];
     objc_setAssociatedObject(tTimer, _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);

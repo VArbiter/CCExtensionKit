@@ -60,7 +60,7 @@
 @interface UIViewController (MQExtension_Gesture_Actions)
 
 /// make modaled controller can trigger pop action like UINavigationController. // 使得 模态出的控制器可以像导航控制器那样 pop
-/// highly recommend use it with [instance ccEnablePushingPopingStyleWhenPresentOrDismiss] . // 建议和 "[instance ccEnablePushingPopingStyleWhenPresentOrDismiss]" 一起使用
+/// highly recommend use it with [instance mq_enable_pushing_poping_style_when_present_or_dismiss] . // 建议和 "[instance mq_enable_pushing_poping_style_when_present_or_dismiss]" 一起使用
 - (instancetype) mq_modal_pop_gesture : (void(^)(__kindof UIViewController *sender ,
                                                  __kindof UIScreenEdgePanGestureRecognizer *edgePanGR)) bEdgePanGR ;
 

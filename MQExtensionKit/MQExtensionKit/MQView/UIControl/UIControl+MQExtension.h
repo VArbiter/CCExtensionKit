@@ -28,7 +28,7 @@
 - (instancetype) mq_shared_control_event : (UIControlEvents) event
                                  actions : (void (^)( __kindof UIControl *sender)) action ;
 
-/// note : it only has effect on event you personaly added by [UIControl.instance ccControlEvent:actions:] // 只针对于 [UIControl.instance ccControlEvent:actions:] 添加的事件起效
+/// note : it only has effect on event you personaly added by [UIControl.instance mq_shared_control_event:actions:] // 只针对于 [UIControl.instance mq_shared_control_event:actions:] 添加的事件起效
 /// note : be ware on event you removed , it might has unknow effects to others // 应该注意你移除的事件 , 可能会影响到其它的
 - (instancetype) mq_remove_event : (UIControlEvents) event ;
 

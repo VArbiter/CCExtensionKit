@@ -42,7 +42,7 @@
 /// for non-animated , only section 0 was available. // 对于无动画来说 , 仅仅是 0 分区有效
 /// note : UITableViewRowAnimationNone means reloading without hidden animations . // UITableViewRowAnimationNone 意味着没有隐式动画
 /// note : if animated is set to -1 , equals to reloadData. // 如果 将 animated 设置为 -1 , 效果等同于 reloadData
-/// note : if reloeded muti sections , using "ccReloadSectionsT:animate:" down below // 如果要重载多个分区 , 使用下方的 "ccReloadSectionsT:animate:"
+/// note : if reloeded muti sections , using "mq_reload_sections:animate:" down below // 如果要重载多个分区 , 使用下方的 "mq_reload_sections:animate:"
 - (instancetype) mq_reloading : (UITableViewRowAnimation) animation ;
 - (instancetype) mq_reload_sections : (NSIndexSet *) set
                             animate : (UITableViewRowAnimation) animation ;

@@ -16,11 +16,11 @@ static const char * _MQ_UICONTROL_EVENT_STORED_KEY_ = "MQ_UICONTROL_EVENT_STORED
 
 @interface UIControl (MQExtension_Assit)
 
-- (void) ccControlExtensionAction : ( __kindof UIControl *) sender ;
+- (void) mq_control_extension_action : ( __kindof UIControl *) sender ;
 
 @property (nonatomic , strong) NSMutableDictionary *dEvent ;
 @property (nonatomic , assign) UIControlEvents eventControlAssist ;
-- (void) ccControlExtensionEventAction : (__kindof UIControl *) sender ;
+- (void) mq_control_extension_event_action : (__kindof UIControl *) sender ;
 
 @end
 
@@ -46,7 +46,7 @@ static const char * _MQ_UICONTROL_EVENT_STORED_KEY_ = "MQ_UICONTROL_EVENT_STORED
     return [objc_getAssociatedObject(self, _MQ_UICONTROL_EVENT_STORED_KEY_) unsignedIntegerValue];
 }
 
-- (void) ccControlExtensionAction : ( __kindof UIControl *) sender {
+- (void) mq_control_extension_action : ( __kindof UIControl *) sender {
     void (^t)( __kindof UIControl *) = objc_getAssociatedObject(self, _MQ_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) t(sender);
@@ -56,7 +56,7 @@ static const char * _MQ_UICONTROL_EVENT_STORED_KEY_ = "MQ_UICONTROL_EVENT_STORED
     }
 }
 
-- (void) ccControlExtensionEventAction : (__kindof UIControl *) sender {
+- (void) mq_control_extension_event_action : (__kindof UIControl *) sender {
     UIControlEvents events = self.eventControlAssist;
     NSString *s = @"MQ_UICONTROL_EVENT_TRIGGER_ACTION_";
     s = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(events).stringValue]];
@@ -87,7 +87,7 @@ static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "MQ_UIVIEW_ASSOCIA
                    actions : (void (^)( __kindof UIControl *sender)) action {
     objc_setAssociatedObject(self, _MQ_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self addTarget:target
-              action:@selector(ccControlExtensionAction:)
+              action:@selector(mq_control_extension_action:)
     forControlEvents:UIControlEventTouchUpInside];
     return self;
 }
@@ -143,7 +143,7 @@ static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "MQ_UIVIEW_ASSOCIA
     self.eventControlAssist = self.eventControlAssist | event;
     
     [self addTarget:self
-             action:@selector(ccControlExtensionEventAction:)
+             action:@selector(mq_control_extension_event_action:)
    forControlEvents:event];
     return self;
 }
@@ -157,7 +157,7 @@ static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "MQ_UIVIEW_ASSOCIA
         NSString *te = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(self.eventControlAssist).stringValue]];
         [self.dEvent setValue:t forKey:te];
         [self removeTarget:self
-                    action:@selector(ccControlExtensionEventAction:)
+                    action:@selector(mq_control_extension_event_action:)
           forControlEvents:event];
     }
     return self;

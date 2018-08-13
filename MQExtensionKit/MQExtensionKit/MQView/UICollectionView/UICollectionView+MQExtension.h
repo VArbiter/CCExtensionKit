@@ -31,7 +31,7 @@
 /// for non-animated , only section 0 was available. // 如果是无动画 , 只有分区 0 是有效的
 /// note : means reloading without hidden animations . // 意味着 reloading 没有 collectionView 默认动画
 /// note : if animated is setting to YES , only section 0 will be reloaded . // 如果动画被设置为 YES , 只有 0 分区起效
-/// note : if reloeded muti sections , using "ccReloadSections:animated:" down below // 如果要重载多个分区 , 使用下方的 "ccReloadSections:animated:"
+/// note : if reloeded muti sections , using "mq_reload_sections:animated:" down below // 如果要重载多个分区 , 使用下方的 "mq_reload_sections:animated:"
 - (instancetype) mq_reloading : (BOOL) isAnimated;
 - (instancetype) mq_reload_sections : (NSIndexSet *) set
                            animated : (BOOL) isAnimated ;

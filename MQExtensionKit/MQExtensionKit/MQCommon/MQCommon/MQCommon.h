@@ -98,10 +98,10 @@
                 MQLog(@"_MQ_NIL_TERMINATION_\n instance that used in MQExtension Kit can't be nil. \n"); \
                 NSAssert(_value_ != nil , @"instance can't be nil"); \
             } \
-            if (_value_ && [_value_ conformsToProtocol:@protocol(MQExtensionProtocol)]) ([_value_ cc])
+            if (_value_ && [_value_ conformsToProtocol:@protocol(MQExtensionProtocol)]) ([_value_ mq])
     #else
         #define MQ(_value_) \
-            if (_value_ && [_value_ conformsToProtocol:@protocol(MQExtensionProtocol)]) ([_value_ cc])
+            if (_value_ && [_value_ conformsToProtocol:@protocol(MQExtensionProtocol)]) ([_value_ mq])
     #endif
 #endif
 

@@ -25,7 +25,7 @@
 @property (nonatomic , assign) BOOL isTrustWithoutAnyDoubt;
 
 /// if webview receive a auth challenge // 如果 webView 收到一个验证
-/// note : if not implemented 'ccDealAuthChallenge' , // 如果没有实现 'ccDealAuthChallenge'
+/// note : if not implemented 'mq_deal_auth_challenge' , // 如果没有实现 'mq_deal_auth_challenge'
 /// webview will trust certificate without any doubt . (non process will be done) // webView 将会无条件信任这个证书
 - (instancetype) mq_deal_auth_challenge : (void (^)(WKWebView *webView , NSURLAuthenticationChallenge * challenge,
                                                     void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * credential))) challenge ;

@@ -13,13 +13,13 @@ static const char * _MQ_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "MQ_UIBARBUTTONIT
 
 @interface UIBarButtonItem (MQExtension_Assit)
 
-- (void) ccBarButtonItemExtensionAction : ( __kindof UIBarButtonItem *) sender ;
+- (void) mq_bar_button_item_extension_action : ( __kindof UIBarButtonItem *) sender ;
 
 @end
 
 @implementation UIBarButtonItem (MQExtension_Assit)
 
-- (void) ccBarButtonItemExtensionAction : ( __kindof UIBarButtonItem *) sender {
+- (void) mq_bar_button_item_extension_action : ( __kindof UIBarButtonItem *) sender {
     void (^t)( __kindof UIBarButtonItem *) = objc_getAssociatedObject(self, _MQ_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) {
@@ -59,7 +59,7 @@ static const char * _MQ_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "MQ_UIBARBUTTONIT
                    action : (void (^)( __kindof UIBarButtonItem *sender)) action {
     if (action) objc_setAssociatedObject(self, _MQ_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self setTarget:target];
-    [self setAction:@selector(ccBarButtonItemExtensionAction:)];
+    [self setAction:@selector(mq_bar_button_item_extension_action:)];
     return self;
 }
 

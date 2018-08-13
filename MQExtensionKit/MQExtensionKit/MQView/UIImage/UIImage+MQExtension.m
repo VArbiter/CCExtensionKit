@@ -229,11 +229,11 @@ CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
         });
     };
     if (@available(iOS 10.0, *)) {
-        dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
+        dispatch_async(dispatch_queue_create("MQExtensionKit.image.operate", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
             if (tp) tp();
         });
     } else {
-        dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT), ^{
+        dispatch_async(dispatch_queue_create("MQExtensionKit.image.operate", DISPATCH_QUEUE_CONCURRENT), ^{
             if (tp) tp();
         });
     }
@@ -275,11 +275,11 @@ CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
     };
     
     if (@available(iOS 10.0, *)) {
-        dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
+        dispatch_async(dispatch_queue_create("MQExtensionKit.image.operate", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
             if (tp) tp();
         });
     } else {
-        dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT), ^{
+        dispatch_async(dispatch_queue_create("MQExtensionKit.image.operate", DISPATCH_QUEUE_CONCURRENT), ^{
             if (tp) tp();
         });
     }

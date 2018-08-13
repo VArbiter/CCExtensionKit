@@ -13,7 +13,7 @@
 #endif
 
 #ifndef MQ_COLOR_HEX_S
-    #define MQ_COLOR_HEX_S(_hex_,_alpha_) [[UIColor mq_hex_s:(_hex_)] ccAlpha:(_alpha_)]
+    #define MQ_COLOR_HEX_S(_hex_,_alpha_) [[UIColor mq_hex_s:(_hex_)] mq_alpha:(_alpha_)]
 #endif
 
 @interface UIColor (MQExtension)

@@ -35,9 +35,9 @@ NSString * const _MQ_NETWORK_STATUS_KEY_OLD_ = @"MQ_NETWORK_STATUS_KEY_OLD";
 @property (nonatomic , strong , readonly) NSArray *arrayString_3G ;
 @property (nonatomic , strong , readonly) NSArray *arrayString_4G ;
 
-- (void) ccReachabilityMoniter ;
+- (void) mq_reachability_moniter ;
 
-- (MQNetworkType) ccCaptureCurrentEnvironment : (AFNetworkReachabilityStatus) status ;
+- (MQNetworkType) mq_capture_current_environment : (AFNetworkReachabilityStatus) status ;
 
 @end
 
@@ -47,12 +47,12 @@ NSString * const _MQ_NETWORK_STATUS_KEY_OLD_ = @"MQ_NETWORK_STATUS_KEY_OLD";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _moniter = [[MQNetworkMoniter alloc] init];
-        [_moniter ccReachabilityMoniter];
+        [_moniter mq_reachability_moniter];
     });
     return _moniter;
 }
 
-- (void) ccReachabilityMoniter {
+- (void) mq_reachability_moniter {
     self.activityManager = [AFNetworkActivityIndicatorManager sharedManager];
     self.activityManager.enabled = YES;
     [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:_MQ_NETWORK_STATUS_KEY_NEW_];
@@ -60,12 +60,12 @@ NSString * const _MQ_NETWORK_STATUS_KEY_OLD_ = @"MQ_NETWORK_STATUS_KEY_OLD";
     _moniter.reachabilityManager = [AFNetworkReachabilityManager sharedManager];
     __weak typeof(self) pSelf = self;
     [_moniter.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        [pSelf ccCaptureCurrentEnvironment:status];
+        [pSelf mq_capture_current_environment:status];
     }];
     [_moniter.reachabilityManager startMonitoring];
 }
 
-- (MQNetworkType) ccCaptureCurrentEnvironment : (AFNetworkReachabilityStatus) status {
+- (MQNetworkType) mq_capture_current_environment : (AFNetworkReachabilityStatus) status {
     NSString *stringAccess = self.netwotkInfo.currentRadioAccessTechnology ;
     MQNetworkType environment = MQNetworkTypeUnknow ;
     if ([[UIDevice currentDevice] systemVersion].floatValue > 7.f) {

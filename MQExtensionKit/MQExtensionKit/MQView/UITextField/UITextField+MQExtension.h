@@ -26,8 +26,8 @@
 @property (nonatomic , readonly) BOOL mq_resign_first_responder;
 
 /// observer text did change // 监听 textField 输入变化
-/// note : it has no conflict on [UITextField.instance ccTextEvent:action:] // 和 [UITextField.instance ccTextEvent:action:] 没有冲突
-/// note : therefore when use [UITextField.instance ccTextDidChange:] // 所以使用 [UITextField.instance ccTextDidChange:] 的时候
+/// note : it has no conflict on [UITextField.instance mq_text_shared_event:action:] // 和 [UITextField.instance mq_text_shared_event:action:] 没有冲突
+/// note : therefore when use [UITextField.instance mq_text_did_change:] // 所以使用 [UITextField.instance mq_text_did_change:] 的时候
 /// note : [UITextField.instance ccTextEvent:UIControlEventEditingChanged action:***] not should be done . // [UITextField.instance ccTextEvent:UIControlEventEditingChanged action:***] 不应该被实现
 - (instancetype) mq_text_did_change : (void (^)(__kindof UITextField *sender)) bChanged ;
 

@@ -42,7 +42,7 @@
     @interface MQProxy_t_##_name_ : NSProxy < MQ_PROXY_DEALER_PROTOCOL_HOLDER , ##__VA_ARGS__ > \
         + (instancetype) common ; \
         + (instancetype) common : (NSArray <id> *) arrayTarget ; \
-        - (instancetype) ccRegistMethods : (NSArray <id> *) arrayTarget ; \
+        - (instancetype) mq_regist_methods : (NSArray <id> *) arrayTarget ; \
     @end
         
 #endif
