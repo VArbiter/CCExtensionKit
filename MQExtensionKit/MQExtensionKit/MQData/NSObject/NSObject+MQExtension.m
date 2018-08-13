@@ -17,7 +17,7 @@
     return self;
 }
 
-- (NSString *)toString {
+- (NSString *)to_string {
     return [NSString stringWithFormat:@"%@",self];
 }
 

@@ -13,7 +13,7 @@
 @property (nonatomic , class , copy , readonly) NSString * s_self;
 @property (nonatomic , class , readonly) Class Self;
 
-@property (nonatomic , copy , readonly) NSString * toString ;
+@property (nonatomic , copy , readonly) NSString * to_string ;
 
 @end
 
