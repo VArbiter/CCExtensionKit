@@ -10,12 +10,8 @@
 
 @interface NSAttributedString (MQExtension)
 
-+ (NSMutableAttributedString *) mq_color : (UIColor *) color
-                                  string : (NSString *) string ;
-- (NSMutableAttributedString *) mq_color : (UIColor *) color ;
-- (NSMutableAttributedString *) mq_operate : (NSMutableAttributedString * (^)(NSMutableAttributedString * sender)) action ;
-- (NSMutableAttributedString *) mq_append_s : (NSAttributedString *) sAttr ;
-- (NSMutableAttributedString *) mq_append_c : (NSString *) string ;
+@property (nonatomic , readonly) NSMutableAttributedString * to_mutable;
+@property (nonatomic , readonly) BOOL is_mutable;
 
 @end
 
@@ -23,9 +19,18 @@
 
 @interface NSMutableAttributedString (MQExtension)
 
-- (NSMutableAttributedString *) mq_attribute_c : (NSAttributedStringKey) sKey
+- (__kindof NSMutableAttributedString *) mq_attribute_c : (NSAttributedStringKey) sKey
                                        value : (id) value ;
-- (NSMutableAttributedString *) mq_attribute_s : (NSDictionary <NSAttributedStringKey , id> *) dAttributes ;
+- (__kindof NSMutableAttributedString *) mq_attribute_s : (NSDictionary <NSAttributedStringKey , id> *) dAttributes ;
+
++ (__kindof NSMutableAttributedString *) mq_color : (UIColor *) color
+                                           string : (NSString *) string ;
+- (__kindof NSMutableAttributedString *) mq_color : (UIColor *) color ;
+- (__kindof NSMutableAttributedString *) mq_font : (UIFont *) font ;
+- (__kindof NSMutableAttributedString *) mq_style : (void (^)(__kindof NSMutableParagraphStyle * style)) action ;
+- (__kindof NSMutableAttributedString *) mq_operate : (__kindof NSMutableAttributedString * (^)(__kindof NSMutableAttributedString * sender)) action ;
+- (__kindof NSMutableAttributedString *) mq_append_s : (NSAttributedString *) sAttr ;
+- (__kindof NSMutableAttributedString *) mq_append_c : (NSString *) string ;
 
 @end
 
@@ -34,6 +39,5 @@
 @interface NSString (MQExtension_AttributedString)
 
 @property (nonatomic , readonly) NSMutableAttributedString * to_attribute;
-- (NSMutableAttributedString *) mq_color : (UIColor *) color ;
 
 @end
