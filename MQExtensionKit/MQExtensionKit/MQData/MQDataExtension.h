@@ -25,5 +25,6 @@
     #import "NSUserDefaults+MQExtension.h"
     #import "NSNotificationCenter+MQExtension.h"
     #import "NSLock+MQExtension.h"
+    #import "NSError+MQExtension.h"
 
 #endif /* MQDataExtension_h */
