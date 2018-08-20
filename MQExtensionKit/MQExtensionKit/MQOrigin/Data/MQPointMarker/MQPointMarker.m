@@ -119,7 +119,7 @@ void mq_debug_print_logging(NSString * s_log) ;
 + (NSArray <NSString *> *) mq_all_logging_file {
     NSFileManager *manager = [NSFileManager defaultManager];
     NSError *e = nil;
-    NSArray <NSString *> *array = [manager contentsOfDirectoryAtPath:manager.currentDirectoryPath
+    NSArray <NSString *> *array = [manager contentsOfDirectoryAtPath:[self mq_logging_folder_path]
                                                                error:&e];
     
     NSMutableArray <NSString *> *array_t = [NSMutableArray array];

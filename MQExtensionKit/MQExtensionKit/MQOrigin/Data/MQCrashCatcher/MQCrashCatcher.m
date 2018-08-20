@@ -49,7 +49,7 @@ void mq_uncaught_exception_handler(NSException *exception);
 + (NSArray <NSString *> *) mq_all_crash_log_path {
     NSFileManager *manager = [NSFileManager defaultManager];
     NSError *e = nil;
-    NSArray <NSString *> *array = [manager contentsOfDirectoryAtPath:manager.currentDirectoryPath
+    NSArray <NSString *> *array = [manager contentsOfDirectoryAtPath:[self mq_crash_folder_path]
                                                                error:&e];
     
     NSMutableArray <NSString *> *array_t = [NSMutableArray array];
