@@ -126,15 +126,15 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 
 - (instancetype) mq_script : (NSString *) sKey
                    message : (void (^)(WKUserContentController * userContentController, WKScriptMessage *message)) message {
-    if (sKey && sKey.length) {
+    if (!message && sKey && sKey.length) {
+        [self.userContentController removeScriptMessageHandlerForName:sKey];
+        [self.dictionaryMessage removeObjectForKey:sKey];
+    }
+    else if (sKey && sKey.length) {
         [self.userContentController addScriptMessageHandler:self.messageDelegate
                                                        name:sKey];
         [self.dictionaryMessage setValue:message
                                   forKey:sKey];
-    }
-    else if (!message && sKey && sKey.length) {
-        [self.userContentController removeScriptMessageHandlerForName:sKey];
-        [self.dictionaryMessage removeObjectForKey:sKey];
     }
     return self;
 }
