@@ -102,3 +102,35 @@ NSString * MQ_STRING_FROM_UTF8(const char * cUTF8) ; // if params doesn't exist 
 - (BOOL) mq_is_constructed_by : (NSString *) s_content ;
 
 @end
+
+#pragma mark - -----
+
+@interface NSString (MQExtension_FitHeight)
+
+/// note: all the fit recalls ignores the text-indent . // 所有适应无视缩进
+
+/// system font size , default line break mode , system font size // 默认 系统字体 , line break mode
+CGFloat MQ_TEXT_HEIGHT_S(CGFloat fWidth ,
+                         CGFloat fEstimateHeight , // height that defualt to , if less than , return's it. (same below) // 默认高度 , 小于则返回它 (下同)
+                         NSString *string);
+CGFloat MQ_TEXT_HEIGHT_C(CGFloat fWidth ,
+                         CGFloat fEstimateHeight ,
+                         NSString *string ,
+                         UIFont *font ,
+                         NSLineBreakMode mode);
+
+/// for attributed string , Using system attributed auto fit // 针对富文本 , 使用系统进行自适应
+CGFloat MQ_TEXT_HEIGHT_A(CGFloat fWidth ,
+                         CGFloat fEstimateHeight ,
+                         NSAttributedString *aString);
+
+/// using default for NSString // 使用 NSString 的默认设置
+CGFloat MQ_TEXT_HEIGHT_AS(CGFloat fWidth ,
+                          CGFloat fEstimateHeight ,
+                          NSString *aString ,
+                          UIFont *font ,
+                          NSLineBreakMode mode ,
+                          CGFloat fLineSpacing ,
+                          CGFloat fCharacterSpacing);
+
+@end

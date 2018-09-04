@@ -7,7 +7,7 @@
 //
 
 #import "UILabel+MQExtension.h"
-#import "UIView+MQExtension.h"
+#import "NSString+MQExtension.h"
 
 @implementation UILabel (MQExtension)
 
@@ -21,33 +21,12 @@
     return label;
 }
 
-- (instancetype) mq_auto_height : (CGFloat) f_estimate {
-    if (self.attributedText
-        && self.attributedText.length) return [self mq_attributed_text_height:f_estimate];
-    if (self.text && self.text.length) return [self mq_text_height:f_estimate];
-    return self;
-}
-- (instancetype) mq_attributed_text_height : (CGFloat) f_estimate {
-    self.height = MQ_TEXT_HEIGHT_A(self.width,
-                                   f_estimate,
-                                   self.attributedText);
-    return self;
-}
-- (instancetype) mq_text_height : (CGFloat) f_estimate {
-    self.height = MQ_TEXT_HEIGHT_C(self.width,
-                                   f_estimate,
-                                   self.text,
-                                   self.font,
-                                   self.lineBreakMode);
-    return self;
-}
-
 - (CGSize) mq_attributed_text_height : (CGFloat) f_estimate
                                style : ( NSParagraphStyle * _Nonnull ) style
                                 font : ( UIFont * _Nonnull ) font
                                 text : ( NSString * _Nonnull ) s_text ; {
     
-    CGSize size = [self sizeThatFits:CGSizeMake(self.width, MAXFLOAT)];
+    CGSize size = [self sizeThatFits:CGSizeMake(self.bounds.size.width, MAXFLOAT)];
     
     BOOL (^cc_is_contains_chinese)(NSString *) = ^BOOL (NSString *s) {
         NSString *s_t = [NSString stringWithFormat:@"%@",s];

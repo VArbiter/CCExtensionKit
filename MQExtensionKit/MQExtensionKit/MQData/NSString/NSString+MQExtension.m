@@ -344,3 +344,79 @@ NSString * MQ_STRING_FROM_UTF8(const char * cUTF8) {
 }
 
 @end
+
+#pragma mark - -----
+
+@implementation NSString (MQExtension_FitHeight)
+
+CGFloat MQ_TEXT_HEIGHT_S(CGFloat fWidth , CGFloat fEstimateHeight , NSString *string) {
+    return MQ_TEXT_HEIGHT_C(fWidth,
+                            fEstimateHeight ,
+                            string,
+                            [UIFont systemFontOfSize:UIFont.systemFontSize],
+                            NSLineBreakByWordWrapping);
+}
+CGFloat MQ_TEXT_HEIGHT_C(CGFloat fWidth ,
+                         CGFloat fEstimateHeight ,
+                         NSString *string ,
+                         UIFont *font ,
+                         NSLineBreakMode mode) {
+    return MQ_TEXT_HEIGHT_AS(fWidth,
+                             fEstimateHeight,
+                             string,
+                             font,
+                             mode,
+                             -1,
+                             -1);
+}
+
+CGFloat MQ_TEXT_HEIGHT_A(CGFloat fWidth , CGFloat fEstimateHeight , NSAttributedString *aString) {
+    CGRect rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
+                                        options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                        context:nil];
+    return rect.size.height >= fEstimateHeight ? rect.size.height : fEstimateHeight;
+}
+CGFloat MQ_TEXT_HEIGHT_AS(CGFloat fWidth ,
+                          CGFloat fEstimateHeight ,
+                          NSString *aString ,
+                          UIFont *font ,
+                          NSLineBreakMode mode ,
+                          CGFloat fLineSpacing ,
+                          CGFloat fCharacterSpacing) {
+    CGRect rect = CGRectZero;
+    NSMutableParagraphStyle *style = NSMutableParagraphStyle.alloc.init;
+    style.lineBreakMode = mode;
+    if (fLineSpacing >= 0) style.lineSpacing = fLineSpacing;
+    
+    // kinda awkward . it turns out the differences between the NSMutableDictionary && NSDictionary && NSPlaceHolderDictioanry .
+    // 有点尴尬 , 是 可变字典 , 不可变字典 , 字面量字典 之间的区别 .
+    if (font && (fCharacterSpacing >= 0)) {
+        rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
+                                     options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSParagraphStyleAttributeName : style,
+                                               NSFontAttributeName : font ,
+                                               NSKernAttributeName : @(fCharacterSpacing)}
+                                     context:nil];
+    } else if (font) {
+        rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
+                                     options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSParagraphStyleAttributeName : style,
+                                               NSFontAttributeName : font}
+                                     context:nil];
+    } else if (fCharacterSpacing >= 0) {
+        rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
+                                     options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSParagraphStyleAttributeName : style,
+                                               NSKernAttributeName : @(fCharacterSpacing)}
+                                     context:nil];
+    } else {
+        rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
+                                     options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSParagraphStyleAttributeName : style}
+                                     context:nil];
+    }
+    
+    return rect.size.height >= fEstimateHeight ? rect.size.height : fEstimateHeight;
+}
+
+@end
