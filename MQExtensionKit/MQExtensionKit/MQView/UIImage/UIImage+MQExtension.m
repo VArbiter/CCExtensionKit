@@ -21,6 +21,34 @@ UIImage * MQ_CAPTURE_WINDOW(UIWindow *window) {
     return image;
 }
 
+UIImage * MQ_LAUNCH_IMAGE(void) {
+    CGSize size_t = [UIScreen mainScreen].bounds.size;
+    
+    NSString *s_orientation = nil;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (( orientation == UIInterfaceOrientationPortraitUpsideDown)
+        || (orientation == UIInterfaceOrientationPortrait)) {
+        s_orientation = @"Portrait";
+    } else {
+        s_orientation = @"Landscape";
+    }
+    
+    NSString *s_launch_image = nil;
+    
+    NSArray * array_images = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
+    for (NSDictionary * d_info in array_images) {
+        CGSize size_image = CGSizeFromString(d_info[@"UILaunchImageSize"]);
+        if (CGSizeEqualToSize(size_image, size_t)
+            && [s_orientation isEqualToString:d_info[@"UILaunchImageOrientation"]]) {
+            s_launch_image = d_info[@"UILaunchImageName"];
+        }
+    }
+    
+    UIImage *image = [UIImage imageNamed:s_launch_image] ;
+    
+    return image ? image : [UIImage imageNamed:@"LaunchImage"];
+}
+
 @implementation UIImage (MQExtension)
 
 /// for image size && width

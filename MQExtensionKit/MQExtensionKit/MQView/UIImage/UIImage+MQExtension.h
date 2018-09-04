@@ -29,6 +29,7 @@
 #endif
 
 UIImage * MQ_CAPTURE_WINDOW(UIWindow *window);
+UIImage * MQ_LAUNCH_IMAGE(void);
 
 @interface UIImage (MQExtension)
 
