@@ -7,7 +7,6 @@
 //
 
 #import "UIView+MQExtension.h"
-#import "UIGestureRecognizer+MQExtension.h"
 
 static CGFloat _MQ_DEFAULT_SCALE_WIDTH_ = 750.f;
 static CGFloat _MQ_DEFAULT_SCALE_HEIGHT_ = 1334.f;
@@ -285,51 +284,51 @@ CGFloat MQHScale(CGFloat h) {
     return self;
 }
 
-- (instancetype) mq_width : (CGFloat) fWidth {
-    self.width = fWidth;
+- (instancetype) mq_width : (CGFloat) f_width {
+    self.width = f_width;
     return self;
 }
-- (instancetype) mq_height : (CGFloat) fHeight {
-    self.height = fHeight;
-    return self;
-}
-
-- (instancetype) mq_x : (CGFloat) fX {
-    self.x = fX;
-    return self;
-}
-- (instancetype) mq_y : (CGFloat) fY {
-    self.y = fY;
+- (instancetype) mq_height : (CGFloat) f_height {
+    self.height = f_height;
     return self;
 }
 
-- (instancetype) mq_center_x : (CGFloat) fCenterX {
-    self.center_x = fCenterX;
+- (instancetype) mq_x : (CGFloat) f_x {
+    self.x = f_x;
     return self;
 }
-- (instancetype) mq_center_y : (CGFloat) fCenterY {
-    self.center_y = fCenterY;
-    return self;
-}
-- (instancetype) mq_center : (CGPoint) pCenter {
-    self.center = pCenter;
+- (instancetype) mq_y : (CGFloat) f_y {
+    self.y = f_y;
     return self;
 }
 
-- (instancetype) mq_top : (CGFloat) fTop {
-    self.top = fTop;
+- (instancetype) mq_center_x : (CGFloat) f_center_x {
+    self.center_x = f_center_x;
     return self;
 }
-- (instancetype) mq_left : (CGFloat) fLeft {
-    self.left = fLeft;
+- (instancetype) mq_center_y : (CGFloat) f_center_y {
+    self.center_y = f_center_y;
     return self;
 }
-- (instancetype) mq_bottom : (CGFloat) fBottom {
-    self.bottom = fBottom;
+- (instancetype) mq_center : (CGPoint) p_center {
+    self.center = p_center;
     return self;
 }
-- (instancetype) mq_right : (CGFloat) fRight {
-    self.right = fRight;
+
+- (instancetype) mq_top : (CGFloat) f_top {
+    self.top = f_top;
+    return self;
+}
+- (instancetype) mq_left : (CGFloat) f_left {
+    self.left = f_left;
+    return self;
+}
+- (instancetype) mq_bottom : (CGFloat) f_bottom {
+    self.bottom = f_bottom;
+    return self;
+}
+- (instancetype) mq_right : (CGFloat) f_right {
+    self.right = f_right;
     return self;
 }
 

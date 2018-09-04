@@ -92,20 +92,20 @@ CGSize MQScaleSize(CGSize size);
 - (instancetype) mq_size : (CGSize) size ;
 - (instancetype) mq_origin : (CGPoint) point ;
 
-- (instancetype) mq_width : (CGFloat) fWidth ;
-- (instancetype) mq_height : (CGFloat) fHeight ;
+- (instancetype) mq_width : (CGFloat) f_width ;
+- (instancetype) mq_height : (CGFloat) f_height ;
 
-- (instancetype) mq_x : (CGFloat) fX ;
-- (instancetype) mq_y : (CGFloat) fY ;
+- (instancetype) mq_x : (CGFloat) f_x ;
+- (instancetype) mq_y : (CGFloat) f_y ;
 
-- (instancetype) mq_center_x : (CGFloat) fCenterX ;
-- (instancetype) mq_center_y : (CGFloat) fCenterY ;
-- (instancetype) mq_center : (CGPoint) pCenter ;
+- (instancetype) mq_center_x : (CGFloat) f_center_x ;
+- (instancetype) mq_center_y : (CGFloat) f_center_y ;
+- (instancetype) mq_center : (CGPoint) p_center ;
 
-- (instancetype) mq_top : (CGFloat) fTop ;
-- (instancetype) mq_left : (CGFloat) fLeft ;
-- (instancetype) mq_bottom : (CGFloat) fBottom ;
-- (instancetype) mq_right : (CGFloat) fRight ;
+- (instancetype) mq_top : (CGFloat) f_top ;
+- (instancetype) mq_left : (CGFloat) f_left ;
+- (instancetype) mq_bottom : (CGFloat) f_bottom ;
+- (instancetype) mq_right : (CGFloat) f_right ;
 
 /// for xibs // 针对 xib 的
 + (instancetype) mq_from_xib ;
@@ -126,10 +126,10 @@ CGSize MQScaleSize(CGSize size);
 
 /// color && cornerRadius && contentMode // 颜色 / 圆角 / 包裹模式
 - (instancetype) mq_color : (UIColor *) color ;
-- (instancetype) mq_radius : (CGFloat) fRadius
-                     masks : (BOOL) isMask ;
-- (instancetype) mq_round_corner : (UIRectCorner) corner
-                          radius : (CGFloat) fRadius ;
+- (instancetype) mq_radius : (CGFloat) f_radius
+                     masks : (BOOL) is_mask ;
+- (instancetype) mq_round_corner : (UIRectCorner) corners
+                          radius : (CGFloat) f_radius ;
 - (instancetype) mq_content_mode : (UIViewContentMode) mode ;
 
 /// copy it self . // 复制自身
