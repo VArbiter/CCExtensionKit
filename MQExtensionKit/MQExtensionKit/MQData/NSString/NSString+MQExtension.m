@@ -329,6 +329,14 @@ NSString * MQ_STRING_FROM_UTF8(const char * cUTF8) {
     return is_contain;
 }
 
+- (BOOL)is_contains_chinese {
+    for(int i = 0 ; i < self.length ; i++){
+        int s = [self characterAtIndex:i];
+        if(s > 0x4e00 && s < 0x9fff) return YES ;
+    }
+    return false;
+}
+
 - (BOOL) mq_is_constructed_by : (NSString *) s_content {
     NSCharacterSet *t_set = [[NSCharacterSet characterSetWithCharactersInString:s_content] invertedSet];
     NSString *s_filter = [[self componentsSeparatedByCharactersInSet:t_set] componentsJoinedByString:@""];
