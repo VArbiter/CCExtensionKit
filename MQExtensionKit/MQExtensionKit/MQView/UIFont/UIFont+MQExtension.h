@@ -28,17 +28,17 @@ FOUNDATION_EXPORT MQFontFamilyName MQFontFamily_PingFangSC_Bold ;
 /// note: fill in with MQScaleH(_value_) , and if you're not sure it is . // 使用 CScaleH(_value_) 进行操作 , 如果你不确定的话
 /// use label's (also available on others) height and decrease 2 (for pixels) . // 使用 label(其它也适用)的高度 , 减去 2 像素
 
-- (instancetype) mq_size : (CGFloat) fSize ;
-+ (instancetype) mq_system : (CGFloat) fSize ;
-+ (instancetype) mq_bold : (CGFloat) fSize ;
-+ (instancetype) mq_family : (NSString *) sFontName
-                      size : (CGFloat) fSize ;
+- (instancetype) mq_size : (CGFloat) f_size ;
++ (instancetype) mq_system : (CGFloat) f_size ;
++ (instancetype) mq_bold : (CGFloat) f_size ;
++ (instancetype) mq_family : (NSString *) s_font_name
+                      size : (CGFloat) f_size ;
 
 /// make chinese characters can use italic font . // 使得汉字可以使用意大利斜体 .
 + (instancetype) mq_italic : (UIFont *) font
-                      size : (CGFloat) fSize ;
+                      size : (CGFloat) f_size ;
 + (instancetype) mq_italic : (UIFont *) font
-                      size : (CGFloat) fSize
+                      size : (CGFloat) f_size
              angle_percent : (CGFloat) percent ;
 
 @end

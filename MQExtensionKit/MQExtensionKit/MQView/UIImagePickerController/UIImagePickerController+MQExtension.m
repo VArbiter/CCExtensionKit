@@ -26,9 +26,9 @@
     return self;
 }
 
-- (instancetype) mq_camera : (void (^)(void)) notAllowed {
+- (instancetype) mq_camera : (void (^)(void)) not_allowed {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        if (notAllowed) notAllowed();
+        if (not_allowed) not_allowed();
         return self;
     }
     if (_MQ_IS_SIMULATOR_) {
@@ -37,7 +37,7 @@
               UIImagePickerController will change \"sourceType\" \
               \t from \"UIImagePickerControllerSourceTypeCamera\" \
               \t to \"UIImagePickerControllerSourceTypePhotoLibrary\". \n");
-        return [self mq_photo_library:notAllowed];
+        return [self mq_photo_library:not_allowed];
     } else {
         self.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
@@ -46,18 +46,18 @@
     }
 }
 
-- (instancetype) mq_saved_photos_album : (void (^)(void)) notAllowed {
+- (instancetype) mq_saved_photos_album : (void (^)(void)) not_allowed {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-        if (notAllowed) notAllowed();
+        if (not_allowed) not_allowed();
         return self;
     }
     self.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     return self;
 }
 
-- (instancetype) mq_photo_library : (void (^)(void)) notAllowed {
+- (instancetype) mq_photo_library : (void (^)(void)) not_allowed {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        if (notAllowed) notAllowed();
+        if (not_allowed) not_allowed();
         return self;
     }
     self.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;

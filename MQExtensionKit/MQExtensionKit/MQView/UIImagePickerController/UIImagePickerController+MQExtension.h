@@ -28,11 +28,11 @@ typedef NS_OPTIONS(NSInteger , MQImageSaveType) {
 - (instancetype) mq_delegate : (id) delegate ;
 
 /// default present camera , allowEditing = false; // 默认照相机 , 不能编辑
-- (instancetype) mq_camera : (void (^)(void)) notAllowed ;
+- (instancetype) mq_camera : (void (^)(void)) not_allowed ;
 /// default present savedPhotosAlbum , allowEditing = false; // 默认保存图片相册 , 不能编辑
-- (instancetype) mq_saved_photos_album : (void (^)(void)) notAllowed ;
+- (instancetype) mq_saved_photos_album : (void (^)(void)) not_allowed ;
 /// default present photoLibrary , allowEditing = false; // 默认 图库 , 不能编辑
-- (instancetype) mq_photo_library : (void (^)(void)) notAllowed ;
+- (instancetype) mq_photo_library : (void (^)(void)) not_allowed ;
 /// allowEditing = YES ; // 启用编辑
 - (instancetype) mq_enable_editing ;
 /// save specific type of images // 保存 图片

@@ -14,34 +14,34 @@ MQFontFamilyName MQFontFamily_PingFangSC_Bold = @"PingFangSC-Bold";
 
 @implementation UIFont (MQExtension)
 
-- (instancetype) mq_size : (CGFloat) fSize {
-    return [self fontWithSize:fSize];
+- (instancetype) mq_size : (CGFloat) f_size {
+    return [self fontWithSize:f_size];
 }
-+ (instancetype) mq_system : (CGFloat) fSize {
-    return [UIFont systemFontOfSize:fSize];
++ (instancetype) mq_system : (CGFloat) f_size {
+    return [UIFont systemFontOfSize:f_size];
 }
-+ (instancetype) mq_bold : (CGFloat) fSize {
-    return [UIFont boldSystemFontOfSize:fSize];
++ (instancetype) mq_bold : (CGFloat) f_size {
+    return [UIFont boldSystemFontOfSize:f_size];
 }
-+ (instancetype) mq_family : (NSString *) sFontName
-                      size : (CGFloat) fSize {
-    if ([sFontName isKindOfClass:NSString.class] && sFontName && sFontName.length) {
-        return [UIFont fontWithName:sFontName size:fSize];
++ (instancetype) mq_family : (NSString *) s_font_name
+                      size : (CGFloat) f_size {
+    if ([s_font_name isKindOfClass:NSString.class] && s_font_name && s_font_name.length) {
+        return [UIFont fontWithName:s_font_name size:f_size];
     }
-    return [self mq_system:fSize];
+    return [self mq_system:f_size];
 }
 
 + (instancetype) mq_italic : (UIFont *) font
-                      size : (CGFloat) fSize {
-    return [self mq_italic:font size:fSize angle_percent:5];
+                      size : (CGFloat) f_size {
+    return [self mq_italic:font size:f_size angle_percent:5];
 }
 + (instancetype) mq_italic : (UIFont *) font
-                      size : (CGFloat) fSize
+                      size : (CGFloat) f_size
              angle_percent : (CGFloat) percent {
     CGAffineTransform transform = CGAffineTransformMake(1, 0, tanf(percent * (CGFloat)M_PI / 180), 1, 0, 0);
     UIFontDescriptor * descriptor = [UIFontDescriptor fontDescriptorWithName:font.fontName
                                                                       matrix:transform];
-    return [UIFont fontWithDescriptor:descriptor size:fSize];
+    return [UIFont fontWithDescriptor:descriptor size:f_size];
 }
 
 @end

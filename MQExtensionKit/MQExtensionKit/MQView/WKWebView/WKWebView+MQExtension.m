@@ -32,28 +32,28 @@
     return self;
 }
 - (instancetype) mq_script : (MQScriptMessageDelegate *) delegate
-                       key : (NSString *) sKey  {
-    if (delegate && sKey) {
+                       key : (NSString *) s_key  {
+    if (delegate && s_key) {
         [self.configuration.userContentController addScriptMessageHandler:delegate
-                                                                     name:sKey];
+                                                                     name:s_key];
     }
-    else if (sKey && sKey.length) {
-         [self.configuration.userContentController removeScriptMessageHandlerForName:sKey];
+    else if (s_key && s_key.length) {
+         [self.configuration.userContentController removeScriptMessageHandlerForName:s_key];
     }
     return self;
 }
 
-- (instancetype) mq_loading : (NSString *) sLink
+- (instancetype) mq_loading : (NSString *) s_link
                  navigation : (void (^)(WKNavigation *navigation)) navigation {
-    if (![sLink isKindOfClass:NSString.class] || !sLink.length) return self;
-    if ([sLink hasPrefix:@"http://"] || [sLink hasPrefix:@"https://"]) {
-        return [self mq_request:sLink navigation:nil];
-    } else return [self mq_content:sLink navigation:nil];
+    if (![s_link isKindOfClass:NSString.class] || !s_link.length) return self;
+    if ([s_link hasPrefix:@"http://"] || [s_link hasPrefix:@"https://"]) {
+        return [self mq_request:s_link navigation:nil];
+    } else return [self mq_content:s_link navigation:nil];
 }
 
-- (instancetype) mq_request : (NSString *) sLink
+- (instancetype) mq_request : (NSString *) s_link
                 navigation : (void (^)(WKNavigation *navigation)) navigation {
-    WKNavigation *n = [self loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:sLink && sLink.length? sLink : @""]]];
+    WKNavigation *n = [self loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:s_link && s_link.length? s_link : @""]]];
     if (navigation) navigation(n);
     return self;
 }
@@ -71,15 +71,15 @@
 
 @implementation MQScriptMessageDelegate
 
-- (instancetype)init:(id<WKScriptMessageHandler>)scriptDelegate{
+- (instancetype)init:(id<WKScriptMessageHandler>)script_delegate{
     if ((self = [super init])) {
-        self.scriptDelegate = scriptDelegate;
+        self.script_delegate = script_delegate;
     }
     return self;
 }
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-    [self.scriptDelegate userContentController:userContentController didReceiveScriptMessage:message];
+    [self.script_delegate userContentController:userContentController didReceiveScriptMessage:message];
 }
 
 @end

@@ -121,10 +121,10 @@ CGFloat MQHScale(CGFloat h) {
     CGRect g = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     return [[self alloc] initWithFrame:g];
 }
-+ (void) mq_set_scale : (CGFloat) fWidth
-             height : (CGFloat) fHeight {
-    _MQ_DEFAULT_SCALE_WIDTH_ = fWidth;
-    _MQ_DEFAULT_SCALE_HEIGHT_ = fHeight;
++ (void) mq_set_scale : (CGFloat) f_width
+             height : (CGFloat) f_height {
+    _MQ_DEFAULT_SCALE_WIDTH_ = f_width;
+    _MQ_DEFAULT_SCALE_HEIGHT_ = f_height;
 }
 
 + (void) mq_disable_animation : (void (^)(void)) action {

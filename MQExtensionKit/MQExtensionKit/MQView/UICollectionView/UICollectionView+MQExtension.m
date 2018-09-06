@@ -36,8 +36,8 @@ forCellWithReuseIdentifier:_MQ_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
     else self.delegate = nil;
     return self;
 }
-- (instancetype) mq_datasource : (id <UICollectionViewDataSource>) dataSource {
-    if (dataSource) self.dataSource = dataSource;
+- (instancetype) mq_datasource : (id <UICollectionViewDataSource>) data_source {
+    if (data_source) self.dataSource = data_source;
     else self.dataSource = nil;
     return self;
 }
@@ -53,15 +53,15 @@ forCellWithReuseIdentifier:_MQ_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
 }
 #endif
 
-- (instancetype) mq_regist_nib : (NSString *) sNib {
-    return [self mq_regist_nib:sNib bundle:nil];
+- (instancetype) mq_regist_nib : (NSString *) s_nib {
+    return [self mq_regist_nib:s_nib bundle:nil];
 }
-- (instancetype) mq_regist_nib : (NSString *) sNib
+- (instancetype) mq_regist_nib : (NSString *) s_nib
                         bundle : (NSBundle *) bundle {
     if (!bundle) bundle = NSBundle.mainBundle;
-    [self registerNib:[UINib nibWithNibName:sNib
+    [self registerNib:[UINib nibWithNibName:s_nib
                                      bundle:bundle]
-forCellWithReuseIdentifier:sNib];
+forCellWithReuseIdentifier:s_nib];
     return self;
 }
 
@@ -71,23 +71,23 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
     return self;
 }
 
-- (instancetype) mq_reloading : (BOOL) isAnimated {
-    if (isAnimated) {
+- (instancetype) mq_reloading : (BOOL) is_animated {
+    if (is_animated) {
         [self mq_reload_sections:[NSIndexSet indexSetWithIndex:0]
-                        animated:isAnimated];
+                        animated:is_animated];
     } else [self reloadData];
     return self;
 }
 - (instancetype) mq_reload_sections : (NSIndexSet *) set
-                           animated : (BOOL) isAnimated {
-    if (isAnimated) {
+                           animated : (BOOL) is_animated {
+    if (is_animated) {
         [self reloadSections:set];
     } else {
-        __weak typeof(self) pSelf = self;
+        __weak typeof(self) weak_self = self;
         void (^t)(void) = ^ {
             [UIView setAnimationsEnabled:false];
             [self performBatchUpdates:^{
-                [pSelf reloadSections:set];
+                [weak_self reloadSections:set];
             } completion:^(BOOL finished) {
                 [UIView setAnimationsEnabled:YES];
             }];
@@ -99,26 +99,26 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
     }
     return self;
 }
-- (instancetype) mq_reload_items : (NSArray <NSIndexPath *> *) arrayItems {
-    [self reloadItemsAtIndexPaths:(arrayItems ? arrayItems : @[])];
+- (instancetype) mq_reload_items : (NSArray <NSIndexPath *> *) array_items {
+    [self reloadItemsAtIndexPaths:(array_items ? array_items : @[])];
     return self;
 }
 
 /// for cell that register in collection
-- (__kindof UICollectionViewCell *) mq_deq_cell : (NSString *) sIdentifier
-                                      indexPath : (NSIndexPath *) indexPath {
-    if (sIdentifier && sIdentifier.length && indexPath)
-        return [self dequeueReusableCellWithReuseIdentifier:sIdentifier
-                                               forIndexPath:indexPath];
+- (__kindof UICollectionViewCell *) mq_deq_cell : (NSString *) s_identifier
+                                      indexPath : (NSIndexPath *) index_path {
+    if (s_identifier && s_identifier.length && index_path)
+        return [self dequeueReusableCellWithReuseIdentifier:s_identifier
+                                               forIndexPath:index_path];
     return nil;
 }
 /// for reusable view
-- (__kindof UICollectionReusableView *) mq_deq_reuseable_view : (NSString *) sElementKind
-                                                   identifier : (NSString *) sIdentifier
+- (__kindof UICollectionReusableView *) mq_deq_reuseable_view : (NSString *) s_element_kind
+                                                   identifier : (NSString *) s_identifier
                                                     indexPath : (NSIndexPath *) indexPath {
-    if (sElementKind && sElementKind.length && sIdentifier && sIdentifier.length && indexPath)
-        return [self dequeueReusableSupplementaryViewOfKind:sElementKind
-                                        withReuseIdentifier:sIdentifier
+    if (s_element_kind && s_element_kind.length && s_identifier && s_identifier.length && indexPath)
+        return [self dequeueReusableSupplementaryViewOfKind:s_element_kind
+                                        withReuseIdentifier:s_identifier
                                                forIndexPath:indexPath];
     return nil;
 }

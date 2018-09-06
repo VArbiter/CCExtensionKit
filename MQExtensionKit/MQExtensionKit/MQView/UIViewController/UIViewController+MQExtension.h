@@ -20,8 +20,8 @@
 
 - (void) mq_go_back ;
 - (void) mq_dismiss ;
-- (void) mq_dismiss : (CGFloat) fDelay ;
-- (void) mq_dismiss : (CGFloat) fDelay
+- (void) mq_dismiss : (CGFloat) f_delay ;
+- (void) mq_dismiss : (CGFloat) f_delay
            complete : (void(^)(void)) complete ;
 
 - (void) mq_pop ;
@@ -31,7 +31,7 @@
 /// default enable animated && Hide bottom bar // 默认启用动画和隐藏底部栏
 - (instancetype) mq_push : (__kindof UIViewController *) controller ;
 - (instancetype) mq_push : (__kindof UIViewController *) controller
-                hide_bottom : (BOOL) isHide ;
+             hide_bottom : (BOOL) is_hide ;
 
 - (instancetype) mq_present : (__kindof UIViewController *) controller ;
 - (instancetype) mq_present : (__kindof UIViewController *) controller
@@ -42,12 +42,12 @@
 
 /// deafult enable animated , fade in , fade out . // 默认渐变进入 , 渐变出
 - (instancetype) mq_add_view_from : (__kindof UIViewController *) controller
-                         duration : (CGFloat) fAnimationDuration ;
+                         duration : (CGFloat) f_animation_duration ;
 
 /// note : [UIApplication sharedApplication].delegate.window is the super view // 父视图为 [UIApplication sharedApplication].delegate.window
 + (void) mq_cover_view_with : (__kindof UIViewController *) controller
                    animated : (BOOL) isAminated
-                   duration : (CGFloat) fAnimationDuration ;
+                   duration : (CGFloat) f_animation_duration ;
 
 /// current controller that shows on screen . (only the main window) // 当前 main window 上所显示的控制器
 + (__kindof UIViewController *) mq_current ;
@@ -78,7 +78,7 @@
 
 @interface MQAnimatedTransitionPresent : NSObject < UIViewControllerAnimatedTransitioning >
 
-@property (nonatomic , assign) NSTimeInterval intervalDuration ;
+@property (nonatomic , assign) NSTimeInterval interval_duration ;
 @property (nonatomic , copy) NSString * s_animation_type; // default kCATransitionFromRight // 默认 kCATransitionFromRight
 
 @end
@@ -87,7 +87,7 @@
 
 @interface MQAnimatedTransitionDismiss : NSObject < UIViewControllerAnimatedTransitioning >
 
-@property (nonatomic , assign) NSTimeInterval intervalDuration ;
-@property (nonatomic , assign , getter=isDirectionRight) BOOL directionRight; // default YES // 默认为 YES
+@property (nonatomic , assign) NSTimeInterval interval_duration ;
+@property (nonatomic , assign , getter=is_direction_right) BOOL direction_right; // default YES // 默认为 YES
 
 @end

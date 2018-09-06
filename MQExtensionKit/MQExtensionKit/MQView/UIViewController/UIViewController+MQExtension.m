@@ -30,16 +30,16 @@
 - (void) mq_dismiss {
     [self mq_dismiss:.0f];
 }
-- (void) mq_dismiss : (CGFloat) fDelay {
-    [self mq_dismiss:fDelay complete:nil];
+- (void) mq_dismiss : (CGFloat) f_delay {
+    [self mq_dismiss:f_delay complete:nil];
 }
-- (void) mq_dismiss : (CGFloat) fDelay
+- (void) mq_dismiss : (CGFloat) f_delay
            complete : (void(^)(void)) complete {
     id o = objc_getAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     if (self.presentingViewController) {
-        if (fDelay <= .0f) [self dismissViewControllerAnimated:b
-                                                    completion:complete];
+        if (f_delay <= .0f) [self dismissViewControllerAnimated:b
+                                                     completion:complete];
     }
     else [self mq_go_back];
 }
@@ -77,12 +77,12 @@
     return [self mq_present:controller];
 }
 - (instancetype) mq_push : (__kindof UIViewController *) controller
-             hide_bottom : (BOOL) isHide {
+             hide_bottom : (BOOL) is_hide {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
     if (self.navigationController) {
         id o = objc_getAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
         BOOL b = o ? [o boolValue] : YES;
-        controller.hidesBottomBarWhenPushed = isHide;
+        controller.hidesBottomBarWhenPushed = is_hide;
         [self.navigationController pushViewController:controller
                                               animated:b];
         return self;
@@ -118,7 +118,7 @@
 }
 
 - (instancetype) mq_add_view_from : (__kindof UIViewController *) controller
-                         duration : (CGFloat) fAnimationDuration {
+                         duration : (CGFloat) f_animation_duration {
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return self;
     for (id item in self.view.subviews) {
         if (item == controller.view) return self;
@@ -128,7 +128,7 @@
     if (b) {
         controller.view.alpha = .01f;
         [self.view addSubview:controller.view];
-        [UIView animateWithDuration:(fAnimationDuration > .0f ? fAnimationDuration : _MQ_DEFAULT_ANIMATION_COMMON_DURATION_) animations:^{
+        [UIView animateWithDuration:(f_animation_duration > .0f ? f_animation_duration : _MQ_DEFAULT_ANIMATION_COMMON_DURATION_) animations:^{
             controller.view.alpha = 1.f;
         }];
     }
@@ -138,17 +138,17 @@
 }
 
 + (void) mq_cover_view_with : (__kindof UIViewController *) controller
-                   animated : (BOOL) isAminated
-                   duration : (CGFloat) fAnimationDuration {
+                   animated : (BOOL) is_aminated
+                   duration : (CGFloat) f_animation_duration {
     UIWindow *w = UIApplication.sharedApplication.delegate.window;
     if (!controller || ![controller isKindOfClass:UIViewController.class]) return ;
     for (id item in w.subviews) {
         if (item == controller.view) return ;
     }
-    if (isAminated) {
+    if (is_aminated) {
         controller.view.alpha = .01f;
         [w addSubview:controller.view];
-        [UIView animateWithDuration:(fAnimationDuration > .0f ? fAnimationDuration : _MQ_DEFAULT_ANIMATION_COMMON_DURATION_) animations:^{
+        [UIView animateWithDuration:(f_animation_duration > .0f ? f_animation_duration : _MQ_DEFAULT_ANIMATION_COMMON_DURATION_) animations:^{
             controller.view.alpha = 1.f;
         }];
     }
@@ -205,12 +205,12 @@
 // - UIViewControllerTransitioningDelegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     MQAnimatedTransitionPresent *animate = MQAnimatedTransitionPresent.alloc.init;
-    animate.intervalDuration = .2f;
+    animate.interval_duration = .2f;
     return animate;
 }
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     MQAnimatedTransitionDismiss *animate = MQAnimatedTransitionDismiss.alloc.init;
-    animate.intervalDuration = .2f;
+    animate.interval_duration = .2f;
     return animate;
 }
 
@@ -249,31 +249,31 @@ static NSString * mq_controller_extension_animated_transition_key = @"mq_control
 
 - (instancetype)init {
     if ((self = [super init])) {
-        self.intervalDuration = _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
+        self.interval_duration = _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
         self.s_animation_type = kCATransitionFromRight;
     }
     return self;
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return self.intervalDuration;
+    return self.interval_duration;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     self.transition = transitionContext;
-    UIViewController * vcFrom = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController * vcTo = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView * viewContainer = [transitionContext containerView];
+    UIViewController * vc_from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController * vc_to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView * view_container = [transitionContext containerView];
     
-    [viewContainer insertSubview:vcTo.view
-                    aboveSubview:vcFrom.view];
+    [view_container insertSubview:vc_to.view
+                     aboveSubview:vc_from.view];
     
     CATransition *transition = [CATransition animation];
     transition.type = kCATransitionPush;
     transition.subtype = self.s_animation_type.length > 0 ? self.s_animation_type : kCATransitionFromRight;
     transition.duration = [self transitionDuration:transitionContext];
     transition.delegate = self;
-    [vcTo.view.layer addAnimation:transition forKey:@"pushAnimation"];
+    [vc_to.view.layer addAnimation:transition forKey:@"pushAnimation"];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
@@ -294,33 +294,33 @@ static NSString * mq_controller_extension_animated_transition_key = @"mq_control
 
 - (instancetype)init {
     if ((self = [super init])) {
-        self.intervalDuration = _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
-        self.directionRight = YES;
+        self.interval_duration = _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
+        self.direction_right = YES;
     }
     return self;
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return self.intervalDuration;
+    return self.interval_duration;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     self.transition = transitionContext;
-    UIViewController * vcFrom = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController * vcTo = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView * viewContainer = [transitionContext containerView];
+    UIViewController * vc_from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController * vc_to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView * view_container = [transitionContext containerView];
     
-    [viewContainer insertSubview:vcTo.view
-                    belowSubview:vcFrom.view];
+    [view_container insertSubview:vc_to.view
+                    belowSubview:vc_from.view];
     
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-        CGRect r = vcFrom.view.frame;
-        if (pSelf.isDirectionRight) r.origin.x += r.size.width;
+        CGRect r = vc_from.view.frame;
+        if (weak_self.is_direction_right) r.origin.x += r.size.width;
         else r.origin.x -= r.size.width;
-        vcFrom.view.frame = r;
+        vc_from.view.frame = r;
     } completion:^(BOOL finished) {
-        [pSelf.transition completeTransition:finished];
+        [weak_self.transition completeTransition:finished];
     }];
 }
 

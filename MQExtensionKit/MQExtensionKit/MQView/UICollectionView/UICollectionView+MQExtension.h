@@ -14,7 +14,7 @@
 + (instancetype) mq_common : (CGRect) frame
                     layout : (UICollectionViewFlowLayout *) layout;
 - (instancetype) mq_delegate : (id <UICollectionViewDelegateFlowLayout>) delegate ;
-- (instancetype) mq_datasource : (id <UICollectionViewDataSource>) dataSource ;
+- (instancetype) mq_datasource : (id <UICollectionViewDataSource>) data_source ;
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 /// data source that pre-fetching // 预取的代理
@@ -22,8 +22,8 @@
 #endif
 
 /// requires that nib name is equal to cell's idetifier . // 要求 nib 的名称 和 cell 的标记保持一致
-- (instancetype) mq_regist_nib : (NSString *) sNib ;
-- (instancetype) mq_regist_nib : (NSString *) sNib
+- (instancetype) mq_regist_nib : (NSString *) s_nib ;
+- (instancetype) mq_regist_nib : (NSString *) s_nib
                         bundle : (NSBundle *) bundle ;
 /// requires that class name is equal to cell's idetifier . // 要求类名要和 cell 的标记保持一致
 - (instancetype) mq_regist_cls : (Class) cls ;
@@ -32,18 +32,18 @@
 /// note : means reloading without hidden animations . // 意味着 reloading 没有 collectionView 默认动画
 /// note : if animated is setting to YES , only section 0 will be reloaded . // 如果动画被设置为 YES , 只有 0 分区起效
 /// note : if reloeded muti sections , using "mq_reload_sections:animated:" down below // 如果要重载多个分区 , 使用下方的 "mq_reload_sections:animated:"
-- (instancetype) mq_reloading : (BOOL) isAnimated;
+- (instancetype) mq_reloading : (BOOL) is_animated;
 - (instancetype) mq_reload_sections : (NSIndexSet *) set
-                           animated : (BOOL) isAnimated ;
-- (instancetype) mq_reload_items : (NSArray <NSIndexPath *> *) arrayItems;
+                           animated : (BOOL) is_animated ;
+- (instancetype) mq_reload_items : (NSArray <NSIndexPath *> *) array_items;
 
 /// for cell that register in collection // 针对 注册在 collection 的 cell .
-- (__kindof UICollectionViewCell *) mq_deq_cell : (NSString *) sIdentifier
-                                      indexPath : (NSIndexPath *) indexPath ;
+- (__kindof UICollectionViewCell *) mq_deq_cell : (NSString *) s_identifier
+                                      indexPath : (NSIndexPath *) index_path ;
 /// for reusable view // 针对重用 view
-- (__kindof UICollectionReusableView *) mq_deq_reuseable_view : (NSString *) sElementKind
-                                                   identifier : (NSString *) sIdentifier
-                                                    indexPath : (NSIndexPath *) indexPath ;
+- (__kindof UICollectionReusableView *) mq_deq_reuseable_view : (NSString *) s_element_kind
+                                                   identifier : (NSString *) s_identifier
+                                                    indexPath : (NSIndexPath *) index_path ;
 
 @end
 

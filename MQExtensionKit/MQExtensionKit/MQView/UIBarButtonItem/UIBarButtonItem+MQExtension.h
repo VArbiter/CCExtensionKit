@@ -11,7 +11,7 @@
 @interface UIBarButtonItem (MQExtension)
 
 + (instancetype) mq_common ;
-- (instancetype) mq_title : (NSString *) sTitle ;
+- (instancetype) mq_title : (NSString *) s_title ;
 - (instancetype) mq_image : (UIImage *) image ;
 - (instancetype) mq_action : (void (^)( __kindof UIBarButtonItem *sender)) action ;
 - (instancetype) mq_target : (id) target

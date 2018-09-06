@@ -40,8 +40,8 @@ static const char * _MQ_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "MQ_UIBARBUTTONIT
 + (instancetype) mq_common {
     return UIBarButtonItem.alloc.init;
 }
-- (instancetype) mq_title : (NSString *) sTitle {
-    self.title = sTitle;
+- (instancetype) mq_title : (NSString *) s_title {
+    self.title = s_title;
     return self;
 }
 - (instancetype) mq_image : (UIImage *) image {

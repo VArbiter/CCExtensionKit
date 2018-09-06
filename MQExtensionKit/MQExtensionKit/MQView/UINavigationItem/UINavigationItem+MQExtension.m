@@ -16,24 +16,24 @@
 
 @implementation UINavigationItem (MQExtension_FixedSpace)
 
-- (void) mq_left_offset : (CGFloat) fOffset
+- (void) mq_left_offset : (CGFloat) f_offset
                    item : (UIBarButtonItem *) item {
-    if (fOffset >= 0) return;
-    UIBarButtonItem *itemBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+    if (f_offset >= 0) return;
+    UIBarButtonItem *item_bar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                                              target:nil
                                                                              action:nil];
-    itemBar.width = fOffset;
-    NSArray *array = [NSArray arrayWithObjects:itemBar, item, nil];
+    item_bar.width = f_offset;
+    NSArray *array = [NSArray arrayWithObjects:item_bar, item, nil];
     [self setLeftBarButtonItems:array];
 }
-- (void) mq_right_offset : (CGFloat) fOffset
+- (void) mq_right_offset : (CGFloat) f_offset
                     item : (UIBarButtonItem *) item {
-    if (fOffset >= 0) return;
-    UIBarButtonItem *itemBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+    if (f_offset >= 0) return;
+    UIBarButtonItem *item_bar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                                              target:nil
                                                                              action:nil];
-    itemBar.width = fOffset;
-    NSArray *array = [NSArray arrayWithObjects:itemBar, item, nil];
+    item_bar.width = f_offset;
+    NSArray *array = [NSArray arrayWithObjects:item_bar, item, nil];
     [self setRightBarButtonItems:array];
 }
 
