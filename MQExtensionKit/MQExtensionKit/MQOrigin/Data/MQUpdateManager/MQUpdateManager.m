@@ -136,30 +136,31 @@ MQUpdateResponseSerilzationKey MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL
         
         NSString *s_app_store_version = [d_infos_detail valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_VERSION] ;
         
-        NSString *s_version_current_t = s_version_current.copy ;
-        NSString *s_app_store_version_t = s_app_store_version.copy ;
+        __block BOOL __is_need_update = false;
+        NSArray <NSString *> * a_app_store_version = [s_app_store_version componentsSeparatedByString:@"."];
+        NSArray <NSString *> * a_current_version = [s_version_current componentsSeparatedByString:@"."];
         
-        s_version_current_t = [s_version_current_t stringByReplacingOccurrencesOfString:@"." withString:@""];
-        if (s_version_current_t.length == 2) {
-            s_version_current_t = [s_version_current_t stringByAppendingString:@"0"];
-        }
-        else if (s_version_current_t.length == 1) {
-            s_version_current_t = [s_version_current_t stringByAppendingString:@"00"];
-        }
-        
-        s_app_store_version_t = [s_version_current_t stringByReplacingOccurrencesOfString:@"." withString:@""];
-        if (s_app_store_version_t.length == 2) {
-            s_app_store_version_t = [s_app_store_version_t stringByAppendingString:@"0"];
-        }
-        else if (s_version_current_t.length == 1) {
-            s_app_store_version_t = [s_app_store_version_t stringByAppendingString:@"00"];
-        }
-        
-        BOOL is_need_update = s_version_current_t.floatValue < s_app_store_version_t.floatValue;
+        [a_app_store_version enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (idx < a_current_version.count) {
+                NSString *s_current = a_current_version[idx];
+                NSString *s_appstore = obj;
+                
+                if (s_current.integerValue <= s_appstore.integerValue) {
+                    if (s_current.integerValue < s_appstore.integerValue) {
+                        __is_need_update = YES;
+                    }
+                }
+                else *stop = YES;
+            }
+            else *stop = YES;
+            
+        }];
+         
         NSString *s_open_link = [d_infos_detail valueForKey:MQ_UPDATE_RESPONSE_SERILZATION_KEY_TRACK_VIEW_URL];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (mq_update_block) mq_update_block(is_need_update ,
+            if (mq_update_block) mq_update_block(__is_need_update ,
                                                  s_version_current ,
                                                  s_app_store_version ,
                                                  s_open_link);
