@@ -219,14 +219,23 @@
     // CharactersToBeEscaped = @":/?&=;+!@#$()~',*";
     // CharactersToLeaveUnescaped = @"[].";
     
-    NSString *sUnencode = self;
-    NSString *sEncode = (NSString *)
-    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                              (CFStringRef)sUnencode,
-                                                              NULL,
-                                                              (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                              kCFStringEncodingUTF8));
-    return sEncode;
+    NSString *s_encoded = nil;
+    if (@available(iOS 9.0, *)) {
+        NSString *s_characters_to_sscape = @"?!@#$^&%*+,:;='\"`<>()~[]{}/\\|";
+        NSCharacterSet *s_allowed_characters = [[NSCharacterSet characterSetWithCharactersInString:s_characters_to_sscape] invertedSet];
+        s_encoded = [self stringByAddingPercentEncodingWithAllowedCharacters:s_allowed_characters];
+    }
+    else {
+        NSString *sUnencode = self;
+        s_encoded = (NSString *)
+        CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                  (CFStringRef)sUnencode,
+                                                                  NULL,
+                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                  kCFStringEncodingUTF8));
+    }
+    
+    return s_encoded;
 }
 - (NSString *)to_url_decoded {
     NSString *sEncode = self;

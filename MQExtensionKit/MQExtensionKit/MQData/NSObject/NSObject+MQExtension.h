@@ -24,6 +24,8 @@ BOOL MQ_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) ;
 BOOL MQ_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) ;
 BOOL MQ_IS_NULL(id object) ;
 
+NSString * MQ_LOG_OBJECT(id object);
+
 @interface NSObject (MQExtension_KVO)
 
 /// a block way to manage KVO .

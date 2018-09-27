@@ -82,6 +82,35 @@ BOOL MQ_IS_NULL(id object) {
     return (object && ![object isKindOfClass:[NSNull class]] && (object != NSNull.null));
 }
 
+NSString * MQ_LOG_OBJECT(id object) {
+    if (!object) return nil;
+    if (![object respondsToSelector:@selector(description)]) return nil;
+    
+    NSString *s_temp1 = [[object description] stringByReplacingOccurrencesOfString:@"\\u"
+                                                                        withString:@"\\U"];
+    NSString *s_temp2 = [s_temp1 stringByReplacingOccurrencesOfString:@"\""
+                                                           withString:@"\\\""];
+    NSString *s_temp3 = [[@"\"" stringByAppendingString:s_temp2] stringByAppendingString:@"\""];
+    NSData *t_data = [s_temp3 dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *s = nil;
+    NSError *error = nil;
+    s = [NSPropertyListSerialization propertyListWithData:t_data
+                                                  options:NSPropertyListImmutable
+                                                   format:NULL
+                                                    error:&error];
+    
+    if (s && !error) {
+        return s;
+    }
+    
+#if DEBUG
+    NSLog(@" CCExtension: %s \n ERROR : %@",__func__, error.localizedDescription);
+#endif
+    
+    return nil;
+}
+
 #pragma mark - -----
 
 #import <objc/runtime.h>
