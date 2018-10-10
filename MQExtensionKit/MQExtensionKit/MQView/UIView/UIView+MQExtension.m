@@ -136,139 +136,139 @@ CGFloat MQHScale(CGFloat h) {
 }
 
 #pragma mark - Setter && Getter
-- (void) setSize : (CGSize) size {
+- (void) setMq_size:(CGSize)mq_size {
     CGRect frame = self.frame;
-    frame.size = size;
+    frame.size = mq_size;
     self.frame = frame;
 }
-- (CGSize) size {
+- (CGSize) mq_size {
     return self.frame.size;
 }
 
-- (void)setOrigin:(CGPoint)origin {
+- (void)setMq_origin:(CGPoint)mq_origin {
     CGRect frame = self.frame;
-    frame.origin = origin;
+    frame.origin = mq_origin;
     self.frame = frame;
 }
-- (CGPoint)origin {
+- (CGPoint) mq_origin {
     return self.frame.origin;
 }
 
--(void)setWidth:(CGFloat)width{
+-(void)setMq_width:(CGFloat)mq_width{
     CGRect frame = self.frame;
-    frame.size.width = width;
+    frame.size.width = mq_width;
     self.frame = frame;
 }
-- (CGFloat) width {
+- (CGFloat) mq_width {
     return self.frame.size.width;
 }
 
-- (void) setHeight : (CGFloat) height {
+- (void) setMq_height:(CGFloat)mq_height {
     CGRect frame = self.frame;
-    frame.size.height = height;
+    frame.size.height = mq_height;
     self.frame = frame;
 }
-- (CGFloat) height {
+- (CGFloat) mq_height {
     return self.frame.size.height;
 }
 
-- (void) setX : (CGFloat) x{
+- (void) setMq_x:(CGFloat)mq_x{
     CGRect frame = self.frame;
-    frame.origin.x = x;
+    frame.origin.x = mq_x;
     self.frame = frame;
 }
-- (CGFloat) x {
+- (CGFloat) mq_x {
     return self.frame.origin.x;
 }
 
-- (void) setY : (CGFloat) y {
+- (void) setMq_y:(CGFloat)mq_y {
     CGRect frame = self.frame;
-    frame.origin.y = y;
+    frame.origin.y = mq_y;
     self.frame = frame;
 }
-- (CGFloat) y {
+- (CGFloat) mq_y {
     return self.frame.origin.y;
 }
 
-- (void)setCenter_x:(CGFloat)center_x {
-    self.center = CGPointMake(center_x, self.center.y);
+- (void)setMq_center_x:(CGFloat)mq_center_x {
+    self.center = CGPointMake(mq_center_x, self.center.y);
 }
-- (CGFloat)center_x {
+- (CGFloat) mq_center_x {
     return self.center.x;
 }
 
-- (void)setCenter_y:(CGFloat)center_y {
-    self.center = CGPointMake(self.center.x, center_y);
+- (void)setMq_center_y:(CGFloat)mq_center_y {
+    self.center = CGPointMake(self.center.x, mq_center_y);
 }
-- (CGFloat)center_y {
+- (CGFloat)mq_center_y {
     return self.center.y;
 }
 
-- (void)setTop:(CGFloat)y {
+- (void)setMq_top:(CGFloat)mq_top {
     CGRect frame = self.frame;
-    frame.origin.y = y;
+    frame.origin.y = mq_top;
     self.frame = frame;
 }
-- (CGFloat)top {
+- (CGFloat)mq_top {
     return self.frame.origin.y;
 }
 
-- (void)setLeft:(CGFloat)x {
+- (void)setMq_left:(CGFloat)mq_left {
     CGRect frame = self.frame;
-    frame.origin.x = x;
+    frame.origin.x = mq_left;
     self.frame = frame;
 }
-- (CGFloat)left {
+- (CGFloat) mq_left {
     return self.frame.origin.x;
 }
 
-- (void)setBottom:(CGFloat)bottom {
+- (void)setMq_bottom:(CGFloat)mq_bottom {
     CGRect frame = self.frame;
-    frame.origin.y = bottom - frame.size.height;
+    frame.origin.y = mq_bottom - frame.size.height;
     self.frame = frame;
 }
-- (CGFloat)bottom {
+- (CGFloat) mq_bottom {
     return self.frame.origin.y + self.frame.size.height;
 }
 
-- (void)setRight:(CGFloat)right {
+- (void)setMq_right:(CGFloat)mq_right {
     CGRect frame = self.frame;
-    frame.origin.x = right - frame.size.width;
+    frame.origin.x = mq_right - frame.size.width;
     self.frame = frame;
 }
-- (CGFloat)right {
+- (CGFloat) mq_right {
     return self.frame.origin.x + self.frame.size.width;
 }
 
-- (CGFloat)in_top {
+- (CGFloat) mq_in_top {
     return .0f;
 }
-- (CGFloat)in_left {
+- (CGFloat) mq_in_left {
     return .0f;
 }
-- (CGFloat)in_bottom {
+- (CGFloat) mq_in_bottom {
     return self.frame.size.height;
 }
-- (CGFloat)in_right {
+- (CGFloat) mq_in_right {
     return self.frame.size.width;
 }
 
 #pragma mark - -----
-+ (CGFloat)f_width {
++ (CGFloat) mq_width {
     return UIScreen.mainScreen.bounds.size.width;
 }
-+ (CGFloat)f_height {
++ (CGFloat) mq_height {
     return UIScreen.mainScreen.bounds.size.height;
 }
 
--(CGFloat)in_center_x{
-    return self.frame.size.width*0.5;
+- (CGFloat) mq_in_center_x {
+    return self.frame.size.width * .5f;
 }
--(CGFloat)in_center_y{
-    return self.frame.size.height*0.5;
+- (CGFloat) mq_in_center_y {
+    return self.frame.size.height * .5f;
 }
--(CGPoint)in_center{
-    return CGPointMake(self.in_center_x, self.in_center_y);
+- (CGPoint) mq_in_center{
+    return CGPointMake(self.mq_in_center_x, self.mq_in_center_y);
 }
 
 - (instancetype) mq_frame : (CGRect) frame {
@@ -276,38 +276,38 @@ CGFloat MQHScale(CGFloat h) {
     return self;
 }
 - (instancetype) mq_size : (CGSize) size {
-    self.size = size;
+    self.mq_size = size;
     return self;
 }
 - (instancetype) mq_origin : (CGPoint) point {
-    self.origin = point;
+    self.mq_origin = point;
     return self;
 }
 
 - (instancetype) mq_width : (CGFloat) f_width {
-    self.width = f_width;
+    self.mq_width = f_width;
     return self;
 }
 - (instancetype) mq_height : (CGFloat) f_height {
-    self.height = f_height;
+    self.mq_height = f_height;
     return self;
 }
 
 - (instancetype) mq_x : (CGFloat) f_x {
-    self.x = f_x;
+    self.mq_x = f_x;
     return self;
 }
 - (instancetype) mq_y : (CGFloat) f_y {
-    self.y = f_y;
+    self.mq_y = f_y;
     return self;
 }
 
 - (instancetype) mq_center_x : (CGFloat) f_center_x {
-    self.center_x = f_center_x;
+    self.mq_center_x = f_center_x;
     return self;
 }
 - (instancetype) mq_center_y : (CGFloat) f_center_y {
-    self.center_y = f_center_y;
+    self.mq_center_y = f_center_y;
     return self;
 }
 - (instancetype) mq_center : (CGPoint) p_center {
@@ -316,19 +316,19 @@ CGFloat MQHScale(CGFloat h) {
 }
 
 - (instancetype) mq_top : (CGFloat) f_top {
-    self.top = f_top;
+    self.mq_top = f_top;
     return self;
 }
 - (instancetype) mq_left : (CGFloat) f_left {
-    self.left = f_left;
+    self.mq_left = f_left;
     return self;
 }
 - (instancetype) mq_bottom : (CGFloat) f_bottom {
-    self.bottom = f_bottom;
+    self.mq_bottom = f_bottom;
     return self;
 }
 - (instancetype) mq_right : (CGFloat) f_right {
-    self.right = f_right;
+    self.mq_right = f_right;
     return self;
 }
 

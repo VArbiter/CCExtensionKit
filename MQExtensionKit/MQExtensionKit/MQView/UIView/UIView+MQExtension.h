@@ -58,34 +58,34 @@ CGSize MQScaleSize(CGSize size);
 
 + (void) mq_disable_animation : (void (^)(void)) action ;
 
-@property (nonatomic , class , assign , readonly) CGFloat f_width;
-@property (nonatomic , class , assign , readonly) CGFloat f_height;
+@property (nonatomic , class , assign , readonly) CGFloat mq_width;
+@property (nonatomic , class , assign , readonly) CGFloat mq_height;
 
-@property (nonatomic , assign) CGSize size;
-@property (nonatomic , assign) CGPoint origin;
+@property (nonatomic , assign) CGSize mq_size;
+@property (nonatomic , assign) CGPoint mq_origin;
 
-@property (nonatomic , assign) CGFloat width;
-@property (nonatomic , assign) CGFloat height;
+@property (nonatomic , assign) CGFloat mq_width;
+@property (nonatomic , assign) CGFloat mq_height;
 
-@property (nonatomic , assign) CGFloat x;
-@property (nonatomic , assign) CGFloat y;
+@property (nonatomic , assign) CGFloat mq_x;
+@property (nonatomic , assign) CGFloat mq_y;
 
-@property (nonatomic , assign) CGFloat center_x;
-@property (nonatomic , assign) CGFloat center_y;
+@property (nonatomic , assign) CGFloat mq_center_x;
+@property (nonatomic , assign) CGFloat mq_center_y;
 
-@property (nonatomic , assign , readonly) CGFloat in_center_x ;
-@property (nonatomic , assign , readonly) CGFloat in_center_y ;
-@property (nonatomic , assign , readonly) CGPoint in_center ;
+@property (nonatomic , assign , readonly) CGFloat mq_in_center_x ;
+@property (nonatomic , assign , readonly) CGFloat mq_in_center_y ;
+@property (nonatomic , assign , readonly) CGPoint mq_in_center ;
 
-@property (nonatomic , assign) CGFloat top;
-@property (nonatomic , assign) CGFloat left;
-@property (nonatomic , assign) CGFloat bottom;
-@property (nonatomic , assign) CGFloat right;
+@property (nonatomic , assign) CGFloat mq_top;
+@property (nonatomic , assign) CGFloat mq_left;
+@property (nonatomic , assign) CGFloat mq_bottom;
+@property (nonatomic , assign) CGFloat mq_right;
 
-@property (nonatomic , assign , readonly) CGFloat in_top;
-@property (nonatomic , assign , readonly) CGFloat in_left;
-@property (nonatomic , assign , readonly) CGFloat in_bottom;
-@property (nonatomic , assign , readonly) CGFloat in_right;
+@property (nonatomic , assign , readonly) CGFloat mq_in_top;
+@property (nonatomic , assign , readonly) CGFloat mq_in_left;
+@property (nonatomic , assign , readonly) CGFloat mq_in_bottom;
+@property (nonatomic , assign , readonly) CGFloat mq_in_right;
 
 /// an easy way to margin // 一个方便的方式进行校准
 - (instancetype) mq_frame : (CGRect) frame ;
