@@ -22,6 +22,9 @@
 - (instancetype) mq_prefetching : (id) prefetch ;
 #endif
 
+/// an easy way to scroll it to bottom . // 一个滚动到底部的简便方法 .
+- (instancetype) cc_scroll_to_bottom : (BOOL) animation ;
+
 /// requires that nib name is equal to cell's idetifier . // 要求 nib 文件的名称必须和 cell 的唯一标识符相同
 /// default main bundle // 默认是 main bundle
 - (instancetype) mq_regist_nib : (NSString *) sNib ;

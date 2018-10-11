@@ -60,6 +60,19 @@ forCellReuseIdentifier:_MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
 }
 #endif
 
+- (instancetype) cc_scroll_to_bottom : (BOOL) animation {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSInteger row = [self numberOfRowsInSection:0] - 1;
+        if (row > 0) {
+            NSIndexPath *index_path = [NSIndexPath indexPathForRow:row inSection:0];
+            [self scrollToRowAtIndexPath:index_path
+                        atScrollPosition:UITableViewScrollPositionBottom
+                                animated:animation];
+        }
+    });
+    return self;
+}
+
 - (instancetype) mq_regist_nib : (NSString *) sNib {
     return [self mq_regist_nib:sNib bundle:nil];
 }
