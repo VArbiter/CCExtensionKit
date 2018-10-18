@@ -24,21 +24,23 @@
 
 + (NSString *) mq_device_type {
 #if TARGET_IPHONE_SIMULATOR
-    CGFloat fS = UIScreen.mainScreen.scale;
-    CGFloat fW = UIScreen.mainScreen.bounds.size.width * fS;
-    CGFloat fH = UIScreen.mainScreen.bounds.size.height * fS;
+    CGFloat f_scale = UIScreen.mainScreen.scale;
+    CGFloat f_width = UIScreen.mainScreen.bounds.size.width * f_scale;
+    CGFloat f_height = UIScreen.mainScreen.bounds.size.height * f_scale;
     
-    if (fW == 320.f && fH == 480.f) return @"iPhone 3GS"; // == iPhone 3
-    if (fW == 640.f && fH == 960.f) return @"iPhone 4s"; // == iPhone 4
-    if (fW == 640.f && fH == 1136.f) return @"iPhone SE"; // == iPhone 5 / 5c / 5s
-    if (fW == 750.f && fH == 1134.f) return @"iPhone 8"; // == iPhone 6 / 6s
-    if (fW == 1080.f && fH == 1920.f) return @"iPhone 8 Plus"; // == iPhone 6 Plus / 6s Plus / 7 Plus
-    if (fW == 1125.f && fH == 2436.f) return @"iPhone X";
+    if (f_width == 320.f && f_height == 480.f) return @"iPhone 3GS"; // == iPhone 3
+    if (f_width == 640.f && f_height == 960.f) return @"iPhone 4s"; // == iPhone 4
+    if (f_width == 640.f && f_height == 1136.f) return @"iPhone SE"; // == iPhone 5 / 5c / 5s
+    if (f_width == 750.f && f_height == 1134.f) return @"iPhone 8"; // == iPhone 6 / 6s
+    if (f_width == 1080.f && f_height == 1920.f) return @"iPhone 8 Plus"; // == iPhone 6 Plus / 6s Plus / 7 Plus
+    if (f_width == 1125.f && f_height == 2436.f) return @"iPhone X"; // == iPhone Xs
+    if (f_width == 828.f && f_height == 1792.f) return @"iPhone Xr";
+    if (f_width == 1242.f && f_height == 2688.f) return @"iPhone Xs Max";
     
-    if (fW == 768.f && fH == 1024.f) return @"iPad Mini"; // == iPad 2
-    if (fW == 1536.f && fH == 2048.f) return @"iPad 4"; // == iPad 3
-    if (fW == 2048.f && fH == 1536.f) return @"iPad Pro"; // == iPad Air (9.7 inch)
-    if (fW == 2732.f && fH == 2048.f) return @"iPad Pro"; // == iPad Air (12.9 inch)
+    if (f_width == 768.f && f_height == 1024.f) return @"iPad Mini"; // == iPad 2
+    if (f_width == 1536.f && f_height == 2048.f) return @"iPad 4"; // == iPad 3
+    if (f_width == 2048.f && f_height == 1536.f) return @"iPad Pro"; // == iPad Air (9.7 inch)
+    if (f_width == 2732.f && f_height == 2048.f) return @"iPad Pro"; // == iPad Air (12.9 inch)
     
     return @"Unknow" ;
 #else
@@ -71,6 +73,10 @@
     if([platform isEqualToString:@"iPhone10,5"]) return @"iPhone 8 Plus";
     if([platform isEqualToString:@"iPhone10,3"]) return @"iPhone X";
     if([platform isEqualToString:@"iPhone10,6"]) return @"iPhone X";
+    if([platform isEqualToString:@"iPhone11,2"]) return @"iPhone Xs";
+    if([platform isEqualToString:@"iPhone11,4"]) return @"iPhone Xs Max";
+    if([platform isEqualToString:@"iPhone11,6"]) return @"iPhone Xs Max";
+    if([platform isEqualToString:@"iPhone11,8"]) return @"iPhone Xr";
     if([platform isEqualToString:@"iPod1,1"]) return @"iPod Touch 1G";
     if([platform isEqualToString:@"iPod2,1"]) return @"iPod Touch 2G";
     if([platform isEqualToString:@"iPod3,1"]) return @"iPod Touch 3G";

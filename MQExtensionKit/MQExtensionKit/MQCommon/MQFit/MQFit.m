@@ -23,27 +23,28 @@ CGFloat MQ_NAVIGATION_HEIGHT(void) {
     return 44.f;
 }
 CGFloat MQ_NAVIGATION_BOTTOM(void) {
-    return MQ_IS_IPHONE_X() ? 88.f : 64.f ;
+    return MQ_IS_HAS_BANGS() ? 88.f : 64.f ;
 }
 CGFloat MQ_TABBAR_HEIGHT(void) {
-    return MQ_IS_IPHONE_X() ? 83.f : 49.f ;
+    return MQ_IS_HAS_BANGS() ? 83.f : 49.f ;
 }
 CGFloat MQ_TABBAR_TOP(void) {
     return UIScreen.mainScreen.bounds.size.height - MQ_TABBAR_HEIGHT();
 }
 
-BOOL MQ_IS_IPHONE_X(void) {
-//    return [[MQDevice mq_device_type] isEqualToString:@"iPhone X"];
-    CGFloat f_s_w = UIScreen.mainScreen.bounds.size.width ,
-    f_s_h = UIScreen.mainScreen.bounds.size.height ;
-    return ((f_s_w == 375.f) && (f_s_h == 812.f));
+BOOL MQ_IS_HAS_BANGS(void) {
+    if (@available(iOS 11.0, *)) {
+        UIEdgeInsets insets_safe_area = UIApplication.sharedApplication.delegate.window.safeAreaInsets;
+        return !(UIEdgeInsetsEqualToEdgeInsets(insets_safe_area, UIEdgeInsetsZero));
+    }
+    else return false;
 }
 
 CGFloat MQ_SAFE_AREA_TOP_HEIGHT(void) {
-    return MQ_IS_IPHONE_X() ? 24.f : 0.f ;
+    return MQ_IS_HAS_BANGS() ? 24.f : 0.f ;
 }
 CGFloat MQ_SAFE_AREA_BOTTOM_HEIGHT(void) {
-    return MQ_IS_IPHONE_X() ? 44.f : 0.f ;
+    return MQ_IS_HAS_BANGS() ? 44.f : 0.f ;
 }
 
 @end
