@@ -39,7 +39,7 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
         self.viewCustom = view;
         self.viewOn = viewOn;
         self.layer.backgroundColor = [UIColor.blackColor mq_alpha:.2f].CGColor;
-        [self mq_add:[[self.viewCustom mq_bottom:self.top] mq_center_x:self.in_center_x]];
+        [self mq_add:[[self.viewCustom mq_bottom:self.mq_top] mq_center_x:self.mq_in_center_x]];
     }
     return self;
 }
@@ -64,21 +64,21 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
     
     switch (animate) {
         case MQDropAnimate_None:{
-            self.viewCustom.center = self.in_center;
+            self.viewCustom.center = self.mq_in_center;
             if (self.block_action_start_did_end) self.block_action_start_did_end(self);
         }break;
         case MQDropAnimate_Smooth:{
             MQ_WEAK_SELF;
             void (^bCenter)(void) = ^ {
                 [UIView animateWithDuration:.2f animations:^{
-                    weak_self.viewCustom.center = weak_self.in_center;
+                    weak_self.viewCustom.center = weak_self.mq_in_center;
                     if (weak_self.block_action_start_did_end) weak_self.block_action_start_did_end(weak_self);
                 }];
             };
             
             [UIView animateWithDuration:MQ_DROP_ANIMATION_DURATION animations:^{
                 weak_self.alpha = 1.0f;
-                weak_self.viewCustom.center = (CGPoint){weak_self.in_center_x , weak_self.in_center_y + MQScaleH(80.f)};
+                weak_self.viewCustom.center = (CGPoint){weak_self.mq_in_center_x , weak_self.mq_in_center_y + MQScaleH(80.f)};
             } completion:^(BOOL finished) {
                 if (bCenter) bCenter();
             }];
@@ -92,13 +92,13 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
             }];
             
             UISnapBehavior *snapBehaviour = [[UISnapBehavior alloc] initWithItem:self.viewCustom
-                                                                     snapToPoint:self.viewOn.in_center];
+                                                                     snapToPoint:self.viewOn.mq_in_center];
             snapBehaviour.damping = MQ_SNAP_DAMPING_DURATION;
             [self.animator addBehavior:snapBehaviour];
         }break;
             
         default:{
-            self.viewCustom.center = self.in_center;
+            self.viewCustom.center = self.mq_in_center;
         }break;
     }
 }
