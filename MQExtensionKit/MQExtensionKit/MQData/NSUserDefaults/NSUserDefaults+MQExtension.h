@@ -10,16 +10,16 @@
 
 @interface NSUserDefaults (MQExtension)
 
-NSUserDefaults *MQ_STANDARD_USER_DEFAULTS(void);
+NSUserDefaults * mq_user_defaults(void);
 
 /// an easy way to do 'standardUserDefaults' && 'synchronize' // 一个简便的方式去调用 standardUserDefaults 和 synchronize
-BOOL MQ_USER_DEFAULLTS(void (^block_def)(NSUserDefaults *sender)) ;
+BOOL mq_standard_user_defaults(void (^block_def)(NSUserDefaults *sender)) ;
 
 /// reset standard userDefaults . // 重置 standardUserDefaults
-void MQ_RESET_USER_DEFAULLTS(void) ;
+void mq_standard_user_defaults_reset(void) ;
 
 /// share the data with other app that under your company || yourself . // 和公司 或 自己共享数据
 /// only for the same suite name . // 只在同一个 suite 下生效 .
-BOOL MQ_USER_DEFAULTS_S(NSString *s_suite_id , void (^block_def)(NSUserDefaults *sender)) ;
+BOOL mq_user_defaults_s(NSString *s_suite_id , void (^block_def)(NSUserDefaults *sender)) ;
 
 @end

@@ -8,13 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#ifndef CC_URL_S
-    #define CC_URL_S(_value_) [NSURL mq_URL:_value_]
-#endif
-#ifndef CC_URL_L
-    #define CC_URL_L(_value_) [NSURL mq_local:_value_]
-#endif
-
 @interface NSURL (MQExtension)
 
 + (instancetype) mq_url : (NSString *) s_url ;

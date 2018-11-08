@@ -10,21 +10,21 @@
 
 @implementation NSUserDefaults (MQExtension)
 
-NSUserDefaults *MQ_STANDARD_USER_DEFAULTS(void) {
+NSUserDefaults *mq_user_defaults(void) {
     return [NSUserDefaults standardUserDefaults];
 }
 
-BOOL MQ_USER_DEFAULLTS(void (^bDef)(NSUserDefaults *sender)) {
+BOOL mq_standard_user_defaults(void (^bDef)(NSUserDefaults *sender)) {
     NSUserDefaults *def = NSUserDefaults.standardUserDefaults;
     if (bDef) bDef(def);
     return def.synchronize;
 }
 
-void MQ_RESET_USER_DEFAULLTS(void) {
+void mq_standard_user_defaults_reset(void) {
     [NSUserDefaults resetStandardUserDefaults];
 }
 
-BOOL MQ_USER_DEFAULTS_S(NSString *s_suite_id , void (^block_def)(NSUserDefaults *sender)) {
+BOOL mq_user_defaults_s(NSString *s_suite_id , void (^block_def)(NSUserDefaults *sender)) {
     NSUserDefaults *def = [[NSUserDefaults alloc] initWithSuiteName:s_suite_id];
     if (block_def) block_def(def);
     return def.synchronize;

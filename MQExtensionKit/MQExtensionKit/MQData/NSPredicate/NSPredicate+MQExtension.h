@@ -50,9 +50,9 @@
 
 - (BOOL) is_accurate_identity ;
 - (BOOL) is_cell_phone ;
-- (BOOL) is_china_mobile ;
-- (BOOL) is_china_unicom ;
-- (BOOL) is_china_telecom ;
+- (BOOL) is_chinese_mobile ;
+- (BOOL) is_chinese_unicom ;
+- (BOOL) is_chinese_telecom ;
 - (BOOL) is_telephone ;
 - (BOOL) is_email ;
 - (BOOL) is_chinese_identity_number ;

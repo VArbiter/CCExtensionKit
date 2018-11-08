@@ -82,7 +82,7 @@ static const char * _MQ_NSMUTABLEDICTIONARY_OBSERVER_KEY_T_ = "MQ_NSMUTABLEDICTI
     return self;
 }
 
-- (instancetype) mq_observer_t : (void (^)(void(^t)(id key , id value , NSArray * a_all_keys , NSArray * a_all_values))) action {
+- (instancetype) mq_observer_t : (void (^)(void(^t)(id key , id value , NSArray <id> * all_keys , NSArray <id> * all_values))) action {
     if (action) objc_setAssociatedObject(self, _MQ_NSMUTABLEDICTIONARY_OBSERVER_KEY_T_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
