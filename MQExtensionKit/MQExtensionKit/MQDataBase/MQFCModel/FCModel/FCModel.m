@@ -62,6 +62,9 @@ static inline BOOL checkForOpenDatabaseFatal(BOOL fatal)
 @property (nonatomic) NSString *propertyTypeEncoding;
 @end
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wimplicit-retain-self"
+
 @implementation FCModelFieldInfo
 - (NSString *)description
 {
@@ -1038,3 +1041,4 @@ static inline BOOL checkForOpenDatabaseFatal(BOOL fatal)
 }
 
 @end
+#pragma clang diagnostic pop

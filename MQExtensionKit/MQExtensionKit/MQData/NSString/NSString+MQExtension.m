@@ -214,6 +214,9 @@
                                                     options:NSDataBase64DecodingIgnoreUnknownCharacters];
     return [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (NSString *)to_url_encoded {
     
     // CharactersToBeEscaped = @":/?&=;+!@#$()~',*";
@@ -246,6 +249,7 @@
                                                                                                     CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
     return sDecode;
 }
+#pragma clang diagnostic pop
 
 - (CGRect)to_rect {
     return CGRectFromString(self);
