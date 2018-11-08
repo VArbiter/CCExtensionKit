@@ -23,7 +23,7 @@
 
 @end
 
-BOOL MQ_IS_STRING_VALUED(__kindof NSString * string) {
+BOOL mq_is_string_valued(__kindof NSString * string) {
     if (string) {
         if ([string isKindOfClass:[NSString class]]) {
             if (string.length
@@ -37,7 +37,7 @@ BOOL MQ_IS_STRING_VALUED(__kindof NSString * string) {
     }
     return false;
 }
-BOOL MQ_IS_ARRAY_VALUED(__kindof NSArray * array) {
+BOOL mq_is_array_valued(__kindof NSArray * array) {
     if (array) {
         if ([array isKindOfClass:[NSArray class]]) {
             if (array.count) {
@@ -47,7 +47,7 @@ BOOL MQ_IS_ARRAY_VALUED(__kindof NSArray * array) {
     }
     return false;
 }
-BOOL MQ_IS_SET_VALUED(__kindof NSSet * set) {
+BOOL mq_is_set_valued(__kindof NSSet * set) {
     if (set) {
         if ([set isKindOfClass:[NSSet class]]) {
             if (set.count) {
@@ -57,7 +57,7 @@ BOOL MQ_IS_SET_VALUED(__kindof NSSet * set) {
     }
     return false;
 }
-BOOL MQ_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) {
+BOOL mq_is_dictionary_valued(__kindof NSDictionary * dictionary) {
     if (dictionary) {
         if ([dictionary isKindOfClass:[NSDictionary class]]) {
             if (dictionary && dictionary.allKeys.count && dictionary.allValues.count
@@ -68,7 +68,7 @@ BOOL MQ_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) {
     }
     return false;
 }
-BOOL MQ_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) {
+BOOL mq_is_decimal_valued(__kindof NSDecimalNumber * decimal) {
     if (decimal) {
         if ([decimal isKindOfClass:[NSDecimalNumber class]]) {
             if (![decimal isEqual:NSDecimalNumber.notANumber]) {
@@ -78,11 +78,11 @@ BOOL MQ_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) {
     }
     return false;
 }
-BOOL MQ_IS_NULL(id object) {
+BOOL mq_is_null(id object) {
     return (object && ![object isKindOfClass:[NSNull class]] && (object != NSNull.null));
 }
 
-NSString * MQ_LOG_OBJECT(id object) {
+NSString * mq_log_object(id object) {
     if (!object) return nil;
     if (![object respondsToSelector:@selector(description)]) return nil;
     

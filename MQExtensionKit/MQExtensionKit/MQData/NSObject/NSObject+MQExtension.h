@@ -17,14 +17,14 @@
 
 @end
 
-BOOL MQ_IS_STRING_VALUED(__kindof NSString * string) ;
-BOOL MQ_IS_ARRAY_VALUED(__kindof NSArray * array) ;
-BOOL MQ_IS_SET_VALUED(__kindof NSSet * set) ;
-BOOL MQ_IS_DICTIONARY_VALUED(__kindof NSDictionary * dictionary) ;
-BOOL MQ_IS_DECIMAL_VALUED(__kindof NSDecimalNumber * decimal) ;
-BOOL MQ_IS_NULL(id object) ;
+BOOL mq_is_string_valued(__kindof NSString * string) ;
+BOOL mq_is_array_valued(__kindof NSArray * array) ;
+BOOL mq_is_set_valued(__kindof NSSet * set) ;
+BOOL mq_is_dictionary_valued(__kindof NSDictionary * dictionary) ;
+BOOL mq_is_decimal_valued(__kindof NSDecimalNumber * decimal) ;
+BOOL mq_is_null(id object) ;
 
-NSString * MQ_LOG_OBJECT(id object);
+NSString * mq_log_object(id object);
 
 @interface NSObject (MQExtension_KVO)
 

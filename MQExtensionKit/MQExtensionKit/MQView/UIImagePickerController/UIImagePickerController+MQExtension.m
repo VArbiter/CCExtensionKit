@@ -31,7 +31,7 @@
         if (not_allowed) not_allowed();
         return self;
     }
-    if (_MQ_IS_SIMULATOR_) {
+    if (mq_is_simulator()) {
         NSLog(@"\n \
               Simulator is not support camera . \n \
               UIImagePickerController will change \"sourceType\" \
@@ -139,6 +139,6 @@ didFinishSavingWithError:(NSError *)error
     if (t) t(error);
 }
 
-_MQ_DETECT_DEALLOC_
+MQ_DETECT_DEALLOC
 
 @end

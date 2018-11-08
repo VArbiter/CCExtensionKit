@@ -28,8 +28,8 @@
     #define MQ_IMAGE_BUNDLE(_vBundle_,_vName_) [UIImage mq_name:(_vName_) bundle:(_vBundle_)]
 #endif
 
-UIImage * MQ_CAPTURE_WINDOW(UIWindow *window);
-UIImage * MQ_LAUNCH_IMAGE(void);
+UIImage * mq_capture_window(UIWindow *window);
+UIImage * mq_launch_image(void);
 
 @interface UIImage (MQExtension)
 
@@ -63,8 +63,8 @@ UIImage * MQ_LAUNCH_IMAGE(void);
 
 @interface UIImage (MQExtension_Gaussian)
 
-FOUNDATION_EXPORT CGFloat _MQ_GAUSSIAN_BLUR_VALUE_ ;
-FOUNDATION_EXPORT CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ ;
+FOUNDATION_EXPORT CGFloat mq_gaussian_blur_value ;
+FOUNDATION_EXPORT CGFloat mq_gaussian_blur_tint_alpha ;
 
 // for blur issues // 针对模糊
 
@@ -90,7 +90,7 @@ FOUNDATION_EXPORT CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 
 @interface UIImage (MQExtension_Data)
 
-FOUNDATION_EXPORT CGFloat _MQ_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
+FOUNDATION_EXPORT CGFloat mq_image_jpeg_compression_quality_size ; // 400 kb
 
 // available for PNG && JPEG // 对于 PNG 和 JPEG 起效
 

@@ -10,7 +10,7 @@
 
 static CGFloat _MQ_DEFAULT_SCALE_WIDTH_ = 750.f;
 static CGFloat _MQ_DEFAULT_SCALE_HEIGHT_ = 1334.f;
-CGFloat const _MQ_DEFAULT_ANIMATION_COMMON_DURATION_ = .3f;
+CGFloat const mq_default_animation_common_duration = .3f;
 
 #pragma mark - Struct
 MQPoint MQPointMake(CGFloat x , CGFloat y) {

@@ -11,7 +11,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-NSInteger const _MQ_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
+NSInteger const mq_file_hash_default_chunk_size = 1024 * 8;
 
 NSString * MQ_HOME_DIRECTORY(void) {
     return NSHomeDirectory();
@@ -149,7 +149,7 @@ NSString * MQ_LIBRARY_DIRECTORY(void) {
         CC_MD5_Init(&hashObject);
         // Make sure chunkSizeForReadingData is valid // 保证 读取对象的 会大小是有效的
         if (!sizeChunk) {
-            sizeChunk = _MQ_FILE_HASH_DEFAULT_CHUNK_SIZE_;
+            sizeChunk = mq_file_hash_default_chunk_size;
         }
         // Feed the data to the hash object // 将 data 给 哈希对象
         bool hasMoreData = true;
@@ -185,7 +185,7 @@ NSString * MQ_LIBRARY_DIRECTORY(void) {
         if (fileURL) CFRelease(fileURL);
         return (__bridge_transfer NSString *) result;
     };
-    return t ? t(((__bridge CFStringRef)sPath) , _MQ_FILE_HASH_DEFAULT_CHUNK_SIZE_) : nil;
+    return t ? t(((__bridge CFStringRef)sPath) , mq_file_hash_default_chunk_size) : nil;
 }
 - (NSString *)mq_mime_type:(NSString *)sPath {
     if (!sPath || !sPath.length) return nil;

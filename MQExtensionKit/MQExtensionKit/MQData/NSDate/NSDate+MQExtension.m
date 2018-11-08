@@ -108,7 +108,7 @@
 @implementation NSString (MQExtension_String_Convert)
 
 - (NSDate *)to_date {
-    if (!MQ_IS_STRING_VALUED(self)) return [NSDate date];
+    if (!mq_is_string_valued(self)) return [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate *date = [formatter dateFromString:self] ;
@@ -138,7 +138,7 @@
 }
 
 - (NSDate *) mq_to_date_with_format : (NSString *) s_format {
-    if (!MQ_IS_STRING_VALUED(self)) return [NSDate date];
+    if (!mq_is_string_valued(self)) return [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = s_format;
     return [formatter dateFromString:self] ;

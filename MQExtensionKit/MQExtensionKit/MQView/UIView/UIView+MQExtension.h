@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-FOUNDATION_EXPORT CGFloat const _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
+FOUNDATION_EXPORT CGFloat const mq_default_animation_common_duration ;
 
 typedef struct CG_BOXABLE CGPoint MQPoint;
 MQPoint MQPointMake(CGFloat x , CGFloat y);

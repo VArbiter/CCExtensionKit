@@ -43,7 +43,7 @@
 }
 
 - (id) mq_value_at : (NSInteger) index {
-    if (!MQ_IS_ARRAY_VALUED(self)) return nil;
+    if (!mq_is_array_valued(self)) return nil;
     if (index >= 0 && index < self.count) {
         return self[index];
     }

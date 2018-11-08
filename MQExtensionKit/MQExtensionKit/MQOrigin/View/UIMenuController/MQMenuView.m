@@ -88,7 +88,7 @@
 @property (nonatomic , copy) void(^blockTitle)(NSString *) ;
 @property (nonatomic , class) NSArray *arrayKeys ;
 
-- (void) _MQ_METHOD_REPLACE_IMPL_ : (id) sender  ;
+- (void) MQ_METHOD_REPLACE_IMPL : (id) sender  ;
 
 @end
 
@@ -103,14 +103,14 @@ static NSArray *__arrayKeys = nil;
         if (sel == NSSelectorFromString(stringKey)) {
             return class_addMethod([self class],
                                    sel,
-                                   class_getMethodImplementation(self, @selector(_MQ_METHOD_REPLACE_IMPL_:)),
+                                   class_getMethodImplementation(self, @selector(MQ_METHOD_REPLACE_IMPL:)),
                                    "s@:@");;
         }
     }
     return [super resolveInstanceMethod:sel];
 }
 
-- (void) _MQ_METHOD_REPLACE_IMPL_ : (id) sender  {
+- (void) MQ_METHOD_REPLACE_IMPL : (id) sender  {
     if (self.blockTitle) self.blockTitle([NSString stringWithUTF8String:sel_getName(_cmd)]);
 }
 

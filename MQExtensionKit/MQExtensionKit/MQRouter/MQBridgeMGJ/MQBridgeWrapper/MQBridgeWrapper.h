@@ -52,20 +52,20 @@ typedef void (^MQRouterCompletionBlock)(id result);
 - (id) mq_get : (MQRouterPatternInfo *) dPattern
      fallback : (void(^)(MQRouterPatternInfo *)) fallback ;
 
-FOUNDATION_EXPORT MQRouterOperateKey const _MQ_ROUTER_PARAMS_URL_;
-FOUNDATION_EXPORT MQRouterOperateKey const _MQ_ROUTER_PARAMS_COMPLETION_;
-FOUNDATION_EXPORT MQRouterOperateKey const _MQ_ROUTER_PARAMS_USER_INFO_;
-FOUNDATION_EXPORT MQRouterOperateKey _MQ_ROUTER_FALL_BACK_URL_ ; // can be customed by user with 'mq_sharedWithScheme:' methods // 可以被开发者使用 'mq_sharedWithScheme:' 来设置
+FOUNDATION_EXPORT MQRouterOperateKey const mq_router_params_url ;
+FOUNDATION_EXPORT MQRouterOperateKey const mq_router_params_completion;
+FOUNDATION_EXPORT MQRouterOperateKey const mq_router_params_userinfo;
+FOUNDATION_EXPORT MQRouterOperateKey mq_router_fallback_url ; // can be customed by user with 'mq_sharedWithScheme:' methods // 可以被开发者使用 'mq_sharedWithScheme:' 来设置
 
-MQRouterPatternInfo * MQ_URL_MAKE(MQRouterRegistKey sURL) ;
-MQRouterPatternInfo * MQ_URL_PATTERN_MAKE(MQRouterRegistKey sURL ,
-                                          NSDictionary *dUserInfo) ;
+MQRouterPatternInfo * mq_router_url_make(MQRouterRegistKey sURL) ;
+MQRouterPatternInfo * mq_router_url_pattern_make(MQRouterRegistKey sURL ,
+                                                 NSDictionary *dUserInfo) ;
 
 /// note : completion block only works with regist methods // 完成 block 只在 注册过的方法中有效
 /// note : if uses in call method , completion will have no values . // 如果在回调中使用 , block 没有值 .
-MQRouterPatternInfo * MQ_URL_PATTERN_COMPLETION_MAKE(MQRouterRegistKey sURL ,
-                                                     NSDictionary *dUserInfo ,
-                                                     MQRouterCompletionBlock) ;
+MQRouterPatternInfo * mq_router_url_pattern_completion_make(MQRouterRegistKey sURL ,
+                                                            NSDictionary *dUserInfo ,
+                                                            MQRouterCompletionBlock) ;
 
 @end
 

@@ -128,7 +128,7 @@
     if (b) {
         controller.view.alpha = .01f;
         [self.view addSubview:controller.view];
-        [UIView animateWithDuration:(f_animation_duration > .0f ? f_animation_duration : _MQ_DEFAULT_ANIMATION_COMMON_DURATION_) animations:^{
+        [UIView animateWithDuration:(f_animation_duration > .0f ? f_animation_duration : mq_default_animation_common_duration) animations:^{
             controller.view.alpha = 1.f;
         }];
     }
@@ -148,7 +148,7 @@
     if (is_aminated) {
         controller.view.alpha = .01f;
         [w addSubview:controller.view];
-        [UIView animateWithDuration:(f_animation_duration > .0f ? f_animation_duration : _MQ_DEFAULT_ANIMATION_COMMON_DURATION_) animations:^{
+        [UIView animateWithDuration:(f_animation_duration > .0f ? f_animation_duration : mq_default_animation_common_duration) animations:^{
             controller.view.alpha = 1.f;
         }];
     }
@@ -249,7 +249,7 @@ static NSString * mq_controller_extension_animated_transition_key = @"mq_control
 
 - (instancetype)init {
     if ((self = [super init])) {
-        self.interval_duration = _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
+        self.interval_duration = mq_default_animation_common_duration;
         self.s_animation_type = kCATransitionFromRight;
     }
     return self;
@@ -294,7 +294,7 @@ static NSString * mq_controller_extension_animated_transition_key = @"mq_control
 
 - (instancetype)init {
     if ((self = [super init])) {
-        self.interval_duration = _MQ_DEFAULT_ANIMATION_COMMON_DURATION_;
+        self.interval_duration = mq_default_animation_common_duration;
         self.direction_right = YES;
     }
     return self;

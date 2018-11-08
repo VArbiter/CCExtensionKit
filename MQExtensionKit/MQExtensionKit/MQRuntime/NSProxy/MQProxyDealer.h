@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#ifndef _MQ_PROXY_DELER_PROTOCOL_TEST_EXAMPLE_
-    #define _MQ_PROXY_DELER_PROTOCOL_TEST_EXAMPLE_
+#ifndef MQ_PROXY_DELER_PROTOCOL_TEST_EXAMPLE
+    #define MQ_PROXY_DELER_PROTOCOL_TEST_EXAMPLE
 #endif
 
-#ifdef _MQ_PROXY_DELER_PROTOCOL_TEST_EXAMPLE_
+#ifdef MQ_PROXY_DELER_PROTOCOL_TEST_EXAMPLE
 
 /// simply simulat the muti-inhert of objective-C // 在 OC 中模仿多继承
 /// note : if you want that MQProxyDealer to simulate the muti-inhert values // 如果你想使用 MQProxyDealer 来模仿多继承

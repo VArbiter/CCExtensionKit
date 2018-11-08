@@ -13,7 +13,7 @@
 
 - (NSDecimalNumber *)to_decimal {
     NSDecimalNumber *t = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%@",self]];
-    return MQ_IS_DECIMAL_VALUED(t) ? t : nil;
+    return mq_is_decimal_valued(t) ? t : nil;
 }
 
 @end
@@ -24,7 +24,7 @@
 
 - (NSDecimalNumber *)to_decimal {
     NSDecimalNumber *t = [NSDecimalNumber decimalNumberWithString:self];
-    return MQ_IS_DECIMAL_VALUED(t) ? t : nil;
+    return mq_is_decimal_valued(t) ? t : nil;
 }
 
 @end
@@ -64,12 +64,12 @@
 
 - (instancetype) mq_mutiply : (NSDecimalNumber *) decimal {
     if (![decimal isKindOfClass:[NSDecimalNumber class]]) return self;
-    if (!MQ_IS_DECIMAL_VALUED(decimal) || !MQ_IS_DECIMAL_VALUED(self)) return self;
+    if (!mq_is_decimal_valued(decimal) || !mq_is_decimal_valued(self)) return self;
     return [self decimalNumberByMultiplyingBy:decimal];
 }
 - (instancetype) mq_devide : (NSDecimalNumber *) decimal {
     if (![decimal isKindOfClass:[NSDecimalNumber class]]) return self;
-    if (!MQ_IS_DECIMAL_VALUED(decimal) || !MQ_IS_DECIMAL_VALUED(self)) return self;
+    if (!mq_is_decimal_valued(decimal) || !mq_is_decimal_valued(self)) return self;
     if ([decimal isEqual:NSDecimalNumber.zero]) return self; // 0 can't be devided
     return [self decimalNumberByDividingBy:decimal];
 }

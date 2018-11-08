@@ -175,6 +175,6 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
     if (self.block_action_paused) self.block_action_paused(self);
 }
 
-_MQ_DETECT_DEALLOC_
+MQ_DETECT_DEALLOC
 
 @end

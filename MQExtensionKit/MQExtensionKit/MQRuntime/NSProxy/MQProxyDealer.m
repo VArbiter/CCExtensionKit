@@ -8,7 +8,7 @@
 
 #import "MQProxyDealer.h"
 
-#ifdef _MQ_PROXY_DELER_PROTOCOL_TEST_EXAMPLE_
+#ifdef MQ_PROXY_DELER_PROTOCOL_TEST_EXAMPLE
 #import <objc/runtime.h>
 
 @interface MQProxyDealer ()

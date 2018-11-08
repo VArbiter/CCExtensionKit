@@ -10,11 +10,14 @@
 #import <objc/runtime.h>
 #import <pthread.h>
 
-dispatch_queue_t MQ_MAIN_QUEUE(void) {
+dispatch_queue_t mq_main_queue(void) {
     return dispatch_get_main_queue();
 }
+BOOL mq_is_main_queue(void) {
+    return NSThread.isMainThread;
+}
 
-void MQ_SWIZZ_METHOD(SEL sel_original , SEL sel_target , Class cls) {
+void mq_swizz_method(SEL sel_original , SEL sel_target , Class cls) {
     Method om = class_getInstanceMethod(cls, sel_original);
     Method tm = class_getInstanceMethod(cls, sel_target);
     if (class_addMethod(cls,sel_original,method_getImplementation(tm),method_getTypeEncoding(tm))) {
@@ -23,7 +26,7 @@ void MQ_SWIZZ_METHOD(SEL sel_original , SEL sel_target , Class cls) {
     else method_exchangeImplementations(om, tm);
 }
 
-dispatch_source_t MQ_DISPATCH_TIMER(NSTimeInterval interval ,
+dispatch_source_t mq_dispatch_timer(NSTimeInterval interval ,
                                     BOOL (^mq_action_block)(void) ,
                                     void (^mq_cancel_block)(void)) {
     if (!mq_action_block) return NULL;
@@ -40,7 +43,7 @@ dispatch_source_t MQ_DISPATCH_TIMER(NSTimeInterval interval ,
     return timer;
 }
 
-dispatch_time_t MQ_DISPATCH_AFTER(double f_seconds ,
+dispatch_time_t mq_dispatch_after(double f_seconds ,
                                   void (^mq_action_block)(void)) {
     if (!mq_action_block) return 0;
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(f_seconds * NSEC_PER_SEC));
@@ -50,53 +53,53 @@ dispatch_time_t MQ_DISPATCH_AFTER(double f_seconds ,
     return time;
 }
 
-void MQ_DISPATCH_ASYNC_M(void (^mq_action_block)(void)) {
-    MQ_DISPATCH_ASYNC(dispatch_get_main_queue(), mq_action_block);
+void mq_dispatch_async_m(void (^mq_action_block)(void)) {
+    mq_dispatch_async(dispatch_get_main_queue(), mq_action_block);
 }
-void MQ_DISPATCH_SYNC_M(void (^mq_action_block)(void)) {
-    MQ_DISPATCH_SYNC(dispatch_get_main_queue(), mq_action_block);
+void mq_dispatch_sync_m(void (^mq_action_block)(void)) {
+    mq_dispatch_sync(dispatch_get_main_queue(), mq_action_block);
 }
-void MQ_DISPATCH_ASYNC(dispatch_queue_t queue , void (^mq_action_block)(void)) {
+void mq_dispatch_async(dispatch_queue_t queue , void (^mq_action_block)(void)) {
     if (!queue) return ;
-    dispatch_async(queue ? queue : MQ_MAIN_QUEUE(), mq_action_block);
+    dispatch_async(queue ? queue : mq_main_queue(), mq_action_block);
 }
-void MQ_DISPATCH_SYNC(dispatch_queue_t queue , void (^mq_action_block)(void)) {
+void mq_dispatch_sync(dispatch_queue_t queue , void (^mq_action_block)(void)) {
     if (pthread_main_np() != 0) {
         if (mq_action_block) mq_action_block();
     }
-    else dispatch_sync(queue ? queue : MQ_MAIN_QUEUE(), mq_action_block);
+    else dispatch_sync(queue ? queue : mq_main_queue(), mq_action_block);
 }
 
-void MQ_DISPATCH_BARRIER_ASYNC(dispatch_queue_t queue , void (^mq_action_block)(void)){
-    dispatch_barrier_async(queue ? queue : MQ_MAIN_QUEUE(), mq_action_block);
+void mq_dispatch_barrier_async(dispatch_queue_t queue , void (^mq_action_block)(void)){
+    dispatch_barrier_async(queue ? queue : mq_main_queue(), mq_action_block);
 }
 
-void MQ_DISPATCH_APPLY_FOR(size_t count , dispatch_queue_t queue , void (^mq_time_block)(size_t t)) {
-    dispatch_apply(count, queue ? queue : MQ_MAIN_QUEUE(), mq_time_block);
+void mq_dispatch_apply_for(size_t count , dispatch_queue_t queue , void (^mq_time_block)(size_t t)) {
+    dispatch_apply(count, queue ? queue : mq_main_queue(), mq_time_block);
 }
-void MQ_DISPATCH_SET_ASSOCIATE(id object , const void * key , id value , MQAssociationPolicy policy) {
+void mq_dispatch_set_associate(id object , const void * key , id value , MQAssociationPolicy policy) {
     objc_setAssociatedObject(object, key, value, (objc_AssociationPolicy)policy);
 }
 
-id MQ_DISPATCH_GET_ASSOCIATE(id object ,
+id mq_dispatch_get_associate(id object ,
                              const void * key) {
     return objc_getAssociatedObject(object, key);
 }
-void MQ_DISPATCH_GET_ASSOCIATE_B(id object ,
+void mq_dispatch_get_associate_b(id object ,
                                  const void * key ,
                                  void (^bValue)(id value)) {
-    if (bValue) bValue(MQ_DISPATCH_GET_ASSOCIATE(object, key));
+    if (bValue) bValue(mq_dispatch_get_associate(object, key));
 }
 
 #pragma mark - ----- 
 @import UIKit;
 
-dispatch_queue_t MQ_DISPATCH_CREATE_SERIAL(const char * label , BOOL is_serial) {
+dispatch_queue_t mq_dispatch_create_serial(const char * label , BOOL is_serial) {
     if (@available(iOS 10.0, *)) {
         return dispatch_queue_create(label, is_serial ? NULL : DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL);
     } else return dispatch_queue_create(label, is_serial ? NULL : DISPATCH_QUEUE_CONCURRENT);
 }
-dispatch_queue_t MQ_DISPATCH_GLOBAL(MQQueueQOS qos) {
+dispatch_queue_t mq_dispatch_global(MQQueueQOS qos) {
     /// for unsigned long flags , what's DOCs told that , it use for reserves for future needs .
     /// thus , for now , it's always be 0 .
     
@@ -149,13 +152,27 @@ dispatch_queue_t MQ_DISPATCH_GLOBAL(MQQueueQOS qos) {
     return dispatch_get_global_queue(qos_t, 0) ;
 }
 
-dispatch_group_t MQ_GROUP_INIT(void) {
+dispatch_group_t mq_group_init(void) {
     return dispatch_group_create();
+}
+
+#pragma mark - ----- LOCK
+dispatch_semaphore_t mq_semaphore_init(long value) {
+    return dispatch_semaphore_create(value);
+}
+dispatch_semaphore_t mq_semaphore_init_t(void) {
+    return mq_semaphore_init(1);
+}
+long mq_semaphore_lock(dispatch_semaphore_t lock) {
+    return dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
+}
+long mq_semaphore_unlock(dispatch_semaphore_t lock) {
+    return dispatch_semaphore_signal(lock);
 }
 
 #pragma mark - -----
 
-void MQ_GET_IVAR(Class cls ,
+void mq_get_ivar(Class cls ,
                  void (^mq_finish_block)(NSDictionary <NSString * , NSString *> *dictionary)) {
     unsigned int iVars = 0;
     Ivar *ivarList = class_copyIvarList(cls, &iVars);
@@ -184,7 +201,7 @@ void MQ_GET_IVAR(Class cls ,
     if (mq_finish_block) mq_finish_block(dictionary);
 }
 
-BOOL MQ_DYNAMIC_ADD_METHOD(Class cls ,
+BOOL mq_dynamic_add_method(Class cls ,
                            NSString * sName ,
                            SEL sel_supply ,
                            void (^mq_fail_block)(void)) {

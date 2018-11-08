@@ -21,9 +21,9 @@
 
 static MQNetworkMoniter *_moniter = nil;
 
-NSString * const _MQ_NETWORK_STATUS_CHANGE_NOTIFICATION_ = @"_MQ_NETWORK_STATUS_CHANGE_NOTIFICATION_";
-NSString * const _MQ_NETWORK_STATUS_KEY_NEW_ = @"MQ_NETWORK_STATUS_KEY_NEW";
-NSString * const _MQ_NETWORK_STATUS_KEY_OLD_ = @"MQ_NETWORK_STATUS_KEY_OLD";
+NSString * const mq_network_status_change_notification = @"MQ_NETWORK_STATUS_CHANGE_NOTIFICATION";
+NSString * const mq_network_status_key_new = @"MQ_NETWORK_STATUS_KEY_NEW";
+NSString * const mq_network_status_key_old = @"MQ_NETWORK_STATUS_KEY_OLD";
 
 @interface MQNetworkMoniter ()
 
@@ -55,7 +55,7 @@ NSString * const _MQ_NETWORK_STATUS_KEY_OLD_ = @"MQ_NETWORK_STATUS_KEY_OLD";
 - (void) mq_reachability_moniter {
     self.activityManager = [AFNetworkActivityIndicatorManager sharedManager];
     self.activityManager.enabled = YES;
-    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:_MQ_NETWORK_STATUS_KEY_NEW_];
+    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:mq_network_status_key_new];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _moniter.reachabilityManager = [AFNetworkReachabilityManager sharedManager];
     __weak typeof(self) pSelf = self;
@@ -79,18 +79,20 @@ NSString * const _MQ_NETWORK_STATUS_KEY_OLD_ = @"MQ_NETWORK_STATUS_KEY_OLD";
     }
     else environment = (MQNetworkType) status;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:_MQ_NETWORK_STATUS_CHANGE_NOTIFICATION_
-                                                        object:nil
-                                                      userInfo:@{_MQ_NETWORK_STATUS_KEY_NEW_ : @(environment),
-                                                                 _MQ_NETWORK_STATUS_KEY_OLD_ : @([[NSUserDefaults standardUserDefaults] integerForKey:_MQ_NETWORK_STATUS_KEY_NEW_])}];
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:mq_network_status_change_notification
+     object:nil
+     userInfo:@{mq_network_status_key_new : @(environment),
+                mq_network_status_key_old : @([[NSUserDefaults standardUserDefaults]
+                                               integerForKey:mq_network_status_key_new])}];
     [[NSUserDefaults standardUserDefaults] setInteger:status
-                                               forKey:_MQ_NETWORK_STATUS_KEY_NEW_];
+                                               forKey:mq_network_status_key_new];
     [[NSUserDefaults standardUserDefaults] synchronize];
     return environment;
 }
 
 - (MQNetworkEnvironment) mq_environment_type {
-    NSInteger integerStatus = [[NSUserDefaults standardUserDefaults] integerForKey:_MQ_NETWORK_STATUS_KEY_NEW_];
+    NSInteger integerStatus = [[NSUserDefaults standardUserDefaults] integerForKey:mq_network_status_key_new];
     if (integerStatus <= 0)
         return MQNetworkEnvironmentNotConnected;
     if (integerStatus == 1 || integerStatus == 3 || integerStatus == 4)

@@ -297,7 +297,7 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
     if (self.bDidEndDragging) self.bDidEndDragging(scrollView, decelerate);
 }
 
-_MQ_DETECT_DEALLOC_
+MQ_DETECT_DEALLOC
 
 @end
 
@@ -356,7 +356,7 @@ _MQ_DETECT_DEALLOC_
     return self.bConfigCell ? self.bConfigCell(collectionView , cell , indexPath) : cell;
 }
 
-_MQ_DETECT_DEALLOC_
+MQ_DETECT_DEALLOC
 
 @end
 

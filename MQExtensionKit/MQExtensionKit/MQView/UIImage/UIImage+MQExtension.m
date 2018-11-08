@@ -10,7 +10,7 @@
 
 #import <CoreGraphics/CoreGraphics.h>
 
-UIImage * MQ_CAPTURE_WINDOW(UIWindow *window) {
+UIImage * mq_capture_window(UIWindow *window) {
     UIWindow *w = [UIApplication sharedApplication].windows.firstObject;
     if (window) w = window;
     
@@ -21,7 +21,7 @@ UIImage * MQ_CAPTURE_WINDOW(UIWindow *window) {
     return image;
 }
 
-UIImage * MQ_LAUNCH_IMAGE(void) {
+UIImage * mq_launch_image(void) {
     CGSize size_t = [UIScreen mainScreen].bounds.size;
     
     NSString *s_orientation = nil;
@@ -123,7 +123,7 @@ compatibleWithTraitCollection:nil];
 }
 
 + (instancetype) mq_capture_current {
-    return MQ_CAPTURE_WINDOW(nil);
+    return mq_capture_window(nil);
 }
 
 @end
@@ -132,13 +132,13 @@ compatibleWithTraitCollection:nil];
 @import Accelerate;
 @import CoreImage;
 
-CGFloat _MQ_GAUSSIAN_BLUR_VALUE_ = 4.f;
-CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
+CGFloat mq_gaussian_blur_value = 4.f;
+CGFloat mq_gaussian_blur_tint_alpha = .25f;
 
 @implementation UIImage (MQExtension_Gaussian)
 
 - (instancetype) mq_gaussian_acc {
-    return [self mq_gaussian_acc:_MQ_GAUSSIAN_BLUR_VALUE_];
+    return [self mq_gaussian_acc:mq_gaussian_blur_value];
 }
 - (instancetype) mq_gaussian_acc : (CGFloat) fRadius {
     return [self mq_gaussian_acc:fRadius tint:UIColor.clearColor];
@@ -270,7 +270,7 @@ CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 }
 
 - (instancetype) mq_gaussian_CI {
-    return [self mq_gaussian_CI:_MQ_GAUSSIAN_BLUR_VALUE_];
+    return [self mq_gaussian_CI:mq_gaussian_blur_value];
 }
 - (instancetype) mq_gaussian_CI : (CGFloat) fRadius {
     UIImage *image = [self copy];
@@ -321,7 +321,7 @@ CGFloat _MQ_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 
 @implementation UIImage (MQExtension_Data)
 
-CGFloat _MQ_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
+CGFloat mq_image_jpeg_compression_quality_size = 400.f;
 
 - (NSData *)toData {
     NSData *d = nil;

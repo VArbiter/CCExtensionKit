@@ -44,56 +44,66 @@ typedef NS_ENUM(unsigned int , MQQueueQOS) {
 #endif
 };
 
-dispatch_queue_t MQ_MAIN_QUEUE(void);
+dispatch_queue_t mq_main_queue(void);
+
+/// notify you whether this operation was excuted on main thread . // 通知你这个操作是否是在主线程执行
+/// returns if this operation was excuted on main thread . // 返回这个任务是否是在主线程执行
+BOOL mq_is_main_queue(void);
 
 /// class original selector , target selector // 原来的方法 , 目标方法
-void MQ_SWIZZ_METHOD(SEL sel_original ,
+void mq_swizz_method(SEL sel_original ,
                      SEL sel_target ,
                      Class cls) ;
 
 /// interval time , timer action , return yes to stop , cancel action (cancel timer to trigger it); // 时间 , 动作 , 返回 YES 来停止 , 取消时触发
-dispatch_source_t MQ_DISPATCH_TIMER(NSTimeInterval interval ,
+dispatch_source_t mq_dispatch_timer(NSTimeInterval interval ,
                                     BOOL (^mq_action_block)(void) ,
                                     void (^mq_cancel_block)(void)) ;
 /// interval time , actions // 时间 , 动作
-dispatch_time_t MQ_DISPATCH_AFTER(double f_seconds ,
+dispatch_time_t mq_dispatch_after(double f_seconds ,
                          void (^mq_action_block)(void)) ;
 /// async to main , 异步到主线
-void MQ_DISPATCH_ASYNC_M(void (^mq_action_block)(void)) ;
+void mq_dispatch_async_m(void (^mq_action_block)(void)) ;
 /// sync to main . warning : do NOT invoke it in MAIN QUEUE , other wise will cause lock done . // 同步到主线 , 警告 : 在主线中使用 , 会引起死锁
-void MQ_DISPATCH_SYNC_M(void (^mq_action_block)(void)) ;
+void mq_dispatch_sync_m(void (^mq_action_block)(void)) ;
 /// async to specific queue // 异步到指定线程
-void MQ_DISPATCH_ASYNC(dispatch_queue_t queue ,
+void mq_dispatch_async(dispatch_queue_t queue ,
                        void (^mq_action_block)(void)) ;
 /// sync to specific queue , warning : do NOT invoke it in MAIN QUEUE , other wise will cause lock done . // 同步到指定线程 , 警告 : 在主线中使用回调至主线 , 会引起死锁
-void MQ_DISPATCH_SYNC(dispatch_queue_t queue ,
+void mq_dispatch_sync(dispatch_queue_t queue ,
                       void (^mq_action_block)(void)) ;
 /// equals to dispatch_barrier_async // 等同于 dispatch_barrier_async
-void MQ_DISPATCH_BARRIER_ASYNC(dispatch_queue_t queue ,
+void mq_dispatch_barrier_async(dispatch_queue_t queue ,
                                void (^mq_action_block)(void)) ;
 /// equals to dispatch_apply // 等同于 dispatch_apply
-void MQ_DISPATCH_APPLY_FOR(size_t count ,
+void mq_dispatch_apply_for(size_t count ,
                            dispatch_queue_t queue ,
                            void (^mq_time_block)(size_t t)) ;
 
 /// equals to objc_setAssociatedObject // 等同于 objc_setAssociatedObject
-void MQ_DISPATCH_SET_ASSOCIATE(id object ,
+void mq_dispatch_set_associate(id object ,
                                const void * key ,
                                id value ,
                                MQAssociationPolicy policy) ;
 /// equals to objc_getAssociatedObject // 等同于 objc_getAssociatedObject
-id MQ_DISPATCH_GET_ASSOCIATE(id object ,
+id mq_dispatch_get_associate(id object ,
                              const void * key) ;
-void MQ_DISPATCH_GET_ASSOCIATE_B(id object ,
+void mq_dispatch_get_associate_b(id object ,
                                  const void * key ,
                                  void (^bValue)(id value)) ;
 
 #pragma mark - ----- Queue
 
-dispatch_queue_t MQ_DISPATCH_CREATE_SERIAL(const char * label , BOOL is_serial) ;
-dispatch_queue_t MQ_DISPATCH_GLOBAL(MQQueueQOS qos) ;
+dispatch_queue_t mq_dispatch_create_serial(const char * label , BOOL is_serial) ;
+dispatch_queue_t mq_dispatch_global(MQQueueQOS qos) ;
 
-dispatch_group_t MQ_GROUP_INIT(void);
+dispatch_group_t mq_group_init(void);
+
+#pragma mark - ----- LOCK
+dispatch_semaphore_t mq_semaphore_init(long value) ;
+dispatch_semaphore_t mq_semaphore_init_t(void) ;
+long mq_semaphore_lock(dispatch_semaphore_t lock);
+long mq_semaphore_unlock(dispatch_semaphore_t lock);
 
 #pragma mark - ----- Class
 
@@ -105,10 +115,10 @@ dispatch_group_t MQ_GROUP_INIT(void);
 @end
 
 /// class that want to be found , <types , properties> // 针对查找的类
-void MQ_GET_IVAR(Class cls ,
+void mq_get_ivar(Class cls ,
                  void (^mq_finish_block)(NSDictionary <NSString * , NSString *> *dictionary)) ;
 /// add a method with one argument . // 添加一个有参数的方法
-BOOL MQ_DYNAMIC_ADD_METHOD(Class cls ,
+BOOL mq_dynamic_add_method(Class cls ,
                            NSString * sName ,
                            SEL sel_supply ,
                            void (^mq_fail_block)(void)) ;

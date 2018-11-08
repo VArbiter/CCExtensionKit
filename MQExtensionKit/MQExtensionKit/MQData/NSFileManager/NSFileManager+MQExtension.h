@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXPORT NSInteger const _MQ_FILE_HASH_DEFAULT_CHUNK_SIZE_;
+FOUNDATION_EXPORT NSInteger const mq_file_hash_default_chunk_size ;
 
 NSString * MQ_HOME_DIRECTORY(void);
 NSString * MQ_TEMP_DIRECTORY(void);

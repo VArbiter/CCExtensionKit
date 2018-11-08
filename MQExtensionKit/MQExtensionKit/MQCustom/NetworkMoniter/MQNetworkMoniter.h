@@ -35,9 +35,9 @@ typedef NS_ENUM(NSInteger , MQNetworkEnvironment) {
 
 - (MQNetworkEnvironment) mq_environment_type ;
 
-extern NSString * const _MQ_NETWORK_STATUS_CHANGE_NOTIFICATION_ ;
-extern NSString * const _MQ_NETWORK_STATUS_KEY_NEW_ ;
-extern NSString * const _MQ_NETWORK_STATUS_KEY_OLD_ ;
+extern NSString * const mq_network_status_change_notification ;
+extern NSString * const mq_network_status_key_new ;
+extern NSString * const mq_network_status_key_old ;
 
 @end
 

@@ -176,7 +176,7 @@
 }
 
 - (NSString *)to_MD5 {
-    if (!MQ_IS_STRING_VALUED(self)) return nil;
+    if (!mq_is_string_valued(self)) return nil;
     const char *cStr = [self UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, (CC_LONG) strlen(cStr), digest );
@@ -186,7 +186,7 @@
     return  stringOutput;
 }
 - (NSString *)to_SHA1 {
-    if (!MQ_IS_STRING_VALUED(self)) return nil;
+    if (!mq_is_string_valued(self)) return nil;
     const char *cstr = [self cStringUsingEncoding:NSUTF8StringEncoding];
     NSData *data = [NSData dataWithBytes:cstr length:self.length];
     // length
@@ -202,7 +202,7 @@
     return output;
 }
 - (NSString *)to_base64 {
-    if (!MQ_IS_STRING_VALUED(self)) return nil;
+    if (!mq_is_string_valued(self)) return nil;
     NSData *d = self.to_data;
     if (d && d.length) {
         return [d base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];

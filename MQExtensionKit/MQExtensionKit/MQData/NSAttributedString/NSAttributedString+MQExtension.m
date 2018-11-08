@@ -39,7 +39,7 @@
 
 + (__kindof NSMutableAttributedString *) mq_color : (UIColor *) color
                                            string : (NSString *) string {
-    if (MQ_IS_STRING_VALUED(string)) {
+    if (mq_is_string_valued(string)) {
         return [[NSMutableAttributedString alloc] initWithString:string
                                                       attributes:@{NSForegroundColorAttributeName : color}];
     }
@@ -96,7 +96,7 @@
 }
 
 - (__kindof NSMutableAttributedString *) mq_append_c : (NSString *) string {
-    if (MQ_IS_STRING_VALUED(string)) {
+    if (mq_is_string_valued(string)) {
         NSMutableAttributedString *t = nil;
         if (self.is_mutable) t = self;
         else t = self.to_mutable;
@@ -113,7 +113,7 @@
 @implementation NSString (MQExtension_AttributedString)
 
 - (NSMutableAttributedString *)to_attribute {
-    return MQ_IS_STRING_VALUED(self) ? [[NSMutableAttributedString alloc] initWithString:self] : nil;
+    return mq_is_string_valued(self) ? [[NSMutableAttributedString alloc] initWithString:self] : nil;
 }
 
 @end
