@@ -119,5 +119,11 @@ id mq_default_object(id object , id insure_object);
 
 /// detect if the obj1 is the obj2 on the memory address . // 在内存地址上检测 对象1 和 对象2 是否为同一个对象
 BOOL mq_is_object_address_same(id obj_1 , id obj_2);
-/// for the hashable objects , whether if the obj1 has the same with obj2. (can be different objects) ,  对于可哈希的对象 , 对象1 是否和 对象2 拥有相同的值. (可以是不同的对象)
+/// for the hashable objects , whether if the obj1 has the same with obj2. (can be different objects) . more specificlly , if you override the method "isEqual:" of given obj , this func will not be recommended to use . //  对于可哈希的对象 , 对象1 是否和 对象2 拥有相同的值. (可以是不同的对象) 如果你重写了 给出的 obj 的 "isEqual:" 方法 , 这个函数就不被推荐使用了 .
 BOOL mq_is_object_hash_same(id obj_1 , id obj_2);
+
+/// detect whether if an obj (can be a class) is subclass / subclass.object of a specific class . // 判定对象(可以是类对象)是否是一个类的 子类 / 子类的对象
+BOOL mq_is_object_subclass_of(id obj , Class clz);
+
+/// detect whether if an obj (can be a class) is same or subclass or subclass.object of a specific class . more specificlly , if you override the method "isEqual:" of given obj , this func will not be recommended to use .// 判定对象(可以是类对象)是否和指定的 类 相同 / 子类 / 子类的对象 . 如果你重写了 给出的 obj 的 "isEqual:" 方法 , 这个函数就不被推荐使用了 .
+BOOL mq_is_object_kind_of_class(id obj , Class clz);

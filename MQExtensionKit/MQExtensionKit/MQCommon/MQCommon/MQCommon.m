@@ -78,3 +78,23 @@ BOOL mq_is_object_hash_same(id obj_1 , id obj_2) {
     }
     return mq_is_object_address_same(obj_1, obj_2);
 }
+
+BOOL mq_is_object_subclass_of(id obj , Class clz) {
+    if ([obj respondsToSelector:@selector(isSubclassOfClass:)]) {
+        return [obj isSubclassOfClass:clz];
+    }
+    else if ([obj respondsToSelector:@selector(class)]) {
+        return [[obj class] isSubclassOfClass:clz];
+    }
+    return false;
+}
+
+BOOL mq_is_object_kind_of_class(id obj , Class clz) {
+    if ([obj respondsToSelector:@selector(initialize)]) {
+        return [obj isEqual:clz];
+    }
+    else if ([obj respondsToSelector:@selector(isKindOfClass:)]) {
+        return [obj isKindOfClass:clz];
+    }
+    return false;
+}
