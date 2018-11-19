@@ -15,8 +15,18 @@ CGFloat const mq_default_animation_common_duration = .3f;
 #pragma mark - Struct
 MQPoint MQPointMake(CGFloat x , CGFloat y) {
     MQPoint o;
-    o.x = x / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
-    o.y = y / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    
+    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        o.x = x / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+        o.y = y / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    }
+    else {
+        o.x = x / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.height;
+        o.y = y / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.width;
+    }
+    
     return o;
 }
 MQPoint MQMakePointFrom(CGPoint point) {
@@ -28,8 +38,18 @@ CGPoint CGMakePointFrom(MQPoint point) {
 
 MQSize MQSizeMake(CGFloat width , CGFloat height) {
     MQSize s;
-    s.width = width / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
-    s.height = height / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    
+    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        s.width = width / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+        s.height = height / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    }
+    else {
+        s.width = width / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.height;
+        s.height = height / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.width;
+    }
+    
     return s;
 }
 MQSize MQMakeSizeFrom(CGSize size) {
@@ -64,10 +84,22 @@ CGRect CGRectFull(void){
 
 MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
     MQEdgeInsets i;
-    i.top = top / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
-    i.left = left / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
-    i.bottom = bottom / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
-    i.right = right / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    
+    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        i.top = top / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+        i.left = left / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+        i.bottom = bottom / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+        i.right = right / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    }
+    else {
+        i.top = top / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.width;
+        i.left = left / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.height;
+        i.bottom = bottom / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.width;
+        i.right = right / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.height;
+    }
+    
     return i;
 }
 MQEdgeInsets MQMakeEdgeInsetsFrom(UIEdgeInsets insets) {
@@ -430,6 +462,16 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
     l.frame = self.bounds;
     l.path = p.CGPath;
     self.layer.mask = l;
+    return self;
+}
+- (instancetype) mq_shadow_make : (UIColor *) color
+                        opacity : (float) f_opacity
+                         radius : (CGFloat) f_radius
+                         offset : (CGSize) size_offset {
+    self.layer.shadowColor = color.CGColor;
+    self.layer.shadowOpacity = f_opacity;
+    self.layer.shadowRadius = f_radius ;
+    self.layer.shadowOffset = size_offset;
     return self;
 }
 - (instancetype) mq_content_mode : (UIViewContentMode) mode {

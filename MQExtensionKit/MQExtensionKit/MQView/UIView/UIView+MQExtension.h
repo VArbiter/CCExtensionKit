@@ -11,11 +11,13 @@
 FOUNDATION_EXPORT CGFloat const mq_default_animation_common_duration ;
 
 typedef struct CG_BOXABLE CGPoint MQPoint;
+/// consider it always protrait (home button on the bottom) . // 只考虑垂直方向 (home 按键在底部)
 MQPoint MQPointMake(CGFloat x , CGFloat y);
 MQPoint MQMakePointFrom(CGPoint point);
 CGPoint CGMakePointFrom(MQPoint point);
 
 typedef struct CG_BOXABLE CGSize MQSize;
+/// consider it always protrait (home button on the bottom) . // 只考虑垂直方向 (home 按键在底部)
 MQSize MQSizeMake(CGFloat width , CGFloat height);
 MQSize MQMakeSizeFrom(CGSize size);
 CGSize CGMakeSizeFrom(MQSize size);
@@ -28,6 +30,7 @@ CGRect CGMakeRectFrom(MQRect rect);
 CGRect CGRectFull(void); // main screen bounds . // 等于屏幕的边界
 
 typedef struct CG_BOXABLE UIEdgeInsets MQEdgeInsets;
+/// consider it always protrait (home button on the bottom) . // 只考虑垂直方向 (home 按键在底部)
 MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
 MQEdgeInsets MQMakeEdgeInsetsFrom(UIEdgeInsets insets);
 UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets);
@@ -133,6 +136,10 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
                      masks : (BOOL) is_mask ;
 - (instancetype) mq_round_corner : (UIRectCorner) corners
                           radius : (CGFloat) f_radius ;
+- (instancetype) mq_shadow_make : (UIColor *) color
+                        opacity : (float) f_opacity
+                         radius : (CGFloat) f_radius
+                         offset : (CGSize) size_offset ;
 - (instancetype) mq_content_mode : (UIViewContentMode) mode ;
 
 /// copy it self . // 复制自身
