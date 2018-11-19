@@ -32,20 +32,23 @@ MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFl
 MQEdgeInsets MQMakeEdgeInsetsFrom(UIEdgeInsets insets);
 UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets);
 
-/// scaled width && height (based on main screen's width && height resolution) // 按比例缩放后的 宽/高 (基于屏幕宽和高的分辨率)
+/// scaled width && height (based on main screen's width && height resolution) , consider it always protrait (home button on the bottom) . // 按比例缩放后的 宽/高 (基于屏幕宽和高的分辨率) , 只考虑垂直方向 (home 按键在底部)
 CGFloat MQScaleW(CGFloat w);
 CGFloat MQScaleH(CGFloat h);
 
-/// aspect fit the width && height . (based on main screen's width resolution) // 按照特定比例缩放后的 宽 / 高 (基于屏幕宽的分辨率)
+/// aspect fit the width && height , consider it always protrait (home button on the bottom) .(based on main screen's width resolution) // 按照特定比例缩放后的 宽 / 高 (基于屏幕宽的分辨率) , 只考虑垂直方向 (home 按键在底部)
 CGFloat MQAspectRatio(void);
 CGFloat MQAspectW(CGFloat w);
 CGFloat MQAspectH(CGFloat h);
 
-/// length scale // 计算 宽/高 所占屏幕比例
+/// length scale , consider it always protrait (home button on the bottom) . // 计算 宽/高 所占屏幕比例 , 只考虑垂直方向 (home 按键在底部)
 CGFloat MQWScale(CGFloat w);
 CGFloat MQHScale(CGFloat h);
 CGPoint MQScaleOrigin(CGPoint origin);
 CGSize MQScaleSize(CGSize size);
+
+/// get device orientation . if "UIDeviceOrientationFaceUp / UIDeviceOrientationFaceDown" have no relevance to your app , recommended to set YES with this param . if you set false / NO . you will get "UIDeviceOrientationUnknown" the first time you use . // 获得屏幕旋转方向 , 如果你的应用不在乎手机 是 "UIDeviceOrientationFaceUp / UIDeviceOrientationFaceDown" 的 , 推荐在参数设置为 YES . 如果设置 false / NO . 第一次获得屏幕旋转方向的时候 , 你会获得 "UIDeviceOrientationUnknown" .
+UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orientation);
 
 @interface UIView (MQExtension)
 
@@ -138,7 +141,11 @@ CGSize MQScaleSize(CGSize size);
 /// find its absolute location in screen . // 找到 view 在屏幕中的绝对位置 
 - (CGRect) mq_location_in_window ;
 
+/// generate a image for current window . // 为当前 window 生成一张图片 .
 - (UIImage *) mq_capture_image_after_screen_updates : (BOOL) is_after_updates ;
+
+/// forced window to a specific orientation . // 强制 window 旋转到指定方向 .
+- (void) mq_force_window_to_orientation : (UIDeviceOrientation) orientation ;
 
 @end
 

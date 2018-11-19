@@ -85,14 +85,30 @@ UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets) {
 
 #pragma mark - Scale
 CGFloat MQScaleW(CGFloat w) {
-    return w / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        return w / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+    }
+    else return w / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.height;
 }
 CGFloat MQScaleH(CGFloat h) {
-    return h / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        return h / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+    }
+    else return h / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.width;
+    
 }
 
 CGFloat MQAspectRatio(void) {
-    return UIScreen.mainScreen.bounds.size.width * UIScreen.mainScreen.scale / _MQ_DEFAULT_SCALE_WIDTH_ ;
+    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        return UIScreen.mainScreen.bounds.size.width * UIScreen.mainScreen.scale / _MQ_DEFAULT_SCALE_WIDTH_ ;
+    }
+    else return UIScreen.mainScreen.bounds.size.height * UIScreen.mainScreen.scale / _MQ_DEFAULT_SCALE_WIDTH_ ;
 }
 CGFloat MQAspectW(CGFloat w) {
     return w * MQAspectRatio();
@@ -113,6 +129,17 @@ CGFloat MQWScale(CGFloat w) {
 }
 CGFloat MQHScale(CGFloat h) {
     return h / _MQ_DEFAULT_SCALE_HEIGHT_;
+}
+
+UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orientation) {
+    if (is_use_status_bar_orientation) {
+        UIDeviceOrientation orientation = ((UIDeviceOrientation)UIApplication.sharedApplication.statusBarOrientation);
+        return orientation;
+    }
+    else {
+        UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+        return orientation;
+    }
 }
 
 @implementation UIView (MQExtension)
@@ -428,6 +455,18 @@ CGFloat MQHScale(CGFloat h) {
     UIImage *t = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return t;
+}
+
+- (void) mq_force_window_to_orientation : (UIDeviceOrientation) orientation {
+    if ([UIDevice.currentDevice respondsToSelector:@selector(setOrientation:)]) {
+        SEL sel = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:sel]];
+        [invocation setSelector:sel];
+        [invocation setTarget:UIDevice.currentDevice];
+        int var = orientation;
+        [invocation setArgument:&var atIndex:2];
+        [invocation invoke];
+    }
 }
 
 @end
