@@ -77,24 +77,24 @@
     return c;
 }
 
-- (UIImage *)image_t {
+- (UIImage *)mq_image {
     return [UIImage mq_color:self];
 }
 
-- (CGFloat)red_t {
-    return self.RGBA.firstObject.floatValue;
+- (CGFloat)mq_red {
+    return self.mq_RGBA.firstObject.floatValue;
 }
-- (CGFloat)green_t {
-    return self.RGBA[1].floatValue;
+- (CGFloat)mq_green {
+    return self.mq_RGBA[1].floatValue;
 }
-- (CGFloat)blue_t {
-    return self.RGBA[2].floatValue;
+- (CGFloat)mq_blue {
+    return self.mq_RGBA[2].floatValue;
 }
-- (CGFloat)alpha_t {
-    return self.RGBA.lastObject.floatValue;
+- (CGFloat)mq_alpha {
+    return self.mq_RGBA.lastObject.floatValue;
 }
 
-- (NSArray<NSNumber *> *)RGBA {
+- (NSArray<NSNumber *> *)mq_RGBA {
     NSArray *t = objc_getAssociatedObject(self, "MQ_UICOLOR_GET_RGBA_ASSOCIATE_KEY");
     if (t) return t;
     CGFloat r = .0f,

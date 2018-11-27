@@ -38,18 +38,18 @@
 + (instancetype) mq_random;
 
 /// generate a image that size equals (CGSize){1.f , 1.f} // 生成一张大小是一像素的图片
-@property (nonatomic , readonly) UIImage *image_t;
+@property (nonatomic , readonly) UIImage *mq_image;
 
 /// returns the original R , G , B , A for colors // 返回这个图片的原始 R,G,B,A
 /// note : if use it to generate a new color , has to make sure that each one must muti by "255.f" // 如果使用它去生成新的颜色 , 保证每个都乘上 "255.f"
 /// return 0 if sth goes wrong // 如果出现错误 , 返回 0 
-@property (nonatomic , assign , readonly) CGFloat red_t ;
-@property (nonatomic , assign , readonly) CGFloat green_t ;
-@property (nonatomic , assign , readonly) CGFloat blue_t ;
-@property (nonatomic , assign , readonly) CGFloat alpha_t ;
+@property (nonatomic , assign , readonly) CGFloat mq_red ;
+@property (nonatomic , assign , readonly) CGFloat mq_green ;
+@property (nonatomic , assign , readonly) CGFloat mq_blue ;
+@property (nonatomic , assign , readonly) CGFloat mq_alpha ;
 
 /// returns the same order as RGBA // 按照 RGBA 的顺序 .
-@property (nonatomic , readonly) NSArray <NSNumber *> *RGBA;
+@property (nonatomic , readonly) NSArray <NSNumber *> *mq_RGBA;
 
 @end
 
