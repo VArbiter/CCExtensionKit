@@ -65,6 +65,25 @@
     return self;
 }
 
+- (WKNavigation *) mq_go_back {
+    if ([self canGoBack]) {
+        return [self goBack];
+    }
+    return nil ;
+}
+- (WKNavigation *) mq_go_foward {
+    if ([self canGoForward]) {
+        return [self goForward];
+    }
+    return nil;
+}
+- (WKNavigation *) mq_reload : (BOOL) is_origin {
+    if (is_origin) {
+        return [self reloadFromOrigin];
+    }
+    else return [self reload];
+}
+
 @end
 
 #pragma mark - -----

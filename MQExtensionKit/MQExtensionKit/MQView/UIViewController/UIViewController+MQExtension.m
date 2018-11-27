@@ -155,48 +155,6 @@
     else [w addSubview:controller.view];
 }
 
-+ (__kindof UIViewController *) mq_current {
-    return [self mq_current_from:UIViewController.mq_current_root];
-}
-+ (__kindof UIViewController *) mq_current_root {
-    return UIApplication.sharedApplication.delegate.window.rootViewController;
-}
-+ (__kindof UINavigationController *) mq_current_navigation {
-    return self.mq_current.navigationController;
-}
-+ (__kindof UIViewController *) mq_current_from : (UIViewController *) controller {
-    if ([controller isKindOfClass:UINavigationController.class]) {
-        UINavigationController *nvc = (UINavigationController *)controller;
-        return [self mq_current_from:nvc.viewControllers.lastObject];
-    }
-    else if([controller isKindOfClass:UITabBarController.class]) {
-        UITabBarController *tbvc = (UITabBarController *)controller;
-        return [self mq_current_from:tbvc.selectedViewController];
-    }
-    else if(controller.presentedViewController != nil) {
-        return [self mq_current_from:controller.presentedViewController];
-    }
-    else return controller;
-}
-+ (UIViewController *)mq_windowed_current {
-    id vc = nil;
-    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
-    if (window.windowLevel != UIWindowLevelNormal) {
-        NSArray *arrayWindows = [[UIApplication sharedApplication] windows];
-        for (UIWindow *tempWindow in arrayWindows) {
-            if (tempWindow.windowLevel == UIWindowLevelNormal) {
-                window = tempWindow;
-                break;
-            }
-        }
-    }
-    UIView *viewFront = [[window subviews] firstObject];
-    vc = [viewFront nextResponder];
-    if ([vc isKindOfClass:[UIViewController class]])
-        return [UIViewController mq_current_from:vc];
-    else return window.rootViewController;
-}
-
 - (instancetype) mq_enable_pushing_poping_style_when_present_or_dismiss {
     self.transitioningDelegate = self;
     return self;

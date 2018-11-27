@@ -30,6 +30,10 @@
 - (instancetype) mq_content : (NSString *) content
                  navigation : (void (^)(WKNavigation *navigation)) navigation ;
 
+- (WKNavigation *) mq_go_back ;
+- (WKNavigation *) mq_go_foward ;
+- (WKNavigation *) mq_reload : (BOOL) is_origin ;
+
 @end
 
 #pragma mark - -----

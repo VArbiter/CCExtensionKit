@@ -49,15 +49,6 @@
                    animated : (BOOL) isAminated
                    duration : (CGFloat) f_animation_duration ;
 
-/// current controller that shows on screen . (only the main window) // 当前 main window 上所显示的控制器
-+ (__kindof UIViewController *) mq_current ;
-+ (__kindof UIViewController *) mq_current_root ;
-+ (__kindof UINavigationController *) mq_current_navigation;
-+ (__kindof UIViewController *) mq_current_from : (UIViewController *) controller ;
-
-/// when have muti windows . // 如果有多个 window 的话 .
-+ (__kindof UIViewController *) mq_windowed_current ;
-
 /// make present modeled push / dismiss modeled pop // 使得 模态动画像是 导航栏的 push / pop
 /// only works in present . // 只针对 模态有效
 /// note : invoke it in the controller is about to presented . not the presenting one . // 在将要被模态出的控制器使用 , 不是当前的控制器

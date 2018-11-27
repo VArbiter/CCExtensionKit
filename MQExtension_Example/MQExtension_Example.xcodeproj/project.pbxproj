@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3FE6F4D7C4B954FAD21408F9 /* Pods_MQExtension_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */; };
+		7089AB5B21ACF13A00C835EE /* UIWindow+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */; };
 		70F08BF0210EB2FF007B4D33 /* CCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08BEF210EB2FF007B4D33 /* CCAppDelegate.m */; };
 		70F08BF3210EB2FF007B4D33 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08BF2210EB2FF007B4D33 /* ViewController.m */; };
 		70F08BF6210EB2FF007B4D33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70F08BF4210EB2FF007B4D33 /* Main.storyboard */; };
@@ -102,6 +103,8 @@
 /* Begin PBXFileReference section */
 		3234B751F3D87C878A5DA387 /* Pods-MQExtension_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQExtension_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example.release.xcconfig"; sourceTree = "<group>"; };
 		65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MQExtension_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7089AB5921ACF13A00C835EE /* UIWindow+MQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+MQExtension.h"; sourceTree = "<group>"; };
+		7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+MQExtension.m"; sourceTree = "<group>"; };
 		70F08BEB210EB2FF007B4D33 /* MQExtension_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MQExtension_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F08BEE210EB2FF007B4D33 /* CCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCAppDelegate.h; sourceTree = "<group>"; };
 		70F08BEF210EB2FF007B4D33 /* CCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCAppDelegate.m; sourceTree = "<group>"; };
@@ -321,6 +324,15 @@
 				3234B751F3D87C878A5DA387 /* Pods-MQExtension_Example.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7089AB5821ACF12B00C835EE /* UIWindow */ = {
+			isa = PBXGroup;
+			children = (
+				7089AB5921ACF13A00C835EE /* UIWindow+MQExtension.h */,
+				7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */,
+			);
+			path = UIWindow;
 			sourceTree = "<group>";
 		};
 		70F08BE2210EB2FF007B4D33 = {
@@ -950,6 +962,7 @@
 		70F08E22210EC60C007B4D33 /* MQView */ = {
 			isa = PBXGroup;
 			children = (
+				7089AB5821ACF12B00C835EE /* UIWindow */,
 				70F08E23210EC60C007B4D33 /* UIImage */,
 				70F08E26210EC60C007B4D33 /* UISwitch */,
 				70F08E29210EC60C007B4D33 /* UIScrollView */,
@@ -1459,6 +1472,7 @@
 				70F08EB7210EC60C007B4D33 /* UIColor+MQExtension.m in Sources */,
 				70F08E81210EC60C007B4D33 /* MQMenuView.m in Sources */,
 				70F08EC5210EC60C007B4D33 /* UIGestureRecognizer+MQExtension.m in Sources */,
+				7089AB5B21ACF13A00C835EE /* UIWindow+MQExtension.m in Sources */,
 				70F08EAD210EC60C007B4D33 /* PHImageRequestOptions+MQExtension.m in Sources */,
 				70F08F5B211152FD007B4D33 /* FCModel.m in Sources */,
 				70F08E94210EC60C007B4D33 /* NSDictionary+MQExtension.m in Sources */,
