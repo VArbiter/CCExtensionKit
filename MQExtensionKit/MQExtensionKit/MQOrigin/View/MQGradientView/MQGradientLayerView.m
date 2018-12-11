@@ -16,8 +16,8 @@
 
 @implementation MQGradientLayerView
 
-- (void) mq_begin_with : (CGPoint) pBegin
-                   end : (CGPoint) pEnd
+- (void) mq_begin_with : (CGPoint) point_begin
+                   end : (CGPoint) point_end
                 colors : (NSArray <UIColor *> *(^)(void)) colors
          each_percents : (NSArray <NSNumber *> *(^)(void)) percents {
     if (!colors || !percents) return ;
@@ -36,8 +36,8 @@
     CAGradientLayer *l = [CAGradientLayer layer];
     l.frame = self.bounds;
     l.colors = a;
-    l.startPoint = pBegin;
-    l.endPoint = pEnd;
+    l.startPoint = point_begin;
+    l.endPoint = point_end;
     l.locations = aN;
 //    l.type = kCAGradientLayerAxial; // only axial , and it's the default value // 目前只有 axial , 而且它还是默认值 
     self.layerGradient = l;

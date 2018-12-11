@@ -18,9 +18,9 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
 @interface MQDropAlertView () < UIDynamicAnimatorDelegate >
 
 @property (nonatomic , strong , readwrite) UIDynamicAnimator *animator ;
-@property (nonatomic , strong , readwrite) UIView *viewCustom ;
-@property (nonatomic , assign , readwrite) UIView *viewOn ;
-@property (nonatomic , strong , readwrite) CALayer *layerAnim ;
+@property (nonatomic , strong , readwrite) UIView *view_custom ;
+@property (nonatomic , assign , readwrite) UIView *view_on ;
+@property (nonatomic , strong , readwrite) CALayer *layer_anim ;
 
 @end
 
@@ -32,23 +32,23 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
 }
 
 - (instancetype) initWithView : (__kindof UIView *) view
-                       showOn : (__kindof UIView *) viewOn {
-    if (!view || !viewOn) return nil;
-    if ((self = [super initWithFrame:viewOn.bounds])) {
-        self.enableOffEdgePop = false;
-        self.viewCustom = view;
-        self.viewOn = viewOn;
+                       showOn : (__kindof UIView *) view_on {
+    if (!view || !view_on) return nil;
+    if ((self = [super initWithFrame:view_on.bounds])) {
+        self.enable_off_edge_pop = false;
+        self.view_custom = view;
+        self.view_on = view_on;
         self.layer.backgroundColor = [UIColor.blackColor mq_alpha:.2f].CGColor;
-        [self mq_add:[[self.viewCustom mq_bottom:self.mq_top] mq_center_x:self.mq_in_center_x]];
+        [self mq_add:[[self.view_custom mq_bottom:self.mq_top] mq_center_x:self.mq_in_center_x]];
     }
     return self;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    if (!self.isEnableOffEdgePop) return ;
+    if (!self.is_enable_off_edge_pop) return ;
     UITouch *touch = touches.anyObject;
     CGPoint p = [touch locationInView:self];
-    if (!CGRectContainsPoint(self.viewCustom.frame , p)) {
+    if (!CGRectContainsPoint(self.view_custom.frame , p)) {
         [self mq_dismiss];
     }
 }
@@ -58,29 +58,29 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
 }
 
 - (void) mq_show : (MQDropAnimate) animate {
-    [self.viewOn addSubview:self];
+    [self.view_on addSubview:self];
     
     if (self.block_action_start) self.block_action_start(self);
     
     switch (animate) {
         case MQDropAnimate_None:{
-            self.viewCustom.center = self.mq_in_center;
+            self.view_custom.center = self.mq_in_center;
             if (self.block_action_start_did_end) self.block_action_start_did_end(self);
         }break;
         case MQDropAnimate_Smooth:{
             MQ_WEAK_SELF;
-            void (^bCenter)(void) = ^ {
+            void (^block_center)(void) = ^ {
                 [UIView animateWithDuration:.2f animations:^{
-                    weak_self.viewCustom.center = weak_self.mq_in_center;
+                    weak_self.view_custom.center = weak_self.mq_in_center;
                     if (weak_self.block_action_start_did_end) weak_self.block_action_start_did_end(weak_self);
                 }];
             };
             
             [UIView animateWithDuration:MQ_DROP_ANIMATION_DURATION animations:^{
                 weak_self.alpha = 1.0f;
-                weak_self.viewCustom.center = (CGPoint){weak_self.mq_in_center_x , weak_self.mq_in_center_y + MQScaleH(80.f)};
+                weak_self.view_custom.center = (CGPoint){weak_self.mq_in_center_x , weak_self.mq_in_center_y + MQScaleH(80.f)};
             } completion:^(BOOL finished) {
-                if (bCenter) bCenter();
+                if (block_center) block_center();
             }];
         }break;
         case MQDropAnimate_Snap:{
@@ -91,14 +91,14 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
                 if (weak_self.block_action_start_did_end) weak_self.block_action_start_did_end(weak_self);
             }];
             
-            UISnapBehavior *snapBehaviour = [[UISnapBehavior alloc] initWithItem:self.viewCustom
-                                                                     snapToPoint:self.viewOn.mq_in_center];
-            snapBehaviour.damping = MQ_SNAP_DAMPING_DURATION;
-            [self.animator addBehavior:snapBehaviour];
+            UISnapBehavior *snap_behaviour = [[UISnapBehavior alloc] initWithItem:self.view_custom
+                                                                     snapToPoint:self.view_on.mq_in_center];
+            snap_behaviour.damping = MQ_SNAP_DAMPING_DURATION;
+            [self.animator addBehavior:snap_behaviour];
         }break;
             
         default:{
-            self.viewCustom.center = self.mq_in_center;
+            self.view_custom.center = self.mq_in_center;
         }break;
     }
 }
@@ -109,7 +109,7 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
 - (void) mq_dismiss : (MQDropAnimate) animate {
     
     MQ_WEAK_SELF;
-    void (^bDismiss)(void) = ^ {
+    void (^block_dismiss)(void) = ^ {
         [UIView animateWithDuration:MQ_DROP_ANIMATION_DURATION animations:^{
             weak_self.alpha = 0.0f;
         } completion:^(BOOL finished) {
@@ -118,44 +118,44 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
         }];
     };
     
-    void (^bAddGravity)(void) = ^ {
-        UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[weak_self.viewCustom]];
-        gravityBehaviour.gravityDirection = CGVectorMake(0.0f, 10.0f);
-        [weak_self.animator addBehavior:gravityBehaviour];
+    void (^block_add_gravity)(void) = ^ {
+        UIGravityBehavior *gravity_behaviour = [[UIGravityBehavior alloc] initWithItems:@[weak_self.view_custom]];
+        gravity_behaviour.gravityDirection = CGVectorMake(0.0f, 10.0f);
+        [weak_self.animator addBehavior:gravity_behaviour];
     };
     
     switch (animate) {
         case MQDropAnimate_None:{
-            if (bDismiss) bDismiss();
+            if (block_dismiss) block_dismiss();
         }break;
         case MQDropAnimate_Smooth:{
             [self.animator removeAllBehaviors];
-            if (bAddGravity) bAddGravity();
-            if (bDismiss) bDismiss();
+            if (block_add_gravity) block_add_gravity();
+            if (block_dismiss) block_dismiss();
         }break;
         case MQDropAnimate_Snap:{
             [self.animator removeAllBehaviors];
-            if (bAddGravity) bAddGravity();
-            UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.viewCustom]];
-            [itemBehaviour addAngularVelocity:(- M_PI_2)
-                                      forItem:self.viewCustom];
-            [self.animator addBehavior:itemBehaviour];
-            if (bDismiss) bDismiss();
+            if (block_add_gravity) block_add_gravity();
+            UIDynamicItemBehavior *item_behaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.view_custom]];
+            [item_behaviour addAngularVelocity:(- M_PI_2)
+                                      forItem:self.view_custom];
+            [self.animator addBehavior:item_behaviour];
+            if (block_dismiss) block_dismiss();
         }break;
             
         default:{
-            if (bDismiss) bDismiss();
+            if (block_dismiss) block_dismiss();
         }break;
     }
 }
 
 - (void) mq_set_shadow : (UIColor *) color
-                 alpha : (CGFloat) fAlpha {
+                 alpha : (CGFloat) f_alpha {
     if (color
         && [color isKindOfClass:UIColor.class]
-        && fAlpha >= 0
-        && fAlpha <= 1) {
-        self.layer.backgroundColor = [color mq_alpha:fAlpha].CGColor;
+        && f_alpha >= 0
+        && f_alpha <= 1) {
+        self.layer.backgroundColor = [color mq_alpha:f_alpha].CGColor;
     }
 }
 

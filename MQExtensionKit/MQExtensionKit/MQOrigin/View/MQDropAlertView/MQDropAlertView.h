@@ -29,14 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype) initWithView : (__kindof UIView *) view ;
 - (instancetype) initWithView : (__kindof UIView *) view
-                       showOn : (__kindof UIView *) viewOn ;
+                       showOn : (__kindof UIView *) view_on ;
 
 @property (nonatomic , strong , readonly) UIDynamicAnimator *animator ;
-@property (nonatomic , strong , readonly) UIView *viewCustom ;
-@property (nonatomic , assign , readonly) UIView *viewOn ;
+@property (nonatomic , strong , readonly) UIView *view_custom ;
+@property (nonatomic , assign , readonly) UIView *view_on ;
 
 /// enable or not offEdgePop , default is false // 是否启用超界消失 , 默认是 false
-@property (nonatomic , assign , getter=isEnableOffEdgePop) BOOL enableOffEdgePop ;
+@property (nonatomic , assign , getter=is_enable_off_edge_pop) BOOL enable_off_edge_pop ;
 /// animation will be started // 动画将要开始
 @property (nonatomic , copy) void (^block_action_start)(MQDropAlertView *sender) ;
 /// start animation will be ended // 开始动画已经结束 (视图已经完整出现在屏幕中央 , 动画器完成出现动画时调用)
@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 // note : falpha was the component for color , not for view . // falpha 是 color 的通道 , 不是 View 的通道
 // note : thus , it has no effect for its subviews . // 所以 , 它不会影响到它的子试图
 - (void) mq_set_shadow : (UIColor *) color
-                 alpha : (CGFloat) fAlpha ;
+                 alpha : (CGFloat) f_alpha ;
 
 @end
 

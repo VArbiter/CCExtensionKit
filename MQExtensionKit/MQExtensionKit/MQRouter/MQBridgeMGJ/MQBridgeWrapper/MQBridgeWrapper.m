@@ -17,8 +17,8 @@ MQRouterOperateKey mq_router_fallback_url = @"elwinfrederick://";
 
 @interface MQBridgeWrapper () < NSCopying , NSMutableCopying >
 
-NSDictionary * mq_transfer_MGJ_parameters(NSDictionary *dParams);
-NSString * mq_append_url_scheme(MQRouterRegistKey sURL , BOOL isRegist);
+NSDictionary * mq_transfer_MGJ_parameters(NSDictionary *d_params);
+NSString * mq_append_url_scheme(MQRouterRegistKey s_url , BOOL is_regist);
 
 @end
 
@@ -31,9 +31,9 @@ static MQBridgeWrapper *__router = nil;
     __router = [[MQBridgeWrapper alloc] init];
     return __router;
 }
-+ (instancetype) mq_shared_with_scheme : (MQRouterRegistKey) sScheme {
++ (instancetype) mq_shared_with_scheme : (MQRouterRegistKey) s_scheme {
     if (!__router) {
-        mq_router_fallback_url = sScheme;
+        mq_router_fallback_url = s_scheme;
         return self.mq_shared;
     }
     return __router;
@@ -58,22 +58,22 @@ static MQBridgeWrapper *__router = nil;
 #pragma mark -
 
 // regist
-- (instancetype) mq_regist_fallback : (void (^)(MQRouterPatternInfo *dInfos)) fallBack {
+- (instancetype) mq_regist_fallback : (void (^)(MQRouterPatternInfo *d_infos)) fallBack {
     [MGJRouter registerURLPattern:mq_router_fallback_url toHandler:^(NSDictionary *routerParameters) {
         if (fallBack) fallBack(mq_transfer_MGJ_parameters(routerParameters));
     }];
     return self;
 }
-- (instancetype) mq_regist_operation : (MQRouterRegistKey) sURL
+- (instancetype) mq_regist_operation : (MQRouterRegistKey) s_url
                               action : (void(^)(MQRouterPatternInfo *dInfos)) action {
-    [MGJRouter registerURLPattern:mq_append_url_scheme(sURL , YES) toHandler:^(NSDictionary *routerParameters) {
+    [MGJRouter registerURLPattern:mq_append_url_scheme(s_url , YES) toHandler:^(NSDictionary *routerParameters) {
         if (action) action(mq_transfer_MGJ_parameters(routerParameters));
     }];
     return self;
 }
-- (instancetype) mq_regist_object : (MQRouterRegistKey) sURL
-                            value : (id(^)(MQRouterPatternInfo *dInfos)) value {
-    [MGJRouter registerURLPattern:mq_append_url_scheme(sURL , YES) toObjectHandler:^id(NSDictionary *routerParameters) {
+- (instancetype) mq_regist_object : (MQRouterRegistKey) s_url
+                            value : (id(^)(MQRouterPatternInfo *d_infos)) value {
+    [MGJRouter registerURLPattern:mq_append_url_scheme(s_url , YES) toObjectHandler:^id(NSDictionary *routerParameters) {
         if (value) return value(mq_transfer_MGJ_parameters(routerParameters));
         return nil;
     }];
@@ -81,70 +81,70 @@ static MQBridgeWrapper *__router = nil;
 }
 
 // deregist
-- (instancetype) mq_deregist : (MQRouterRegistKey) sURL {
-    [MGJRouter deregisterURLPattern:sURL];
+- (instancetype) mq_deregist : (MQRouterRegistKey) s_url {
+    [MGJRouter deregisterURLPattern:s_url];
     return self;
 }
 
 // open
-- (BOOL) mq_is_can_open : (MQRouterRegistKey) sURL  {
-    return [MGJRouter canOpenURL:mq_append_url_scheme(sURL , false)];
+- (BOOL) mq_is_can_open : (MQRouterRegistKey) s_url  {
+    return [MGJRouter canOpenURL:mq_append_url_scheme(s_url , false)];
 }
 
-- (instancetype) mq_call : (MQRouterPatternInfo *) dPattern
+- (instancetype) mq_call : (MQRouterPatternInfo *) d_pattern
                 fallback : (void(^)(MQRouterPatternInfo *dInfos)) fallback {
-    if (![MGJRouter canOpenURL:mq_append_url_scheme(dPattern[mq_router_params_url] , false)]) {
-        if (fallback) fallback(dPattern);
+    if (![MGJRouter canOpenURL:mq_append_url_scheme(d_pattern[mq_router_params_url] , false)]) {
+        if (fallback) fallback(d_pattern);
         return self;
     }
     
-    [MGJRouter openURL:mq_append_url_scheme(dPattern[mq_router_params_url] , false)
-          withUserInfo:dPattern[mq_router_params_userinfo] completion:^(id result) {
-              MQRouterCompletionBlock b = dPattern[mq_router_params_completion];
+    [MGJRouter openURL:mq_append_url_scheme(d_pattern[mq_router_params_url] , false)
+          withUserInfo:d_pattern[mq_router_params_userinfo] completion:^(id result) {
+              MQRouterCompletionBlock b = d_pattern[mq_router_params_completion];
               if (b) b(result);
           }];
     return self;
 }
 
-- (id) mq_get : (MQRouterPatternInfo *) dPattern
+- (id) mq_get : (MQRouterPatternInfo *) d_pattern
      fallback : (void(^)(MQRouterPatternInfo *)) fallback {
-    id v = [MGJRouter objectForURL:mq_append_url_scheme(dPattern[mq_router_params_url] , false)
-                      withUserInfo:dPattern[mq_router_params_userinfo]];
+    id v = [MGJRouter objectForURL:mq_append_url_scheme(d_pattern[mq_router_params_url] , false)
+                      withUserInfo:d_pattern[mq_router_params_userinfo]];
     if (v) return v;
-    else if (fallback) fallback(dPattern);
+    else if (fallback) fallback(d_pattern);
     return nil;
 }
 
-MQRouterPatternInfo * mq_router_url_make(MQRouterRegistKey sURL) {
-    return mq_router_url_pattern_make(sURL, nil);
+MQRouterPatternInfo * mq_router_url_make(MQRouterRegistKey s_url) {
+    return mq_router_url_pattern_make(s_url, nil);
 }
-MQRouterPatternInfo * mq_router_url_pattern_make(MQRouterRegistKey sURL , NSDictionary *dUserInfo) {
-    return mq_router_url_pattern_completion_make(sURL, dUserInfo, nil);
+MQRouterPatternInfo * mq_router_url_pattern_make(MQRouterRegistKey s_url , NSDictionary *d_user_info) {
+    return mq_router_url_pattern_completion_make(s_url, d_user_info, nil);
 }
-MQRouterPatternInfo * mq_router_url_pattern_completion_make(MQRouterRegistKey sURL ,
-                                                            NSDictionary *dUserInfo ,
+MQRouterPatternInfo * mq_router_url_pattern_completion_make(MQRouterRegistKey s_url ,
+                                                            NSDictionary *d_user_info ,
                                                         void (^completion)(id result)) {
     NSMutableDictionary *d= [NSMutableDictionary dictionary];
-    [d setValue:sURL forKey:mq_router_params_url];
-    [d setValue:dUserInfo forKey:mq_router_params_userinfo];
+    [d setValue:s_url forKey:mq_router_params_url];
+    [d setValue:d_user_info forKey:mq_router_params_userinfo];
     [d setValue:completion forKey:mq_router_params_completion];
     return d.copy;
 }
 
-NSDictionary * mq_transfer_MGJ_parameters(NSDictionary *dParams) {
+NSDictionary * mq_transfer_MGJ_parameters(NSDictionary *d_params) {
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
-    [d setValue:dParams[MGJRouterParameterURL] forKey:mq_router_params_url];
-    [d setValue:dParams[MGJRouterParameterUserInfo] forKey:mq_router_params_userinfo];
-    [d setValue:dParams[MGJRouterParameterCompletion] forKey:mq_router_params_completion];
+    [d setValue:d_params[MGJRouterParameterURL] forKey:mq_router_params_url];
+    [d setValue:d_params[MGJRouterParameterUserInfo] forKey:mq_router_params_userinfo];
+    [d setValue:d_params[MGJRouterParameterCompletion] forKey:mq_router_params_completion];
     return d;
 }
-NSString * mq_append_url_scheme(MQRouterRegistKey sURL , BOOL isRegist) {
-    if (sURL && (sURL.length > 0)) {
-        return [mq_router_fallback_url stringByAppendingString:sURL];
-    } else if (sURL) {
+NSString * mq_append_url_scheme(MQRouterRegistKey s_url , BOOL is_regist) {
+    if (s_url && (s_url.length > 0)) {
+        return [mq_router_fallback_url stringByAppendingString:s_url];
+    } else if (s_url) {
         NSLog(@" ----- regist url is equal to @\"\" , will fall back to root .");
     }
-    else if (isRegist) {
+    else if (is_regist) {
         @throw @"regist url can't be nil";
     }
     return nil;

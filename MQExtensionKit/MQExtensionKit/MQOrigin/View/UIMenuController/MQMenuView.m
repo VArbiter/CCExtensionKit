@@ -16,8 +16,8 @@
 @interface UIMenuItem (MQExtension)
 
 @property (nonatomic , strong) NSMutableDictionary *dictionary ;
-@property (nonatomic , assign) NSInteger iCurrent ;
-@property (nonatomic , readonly) NSString *sKey ;
+@property (nonatomic , assign) NSInteger i_current ;
+@property (nonatomic , readonly) NSString *s_key ;
 
 @end
 
@@ -30,14 +30,14 @@
     return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setICurrent:(NSInteger)iCurrent {
-    objc_setAssociatedObject(self, @selector(iCurrent), @(iCurrent), OBJC_ASSOCIATION_ASSIGN);
+- (void)setI_current:(NSInteger)i_current {
+    objc_setAssociatedObject(self, @selector(i_current), @(i_current), OBJC_ASSOCIATION_ASSIGN);
 }
-- (NSInteger)iCurrent {
+- (NSInteger)i_current {
     return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
 
-- (NSString *)sKey {
+- (NSString *)s_key {
     return self.dictionary.allKeys.firstObject;
 }
 
@@ -47,33 +47,33 @@
 
 @interface UIMenuController (MQExtension)
 
-@property (nonatomic , assign , readonly) UIMenuItem *(^menuItemT)(NSInteger) ;
+@property (nonatomic , assign , readonly) UIMenuItem *(^menu_item_t)(NSInteger) ;
 
-@property (nonatomic , assign , readonly) NSInteger (^clickT)(NSString *);
+@property (nonatomic , assign , readonly) NSInteger (^click_t)(NSString *);
 
 @end
 
 @implementation UIMenuController (MQExtension)
 
-- (UIMenuItem *(^)(NSInteger))menuItemT {
-    __weak typeof(self) pSelf = self;
+- (UIMenuItem *(^)(NSInteger))menu_item_t {
+    __weak typeof(self) weak_self = self;
     return ^UIMenuItem *(NSInteger index) {
         if (index == -1) return nil;
-        for (UIMenuItem *tempItem in pSelf.menuItems) {
-            if (![tempItem isKindOfClass:[UIMenuItem class]]) continue;
-            if (tempItem.iCurrent == index) return tempItem;
+        for (UIMenuItem *t_item in weak_self.menuItems) {
+            if (![t_item isKindOfClass:[UIMenuItem class]]) continue;
+            if (t_item.i_current == index) return t_item;
         }
         return nil;
     };
 }
 
-- (NSInteger (^)(NSString *))clickT {
-    __weak typeof(self) pSelf = self;
-    return ^NSInteger(NSString *sTitle) {
-        for (UIMenuItem *tempItem in pSelf.menuItems) {
-            if (![tempItem isKindOfClass:UIMenuItem.class]) continue;
-            if ([tempItem.sKey isEqualToString:sTitle])
-                return tempItem.iCurrent;
+- (NSInteger (^)(NSString *))click_t {
+    __weak typeof(self) weak_self = self;
+    return ^NSInteger(NSString *s_title) {
+        for (UIMenuItem *t_item in weak_self.menuItems) {
+            if (![t_item isKindOfClass:UIMenuItem.class]) continue;
+            if ([t_item.s_key isEqualToString:s_title])
+                return t_item.i_current;
         }
         return -1;
     };
@@ -85,22 +85,22 @@
 
 @interface MQMenuView (MQExtension_Assist_Generate)
 
-@property (nonatomic , copy) void(^blockTitle)(NSString *) ;
-@property (nonatomic , class) NSArray *arrayKeys ;
+@property (nonatomic , copy) void(^block_title)(NSString *) ;
+@property (nonatomic , class) NSArray *array_keys ;
 
 - (void) MQ_METHOD_REPLACE_IMPL : (id) sender  ;
 
 @end
 
-static NSArray *__arrayKeys = nil;
-
 @implementation MQMenuView (MQExtension_Assist_Generate)
 
+static NSArray *__array_keys = nil;
+
 + (BOOL) resolveInstanceMethod:(SEL)sel {
-    for (id obj in self.arrayKeys) {
+    for (id obj in self.array_keys) {
         if (![obj isKindOfClass:[NSString class]]) continue;
-        NSString *stringKey = (NSString *) obj ;
-        if (sel == NSSelectorFromString(stringKey)) {
+        NSString *s_key = (NSString *) obj ;
+        if (sel == NSSelectorFromString(s_key)) {
             return class_addMethod([self class],
                                    sel,
                                    class_getMethodImplementation(self, @selector(MQ_METHOD_REPLACE_IMPL:)),
@@ -111,21 +111,21 @@ static NSArray *__arrayKeys = nil;
 }
 
 - (void) MQ_METHOD_REPLACE_IMPL : (id) sender  {
-    if (self.blockTitle) self.blockTitle([NSString stringWithUTF8String:sel_getName(_cmd)]);
+    if (self.block_title) self.block_title([NSString stringWithUTF8String:sel_getName(_cmd)]);
 }
 
-- (void)setBlockTitle:(void (^)(NSString *))blockTitle {
-    objc_setAssociatedObject(self, @selector(blockTitle), blockTitle, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)setBlock_title:(void (^)(NSString *))block_title {
+    objc_setAssociatedObject(self, @selector(block_title), block_title, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (void (^)(NSString *))blockTitle {
+- (void (^)(NSString *))block_title {
     return objc_getAssociatedObject(self, _cmd);
 }
 
-+ (void)setArrayKeys:(NSArray *)arrayKeys {
-    __arrayKeys = arrayKeys;
++ (void)setArray_keys:(NSArray *)array_keys {
+    __array_keys = array_keys;
 }
-+ (NSArray *)arrayKeys {
-    return __arrayKeys;
++ (NSArray *)array_keys {
+    return __array_keys;
 }
 
 @end
@@ -139,11 +139,11 @@ static NSArray *__arrayKeys = nil;
 - (void) mq_did_hide_menu : (NSNotification *) sender ;
 - (void) mq_will_hide_menu : (NSNotification *) sender ;
 
-@property (nonatomic , strong) UIMenuController *menuController ;
-@property (nonatomic , strong) NSMutableArray *arrayMenuItem ;
-@property (nonatomic , copy) void (^click)(NSDictionary *dTotal ,
-                                            NSString *sKey ,
-                                            NSString *sValue ,
+@property (nonatomic , strong) UIMenuController *menu_controller ;
+@property (nonatomic , strong) NSMutableArray *array_menu_items ;
+@property (nonatomic , copy) void (^click)(NSDictionary *d_total ,
+                                            NSString *s_key ,
+                                            NSString *s_value ,
                                             NSInteger index) ;
 @property (nonatomic , assign) id < MQMenuViewProtocol > delegate ;
 
@@ -152,56 +152,56 @@ static NSArray *__arrayKeys = nil;
 @implementation MQMenuView
 
 - (instancetype) mq_show : (CGRect) frame
-                   items : (NSArray <NSDictionary <NSString * , NSString *> *> *) arrayTitles {
-    if (self.menuController.isMenuVisible || !arrayTitles.count) return self;
+                   items : (NSArray <NSDictionary <NSString * , NSString *> *> *) array_titles {
+    if (self.menu_controller.isMenuVisible || !array_titles.count) return self;
     
-    NSMutableArray *akeys = [NSMutableArray array];
-    [arrayTitles enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSMutableArray *a_keys = [NSMutableArray array];
+    [array_titles enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSDictionary class]]) {
-            [akeys addObject:obj.allKeys.firstObject];
+            [a_keys addObject:obj.allKeys.firstObject];
         }
     }];
-    self.class.arrayKeys = akeys;
+    self.class.array_keys = a_keys;
     
-    [self.arrayMenuItem removeAllObjects];
+    [self.array_menu_items removeAllObjects];
     
-    __weak typeof(self) pSelf = self;
-    [arrayTitles enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *sKey = obj.allKeys.firstObject;
-        NSString *sValue = obj.allValues.firstObject;
+    __weak typeof(self) weak_self = self;
+    [array_titles enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *s_key = obj.allKeys.firstObject;
+        NSString *s_value = obj.allValues.firstObject;
         
-        void (^addMethod)(UIMenuItem *menuItem , SEL selector) = ^(UIMenuItem *menuItem , SEL selector) {
-            [menuItem setTitle:sValue];
-            [menuItem setAction:selector];
-            menuItem.iCurrent = idx ;
-            menuItem.dictionary = [NSMutableDictionary dictionaryWithObject:sValue
-                                                                     forKey:sKey];
-            [pSelf.arrayMenuItem addObject:menuItem];
+        void (^addMethod)(UIMenuItem * , SEL ) = ^(UIMenuItem *menu_item , SEL selector) {
+            [menu_item setTitle:s_value];
+            [menu_item setAction:selector];
+            menu_item.i_current = idx ;
+            menu_item.dictionary = [NSMutableDictionary dictionaryWithObject:s_value
+                                                                     forKey:s_key];
+            [weak_self.array_menu_items addObject:menu_item];
         };
         
-        if ([sKey isKindOfClass:[NSString class]] && [sValue isKindOfClass:[NSString class]]) {
-            UIMenuItem *menuItem = [[UIMenuItem alloc] init];
-            SEL selector = NSSelectorFromString(sKey);
+        if ([s_key isKindOfClass:[NSString class]] && [s_value isKindOfClass:[NSString class]]) {
+            UIMenuItem *menu_item = [[UIMenuItem alloc] init];
+            SEL selector = NSSelectorFromString(s_key);
             if (addMethod) {
-                if ([pSelf.class resolveInstanceMethod:selector]) {
-                    if ([pSelf respondsToSelector:selector]) addMethod(menuItem , selector);
+                if ([weak_self.class resolveInstanceMethod:selector]) {
+                    if ([weak_self respondsToSelector:selector]) addMethod(menu_item , selector);
                 }
-                else if ([pSelf respondsToSelector:selector]) addMethod(menuItem , selector);
+                else if ([weak_self respondsToSelector:selector]) addMethod(menu_item , selector);
             }
         }
     }];
     
-    self.menuController.menuItems = self.arrayMenuItem;
+    self.menu_controller.menuItems = self.array_menu_items;
     [self becomeFirstResponder];
-    [self.menuController setTargetRect:frame
+    [self.menu_controller setTargetRect:frame
                                 inView:self];
-    [self.menuController setMenuVisible:YES
+    [self.menu_controller setMenuVisible:YES
                                animated:YES];
     return self;
 }
-- (instancetype) mq_click : (void (^)(NSDictionary *dTotal ,
-                                     NSString *sKey ,
-                                     NSString *sValue ,
+- (instancetype) mq_click : (void (^)(NSDictionary *d_total ,
+                                     NSString *s_key ,
+                                     NSString *s_value ,
                                      NSInteger index)) click {
     self.click = [click copy];
     return self;
@@ -219,14 +219,14 @@ void MQ_DESTORY_MENU_ITEM(MQMenuView *view) {
 - (void) mq_default_settings {
     [self mq_add_menu_notification];
     
-    __weak typeof(self) pSelf = self;
-    self.blockTitle = ^(NSString *stringTitle) {
-        NSInteger index = pSelf.menuController.clickT(stringTitle);
-        UIMenuItem *menuItem = pSelf.menuController.menuItemT(index);
-        if (pSelf.click)
-            pSelf.click(menuItem.dictionary ,
-                        menuItem.dictionary.allKeys.firstObject,
-                        menuItem.dictionary.allValues.firstObject,
+    __weak typeof(self) weak_self = self;
+    self.block_title = ^(NSString *string_title) {
+        NSInteger index = weak_self.menu_controller.click_t(string_title);
+        UIMenuItem *menu_item = weak_self.menu_controller.menu_item_t(index);
+        if (weak_self.click)
+            weak_self.click(menu_item.dictionary ,
+                        menu_item.dictionary.allKeys.firstObject,
+                        menu_item.dictionary.allValues.firstObject,
                         index);
     };
 }
@@ -251,16 +251,16 @@ void MQ_DESTORY_MENU_ITEM(MQMenuView *view) {
     if ([self canResignFirstResponder]) [self resignFirstResponder];
 }
 
-- (NSMutableArray *)arrayMenuItem {
-    if (_arrayMenuItem) return _arrayMenuItem;
-    _arrayMenuItem = [NSMutableArray array];
-    return _arrayMenuItem;
+- (NSMutableArray *)array_menu_items {
+    if (_array_menu_items) return _array_menu_items;
+    _array_menu_items = [NSMutableArray array];
+    return _array_menu_items;
 }
 
-- (UIMenuController *)menuController {
-    if (_menuController) return _menuController;
-    _menuController = [UIMenuController sharedMenuController];
-    return _menuController;
+- (UIMenuController *)menu_controller {
+    if (_menu_controller) return _menu_controller;
+    _menu_controller = [UIMenuController sharedMenuController];
+    return _menu_controller;
 }
 
 - (void)dealloc {

@@ -32,24 +32,24 @@ typedef void (^MQRouterCompletionBlock)(id result);
 
 // begin with scheme , like "scheme://do sth" // 用一个 scheme 来初始化 , 比如 "scheme://do sth"
 // note : only the first time have its effect (scheme can't be re-configured again) . // 只第一次使用有效 , scheme 不能被重新设置
-+ (instancetype) mq_shared_with_scheme : (MQRouterRegistKey) sScheme ;
++ (instancetype) mq_shared_with_scheme : (MQRouterRegistKey) s_scheme ;
 
 // regist // 注册
-- (instancetype) mq_regist_fallback : (void (^)(MQRouterPatternInfo *dInfos)) fallBack ;
-- (instancetype) mq_regist_operation : (MQRouterRegistKey) sURL
+- (instancetype) mq_regist_fallback : (void (^)(MQRouterPatternInfo *dInfos)) fallback ;
+- (instancetype) mq_regist_operation : (MQRouterRegistKey) s_url
                               action : (void(^)(MQRouterPatternInfo *dInfos)) action ;
-- (instancetype) mq_regist_object : (MQRouterRegistKey) sURL
-                            value : (id(^)(MQRouterPatternInfo *dInfos)) value ;
+- (instancetype) mq_regist_object : (MQRouterRegistKey) s_url
+                            value : (id(^)(MQRouterPatternInfo *d_infos)) value ;
 
 // deregist // 取消注册
-- (instancetype) mq_deregist : (MQRouterRegistKey) sURL ;
+- (instancetype) mq_deregist : (MQRouterRegistKey) s_url ;
 
 // open // 打开
-- (BOOL) mq_is_can_open : (MQRouterRegistKey) sURL ;
-- (instancetype) mq_call : (MQRouterPatternInfo *) dPattern
-                fallback : (void(^)(MQRouterPatternInfo *dInfos)) fallback ;
+- (BOOL) mq_is_can_open : (MQRouterRegistKey) s_url ;
+- (instancetype) mq_call : (MQRouterPatternInfo *) d_pattern
+                fallback : (void(^)(MQRouterPatternInfo *d_infos)) fallback ;
 
-- (id) mq_get : (MQRouterPatternInfo *) dPattern
+- (id) mq_get : (MQRouterPatternInfo *) d_pattern
      fallback : (void(^)(MQRouterPatternInfo *)) fallback ;
 
 FOUNDATION_EXPORT MQRouterOperateKey const mq_router_params_url ;
@@ -57,14 +57,14 @@ FOUNDATION_EXPORT MQRouterOperateKey const mq_router_params_completion;
 FOUNDATION_EXPORT MQRouterOperateKey const mq_router_params_userinfo;
 FOUNDATION_EXPORT MQRouterOperateKey mq_router_fallback_url ; // can be customed by user with 'mq_sharedWithScheme:' methods // 可以被开发者使用 'mq_sharedWithScheme:' 来设置
 
-MQRouterPatternInfo * mq_router_url_make(MQRouterRegistKey sURL) ;
-MQRouterPatternInfo * mq_router_url_pattern_make(MQRouterRegistKey sURL ,
-                                                 NSDictionary *dUserInfo) ;
+MQRouterPatternInfo * mq_router_url_make(MQRouterRegistKey s_url) ;
+MQRouterPatternInfo * mq_router_url_pattern_make(MQRouterRegistKey s_url ,
+                                                 NSDictionary *d_user_info) ;
 
 /// note : completion block only works with regist methods // 完成 block 只在 注册过的方法中有效
 /// note : if uses in call method , completion will have no values . // 如果在回调中使用 , block 没有值 .
-MQRouterPatternInfo * mq_router_url_pattern_completion_make(MQRouterRegistKey sURL ,
-                                                            NSDictionary *dUserInfo ,
+MQRouterPatternInfo * mq_router_url_pattern_completion_make(MQRouterRegistKey s_url ,
+                                                            NSDictionary *d_user_info ,
                                                             MQRouterCompletionBlock) ;
 
 @end

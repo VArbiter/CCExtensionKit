@@ -11,26 +11,26 @@
 @interface MQEasyWebView () <WKNavigationDelegate , WKScriptMessageHandler>
 
 @property (nonatomic , strong) WKWebViewConfiguration * config;
-@property (nonatomic , strong) WKUserContentController *userContentController ;
-@property (nonatomic , strong) MQScriptMessageDelegate *messageDelegate ;
+@property (nonatomic , strong) WKUserContentController *user_content_controller ;
+@property (nonatomic , strong) MQScriptMessageDelegate *message_delegate ;
 
-@property (nonatomic , copy) NSString *sAppName ;
-@property (nonatomic , copy) void (^challenge)(WKWebView *webView ,
+@property (nonatomic , copy) NSString *s_app_name ;
+@property (nonatomic , copy) void (^challenge)(WKWebView *web_view ,
 NSURLAuthenticationChallenge * challenge,
 void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * credential));
-@property (nonatomic , copy) void (^alertS)(UIAlertController *controller);
+@property (nonatomic , copy) void (^alert_block)(UIAlertController *controller);
 
-@property (nonatomic , strong) NSMutableDictionary <NSString * , void (^)(WKUserContentController *, WKScriptMessage *)> *dictionaryMessage ;
+@property (nonatomic , strong) NSMutableDictionary <NSString * , void (^)(WKUserContentController *, WKScriptMessage *)> *dictionary_message ;
 
 @property (nonatomic , copy) void (^progress)(double);
 @property (nonatomic , copy) WKNavigationActionPolicy (^decision)(WKNavigationAction * action);
-@property (nonatomic , copy) WKNavigationResponsePolicy (^decisionR)(WKNavigationResponse *response);
-@property (nonatomic , copy) void (^commit)(WKWebView *webView , WKNavigation *navigation);
-@property (nonatomic , copy) void (^start)(WKWebView *webView , WKNavigation *navigation);
-@property (nonatomic , copy) void (^provisional)(WKWebView *webView , WKNavigation *navigation , NSError * error);
-@property (nonatomic , copy) void (^redirect)(WKWebView *webView , WKNavigation *navigation);
-@property (nonatomic , copy) void (^finish)(WKWebView *webView , WKNavigation *navigation);
-@property (nonatomic , copy) void (^fail)(WKWebView *webView , WKNavigation *navigation , NSError * error);
+@property (nonatomic , copy) WKNavigationResponsePolicy (^decision_block)(WKNavigationResponse *response);
+@property (nonatomic , copy) void (^commit)(WKWebView *web_view , WKNavigation *navigation);
+@property (nonatomic , copy) void (^start)(WKWebView *web_view , WKNavigation *navigation);
+@property (nonatomic , copy) void (^provisional)(WKWebView *web_view , WKNavigation *navigation , NSError * error);
+@property (nonatomic , copy) void (^redirect)(WKWebView *web_view , WKNavigation *navigation);
+@property (nonatomic , copy) void (^finish)(WKWebView *web_view , WKNavigation *navigation);
+@property (nonatomic , copy) void (^fail)(WKWebView *web_view , WKNavigation *navigation , NSError * error);
 
 @end
 
@@ -38,7 +38,7 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        self.isTrustWithoutAnyDoubt = YES;
+        self.is_trust_without_any_doubt = YES;
     }
     return self;
 }
@@ -47,7 +47,7 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
         configuration : (WKWebViewConfiguration *) configuration {
     if ((self = [super initWithFrame:frame])) {
         self.config = configuration;
-        self.isTrustWithoutAnyDoubt = YES;
+        self.is_trust_without_any_doubt = YES;
     }
     return self;
 }
@@ -55,21 +55,21 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    [self addSubview:self.webView];
-    [self.webView addSubview:self.progressView];
+    [self addSubview:self.web_view];
+    [self.web_view addSubview:self.progress_view];
 }
 
-- (instancetype) mq_deal_auth_challenge : (void (^)(WKWebView *webView , NSURLAuthenticationChallenge * challenge,
-                                                 void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * credential))) challenge {
+- (instancetype) mq_deal_auth_challenge : (void (^)(WKWebView *web_view , NSURLAuthenticationChallenge * challenge,
+                                                 void (^completion_handler)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * credential))) challenge {
     if (challenge) self.challenge = [challenge copy];
     return self;
 }
 
-- (instancetype) mq_decided_by_user : (NSString *) sAppName
+- (instancetype) mq_decided_by_user : (NSString *) s_app_name
                            alert :  (void (^)(UIAlertController *controller)) alert {
     if (alert) {
-        self.sAppName = sAppName;
-        self.alertS = [alert copy];
+        self.s_app_name = s_app_name;
+        self.alert_block = [alert copy];
     }
     return self;
 }
@@ -79,41 +79,41 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
     return self;
 }
 - (instancetype) mq_policy_for_response : (WKNavigationResponsePolicy(^)(WKNavigationResponse *response)) decision {
-    if (decision) self.decisionR = [decision copy];
+    if (decision) self.decision_block = [decision copy];
     return self;
 }
-- (instancetype) mq_did_commit : (void (^)(WKWebView *webView , WKNavigation *navigation)) commit {
+- (instancetype) mq_did_commit : (void (^)(WKWebView *web_view , WKNavigation *navigation)) commit {
     if (commit) self.commit = [commit copy];
     return self;
 }
-- (instancetype) mq_did_start : (void (^)(WKWebView *webView , WKNavigation *navigation)) start {
+- (instancetype) mq_did_start : (void (^)(WKWebView *web_view , WKNavigation *navigation)) start {
     if (start) self.start = [start copy];
     return self;
 }
-- (instancetype) mq_fail_provisional : (void (^)(WKWebView *webView , WKNavigation *navigation , NSError * error)) provisional {
+- (instancetype) mq_fail_provisional : (void (^)(WKWebView *web_view , WKNavigation *navigation , NSError * error)) provisional {
     if (provisional) self.provisional = [provisional copy];
     return self;
 }
-- (instancetype) mq_receive_redirect : (void (^)(WKWebView *webView , WKNavigation *navigation)) redirect {
+- (instancetype) mq_receive_redirect : (void (^)(WKWebView *web_view , WKNavigation *navigation)) redirect {
     if (redirect) self.redirect = [redirect copy];
     return self;
 }
-- (instancetype) mq_did_finish : (void (^)(WKWebView *webView , WKNavigation *navigation)) finish {
+- (instancetype) mq_did_finish : (void (^)(WKWebView *web_view , WKNavigation *navigation)) finish {
     if (finish) self.finish = [finish copy];
     return self;
 }
-- (instancetype) mq_did_fail : (void (^)(WKWebView *webView , WKNavigation *navigation , NSError * error)) fail {
+- (instancetype) mq_did_fail : (void (^)(WKWebView *web_view , WKNavigation *navigation , NSError * error)) fail {
     if (fail) self.fail = [fail copy];
     return self;
 }
 
-- (instancetype) mq_load : (NSString *) sContent
+- (instancetype) mq_load : (NSString *) s_content
               navigation : (void (^)(WKNavigation *navigation)) navigation {
-    if (sContent && sContent.length) {
+    if (s_content && s_content.length) {
         WKNavigation *n = nil;
-        if ([sContent hasPrefix:@"http://"] || [sContent hasPrefix:@"https://"]) {
-            n = [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:sContent]]];
-        } else [self.webView loadHTMLString:sContent baseURL:nil];
+        if ([s_content hasPrefix:@"http://"] || [s_content hasPrefix:@"https://"]) {
+            n = [self.web_view loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:s_content]]];
+        } else [self.web_view loadHTMLString:s_content baseURL:nil];
         if (n && navigation) navigation(n);
     }
     return self;
@@ -124,17 +124,17 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
     return self;
 }
 
-- (instancetype) mq_script : (NSString *) sKey
-                   message : (void (^)(WKUserContentController * userContentController, WKScriptMessage *message)) message {
-    if (!message && sKey && sKey.length) {
-        [self.userContentController removeScriptMessageHandlerForName:sKey];
-        [self.dictionaryMessage removeObjectForKey:sKey];
+- (instancetype) mq_script : (NSString *) s_key
+                   message : (void (^)(WKUserContentController * user_content_controller, WKScriptMessage *message)) message {
+    if (!message && s_key && s_key.length) {
+        [self.user_content_controller removeScriptMessageHandlerForName:s_key];
+        [self.dictionary_message removeObjectForKey:s_key];
     }
-    else if (sKey && sKey.length) {
-        [self.userContentController addScriptMessageHandler:self.messageDelegate
-                                                       name:sKey];
-        [self.dictionaryMessage setValue:message
-                                  forKey:sKey];
+    else if (s_key && s_key.length) {
+        [self.user_content_controller addScriptMessageHandler:self.message_delegate
+                                                       name:s_key];
+        [self.dictionary_message setValue:message
+                                  forKey:s_key];
     }
     return self;
 }
@@ -145,14 +145,14 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
     /// trust without any doubt .
     
     void (^t)(void) = ^ {
-        NSString *stringAuthenticationMethod = [[challenge protectionSpace] authenticationMethod];
-        if ([stringAuthenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        NSString *s_authentication_method = [[challenge protectionSpace] authenticationMethod];
+        if ([s_authentication_method isEqualToString:NSURLAuthenticationMethodServerTrust]) {
             NSURLCredential *credential = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
             completionHandler(NSURLSessionAuthChallengeUseCredential,credential);
         }
     };
     
-    if (self.isTrustWithoutAnyDoubt) {
+    if (self.is_trust_without_any_doubt) {
         if (t) t();
         return;
     }
@@ -162,15 +162,15 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
         return;
     }
     
-    if (!self.alertS) { if (t) t() ; return ; }
+    if (!self.alert_block) { if (t) t() ; return ; }
     
-    NSString *hostName = webView.URL.host;
-    NSString *authenticationMethod = [[challenge protectionSpace] authenticationMethod];
-    if ([authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        SecTrustRef secTrustRef = challenge.protectionSpace.serverTrust;
-        if (secTrustRef != NULL) {
+    NSString *host_name = webView.URL.host;
+    NSString *s_authentication_method = [[challenge protectionSpace] authenticationMethod];
+    if ([s_authentication_method isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        SecTrustRef sec_trust_ref = challenge.protectionSpace.serverTrust;
+        if (sec_trust_ref != NULL) {
             SecTrustResultType result;
-            OSErr er = SecTrustEvaluate(secTrustRef, &result);
+            OSErr er = SecTrustEvaluate(sec_trust_ref, &result);
             if (er != noErr) {
                 completionHandler(NSURLSessionAuthChallengeRejectProtectionSpace,nil);
                 return;
@@ -178,40 +178,40 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
             
             if (result == kSecTrustResultRecoverableTrustFailure) {
                 /// certificate can't be trusted
-                CFArrayRef secTrustProperties = SecTrustCopyProperties(secTrustRef);
-                NSArray *arr = CFBridgingRelease(secTrustProperties);
-                NSMutableString *errorStr = [NSMutableString string];
+                CFArrayRef sec_trust_properties = SecTrustCopyProperties(sec_trust_ref);
+                NSArray *arr = CFBridgingRelease(sec_trust_properties);
+                NSMutableString *error_str = [NSMutableString string];
                 
                 for (int i = 0;i < arr.count; i++){
                     NSDictionary *dic = [arr objectAtIndex:i];
-                    if (i != 0) [errorStr appendString:@" "];
-                    [errorStr appendString:(NSString *)dic[@"value"]];
+                    if (i != 0) [error_str appendString:@" "];
+                    [error_str appendString:(NSString *)dic[@"value"]];
                 }
-                SecCertificateRef certRef = SecTrustGetCertificateAtIndex(secTrustRef, 0);
-                CFStringRef cfCertSummaryRef =  SecCertificateCopySubjectSummary(certRef);
-                NSString *certSummary = (NSString *)CFBridgingRelease(cfCertSummaryRef);
+                SecCertificateRef cert_ref = SecTrustGetCertificateAtIndex(sec_trust_ref, 0);
+                CFStringRef cf_cert_summary_ref =  SecCertificateCopySubjectSummary(cert_ref);
+                NSString *cert_summary = (NSString *)CFBridgingRelease(cf_cert_summary_ref);
                 NSString *title = @"This server can not be trusted.";
                 
-                NSString *message = [NSString stringWithFormat:@"receive a host challenge %@ from %@ , certificate summary : %@ .\n%@" , hostName , self.sAppName , certSummary , errorStr];;
-                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-                [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
+                NSString *message = [NSString stringWithFormat:@"receive a host challenge %@ from %@ , certificate summary : %@ .\n%@" , host_name , self.s_app_name , cert_summary , error_str];;
+                UIAlertController *alert_controller = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+                [alert_controller addAction:[UIAlertAction actionWithTitle:@"Cancel"
                                                                     style:UIAlertActionStyleDefault
                                                                   handler:^(UIAlertAction *action) {
                                                                       completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);}]];
                 
-                [alertController addAction:[UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                    NSURLCredential* credential = [NSURLCredential credentialForTrust:secTrustRef];
+                [alert_controller addAction:[UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                    NSURLCredential* credential = [NSURLCredential credentialForTrust:sec_trust_ref];
                     completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
                 }]];
                 
-                __weak typeof(self) pSelf = self;
+                __weak typeof(self) weak_self = self;
                 dispatch_async(dispatch_get_main_queue(), ^{ // async , has to do it on main thread
-                    if (pSelf.alertS) pSelf.alertS(alertController);
+                    if (weak_self.alert_block) weak_self.alert_block(alert_controller);
                 });
                 return;
             }
             
-            NSURLCredential* credential = [NSURLCredential credentialForTrust:secTrustRef];
+            NSURLCredential* credential = [NSURLCredential credentialForTrust:sec_trust_ref];
             completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
             return;
         }
@@ -227,8 +227,8 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-    if (self.decisionR) {
-        decisionHandler(self.decisionR(navigationResponse));
+    if (self.decision_block) {
+        decisionHandler(self.decision_block(navigationResponse));
     } else decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
@@ -258,26 +258,26 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 
 #pragma mark - -----
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    void (^t)(WKUserContentController *, WKScriptMessage *) = self.dictionaryMessage[message.name];
+    void (^t)(WKUserContentController *, WKScriptMessage *) = self.dictionary_message[message.name];
     if (t) t(userContentController , message);
 }
 
 #pragma mark - -----
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (object == self.webView && [keyPath isEqualToString:@"estimatedProgress"]) {
-        if (self.progress) self.progress(self.webView.estimatedProgress);
-        [self.progressView setAlpha:1.0f];
-        [self.progressView setProgress:self.webView.estimatedProgress
+    if (object == self.web_view && [keyPath isEqualToString:@"estimatedProgress"]) {
+        if (self.progress) self.progress(self.web_view.estimatedProgress);
+        [self.progress_view setAlpha:1.0f];
+        [self.progress_view setProgress:self.web_view.estimatedProgress
                               animated:YES];
-        if(self.webView.estimatedProgress >= 1.0f)
+        if(self.web_view.estimatedProgress >= 1.0f)
             [UIView animateWithDuration:0.3
                                   delay:0.3
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{
-                                 [self.progressView setAlpha:0.0f];
+                                 [self.progress_view setAlpha:0.0f];
                              } completion:^(BOOL finished) {
-                                 [self.progressView setProgress:0.0f
+                                 [self.progress_view setProgress:0.0f
                                                        animated:NO];
                              }];
     }
@@ -285,15 +285,15 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 }
 
 #pragma mark - -----
-- (NSMutableDictionary<NSString *,void (^)(WKUserContentController *, WKScriptMessage *)> *)dictionaryMessage {
-    if (_dictionaryMessage) return _dictionaryMessage;
+- (NSMutableDictionary<NSString *,void (^)(WKUserContentController *, WKScriptMessage *)> *)dictionary_message {
+    if (_dictionary_message) return _dictionary_message;
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
-    _dictionaryMessage = d;
-    return _dictionaryMessage;
+    _dictionary_message = d;
+    return _dictionary_message;
 }
 
-- (WKWebView *)webView{
-    if (_webView) return _webView;
+- (WKWebView *)web_view{
+    if (_web_view) return _web_view;
     if (!self.config) {
         WKWebViewConfiguration * c = [[WKWebViewConfiguration alloc] init];
         if (@available(iOS 9.0, *)) {
@@ -302,53 +302,53 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
         c.allowsInlineMediaPlayback = YES;
         c.selectionGranularity = YES;
         c.processPool = [[WKProcessPool alloc] init];
-        c.userContentController = self.userContentController;
+        c.userContentController = self.user_content_controller;
         self.config = c;
     }
-    else self.config.userContentController = self.userContentController;
+    else self.config.userContentController = self.user_content_controller;
     
     WKWebView *v = [[WKWebView alloc] initWithFrame:(CGRect){0,0,self.frame.size.width,self.frame.size.height}
                                       configuration:self.config];
     v.navigationDelegate = self;
-    _webView = v;
+    _web_view = v;
     
-    [_webView addObserver:self
-               forKeyPath:@"estimatedProgress"
-                  options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                  context:nil];
+    [_web_view addObserver:self
+                forKeyPath:@"estimatedProgress"
+                   options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                   context:nil];
     
-    return _webView;
+    return _web_view;
 }
 
-- (UIProgressView *)progressView {
-    if (_progressView) return _progressView;
+- (UIProgressView *)progress_view {
+    if (_progress_view) return _progress_view;
     UIProgressView *v = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     v.frame = (CGRect){0,0, self.frame.size.width , 2};
-    _progressView = v;
-    return _progressView;
+    _progress_view = v;
+    return _progress_view;
 }
 
-- (WKUserContentController *)userContentController {
-    if (_userContentController) return _userContentController;
+- (WKUserContentController *)user_content_controller {
+    if (_user_content_controller) return _user_content_controller;
     WKUserContentController *c = [[WKUserContentController alloc] init];
-    _userContentController = c;
-    return _userContentController;
+    _user_content_controller = c;
+    return _user_content_controller;
 }
 
-- (MQScriptMessageDelegate *)messageDelegate {
-    if (_messageDelegate) return _messageDelegate;
+- (MQScriptMessageDelegate *)message_delegate {
+    if (_message_delegate) return _message_delegate;
     MQScriptMessageDelegate *delegate = [[MQScriptMessageDelegate alloc] init:self];
-    _messageDelegate = delegate;
-    return _messageDelegate;
+    _message_delegate = delegate;
+    return _message_delegate;
 }
 
 - (void)dealloc {
 #if DEBUG
     NSLog(@"\n_MQ_%@_DEALLOC_",NSStringFromClass(self.class));
 #endif
-    [self.webView removeObserver:self
-                      forKeyPath:@"estimatedProgress"
-                         context:nil];
+    [self.web_view removeObserver:self
+                       forKeyPath:@"estimatedProgress"
+                          context:nil];
 }
 
 @end

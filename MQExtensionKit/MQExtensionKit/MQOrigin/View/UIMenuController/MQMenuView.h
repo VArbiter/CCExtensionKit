@@ -27,10 +27,10 @@
 /// eg (for method name): copy -> error && crash , copyy -> correct // 若给出方法名为 copy , 会崩溃 . copyy 就没有问题
 
 - (instancetype) mq_show : (CGRect) frame
-                   items : (NSArray <NSDictionary <NSString * , NSString *> *> *) arrayTitles ;
-- (instancetype) mq_click : (void (^)(NSDictionary *dTotal ,
-                                      NSString *sKey ,
-                                      NSString *sValue ,
+                   items : (NSArray <NSDictionary <NSString * , NSString *> *> *) array_titles ;
+- (instancetype) mq_click : (void (^)(NSDictionary *d_total ,
+                                      NSString *s_key ,
+                                      NSString *s_value ,
                                       NSInteger index)) click ;
 - (instancetype) mq_delegate : (id <MQMenuViewProtocol>) delegate ;
 

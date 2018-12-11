@@ -29,11 +29,11 @@ NSString * const mq_network_status_key_old = @"MQ_NETWORK_STATUS_KEY_OLD";
 
 @property (nonatomic , strong) AFNetworkActivityIndicatorManager *activityManager ;
 @property (nonatomic , strong) AFNetworkReachabilityManager *reachabilityManager ;
-@property (nonatomic , strong) CTTelephonyNetworkInfo *netwotkInfo ;
+@property (nonatomic , strong) CTTelephonyNetworkInfo *netwotk_info ;
 
-@property (nonatomic , strong , readonly) NSArray *arrayString_2G ;
-@property (nonatomic , strong , readonly) NSArray *arrayString_3G ;
-@property (nonatomic , strong , readonly) NSArray *arrayString_4G ;
+@property (nonatomic , strong , readonly) NSArray *array_string_2G ;
+@property (nonatomic , strong , readonly) NSArray *array_string_3G ;
+@property (nonatomic , strong , readonly) NSArray *array_string_4G ;
 
 - (void) mq_reachability_moniter ;
 
@@ -66,14 +66,14 @@ NSString * const mq_network_status_key_old = @"MQ_NETWORK_STATUS_KEY_OLD";
 }
 
 - (MQNetworkType) mq_capture_current_environment : (AFNetworkReachabilityStatus) status {
-    NSString *stringAccess = self.netwotkInfo.currentRadioAccessTechnology ;
+    NSString *s_access = self.netwotk_info.currentRadioAccessTechnology ;
     MQNetworkType environment = MQNetworkTypeUnknow ;
     if ([[UIDevice currentDevice] systemVersion].floatValue > 7.f) {
-        if ([self.arrayString_4G containsObject:stringAccess])
+        if ([self.array_string_4G containsObject:s_access])
             environment = MQNetworkType4G;
-        else if ([self.arrayString_3G containsObject:stringAccess])
+        else if ([self.array_string_3G containsObject:s_access])
             environment = MQNetworkType3G;
-        else if ([self.arrayString_2G containsObject:stringAccess])
+        else if ([self.array_string_2G containsObject:s_access])
             environment = MQNetworkType2G;
         
     }
@@ -92,29 +92,29 @@ NSString * const mq_network_status_key_old = @"MQ_NETWORK_STATUS_KEY_OLD";
 }
 
 - (MQNetworkEnvironment) mq_environment_type {
-    NSInteger integerStatus = [[NSUserDefaults standardUserDefaults] integerForKey:mq_network_status_key_new];
-    if (integerStatus <= 0)
+    NSInteger i_status = [[NSUserDefaults standardUserDefaults] integerForKey:mq_network_status_key_new];
+    if (i_status <= 0)
         return MQNetworkEnvironmentNotConnected;
-    if (integerStatus == 1 || integerStatus == 3 || integerStatus == 4)
+    if (i_status == 1 || i_status == 3 || i_status == 4)
         return MQNetworkEnvironmentWeak;
-    if (integerStatus == 2 || integerStatus == 5)
+    if (i_status == 2 || i_status == 5)
         return MQNetworkEnvironmentStrong;
     return MQNetworkEnvironmentStrong;
 }
 
 #pragma mark - Getter
-- (CTTelephonyNetworkInfo *)netwotkInfo {
-    if (_netwotkInfo) return _netwotkInfo;
-    _netwotkInfo = [[CTTelephonyNetworkInfo alloc] init];
-    return _netwotkInfo;
+- (CTTelephonyNetworkInfo *)netwotk_info {
+    if (_netwotk_info) return _netwotk_info;
+    _netwotk_info = [[CTTelephonyNetworkInfo alloc] init];
+    return _netwotk_info;
 }
 
-- (NSArray *)arrayString_2G {
+- (NSArray *)array_string_2G {
     return @[CTRadioAccessTechnologyEdge,
              CTRadioAccessTechnologyGPRS,
              CTRadioAccessTechnologyCDMA1x];
 }
-- (NSArray *)arrayString_3G {
+- (NSArray *)array_string_3G {
     return @[CTRadioAccessTechnologyHSDPA,
              CTRadioAccessTechnologyWCDMA,
              CTRadioAccessTechnologyHSUPA,
@@ -123,7 +123,7 @@ NSString * const mq_network_status_key_old = @"MQ_NETWORK_STATUS_KEY_OLD";
              CTRadioAccessTechnologyCDMAEVDORevB,
              CTRadioAccessTechnologyeHRPD];
 }
-- (NSArray *)arrayString_4G {
+- (NSArray *)array_string_4G {
     return @[CTRadioAccessTechnologyLTE];
 }
 
