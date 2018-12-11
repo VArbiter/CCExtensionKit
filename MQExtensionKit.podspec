@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
     s.default_subspec = 'MQCore'
 
     s.subspec 'MQCore' do |core|
-      core.source_files = 'MQExtensionKit/MQExtensionKit/*.{h}'
+      core.source_files = 'MQExtensionKit/*.{h}'
       core.dependency 'MQExtensionKit/MQData'
       core.dependency 'MQExtensionKit/MQView'
       core.dependency 'MQExtensionKit/MQRuntime'
