@@ -17,15 +17,15 @@
         #import <MQExtensionKit/MQCommonExtension.h>
         #import <MQExtensionKit/MQRuntimeExtension.h>
 
-        #ifdef _MQCustomExtension_
+        #ifdef MQCustomExtension_h
             #import <MQExtensionKit/MQCustomExtension.h>
         #endif
 
-        #ifdef _MQCRouterExtension_
+        #ifdef MQRouterExtension_h
             #import <MQExtensionKit/MQRouterExtension.h>
         #endif
 
-        #ifdef _MQCDataBaseExtension_
+        #ifdef MQDatabaseExtension_h
             #import <MQExtensionKit/MQDatabaseExtension.h>
         #endif
 
@@ -37,15 +37,15 @@
         #import "MQCommonExtension.h"
         #import "MQRuntimeExtension.h"
 
-        #ifdef _MQCustomExtension_
+        #ifdef MQCustomExtension_h
             #import "MQCustomExtension.h"
         #endif
 
-        #ifdef _MQCRouterExtension_
+        #ifdef MQRouterExtension_h
             #import "MQRouterExtension.h"
         #endif
 
-        #ifdef _MQCDataBaseExtension_
+        #ifdef MQDatabaseExtension_h
             #import "MQDatabaseExtension.h"
         #endif
 
