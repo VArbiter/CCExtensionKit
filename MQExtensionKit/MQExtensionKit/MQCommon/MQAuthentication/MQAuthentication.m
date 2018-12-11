@@ -93,12 +93,12 @@
 - (instancetype) mq_start_authentication_password : (void (^)(void))success_block
                                              fail : (void (^)(NSError * error))fail_block {
     
-    LAPolicy policy = LAPolicyDeviceOwnerAuthentication;
-    if (UIDevice.currentDevice.systemVersion.floatValue < 9.f) {
-        policy = LAPolicyDeviceOwnerAuthenticationWithBiometrics;
+    LAPolicy policy = LAPolicyDeviceOwnerAuthenticationWithBiometrics;
+    if (@available(iOS 9.0, *)) {
+        policy = LAPolicyDeviceOwnerAuthentication;
     }
     
-    [self.context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:self.s_authentication_reason reply:^(BOOL success, NSError * _Nullable error) {
+    [self.context evaluatePolicy:policy localizedReason:self.s_authentication_reason reply:^(BOOL success, NSError * _Nullable error) {
         if (success) {
             if (success_block) success_block();
         }

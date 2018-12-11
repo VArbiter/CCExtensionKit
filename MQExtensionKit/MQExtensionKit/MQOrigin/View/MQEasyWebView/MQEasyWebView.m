@@ -296,7 +296,7 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
     if (_webView) return _webView;
     if (!self.config) {
         WKWebViewConfiguration * c = [[WKWebViewConfiguration alloc] init];
-        if (UIDevice.currentDevice.systemVersion.floatValue >= 9.f) {
+        if (@available(iOS 9.0, *)) {
             c.allowsAirPlayForMediaPlayback = YES;
         }
         c.allowsInlineMediaPlayback = YES;
