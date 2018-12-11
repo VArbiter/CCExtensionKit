@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
 
       s.subspec 'MQCommon' do |common|
         common.source_files = 'MQExtensionKit/MQExtensionKit/MQCommon/**/*'
-        common.frameworks = "Foundation", "UIKit", "AVFoundation" , "Darwin" , "SystemConfiguration" , "AdSupport"
+        common.frameworks = "Foundation", "UIKit", "AVFoundation" , "SystemConfiguration" , "AdSupport" # , "Darwin"
         common.weak_frameworks = "Photos" , "AssetsLibrary"
       end
 
