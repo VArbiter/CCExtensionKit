@@ -49,7 +49,7 @@ Pod::Spec.new do |s|
       s.subspec 'MQRouter' do |router|
         router.source_files = 'MQExtensionKit/MQExtensionKit/MQRouter/**/*'
         router.frameworks = "Foundation"
-        router.dependency 'MGJRouter', '~> 0.10.0'
+        router.dependency 'MGJRouter', '>= 0.10.0'
       end
 
       s.subspec 'MQData' do |data|
@@ -81,20 +81,20 @@ Pod::Spec.new do |s|
 
       s.subspec 'MQDatabase' do |database|
         database.source_files = 'MQExtensionKit/MQExtensionKit/MQDatabase/**/*'
-        database.dependency 'Realm', '~> 3.7.5'
-        database.dependency 'FMDB', '~> 2.7.2'
+        database.dependency 'Realm', '>= 3.7.5'
+        database.dependency 'FMDB', '>= 2.7.2'
         database.frameworks = "Foundation"
       end
 
       s.subspec 'MQCustom' do |custom|
         custom.source_files = 'MQExtensionKit/MQExtensionKit/MQCustom/**/*'
         custom.dependency 'MQExtensionKit/MQCore'
-        custom.dependency 'AFNetworking/Reachability', '~> 3.2.1'
-        custom.dependency 'AFNetworking/UIKit', '~> 3.2.1'
-        custom.dependency 'SDWebImage', '~> 4.4.2'
-        custom.dependency 'MJRefresh', '~> 3.1.12'
-        custom.dependency 'MBProgressHUD', '~> 1.1.0'
-        custom.dependency 'SVProgressHUD', '~> 2.2.5'
+        custom.dependency 'AFNetworking/Reachability', '>= 3.2.1'
+        custom.dependency 'AFNetworking/UIKit', '>= 3.2.1'
+        custom.dependency 'SDWebImage', '>= 4.4.2'
+        custom.dependency 'MJRefresh', '>= 3.1.12'
+        custom.dependency 'MBProgressHUD', '>= 1.1.0'
+        custom.dependency 'SVProgressHUD', '>= 2.2.5'
         custom.frameworks =  "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
         custom.weak_frameworks = "WebKit"
       end
