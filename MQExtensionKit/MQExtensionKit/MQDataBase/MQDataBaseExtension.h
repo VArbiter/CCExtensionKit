@@ -11,6 +11,6 @@
 
     #import "MQRealmHandler.h"
     #import "MQRLMBaseEntity.h"
-    #import "FCModel"
+    #import "FCModel.h"
 
 #endif /* MQDatabaseExtension_h */
