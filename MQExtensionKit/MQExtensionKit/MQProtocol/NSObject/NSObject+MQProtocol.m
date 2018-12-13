@@ -14,8 +14,8 @@
     return self;
 }
 
-- (instancetype)mq:(id (^)(id))sameObject {
-    if (self && sameObject) return sameObject(self);
+- (instancetype)mq:(id (^)(id))same_object {
+    if (self && same_object) return same_object(self);
     return self;
 }
 

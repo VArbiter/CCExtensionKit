@@ -15,7 +15,7 @@
 /// make sure that when blocks is invoked ,
 /// the object in blocks , was never can't be nil
 /// use MQ_TYPE(_type_ , sameObject) to force 'sameObject' with aspecific value .
-- (instancetype) mq : (id (^)(id same_object)) sameObject;
+- (instancetype) mq : (id (^)(id same_object)) same_object;
 
 /// intialize a value that definitly can't be nil
 + (instancetype) MQ_NON_NULL : (void(^)(id value)) setting;
