@@ -96,10 +96,10 @@
     exporter.outputURL = s_merged_url;
     exporter.outputFileType = AVFileTypeMPEG4;
     exporter.shouldOptimizeForNetworkUse = YES;
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     [exporter exportAsynchronouslyWithCompletionHandler:^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            __strong typeof(pSelf) strong_self = pSelf;
+            __strong typeof(weak_self) strong_self = weak_self;
             if ([strong_self.delegate respondsToSelector:@selector(mq_video_manager:did_finish_with_output_url:)]) {
                 [strong_self.delegate mq_video_manager:strong_self did_finish_with_output_url:s_merged_url];
             }
@@ -119,16 +119,18 @@
         NSString *exportPath = s_convert_file_path;
         export_session.outputURL = [NSURL fileURLWithPath:exportPath];
         export_session.outputFileType = AVFileTypeMPEG4;
-        __weak typeof(self) pSelf = self;
+        __weak typeof(self) weak_self = self;
         [export_session exportAsynchronouslyWithCompletionHandler:^{
+            __strong typeof(weak_self) strong_self = weak_self;
             if (complete_block) complete_block([export_session status]
                                                , [export_session status] == AVAssetExportSessionStatusCompleted);
-                if (pSelf.delegate
-                    && [pSelf.delegate respondsToSelector:@selector(mq_video_manager:status:complete:file_path:)]){
-                    [pSelf.delegate mq_video_manager:pSelf
-                                              status:[export_session status]
-                                            complete:[export_session status] == AVAssetExportSessionStatusCompleted
-                                           file_path:s_convert_file_path];
+                if (strong_self.delegate
+                    && [strong_self.delegate
+                        respondsToSelector:@selector(mq_video_manager:status:complete:file_path:)]){
+                    [strong_self.delegate mq_video_manager:strong_self
+                                                    status:[export_session status]
+                                                  complete:[export_session status] == AVAssetExportSessionStatusCompleted
+                                                 file_path:s_convert_file_path];
                 }
         }];
     }

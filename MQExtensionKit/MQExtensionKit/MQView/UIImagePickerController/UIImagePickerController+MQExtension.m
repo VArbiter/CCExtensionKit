@@ -97,21 +97,23 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     MQImageSaveType type = [objc_getAssociatedObject(self, "_MQ_IMAGE_PICKER_SAVE_TYPE_") intValue];
     if (type & MQImageSaveTypeNone) return ;
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     void (^o)(void) = ^ {
+        __strong typeof(weak_self) strong_self = weak_self;
         UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerOriginalImage"],
-                                       self,
+                                       strong_self,
                                        @selector(image:didFinishSavingWithError:contextInfo:),
                                        nil);
-        void (^t)(UIImage *) = objc_getAssociatedObject(pSelf, "_MQ_IMAGE_PICKER_GET_ORIGINAL_IMAGE_");
+        void (^t)(UIImage *) = objc_getAssociatedObject(strong_self, "_MQ_IMAGE_PICKER_GET_ORIGINAL_IMAGE_");
         if (t) t(info[@"UIImagePickerControllerOriginalImage"]);
     };
     void (^e)(void) = ^ {
+        __strong typeof(weak_self) strong_self = weak_self;
         UIImageWriteToSavedPhotosAlbum(info[@"UIImagePickerControllerEditedImage"],
                                        self,
                                        @selector(image:didFinishSavingWithError:contextInfo:),
                                        nil);
-        void (^t)(UIImage *, CGRect) = objc_getAssociatedObject(pSelf, "_MQ_IMAGE_PICKER_GET_EDITED_IMAGE_");
+        void (^t)(UIImage *, CGRect) = objc_getAssociatedObject(strong_self, "_MQ_IMAGE_PICKER_GET_EDITED_IMAGE_");
         if (t) t(info[@"UIImagePickerControllerEditedImage"] , [info[@"UIImagePickerControllerCropRect"] CGRectValue]);
     };
     

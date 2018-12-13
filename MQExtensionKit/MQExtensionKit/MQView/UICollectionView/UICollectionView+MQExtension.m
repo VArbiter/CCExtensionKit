@@ -87,7 +87,8 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
         void (^t)(void) = ^ {
             [UIView setAnimationsEnabled:false];
             [self performBatchUpdates:^{
-                [weak_self reloadSections:set];
+                __strong typeof(weak_self) strong_self = weak_self;
+                [strong_self reloadSections:set];
             } completion:^(BOOL finished) {
                 [UIView setAnimationsEnabled:YES];
             }];
@@ -437,9 +438,10 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
     }
     
     if (!self.is_disable_background) {
-        __weak typeof(self) pSelf = self;
+        __weak typeof(self) weak_self = self;
         dispatch_async(self.queue, ^{
-            if (pSelf.prefetching) pSelf.prefetching(collectionView, indexPaths);
+            __strong typeof(weak_self) strong_self = weak_self;
+            if (strong_self.prefetching) strong_self.prefetching(collectionView, indexPaths);
         });
     }
     else if (self.prefetching) self.prefetching(collectionView, indexPaths);

@@ -46,6 +46,7 @@
                       action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) action {
     __weak typeof(self) weak_self = self;
     [array enumerateObjectsUsingBlock:^(MQAlertActionInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        __strong typeof(weak_self) strong_self = weak_self;
         MQAlertActionEntity *m = [[MQAlertActionEntity alloc] init];
         m.s_title = obj[@"title"];
         m.style = (UIAlertActionStyle)[obj[@"style"] integerValue];
@@ -56,9 +57,9 @@
                                                       if (action) action(action_t , idx);
                                                   }];
         a.action_m = m;
-        if (a) [weak_self addAction:a];
+        if (a) [strong_self addAction:a];
     }];
-    return weak_self;
+    return self;
 }
 
 MQAlertActionInfo * MQAlertActionInfoMake(NSString * title, UIAlertActionStyle style) {

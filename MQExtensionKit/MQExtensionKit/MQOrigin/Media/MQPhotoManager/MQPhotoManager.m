@@ -66,7 +66,7 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
                                                              ascending:is_ascending]];
     
     __block NSInteger i_count = 0;
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     
     if (self.is_image) {
         PHFetchResult *result_image = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage
@@ -74,7 +74,8 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
         [result_image enumerateObjectsUsingBlock:^(id  _Nonnull obj,
                                                    NSUInteger idx,
                                                    BOOL * _Nonnull stop) {
-            if (++ i_count >= pSelf.i_limit_size) return ;
+            __strong typeof(weak_self) strong_self = weak_self;
+            if (++ i_count >= strong_self.i_limit_size) return ;
             
             PHAsset *asset = (PHAsset *)obj;
             [assets addObject:asset];
@@ -86,7 +87,8 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
         [result_video enumerateObjectsUsingBlock:^(id  _Nonnull obj,
                                                    NSUInteger idx,
                                                    BOOL * _Nonnull stop) {
-            if (++ i_count >= pSelf.i_limit_size) return ;
+            __strong typeof(weak_self) strong_self = weak_self;
+            if (++ i_count >= strong_self.i_limit_size) return ;
             
             PHAsset *asset = (PHAsset *)obj;
             [assets addObject:asset];
@@ -124,10 +126,11 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
         option = self.request_options;
     }
     
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     [array_temp enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj,
                                                   NSUInteger idx,
                                                   BOOL * _Nonnull stop) {
+        __strong typeof(weak_self) strong_self = weak_self;
         NSString *s_type = nil;
         if (obj.mediaType == PHAssetMediaTypeImage) {
             s_type = mq_photo_manger_image_key;
@@ -144,7 +147,7 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
         __block BOOL is_need_added = YES;
         
         [[PHCachingImageManager defaultManager] requestImageForAsset:obj
-                                                          targetSize:pSelf.size_image
+                                                          targetSize:strong_self.size_image
                                                          contentMode:PHImageContentModeAspectFit
                                                              options:option
                                                        resultHandler:^(UIImage * _Nullable image,
@@ -271,11 +274,12 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
     
     __weak typeof(self) weak_self = self;
     [self.assets_library enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        __strong typeof(weak_self) strong_self = weak_self;
         if (group) {
             [group setAssetsFilter:[ALAssetsFilter allPhotos]];
-            [weak_self.array_groups_image addObject:group];
+            [strong_self.array_groups_image addObject:group];
         }
-        if (block_group) block_group([NSArray arrayWithArray:weak_self.array_groups_image] , nil);
+        if (block_group) block_group([NSArray arrayWithArray:strong_self.array_groups_image] , nil);
     } failureBlock:^(NSError *error) {
         if (block_group) block_group(nil,error);
     }];
@@ -286,11 +290,12 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
     [_array_groups_videos removeAllObjects];
     __weak typeof(self) weak_self = self;
     [self.assets_library enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        __strong typeof(weak_self) strong_self = weak_self;
         if (group) {
             [group setAssetsFilter:[ALAssetsFilter allVideos]];
-            [weak_self.array_groups_videos addObject:group];
+            [strong_self.array_groups_videos addObject:group];
         }
-        if (block_group) block_group([NSArray arrayWithArray:weak_self.array_groups_videos] , nil);
+        if (block_group) block_group([NSArray arrayWithArray:strong_self.array_groups_videos] , nil);
     } failureBlock:^(NSError *error) {
         if (block_group) block_group(nil,error);
     }];

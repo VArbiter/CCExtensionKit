@@ -18,20 +18,22 @@
 - (NSString *(^)(id))s {
     __weak typeof(self) weak_self = self;
     return ^NSString *(id value) {
+        __strong typeof(weak_self) strong_self = weak_self;
         if ([value isKindOfClass:NSString.class]) {
-            return ((NSString *)value).length > 0 ? [weak_self stringByAppendingString:(NSString *)value] : weak_self;
+            return ((NSString *)value).length > 0 ? [strong_self stringByAppendingString:(NSString *)value] : strong_self;
         }
-        return [weak_self stringByAppendingString:[NSString stringWithFormat:@"%@",value]];
+        return [strong_self stringByAppendingString:[NSString stringWithFormat:@"%@",value]];
     };
 }
 
 - (NSString *(^)(id))p {
     __weak typeof(self) weak_self = self;
     return ^NSString *(id value) {
+        __strong typeof(weak_self) strong_self = weak_self;
         if ([value isKindOfClass:NSString.class]) {
-            return ((NSString *)value).length > 0 ? [weak_self stringByAppendingPathComponent:(NSString *)value] : weak_self;
+            return ((NSString *)value).length > 0 ? [strong_self stringByAppendingPathComponent:(NSString *)value] : strong_self;
         }
-        return [weak_self stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",value]];
+        return [strong_self stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",value]];
     };
 }
 

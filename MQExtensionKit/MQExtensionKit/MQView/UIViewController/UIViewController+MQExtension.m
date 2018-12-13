@@ -100,11 +100,12 @@
     id o = objc_getAssociatedObject(self, "_MQ_EXTENSION_CONTROLLER_DISABLE_ANIMATED_");
     BOOL b = o ? [o boolValue] : YES;
     // solve the delay problem .
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [pSelf presentViewController:controller
-                            animated:b
-                          completion:complete];
+        __strong typeof(weak_self) strong_self = weak_self;
+        [strong_self presentViewController:controller
+                                  animated:b
+                                completion:complete];
     });
     return self;
 }
@@ -273,12 +274,14 @@ static NSString * mq_controller_extension_animated_transition_key = @"mq_control
     
     __weak typeof(self) weak_self = self;
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+        __strong typeof(weak_self) strong_self = weak_self;
         CGRect r = vc_from.view.frame;
-        if (weak_self.is_direction_right) r.origin.x += r.size.width;
+        if (strong_self.is_direction_right) r.origin.x += r.size.width;
         else r.origin.x -= r.size.width;
         vc_from.view.frame = r;
     } completion:^(BOOL finished) {
-        [weak_self.transition completeTransition:finished];
+        __strong typeof(weak_self) strong_self = weak_self;
+        [strong_self.transition completeTransition:finished];
     }];
 }
 

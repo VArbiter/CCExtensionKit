@@ -116,17 +116,22 @@ static const char * MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY = "MQ_UIVIEW_ASSOCIATE
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     __weak typeof(self) weak_self = self;
     CGRect (^t)(void) = ^CGRect {
-        NSNumber * top = objc_getAssociatedObject(weak_self, MQ_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY);
-        NSNumber * left = objc_getAssociatedObject(weak_self, MQ_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY);
-        NSNumber * bottom = objc_getAssociatedObject(weak_self, MQ_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY);
-        NSNumber * right = objc_getAssociatedObject(weak_self, MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY);
+        __strong typeof(weak_self) strong_self = weak_self;
+        NSNumber * top = objc_getAssociatedObject(strong_self,
+                                                  MQ_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY);
+        NSNumber * left = objc_getAssociatedObject(strong_self,
+                                                   MQ_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY);
+        NSNumber * bottom = objc_getAssociatedObject(strong_self,
+                                                     MQ_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY);
+        NSNumber * right = objc_getAssociatedObject(strong_self,
+                                                    MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY);
         if (top && left && bottom && right) {
-            return CGRectMake(weak_self.bounds.origin.x - left.floatValue,
-                              weak_self.bounds.origin.y - top.floatValue,
-                              weak_self.bounds.size.width + left.floatValue + right.floatValue,
-                              weak_self.bounds.size.height + top.floatValue + bottom.floatValue);
+            return CGRectMake(strong_self.bounds.origin.x - left.floatValue,
+                              strong_self.bounds.origin.y - top.floatValue,
+                              strong_self.bounds.size.width + left.floatValue + right.floatValue,
+                              strong_self.bounds.size.height + top.floatValue + bottom.floatValue);
         }
-        else return weak_self.bounds;
+        else return strong_self.bounds;
     };
     
     CGRect rect = t();

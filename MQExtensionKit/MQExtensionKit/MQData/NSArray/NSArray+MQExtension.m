@@ -70,7 +70,8 @@
     else if ([value isKindOfClass:[NSSet class]]) {
         __weak typeof(self) weak_self = self;
         [((NSSet *)value) enumerateObjectsUsingBlock:^(id  _Nonnull obj, BOOL * _Nonnull stop) {
-            [weak_self addObject:obj];
+            __strong typeof(weak_self) strong_self = weak_self;
+            [strong_self addObject:obj];
         }];
     }
     return self;
@@ -124,9 +125,10 @@
                    expand : (BOOL) isExpand {
     if ([value isKindOfClass:NSArray.class]) {
         if (isExpand) {
-            __weak typeof(self) pSelf = self;
+            __weak typeof(self) weak_self = self;
             [(NSArray *)value enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [pSelf mq_append:value];
+                __strong typeof(weak_self) strong_self = weak_self;
+                [strong_self mq_append:value];
             }];
         }
         else [self mq_append:value];

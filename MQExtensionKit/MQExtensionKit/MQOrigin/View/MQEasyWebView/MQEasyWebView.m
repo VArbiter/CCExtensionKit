@@ -206,7 +206,8 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
                 
                 __weak typeof(self) weak_self = self;
                 dispatch_async(dispatch_get_main_queue(), ^{ // async , has to do it on main thread
-                    if (weak_self.alert_block) weak_self.alert_block(alert_controller);
+                    __strong typeof(weak_self) strong_self = weak_self;
+                    if (strong_self.alert_block) strong_self.alert_block(alert_controller);
                 });
                 return;
             }

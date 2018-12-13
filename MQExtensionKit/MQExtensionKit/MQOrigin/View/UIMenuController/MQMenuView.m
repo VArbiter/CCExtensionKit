@@ -58,8 +58,9 @@
 - (UIMenuItem *(^)(NSInteger))menu_item_t {
     __weak typeof(self) weak_self = self;
     return ^UIMenuItem *(NSInteger index) {
+        __strong typeof(weak_self) strong_self = weak_self;
         if (index == -1) return nil;
-        for (UIMenuItem *t_item in weak_self.menuItems) {
+        for (UIMenuItem *t_item in strong_self.menuItems) {
             if (![t_item isKindOfClass:[UIMenuItem class]]) continue;
             if (t_item.i_current == index) return t_item;
         }
@@ -70,7 +71,8 @@
 - (NSInteger (^)(NSString *))click_t {
     __weak typeof(self) weak_self = self;
     return ^NSInteger(NSString *s_title) {
-        for (UIMenuItem *t_item in weak_self.menuItems) {
+        __strong typeof(weak_self) strong_self = weak_self;
+        for (UIMenuItem *t_item in strong_self.menuItems) {
             if (![t_item isKindOfClass:UIMenuItem.class]) continue;
             if ([t_item.s_key isEqualToString:s_title])
                 return t_item.i_current;
@@ -167,26 +169,28 @@ static NSArray *__array_keys = nil;
     
     __weak typeof(self) weak_self = self;
     [array_titles enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        __strong typeof(weak_self) strong_self = weak_self;
+        
         NSString *s_key = obj.allKeys.firstObject;
         NSString *s_value = obj.allValues.firstObject;
         
-        void (^addMethod)(UIMenuItem * , SEL ) = ^(UIMenuItem *menu_item , SEL selector) {
+        void (^add_method_block)(UIMenuItem * , SEL ) = ^(UIMenuItem *menu_item , SEL selector) {
             [menu_item setTitle:s_value];
             [menu_item setAction:selector];
             menu_item.i_current = idx ;
             menu_item.dictionary = [NSMutableDictionary dictionaryWithObject:s_value
                                                                      forKey:s_key];
-            [weak_self.array_menu_items addObject:menu_item];
+            [strong_self.array_menu_items addObject:menu_item];
         };
         
         if ([s_key isKindOfClass:[NSString class]] && [s_value isKindOfClass:[NSString class]]) {
             UIMenuItem *menu_item = [[UIMenuItem alloc] init];
             SEL selector = NSSelectorFromString(s_key);
-            if (addMethod) {
-                if ([weak_self.class resolveInstanceMethod:selector]) {
-                    if ([weak_self respondsToSelector:selector]) addMethod(menu_item , selector);
+            if (add_method_block) {
+                if ([strong_self.class resolveInstanceMethod:selector]) {
+                    if ([strong_self respondsToSelector:selector]) add_method_block(menu_item , selector);
                 }
-                else if ([weak_self respondsToSelector:selector]) addMethod(menu_item , selector);
+                else if ([strong_self respondsToSelector:selector]) add_method_block(menu_item , selector);
             }
         }
     }];
@@ -221,13 +225,14 @@ void MQ_DESTORY_MENU_ITEM(MQMenuView *view) {
     
     __weak typeof(self) weak_self = self;
     self.block_title = ^(NSString *string_title) {
-        NSInteger index = weak_self.menu_controller.click_t(string_title);
-        UIMenuItem *menu_item = weak_self.menu_controller.menu_item_t(index);
-        if (weak_self.click)
-            weak_self.click(menu_item.dictionary ,
-                        menu_item.dictionary.allKeys.firstObject,
-                        menu_item.dictionary.allValues.firstObject,
-                        index);
+        __strong typeof(weak_self) strong_self = weak_self;
+        NSInteger index = strong_self.menu_controller.click_t(string_title);
+        UIMenuItem *menu_item = strong_self.menu_controller.menu_item_t(index);
+        if (strong_self.click)
+            strong_self.click(menu_item.dictionary ,
+                              menu_item.dictionary.allKeys.firstObject,
+                              menu_item.dictionary.allValues.firstObject,
+                              index);
     };
 }
 

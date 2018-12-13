@@ -149,7 +149,8 @@ forHeaderFooterViewReuseIdentifier:s_nib];
         __weak typeof(self) weak_self = self;
         if ((NSInteger)animation == -2) {
             t(^{
-                [weak_self reloadSections:set
+                __strong typeof(weak_self) strong_self = weak_self;
+                [strong_self reloadSections:set
                      withRowAnimation:UITableViewRowAnimationNone];
             });
         } else [self reloadSections:set
@@ -175,8 +176,9 @@ forHeaderFooterViewReuseIdentifier:s_nib];
             __weak typeof(self) weak_self = self;
             if ((NSInteger)animation == -2) {
                 t(^{
-                    [weak_self reloadRowsAtIndexPaths:array
-                                 withRowAnimation:UITableViewRowAnimationNone];
+                    __strong typeof(weak_self) strong_self = weak_self;
+                    [strong_self reloadRowsAtIndexPaths:array
+                                       withRowAnimation:UITableViewRowAnimationNone];
                 });
             } else [self reloadRowsAtIndexPaths:array
                                withRowAnimation:UITableViewRowAnimationNone];
@@ -475,7 +477,8 @@ forHeaderFooterViewReuseIdentifier:s_nib];
     if (!self.is_disable_background) {
         __weak typeof(self) weak_self = self;
         dispatch_async(self.queue, ^{
-            if (weak_self.prefetching) weak_self.prefetching(tableView, indexPaths);
+            __strong typeof(weak_self) strong_self = weak_self;
+            if (strong_self.prefetching) strong_self.prefetching(tableView, indexPaths);
         });
     }
     else if (self.prefetching) self.prefetching(tableView, indexPaths);

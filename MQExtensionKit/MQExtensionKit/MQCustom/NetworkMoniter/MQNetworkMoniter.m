@@ -58,9 +58,10 @@ NSString * const mq_network_status_key_old = @"MQ_NETWORK_STATUS_KEY_OLD";
     [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:mq_network_status_key_new];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _moniter.reachabilityManager = [AFNetworkReachabilityManager sharedManager];
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     [_moniter.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        [pSelf mq_capture_current_environment:status];
+        __strong typeof(weak_self) strong_self = weak_self;
+        [strong_self mq_capture_current_environment:status];
     }];
     [_moniter.reachabilityManager startMonitoring];
 }

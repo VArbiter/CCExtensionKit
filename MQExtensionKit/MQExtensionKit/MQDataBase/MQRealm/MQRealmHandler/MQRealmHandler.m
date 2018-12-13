@@ -72,17 +72,16 @@ static MQRealmHandler *__handler = nil;
     }
     else self.realm = [RLMRealm defaultRealm];
     
-    __weak typeof(self) pSelf = self;
-    void (^t)(RLMNotification n, RLMRealm *r) = objc_getAssociatedObject(pSelf, MQ_RLM_NOTIFICATION_KEY);
+    void (^t)(RLMNotification n, RLMRealm *r) = objc_getAssociatedObject(self, MQ_RLM_NOTIFICATION_KEY);
     if (t) {
-        self.token = [pSelf.realm addNotificationBlock:^(RLMNotification  _Nonnull notification, RLMRealm * _Nonnull realm) {
+        self.token = [self.realm addNotificationBlock:^(RLMNotification  _Nonnull notification, RLMRealm * _Nonnull realm) {
             if (t) {
                 t(notification , realm);
             }
         }];
     }
     
-    return pSelf;
+    return self;
 }
 - (instancetype) mq_operate : (void(^)(void)) operate {
     NSError *error = nil;
@@ -116,7 +115,7 @@ static MQRealmHandler *__handler = nil;
         if (dictionary.allKeys.count > 0) {
             v = [[cls alloc] initWithValue:dictionary];
             // eqlals with above
-//                [clazz createInRealm:pSelf.realm
+//                [clazz createInRealm:weak_self.realm
 //                           withValue:dictionary];
         }
         else v = [[cls alloc] init];
@@ -138,14 +137,15 @@ static MQRealmHandler *__handler = nil;
 }
 - (instancetype) mq_save : (id) object {
     if (![[object class] isSubclassOfClass:[RLMObject class]]) return self;
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     return [self mq_operate:^{
+        __strong typeof(weak_self) strong_self = weak_self;
         void (^t)(void) = ^ {
-            [pSelf.realm addObject:object]; // if not , insert only
+            [strong_self.realm addObject:object]; // if not , insert only
         };
         if ([[object class] respondsToSelector:@selector(primaryKey)]) {
             id value = [[object class] performSelector:@selector(primaryKey)];
-            if (value) [pSelf.realm addOrUpdateObject:object]; // if has a primaryKey , it will be insert or update
+            if (value) [strong_self.realm addOrUpdateObject:object]; // if has a primaryKey , it will be insert or update
             else t();
         }
         else t();
@@ -154,42 +154,47 @@ static MQRealmHandler *__handler = nil;
 
 - (instancetype) mq_delete : (id) object {
     if (![[object class] isSubclassOfClass:[RLMObject class]]) return self;
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     return [self mq_operate:^{
-        [pSelf.realm deleteObject:object];
+        __strong typeof(weak_self) strong_self = weak_self;
+        [strong_self.realm deleteObject:object];
     }];
 }
 - (instancetype) mq_delete_promary_key : (id) object {
     if (![[object class] isSubclassOfClass:[RLMObject class]]) return self;
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     if ([[object class] respondsToSelector:@selector(primaryKey)]) {
         NSString *pk = [[object class] performSelector:@selector(primaryKey)];
         RLMResults *r = [[object class] objectsWhere:[NSString stringWithFormat:@"%@ = %@" , pk , [object valueForKeyPath:pk]]];
         if (r.count > 0) {
             return [self mq_operate:^{
-                [pSelf.realm deleteObjects:r];
+                __strong typeof(weak_self) strong_self = weak_self;
+                [strong_self.realm deleteObjects:r];
             }];
         }
     }
     return self;
 }
 - (instancetype) mq_delete_array : (NSArray <__kindof RLMObject *>*) array {
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     return [self mq_operate:^{
-        [pSelf.realm deleteObjects:array];
+        __strong typeof(weak_self) strong_self = weak_self;
+        [strong_self.realm deleteObjects:array];
     }];
 }
 - (instancetype) mq_delete_class : (Class) cls {
     if (![cls isKindOfClass:[RLMObject class]]) return self;
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     return [self mq_operate:^{
-        [pSelf.realm deleteObjects:[cls allObjects]];
+        __strong typeof(weak_self) strong_self = weak_self;
+        [strong_self.realm deleteObjects:[cls allObjects]];
     }];
 }
 - (instancetype) mq_delete_all {
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     return [self mq_operate:^{
-        [pSelf.realm deleteAllObjects];
+        __strong typeof(weak_self) strong_self = weak_self;
+        [strong_self.realm deleteAllObjects];
     }];
 }
 - (void) mq_destory : (NSString *) specific {
@@ -216,10 +221,11 @@ static MQRealmHandler *__handler = nil;
 #if DEBUG
             @throw @"delete Error .";
 #else
-            void (^b)(BOOL) = objc_getAssociatedObject(weak_self, MQ_RLM_SUCCEED_KEY);
+            __strong typeof(weak_self) strong_self = weak_self;
+            void (^b)(BOOL) = objc_getAssociatedObject(strong_self, MQ_RLM_SUCCEED_KEY);
             if (b) {b(error ? false : YES);}
             if (error) {
-                void (^e)(NSError *) = objc_getAssociatedObject(weak_self, MQ_RLM_ERROR_KEY);
+                void (^e)(NSError *) = objc_getAssociatedObject(strong_self, MQ_RLM_ERROR_KEY);
                 if (e) {e(error);}
             }
 #endif

@@ -91,20 +91,21 @@
 - (void) mq_resume {
     self.is_running = YES;
     
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     void (^mq_excute)(void) = ^{
-        if (pSelf.delegate_t
-            && [pSelf.delegate_t respondsToSelector:@selector(mq_task_manager:excute_current_task:)]) {
-            [pSelf.delegate_t mq_task_manager:pSelf
+        __strong typeof(weak_self) strong_self = weak_self;
+        if (strong_self.delegate_t
+            && [strong_self.delegate_t respondsToSelector:@selector(mq_task_manager:excute_current_task:)]) {
+            [strong_self.delegate_t mq_task_manager:weak_self
                           excute_current_task:^(BOOL is_error_occured, BOOL is_continue) {
                 
                 if (is_error_occured) {
-                    [pSelf mq_pause];
+                    [strong_self mq_pause];
                 }
-                else if (is_continue && pSelf.is_running) {
-                    if (pSelf.array_tasks.count > 0) {
-                        [pSelf.array_tasks removeObjectAtIndex:0];
-                        if (pSelf.array_tasks.count > 0) [pSelf mq_resume];
+                else if (is_continue && strong_self.is_running) {
+                    if (strong_self.array_tasks.count > 0) {
+                        [strong_self.array_tasks removeObjectAtIndex:0];
+                        if (strong_self.array_tasks.count > 0) [strong_self mq_resume];
                     }
                 }
                 

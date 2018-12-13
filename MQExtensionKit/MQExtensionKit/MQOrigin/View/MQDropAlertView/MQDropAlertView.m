@@ -68,27 +68,31 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
             if (self.block_action_start_did_end) self.block_action_start_did_end(self);
         }break;
         case MQDropAnimate_Smooth:{
-            MQ_WEAK_SELF;
+            __weak typeof(self) weak_self = self;
             void (^block_center)(void) = ^ {
                 [UIView animateWithDuration:.2f animations:^{
-                    weak_self.view_custom.center = weak_self.mq_in_center;
-                    if (weak_self.block_action_start_did_end) weak_self.block_action_start_did_end(weak_self);
+                    __strong typeof(weak_self) strong_self = weak_self;
+                    strong_self.view_custom.center = strong_self.mq_in_center;
+                    if (strong_self.block_action_start_did_end) strong_self.block_action_start_did_end(strong_self);
                 }];
             };
             
             [UIView animateWithDuration:MQ_DROP_ANIMATION_DURATION animations:^{
-                weak_self.alpha = 1.0f;
-                weak_self.view_custom.center = (CGPoint){weak_self.mq_in_center_x , weak_self.mq_in_center_y + MQScaleH(80.f)};
+                __strong typeof(weak_self) strong_self = weak_self;
+                strong_self.alpha = 1.0f;
+                strong_self.view_custom.center = (CGPoint){strong_self.mq_in_center_x , strong_self.mq_in_center_y + MQScaleH(80.f)};
             } completion:^(BOOL finished) {
                 if (block_center) block_center();
             }];
         }break;
         case MQDropAnimate_Snap:{
-            MQ_WEAK_SELF;
+            __weak typeof(self) weak_self = self;
             [UIView animateWithDuration:MQ_DROP_ANIMATION_DURATION animations:^{
-                weak_self.alpha = 1.0f;
+                __strong typeof(weak_self) strong_self = weak_self;
+                strong_self.alpha = 1.0f;
             } completion:^(BOOL finished) {
-                if (weak_self.block_action_start_did_end) weak_self.block_action_start_did_end(weak_self);
+                __strong typeof(weak_self) strong_self = weak_self;
+                if (strong_self.block_action_start_did_end) strong_self.block_action_start_did_end(strong_self);
             }];
             
             UISnapBehavior *snap_behaviour = [[UISnapBehavior alloc] initWithItem:self.view_custom
@@ -108,20 +112,23 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
 }
 - (void) mq_dismiss : (MQDropAnimate) animate {
     
-    MQ_WEAK_SELF;
+    __weak typeof(self) weak_self = self;
     void (^block_dismiss)(void) = ^ {
         [UIView animateWithDuration:MQ_DROP_ANIMATION_DURATION animations:^{
-            weak_self.alpha = 0.0f;
+            __strong typeof(weak_self) strong_self = weak_self;
+            strong_self.alpha = 0.0f;
         } completion:^(BOOL finished) {
-            [weak_self removeFromSuperview];
-            if (weak_self.block_action_did_end) weak_self.block_action_did_end(weak_self);
+            __strong typeof(weak_self) strong_self = weak_self;
+            [strong_self removeFromSuperview];
+            if (strong_self.block_action_did_end) strong_self.block_action_did_end(strong_self);
         }];
     };
     
     void (^block_add_gravity)(void) = ^ {
-        UIGravityBehavior *gravity_behaviour = [[UIGravityBehavior alloc] initWithItems:@[weak_self.view_custom]];
+        __strong typeof(weak_self) strong_self = weak_self;
+        UIGravityBehavior *gravity_behaviour = [[UIGravityBehavior alloc] initWithItems:@[strong_self.view_custom]];
         gravity_behaviour.gravityDirection = CGVectorMake(0.0f, 10.0f);
-        [weak_self.animator addBehavior:gravity_behaviour];
+        [strong_self.animator addBehavior:gravity_behaviour];
     };
     
     switch (animate) {

@@ -249,11 +249,12 @@ CGFloat mq_gaussian_blur_tint_alpha = .25f;
                         complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
     __weak typeof(self) weak_self = self;
     void (^tp)(void) = ^ {
-        UIImage *m = [weak_self mq_gaussian_acc:f_radius tint:tint];
+        __strong typeof(weak_self) strong_self = weak_self;
+        UIImage *m = [strong_self mq_gaussian_acc:f_radius tint:tint];
         if (NSThread.isMainThread) {
-            if (complete) complete(weak_self , m);
+            if (complete) complete(strong_self , m);
         } else dispatch_sync(dispatch_get_main_queue(), ^{
-            if (complete) complete(weak_self , m);
+            if (complete) complete(strong_self , m);
         });
     };
     if (@available(iOS 10.0, *)) {
@@ -294,11 +295,12 @@ CGFloat mq_gaussian_blur_tint_alpha = .25f;
                        complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
     __weak typeof(self) weak_self = self;
     void (^tp)(void) = ^ {
-        UIImage *m = [weak_self mq_gaussian_CI:f_radius];
+        __strong typeof(weak_self) strong_self = weak_self;
+        UIImage *m = [strong_self mq_gaussian_CI:f_radius];
         if (NSThread.isMainThread) {
-            if (complete) complete(weak_self , m);
+            if (complete) complete(strong_self , m);
         } else dispatch_sync(dispatch_get_main_queue(), ^{
-            if (complete) complete(weak_self , m);
+            if (complete) complete(strong_self , m);
         });
     };
     

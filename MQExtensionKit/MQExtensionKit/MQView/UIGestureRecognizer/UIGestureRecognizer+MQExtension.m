@@ -27,7 +27,8 @@ static const char * MQ_UIGESTURERECOGNIZER_ASSOCIATE_KEY = "MQ_UIGESTURERECOGNIZ
         else {
             __weak typeof(self) weak_self = self;
             dispatch_sync(dispatch_get_main_queue(), ^{
-                t(weak_self);
+                __strong typeof(weak_self) strong_self = weak_self;
+                t(strong_self);
             });
         }
     }
@@ -108,7 +109,8 @@ static const char * MQ_UIGESTURERECOGNIZER_ASSOCIATE_KEY = "MQ_UIGESTURERECOGNIZ
     self.userInteractionEnabled = YES;
     __weak typeof(self) weak_self = self;
     return [self mq_gesture:[UITapGestureRecognizer.mq_common mq_tap:i_count action:^(UITapGestureRecognizer *tap_gr) {
-        if (action) action(weak_self , tap_gr);
+        __strong typeof(weak_self) strong_self = weak_self;
+        if (action) action(strong_self , tap_gr);
     }]];
 }
 - (instancetype) mq_press : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action {
@@ -119,7 +121,8 @@ static const char * MQ_UIGESTURERECOGNIZER_ASSOCIATE_KEY = "MQ_UIGESTURERECOGNIZ
     self.userInteractionEnabled = YES;
     __weak typeof(self) weak_self = self;
     return [self mq_gesture:[UILongPressGestureRecognizer.mq_common mq_press:f_seconds action:^(UILongPressGestureRecognizer *press_gr) {
-        if (action) action(weak_self , press_gr);
+        __strong typeof(weak_self) strong_self = weak_self;
+        if (action) action(strong_self , press_gr);
     }]];
 }
 
@@ -155,7 +158,8 @@ static const char * MQ_UI_SCREEN_EDGE_PAN_GESTURE_RECOGNIZER_UICONTROLLER_BLOCK_
         else {
             __weak typeof(self) weak_self = self;
             dispatch_sync(dispatch_get_main_queue(), ^{
-                t(weak_self,sender);
+                __strong typeof(weak_self) strong_self = weak_self;
+                t(strong_self,sender);
             });
         }
     }

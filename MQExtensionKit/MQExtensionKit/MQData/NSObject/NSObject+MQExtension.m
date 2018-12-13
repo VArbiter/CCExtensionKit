@@ -143,7 +143,8 @@ static NSString * MQ_EXTENSION_KVO_ALL_KEY_PATHS_KEY = @"MQ_EXTENSION_KVO_ALL_KE
 - (void) mq_destory_all_blocks_targets {
     __weak typeof(self) weak_self = self;
     [self.d_all_key_paths enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        [weak_self removeObserver:weak_self forKeyPath:key];
+        __strong typeof(weak_self) strong_self = weak_self;
+        [strong_self removeObserver:strong_self forKeyPath:key];
     }];
     [self.d_all_key_paths removeAllObjects];
 }
