@@ -11,6 +11,7 @@
 		7089AB5B21ACF13A00C835EE /* UIWindow+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */; };
 		70EC8DFF21C23F2C005E90A8 /* MQProxyDealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC8DFA21C23F2C005E90A8 /* MQProxyDealer.m */; };
 		70EC8E0021C23F2C005E90A8 /* MQRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC8DFE21C23F2C005E90A8 /* MQRuntime.m */; };
+		70EC8E0621C24292005E90A8 /* MQAutoTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC8E0221C24292005E90A8 /* MQAutoTextView.m */; };
 		70F08BF0210EB2FF007B4D33 /* CCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08BEF210EB2FF007B4D33 /* CCAppDelegate.m */; };
 		70F08BF3210EB2FF007B4D33 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08BF2210EB2FF007B4D33 /* ViewController.m */; };
 		70F08BF6210EB2FF007B4D33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70F08BF4210EB2FF007B4D33 /* Main.storyboard */; };
@@ -110,6 +111,8 @@
 		70EC8DFB21C23F2C005E90A8 /* MQProxyDealerMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProxyDealerMacro.h; sourceTree = "<group>"; };
 		70EC8DFD21C23F2C005E90A8 /* MQRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRuntime.h; sourceTree = "<group>"; };
 		70EC8DFE21C23F2C005E90A8 /* MQRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQRuntime.m; sourceTree = "<group>"; };
+		70EC8E0221C24292005E90A8 /* MQAutoTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQAutoTextView.m; sourceTree = "<group>"; };
+		70EC8E0421C24292005E90A8 /* MQAutoTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQAutoTextView.h; sourceTree = "<group>"; };
 		70F08BEB210EB2FF007B4D33 /* MQExtension_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MQExtension_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F08BEE210EB2FF007B4D33 /* CCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCAppDelegate.h; sourceTree = "<group>"; };
 		70F08BEF210EB2FF007B4D33 /* CCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCAppDelegate.m; sourceTree = "<group>"; };
@@ -353,6 +356,15 @@
 			path = MQRuntime;
 			sourceTree = "<group>";
 		};
+		70EC8E0121C2427D005E90A8 /* MQAutoTextView */ = {
+			isa = PBXGroup;
+			children = (
+				70EC8E0421C24292005E90A8 /* MQAutoTextView.h */,
+				70EC8E0221C24292005E90A8 /* MQAutoTextView.m */,
+			);
+			path = MQAutoTextView;
+			sourceTree = "<group>";
+		};
 		70F08BE2210EB2FF007B4D33 = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +536,7 @@
 		70F08D86210EC60C007B4D33 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				70EC8E0121C2427D005E90A8 /* MQAutoTextView */,
 				70F08D87210EC60C007B4D33 /* UIMenuController */,
 				70F08D8A210EC60C007B4D33 /* MQDropAlertView */,
 				70F08D8D210EC60C007B4D33 /* MQGradientView */,
@@ -1461,6 +1474,7 @@
 				70F08E91210EC60C007B4D33 /* MQCommon.m in Sources */,
 				70F08EB7210EC60C007B4D33 /* UIColor+MQExtension.m in Sources */,
 				70F08E81210EC60C007B4D33 /* MQMenuView.m in Sources */,
+				70EC8E0621C24292005E90A8 /* MQAutoTextView.m in Sources */,
 				70F08EC5210EC60C007B4D33 /* UIGestureRecognizer+MQExtension.m in Sources */,
 				7089AB5B21ACF13A00C835EE /* UIWindow+MQExtension.m in Sources */,
 				70F08EAD210EC60C007B4D33 /* PHImageRequestOptions+MQExtension.m in Sources */,
