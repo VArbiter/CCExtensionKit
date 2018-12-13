@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+/*
+    original was from NIMKit -> NIMGrowingTextView . // 源自 NIMKit -> NIMGrowingTextView
+    but adjust some to make it easier to use . // 但是调整了一些使之更为好用 .
+ */
+
 @class MQAutoTextView , MQAutoInternalTextView;
 
 @protocol MQAutoTextViewDelegate <NSObject>

@@ -5,7 +5,7 @@
 //  Created by 冯明庆 on 10/10/2018.
 //  Copyright © 2018 冯明庆. All rights reserved.
 //
-#import "NIMGrowingTextView.h"
+#import "MQAutoTextView.h"
 
 NSInteger MQ_ORIGIN_AUTO_TEXT_VIEW_DEFAULT_MAX_NUMBER_OF_LINES = 3;
 NSInteger MQ_ORIGIN_AUTO_TEXT_VIEW_DEFAULT_MARGIN = 16;
