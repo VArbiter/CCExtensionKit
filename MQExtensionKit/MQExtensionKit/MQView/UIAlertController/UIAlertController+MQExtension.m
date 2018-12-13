@@ -20,12 +20,12 @@
                                         preferredStyle:style];
 }
 
-- (instancetype) mq_title : (NSString *) sTitle {
-    self.title = sTitle;
+- (instancetype) mq_title : (NSString *) s_title {
+    self.title = s_title;
     return self;
 }
-- (instancetype) mq_message : (NSString *) sMessage {
-    self.message = sMessage;
+- (instancetype) mq_message : (NSString *) s_message {
+    self.message = s_message;
     return self;
 }
 
@@ -43,8 +43,8 @@
     return self;
 }
 - (instancetype) mq_action_s : (NSArray < MQAlertActionInfo *> *) array
-                      action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) actionT {
-    __weak typeof(self) pSelf = self;
+                      action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) action {
+    __weak typeof(self) weak_self = self;
     [array enumerateObjectsUsingBlock:^(MQAlertActionInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         MQAlertActionEntity *m = [[MQAlertActionEntity alloc] init];
         m.s_title = obj[@"title"];
@@ -52,13 +52,13 @@
         
         UIAlertAction *a = [UIAlertAction actionWithTitle:m.s_title
                                                     style:m.style
-                                                  handler:^(UIAlertAction * _Nonnull action) {
-                                                      if (actionT) actionT(action , idx);
+                                                  handler:^(UIAlertAction * _Nonnull action_t) {
+                                                      if (action) action(action_t , idx);
                                                   }];
         a.action_m = m;
-        if (a) [pSelf addAction:a];
+        if (a) [weak_self addAction:a];
     }];
-    return pSelf;
+    return weak_self;
 }
 
 MQAlertActionInfo * MQAlertActionInfoMake(NSString * title, UIAlertActionStyle style) {

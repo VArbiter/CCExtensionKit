@@ -8,8 +8,8 @@
 
 #import "UIView+MQExtension.h"
 
-static CGFloat _MQ_DEFAULT_SCALE_WIDTH_ = 750.f;
-static CGFloat _MQ_DEFAULT_SCALE_HEIGHT_ = 1334.f;
+static CGFloat MQ_DEFAULT_SCALE_WIDTH = 750.f;
+static CGFloat MQ_DEFAULT_SCALE_HEIGHT = 1334.f;
 CGFloat const mq_default_animation_common_duration = .3f;
 
 #pragma mark - Struct
@@ -19,12 +19,12 @@ MQPoint MQPointMake(CGFloat x , CGFloat y) {
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        o.x = x / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
-        o.y = y / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+        o.x = x / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
+        o.y = y / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
     }
     else {
-        o.x = x / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.height;
-        o.y = y / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.width;
+        o.x = x / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
+        o.y = y / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
     }
     
     return o;
@@ -42,12 +42,12 @@ MQSize MQSizeMake(CGFloat width , CGFloat height) {
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        s.width = width / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
-        s.height = height / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+        s.width = width / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
+        s.height = height / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
     }
     else {
-        s.width = width / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.height;
-        s.height = height / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.width;
+        s.width = width / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
+        s.height = height / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
     }
     
     return s;
@@ -88,16 +88,16 @@ MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFl
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        i.top = top / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
-        i.left = left / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
-        i.bottom = bottom / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
-        i.right = right / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+        i.top = top / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
+        i.left = left / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
+        i.bottom = bottom / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
+        i.right = right / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
     }
     else {
-        i.top = top / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.width;
-        i.left = left / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.height;
-        i.bottom = bottom / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.width;
-        i.right = right / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.height;
+        i.top = top / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
+        i.left = left / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
+        i.bottom = bottom / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
+        i.right = right / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
     }
     
     return i;
@@ -120,17 +120,17 @@ CGFloat MQScaleW(CGFloat w) {
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        return w / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.width;
+        return w / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
     }
-    else return w / _MQ_DEFAULT_SCALE_WIDTH_ * UIScreen.mainScreen.bounds.size.height;
+    else return w / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
 }
 CGFloat MQScaleH(CGFloat h) {
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        return h / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
+        return h / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
     }
-    else return h / _MQ_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.width;
+    else return h / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
     
 }
 
@@ -138,9 +138,9 @@ CGFloat MQAspectRatio(void) {
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        return UIScreen.mainScreen.bounds.size.width * UIScreen.mainScreen.scale / _MQ_DEFAULT_SCALE_WIDTH_ ;
+        return UIScreen.mainScreen.bounds.size.width * UIScreen.mainScreen.scale / MQ_DEFAULT_SCALE_WIDTH ;
     }
-    else return UIScreen.mainScreen.bounds.size.height * UIScreen.mainScreen.scale / _MQ_DEFAULT_SCALE_WIDTH_ ;
+    else return UIScreen.mainScreen.bounds.size.height * UIScreen.mainScreen.scale / MQ_DEFAULT_SCALE_WIDTH ;
 }
 CGFloat MQAspectW(CGFloat w) {
     return w * MQAspectRatio();
@@ -157,10 +157,10 @@ CGSize MQScaleSize(CGSize size) {
 }
 
 CGFloat MQWScale(CGFloat w) {
-    return w / _MQ_DEFAULT_SCALE_WIDTH_;
+    return w / MQ_DEFAULT_SCALE_WIDTH;
 }
 CGFloat MQHScale(CGFloat h) {
-    return h / _MQ_DEFAULT_SCALE_HEIGHT_;
+    return h / MQ_DEFAULT_SCALE_HEIGHT;
 }
 
 UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orientation) {
@@ -182,8 +182,8 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
 }
 + (void) mq_set_scale : (CGFloat) f_width
              height : (CGFloat) f_height {
-    _MQ_DEFAULT_SCALE_WIDTH_ = f_width;
-    _MQ_DEFAULT_SCALE_HEIGHT_ = f_height;
+    MQ_DEFAULT_SCALE_WIDTH = f_width;
+    MQ_DEFAULT_SCALE_HEIGHT = f_height;
 }
 
 + (void) mq_disable_animation : (void (^)(void)) action {
@@ -447,17 +447,17 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
     self.layer.backgroundColor = color ? color.CGColor : UIColor.clearColor.CGColor;
     return self;
 }
-- (instancetype) mq_radius : (CGFloat) fRadius
-                     masks : (BOOL) isMask {
-    self.layer.cornerRadius = fRadius;
-    self.layer.masksToBounds = isMask;
+- (instancetype) mq_radius : (CGFloat) f_radius
+                     masks : (BOOL) is_mask {
+    self.layer.cornerRadius = f_radius;
+    self.layer.masksToBounds = is_mask;
     return self;
 }
 - (instancetype) mq_round_corner : (UIRectCorner) corner
-                          radius : (CGFloat) fRadius {
+                          radius : (CGFloat) f_radius {
     UIBezierPath *p = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                             byRoundingCorners:corner
-                                                  cornerRadii:CGSizeMake(MQScaleW(fRadius), MQScaleH(fRadius))];
+                                                  cornerRadii:CGSizeMake(MQScaleW(f_radius), MQScaleH(f_radius))];
     CAShapeLayer *l = [[CAShapeLayer alloc] init];
     l.frame = self.bounds;
     l.path = p.CGPath;

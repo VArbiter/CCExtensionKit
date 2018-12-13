@@ -43,8 +43,8 @@ forCellReuseIdentifier:_MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
     self.delegate = delegate;
     return self;
 }
-- (instancetype) mq_datasource : (id) dataSource {
-    self.dataSource = dataSource;
+- (instancetype) mq_datasource : (id) data_source {
+    self.dataSource = data_source;
     return self;
 }
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
@@ -73,15 +73,15 @@ forCellReuseIdentifier:_MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
     return self;
 }
 
-- (instancetype) mq_regist_nib : (NSString *) sNib {
-    return [self mq_regist_nib:sNib bundle:nil];
+- (instancetype) mq_regist_nib : (NSString *) s_nib {
+    return [self mq_regist_nib:s_nib bundle:nil];
 }
-- (instancetype) mq_regist_nib : (NSString *) sNib
+- (instancetype) mq_regist_nib : (NSString *) s_nib
                       bundle : (NSBundle *) bundle {
     if (!bundle) bundle = NSBundle.mainBundle;
-    [self registerNib:[UINib nibWithNibName:sNib
+    [self registerNib:[UINib nibWithNibName:s_nib
                                       bundle:bundle]
-forCellReuseIdentifier:sNib];
+forCellReuseIdentifier:s_nib];
     return self;
 }
 
@@ -91,17 +91,17 @@ forCellReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) mq_regist_header_footer_nib : (NSString *) sNib {
-    return [self mq_regist_header_footer_nib:sNib bundle:nil];
+- (instancetype) mq_regist_header_footer_nib : (NSString *) s_nib {
+    return [self mq_regist_header_footer_nib:s_nib bundle:nil];
 }
-- (instancetype) mq_regist_header_footer_nib : (NSString *) sNib
+- (instancetype) mq_regist_header_footer_nib : (NSString *) s_nib
                                       bundle : (NSBundle *) bundle {
-    if (NSClassFromString(sNib) == UITableViewHeaderFooterView.class
-        || [NSClassFromString(sNib) isSubclassOfClass:UITableViewHeaderFooterView.class]) {
+    if (NSClassFromString(s_nib) == UITableViewHeaderFooterView.class
+        || [NSClassFromString(s_nib) isSubclassOfClass:UITableViewHeaderFooterView.class]) {
         if (!bundle) bundle = NSBundle.mainBundle;
-        [self registerNib:[UINib nibWithNibName:sNib
+        [self registerNib:[UINib nibWithNibName:s_nib
                                          bundle:bundle]
-forHeaderFooterViewReuseIdentifier:sNib];
+forHeaderFooterViewReuseIdentifier:s_nib];
     }
     return self;
 }
@@ -146,10 +146,10 @@ forHeaderFooterViewReuseIdentifier:sNib];
             }
         };
         
-        __weak typeof(self) pSelf = self;
+        __weak typeof(self) weak_self = self;
         if ((NSInteger)animation == -2) {
             t(^{
-                [pSelf reloadSections:set
+                [weak_self reloadSections:set
                      withRowAnimation:UITableViewRowAnimationNone];
             });
         } else [self reloadSections:set
@@ -172,10 +172,10 @@ forHeaderFooterViewReuseIdentifier:sNib];
                     [UIView setAnimationsEnabled:YES];
                 }
             };
-            __weak typeof(self) pSelf = self;
+            __weak typeof(self) weak_self = self;
             if ((NSInteger)animation == -2) {
                 t(^{
-                    [pSelf reloadRowsAtIndexPaths:array
+                    [weak_self reloadRowsAtIndexPaths:array
                                  withRowAnimation:UITableViewRowAnimationNone];
                 });
             } else [self reloadRowsAtIndexPaths:array
@@ -186,17 +186,17 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (__kindof UITableViewCell *) mq_deq_cell : (NSString *) sIdentifier {
-    return [self dequeueReusableCellWithIdentifier:sIdentifier];
+- (__kindof UITableViewCell *) mq_deq_cell : (NSString *) s_identifier {
+    return [self dequeueReusableCellWithIdentifier:s_identifier];
 }
 
-- (__kindof UITableViewCell *) mq_deq_cell : (NSString *) sIdentifier
-                                 indexPath : (NSIndexPath *) indexPath {
-    return [self dequeueReusableCellWithIdentifier:sIdentifier
-                                      forIndexPath:indexPath];
+- (__kindof UITableViewCell *) mq_deq_cell : (NSString *) s_identifier
+                                 indexPath : (NSIndexPath *) index_path {
+    return [self dequeueReusableCellWithIdentifier:s_identifier
+                                      forIndexPath:index_path];
 }
-- (__kindof UITableViewHeaderFooterView *) mq_deq_reusable_view : (NSString *) sIdentifier {
-    return [self dequeueReusableHeaderFooterViewWithIdentifier:sIdentifier];
+- (__kindof UITableViewHeaderFooterView *) mq_deq_reusable_view : (NSString *) s_identifier {
+    return [self dequeueReusableHeaderFooterViewWithIdentifier:s_identifier];
 }
 
 @end
@@ -205,20 +205,20 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 @interface MQTableExtensionDelegate ()
 
-@property (nonatomic , copy) CGFloat (^bCellHeight)(__kindof UITableView * tableView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) CGFloat (^bSectionHeaderHeight)(__kindof UITableView * tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) UIView *(^bSectionHeader)(__kindof UITableView *tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) CGFloat (^bSectionFooterHeight)(__kindof UITableView * tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) UIView *(^bSectionFooter)(__kindof UITableView *tableView , NSInteger integerSection) ;
-@property (nonatomic , copy) BOOL (^bDidSelect)(__kindof UITableView *tableView , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) CGFloat (^block_cell_height)(__kindof UITableView * , NSIndexPath *) ;
+@property (nonatomic , copy) CGFloat (^block_section_header_height)(__kindof UITableView * , NSInteger) ;
+@property (nonatomic , copy) UIView *(^block_section_header)(__kindof UITableView * , NSInteger) ;
+@property (nonatomic , copy) CGFloat (^block_section_footer_height)(__kindof UITableView * , NSInteger) ;
+@property (nonatomic , copy) UIView *(^block_section_footer)(__kindof UITableView * , NSInteger) ;
+@property (nonatomic , copy) BOOL (^block_did_select)(__kindof UITableView * , NSIndexPath *) ;
 
-@property (nonatomic , copy) void (^bDidScroll)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) void (^bWillBeginDecelerating)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) void (^bDidEndDecelerating)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) BOOL (^bShouldScrollToTop)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) void (^bDidScrollToTop)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) void (^bWillBeginDragging)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) void (^bDidEndDragging)(__kindof UIScrollView *scrollView , BOOL decelerate);
+@property (nonatomic , copy) void (^block_did_scroll)(__kindof UIScrollView *);
+@property (nonatomic , copy) void (^block_will_begin_decelerating)(__kindof UIScrollView *);
+@property (nonatomic , copy) void (^block_did_end_decelerating)(__kindof UIScrollView *);
+@property (nonatomic , copy) BOOL (^block_should_scroll_to_top)(__kindof UIScrollView *);
+@property (nonatomic , copy) void (^block_did_scroll_to_top)(__kindof UIScrollView *);
+@property (nonatomic , copy) void (^block_will_begin_dragging)(__kindof UIScrollView *);
+@property (nonatomic , copy) void (^block_did_end_dragging)(__kindof UIScrollView * , BOOL );
 
 @end
 
@@ -231,80 +231,81 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) mq_cell_height : (CGFloat (^)(__kindof UITableView * tableView , NSIndexPath *indexPath)) cellHeight {
-    self.bCellHeight = [cellHeight copy];
+- (instancetype) mq_cell_height : (CGFloat (^)(__kindof UITableView * table_view , NSIndexPath *index_path)) cell_height {
+    self.block_cell_height = [cell_height copy];
     return self;
 }
-- (instancetype) mq_section_header_height : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionHeaderHeight {
-    self.bSectionHeaderHeight = [sectionHeaderHeight copy];
+- (instancetype) mq_section_header_height : (CGFloat (^)(__kindof UITableView * table_view , NSInteger i_section)) section_header_height {
+    self.block_section_header_height = [section_header_height copy];
     return self;
 }
-- (instancetype) mq_section_header : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionHeader {
-    self.bSectionHeader = [sectionHeader copy];
+- (instancetype) mq_section_header : (UIView *(^)(__kindof UITableView *table_view , NSInteger i_section)) section_header {
+    self.block_section_header = [section_header copy];
     return self;
 }
-- (instancetype) mq_section_footer_height : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionFooterHeight {
-    self.bSectionFooterHeight = [sectionFooterHeight copy];
+- (instancetype) mq_section_footer_height : (CGFloat (^)(__kindof UITableView * table_view , NSInteger i_section)) section_footer_height {
+    self.block_section_footer_height = [section_footer_height copy];
     return self;
 }
-- (instancetype) mq_section_footer : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionFooter {
-    self.bSectionFooter = [sectionFooter copy];
+- (instancetype) mq_section_footer : (UIView *(^)(__kindof UITableView *table_view , NSInteger i_section)) section_footer {
+    self.block_section_footer = [section_footer copy];
     return self;
 }
-- (instancetype) mq_did_select : (BOOL (^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) didSelect {
-    self.bDidSelect = [didSelect copy];
+- (instancetype) mq_did_select : (BOOL (^)(__kindof UITableView *table_view , NSIndexPath *index_path)) did_select {
+    self.block_did_select = [did_select copy];
     return self;
 }
 
-- (instancetype) mq_did_scroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll {
-    self.bDidScroll = [didScroll copy];
+- (instancetype) mq_did_scroll : (void (^)(__kindof UIScrollView *scroll_view)) did_scroll {
+    self.block_did_scroll = [did_scroll copy];
     return self;
 }
-- (instancetype) mq_will_begin_decelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating {
-    self.bWillBeginDecelerating = [willBeginDecelerating copy];
+- (instancetype) mq_will_begin_decelerating : (void (^)(__kindof UIScrollView *scroll_view)) will_begin_decelerating {
+    self.block_will_begin_decelerating = [will_begin_decelerating copy];
     return self;
 }
-- (instancetype) mq_did_end_decelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating {
-    self.bDidEndDecelerating = [didEndDecelerating copy];
+- (instancetype) mq_did_end_decelerating : (void (^)(__kindof UIScrollView *scroll_view)) did_end_decelerating {
+    self.block_did_end_decelerating = [did_end_decelerating copy];
     return self;
 }
-- (instancetype) mq_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop {
-    self.bShouldScrollToTop = [shouldScrollToTop copy];
+- (instancetype) mq_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scroll_view)) should_scroll_to_top {
+    self.block_should_scroll_to_top = [should_scroll_to_top copy];
     return self;
 }
-- (instancetype) mq_did_scroll_to_top : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop {
-    self.bDidScrollToTop = [didScrollToTop copy];
+- (instancetype) mq_did_scroll_to_top : (void (^)(__kindof UIScrollView *scroll_view)) did_scroll_to_top {
+    self.block_did_scroll_to_top = [did_scroll_to_top copy];
     return self;
 }
-- (instancetype) mq_will_begin_dragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging {
-    self.bWillBeginDragging = [willBeginDragging copy];
+- (instancetype) mq_will_begin_dragging : (void (^)(__kindof UIScrollView *scroll_view)) will_begin_dragging {
+    self.block_will_begin_dragging = [will_begin_dragging copy];
     return self;
 }
-- (instancetype) mq_did_end_dragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging {
-    self.bDidEndDragging = [didEndDragging copy];
+- (instancetype) mq_did_end_dragging : (void (^)(__kindof UIScrollView *scroll_view , BOOL decelerate)) did_end_dragging {
+    self.block_did_end_dragging = [did_end_dragging copy];
     return self;
 }
 
 #pragma mark - ---
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.bCellHeight ? self.bCellHeight(tableView , indexPath) : 45.f ;
+    return self.block_cell_height ? self.block_cell_height(tableView , indexPath) : 45.f ;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return self.bSectionHeaderHeight ? self.bSectionHeaderHeight(tableView , section) : .0f;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return self.bSectionHeader ? self.bSectionHeader(tableView , section) : nil;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return self.bSectionFooter ? self.bSectionFooter(tableView , section) : nil;
+    return self.block_section_header_height ? self.block_section_header_height(tableView , section) : .0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return self.bSectionFooterHeight ? self.bSectionFooterHeight(tableView , section) : .01f;
+    return self.block_section_footer_height ? self.block_section_footer_height(tableView , section) : .01f;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return self.block_section_header ? self.block_section_header(tableView , section) : nil;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return self.block_section_footer ? self.block_section_footer(tableView , section) : nil;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.bDidSelect) {
-        if (self.bDidSelect(tableView , indexPath)) {
+    if (self.block_did_select) {
+        if (self.block_did_select(tableView , indexPath)) {
             [tableView deselectRowAtIndexPath:indexPath animated:false];
         }
     }
@@ -313,34 +314,35 @@ forHeaderFooterViewReuseIdentifier:sNib];
 #pragma mark - ----- UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.bDidScroll) self.bDidScroll(scrollView);
+    if (self.block_did_scroll) self.block_did_scroll(scrollView);
 }
+
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    if (self.bWillBeginDecelerating) self.bWillBeginDecelerating(scrollView);
+    if (self.block_will_begin_decelerating) self.block_will_begin_decelerating(scrollView);
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (self.bDidEndDecelerating) self.bDidEndDecelerating(scrollView);
+    if (self.block_did_end_decelerating) self.block_did_end_decelerating(scrollView);
 }
 
 - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
-    if (self.bShouldScrollToTop) return self.bShouldScrollToTop(scrollView);
+    if (self.block_should_scroll_to_top) return self.block_should_scroll_to_top(scrollView);
     return YES;
 }
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
-    if (self.bDidScrollToTop) self.bDidScrollToTop(scrollView);
+    if (self.block_did_scroll_to_top) self.block_did_scroll_to_top(scrollView);
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    if (self.bWillBeginDragging) self.bWillBeginDragging(scrollView);
+    if (self.block_will_begin_dragging) self.block_will_begin_dragging(scrollView);
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (self.bDidEndDragging) self.bDidEndDragging(scrollView, decelerate);
+    if (self.block_did_end_dragging) self.block_did_end_dragging(scrollView, decelerate);
 }
 
-- (void)dealloc {
 #if DEBUG
-    NSLog(@"_MQ_%@_DEALLOC_" , NSStringFromClass(self.class));
-#endif
+- (void)dealloc {
+    NSLog(@"MQ_%@_DEALLOC" , NSStringFromClass(self.class));
 }
+#endif
 
 @end
 
@@ -348,10 +350,10 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 @interface MQTableExtensionDataSource ()
 
-@property (nonatomic , copy) NSInteger (^bSections)(__kindof UITableView *tableView);
-@property (nonatomic , copy) NSInteger (^bRowsInSections)(__kindof UITableView * tableView , NSInteger integerSection);
-@property (nonatomic , copy) NSString * (^bCellIdentifier)(__kindof UITableView *tableView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) UITableViewCell * (^bConfigCell)(__kindof UITableView *tableView , UITableViewCell *cellConfig , NSIndexPath *indexPath) ;
+@property (nonatomic , copy) NSInteger (^block_sections)(__kindof UITableView *);
+@property (nonatomic , copy) NSInteger (^block_rows_in_sections)(__kindof UITableView * , NSInteger);
+@property (nonatomic , copy) NSString * (^block_cell_identifier)(__kindof UITableView * , NSIndexPath *) ;
+@property (nonatomic , copy) UITableViewCell * (^block_config_cell)(__kindof UITableView * , UITableViewCell * , NSIndexPath *) ;
 
 @end
 
@@ -364,40 +366,40 @@ forHeaderFooterViewReuseIdentifier:sNib];
     return self;
 }
 
-- (instancetype) mq_sections : (NSInteger (^)(__kindof UITableView *tableView)) sections {
-    self.bSections = [sections copy];
+- (instancetype) mq_sections : (NSInteger (^)(__kindof UITableView *table_view)) sections {
+    self.block_sections = [sections copy];
     return self;
 }
-- (instancetype) mq_rows_in_sections : (NSInteger (^)(__kindof UITableView * tableView , NSInteger iSection)) rowsInSections {
-    self.bRowsInSections = [rowsInSections copy];
+- (instancetype) mq_rows_in_sections : (NSInteger (^)(__kindof UITableView * table_view , NSInteger i_section)) rows_in_sections {
+    self.block_rows_in_sections = [rows_in_sections copy];
     return self;
 }
-- (instancetype) mq_cell_identifier : (NSString *(^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) cellIdentifier {
-    self.bCellIdentifier = [cellIdentifier copy];
+- (instancetype) mq_cell_identifier : (NSString *(^)(__kindof UITableView *table_view , NSIndexPath *index_path)) cell_identifier {
+    self.block_cell_identifier = [cell_identifier copy];
     return self;
 }
-- (instancetype) mq_configuration : (__kindof UITableViewCell *(^)(__kindof UITableView *tableView , __kindof UITableViewCell *tCell , NSIndexPath *indexPath)) configuration {
-    self.bConfigCell = [configuration copy];
+- (instancetype) mq_configuration : (__kindof UITableViewCell *(^)(__kindof UITableView *table_view , __kindof UITableViewCell *cell , NSIndexPath *index_path)) configuration {
+    self.block_config_cell = [configuration copy];
     return self;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.bSections ? self.bSections(tableView) : 1;
+    return self.block_sections ? self.block_sections(tableView) : 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.bRowsInSections ? self.bRowsInSections(tableView , section) : 0 ;
+    return self.block_rows_in_sections ? self.block_rows_in_sections(tableView , section) : 0 ;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *stringCellIdentifer = self.bCellIdentifier ? self.bCellIdentifier(tableView , indexPath) : _MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_;
+    NSString *s_identifer = self.block_cell_identifier ? self.block_cell_identifier(tableView , indexPath) : _MQ_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_;
     
     UITableViewCell *cell = nil;
-    if (self.bCellIdentifier) cell = [tableView dequeueReusableCellWithIdentifier:stringCellIdentifer
+    if (self.block_cell_identifier) cell = [tableView dequeueReusableCellWithIdentifier:s_identifer
                                                                          forIndexPath:indexPath];
-    else cell = [tableView dequeueReusableCellWithIdentifier:stringCellIdentifer];
+    else cell = [tableView dequeueReusableCellWithIdentifier:s_identifer];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                             reuseIdentifier:stringCellIdentifer];
-    return self.bConfigCell ? self.bConfigCell(tableView , cell , indexPath) : cell;
+                                             reuseIdentifier:s_identifer];
+    return self.block_config_cell ? self.block_config_cell(tableView , cell , indexPath) : cell;
 }
 
 - (void)dealloc {
@@ -412,15 +414,15 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 @implementation NSArray (MQExtension_Table_Refresh)
 
-- (instancetype) mq_reload : (__kindof UITableView *) tableView {
-    if (self.count) [tableView mq_reloading:UITableViewRowAnimationFade];
-    else [tableView reloadData];
+- (instancetype) mq_reload : (__kindof UITableView *) table_view {
+    if (self.count) [table_view mq_reloading:UITableViewRowAnimationFade];
+    else [table_view reloadData];
     return self;
 }
-- (instancetype) mq_reload : (__kindof UITableView *) tableView
+- (instancetype) mq_reload : (__kindof UITableView *) table_view
                   sections : (NSIndexSet *) set {
-    if (self.count) [tableView mq_reload_sections:set animate:UITableViewRowAnimationFade];
-    else [tableView mq_reload_sections:set animate:UITableViewRowAnimationNone];
+    if (self.count) [table_view mq_reload_sections:set animate:UITableViewRowAnimationFade];
+    else [table_view mq_reload_sections:set animate:UITableViewRowAnimationNone];
     return self;
 }
 
@@ -432,7 +434,7 @@ forHeaderFooterViewReuseIdentifier:sNib];
 
 @interface MQTableExtensionDataPrefetching ()
 
-@property (nonatomic , assign) BOOL isDisableBackground ;
+@property (nonatomic , assign) BOOL is_disable_background ;
 @property (nonatomic , copy) void (^prefetching)(__kindof UITableView *, NSArray<NSIndexPath *> *);
 @property (nonatomic , copy) void (^canceling)(__kindof UITableView *, NSArray<NSIndexPath *> *);
 
@@ -450,30 +452,30 @@ forHeaderFooterViewReuseIdentifier:sNib];
 }
 
 - (instancetype) mq_disable_background_mode {
-    self.isDisableBackground = YES;
+    self.is_disable_background = YES;
     return self;
 }
-- (instancetype) mq_prefetch_at : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) prefetchAt {
-    self.prefetching = [prefetchAt copy];
+- (instancetype) mq_prefetch_at : (void (^)(__kindof UITableView *table_view , NSArray <NSIndexPath *> *array)) prefetch_at {
+    self.prefetching = [prefetch_at copy];
     return self;
 }
-- (instancetype) mq_cancel_prefetch_at : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) cancelPrefetchAt {
-    self.canceling = [cancelPrefetchAt copy];
+- (instancetype) mq_cancel_prefetch_at : (void (^)(__kindof UITableView *table_view , NSArray <NSIndexPath *> *array)) cancel_prefetch_at {
+    self.canceling = [cancel_prefetch_at copy];
     return self;
 }
 
 - (void)tableView:(UITableView *)tableView prefetchRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths {
-    if (!self.queue && !self.isDisableBackground) {
+    if (!self.queue && !self.is_disable_background) {
         if (UIDevice.currentDevice.systemVersion.floatValue >= 8.f) {
             self.queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0);
         }
         else self.queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     }
     
-    if (!self.isDisableBackground) {
-        __weak typeof(self) pSelf = self;
+    if (!self.is_disable_background) {
+        __weak typeof(self) weak_self = self;
         dispatch_async(self.queue, ^{
-            if (pSelf.prefetching) pSelf.prefetching(tableView, indexPaths);
+            if (weak_self.prefetching) weak_self.prefetching(tableView, indexPaths);
         });
     }
     else if (self.prefetching) self.prefetching(tableView, indexPaths);

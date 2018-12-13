@@ -36,10 +36,10 @@
 
 /// it's not a singleton . // 不是单例
 + (instancetype) common ;
-+ (instancetype) common : (NSArray <id> *) arrayTarget ;
++ (instancetype) common : (NSArray <id> *) array_targets ;
 
 /// regist targets , only instance methods allowed (MQProxyDealer is an instance) // 注册目标 , 只有对象被允许
-- (instancetype) mq_regist_methods : (NSArray <id> *) arrayTarget ;
+- (instancetype) mq_regist_methods : (NSArray <id> *) array_targets ;
 
 @end
 

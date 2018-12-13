@@ -16,9 +16,9 @@
 - (instancetype) mq_delegate : (id) delegate ;
 
 /// animated is YES . // 启用 动画
-- (instancetype) mq_animated_offset : (CGPoint) offSet ;
-- (instancetype) mq_animated_offset : (CGPoint) offSet
-                           animated : (BOOL) isAnimated ;
+- (instancetype) mq_animated_offset : (CGPoint) offset ;
+- (instancetype) mq_animated_offset : (CGPoint) offset
+                           animated : (BOOL) is_animated ;
 
 - (instancetype) mq_hide_vertical_indicator ;
 - (instancetype) mq_hide_horizontal_indicator ;

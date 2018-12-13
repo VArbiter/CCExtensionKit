@@ -23,26 +23,26 @@
                             blue:( (double) (value & 0xFF) ) / 255.f
                            alpha:alpha];
 }
-+ (instancetype) mq_hex_s : (NSString *) sHex {
-    if (!sHex || ![sHex isKindOfClass:NSString.class] || sHex.length < 6) {
++ (instancetype) mq_hex_s : (NSString *) s_hex {
+    if (!s_hex || ![s_hex isKindOfClass:NSString.class] || s_hex.length < 6) {
         return self.clearColor;
     }
-    if ([sHex hasPrefix:@"##"] || [sHex hasPrefix:@"0x"] || [sHex hasPrefix:@"0X"]) {
-        sHex = [sHex substringFromIndex:2];
+    if ([s_hex hasPrefix:@"##"] || [s_hex hasPrefix:@"0x"] || [s_hex hasPrefix:@"0X"]) {
+        s_hex = [s_hex substringFromIndex:2];
     }
-    else if ([sHex hasPrefix:@"#"]) sHex = [sHex substringFromIndex:1];
+    else if ([s_hex hasPrefix:@"#"]) s_hex = [s_hex substringFromIndex:1];
     
-    if (sHex.length < 6) return self.clearColor;
-    sHex = sHex.uppercaseString;
+    if (s_hex.length < 6) return self.clearColor;
+    s_hex = s_hex.uppercaseString;
     
     unsigned int r , g , b ;
     
     NSRange range = NSMakeRange(0, 2);
-    [[NSScanner scannerWithString:[sHex substringWithRange:range]] scanHexInt:&r];
+    [[NSScanner scannerWithString:[s_hex substringWithRange:range]] scanHexInt:&r];
     range.location = 2 ;
-    [[NSScanner scannerWithString:[sHex substringWithRange:range]] scanHexInt:&g];
+    [[NSScanner scannerWithString:[s_hex substringWithRange:range]] scanHexInt:&g];
     range.location = 4 ;
-    [[NSScanner scannerWithString:[sHex substringWithRange:range]] scanHexInt:&b];
+    [[NSScanner scannerWithString:[s_hex substringWithRange:range]] scanHexInt:&b];
     
     return [self mq_R:r G:g B:b];
 }
@@ -127,9 +127,9 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, color.CGColor);
     CGContextFillRect(context, rect);
-    UIImage *imageGenerate = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *image_generate = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return imageGenerate;
+    return image_generate;
 }
 
 @end

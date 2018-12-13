@@ -65,29 +65,29 @@
 @interface MQCollectionExtensionDelegate : NSObject < UICollectionViewDelegateFlowLayout >
 
 - (id < UICollectionViewDelegateFlowLayout > ) init;
-- (instancetype) mq_did_select : (BOOL (^)(__kindof UICollectionView *collectionView ,
-                                           NSIndexPath *indexPath)) didSelect;
-- (instancetype) mq_did_highted : (void (^)(__kindof UICollectionView *collectionView ,
-                                            NSIndexPath *indexPath)) didHighLighted ;
-- (instancetype) mq_did_un_highted : (void (^)(__kindof UICollectionView *collectionView ,
-                                            NSIndexPath *indexPath)) didUnHighLighted ;
-- (instancetype) mq_minimum_line_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) mq_did_select : (BOOL (^)(__kindof UICollectionView *collection_view ,
+                                           NSIndexPath *index_path)) did_select;
+- (instancetype) mq_did_highted : (void (^)(__kindof UICollectionView *collection_view ,
+                                            NSIndexPath *index_path)) did_highlighted ;
+- (instancetype) mq_did_un_highted : (void (^)(__kindof UICollectionView *collection_view ,
+                                            NSIndexPath *index_path)) did_UnhighLighted ;
+- (instancetype) mq_minimum_line_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collection_view ,
                                                                    __kindof UICollectionViewLayout *layout ,
-                                                                   NSInteger iSection)) minimumLineSpacingInSection;
-- (instancetype) mq_minimum_inter_item_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+                                                                   NSInteger i_section)) minimum_line_spacing_in_section;
+- (instancetype) mq_minimum_inter_item_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collection_view ,
                                                                          __kindof UICollectionViewLayout *layout ,
-                                                                         NSInteger iSection)) minimumInteritemSpacingInSection;
-- (instancetype) mq_spacing_between_sections : (UIEdgeInsets(^)(__kindof UICollectionView *collectionView ,
+                                                                         NSInteger i_section)) minimum_inter_item_spacing_in_section;
+- (instancetype) mq_spacing_between_sections : (UIEdgeInsets(^)(__kindof UICollectionView *collection_view ,
                                                                 __kindof UICollectionViewLayout *layout ,
-                                                                NSInteger iSection)) spacingBetweenSections;
+                                                                NSInteger i_section)) spacing_between_sections;
 
-- (instancetype) mq_did_scroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll ;
-- (instancetype) mq_will_begin_decelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating;
-- (instancetype) mq_did_end_decelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating;
-- (instancetype) mq_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop;
-- (instancetype) mq_did_scroll_to_top : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop;
-- (instancetype) mq_will_begin_dragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging;
-- (instancetype) mq_did_end_dragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging;
+- (instancetype) mq_did_scroll : (void (^)(__kindof UIScrollView *scroll_view)) did_scroll ;
+- (instancetype) mq_will_begin_decelerating : (void (^)(__kindof UIScrollView *scroll_view)) will_begin_decelerating;
+- (instancetype) mq_did_end_decelerating : (void (^)(__kindof UIScrollView *scroll_view)) did_end_decelerating;
+- (instancetype) mq_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scroll_view)) should_scroll_to_top;
+- (instancetype) mq_did_scroll_to_top : (void (^)(__kindof UIScrollView *scroll_view)) did_scroll_to_top;
+- (instancetype) mq_will_begin_dragging : (void (^)(__kindof UIScrollView *scroll_view)) will_begin_dragging;
+- (instancetype) mq_did_end_dragging : (void (^)(__kindof UIScrollView *scroll_view , BOOL decelerate)) did_end_dragging;
 
 @end
 
@@ -96,14 +96,14 @@
 @interface MQCollectionExtensionDataSource : NSObject < UICollectionViewDataSource >
 
 - (id < UICollectionViewDataSource >) init ;
-- (instancetype) mq_sections : (NSInteger (^)(__kindof UICollectionView *collectionView)) sections ;
-- (instancetype) mq_items_in_sections : (NSInteger (^)(__kindof UICollectionView * collectionView ,
-                                                       NSInteger iSections)) itemInSections ;
-- (instancetype) mq_cell_identifier : (NSString *(^)(__kindof UICollectionView * collectionView ,
-                                                     NSIndexPath * indexPath)) identifier ;
-- (instancetype) mq_configuration : (__kindof UICollectionViewCell *(^)(__kindof UICollectionView * collectionView ,
+- (instancetype) mq_sections : (NSInteger (^)(__kindof UICollectionView *collection_view)) sections ;
+- (instancetype) mq_items_in_sections : (NSInteger (^)(__kindof UICollectionView * collection_view ,
+                                                       NSInteger i_sections)) itemInSections ;
+- (instancetype) mq_cell_identifier : (NSString *(^)(__kindof UICollectionView * collection_view ,
+                                                     NSIndexPath * index_path)) identifier ;
+- (instancetype) mq_configuration : (__kindof UICollectionViewCell *(^)(__kindof UICollectionView * collection_view ,
                                                                         __kindof UICollectionViewCell * cell ,
-                                                                        NSIndexPath * indexPath)) configuration ;
+                                                                        NSIndexPath * index_path)) configuration ;
 
 @end
 
@@ -137,9 +137,9 @@
 /// auto enable prefetch in background thread
 - (id <UICollectionViewDataSourcePrefetching> ) init ;
 - (instancetype) mq_disable_background_mode;
-- (instancetype) mq_prefetch_at : (void (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) mq_prefetch_at : (void (^)(__kindof UICollectionView *collection_view ,
                                             NSArray <NSIndexPath *> *array)) fetch ;
-- (instancetype) mq_cancel_prefetch_at : (void (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) mq_cancel_prefetch_at : (void (^)(__kindof UICollectionView *collection_view ,
                                                    NSArray <NSIndexPath *> *array)) cancel ;
 
 @end

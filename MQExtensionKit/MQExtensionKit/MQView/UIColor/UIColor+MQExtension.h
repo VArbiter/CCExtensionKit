@@ -24,7 +24,7 @@
                   alpha : (double) alpha ;
 /// eg: @"0xFFFFFF" , @"##FFFFFF" , @"#FFFFFF" , @"0XFFFFFF"
 /// otherwise , returns clear color . // 否则 , 返回透明色
-+ (instancetype) mq_hex_s : (NSString *) sHex;
++ (instancetype) mq_hex_s : (NSString *) s_hex;
 + (instancetype) mq_R : (double) r
                     G : (double) g
                     B : (double) b ;

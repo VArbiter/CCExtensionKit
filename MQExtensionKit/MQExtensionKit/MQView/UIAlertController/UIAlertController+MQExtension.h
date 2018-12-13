@@ -16,13 +16,13 @@ typedef NSDictionary MQAlertActionInfo;
 + (instancetype) mq_common ;
 + (instancetype) mq_common : (UIAlertControllerStyle) style ;
 
-- (instancetype) mq_title : (NSString *) sTitle ;
-- (instancetype) mq_message : (NSString *) sMessage ;
+- (instancetype) mq_title : (NSString *) s_title ;
+- (instancetype) mq_message : (NSString *) s_message ;
 
 - (instancetype) mq_action : (MQAlertActionInfo *) info
                     action : (void(^)( __kindof UIAlertAction *action)) action ;
 - (instancetype) mq_action_s : (NSArray < MQAlertActionInfo *> *) array
-                      action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) actionT ;
+                      action : (void(^)( __kindof UIAlertAction *action , NSUInteger index)) action ;
 
 MQAlertActionInfo * MQAlertActionInfoMake(NSString * title, UIAlertActionStyle style) ;
 

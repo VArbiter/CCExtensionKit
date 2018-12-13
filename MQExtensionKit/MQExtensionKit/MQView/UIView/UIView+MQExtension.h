@@ -120,7 +120,7 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
 
 /// add && remove (return itself) // 添加和移除 , 返回他本省
 - (instancetype) mq_add : (__kindof UIView *) view ;
-- (void) mq_remove_from : (void (^)(__kindof UIView *viewSuper)) action ;
+- (void) mq_remove_from : (void (^)(__kindof UIView *view_super)) action ;
 - (instancetype) mq_bring_to_front : (__kindof UIView *) view ;
 - (instancetype) mq_send_to_back : (__kindof UIView *) view ;
 - (instancetype) mq_make_to_front ;

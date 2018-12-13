@@ -173,16 +173,16 @@ long mq_semaphore_unlock(dispatch_semaphore_t lock) {
 #pragma mark - -----
 
 void mq_get_ivar(Class cls ,
-                 void (^mq_finish_block)(NSDictionary <NSString * , NSString *> *dictionary)) {
-    unsigned int iVars = 0;
-    Ivar *ivarList = class_copyIvarList(cls, &iVars);
+                 void (^mq_finish_block)(NSDictionary <NSString * , NSString *> *)) {
+    unsigned int i_vars = 0;
+    Ivar *i_var_list = class_copyIvarList(cls, &i_vars);
     
-    NSMutableDictionary <NSString * , NSString *> * dictionary = [NSMutableDictionary dictionary];
-    for (unsigned int i = 0 ; i < iVars; i ++) {
+    NSMutableDictionary <NSString * , NSString *> * dict = [NSMutableDictionary dictionary];
+    for (unsigned int i = 0 ; i < i_vars; i ++) {
         // get type and property names
-        NSString *sMember = [NSString stringWithUTF8String:ivar_getName(ivarList[i])]; // output with _ , eg:_cc
-        if ([sMember hasPrefix:@"_"]) {
-            sMember = [sMember substringFromIndex:1];
+        NSString *s_member = [NSString stringWithUTF8String:ivar_getName(i_var_list[i])]; // output with _ , eg:_cc
+        if ([s_member hasPrefix:@"_"]) {
+            s_member = [s_member substringFromIndex:1];
         }
         // get ignores
         if ([cls respondsToSelector:NSSelectorFromString(@"mq_ignores")]) {
@@ -190,23 +190,23 @@ void mq_get_ivar(Class cls ,
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             NSArray *a = [cls performSelector:NSSelectorFromString(@"mq_ignores")];
 #pragma clang diagnostic pop
-            if ([a containsObject:sMember]) continue;
+            if ([a containsObject:s_member]) continue;
         }
         
-        NSString *sMemberType = [NSString stringWithUTF8String:ivar_getTypeEncoding(ivarList[i])]; // output @"NSString"
-        sMemberType = [sMemberType stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"@\""]]; // compress
-        [dictionary setValue:sMemberType // types can be found multi times , therefore , make it values .
-                      forKey:sMember];
+        NSString *s_member_type = [NSString stringWithUTF8String:ivar_getTypeEncoding(i_var_list[i])]; // output @"NSString"
+        s_member_type = [s_member_type stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"@\""]]; // compress
+        [dict setValue:s_member_type // types can be found multi times , therefore , make it values .
+                      forKey:s_member];
     }
-    if (mq_finish_block) mq_finish_block(dictionary);
+    if (mq_finish_block) mq_finish_block(dict);
 }
 
 BOOL mq_dynamic_add_method(Class cls ,
-                           NSString * sName ,
+                           NSString * s_name ,
                            SEL sel_supply ,
                            void (^mq_fail_block)(void)) {
     BOOL b = class_addMethod(cls,
-                             NSSelectorFromString(sName),
+                             NSSelectorFromString(s_name),
                              class_getMethodImplementation(cls, sel_supply),
                              "s@:@");
     if (!b) {

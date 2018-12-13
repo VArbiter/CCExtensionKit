@@ -41,8 +41,8 @@
 \
     @interface MQProxy_t_##_name_ : NSProxy < MQ_PROXY_DEALER_PROTOCOL_HOLDER , ##__VA_ARGS__ > \
         + (instancetype) common ; \
-        + (instancetype) common : (NSArray <id> *) arrayTarget ; \
-        - (instancetype) mq_regist_methods : (NSArray <id> *) arrayTarget ; \
+        + (instancetype) common : (NSArray <id> *) array_targets ; \
+        - (instancetype) mq_regist_methods : (NSArray <id> *) array_targets ; \
     @end
         
 #endif
@@ -53,53 +53,55 @@
     #define MQ_PROXY_DEALER_IMPLEMENTATION(_name_) \
 \
     @interface MQProxy_t_##_name_  () \
-        @property (nonatomic , strong) NSMutableDictionary *dMapMethods ; \
+        @property (nonatomic , strong) NSMutableDictionary *dict_map_methods ; \
     @end \
 \
     @implementation MQProxy_t_##_name_ \
+\
     + (instancetype) common { \
         return [[self alloc] init]; \
     } \
-    + (instancetype) common : (NSArray <id> *) arrayTarget { \
-        return [[self common] mq_regist_methods:arrayTarget]; \
+    + (instancetype) common : (NSArray <id> *) array_targets { \
+        return [[self common] mq_regist_methods:array_targets]; \
     } \
 \
-    - (instancetype) mq_regist_methods : (NSArray <id> *) arrayTarget { \
-        for (id t in arrayTarget) { \
-            unsigned int iMethods = 0; \
-            Method *methodList = class_copyMethodList([t class], &iMethods); \
-            for (int i = 0; i < iMethods; i ++) { \
-                Method tMethod = methodList[i]; \
-                SEL tSel = method_getName(tMethod); \
-                const char *tMethodName = sel_getName(tSel); \
-                [self.dMapMethods setObject:t \
-                                     forKey:[NSString stringWithUTF8String:tMethodName]]; \
+    - (instancetype) mq_regist_methods : (NSArray <id> *) array_targets { \
+        for (id t in array_targets) { \
+            unsigned int i_methods = 0; \
+            Method *method_list = class_copyMethodList([t class], &i_methods); \
+            for (int i = 0; i < i_methods; i ++) { \
+                Method t_method = method_list[i]; \
+                SEL t_sel = method_getName(t_method); \
+                const char *t_method_name = sel_getName(t_sel); \
+                [self.dict_map_methods setObject:t \
+                                          forKey:[NSString stringWithUTF8String:t_method_name]]; \
             } \
-            free(methodList); \
+            free(method_list); \
         } \
         return self; \
     } \
 \
     - (void)forwardInvocation:(NSInvocation *)invocation { \
         SEL sel = invocation.selector; \
-        NSString *sMethodName = NSStringFromSelector(sel); \
-        id target = self.dMapMethods[sMethodName]; \
+        NSString *s_method_name = NSStringFromSelector(sel); \
+        id target = self.dict_map_methods[s_method_name]; \
         if (target && [target respondsToSelector:sel]) [invocation invokeWithTarget:target]; \
         else [super forwardInvocation:invocation]; \
     } \
 \
     - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel { \
-        NSString *sMethodName = NSStringFromSelector(sel); \
-        id target = self.dMapMethods[sMethodName]; \
-        if (target && [target respondsToSelector:sel]) return [target methodSignatureForSelector:sel]; \
+        NSString *s_method_name = NSStringFromSelector(sel); \
+        id target = self.dict_map_methods[s_method_name]; \
+        if (target && [target respondsToSelector:sel]) \
+            return [target methodSignatureForSelector:sel]; \
         else return [super methodSignatureForSelector:sel]; \
     } \
 \
-    - (NSMutableDictionary *)dMapMethods { \
-        if (_dMapMethods) return _dMapMethods; \
+    - (NSMutableDictionary *)dict_map_methods { \
+        if (_dict_map_methods) return _dict_map_methods; \
         NSMutableDictionary *d = [NSMutableDictionary dictionary]; \
-        _dMapMethods = d; \
-        return _dMapMethods; \
+        _dict_map_methods = d; \
+        return _dict_map_methods; \
     } \
 \
     @end

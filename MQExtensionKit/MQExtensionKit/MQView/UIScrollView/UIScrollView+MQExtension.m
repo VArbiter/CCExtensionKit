@@ -27,13 +27,13 @@
 }
 
 /// animated is YES .
-- (instancetype) mq_animated_offset : (CGPoint) offSet {
-    return [self mq_animated_offset:offSet animated:YES];
+- (instancetype) mq_animated_offset : (CGPoint) offset {
+    return [self mq_animated_offset:offset animated:YES];
 }
-- (instancetype) mq_animated_offset : (CGPoint) offSet
-                           animated : (BOOL) isAnimated {
-    [self setContentOffset:offSet
-                  animated:isAnimated];
+- (instancetype) mq_animated_offset : (CGPoint) offset
+                           animated : (BOOL) is_animated {
+    [self setContentOffset:offset
+                  animated:is_animated];
     return self;
 }
 

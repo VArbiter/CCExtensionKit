@@ -23,9 +23,9 @@
 @interface UITapGestureRecognizer (MQExtension)
 
 /// default 1 tap // 默认点击 1 次
-- (instancetype) mq_tap : (void(^)(UITapGestureRecognizer *tapGR)) action ;
+- (instancetype) mq_tap : (void(^)(UITapGestureRecognizer *tap_gr)) action ;
 - (instancetype) mq_tap : (NSInteger) iCount
-                 action : (void(^)(UITapGestureRecognizer *tapGR)) action ;
+                 action : (void(^)(UITapGestureRecognizer *tap_gr)) action ;
 
 @end
 
@@ -34,9 +34,9 @@
 @interface UILongPressGestureRecognizer (MQExtension)
 
 /// default .5f seconds // 默认 0.5 秒
-- (instancetype) mq_press : (void(^)(UILongPressGestureRecognizer *pressGR)) action ;
+- (instancetype) mq_press : (void(^)(UILongPressGestureRecognizer *press_gr)) action ;
 - (instancetype) mq_press : (CGFloat) fSeconds
-                   action : (void(^)(UILongPressGestureRecognizer *pressGR)) action ;
+                   action : (void(^)(UILongPressGestureRecognizer *press_gr)) action ;
 
 @end
 
@@ -47,10 +47,10 @@
 /// for gesture actions // 添加手势动作
 - (instancetype) mq_gesture : (__kindof UIGestureRecognizer *) gesture ;
 - (instancetype) mq_tap : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action ;
-- (instancetype) mq_tap : (NSInteger) iCount
+- (instancetype) mq_tap : (NSInteger) i_count
                  action : (void(^)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr)) action ;
 - (instancetype) mq_press : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action ;
-- (instancetype) mq_press : (CGFloat) fSeconds
+- (instancetype) mq_press : (CGFloat) f_seconds
                    action : (void(^)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr)) action ;
 
 @end
@@ -62,6 +62,6 @@
 /// make modaled controller can trigger pop action like UINavigationController. // 使得 模态出的控制器可以像导航控制器那样 pop
 /// highly recommend use it with [instance mq_enable_pushing_poping_style_when_present_or_dismiss] . // 建议和 "[instance mq_enable_pushing_poping_style_when_present_or_dismiss]" 一起使用
 - (instancetype) mq_modal_pop_gesture : (void(^)(__kindof UIViewController *sender ,
-                                                 __kindof UIScreenEdgePanGestureRecognizer *edgePanGR)) bEdgePanGR ;
+                                                 __kindof UIScreenEdgePanGestureRecognizer *edge_pan_gr)) block_edge_pan_gr ;
 
 @end

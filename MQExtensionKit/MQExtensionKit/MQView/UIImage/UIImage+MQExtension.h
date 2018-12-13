@@ -38,21 +38,21 @@ UIImage * mq_launch_image(void);
 @property (nonatomic , readonly) CGFloat height ;
 
 /// scale size with radius // 按比例缩放图片
-- (CGSize) mq_zoom : (CGFloat) fRadius ;
+- (CGSize) mq_zoom : (CGFloat) f_radius ;
 - (instancetype) mq_resizable : (UIEdgeInsets) insets ;
 - (instancetype) mq_rendaring : (UIImageRenderingMode) mode ;
 - (instancetype) mq_always_original ;
 
 /// class , imageName // 类名 , 图片名称
 + (instancetype) mq_bundle : (Class) cls
-                      name : (NSString *) sName;
+                      name : (NSString *) s_name;
 + (instancetype) mq_bundle : (Class) cls
-                    module : (NSString *) sModule // the module for archiving bundle . // 用来打包的 module
-                      name : (NSString *) sName ;
-+ (instancetype) mq_name : (NSString *) sName ;
-+ (instancetype) mq_name : (NSString *) sName
+                    module : (NSString *) s_module // the module for archiving bundle . // 用来打包的 module
+                      name : (NSString *) s_name ;
++ (instancetype) mq_name : (NSString *) s_name ;
++ (instancetype) mq_name : (NSString *) s_name
                   bundle : (NSBundle *) bundle ;
-+ (instancetype) mq_file : (NSString *) sPath ;
++ (instancetype) mq_file : (NSString *) s_path ;
 
 /// create an image with current window // 对当前 window 进行截图
 + (instancetype) mq_capture_current ;
@@ -70,17 +70,17 @@ FOUNDATION_EXPORT CGFloat mq_gaussian_blur_tint_alpha ;
 
 /// using Accelerate // 使用 Accelerate 框架
 - (instancetype) mq_gaussian_acc ;
-- (instancetype) mq_gaussian_acc : (CGFloat) fRadius ;
-- (instancetype) mq_gaussian_acc : (CGFloat) fRadius
+- (instancetype) mq_gaussian_acc : (CGFloat) f_radius ;
+- (instancetype) mq_gaussian_acc : (CGFloat) f_radius
                             tint : (UIColor *) tint ;
-- (instancetype) mq_gaussian_acc : (CGFloat) fRadius
+- (instancetype) mq_gaussian_acc : (CGFloat) f_radius
                             tint : (UIColor *) tint
                         complete : (void(^)(UIImage *origin , UIImage *processed)) complete ;
 
 /// using CoreImage // 使用 CoreImage 框架
 - (instancetype) mq_gaussian_CI ; // sync , not recommended // 同步 , 不建议
-- (instancetype) mq_gaussian_CI : (CGFloat) fRadius ; // sync , not recommended // 同步 , 不建议
-- (instancetype) mq_gaussian_CI : (CGFloat) fRadius
+- (instancetype) mq_gaussian_CI : (CGFloat) f_radius ; // sync , not recommended // 同步 , 不建议
+- (instancetype) mq_gaussian_CI : (CGFloat) f_radius
                        complete : (void(^)(UIImage *origin , UIImage *processed)) complete ; // async
 
 
@@ -94,11 +94,11 @@ FOUNDATION_EXPORT CGFloat mq_image_jpeg_compression_quality_size ; // 400 kb
 
 // available for PNG && JPEG // 对于 PNG 和 JPEG 起效
 
-@property (nonatomic , readonly) NSData *toData ;
+@property (nonatomic , readonly) NSData *to_data ;
 /// compress and limit it with in a fitable range . // 压缩 , 并限制图片在合适的大小
-- (NSData *) mq_compresss_JPEG : (CGFloat) fQuility;
+- (NSData *) mq_compresss_JPEG : (CGFloat) f_quility;
 /// arguments with Mbytes . // 参数是 兆 为单位的
-- (BOOL) mq_is_over_limit_for : (CGFloat) fMBytes ;
+- (BOOL) mq_is_over_limit_for : (CGFloat) f_MBytes ;
 
 @end
 
@@ -128,6 +128,6 @@ typedef NS_ENUM(NSInteger , MQImageType) {
 /// using Accelerate // 使用 Accelerate 框架
 
 - (instancetype) mq_gaussian ;
-- (instancetype) mq_gaussian : (CGFloat) fRadius;
+- (instancetype) mq_gaussian : (CGFloat) f_radius;
 
 @end

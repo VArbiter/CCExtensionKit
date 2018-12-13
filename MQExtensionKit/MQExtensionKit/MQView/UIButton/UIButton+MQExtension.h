@@ -15,7 +15,7 @@
 + (instancetype) mq_common : (UIButtonType) type ;
 
 /// titles && images // title 和 images
-- (instancetype) mq_title : (NSString *) sTitle
+- (instancetype) mq_title : (NSString *) s_title
                     state : (UIControlState) state ;
 - (instancetype) mq_image : (UIImage *) image
                     state : (UIControlState) state ;

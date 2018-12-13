@@ -60,12 +60,12 @@ UIImage * mq_launch_image(void) {
 }
 
 /// scale size with radius
-- (CGSize) mq_zoom : (CGFloat) fRadius {
-    if (fRadius > .0f) {
+- (CGSize) mq_zoom : (CGFloat) f_radius {
+    if (f_radius > .0f) {
         CGFloat ratio = self.height / self.width;
-        CGFloat ratioWidth = self.width * fRadius;
-        CGFloat ratioHeight = ratioWidth * ratio;
-        return CGSizeMake(ratioWidth, ratioHeight);
+        CGFloat ratio_width = self.width * f_radius;
+        CGFloat ratio_height = ratio_width * ratio;
+        return CGSizeMake(ratio_width, ratio_height);
     }
     return self.size;
 }
@@ -81,45 +81,45 @@ UIImage * mq_launch_image(void) {
 
 /// class , imageName
 + (instancetype) mq_bundle : (Class) cls
-                      name : (NSString *) sName {
+                      name : (NSString *) s_name {
     return [self mq_bundle:cls
                     module:nil
-                      name:sName];
+                      name:s_name];
 }
 + (instancetype) mq_bundle : (Class) cls
-                    module : (NSString *) sModule
-                      name : (NSString *) sName {
+                    module : (NSString *) s_module
+                      name : (NSString *) s_name {
     NSBundle *b = [NSBundle bundleForClass:cls];
-    NSString *bName = b.infoDictionary[@"CFBundleName"];
+    NSString *b_name = b.infoDictionary[@"CFBundleName"];
     NSString *sc = [NSString stringWithFormat:@"%ld",(NSInteger)UIScreen.mainScreen.scale];
-    NSString *temp = [[[sName stringByAppendingString:@"@"] stringByAppendingString:sc] stringByAppendingString:@"x"];
+    NSString *temp = [[[s_name stringByAppendingString:@"@"] stringByAppendingString:sc] stringByAppendingString:@"x"];
     NSString *p = nil;
-    if (sModule && sModule.length) {
-        sModule = [sModule stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    if (s_module && s_module.length) {
+        s_module = [s_module stringByReplacingOccurrencesOfString:@"/" withString:@""];
         p = [b pathForResource:temp
                         ofType:@"png"
-                   inDirectory:[sModule stringByAppendingString:@".bundle"]];
+                   inDirectory:[s_module stringByAppendingString:@".bundle"]];
     }
     else p = [b pathForResource:temp
                          ofType:@"png"
-                    inDirectory:[bName stringByAppendingString:@".bundle"]];
+                    inDirectory:[b_name stringByAppendingString:@".bundle"]];
     UIImage *image = [UIImage imageWithContentsOfFile:p];
 #if DEBUG
-    if (!image) NSLog(@"\n ----- [MQExtensionKit] image Named \"%@\" with class \"%@\" not found , return new image istead",sName,NSStringFromClass(cls));
+    if (!image) NSLog(@"\n ----- [MQExtensionKit] image Named \"%@\" with class \"%@\" not found , return new image istead",s_name,NSStringFromClass(cls));
 #endif
     return (image ? image : UIImage.new);
 }
-+ (instancetype) mq_name : (NSString *) sName {
-    return [self imageNamed:sName];
++ (instancetype) mq_name : (NSString *) s_name {
+    return [self imageNamed:s_name];
 }
-+ (instancetype) mq_name : (NSString *) sName
++ (instancetype) mq_name : (NSString *) s_name
                   bundle : (NSBundle *) bundle {
-    return [self imageNamed:sName
+    return [self imageNamed:s_name
                    inBundle:bundle
 compatibleWithTraitCollection:nil];
 }
-+ (instancetype) mq_file : (NSString *) sPath {
-    return [UIImage imageWithContentsOfFile:sPath];
++ (instancetype) mq_file : (NSString *) s_path {
+    return [UIImage imageWithContentsOfFile:s_path];
 }
 
 + (instancetype) mq_capture_current {
@@ -140,120 +140,120 @@ CGFloat mq_gaussian_blur_tint_alpha = .25f;
 - (instancetype) mq_gaussian_acc {
     return [self mq_gaussian_acc:mq_gaussian_blur_value];
 }
-- (instancetype) mq_gaussian_acc : (CGFloat) fRadius {
-    return [self mq_gaussian_acc:fRadius tint:UIColor.clearColor];
+- (instancetype) mq_gaussian_acc : (CGFloat) f_radius {
+    return [self mq_gaussian_acc:f_radius tint:UIColor.clearColor];
 }
-- (instancetype) mq_gaussian_acc : (CGFloat) fRadius
+- (instancetype) mq_gaussian_acc : (CGFloat) f_radius
                             tint : (UIColor *) tint {
-    UIImage *imageOriginal = [self copy];
+    UIImage *image_original = [self copy];
     
-    CGFloat fSaturationDeltaFactor = 1;
-    UIImage *imageMask = nil;
+    CGFloat f_saturation_delta_factor = 1;
+    UIImage *image_mask = nil;
     
-    CGRect rectImage = (CGRect){CGPointZero, imageOriginal.size};
-    UIImage *imageEffect = imageOriginal;
+    CGRect rect_image = (CGRect){CGPointZero, image_original.size};
+    UIImage *image_effect = image_original;
     
-    BOOL isHasBlur = fRadius > __FLT_EPSILON__;
-    BOOL isHasSaturationChange = fabs(fSaturationDeltaFactor - 1.) > __FLT_EPSILON__;
-    if (isHasBlur || isHasSaturationChange) {
-        UIGraphicsBeginImageContextWithOptions(imageOriginal.size, NO, [[UIScreen mainScreen] scale]);
-        CGContextRef contextEffect = UIGraphicsGetCurrentContext();
-        CGContextScaleCTM(contextEffect, 1.0, -1.0);
-        CGContextTranslateCTM(contextEffect, 0, -imageOriginal.size.height);
-        CGContextDrawImage(contextEffect, rectImage, imageOriginal.CGImage);
+    BOOL is_has_blur = f_radius > __FLT_EPSILON__;
+    BOOL is_has_saturation_change = fabs(f_saturation_delta_factor - 1.f) > __FLT_EPSILON__;
+    if (is_has_blur || is_has_saturation_change) {
+        UIGraphicsBeginImageContextWithOptions(image_original.size, NO, [[UIScreen mainScreen] scale]);
+        CGContextRef context_effect = UIGraphicsGetCurrentContext();
+        CGContextScaleCTM(context_effect, 1.0, -1.0);
+        CGContextTranslateCTM(context_effect, 0, -image_original.size.height);
+        CGContextDrawImage(context_effect, rect_image, image_original.CGImage);
         
-        vImage_Buffer bufferEffect;
-        bufferEffect.data = CGBitmapContextGetData(contextEffect);
-        bufferEffect.width = CGBitmapContextGetWidth(contextEffect);
-        bufferEffect.height = CGBitmapContextGetHeight(contextEffect);
-        bufferEffect.rowBytes = CGBitmapContextGetBytesPerRow(contextEffect);
+        vImage_Buffer buffer_effect;
+        buffer_effect.data = CGBitmapContextGetData(context_effect);
+        buffer_effect.width = CGBitmapContextGetWidth(context_effect);
+        buffer_effect.height = CGBitmapContextGetHeight(context_effect);
+        buffer_effect.rowBytes = CGBitmapContextGetBytesPerRow(context_effect);
         
-        UIGraphicsBeginImageContextWithOptions(imageOriginal.size, NO, [[UIScreen mainScreen] scale]);
-        CGContextRef contextOutEffect = UIGraphicsGetCurrentContext();
-        vImage_Buffer bufferOutEffect;
-        bufferOutEffect.data = CGBitmapContextGetData(contextOutEffect);
-        bufferOutEffect.width = CGBitmapContextGetWidth(contextOutEffect);
-        bufferOutEffect.height = CGBitmapContextGetHeight(contextOutEffect);
-        bufferOutEffect.rowBytes = CGBitmapContextGetBytesPerRow(contextOutEffect);
+        UIGraphicsBeginImageContextWithOptions(image_original.size, NO, [[UIScreen mainScreen] scale]);
+        CGContextRef context_out_effect = UIGraphicsGetCurrentContext();
+        vImage_Buffer buffer_out_effect;
+        buffer_out_effect.data = CGBitmapContextGetData(context_out_effect);
+        buffer_out_effect.width = CGBitmapContextGetWidth(context_out_effect);
+        buffer_out_effect.height = CGBitmapContextGetHeight(context_out_effect);
+        buffer_out_effect.rowBytes = CGBitmapContextGetBytesPerRow(context_out_effect);
         
-        if (isHasBlur) {
-            CGFloat fInputRadius = fRadius * [[UIScreen mainScreen] scale];
-            uint32_t radius = floor(fInputRadius * 3. * sqrt(2 * M_PI) / 4 + 0.5);
+        if (is_has_blur) {
+            CGFloat f_input_radius = f_radius * [[UIScreen mainScreen] scale];
+            uint32_t radius = floor(f_input_radius * 3. * sqrt(2 * M_PI) / 4 + 0.5);
             if (radius % 2 != 1) {
                 radius += 1;
             }
-            vImageBoxConvolve_ARGB8888(&bufferEffect, &bufferOutEffect, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
-            vImageBoxConvolve_ARGB8888(&bufferOutEffect, &bufferEffect, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
-            vImageBoxConvolve_ARGB8888(&bufferEffect, &bufferOutEffect, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
+            vImageBoxConvolve_ARGB8888(&buffer_effect, &buffer_out_effect, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
+            vImageBoxConvolve_ARGB8888(&buffer_out_effect, &buffer_effect, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
+            vImageBoxConvolve_ARGB8888(&buffer_effect, &buffer_out_effect, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
         }
-        BOOL isEffectImageBuffersAreSwapped = NO;
-        if (isHasSaturationChange) {
-            CGFloat s = fSaturationDeltaFactor;
-            CGFloat floatingPointSaturationMatrix[] = {
+        BOOL is_effect_image_buffers_are_swapped = NO;
+        if (is_has_saturation_change) {
+            CGFloat s = f_saturation_delta_factor;
+            CGFloat floating_point_saturation_matrix[] = {
                 0.0722 + 0.9278 * s,  0.0722 - 0.0722 * s,  0.0722 - 0.0722 * s,  0,
                 0.7152 - 0.7152 * s,  0.7152 + 0.2848 * s,  0.7152 - 0.7152 * s,  0,
                 0.2126 - 0.2126 * s,  0.2126 - 0.2126 * s,  0.2126 + 0.7873 * s,  0,
                 0,                    0,                    0,  1,
             };
             const int32_t divisor = 256;
-            NSUInteger matrixSize = sizeof(floatingPointSaturationMatrix)/sizeof(floatingPointSaturationMatrix[0]);
+            NSUInteger matrixSize = sizeof(floating_point_saturation_matrix)/sizeof(floating_point_saturation_matrix[0]);
             int16_t saturationMatrix[matrixSize];
             for (NSUInteger i = 0; i < matrixSize; ++i) {
-                saturationMatrix[i] = (int16_t)roundf(floatingPointSaturationMatrix[i] * divisor);
+                saturationMatrix[i] = (int16_t)roundf(floating_point_saturation_matrix[i] * divisor);
             }
-            if (isHasBlur) {
-                vImageMatrixMultiply_ARGB8888(&bufferOutEffect, &bufferEffect, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
-                isEffectImageBuffersAreSwapped = YES;
+            if (is_has_blur) {
+                vImageMatrixMultiply_ARGB8888(&buffer_out_effect, &buffer_effect, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
+                is_effect_image_buffers_are_swapped = YES;
             }
             else {
-                vImageMatrixMultiply_ARGB8888(&bufferEffect, &bufferOutEffect, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
+                vImageMatrixMultiply_ARGB8888(&buffer_effect, &buffer_out_effect, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
             }
         }
-        if (!isEffectImageBuffersAreSwapped) imageEffect = UIGraphicsGetImageFromCurrentImageContext();
+        if (!is_effect_image_buffers_are_swapped) image_effect = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        if (isEffectImageBuffersAreSwapped) imageEffect = UIGraphicsGetImageFromCurrentImageContext();
+        if (is_effect_image_buffers_are_swapped) image_effect = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
     
-    UIGraphicsBeginImageContextWithOptions(imageOriginal.size, NO, [[UIScreen mainScreen] scale]);
-    CGContextRef outputContext = UIGraphicsGetCurrentContext();
-    CGContextScaleCTM(outputContext, 1.0, -1.0);
-    CGContextTranslateCTM(outputContext, 0, -imageOriginal.size.height);
+    UIGraphicsBeginImageContextWithOptions(image_original.size, NO, [[UIScreen mainScreen] scale]);
+    CGContextRef output_context = UIGraphicsGetCurrentContext();
+    CGContextScaleCTM(output_context, 1.0, -1.0);
+    CGContextTranslateCTM(output_context, 0, -image_original.size.height);
     
-    CGContextDrawImage(outputContext, rectImage, imageOriginal.CGImage);
+    CGContextDrawImage(output_context, rect_image, image_original.CGImage);
     
-    if (isHasBlur) {
-        CGContextSaveGState(outputContext);
-        if (imageMask) {
-            CGContextClipToMask(outputContext, rectImage, imageMask.CGImage);
+    if (is_has_blur) {
+        CGContextSaveGState(output_context);
+        if (image_mask) {
+            CGContextClipToMask(output_context, rect_image, image_mask.CGImage);
         }
-        CGContextDrawImage(outputContext, rectImage, imageEffect.CGImage);
-        CGContextRestoreGState(outputContext);
+        CGContextDrawImage(output_context, rect_image, image_effect.CGImage);
+        CGContextRestoreGState(output_context);
     }
     
     if (tint) {
-        CGContextSaveGState(outputContext);
-        CGContextSetFillColorWithColor(outputContext, tint.CGColor);
-        CGContextFillRect(outputContext, rectImage);
-        CGContextRestoreGState(outputContext);
+        CGContextSaveGState(output_context);
+        CGContextSetFillColorWithColor(output_context, tint.CGColor);
+        CGContextFillRect(output_context, rect_image);
+        CGContextRestoreGState(output_context);
     }
     
-    UIImage *imageOutput = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *image_output = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    return imageOutput;
+    return image_output;
 }
-- (instancetype) mq_gaussian_acc : (CGFloat)fRadius
+- (instancetype) mq_gaussian_acc : (CGFloat)f_radius
                             tint : (UIColor *) tint
                         complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     void (^tp)(void) = ^ {
-        UIImage *m = [pSelf mq_gaussian_acc:fRadius tint:tint];
+        UIImage *m = [weak_self mq_gaussian_acc:f_radius tint:tint];
         if (NSThread.isMainThread) {
-            if (complete) complete(pSelf , m);
+            if (complete) complete(weak_self , m);
         } else dispatch_sync(dispatch_get_main_queue(), ^{
-            if (complete) complete(pSelf , m);
+            if (complete) complete(weak_self , m);
         });
     };
     if (@available(iOS 10.0, *)) {
@@ -266,21 +266,21 @@ CGFloat mq_gaussian_blur_tint_alpha = .25f;
         });
     }
     
-    return pSelf;
+    return self;
 }
 
 - (instancetype) mq_gaussian_CI {
     return [self mq_gaussian_CI:mq_gaussian_blur_value];
 }
-- (instancetype) mq_gaussian_CI : (CGFloat) fRadius {
+- (instancetype) mq_gaussian_CI : (CGFloat) f_radius {
     UIImage *image = [self copy];
     if (!image) return self;
     
     CIContext *context = [CIContext contextWithOptions:@{kCIContextPriorityRequestLow : @(YES)}];
-    CIImage *imageInput= [CIImage imageWithCGImage:image.CGImage];
+    CIImage *image_input= [CIImage imageWithCGImage:image.CGImage];
     CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
-    [filter setValue:imageInput forKey:kCIInputImageKey];
-    [filter setValue:@(fRadius) forKey: @"inputRadius"];
+    [filter setValue:image_input forKey:kCIInputImageKey];
+    [filter setValue:@(f_radius) forKey: @"inputRadius"];
     
     CIImage *imageResult = [filter valueForKey:kCIOutputImageKey];
     CGImageRef imageOutput = [context createCGImage:imageResult
@@ -290,15 +290,15 @@ CGFloat mq_gaussian_blur_tint_alpha = .25f;
     
     return imageBlur;
 }
-- (instancetype) mq_gaussian_CI : (CGFloat) fRadius
+- (instancetype) mq_gaussian_CI : (CGFloat) f_radius
                        complete : (void(^)(UIImage *origin , UIImage *processed)) complete {
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     void (^tp)(void) = ^ {
-        UIImage *m = [pSelf mq_gaussian_CI:fRadius];
+        UIImage *m = [weak_self mq_gaussian_CI:f_radius];
         if (NSThread.isMainThread) {
-            if (complete) complete(pSelf , m);
+            if (complete) complete(weak_self , m);
         } else dispatch_sync(dispatch_get_main_queue(), ^{
-            if (complete) complete(pSelf , m);
+            if (complete) complete(weak_self , m);
         });
     };
     
@@ -323,7 +323,7 @@ CGFloat mq_gaussian_blur_tint_alpha = .25f;
 
 CGFloat mq_image_jpeg_compression_quality_size = 400.f;
 
-- (NSData *)toData {
+- (NSData *)to_data {
     NSData *d = nil;
     if ((d = UIImagePNGRepresentation(self))) return d;
     if ((d = UIImageJPEGRepresentation(self, .0f))) return d;
@@ -350,8 +350,8 @@ CGFloat mq_image_jpeg_compression_quality_size = 400.f;
     return dR;
 }
 
-- (BOOL) mq_is_over_limit_for : (CGFloat) fMBytes {
-    return self.toData.length / powl(1024, 2) > fMBytes;
+- (BOOL) mq_is_over_limit_for : (CGFloat) f_MBytes {
+    return self.to_data.length / powl(1024, 2) > f_MBytes;
 }
 
 @end
@@ -401,8 +401,8 @@ CGFloat mq_image_jpeg_compression_quality_size = 400.f;
     if (self.image) self.image = [self.image mq_gaussian_acc];
     return self;
 }
-- (instancetype) mq_gaussian : (CGFloat) fRadius {
-    if (self.image) self.image = [self.image mq_gaussian_acc:fRadius];
+- (instancetype) mq_gaussian : (CGFloat) f_radius {
+    if (self.image) self.image = [self.image mq_gaussian_acc:f_radius];
     return self;
 }
 

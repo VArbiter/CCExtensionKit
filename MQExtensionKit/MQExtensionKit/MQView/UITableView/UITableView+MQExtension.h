@@ -16,7 +16,7 @@
                      style : (UITableViewStyle) style ;
 
 - (instancetype) mq_delegate : (id) delegate ;
-- (instancetype) mq_datasource : (id) dataSource ;
+- (instancetype) mq_datasource : (id) data_source ;
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 /// data source that pre-fetching // 预取的代理
 - (instancetype) mq_prefetching : (id) prefetch ;
@@ -27,15 +27,15 @@
 
 /// requires that nib name is equal to cell's idetifier . // 要求 nib 文件的名称必须和 cell 的唯一标识符相同
 /// default main bundle // 默认是 main bundle
-- (instancetype) mq_regist_nib : (NSString *) sNib ;
-- (instancetype) mq_regist_nib : (NSString *) sNib
+- (instancetype) mq_regist_nib : (NSString *) s_nib ;
+- (instancetype) mq_regist_nib : (NSString *) s_nib
                         bundle : (NSBundle *) bundle ;
 /// requires that class name is equal to cell's idetifier . // 要求类名必须和 cell 的唯一标识符相同
 - (instancetype) mq_regist_cls : (Class) cls ;
 
 /// default main bundle // 默认是 main bundle
-- (instancetype) mq_regist_header_footer_nib : (NSString *) sNib ;
-- (instancetype) mq_regist_header_footer_nib : (NSString *) sNib
+- (instancetype) mq_regist_header_footer_nib : (NSString *) s_nib ;
+- (instancetype) mq_regist_header_footer_nib : (NSString *) s_nib
                                       bundle : (NSBundle *) bundle ;
 - (instancetype) mq_regist_header_footer_cls : (Class) cls ;
 
@@ -52,11 +52,11 @@
 - (instancetype) mq_reload_items : (NSArray <NSIndexPath *> *) array
                          animate : (UITableViewRowAnimation) animation ;
 
-- (__kindof UITableViewCell *) mq_deq_cell : (NSString *) sIdentifier ;
+- (__kindof UITableViewCell *) mq_deq_cell : (NSString *) s_identifier ;
 /// for cell that register in tableView
-- (__kindof UITableViewCell *) mq_deq_cell : (NSString *) sIdentifier
-                                 indexPath : (NSIndexPath *) indexPath ;
-- (__kindof UITableViewHeaderFooterView *) mq_deq_reusable_view : (NSString *) sIdentifier ;
+- (__kindof UITableViewCell *) mq_deq_cell : (NSString *) s_identifier
+                                 indexPath : (NSIndexPath *) index_path ;
+- (__kindof UITableViewHeaderFooterView *) mq_deq_reusable_view : (NSString *) s_identifier ;
 
 @end
 
@@ -66,20 +66,20 @@
 
 - (id < UITableViewDelegate > ) init ;
 
-- (instancetype) mq_cell_height : (CGFloat (^)(__kindof UITableView * tableView , NSIndexPath *indexPath)) cellHeight ;
-- (instancetype) mq_section_header_height : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionHeaderHeight ;
-- (instancetype) mq_section_header : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionHeader ;
-- (instancetype) mq_section_footer_height : (CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection)) sectionFooterHeight ;
-- (instancetype) mq_section_footer : (UIView *(^)(__kindof UITableView *tableView , NSInteger iSection)) sectionFooter ;
-- (instancetype) mq_did_select : (BOOL (^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) didSelect;
+- (instancetype) mq_cell_height : (CGFloat (^)(__kindof UITableView * table_view , NSIndexPath *indexPath)) cell_height ;
+- (instancetype) mq_section_header_height : (CGFloat (^)(__kindof UITableView * table_view , NSInteger i_section)) section_header_height ;
+- (instancetype) mq_section_header : (UIView *(^)(__kindof UITableView *table_view , NSInteger i_section)) section_header ;
+- (instancetype) mq_section_footer_height : (CGFloat (^)(__kindof UITableView * table_view , NSInteger i_section)) section_footer_height ;
+- (instancetype) mq_section_footer : (UIView *(^)(__kindof UITableView *table_view , NSInteger i_section)) section_footer ;
+- (instancetype) mq_did_select : (BOOL (^)(__kindof UITableView *table_view , NSIndexPath *index_path)) did_select;
 
-- (instancetype) mq_did_scroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll ;
-- (instancetype) mq_will_begin_decelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating;
-- (instancetype) mq_did_end_decelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating;
-- (instancetype) mq_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop;
-- (instancetype) mq_did_scroll_to_top : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop;
-- (instancetype) mq_will_begin_dragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging;
-- (instancetype) mq_did_end_dragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging;
+- (instancetype) mq_did_scroll : (void (^)(__kindof UIScrollView *scroll_view)) did_scroll ;
+- (instancetype) mq_will_begin_decelerating : (void (^)(__kindof UIScrollView *scroll_view)) will_begin_decelerating;
+- (instancetype) mq_did_end_decelerating : (void (^)(__kindof UIScrollView *scroll_view)) did_end_decelerating;
+- (instancetype) mq_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scroll_view)) should_scroll_to_top;
+- (instancetype) mq_did_scroll_to_top : (void (^)(__kindof UIScrollView *scroll_view)) did_scroll_to_top;
+- (instancetype) mq_will_begin_dragging : (void (^)(__kindof UIScrollView *scroll_view)) will_begin_dragging;
+- (instancetype) mq_did_end_dragging : (void (^)(__kindof UIScrollView *scroll_view , BOOL decelerate)) did_end_dragging;
 
 @end
 
@@ -89,10 +89,10 @@
 
 - (id < UITableViewDataSource >) init ;
 
-- (instancetype) mq_sections : (NSInteger (^)(__kindof UITableView *tableView)) sections ;
-- (instancetype) mq_rows_in_sections : (NSInteger (^)(__kindof UITableView * tableView , NSInteger iSection)) rowsInSections ;
-- (instancetype) mq_cell_identifier : (NSString *(^)(__kindof UITableView *tableView , NSIndexPath *indexPath)) cellIdentifier ;
-- (instancetype) mq_configuration : (__kindof UITableViewCell *(^)(__kindof UITableView *tableView , __kindof UITableViewCell *cell , NSIndexPath *indexPath)) configuration ;
+- (instancetype) mq_sections : (NSInteger (^)(__kindof UITableView *table_view)) sections ;
+- (instancetype) mq_rows_in_sections : (NSInteger (^)(__kindof UITableView * table_view , NSInteger i_section)) rows_in_sections ;
+- (instancetype) mq_cell_identifier : (NSString *(^)(__kindof UITableView *table_view , NSIndexPath *index_path)) cell_identifier ;
+- (instancetype) mq_configuration : (__kindof UITableViewCell *(^)(__kindof UITableView *table_view , __kindof UITableViewCell *cell , NSIndexPath *index_path)) configuration ;
 
 @end
 
@@ -103,8 +103,8 @@
 
 @interface NSArray (MQExtension_Table_Refresh)
 
-- (instancetype) mq_reload : (__kindof UITableView *) tableView ;
-- (instancetype) mq_reload : (__kindof UITableView *) tableView
+- (instancetype) mq_reload : (__kindof UITableView *) table_view ;
+- (instancetype) mq_reload : (__kindof UITableView *) table_view
                   sections : (NSIndexSet *) set ;
 
 @end
@@ -122,8 +122,8 @@
 - (id < UITableViewDataSourcePrefetching >) init ;
 
 - (instancetype) mq_disable_background_mode ;
-- (instancetype) mq_prefetch_at : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) prefetchAt ;
-- (instancetype) mq_cancel_prefetch_at : (void (^)(__kindof UITableView *tableView , NSArray <NSIndexPath *> *array)) cancelPrefetchAt;
+- (instancetype) mq_prefetch_at : (void (^)(__kindof UITableView *table_view , NSArray <NSIndexPath *> *array)) prefetch_at ;
+- (instancetype) mq_cancel_prefetch_at : (void (^)(__kindof UITableView *table_view , NSArray <NSIndexPath *> *array)) cancel_prefetch_at;
 
 @end
 

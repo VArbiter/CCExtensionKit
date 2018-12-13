@@ -10,44 +10,44 @@
 
 #import <objc/runtime.h>
 
-static const char * _MQ_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_ = "MQ_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY";
-static const char * _MQ_UICONTROL_EVENT_DICTIONARY_STORED_KEY_ = "MQ_UICONTROL_EVENT_DICTIONARY_STORED_KEY";
-static const char * _MQ_UICONTROL_EVENT_STORED_KEY_ = "MQ_UICONTROL_EVENT_STORED_KEY";
+static const char * MQ_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY = "MQ_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY";
+static const char * MQ_UICONTROL_EVENT_DICTIONARY_STORED_KEY = "MQ_UICONTROL_EVENT_DICTIONARY_STORED_KEY";
+static const char * MQ_UICONTROL_EVENT_STORED_KEY = "MQ_UICONTROL_EVENT_STORED_KEY";
 
 @interface UIControl (MQExtension_Assit)
 
 - (void) mq_control_extension_action : ( __kindof UIControl *) sender ;
 
-@property (nonatomic , strong) NSMutableDictionary *dEvent ;
-@property (nonatomic , assign) UIControlEvents eventControlAssist ;
+@property (nonatomic , strong) NSMutableDictionary *dict_events ;
+@property (nonatomic , assign) UIControlEvents event_control_assist ;
 - (void) mq_control_extension_event_action : (__kindof UIControl *) sender ;
 
 @end
 
 @implementation UIControl (MQExtension_Assit)
 
-- (void)setDEvent:(NSMutableDictionary *)dEvent {
-    objc_setAssociatedObject(self, _MQ_UICONTROL_EVENT_DICTIONARY_STORED_KEY_, dEvent, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setDict_events:(NSMutableDictionary *)dict_events {
+    objc_setAssociatedObject(self, MQ_UICONTROL_EVENT_DICTIONARY_STORED_KEY, dict_events, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-- (NSMutableDictionary *)dEvent {
-    NSMutableDictionary *d = objc_getAssociatedObject(self, _MQ_UICONTROL_EVENT_DICTIONARY_STORED_KEY_);
+- (NSMutableDictionary *)dict_events {
+    NSMutableDictionary *d = objc_getAssociatedObject(self, MQ_UICONTROL_EVENT_DICTIONARY_STORED_KEY);
     if (d) return d;
     else {
         d = [NSMutableDictionary dictionary];
-        objc_setAssociatedObject(self, _MQ_UICONTROL_EVENT_DICTIONARY_STORED_KEY_, d, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, MQ_UICONTROL_EVENT_DICTIONARY_STORED_KEY, d, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return d;
 }
 
-- (void)setEventControlAssist:(UIControlEvents)eventControlAssist {
-    objc_setAssociatedObject(self, _MQ_UICONTROL_EVENT_STORED_KEY_, @(eventControlAssist), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setEvent_control_assist:(UIControlEvents)event_control_assist {
+    objc_setAssociatedObject(self, MQ_UICONTROL_EVENT_STORED_KEY, @(event_control_assist), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
--(UIControlEvents)eventControlAssist {
-    return [objc_getAssociatedObject(self, _MQ_UICONTROL_EVENT_STORED_KEY_) unsignedIntegerValue];
+-(UIControlEvents)event_control_assist {
+    return [objc_getAssociatedObject(self, MQ_UICONTROL_EVENT_STORED_KEY) unsignedIntegerValue];
 }
 
 - (void) mq_control_extension_action : ( __kindof UIControl *) sender {
-    void (^t)( __kindof UIControl *) = objc_getAssociatedObject(self, _MQ_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_);
+    void (^t)( __kindof UIControl *) = objc_getAssociatedObject(self, MQ_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY);
     if (t) {
         if (NSThread.isMainThread) t(sender);
         else dispatch_sync(dispatch_get_main_queue(), ^{
@@ -57,20 +57,20 @@ static const char * _MQ_UICONTROL_EVENT_STORED_KEY_ = "MQ_UICONTROL_EVENT_STORED
 }
 
 - (void) mq_control_extension_event_action : (__kindof UIControl *) sender {
-    UIControlEvents events = self.eventControlAssist;
+    UIControlEvents events = self.event_control_assist;
     NSString *s = @"MQ_UICONTROL_EVENT_TRIGGER_ACTION_";
     s = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(events).stringValue]];
-    void (^bEvent)(__kindof UIControl *sender) = self.dEvent[s];
+    void (^bEvent)(__kindof UIControl *sender) = self.dict_events[s];
     if (bEvent) bEvent(self);
 }
 
 @end
 
 #pragma mark - -----
-static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY_ = "MQ_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY";
-static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY_ = "MQ_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY";
-static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY_ = "MQ_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY";
-static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY";
+static const char * MQ_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY = "MQ_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY";
+static const char * MQ_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY = "MQ_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY";
+static const char * MQ_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY = "MQ_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY";
+static const char * MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY = "MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY";
 
 @implementation UIControl (MQExtension)
 
@@ -85,7 +85,7 @@ static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "MQ_UIVIEW_ASSOCIA
 }
 - (instancetype) mq_target : (id) target
                    actions : (void (^)( __kindof UIControl *sender)) action {
-    objc_setAssociatedObject(self, _MQ_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, MQ_UICONTROL_EXTENSION_CLICK_ASSOCIATE_KEY, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self addTarget:target
               action:@selector(mq_control_extension_action:)
     forControlEvents:UIControlEventTouchUpInside];
@@ -102,31 +102,31 @@ static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "MQ_UIVIEW_ASSOCIA
 }
 /// increase trigger rect .
 - (instancetype) mq_increase : (UIEdgeInsets) insets {
-    objc_setAssociatedObject(self, _MQ_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY_,
+    objc_setAssociatedObject(self, MQ_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY,
                              @(insets.top), OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(self, _MQ_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY_,
+    objc_setAssociatedObject(self, MQ_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY,
                              @(insets.left), OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(self, _MQ_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY_,
+    objc_setAssociatedObject(self, MQ_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY,
                              @(insets.bottom), OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(self, _MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_,
+    objc_setAssociatedObject(self, MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY,
                              @(insets.right), OBJC_ASSOCIATION_COPY_NONATOMIC);
     return self;
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     CGRect (^t)(void) = ^CGRect {
-        NSNumber * top = objc_getAssociatedObject(pSelf, _MQ_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY_);
-        NSNumber * left = objc_getAssociatedObject(pSelf, _MQ_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY_);
-        NSNumber * bottom = objc_getAssociatedObject(pSelf, _MQ_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY_);
-        NSNumber * right = objc_getAssociatedObject(pSelf, _MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_);
+        NSNumber * top = objc_getAssociatedObject(weak_self, MQ_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY);
+        NSNumber * left = objc_getAssociatedObject(weak_self, MQ_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY);
+        NSNumber * bottom = objc_getAssociatedObject(weak_self, MQ_UIVIEW_ASSOCIATE_HITTEST_BOTTOM_KEY);
+        NSNumber * right = objc_getAssociatedObject(weak_self, MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY);
         if (top && left && bottom && right) {
-            return CGRectMake(pSelf.bounds.origin.x - left.floatValue,
-                              pSelf.bounds.origin.y - top.floatValue,
-                              pSelf.bounds.size.width + left.floatValue + right.floatValue,
-                              pSelf.bounds.size.height + top.floatValue + bottom.floatValue);
+            return CGRectMake(weak_self.bounds.origin.x - left.floatValue,
+                              weak_self.bounds.origin.y - top.floatValue,
+                              weak_self.bounds.size.width + left.floatValue + right.floatValue,
+                              weak_self.bounds.size.height + top.floatValue + bottom.floatValue);
         }
-        else return pSelf.bounds;
+        else return weak_self.bounds;
     };
     
     CGRect rect = t();
@@ -139,8 +139,8 @@ static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "MQ_UIVIEW_ASSOCIA
     if (!action) return self;
     NSString *s = [@"MQ_UICONTROL_EVENT_TRIGGER_ACTION_" stringByAppendingString:[NSString stringWithFormat:@"%@",@(event).stringValue]];
     
-    [self.dEvent setValue:action forKey:s];
-    self.eventControlAssist = self.eventControlAssist | event;
+    [self.dict_events setValue:action forKey:s];
+    self.event_control_assist = self.event_control_assist | event;
     
     [self addTarget:self
              action:@selector(mq_control_extension_event_action:)
@@ -149,13 +149,13 @@ static const char * _MQ_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "MQ_UIVIEW_ASSOCIA
 }
 
 - (instancetype) mq_remove_event : (UIControlEvents) event {
-    if (self.eventControlAssist & event) {
+    if (self.event_control_assist & event) {
         NSString *s = @"MQ_UICONTROL_EVENT_TRIGGER_ACTION_";
-        NSString *ts = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(self.eventControlAssist).stringValue]];
-        id t = self.dEvent[ts];
-        self.eventControlAssist = self.eventControlAssist & (~event);
-        NSString *te = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(self.eventControlAssist).stringValue]];
-        [self.dEvent setValue:t forKey:te];
+        NSString *ts = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(self.event_control_assist).stringValue]];
+        id t = self.dict_events[ts];
+        self.event_control_assist = self.event_control_assist & (~event);
+        NSString *te = [s stringByAppendingString:[NSString stringWithFormat:@"%@",@(self.event_control_assist).stringValue]];
+        [self.dict_events setValue:t forKey:te];
         [self removeTarget:self
                     action:@selector(mq_control_extension_event_action:)
           forControlEvents:event];

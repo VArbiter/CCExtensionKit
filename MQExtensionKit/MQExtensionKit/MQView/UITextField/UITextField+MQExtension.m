@@ -11,15 +11,15 @@
 
 @interface UITextField (MQExtension_Assist)
 
-- (void) mq_textfield_text_did_change : (__kindof UITextField *) textField ;
+- (void) mq_textfield_text_did_change : (__kindof UITextField *) sender ;
 
 @end
 
 @implementation UITextField (MQExtension_Assist)
 
-- (void) mq_textfield_text_did_change : (__kindof UITextField *) textField {
-    void (^bChanged)(__kindof UITextField *sender) = objc_getAssociatedObject(self, "MQ_TEXT_FIELD_TEXT_DID_CHANGE_ACTION");
-    if (bChanged) bChanged(textField);
+- (void) mq_textfield_text_did_change : (__kindof UITextField *) sender {
+    void (^block_changed)(__kindof UITextField *sender) = objc_getAssociatedObject(self, "MQ_TEXT_FIELD_TEXT_DID_CHANGE_ACTION");
+    if (block_changed) block_changed(sender);
 }
 
 @end
@@ -39,12 +39,12 @@
     else self.delegate = nil;
     return self;
 }
-- (instancetype) mq_place_holder : (NSDictionary <NSString * , id> *) dAttributes
+- (instancetype) mq_place_holder : (NSDictionary <NSString * , id> *) dict_attributes
                           string : (NSString *) string {
     if (![string isKindOfClass:NSString.class] || !string || !string.length) return self;
-    NSAttributedString *sAttr = [[NSAttributedString alloc] initWithString:string
-                                                                attributes:dAttributes];
-    self.attributedPlaceholder = sAttr;
+    NSAttributedString *s_attr = [[NSAttributedString alloc] initWithString:string
+                                                                 attributes:dict_attributes];
+    self.attributedPlaceholder = s_attr;
     return self;
 }
 
@@ -75,9 +75,9 @@
     return b;
 }
 
-- (instancetype) mq_text_did_change : (void (^)(__kindof UITextField *sender)) bChanged {
-    if (!bChanged) return self;
-    objc_setAssociatedObject(self, "MQ_TEXT_FIELD_TEXT_DID_CHANGE_ACTION", bChanged, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (instancetype) mq_text_did_change : (void (^)(__kindof UITextField *sender)) block_changed {
+    if (!block_changed) return self;
+    objc_setAssociatedObject(self, "MQ_TEXT_FIELD_TEXT_DID_CHANGE_ACTION", block_changed, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self addTarget:self
              action:@selector(mq_textfield_text_did_change:)
    forControlEvents:UIControlEventEditingChanged];
@@ -85,13 +85,13 @@
 }
 
 - (instancetype) mq_text_shared_event : (UIControlEvents) event
-                               action : (void (^)(__kindof UITextField *sender)) bEvent {
+                               action : (void (^)(__kindof UITextField *sender)) block_event {
     if (event & UIControlEventEditingDidBegin
         || event & UIControlEventEditingChanged
         || event & UIControlEventEditingDidEnd
         || event & UIControlEventEditingDidEndOnExit) {
         return [self mq_shared_control_event:event actions:^(__kindof UIControl *sender) {
-            if (bEvent) bEvent(((UITextField *) sender));
+            if (block_event) block_event(((UITextField *) sender));
         }];
     }
     return self;

@@ -46,7 +46,7 @@
 
 /// note : [UIApplication sharedApplication].delegate.window is the super view // 父视图为 [UIApplication sharedApplication].delegate.window
 + (void) mq_cover_view_with : (__kindof UIViewController *) controller
-                   animated : (BOOL) isAminated
+                   animated : (BOOL) is_aminated
                    duration : (CGFloat) f_animation_duration ;
 
 /// make present modeled push / dismiss modeled pop // 使得 模态动画像是 导航栏的 push / pop

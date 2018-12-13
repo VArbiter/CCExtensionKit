@@ -155,20 +155,20 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
 
 @interface MQCollectionExtensionDelegate ()
 
-@property (nonatomic , copy) BOOL (^bDidSelect)(__kindof UICollectionView *collectionView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) void (^bDidHightedCell)(__kindof UICollectionView *collectionView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) void (^bDidUnhigntedCell)(__kindof UICollectionView *collectionView , NSIndexPath *indexPath) ;
-@property (nonatomic , copy) CGFloat (^bMinimumLineSpacingInSection)(__kindof UICollectionView *collectionView ,__kindof  UICollectionViewLayout *layout , NSInteger integerSection) ;
-@property (nonatomic , copy) CGFloat (^bMinimumInteritemSpacingInSection)(__kindof UICollectionView *collectionView ,__kindof  UICollectionViewLayout *layout , NSInteger integerSection) ;
-@property (nonatomic , copy) UIEdgeInsets (^bSpacingBetweenSections)(__kindof UICollectionView *collectionView ,__kindof  UICollectionViewLayout *layout , NSInteger integerSection) ;
+@property (nonatomic , copy) BOOL (^block_did_select)(__kindof UICollectionView * , NSIndexPath *) ;
+@property (nonatomic , copy) void (^block_did_highted_cell)(__kindof UICollectionView * , NSIndexPath *) ;
+@property (nonatomic , copy) void (^block_did_unhignted_cell)(__kindof UICollectionView * , NSIndexPath *) ;
+@property (nonatomic , copy) CGFloat (^block_minimum_line_spacing_in_section)(__kindof UICollectionView * ,__kindof  UICollectionViewLayout * , NSInteger ) ;
+@property (nonatomic , copy) CGFloat (^block_minimum_inter_item_spacing_in_section)(__kindof UICollectionView * ,__kindof  UICollectionViewLayout * , NSInteger ) ;
+@property (nonatomic , copy) UIEdgeInsets (^block_spacing_between_sections)(__kindof UICollectionView * ,__kindof  UICollectionViewLayout * , NSInteger ) ;
 
-@property (nonatomic , copy) void (^bDidScroll)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) void (^bWillBeginDecelerating)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) void (^bDidEndDecelerating)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) BOOL (^bShouldScrollToTop)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) void (^bDidScrollToTop)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) void (^bWillBeginDragging)(__kindof UIScrollView *scrollView);
-@property (nonatomic , copy) void (^bDidEndDragging)(__kindof UIScrollView *scrollView , BOOL decelerate);
+@property (nonatomic , copy) void (^block_did_scroll)(__kindof UIScrollView *);
+@property (nonatomic , copy) void (^block_will_begin_decelerating)(__kindof UIScrollView *);
+@property (nonatomic , copy) void (^block_did_end_decelerating)(__kindof UIScrollView *);
+@property (nonatomic , copy) BOOL (^block_should_scroll_to_top)(__kindof UIScrollView *);
+@property (nonatomic , copy) void (^block_did_scroll_to_top)(__kindof UIScrollView *);
+@property (nonatomic , copy) void (^block_will_begin_dragging)(__kindof UIScrollView *);
+@property (nonatomic , copy) void (^block_did_end_dragging)(__kindof UIScrollView * , BOOL );
 
 @end
 
@@ -181,123 +181,127 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
     return self;
 }
 
-- (instancetype) mq_did_select : (BOOL (^)(__kindof UICollectionView *collectionView ,
-                                         NSIndexPath *indexPath)) didSelect {
-    self.bDidSelect = [didSelect copy];
+- (instancetype) mq_did_select : (BOOL (^)(__kindof UICollectionView *collection_view ,
+                                         NSIndexPath *index_path)) did_select {
+    self.block_did_select = [did_select copy];
     return self;
 }
-- (instancetype) mq_did_highted : (void (^)(__kindof UICollectionView *collectionView ,
-                                          NSIndexPath *indexPath)) didHighLighted {
-    self.bDidHightedCell = [didHighLighted copy];
+- (instancetype) mq_did_highted : (void (^)(__kindof UICollectionView *collection_view ,
+                                          NSIndexPath *index_path)) did_highlighted {
+    self.block_did_highted_cell = [did_highlighted copy];
     return self;
 }
 - (instancetype) mq_did_un_highted : (void (^)(__kindof UICollectionView *collectionView ,
-                                            NSIndexPath *indexPath)) didUnHighLighted {
-    self.bDidUnhigntedCell = [didUnHighLighted copy];
+                                            NSIndexPath *indexPath)) did_Unhighlighted {
+    self.block_did_unhignted_cell = [did_Unhighlighted copy];
     return self;
 }
-- (instancetype) mq_minimum_line_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) mq_minimum_line_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collection_view ,
                                                                    __kindof UICollectionViewLayout *layout ,
-                                                                   NSInteger iSection)) minimumLineSpacingInSection {
-    self.bMinimumLineSpacingInSection = [minimumLineSpacingInSection copy];
+                                                                   NSInteger i_section)) minimum_line_spacing_in_section {
+    self.block_minimum_line_spacing_in_section = [minimum_line_spacing_in_section copy];
     return self;
 }
-- (instancetype) mq_minimum_inter_item_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collectionView ,
+- (instancetype) mq_minimum_inter_item_spacing_in_section : (CGFloat (^)(__kindof UICollectionView *collection_view ,
                                                                          __kindof UICollectionViewLayout *layout ,
-                                                                         NSInteger iSection)) minimumInteritemSpacingInSection {
-    self.bMinimumInteritemSpacingInSection = [minimumInteritemSpacingInSection copy];
+                                                                         NSInteger i_section)) minimum_inter_item_spacing_in_section {
+    self.block_minimum_inter_item_spacing_in_section = [minimum_inter_item_spacing_in_section copy];
     return self;
 }
-- (instancetype) mq_spacing_between_sections : (UIEdgeInsets(^)(__kindof UICollectionView *collectionView ,
+- (instancetype) mq_spacing_between_sections : (UIEdgeInsets(^)(__kindof UICollectionView *collection_view ,
                                                                 __kindof UICollectionViewLayout *layout ,
-                                                                NSInteger iSection)) spacingBetweenSections {
-    self.bSpacingBetweenSections = [spacingBetweenSections copy];
+                                                                NSInteger i_section)) spacing_between_sections {
+    self.block_spacing_between_sections = [spacing_between_sections copy];
     return self;
 }
 
-- (instancetype) mq_did_scroll : (void (^)(__kindof UIScrollView *scrollView)) didScroll {
-    self.bDidScroll = [didScroll copy];
+- (instancetype) mq_did_scroll : (void (^)(__kindof UIScrollView *scroll_view)) did_scroll {
+    self.block_did_scroll = [did_scroll copy];
     return self;
 }
-- (instancetype) mq_will_begin_decelerating : (void (^)(__kindof UIScrollView *scrollView)) willBeginDecelerating {
-    self.bWillBeginDecelerating = [willBeginDecelerating copy];
+- (instancetype) mq_will_begin_decelerating : (void (^)(__kindof UIScrollView *scroll_view)) will_begin_decelerating {
+    self.block_will_begin_decelerating = [will_begin_decelerating copy];
     return self;
 }
-- (instancetype) mq_did_end_decelerating : (void (^)(__kindof UIScrollView *scrollView)) didEndDecelerating {
-    self.bDidEndDecelerating = [didEndDecelerating copy];
+- (instancetype) mq_did_end_decelerating : (void (^)(__kindof UIScrollView *scroll_view)) did_end_decelerating {
+    self.block_did_end_decelerating = [did_end_decelerating copy];
     return self;
 }
-- (instancetype) mq_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scrollView)) shouldScrollToTop {
-    self.bShouldScrollToTop = [shouldScrollToTop copy];
+- (instancetype) mq_should_scroll_to_top : (BOOL (^)(__kindof UIScrollView *scroll_view)) should_scroll_to_top {
+    self.block_should_scroll_to_top = [should_scroll_to_top copy];
     return self;
 }
-- (instancetype) mq_did_scroll_to_top : (void (^)(__kindof UIScrollView *scrollView)) didScrollToTop {
-    self.bDidScrollToTop = [didScrollToTop copy];
+- (instancetype) mq_did_scroll_to_top : (void (^)(__kindof UIScrollView *scroll_view)) did_scroll_to_top {
+    self.block_did_scroll_to_top = [did_scroll_to_top copy];
     return self;
 }
-- (instancetype) mq_will_begin_dragging : (void (^)(__kindof UIScrollView *scrollView)) willBeginDragging {
-    self.bWillBeginDragging = [willBeginDragging copy];
+- (instancetype) mq_will_begin_dragging : (void (^)(__kindof UIScrollView *scroll_view)) will_begin_dragging {
+    self.block_will_begin_dragging = [will_begin_dragging copy];
     return self;
 }
-- (instancetype) mq_did_end_dragging : (void (^)(__kindof UIScrollView *scrollView , BOOL decelerate)) didEndDragging {
-    self.bDidEndDragging = [didEndDragging copy];
+- (instancetype) mq_did_end_dragging : (void (^)(__kindof UIScrollView *scroll_view , BOOL decelerate)) did_end_dragging {
+    self.block_did_end_dragging = [did_end_dragging copy];
     return self;
 }
 
 #pragma mark - ----
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.bDidSelect) {
-        if (self.bDidSelect(collectionView , indexPath)) {
+    if (self.block_did_select) {
+        if (self.block_did_select(collectionView , indexPath)) {
             [collectionView deselectItemAtIndexPath:indexPath animated:false];
         }
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.bDidHightedCell) self.bDidHightedCell(collectionView, indexPath);
+    if (self.block_did_highted_cell) self.block_did_highted_cell(collectionView, indexPath);
 }
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.bDidUnhigntedCell) self.bDidUnhigntedCell(collectionView, indexPath);
+    if (self.block_did_unhignted_cell) self.block_did_unhignted_cell(collectionView, indexPath);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return self.bMinimumLineSpacingInSection ? self.bMinimumLineSpacingInSection(collectionView , collectionViewLayout , section) : .0f;
+    return self.block_minimum_line_spacing_in_section ? self.block_minimum_line_spacing_in_section(collectionView , collectionViewLayout , section) : .0f;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return self.bMinimumInteritemSpacingInSection ? self.bMinimumInteritemSpacingInSection (collectionView , collectionViewLayout , section) : .0f;
+    return self.block_minimum_inter_item_spacing_in_section ? self.block_minimum_inter_item_spacing_in_section(collectionView , collectionViewLayout , section) : .0f;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return self.bSpacingBetweenSections ? self.bSpacingBetweenSections(collectionView , collectionViewLayout , section) : UIEdgeInsetsZero ;
+    return self.block_spacing_between_sections ? self.block_spacing_between_sections(collectionView , collectionViewLayout , section) : UIEdgeInsetsZero ;
 }
 
 #pragma mark - ----- UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.bDidScroll) self.bDidScroll(scrollView);
+    if (self.block_did_scroll) self.block_did_scroll(scrollView);
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    if (self.bWillBeginDecelerating) self.bWillBeginDecelerating(scrollView);
+    if (self.block_will_begin_decelerating) self.block_will_begin_decelerating(scrollView);
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (self.bDidEndDecelerating) self.bDidEndDecelerating(scrollView);
+    if (self.block_did_end_decelerating) self.block_did_end_decelerating(scrollView);
 }
 
 - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
-    if (self.bShouldScrollToTop) return self.bShouldScrollToTop(scrollView);
+    if (self.block_should_scroll_to_top) return self.block_should_scroll_to_top(scrollView);
     return YES;
 }
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
-    if (self.bDidScrollToTop) self.bDidScrollToTop(scrollView);
+    if (self.block_did_scroll_to_top) self.block_did_scroll_to_top(scrollView);
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    if (self.bWillBeginDragging) self.bWillBeginDragging(scrollView);
+    if (self.block_will_begin_dragging) self.block_will_begin_dragging(scrollView);
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (self.bDidEndDragging) self.bDidEndDragging(scrollView, decelerate);
+    if (self.block_did_end_dragging) self.block_did_end_dragging(scrollView, decelerate);
 }
 
-MQ_DETECT_DEALLOC
+#if DEBUG
+- (void)dealloc {
+    NSLog(@"MQ_%@_DEALLOC" , NSStringFromClass(self.class));
+}
+#endif
 
 @end
 
@@ -305,10 +309,10 @@ MQ_DETECT_DEALLOC
 
 @interface MQCollectionExtensionDataSource ()
 
-@property (nonatomic , copy) NSInteger (^bSections)(__kindof UICollectionView *collectionView) ;
-@property (nonatomic , copy) NSInteger (^bItemsInSections)(__kindof UICollectionView * collectionView , NSInteger integerSections) ;
-@property (nonatomic , copy) NSString *(^bCellIdentifier)(__kindof UICollectionView * collectionView , NSIndexPath * indexPath) ;
-@property (nonatomic , copy) UICollectionViewCell *(^bConfigCell)(__kindof UICollectionView * collectionView , UICollectionViewCell * cellConfig , NSIndexPath * indexPath);
+@property (nonatomic , copy) NSInteger (^block_sections)(__kindof UICollectionView *) ;
+@property (nonatomic , copy) NSInteger (^block_items_in_sections)(__kindof UICollectionView *  , NSInteger ) ;
+@property (nonatomic , copy) NSString *(^block_cell_identifier)(__kindof UICollectionView *  , NSIndexPath * ) ;
+@property (nonatomic , copy) UICollectionViewCell *(^block_config_cell)(__kindof UICollectionView *  , UICollectionViewCell * , NSIndexPath * );
 
 @end
 
@@ -321,42 +325,47 @@ MQ_DETECT_DEALLOC
     return self;
 }
 - (instancetype) mq_sections : (NSInteger (^)(__kindof UICollectionView *collectionView)) sections {
-    self.bSections = [sections copy];
+    self.block_sections = [sections copy];
     return self;
 }
 - (instancetype) mq_items_in_sections : (NSInteger (^)(__kindof UICollectionView * collectionView ,
-                                                    NSInteger iSections)) itemInSections {
-    self.bItemsInSections = [itemInSections copy];
+                                                    NSInteger iSections)) item_in_sections {
+    self.block_items_in_sections = [item_in_sections copy];
     return self;
 }
 - (instancetype) mq_cell_identifier : (NSString *(^)(__kindof UICollectionView * collectionView ,
                                                    NSIndexPath * indexPath)) identifier {
-    self.bCellIdentifier = [identifier copy];
+    self.block_cell_identifier = [identifier copy];
     return self;
 }
 - (instancetype) mq_configuration : (__kindof UICollectionViewCell *(^)(__kindof UICollectionView * collectionView ,
                                                                        __kindof UICollectionViewCell * cell ,
                                                                        NSIndexPath * indexPath)) configuration {
-    self.bConfigCell = [configuration copy];
+    self.block_config_cell = [configuration copy];
     return self;
 }
 
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.bSections ? self.bSections(collectionView) : 1;
+    return self.block_sections ? self.block_sections(collectionView) : 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.bItemsInSections ? self.bItemsInSections(collectionView , section) : 0;
+    return self.block_items_in_sections ? self.block_items_in_sections(collectionView , section) : 0;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *stringCellIdentifier = self.bCellIdentifier ? self.bCellIdentifier(collectionView , indexPath) : _MQ_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_;
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:stringCellIdentifier
-                                                                           forIndexPath:indexPath];
+    NSString *s_identifier = self.block_cell_identifier ? self.block_cell_identifier(collectionView , indexPath) : _MQ_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_;
+    UICollectionViewCell *cell = [collectionView
+                                  dequeueReusableCellWithReuseIdentifier:s_identifier
+                                  forIndexPath:indexPath];
     if (!cell) cell = [[UICollectionViewCell alloc] init];
-    return self.bConfigCell ? self.bConfigCell(collectionView , cell , indexPath) : cell;
+    return self.block_config_cell ? self.block_config_cell(collectionView , cell , indexPath) : cell;
 }
 
-MQ_DETECT_DEALLOC
+#if DEBUG
+- (void)dealloc {
+    NSLog(@"MQ_%@_DEALLOC" , NSStringFromClass(self.class));
+}
+#endif
 
 @end
 
@@ -388,7 +397,7 @@ MQ_DETECT_DEALLOC
 
 @interface MQCollectionExtensionDataPrefetching ()
 
-@property (nonatomic , assign) BOOL isDisableBackground ;
+@property (nonatomic , assign) BOOL is_disable_background ;
 @property (nonatomic , copy) void (^prefetching)(__kindof UICollectionView *, NSArray<NSIndexPath *> *);
 @property (nonatomic , copy) void (^canceling)(__kindof UICollectionView *, NSArray<NSIndexPath *> *);
 
@@ -405,7 +414,7 @@ MQ_DETECT_DEALLOC
     return self;
 }
 - (instancetype) mq_disable_background_mode {
-    self.isDisableBackground = YES;
+    self.is_disable_background = YES;
     return self;
 }
 - (instancetype) mq_prefetch_at : (void (^)(__kindof UICollectionView *collectionView ,
@@ -420,14 +429,14 @@ MQ_DETECT_DEALLOC
 }
 
 - (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_AVAILABLE_IOS(10_0) {
-    if (!self.queue && !self.isDisableBackground) {
+    if (!self.queue && !self.is_disable_background) {
         if (UIDevice.currentDevice.systemVersion.floatValue >= 8.f) {
             self.queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0);
         }
         else self.queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     }
     
-    if (!self.isDisableBackground) {
+    if (!self.is_disable_background) {
         __weak typeof(self) pSelf = self;
         dispatch_async(self.queue, ^{
             if (pSelf.prefetching) pSelf.prefetching(collectionView, indexPaths);

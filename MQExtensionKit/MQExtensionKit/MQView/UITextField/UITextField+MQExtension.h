@@ -14,7 +14,7 @@
 + (instancetype) mq_common : (CGRect) frame ;
 
 - (instancetype) mq_delegate : (id <UITextFieldDelegate>) delegete ;
-- (instancetype) mq_place_holder : (NSDictionary <NSString * , id> *) dAttributes
+- (instancetype) mq_place_holder : (NSDictionary <NSString * , id> *) dict_attributes
                           string : (NSString *) string ;
 
 /// default with a image View that already size-to-fit with original image . // 默认使用一个 sizeToFit 的 imageView (original) .
@@ -29,7 +29,7 @@
 /// note : it has no conflict on [UITextField.instance mq_text_shared_event:action:] // 和 [UITextField.instance mq_text_shared_event:action:] 没有冲突
 /// note : therefore when use [UITextField.instance mq_text_did_change:] // 所以使用 [UITextField.instance mq_text_did_change:] 的时候
 /// note : [UITextField.instance ccTextEvent:UIControlEventEditingChanged action:***] not should be done . // [UITextField.instance ccTextEvent:UIControlEventEditingChanged action:***] 不应该被实现
-- (instancetype) mq_text_did_change : (void (^)(__kindof UITextField *sender)) bChanged ;
+- (instancetype) mq_text_did_change : (void (^)(__kindof UITextField *sender)) block_changed ;
 
 /// note : only events below allowed // 仅仅下列事件被允许
 /// note : if you accidently removed the event of 'UIControlEventEditingChanged' // 如果你不小心移除了 UIControlEventEditingChanged
@@ -41,6 +41,6 @@
 // UIControlEventEditingDidEnd
 // UIControlEventEditingDidEndOnExit , return key to end it .
 - (instancetype) mq_text_shared_event : (UIControlEvents) event
-                               action : (void (^)(__kindof UITextField *sender)) bEvent ;
+                               action : (void (^)(__kindof UITextField *sender)) block_event ;
 
 @end
