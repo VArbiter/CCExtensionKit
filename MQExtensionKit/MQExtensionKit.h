@@ -15,7 +15,6 @@
         #import <MQExtensionKit/MQDataExtension.h>
         #import <MQExtensionKit/MQViewExtension.h>
         #import <MQExtensionKit/MQCommonExtension.h>
-        #import <MQExtensionKit/MQRuntimeExtension.h>
 
         #ifdef MQCustomExtension_h
             #import <MQExtensionKit/MQCustomExtension.h>
