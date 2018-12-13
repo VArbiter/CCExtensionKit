@@ -31,10 +31,10 @@ static NSMutableDictionary * __dictionary = nil;
 }
 
 + (instancetype) mq_async_post_on_queue : (dispatch_queue_t) queue
-                       notification : (NSNotificationName) sNofification {
+                       notification : (NSNotificationName) s_nofification {
     id t = self.mq_common;
     dispatch_async(queue, ^{
-        [t postNotificationName:sNofification object:nil userInfo:nil];
+        [t postNotificationName:s_nofification object:nil userInfo:nil];
     });
     return t;
 }
@@ -58,16 +58,16 @@ static NSMutableDictionary * __dictionary = nil;
 
 #pragma mark - -----
 
-const char * _MQ_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY_ = "MQ_NSNOTIFICATION_ASSOCITE_KEY";
+const char * MQ_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY = "MQ_NSNOTIFICATION_ASSOCITE_KEY";
 
 @implementation NSNotification (MQExtension_Notification)
 
 - (void)setBlock_execute:(void (^)(__kindof NSNotification *))block_execute {
     if (block_execute)
-    objc_setAssociatedObject(self, _MQ_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY_, block_execute, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, MQ_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY, block_execute, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void (^)(__kindof NSNotification *))block_execute {
-    return objc_getAssociatedObject(self, _MQ_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY_);
+    return objc_getAssociatedObject(self, MQ_NSNOTIFICATION_EXECUTE_ASSOCITE_KEY);
 }
 
 @end

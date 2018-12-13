@@ -15,12 +15,12 @@
                   action : (void (^)(NSTimer *sender)) action ;
 
 + (instancetype) mq_timer : (NSTimeInterval) interval
-                   repeat : (BOOL) isRepeat
+                   repeat : (BOOL) is_repeat
                    action : (void (^)(NSTimer *sender)) action ;
 
 + (instancetype) mq_timer : (NSTimeInterval) interval
-                 userInfo : (id) userInfo
-                   repeat : (BOOL) isRepeat
+                 userInfo : (id) user_info
+                   repeat : (BOOL) is_repeat
                    action : (void (^)(NSTimer *sender)) action ;
 
 /// scheduled
@@ -28,12 +28,12 @@
                        action : (void (^)(NSTimer *sender)) action ;
 
 + (instancetype) mq_scheduled : (NSTimeInterval) interval
-                       repeat : (BOOL) isRepeat
+                       repeat : (BOOL) is_repeat
                        action : (void (^)(NSTimer *sender)) action ;
 
 + (instancetype) mq_scheduled : (NSTimeInterval) interval
-                     userInfo : (id) userInfo
-                       repeat : (BOOL) isRepeat
+                     userInfo : (id) user_info
+                       repeat : (BOOL) is_repeat
                        action : (void (^)(NSTimer *sender)) action ;
 
 /// invalidate && set entity to nil. // 取消定时和销毁

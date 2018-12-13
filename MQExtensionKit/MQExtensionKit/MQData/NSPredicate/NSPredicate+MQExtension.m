@@ -10,9 +10,9 @@
 
 @implementation NSPredicate (MQExtension)
 
-+ (instancetype) mq_common : (NSString *) sRegex {
-    if ([sRegex isKindOfClass:NSString.class] && sRegex && sRegex.length) {
-        return [NSPredicate predicateWithFormat:sRegex];
++ (instancetype) mq_common : (NSString *) s_regex {
+    if ([s_regex isKindOfClass:NSString.class] && s_regex && s_regex.length) {
+        return [NSPredicate predicateWithFormat:s_regex];
     }
     return [NSPredicate predicateWithFormat:@""];
 }

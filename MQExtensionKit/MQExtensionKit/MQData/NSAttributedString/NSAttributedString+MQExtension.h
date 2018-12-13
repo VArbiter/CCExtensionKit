@@ -19,9 +19,9 @@
 
 @interface NSMutableAttributedString (MQExtension)
 
-- (__kindof NSMutableAttributedString *) mq_attribute_c : (NSAttributedStringKey) sKey
-                                       value : (id) value ;
-- (__kindof NSMutableAttributedString *) mq_attribute_s : (NSDictionary <NSAttributedStringKey , id> *) dAttributes ;
+- (__kindof NSMutableAttributedString *) mq_attribute_c : (NSAttributedStringKey) s_key
+                                                  value : (id) value ;
+- (__kindof NSMutableAttributedString *) mq_attribute_s : (NSDictionary <NSAttributedStringKey , id> *) d_attributes ;
 
 + (__kindof NSMutableAttributedString *) mq_color : (UIColor *) color
                                            string : (NSString *) string ;
@@ -29,7 +29,7 @@
 - (__kindof NSMutableAttributedString *) mq_font : (UIFont *) font ;
 - (__kindof NSMutableAttributedString *) mq_style : (void (^)(__kindof NSMutableParagraphStyle * style)) action ;
 - (__kindof NSMutableAttributedString *) mq_operate : (__kindof NSMutableAttributedString * (^)(__kindof NSMutableAttributedString * sender)) action ;
-- (__kindof NSMutableAttributedString *) mq_append_s : (NSAttributedString *) sAttr ;
+- (__kindof NSMutableAttributedString *) mq_append_s : (NSAttributedString *) s_attr ;
 - (__kindof NSMutableAttributedString *) mq_append_c : (NSString *) string ;
 
 @end

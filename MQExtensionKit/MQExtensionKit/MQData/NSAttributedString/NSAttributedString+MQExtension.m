@@ -26,14 +26,14 @@
 
 @implementation NSMutableAttributedString (MQExtension)
 
-- (__kindof NSMutableAttributedString *) mq_attribute_c : (NSAttributedStringKey) sKey
-                                       value : (id) value {
-    if (sKey && sKey.length) [self addAttribute:sKey value:value range:(NSRange){0 , self.length}];
+- (__kindof NSMutableAttributedString *) mq_attribute_c : (NSAttributedStringKey) s_key
+                                                  value : (id) value {
+    if (s_key && s_key.length) [self addAttribute:s_key value:value range:(NSRange){0 , self.length}];
     return self;
 }
 
-- (__kindof NSMutableAttributedString *) mq_attribute_s : (NSDictionary <NSAttributedStringKey , id> *) dAttributes {
-    if (dAttributes.allKeys) [self addAttributes:dAttributes range:NSMakeRange(0, self.length)];
+- (__kindof NSMutableAttributedString *) mq_attribute_s : (NSDictionary <NSAttributedStringKey , id> *) d_attributes {
+    if (d_attributes.allKeys) [self addAttributes:d_attributes range:NSMakeRange(0, self.length)];
     return self;
 }
 
@@ -84,12 +84,12 @@
     return self;
 }
 
-- (__kindof NSMutableAttributedString *) mq_append_s : (NSAttributedString *) sAttr {
-    if (sAttr && [sAttr isKindOfClass:NSAttributedString.class]) {
+- (__kindof NSMutableAttributedString *) mq_append_s : (NSAttributedString *) s_attr {
+    if (s_attr && [s_attr isKindOfClass:NSAttributedString.class]) {
         NSMutableAttributedString *t = nil;
         if (self.is_mutable) t = self;
         else t = self.to_mutable;
-        [t appendAttributedString:sAttr];
+        [t appendAttributedString:s_attr];
         return t;
     }
     return self;

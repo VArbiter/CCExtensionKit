@@ -10,7 +10,7 @@
 
 @interface NSPredicate (MQExtension)
 
-+ (instancetype) mq_common : (NSString *) sRegex ;
++ (instancetype) mq_common : (NSString *) s_regex ;
 
 /// YYYY-MM-DD HH:mm:ss
 + (instancetype) mq_time ;

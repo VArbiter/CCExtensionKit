@@ -14,9 +14,9 @@ NSUserDefaults *mq_user_defaults(void) {
     return [NSUserDefaults standardUserDefaults];
 }
 
-BOOL mq_standard_user_defaults(void (^bDef)(NSUserDefaults *sender)) {
+BOOL mq_standard_user_defaults(void (^block_def)(NSUserDefaults *sender)) {
     NSUserDefaults *def = NSUserDefaults.standardUserDefaults;
-    if (bDef) bDef(def);
+    if (block_def) block_def(def);
     return def.synchronize;
 }
 

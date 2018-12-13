@@ -84,7 +84,8 @@
 - (instancetype) mq_convert_to_PinYin : (BOOL) is_uppercase
                                 marks : (BOOL) is_need_marks ;
 
-NSString * MQ_STRING_FROM_UTF8(const char * cUTF8) ; // if params doesn't exist , return @"". // 如果参数不存在 , 返回 @""
+@property (nonatomic , readonly) const char * to_UTF8 NS_RETURNS_INNER_POINTER;
+NSString * MQ_STRING_FROM_UTF8(const char * c_UTF8) ; // if params doesn't exist , return @"". // 如果参数不存在 , 返回 @""
 
 @end
 
@@ -110,27 +111,27 @@ NSString * MQ_STRING_FROM_UTF8(const char * cUTF8) ; // if params doesn't exist 
 /// note: all the fit recalls ignores the text-indent . // 所有适应无视缩进
 
 /// system font size , default line break mode , system font size // 默认 系统字体 , line break mode
-CGFloat MQ_TEXT_HEIGHT_S(CGFloat fWidth ,
-                         CGFloat fEstimateHeight , // height that defualt to , if less than , return's it. (same below) // 默认高度 , 小于则返回它 (下同)
-                         NSString *string);
-CGFloat MQ_TEXT_HEIGHT_C(CGFloat fWidth ,
-                         CGFloat fEstimateHeight ,
-                         NSString *string ,
+CGFloat MQ_TEXT_HEIGHT_S(CGFloat f_width ,
+                         CGFloat f_estimate_height , // height that defualt to , if less than , return's it. (same below) // 默认高度 , 小于则返回它 (下同)
+                         NSString *s);
+CGFloat MQ_TEXT_HEIGHT_C(CGFloat f_width ,
+                         CGFloat f_estimate_height ,
+                         NSString *s ,
                          UIFont *font ,
                          NSLineBreakMode mode);
 
 /// for attributed string , Using system attributed auto fit // 针对富文本 , 使用系统进行自适应
-CGFloat MQ_TEXT_HEIGHT_A(CGFloat fWidth ,
-                         CGFloat fEstimateHeight ,
-                         NSAttributedString *aString);
+CGFloat MQ_TEXT_HEIGHT_A(CGFloat f_width ,
+                         CGFloat f_estimate_height ,
+                         NSAttributedString *s_attr);
 
 /// using default for NSString // 使用 NSString 的默认设置
-CGFloat MQ_TEXT_HEIGHT_AS(CGFloat fWidth ,
-                          CGFloat fEstimateHeight ,
-                          NSString *aString ,
+CGFloat MQ_TEXT_HEIGHT_AS(CGFloat f_width ,
+                          CGFloat f_estimate_height ,
+                          NSString *s ,
                           UIFont *font ,
                           NSLineBreakMode mode ,
-                          CGFloat fLineSpacing ,
-                          CGFloat fCharacterSpacing);
+                          CGFloat f_line_spacing ,
+                          CGFloat f_character_spacing);
 
 @end

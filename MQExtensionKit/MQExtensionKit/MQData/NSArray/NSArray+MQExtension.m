@@ -94,15 +94,15 @@
     return self;
 }
 - (instancetype) mq_append : (id) value {
-    BOOL isCan = YES;
+    BOOL is_can = YES;
     if (objc_getAssociatedObject(self, "_MQ_ARRAY_CLAZZ_")) {
         Class clazz = NSClassFromString([NSString stringWithFormat:@"%@",objc_getAssociatedObject(self, "_MQ_ARRAY_CLAZZ_")]);
-        isCan = [value isKindOfClass:clazz];
+        is_can = [value isKindOfClass:clazz];
     }
     MQArrayChangeInfo type ;
     type.type = MQArrayChangeTypeAppend;
     type.count = self.count;
-    if (isCan) {
+    if (is_can) {
         [self addObject:value];
         type.count = self.count;
         void (^t)(id , MQArrayChangeInfo) = objc_getAssociatedObject(self, "_MQ_ARRAY_CHANGE_");
@@ -153,20 +153,20 @@
     }
     return self;
 }
-- (instancetype) mq_remove_all : (BOOL (^)(BOOL isCompare , id obj)) action {
+- (instancetype) mq_remove_all : (BOOL (^)(BOOL is_compare , id obj)) action {
     NSString *stringClazz = [NSString stringWithFormat:@"%@",objc_getAssociatedObject(self, "_MQ_ARRAY_CLAZZ_")];
     
-    NSMutableArray *arrayRemove = [NSMutableArray array];
+    NSMutableArray *array_remove = [NSMutableArray array];
     __block MQArrayChangeInfo type ;
     type.type = MQArrayChangeTypeRemoved;
     
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        BOOL isCan = YES;
+        BOOL is_can = YES;
         if (action) {
-            isCan = action([obj isKindOfClass:NSClassFromString(stringClazz)] , obj);
+            is_can = action([obj isKindOfClass:NSClassFromString(stringClazz)] , obj);
         }
-        if (isCan) {
-            [arrayRemove addObject:obj];
+        if (is_can) {
+            [array_remove addObject:obj];
             type.count = self.count;
             void (^t)(id , MQArrayChangeInfo) = objc_getAssociatedObject(self, "_MQ_ARRAY_CHANGE_");
             if (t) {
@@ -174,7 +174,7 @@
             }
         }
     }];
-    [self removeObjectsInArray:arrayRemove];
+    [self removeObjectsInArray:array_remove];
     void (^r)(MQArrayChangeInfo t) = objc_getAssociatedObject(self, "_MQ_ARRAY_COMPLETE_");
     if (r) {
         r(type);

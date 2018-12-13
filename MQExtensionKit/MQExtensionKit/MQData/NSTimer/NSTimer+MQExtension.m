@@ -10,8 +10,8 @@
 
 #import <objc/runtime.h>
 
-static const char * _MQ_NSTIMER_ASSOCIATE_TIMER_KEY_ = "MQ_NSTIMER_ASSOCIATE_TIMER_KEY";
-static const char * _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY";
+static const char * MQ_NSTIMER_ASSOCIATE_TIMER_KEY = "MQ_NSTIMER_ASSOCIATE_TIMER_KEY";
+static const char * MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY = "MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY";
 
 @interface NSTimer (MQExtension_Assit)
 
@@ -22,9 +22,9 @@ static const char * _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "MQ_NSTIMER_ASSOCIATE
 @implementation NSTimer (MQExtension_Assit)
 
 + (void) mq_timer_action : (NSTimer *) sender {
-    void (^t)(NSTimer *) = objc_getAssociatedObject(sender, _MQ_NSTIMER_ASSOCIATE_TIMER_KEY_);
+    void (^t)(NSTimer *) = objc_getAssociatedObject(sender, MQ_NSTIMER_ASSOCIATE_TIMER_KEY);
     if (t) t(sender);
-    void (^s)(NSTimer *) = objc_getAssociatedObject(sender, _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_);
+    void (^s)(NSTimer *) = objc_getAssociatedObject(sender, MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY);
     if (s) s(sender);
 }
 
@@ -41,25 +41,25 @@ static const char * _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "MQ_NSTIMER_ASSOCIATE
 }
 
 + (instancetype) mq_timer : (NSTimeInterval) interval
-                   repeat : (BOOL) isRepeat
+                   repeat : (BOOL) is_repeat
                    action : (void (^)(NSTimer *sender)) action {
     return [self mq_timer:interval
                  userInfo:nil
-                   repeat:isRepeat
+                   repeat:is_repeat
                    action:action];
 }
 
 + (instancetype) mq_timer : (NSTimeInterval) interval
-                 userInfo : (id) userInfo
-                   repeat : (BOOL) isRepeat
+                 userInfo : (id) user_info
+                   repeat : (BOOL) is_repeat
                    action : (void (^)(NSTimer *sender)) action {
-    NSTimer *tTimer = [NSTimer timerWithTimeInterval:interval
-                                              target:self
-                                            selector:@selector(mq_timer_action:)
-                                            userInfo:userInfo
-                                             repeats:isRepeat];
-    objc_setAssociatedObject(tTimer, _MQ_NSTIMER_ASSOCIATE_TIMER_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    return tTimer;
+    NSTimer *timer = [NSTimer timerWithTimeInterval:interval
+                                             target:self
+                                           selector:@selector(mq_timer_action:)
+                                           userInfo:user_info
+                                            repeats:is_repeat];
+    objc_setAssociatedObject(timer, MQ_NSTIMER_ASSOCIATE_TIMER_KEY, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return timer;
 }
 
 /// scheduled
@@ -71,25 +71,25 @@ static const char * _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "MQ_NSTIMER_ASSOCIATE
 }
 
 + (instancetype) mq_scheduled : (NSTimeInterval) interval
-                       repeat : (BOOL) isRepeat
+                       repeat : (BOOL) is_repeat
                        action : (void (^)(NSTimer *sender)) action {
     return [self mq_scheduled:interval
                      userInfo:nil
-                       repeat:isRepeat
+                       repeat:is_repeat
                        action:action];
 }
 
 + (instancetype) mq_scheduled : (NSTimeInterval) interval
-                     userInfo : (id) userInfo
-                       repeat : (BOOL) isRepeat
+                     userInfo : (id) user_info
+                       repeat : (BOOL) is_repeat
                        action : (void (^)(NSTimer *sender)) action {
-    NSTimer *tTimer = [NSTimer scheduledTimerWithTimeInterval:interval
-                                                       target:self
-                                                     selector:@selector(mq_timer_action:)
-                                                     userInfo:userInfo
-                                                      repeats:isRepeat];
-    objc_setAssociatedObject(tTimer, _MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    return tTimer;
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:interval
+                                                      target:self
+                                                    selector:@selector(mq_timer_action:)
+                                                    userInfo:user_info
+                                                     repeats:is_repeat];
+    objc_setAssociatedObject(timer, MQ_NSTIMER_ASSOCIATE_SCHEDULED_KEY, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return timer;
 }
 
 /// invalidate && set entity to nil.

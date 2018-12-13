@@ -47,7 +47,7 @@ typedef struct MQArrayChangeInfo MQArrayChangeInfo;
 - (instancetype) mq_append : (ObjectType)value
                     expand : (BOOL) isExpand ;
 - (instancetype) mq_remove : (ObjectType) value ;
-- (instancetype) mq_remove_all : (BOOL (^)(BOOL isCompare , ObjectType obj)) action ;
+- (instancetype) mq_remove_all : (BOOL (^)(BOOL is_compare , ObjectType obj)) action ;
 
 /// Observers , like all observers , need added before it used . // 监听者 , 就像所有的监听者那样 , 需要先实现 , 再使用 
 - (instancetype) mq_change : (void (^)(ObjectType value , MQArrayChangeInfo type)) action ;

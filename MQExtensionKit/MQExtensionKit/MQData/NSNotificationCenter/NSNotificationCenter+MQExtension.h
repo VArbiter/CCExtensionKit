@@ -19,7 +19,7 @@
 /// note : when post using method below , // 如果使用下面这种发送方式
 /// note : the receiver will do the operations on the thread the poster in . // 接收方会在指定线程内做操作
 + (instancetype) mq_async_post_on_queue : (dispatch_queue_t) queue
-                           notification : (NSNotificationName) sNofification ;
+                           notification : (NSNotificationName) s_nofification ;
 
 /// note : if queue == main queue , // 如果线程是主线程
 /// note : once receive the notification , observer will invoke it immediately on main queue . // 一旦接受者接收到了通知 , 观察者会立即在主线程执行

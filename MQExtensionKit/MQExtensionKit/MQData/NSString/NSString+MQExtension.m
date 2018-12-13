@@ -16,22 +16,22 @@
 @implementation NSString (MQExtension)
 
 - (NSString *(^)(id))s {
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     return ^NSString *(id value) {
         if ([value isKindOfClass:NSString.class]) {
-            return ((NSString *)value).length > 0 ? [pSelf stringByAppendingString:(NSString *)value] : pSelf;
+            return ((NSString *)value).length > 0 ? [weak_self stringByAppendingString:(NSString *)value] : weak_self;
         }
-        return [pSelf stringByAppendingString:[NSString stringWithFormat:@"%@",value]];
+        return [weak_self stringByAppendingString:[NSString stringWithFormat:@"%@",value]];
     };
 }
 
 - (NSString *(^)(id))p {
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     return ^NSString *(id value) {
         if ([value isKindOfClass:NSString.class]) {
-            return ((NSString *)value).length > 0 ? [pSelf stringByAppendingPathComponent:(NSString *)value] : pSelf;
+            return ((NSString *)value).length > 0 ? [weak_self stringByAppendingPathComponent:(NSString *)value] : weak_self;
         }
-        return [pSelf stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",value]];
+        return [weak_self stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",value]];
     };
 }
 
@@ -40,19 +40,19 @@
                      with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION {
     if (!string || !string.length) return nil;
     
-    NSMutableArray *arrayStrings = [NSMutableArray array];
-    NSString *stringTemp;
-    va_list argumentList;
+    NSMutableArray *array_strings = [NSMutableArray array];
+    NSString *string_temp;
+    va_list argument_list;
     if (string) {
-        [arrayStrings addObject:string];
-        va_start(argumentList, string);
-        while ((stringTemp = va_arg(argumentList, id))) {
-            [arrayStrings addObject:stringTemp];
+        [array_strings addObject:string];
+        va_start(argument_list, string);
+        while ((string_temp = va_arg(argument_list, id))) {
+            [array_strings addObject:string_temp];
         }
-        va_end(argumentList);
+        va_end(argument_list);
     }
-    free(argumentList);
-    return [self mq_merge:arrayStrings
+    free(argument_list);
+    return [self mq_merge:array_strings
                need_break:is_need_break
                   spacing:is_need_spacing];
 }
@@ -177,18 +177,18 @@
 
 - (NSString *)to_MD5 {
     if (!mq_is_string_valued(self)) return nil;
-    const char *cStr = [self UTF8String];
+    const char *c_str = [self UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
-    CC_MD5( cStr, (CC_LONG) strlen(cStr), digest );
-    NSMutableString *stringOutput = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    CC_MD5( c_str, (CC_LONG) strlen(c_str), digest );
+    NSMutableString *s_output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
     for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
-        [stringOutput appendFormat:@"%02x", digest[i]];
-    return  stringOutput;
+        [s_output appendFormat:@"%02x", digest[i]];
+    return  s_output;
 }
 - (NSString *)to_SHA1 {
     if (!mq_is_string_valued(self)) return nil;
-    const char *cstr = [self cStringUsingEncoding:NSUTF8StringEncoding];
-    NSData *data = [NSData dataWithBytes:cstr length:self.length];
+    const char *c_str = [self cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [NSData dataWithBytes:c_str length:self.length];
     // length
     // CC_SHA1 20,
     // CC_SHA256 32,
@@ -241,13 +241,13 @@
     return s_encoded;
 }
 - (NSString *)to_url_decoded {
-    NSString *sEncode = self;
-    NSString *sDecode = nil;
-    sDecode = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
-                                                                                                    (__bridge CFStringRef)sEncode,
+    NSString *s_encode = self;
+    NSString *s_decode = nil;
+    s_decode = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                                                    (__bridge CFStringRef)s_encode,
                                                                                                     CFSTR(""),
                                                                                                     CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-    return sDecode;
+    return s_decode;
 }
 #pragma clang diagnostic pop
 
@@ -274,12 +274,12 @@
     return is_uppercase ? [s_mutable uppercaseString] : [s_mutable lowercaseString];
 }
 
-- (const char *)toUTF8 {
+- (const char *)to_UTF8 {
     return self.UTF8String;
 }
-NSString * MQ_STRING_FROM_UTF8(const char * cUTF8) {
-    if (cUTF8 && (*cUTF8 != '\0')) {
-        return [NSString stringWithUTF8String:cUTF8];
+NSString * MQ_STRING_FROM_UTF8(const char * c_UTF8) {
+    if (c_UTF8 && (*c_UTF8 != '\0')) {
+        return [NSString stringWithUTF8String:c_UTF8];
     }
     return nil;
 }
@@ -362,74 +362,74 @@ NSString * MQ_STRING_FROM_UTF8(const char * cUTF8) {
 
 @implementation NSString (MQExtension_FitHeight)
 
-CGFloat MQ_TEXT_HEIGHT_S(CGFloat fWidth , CGFloat fEstimateHeight , NSString *string) {
-    return MQ_TEXT_HEIGHT_C(fWidth,
-                            fEstimateHeight ,
-                            string,
+CGFloat MQ_TEXT_HEIGHT_S(CGFloat f_width , CGFloat f_estimate_height , NSString *s) {
+    return MQ_TEXT_HEIGHT_C(f_width,
+                            f_estimate_height ,
+                            s,
                             [UIFont systemFontOfSize:UIFont.systemFontSize],
                             NSLineBreakByWordWrapping);
 }
-CGFloat MQ_TEXT_HEIGHT_C(CGFloat fWidth ,
-                         CGFloat fEstimateHeight ,
-                         NSString *string ,
+CGFloat MQ_TEXT_HEIGHT_C(CGFloat f_width ,
+                         CGFloat f_estimate_height ,
+                         NSString *s ,
                          UIFont *font ,
                          NSLineBreakMode mode) {
-    return MQ_TEXT_HEIGHT_AS(fWidth,
-                             fEstimateHeight,
-                             string,
+    return MQ_TEXT_HEIGHT_AS(f_width,
+                             f_estimate_height,
+                             s,
                              font,
                              mode,
                              -1,
                              -1);
 }
 
-CGFloat MQ_TEXT_HEIGHT_A(CGFloat fWidth , CGFloat fEstimateHeight , NSAttributedString *aString) {
-    CGRect rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
-                                        options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
-                                        context:nil];
-    return rect.size.height >= fEstimateHeight ? rect.size.height : fEstimateHeight;
+CGFloat MQ_TEXT_HEIGHT_A(CGFloat f_width , CGFloat f_estimate_height , NSAttributedString *s_attr) {
+    CGRect rect = [s_attr boundingRectWithSize:(CGSize){f_width , CGFLOAT_MAX}
+                                       options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                       context:nil];
+    return rect.size.height >= f_estimate_height ? rect.size.height : f_estimate_height;
 }
-CGFloat MQ_TEXT_HEIGHT_AS(CGFloat fWidth ,
-                          CGFloat fEstimateHeight ,
-                          NSString *aString ,
+CGFloat MQ_TEXT_HEIGHT_AS(CGFloat f_width ,
+                          CGFloat f_estimate_height ,
+                          NSString *s ,
                           UIFont *font ,
                           NSLineBreakMode mode ,
-                          CGFloat fLineSpacing ,
-                          CGFloat fCharacterSpacing) {
+                          CGFloat f_line_spacing ,
+                          CGFloat f_character_spacing) {
     CGRect rect = CGRectZero;
     NSMutableParagraphStyle *style = NSMutableParagraphStyle.alloc.init;
     style.lineBreakMode = mode;
-    if (fLineSpacing >= 0) style.lineSpacing = fLineSpacing;
+    if (f_line_spacing >= 0) style.lineSpacing = f_line_spacing;
     
     // kinda awkward . it turns out the differences between the NSMutableDictionary && NSDictionary && NSPlaceHolderDictioanry .
     // 有点尴尬 , 是 可变字典 , 不可变字典 , 字面量字典 之间的区别 .
-    if (font && (fCharacterSpacing >= 0)) {
-        rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
-                                     options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:@{NSParagraphStyleAttributeName : style,
-                                               NSFontAttributeName : font ,
-                                               NSKernAttributeName : @(fCharacterSpacing)}
-                                     context:nil];
+    if (font && (f_character_spacing >= 0)) {
+        rect = [s boundingRectWithSize:(CGSize){f_width , CGFLOAT_MAX}
+                               options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                            attributes:@{NSParagraphStyleAttributeName : style,
+                                         NSFontAttributeName : font ,
+                                         NSKernAttributeName : @(f_character_spacing)}
+                               context:nil];
     } else if (font) {
-        rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
-                                     options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:@{NSParagraphStyleAttributeName : style,
-                                               NSFontAttributeName : font}
-                                     context:nil];
-    } else if (fCharacterSpacing >= 0) {
-        rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
-                                     options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:@{NSParagraphStyleAttributeName : style,
-                                               NSKernAttributeName : @(fCharacterSpacing)}
-                                     context:nil];
+        rect = [s boundingRectWithSize:(CGSize){f_width , CGFLOAT_MAX}
+                               options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                            attributes:@{NSParagraphStyleAttributeName : style,
+                                         NSFontAttributeName : font}
+                               context:nil];
+    } else if (f_character_spacing >= 0) {
+        rect = [s boundingRectWithSize:(CGSize){f_width , CGFLOAT_MAX}
+                               options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                            attributes:@{NSParagraphStyleAttributeName : style,
+                                         NSKernAttributeName : @(f_character_spacing)}
+                               context:nil];
     } else {
-        rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
-                                     options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:@{NSParagraphStyleAttributeName : style}
-                                     context:nil];
+        rect = [s boundingRectWithSize:(CGSize){f_width , CGFLOAT_MAX}
+                               options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                            attributes:@{NSParagraphStyleAttributeName : style}
+                               context:nil];
     }
     
-    return rect.size.height >= fEstimateHeight ? rect.size.height : fEstimateHeight;
+    return rect.size.height >= f_estimate_height ? rect.size.height : f_estimate_height;
 }
 
 @end
