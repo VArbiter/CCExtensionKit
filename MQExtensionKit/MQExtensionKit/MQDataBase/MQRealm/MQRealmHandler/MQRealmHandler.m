@@ -20,9 +20,9 @@
 
 @end
 
-static const char * _MQ_RLM_ERROR_KEY_ = "_MQ_RLM_ERROR_KEY_";
-static const char * _MQ_RLM_SUCCEED_KEY_ = "_MQ_RLM_SUCCEED_KEY_";
-static const char * _MQ_RLM_NOTIFICATION_KEY_ = "_MQ_RLM_NOTIFICATION_KEY_";
+static const char * MQ_RLM_ERROR_KEY = "MQ_RLM_ERROR_KEY";
+static const char * MQ_RLM_SUCCEED_KEY = "MQ_RLM_SUCCEED_KEY";
+static const char * MQ_RLM_NOTIFICATION_KEY = "MQ_RLM_NOTIFICATION_KEY";
 
 @implementation MQRealmHandler
 
@@ -58,13 +58,13 @@ static MQRealmHandler *__handler = nil;
         // c.readOnly = YES; // read only or not
         self.realm = [RLMRealm realmWithConfiguration:c
                                                 error:&error];
-        void (^b)(BOOL) = objc_getAssociatedObject(self, _MQ_RLM_SUCCEED_KEY_);
+        void (^b)(BOOL) = objc_getAssociatedObject(self, MQ_RLM_SUCCEED_KEY);
         if (b) {b(error ? false : YES);}
         if (error) {
 #if DEBUG
             @throw @"open database failed.";
 #else
-            void (^e)(NSError *) = objc_getAssociatedObject(self, _MQ_RLM_ERROR_KEY_);
+            void (^e)(NSError *) = objc_getAssociatedObject(self, MQ_RLM_ERROR_KEY);
             if (e) {e(error);}
 #endif
             return self;
@@ -73,7 +73,7 @@ static MQRealmHandler *__handler = nil;
     else self.realm = [RLMRealm defaultRealm];
     
     __weak typeof(self) pSelf = self;
-    void (^t)(RLMNotification n, RLMRealm *r) = objc_getAssociatedObject(pSelf, _MQ_RLM_NOTIFICATION_KEY_);
+    void (^t)(RLMNotification n, RLMRealm *r) = objc_getAssociatedObject(pSelf, MQ_RLM_NOTIFICATION_KEY);
     if (t) {
         self.token = [pSelf.realm addNotificationBlock:^(RLMNotification  _Nonnull notification, RLMRealm * _Nonnull realm) {
             if (t) {
@@ -90,7 +90,7 @@ static MQRealmHandler *__handler = nil;
 #if DEBUG
         @throw @"Realm is already in transaction .";
 #else
-        void (^e)(NSError *) = objc_getAssociatedObject(self, _MQ_RLM_ERROR_KEY_);
+        void (^e)(NSError *) = objc_getAssociatedObject(self, MQ_RLM_ERROR_KEY);
         if (e) {e([NSError errorWithDomain:@"ElwinFrederick.MQRealmHandler"
                                       code:-100001
                                   userInfo:@{NSLocalizedDescriptionKey : @"Realm is already in transaction ."}]);}
@@ -100,10 +100,10 @@ static MQRealmHandler *__handler = nil;
             if (operate) operate();
         } error:&error];
     }
-    void (^b)(BOOL) = objc_getAssociatedObject(self, _MQ_RLM_SUCCEED_KEY_);
+    void (^b)(BOOL) = objc_getAssociatedObject(self, MQ_RLM_SUCCEED_KEY);
     if (b) {b(error ? false : YES);}
     if (error) {
-        void (^e)(NSError *) = objc_getAssociatedObject(self, _MQ_RLM_ERROR_KEY_);
+        void (^e)(NSError *) = objc_getAssociatedObject(self, MQ_RLM_ERROR_KEY);
         if (e) {e(error);}
     }
     return self;
@@ -207,7 +207,7 @@ static MQRealmHandler *__handler = nil;
                              [c.fileURL URLByAppendingPathExtension:@"note"]];
     NSFileManager *m = NSFileManager.defaultManager;
 #if !DEBUG
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
 #endif
     [a enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSError *error = nil;
@@ -216,10 +216,10 @@ static MQRealmHandler *__handler = nil;
 #if DEBUG
             @throw @"delete Error .";
 #else
-            void (^b)(BOOL) = objc_getAssociatedObject(pSelf, _MQ_RLM_SUCCEED_KEY_);
+            void (^b)(BOOL) = objc_getAssociatedObject(weak_self, MQ_RLM_SUCCEED_KEY);
             if (b) {b(error ? false : YES);}
             if (error) {
-                void (^e)(NSError *) = objc_getAssociatedObject(pSelf, _MQ_RLM_ERROR_KEY_);
+                void (^e)(NSError *) = objc_getAssociatedObject(weak_self, MQ_RLM_ERROR_KEY);
                 if (e) {e(error);}
             }
 #endif
@@ -266,7 +266,7 @@ static MQRealmHandler *__handler = nil;
 - (instancetype) mq_migration_config : (RLMRealmConfiguration *(^)(void)) configuration
                               action : (void (^)(RLMMigration *m , uint64_t vOld)) action {
     if (!configuration || !action) return self;
-    void (^b)(BOOL) = objc_getAssociatedObject(self, _MQ_RLM_SUCCEED_KEY_);
+    void (^b)(BOOL) = objc_getAssociatedObject(self, MQ_RLM_SUCCEED_KEY);
     RLMRealmConfiguration *config = configuration();
     config.migrationBlock = ^(RLMMigration * _Nonnull migration, uint64_t oldSchemaVersion) {
         action(migration , oldSchemaVersion);
@@ -279,20 +279,20 @@ static MQRealmHandler *__handler = nil;
 
 - (instancetype) mq_error : (void (^)(NSError *e)) error {
     if (error) {
-        objc_setAssociatedObject(self, _MQ_RLM_ERROR_KEY_, error, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(self, MQ_RLM_ERROR_KEY, error, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
     return self;
 }
 - (instancetype) mq_succeed : (void (^)(BOOL b)) succeed {
     if (succeed) {
-        objc_setAssociatedObject(self, _MQ_RLM_SUCCEED_KEY_, succeed, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(self, MQ_RLM_SUCCEED_KEY, succeed, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
     return self;
 }
 
 - (instancetype) mq_notification : (void (^)(RLMNotification n, RLMRealm *r)) action {
     if (action) {
-        objc_setAssociatedObject(self, _MQ_RLM_NOTIFICATION_KEY_, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(self, MQ_RLM_NOTIFICATION_KEY, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
     return self;
 }
