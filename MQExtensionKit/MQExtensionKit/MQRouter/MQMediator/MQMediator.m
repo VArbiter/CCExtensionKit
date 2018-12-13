@@ -10,20 +10,20 @@
 
 @implementation MQMediator
 
-+ (id) mq_perform : (NSString *) sTarget
-           action : (NSString *) sAction
-     return_value : (BOOL) isNeed
++ (id) mq_perform : (NSString *) s_target
+           action : (NSString *) s_action
+     return_value : (BOOL) is_need
             value : (id (^)(void)) value {
     id m;
     if (value) m = value();
-    Class ts = NSClassFromString(sTarget);
-    SEL as = NSSelectorFromString(sAction);
+    Class ts = NSClassFromString(s_target);
+    SEL as = NSSelectorFromString(s_action);
     
     if (!ts || !as || ![ts respondsToSelector:as]) return nil;
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    if (isNeed) return [ts performSelector:as withObject:m];
+    if (is_need) return [ts performSelector:as withObject:m];
     else [ts performSelector:as withObject:m];
 #pragma clang diagnostic pop
     return nil;

@@ -14,9 +14,9 @@ typedef NSString * MQMediatorOperateKey NS_EXTENSIBLE_STRING_ENUM;
 
 - (instancetype) init NS_UNAVAILABLE;
 
-+ (id) mq_perform : (NSString *) sTarget
-           action : (NSString *) sAction
-     return_value : (BOOL) isNeed
++ (id) mq_perform : (NSString *) s_target
+           action : (NSString *) s_action
+     return_value : (BOOL) is_need
             value : (id (^)(void)) value ;
 
 @end

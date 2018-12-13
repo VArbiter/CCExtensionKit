@@ -65,7 +65,7 @@ static MQBridgeWrapper *__router = nil;
     return self;
 }
 - (instancetype) mq_regist_operation : (MQRouterRegistKey) s_url
-                              action : (void(^)(MQRouterPatternInfo *dInfos)) action {
+                              action : (void(^)(MQRouterPatternInfo *d_infos)) action {
     [MGJRouter registerURLPattern:mq_append_url_scheme(s_url , YES) toHandler:^(NSDictionary *routerParameters) {
         if (action) action(mq_transfer_MGJ_parameters(routerParameters));
     }];
@@ -92,7 +92,7 @@ static MQBridgeWrapper *__router = nil;
 }
 
 - (instancetype) mq_call : (MQRouterPatternInfo *) d_pattern
-                fallback : (void(^)(MQRouterPatternInfo *dInfos)) fallback {
+                fallback : (void(^)(MQRouterPatternInfo *d_infos)) fallback {
     if (![MGJRouter canOpenURL:mq_append_url_scheme(d_pattern[mq_router_params_url] , false)]) {
         if (fallback) fallback(d_pattern);
         return self;
