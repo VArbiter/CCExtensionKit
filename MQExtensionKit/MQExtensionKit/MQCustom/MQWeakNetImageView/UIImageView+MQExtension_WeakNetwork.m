@@ -23,8 +23,8 @@ static BOOL __isEnableLoading = YES;
 
 - (instancetype) mq_weak_image : (NSURL *) url
                         holder : (UIImage *) image_holder {
-    BOOL isStrong = MQNetworkMoniter.mq_shared.mq_environment_type == MQNetworkEnvironmentStrong;
-    if (isStrong && __isEnableLoading) {
+    BOOL is_strong = MQNetworkMoniter.mq_shared.mq_environment_type == MQNetworkEnvironmentStrong;
+    if (is_strong && __isEnableLoading) {
         [self sd_setImageWithURL:url
                 placeholderImage:image_holder
                          options:SDWebImageRetryFailed | SDWebImageAllowInvalidSSLCertificates | SDWebImageScaleDownLargeImages];

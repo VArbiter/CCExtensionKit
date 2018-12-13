@@ -17,7 +17,7 @@
 + (void) mq_handle_notification : (NSNotification *) sender ;
 
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
-@property (nonatomic, readonly) UINotificationFeedbackGenerator *mq_hapticGenerator NS_AVAILABLE_IOS(10_0);
+@property (nonatomic, readonly) UINotificationFeedbackGenerator *mq_haptic_generator NS_AVAILABLE_IOS(10_0);
 #endif
 
 @end
@@ -94,7 +94,7 @@ static NSMutableDictionary *__d_notification_block = nil;
 }
 
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
-- (UINotificationFeedbackGenerator *)mq_hapticGenerator {
+- (UINotificationFeedbackGenerator *)mq_haptic_generator {
     UINotificationFeedbackGenerator *t = [self valueForKeyPath:@"hapticGenerator"];
     if (t && [t isKindOfClass:UINotificationFeedbackGenerator.class]) {
         return t;
@@ -187,7 +187,7 @@ static BOOL __SVProgressHUD_is_added_notification = false ;
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
     if (@available(iOS 10.0, *)) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.mq_hapticGenerator notificationOccurred:UINotificationFeedbackTypeWarning];
+            [self.mq_haptic_generator notificationOccurred:UINotificationFeedbackTypeWarning];
         });
     }
 #endif
@@ -199,7 +199,7 @@ static BOOL __SVProgressHUD_is_added_notification = false ;
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
     if (@available(iOS 10.0, *)) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.mq_hapticGenerator notificationOccurred:UINotificationFeedbackTypeSuccess];
+            [self.mq_haptic_generator notificationOccurred:UINotificationFeedbackTypeSuccess];
         });
     }
 #endif
@@ -210,7 +210,7 @@ static BOOL __SVProgressHUD_is_added_notification = false ;
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
     if (@available(iOS 10.0, *)) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.mq_hapticGenerator notificationOccurred:UINotificationFeedbackTypeError];
+            [self.mq_haptic_generator notificationOccurred:UINotificationFeedbackTypeError];
         });
     }
 #endif

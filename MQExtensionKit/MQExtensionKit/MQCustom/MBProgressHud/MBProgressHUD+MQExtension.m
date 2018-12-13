@@ -84,21 +84,21 @@
     return self;
 }
 - (instancetype) mq_type : (MQHudExtensionType) type {
-    __weak typeof(self) pSelf = self;
+    __weak typeof(self) weak_self = self;
     NSDictionary *d = @{@(MQHudExtensionTypeLight).stringValue : ^{
-                            pSelf.contentColor = UIColor.blackColor;
+                            weak_self.contentColor = UIColor.blackColor;
                         },
                         @(MQHudExtensionTypeDarkDeep).stringValue : ^{
-                            pSelf.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-                            pSelf.contentColor = UIColor.whiteColor;
-                            pSelf.bezelView.backgroundColor = UIColor.blackColor;
+                            weak_self.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+                            weak_self.contentColor = UIColor.whiteColor;
+                            weak_self.bezelView.backgroundColor = UIColor.blackColor;
                         },
                         @(MQHudExtensionTypeDark).stringValue : ^{
-                            pSelf.contentColor = UIColor.whiteColor;
-                            pSelf.bezelView.backgroundColor = UIColor.blackColor;
+                            weak_self.contentColor = UIColor.whiteColor;
+                            weak_self.bezelView.backgroundColor = UIColor.blackColor;
                         },
                         @(MQHudExtensionTypeNone).stringValue : ^{
-                            pSelf.contentColor = UIColor.blackColor;
+                            weak_self.contentColor = UIColor.blackColor;
                         }};
     if (!d[@(type).stringValue]) return self;
     void (^b)(void) = d[@(type).stringValue];
