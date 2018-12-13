@@ -26,7 +26,7 @@
 #ifndef MQLog
     #if DEBUG
         #define MQLog(fmt , ...) \
-            NSLog((@"\n\n_MQ_LOG_\n\n_MQ_FILE_  %s\n_MQ_METHOND_  %s\n_MQ_LINE_  %d\n" fmt),__FILE__,__func__,__LINE__,##__VA_ARGS__)
+                NSLog((@"\n\nMQ_LOG\n\nMQ_FILE :  %s\nMQ_METHOND :  %s\nMQ_LINE :  %d\n" fmt),__FILE__,__func__,__LINE__,##__VA_ARGS__)
     #else
         #define MQLog(fmt , ...) /* */
     #endif
@@ -65,7 +65,7 @@
     #if DEBUG
         #define MQ_NIL_DETECT(_flag_ , _value_) \
             if (_flag_) { \
-                MQLog(@"_MQ_NIL_TERMINATION_\n instance that used in MQExtension Kit can't be nil. \n"); \
+                MQLog(@"MQ_NIL_TERMINATION : \n instance that used in MQExtension Kit can't be nil. \n"); \
                 NSAssert(_value_ != nil , @"instance can't be nil"); \
             }
     #else
@@ -77,7 +77,7 @@
     #if DEBUG
         #define MQ_DETECT_DEALLOC \
             - (void)dealloc { \
-                MQLog(@"_MQ_%@_DEALLOC_", NSStringFromClass([self class])); \
+                MQLog(@"\n MQ_%@_DEALLOC \n", NSStringFromClass([self class])); \
             }
     #else
         #define MQ_DETECT_DEALLOC /* */

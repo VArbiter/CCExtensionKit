@@ -16,9 +16,9 @@
 @implementation MQDevice
 
 + (NSString *) mq_device_info {
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    return [NSString stringWithCString:systemInfo.machine
+    struct utsname system_info;
+    uname(&system_info);
+    return [NSString stringWithCString:system_info.machine
                               encoding:NSASCIIStringEncoding];
 }
 
@@ -44,9 +44,10 @@
     
     return @"Unknow" ;
 #else
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
+    struct utsname system_info;
+    uname(&system_info);
+    NSString *platform = [NSString stringWithCString:system_info.machine
+                                            encoding:NSASCIIStringEncoding];
     if([platform isEqualToString:@"iPhone1,1"]) return @"iPhone 2G";
     if([platform isEqualToString:@"iPhone1,2"]) return @"iPhone 3G";
     if([platform isEqualToString:@"iPhone2,1"]) return @"iPhone 3GS";
@@ -159,14 +160,20 @@
     return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
 }
 
-+ (MQDeviceResolution) mq_device_resolution {
++ (MQDeviceResolution) mq_device_resolution : (BOOL) is_landscape {
     CGFloat w = UIScreen.mainScreen.bounds.size.width;
     CGFloat h = UIScreen.mainScreen.bounds.size.height;
     CGFloat scale = UIScreen.mainScreen.scale;
     
     MQDeviceResolution resolution ;
-    resolution.width = w * scale ;
-    resolution.height = h * scale ;
+    if (is_landscape) {
+        resolution.width = h * scale ;
+        resolution.height = w * scale ;
+    }
+    else {
+        resolution.width = w * scale ;
+        resolution.height = h * scale ;
+    }
     resolution.scale = scale ;
     
     return resolution;
@@ -207,27 +214,27 @@
     return ull_free_space;
 }
 + (unsigned long long) mq_available_memory {
-    vm_statistics_data_t vmStats;
-    mach_msg_type_number_t infoCount = HOST_VM_INFO_COUNT;
-    kern_return_t kernReturn = host_statistics(mach_host_self(), HOST_VM_INFO, (host_info_t)&vmStats, &infoCount);
-    if (kernReturn != KERN_SUCCESS) {
+    vm_statistics_data_t vm_stats;
+    mach_msg_type_number_t info_count = HOST_VM_INFO_COUNT;
+    kern_return_t kern_return = host_statistics(mach_host_self(), HOST_VM_INFO, (host_info_t)&vm_stats, &info_count);
+    if (kern_return != KERN_SUCCESS) {
         return NSNotFound;
     }
-    return ((vm_page_size * vmStats.free_count + vm_page_size * vmStats.inactive_count));
+    return ((vm_page_size * vm_stats.free_count + vm_page_size * vm_stats.inactive_count));
 }
 + (unsigned long long) mq_current_memory_in_use {
-    task_basic_info_data_t taskInfo;
-    mach_msg_type_number_t infoCount = TASK_BASIC_INFO_COUNT;
-    kern_return_t kernReturn = task_info(mach_task_self(),
-                                         TASK_BASIC_INFO,
-                                         (task_info_t)&taskInfo,
-                                         &infoCount);
+    task_basic_info_data_t task_basic_info;
+    mach_msg_type_number_t info_count = TASK_BASIC_INFO_COUNT;
+    kern_return_t kern_return = task_info(mach_task_self(),
+                                          TASK_BASIC_INFO,
+                                          (task_info_t)&task_basic_info,
+                                          &info_count);
     
-    if (kernReturn != KERN_SUCCESS) {
+    if (kern_return != KERN_SUCCESS) {
         return NSNotFound;
     }
     
-    return taskInfo.resident_size;
+    return task_basic_info.resident_size;
 }
 + (unsigned long long) mq_total_memory {
     return [NSProcessInfo processInfo].physicalMemory;
@@ -236,26 +243,26 @@
 + (NSString *) mq_current_linked_ssid {
     NSString *s_wifi_name = nil;
     
-    CFArrayRef wifiInterfaces = CNCopySupportedInterfaces();
-    if (!wifiInterfaces) {
+    CFArrayRef wifi_inter_faces = CNCopySupportedInterfaces();
+    if (!wifi_inter_faces) {
         return nil;
     }
     
-    NSArray *interfaces = (__bridge NSArray *)wifiInterfaces;
+    NSArray *interfaces = (__bridge NSArray *)wifi_inter_faces;
     
-    for (NSString *interfaceName in interfaces) {
-        CFDictionaryRef dictRef = CNCopyCurrentNetworkInfo((__bridge CFStringRef)(interfaceName));
+    for (NSString *interface_name in interfaces) {
+        CFDictionaryRef dict_ref = CNCopyCurrentNetworkInfo((__bridge CFStringRef)(interface_name));
         
-        if (dictRef) {
-            NSDictionary *networkInfo = (__bridge NSDictionary *)dictRef;
+        if (dict_ref) {
+            NSDictionary *networkInfo = (__bridge NSDictionary *)dict_ref;
             
             s_wifi_name = [networkInfo objectForKey:(__bridge NSString *)kCNNetworkInfoKeySSID];
             
-            CFRelease(dictRef);
+            CFRelease(dict_ref);
         }
     }
     
-    CFRelease(wifiInterfaces);
+    CFRelease(wifi_inter_faces);
     return s_wifi_name;
 }
 

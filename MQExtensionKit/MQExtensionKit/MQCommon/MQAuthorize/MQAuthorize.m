@@ -84,7 +84,7 @@ static MQAuthorize *_instance = nil;
     }
 }
 
-- (NSDictionary *)dictionaryGuide {
+- (NSDictionary *)dictionary_guide {
     if (_dictionary_guide) return _dictionary_guide;
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     
@@ -99,13 +99,13 @@ static MQAuthorize *_instance = nil;
     } forKey:@(MQSupportTypePhotoLibrary).stringValue];
     
     [d setValue:^BOOL {
-        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-        return !(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied);
+        AVAuthorizationStatus auth_status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        return !(auth_status == AVAuthorizationStatusRestricted || auth_status == AVAuthorizationStatusDenied);
     } forKey:@(MQSupportTypeVideo).stringValue];
     
     [d setValue:^BOOL {
-        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
-        return !(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied);
+        AVAuthorizationStatus auth_status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
+        return !(auth_status == AVAuthorizationStatusRestricted || auth_status == AVAuthorizationStatusDenied);
     } forKey:@(MQSupportTypeAudio).stringValue];
     
     _dictionary_guide = d;

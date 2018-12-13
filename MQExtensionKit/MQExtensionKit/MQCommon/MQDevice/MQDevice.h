@@ -47,7 +47,7 @@ typedef struct CG_BOXABLE MQDeviceResolution MQDeviceResolution;
 + (NSString *) mq_device_UUID ;
 + (NSString *) mq_device_IDFA ;
 
-+ (MQDeviceResolution) mq_device_resolution ;
++ (MQDeviceResolution) mq_device_resolution : (BOOL) is_landscape ;
 + (NSString *) mq_device_rect ;
 
 + (NSString *) mq_system_version ;

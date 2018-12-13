@@ -36,7 +36,7 @@ CGFloat mq_fit_tabbar_top(void) {
 BOOL mq_fit_is_has_bangs(void) {
     if (@available(iOS 11.0, *)) {
         UIEdgeInsets insets_safe_area = UIApplication.sharedApplication.delegate.window.safeAreaInsets;
-        return insets_safe_area.bottom > 0;
+        return insets_safe_area.bottom > 0; 
     }
     else return false;
 }

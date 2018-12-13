@@ -10,6 +10,8 @@
 #define MQCommonExtension_h
 
     #import "MQAuthorize.h"
+    #import "MQAuthentication.h"
+    #import "MQAdvanceMacro.h"
     #import "MQCommon.h"
     #import "MQSingleton.h"
     #import "MQDevice.h"
