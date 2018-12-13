@@ -22,7 +22,6 @@ Pod::Spec.new do |s|
       core.source_files = 'MQExtensionKit/*.{h}'
       core.dependency 'MQExtensionKit/MQData'
       core.dependency 'MQExtensionKit/MQView'
-      core.dependency 'MQExtensionKit/MQRuntime'
     end
 
     s.subspec 'MQFull' do |full|
@@ -40,10 +39,6 @@ Pod::Spec.new do |s|
       s.subspec 'MQProtocol' do |protocol|
         protocol.source_files = 'MQExtensionKit/MQExtensionKit/MQProtocol/**/*'
         protocol.dependency 'MQExtensionKit/MQCommon'
-      end
-
-      s.subspec 'MQRuntime' do |runtime|
-        runtime.source_files = 'MQExtensionKit/MQExtensionKit/MQRuntime/**/*'
       end
 
       s.subspec 'MQRouter' do |router|
