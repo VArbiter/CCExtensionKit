@@ -91,7 +91,7 @@ UIImage * mq_launch_image(void) {
                       name : (NSString *) s_name {
     NSBundle *b = [NSBundle bundleForClass:cls];
     NSString *b_name = b.infoDictionary[@"CFBundleName"];
-    NSString *sc = [NSString stringWithFormat:@"%ld",(NSInteger)UIScreen.mainScreen.scale];
+    NSString *sc = [NSString stringWithFormat:@"%ld",(long)UIScreen.mainScreen.scale];
     NSString *temp = [[[s_name stringByAppendingString:@"@"] stringByAppendingString:sc] stringByAppendingString:@"x"];
     NSString *p = nil;
     if (s_module && s_module.length) {

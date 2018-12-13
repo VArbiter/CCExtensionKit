@@ -215,8 +215,8 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
         
         if (mq_duration_block) {
             NSString *s_time = [NSString stringWithFormat:@"%02ld:%02ld"
-                                ,(NSUInteger)(f_time_seconds / 60)
-                                ,((NSUInteger)f_time_seconds % 60)];
+                                ,(unsigned long)(f_time_seconds / 60)
+                                ,((unsigned long)f_time_seconds % 60)];
             mq_duration_block(s_time , f_time_seconds);
         }
         
