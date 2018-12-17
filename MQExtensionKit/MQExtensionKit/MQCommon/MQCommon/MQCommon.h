@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 
+/// MQExtensionKit Version Number . // MQExtensionKit 版本号 .
+#ifndef MQ_EXTENSION_KIT_RELEASE_VERSION_NUMBER
+    #define MQ_EXTENSION_KIT_RELEASE_VERSION_NUMBER 4.0.0
+#endif
+
 /// storage standard unit size . // 标准储存单元大小
 #ifndef MQ_STANDARD_LENGTH
     #define MQ_STANDARD_LENGTH 1024.f
