@@ -89,6 +89,10 @@
     #endif
 #endif
 
+#define MQ_EXCEPTION_TRY @try {
+#define MQ_EXCEPTION_CATCH } @catch (NSException *exception_local) {
+#define MQ_EXCEPTION_END }
+
 //@interface MQCommon : NSObject
 //- (instancetype) init NS_UNAVAILABLE;
 //@end
