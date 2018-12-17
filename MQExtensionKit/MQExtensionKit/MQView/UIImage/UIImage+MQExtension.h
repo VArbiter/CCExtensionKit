@@ -37,8 +37,6 @@ UIImage * mq_launch_image(void);
 @property (nonatomic , readonly) CGFloat width ;
 @property (nonatomic , readonly) CGFloat height ;
 
-/// scale size with radius // 按比例缩放图片
-- (CGSize) mq_zoom : (CGFloat) f_radius ;
 - (instancetype) mq_resizable : (UIEdgeInsets) insets ;
 - (instancetype) mq_rendaring : (UIImageRenderingMode) mode ;
 - (instancetype) mq_always_original ;
@@ -83,6 +81,24 @@ FOUNDATION_EXPORT CGFloat mq_gaussian_blur_tint_alpha ;
 - (instancetype) mq_gaussian_CI : (CGFloat) f_radius
                        complete : (void(^)(UIImage *origin , UIImage *processed)) complete ; // async
 
+
+@end
+
+#pragma mark - -----
+
+@interface UIImage (MQExtension_Operate)
+
+/// scale size with radius // 按比例缩放图片
++ (instancetype) mq_zoom_ratio : (CGFloat) f_radius
+                         image : (UIImage *) image ;
++ (instancetype) mq_zoom_size : (CGSize) size
+                        image : (UIImage *) image ;
+
++ (CGContextRef) mq_create_ARGB_bitmap_context :(CGImageRef) image_ref ;
+
+/// get current color that user touched . // 获得 用户点击的当前颜色 .
++ (UIColor *) mq_pixel_color_in_point : (CGPoint) point
+                                image : (UIImage *) image ;
 
 @end
 

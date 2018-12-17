@@ -59,16 +59,6 @@ UIImage * mq_launch_image(void) {
     return self.size.height;
 }
 
-/// scale size with radius
-- (CGSize) mq_zoom : (CGFloat) f_radius {
-    if (f_radius > .0f) {
-        CGFloat ratio = self.height / self.width;
-        CGFloat ratio_width = self.width * f_radius;
-        CGFloat ratio_height = ratio_width * ratio;
-        return CGSizeMake(ratio_width, ratio_height);
-    }
-    return self.size;
-}
 - (instancetype) mq_resizable : (UIEdgeInsets) insets {
     return [self resizableImageWithCapInsets:insets];
 }
@@ -124,6 +114,135 @@ compatibleWithTraitCollection:nil];
 
 + (instancetype) mq_capture_current {
     return mq_capture_window(nil);
+}
+
+@end
+
+#pragma mark - -----
+
+@implementation UIImage (MQExtension_Operate)
+
+/// scale size with radius
++ (instancetype) mq_zoom_ratio : (CGFloat) f_radius
+                         image : (UIImage *) image {
+    if (f_radius > .0f && image) {
+        CGFloat ratio = image.height / image.width;
+        CGFloat ratio_width = image.width * f_radius;
+        CGFloat ratio_height = ratio_width * ratio;
+        CGSize size = CGSizeMake(ratio_width, ratio_height);
+        
+        UIGraphicsBeginImageContext(size);
+        [image drawInRect:(CGRect){.size = size}];
+        UIImage *image_resize = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return image_resize;
+    }
+    return image;
+}
++ (instancetype) mq_zoom_size : (CGSize) size
+                        image : (UIImage *) image {
+    if (image) {
+        UIGraphicsBeginImageContext(size);
+        [image drawInRect:(CGRect){.size = size}];
+        UIImage *image_resize = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return image_resize;
+    }
+    return image;
+}
+
++ (CGContextRef) mq_create_ARGB_bitmap_context :(CGImageRef) image_ref {
+    
+    /*
+        found : https://www.aliyun.com/jiaocheng/351202.html
+     */
+    
+    CGContextRef context = NULL;
+    CGColorSpaceRef color_space;
+    void * bitmap_data;
+    int bitmap_byte_count;
+    int bitmap_bytes_per_row;
+    
+    // Get image width, height. We'll use the entire image.
+    size_t pixels_width = CGImageGetWidth(image_ref);
+    size_t pixels_height = CGImageGetHeight(image_ref);
+    // Declare the number of bytes per row. Each pixel in the bitmap in this
+    // example is represented by 4 bytes; 8 bits each of red, green, blue, and
+    // alpha.
+    bitmap_bytes_per_row = (int)(pixels_width * 4);
+    bitmap_byte_count =(int)(bitmap_bytes_per_row * pixels_height);
+    // Use the generic RGB color space.
+    color_space = CGColorSpaceCreateDeviceRGB();
+    if (!color_space) {
+        fprintf(stderr, "Error allocating color space/n");
+        return NULL;
+    }
+    // Allocate memory for image data. This is the destination in memory
+    // where any drawing to the bitmap context will be rendered.
+    bitmap_data = malloc( bitmap_byte_count );
+    if (!bitmap_data) {
+        fprintf (stderr, "Memory not allocated!");
+        CGColorSpaceRelease( color_space );
+        return NULL;
+    }
+    // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
+    // per component. Regardless of what the source image format is
+    // (CMYK, Grayscale, and so on) it will be converted over to the format
+    // specified here by CGBitmapContextCreate.
+    context = CGBitmapContextCreate (bitmap_data,
+                                     pixels_width,
+                                     pixels_height,
+                                     8,// bits per component
+                                     bitmap_bytes_per_row,
+                                     color_space,
+                                     kCGImageAlphaPremultipliedFirst);
+    if (!context) {
+        free (bitmap_data);
+        fprintf (stderr, "Context not created!");
+    }
+    // Make sure and release colorspace before returning
+    CGColorSpaceRelease( color_space );
+    return context;
+}
+
++ (UIColor *) mq_pixel_color_in_point : (CGPoint) point
+                                image : (UIImage *) image {
+    UIColor * color = nil;
+    CGImageRef image_ref = image.CGImage;
+    CGContextRef context = [UIImage mq_create_ARGB_bitmap_context:image_ref];
+    
+    if (!context) { return nil; }
+    size_t w = CGImageGetWidth(image_ref);
+    size_t h = CGImageGetHeight(image_ref);
+    CGRect rect = (CGRect){.size = {w,h}} ;
+    
+    CGContextDrawImage(context, rect, image_ref);
+    
+    unsigned char * data = CGBitmapContextGetData (context);
+    
+    if (data) {
+        int offset = 4 * ((w * round(point.y)) + round(point.x));
+        int a = data[offset];
+        int r = data[offset + 1];
+        int g = data[offset + 2];
+        int b = data[offset + 3];
+        
+#if DEBUG
+        NSLog(@"offset: %i colors: RGB A %i %i %i  %i", offset,
+              r, g, b, a);
+        NSLog(@"x:%f y:%f", point.x, point.y);
+#endif
+        CGFloat f = 255.f;
+        color = [UIColor colorWithRed:(r / f)
+                                green:(g / f)
+                                 blue:(b / f)
+                                alpha:(1 / f)];
+    }
+    CGContextRelease(context);
+    
+    if (data) { free(data); }
+    
+    return color;
 }
 
 @end
