@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3FE6F4D7C4B954FAD21408F9 /* Pods_MQExtension_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */; };
+		704C2E1B21C79BBE003EBB38 /* MQTouchableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */; };
 		7089AB5B21ACF13A00C835EE /* UIWindow+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */; };
 		70EC8DFF21C23F2C005E90A8 /* MQProxyDealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC8DFA21C23F2C005E90A8 /* MQProxyDealer.m */; };
 		70EC8E0021C23F2C005E90A8 /* MQRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC8DFE21C23F2C005E90A8 /* MQRuntime.m */; };
@@ -104,6 +105,8 @@
 /* Begin PBXFileReference section */
 		3234B751F3D87C878A5DA387 /* Pods-MQExtension_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQExtension_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example.release.xcconfig"; sourceTree = "<group>"; };
 		65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MQExtension_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		704C2E1921C79BBE003EBB38 /* MQTouchableImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQTouchableImageView.h; sourceTree = "<group>"; };
+		704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTouchableImageView.m; sourceTree = "<group>"; };
 		7089AB5921ACF13A00C835EE /* UIWindow+MQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+MQExtension.h"; sourceTree = "<group>"; };
 		7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+MQExtension.m"; sourceTree = "<group>"; };
 		70EC8DF921C23F2C005E90A8 /* MQProxyDealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProxyDealer.h; sourceTree = "<group>"; };
@@ -328,6 +331,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		704C2E1821C79BAB003EBB38 /* MQTouchableImageView */ = {
+			isa = PBXGroup;
+			children = (
+				704C2E1921C79BBE003EBB38 /* MQTouchableImageView.h */,
+				704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */,
+			);
+			path = MQTouchableImageView;
+			sourceTree = "<group>";
+		};
 		7089AB5821ACF12B00C835EE /* UIWindow */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,6 +548,7 @@
 		70F08D86210EC60C007B4D33 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				704C2E1821C79BAB003EBB38 /* MQTouchableImageView */,
 				70EC8E0121C2427D005E90A8 /* MQAutoTextView */,
 				70F08D87210EC60C007B4D33 /* UIMenuController */,
 				70F08D8A210EC60C007B4D33 /* MQDropAlertView */,
@@ -1524,6 +1537,7 @@
 				70F08EB0210EC60C007B4D33 /* UIImage+MQExtension.m in Sources */,
 				70F08EC8210EC60C007B4D33 /* UITextField+MQExtension.m in Sources */,
 				70F08E7B210EC60C007B4D33 /* MQBridgeWrapper.m in Sources */,
+				704C2E1B21C79BBE003EBB38 /* MQTouchableImageView.m in Sources */,
 				70F08BFE210EB300007B4D33 /* main.m in Sources */,
 				70F08E85210EC60C007B4D33 /* MQCrashCatcher.m in Sources */,
 				70F08E7A210EC60C007B4D33 /* MQMediator.m in Sources */,
