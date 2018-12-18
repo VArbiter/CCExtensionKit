@@ -518,7 +518,7 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
                           radius : (CGFloat) f_radius {
     UIBezierPath *p = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                             byRoundingCorners:corner
-                                                  cornerRadii:CGSizeMake(MQScaleW(f_radius), MQScaleH(f_radius))];
+                                                  cornerRadii:(CGSize){f_radius, f_radius}];
     CAShapeLayer *l = [[CAShapeLayer alloc] init];
     l.frame = self.bounds;
     l.path = p.CGPath;
