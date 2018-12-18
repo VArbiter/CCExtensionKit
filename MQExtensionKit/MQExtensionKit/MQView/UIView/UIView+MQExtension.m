@@ -12,8 +12,13 @@ static CGFloat MQ_DEFAULT_SCALE_WIDTH = 750.f;
 static CGFloat MQ_DEFAULT_SCALE_HEIGHT = 1334.f;
 CGFloat const mq_default_animation_common_duration = .3f;
 
+void mq_set_UI_designed_default_size(CGSize size) {
+    MQ_DEFAULT_SCALE_WIDTH = size.width;
+    MQ_DEFAULT_SCALE_HEIGHT = size.height;
+}
+
 #pragma mark - Struct
-MQPoint MQPointMake(CGFloat x , CGFloat y) {
+MQPoint MQPointMake_Precise(CGFloat x , CGFloat y) {
     MQPoint o;
     
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
@@ -29,6 +34,14 @@ MQPoint MQPointMake(CGFloat x , CGFloat y) {
     
     return o;
 }
+MQPoint MQPointMake(CGFloat x , CGFloat y) {
+    MQPoint o = MQPointMake_Precise(x, y);
+    if (CGFLOAT_IS_DOUBLE) {
+        o = (MQPoint){ceil(o.x),ceil(o.y)};
+    }
+    else o = (MQPoint){ceilf(o.x),ceilf(o.y)};
+    return o;
+}
 MQPoint MQMakePointFrom(CGPoint point) {
     return MQPointMake(point.x, point.y);
 }
@@ -36,7 +49,7 @@ CGPoint CGMakePointFrom(MQPoint point) {
     return CGPointMake(point.x, point.y);
 }
 
-MQSize MQSizeMake(CGFloat width , CGFloat height) {
+MQSize MQSizeMake_Precise(CGFloat width , CGFloat height) {
     MQSize s;
     
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
@@ -52,6 +65,14 @@ MQSize MQSizeMake(CGFloat width , CGFloat height) {
     
     return s;
 }
+MQSize MQSizeMake(CGFloat width , CGFloat height) {
+    MQSize s = MQSizeMake_Precise(width, height);
+    if (CGFLOAT_IS_DOUBLE) {
+        s = (MQSize){ceil(s.width),ceil(s.height)};
+    }
+    else s = (MQSize){ceilf(s.width),ceilf(s.height)};
+    return s;
+}
 MQSize MQMakeSizeFrom(CGSize size) {
     return MQSizeMake(size.width, size.height);
 }
@@ -59,10 +80,22 @@ CGSize CGMakeSizeFrom(MQSize size) {
     return CGSizeMake(size.width, size.height);
 }
 
-MQRect MQRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
+MQRect MQRectMake_Precise(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
     MQRect r;
     r.origin = MQPointMake(x, y);
     r.size = MQSizeMake(width, height);
+    return r;
+}
+MQRect MQRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
+    MQRect r = MQRectMake_Precise(x, y, width, height);
+    if (CGFLOAT_IS_DOUBLE) {
+        r = (MQRect){.origin = {ceil(r.origin.x),ceil(r.origin.y)},
+            .size = {ceil(r.size.width),ceil(r.size.height)}};
+    }
+    else {
+        r = (MQRect){.origin = {ceilf(r.origin.x),ceilf(r.origin.y)},
+            .size = {ceilf(r.size.width),ceilf(r.size.height)}};
+    }
     return r;
 }
 MQRect MQMakeRectFrom(CGRect rect) {
@@ -82,7 +115,7 @@ CGRect CGRectFull(void){
     return UIScreen.mainScreen.bounds;
 }
 
-MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
+MQEdgeInsets MQEdgeInsetsMake_Precise(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
     MQEdgeInsets i;
     
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
@@ -102,6 +135,16 @@ MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFl
     
     return i;
 }
+MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
+    MQEdgeInsets i = MQEdgeInsetsMake_Precise(top, left, bottom, right);
+    
+    if (CGFLOAT_IS_DOUBLE) {
+        i = (MQEdgeInsets){ceil(i.top),ceil(i.left),ceil(i.bottom),ceil(i.right)};
+    }
+    else i = (MQEdgeInsets){ceilf(i.top),ceilf(i.left),ceilf(i.bottom),ceilf(i.right)};
+    
+    return i;
+}
 MQEdgeInsets MQMakeEdgeInsetsFrom(UIEdgeInsets insets) {
     return MQEdgeInsetsMake(insets.top,
                             insets.left,
@@ -116,7 +159,7 @@ UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets) {
 }
 
 #pragma mark - Scale
-CGFloat MQScaleW(CGFloat w) {
+CGFloat MQScaleW_Precise(CGFloat w) {
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
@@ -124,14 +167,25 @@ CGFloat MQScaleW(CGFloat w) {
     }
     else return w / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
 }
-CGFloat MQScaleH(CGFloat h) {
+CGFloat MQScaleW(CGFloat w) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(MQScaleW_Precise(w));
+    }
+    return ceilf(MQScaleW_Precise(w));
+}
+CGFloat MQScaleH_Precise(CGFloat h) {
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
         return h / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
     }
     else return h / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
-    
+}
+CGFloat MQScaleH(CGFloat h) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(MQScaleH_Precise(h));
+    }
+    return ceilf(MQScaleH_Precise(h));
 }
 
 CGFloat MQAspectRatio(void) {
@@ -142,11 +196,23 @@ CGFloat MQAspectRatio(void) {
     }
     else return UIScreen.mainScreen.bounds.size.height * UIScreen.mainScreen.scale / MQ_DEFAULT_SCALE_WIDTH ;
 }
-CGFloat MQAspectW(CGFloat w) {
+CGFloat MQAspectW_Precise(CGFloat w) {
     return w * MQAspectRatio();
 }
-CGFloat MQAspectH(CGFloat h) {
+CGFloat MQAspectW(CGFloat w) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(MQAspectW_Precise(w));
+    }
+    return ceilf(MQAspectW_Precise(w));
+}
+CGFloat MQAspectH_Precise(CGFloat h) {
     return h * MQAspectRatio();
+}
+CGFloat MQAspectH(CGFloat h) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(MQAspectH_Precise(h));
+    }
+    return ceilf(MQAspectH_Precise(h));
 }
 
 CGPoint MQScaleOrigin(CGPoint origin) {
@@ -179,11 +245,6 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
 + (instancetype) mq_common : (CGRect) frame {
     CGRect g = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     return [[self alloc] initWithFrame:g];
-}
-+ (void) mq_set_scale : (CGFloat) f_width
-             height : (CGFloat) f_height {
-    MQ_DEFAULT_SCALE_WIDTH = f_width;
-    MQ_DEFAULT_SCALE_HEIGHT = f_height;
 }
 
 + (void) mq_disable_animation : (void (^)(void)) action {

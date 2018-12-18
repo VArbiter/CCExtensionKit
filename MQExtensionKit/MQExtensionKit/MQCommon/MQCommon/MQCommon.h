@@ -97,6 +97,9 @@
 //- (instancetype) init NS_UNAVAILABLE;
 //@end
 
+CGFloat mq_ceil(CGFloat f_value) ;
+CGFloat mq_floor(CGFloat f_value) ;
+
 /// sometimes you have to fit muti versions of iOS system // 有时你不得不适应多个 iOS 的版本
 /// eg : MQ_Available_C(10.0)
 /// returns YES (and recall s) if system version was at least 10.0 // 如果系统版本最小为 10.0 返回 YES , (s 产生回调)

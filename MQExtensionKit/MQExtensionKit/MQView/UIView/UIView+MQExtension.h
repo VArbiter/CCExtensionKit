@@ -10,19 +10,26 @@
 
 FOUNDATION_EXPORT CGFloat const mq_default_animation_common_duration ;
 
+/// for some designer use basic UI that is not for iPhone 6/6s/7/8 // 针对于一些设计人员设计的不是基于 iPhone 6/6s/7/8 所设计的尺寸
+/// set H && W only once in somewhere for "+ (void) load" // 设置基准 宽 && 高 , 在 "+ (void) load "设置里调用一次即可
+void mq_set_UI_designed_default_size(CGSize size) ;
+
 typedef struct CG_BOXABLE CGPoint MQPoint;
 /// consider it always protrait (home button on the bottom) . // 只考虑垂直方向 (home 按键在底部)
+MQPoint MQPointMake_Precise(CGFloat x , CGFloat y);
 MQPoint MQPointMake(CGFloat x , CGFloat y);
 MQPoint MQMakePointFrom(CGPoint point);
 CGPoint CGMakePointFrom(MQPoint point);
 
 typedef struct CG_BOXABLE CGSize MQSize;
 /// consider it always protrait (home button on the bottom) . // 只考虑垂直方向 (home 按键在底部)
+MQSize MQSizeMake_Precise(CGFloat width , CGFloat height);
 MQSize MQSizeMake(CGFloat width , CGFloat height);
 MQSize MQMakeSizeFrom(CGSize size);
 CGSize CGMakeSizeFrom(MQSize size);
 
 typedef struct CG_BOXABLE CGRect MQRect;
+MQRect MQRectMake_Precise(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
 MQRect MQRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
 MQRect MQMakeRectFrom(CGRect rect);
 CGRect CGMakeRectFrom(MQRect rect);
@@ -31,17 +38,22 @@ CGRect CGRectFull(void); // main screen bounds . // 等于屏幕的边界
 
 typedef struct CG_BOXABLE UIEdgeInsets MQEdgeInsets;
 /// consider it always protrait (home button on the bottom) . // 只考虑垂直方向 (home 按键在底部)
+MQEdgeInsets MQEdgeInsetsMake_Precise(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
 MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
 MQEdgeInsets MQMakeEdgeInsetsFrom(UIEdgeInsets insets);
 UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets);
 
 /// scaled width && height (based on main screen's width && height resolution) , consider it always protrait (home button on the bottom) . // 按比例缩放后的 宽/高 (基于屏幕宽和高的分辨率) , 只考虑垂直方向 (home 按键在底部)
+CGFloat MQScaleW_Precise(CGFloat w);
 CGFloat MQScaleW(CGFloat w);
+CGFloat MQScaleH_Precise(CGFloat h);
 CGFloat MQScaleH(CGFloat h);
 
 /// aspect fit the width && height , consider it always protrait (home button on the bottom) .(based on main screen's width resolution) // 按照特定比例缩放后的 宽 / 高 (基于屏幕宽的分辨率) , 只考虑垂直方向 (home 按键在底部)
 CGFloat MQAspectRatio(void);
+CGFloat MQAspectW_Precise(CGFloat w);
 CGFloat MQAspectW(CGFloat w);
+CGFloat MQAspectH_Precise(CGFloat h);
 CGFloat MQAspectH(CGFloat h);
 
 /// length scale , consider it always protrait (home button on the bottom) . // 计算 宽/高 所占屏幕比例 , 只考虑垂直方向 (home 按键在底部)
@@ -56,11 +68,6 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
 @interface UIView (MQExtension)
 
 + (instancetype) mq_common : (CGRect) frame ;
-
-/// for some designer use basic UI that is not for iPhone 6/6s/7/8 // 针对于一些设计人员基于 iPhone 6/6s/7/8 所设计的尺寸
-/// set H && W only once in somewhere for "+ (void) load" // 设置基准 宽 && 高 , 在 "+ (void) load "设置里调用一次即可
-+ (void) mq_set_scale : (CGFloat) f_width
-               height : (CGFloat) f_height ;
 
 + (void) mq_disable_animation : (void (^)(void)) action ;
 
@@ -171,6 +178,5 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
 - (instancetype) mq_cold : (BOOL) is_cold
                     time : (NSTimeInterval) interval
                 complete : (void(^)(__kindof UIView *v_t , BOOL is_enable)) mq_complete_block ;
-
 
 @end

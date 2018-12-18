@@ -11,6 +11,19 @@
 //@implementation MQCommon
 //@end
 
+CGFloat mq_ceil(CGFloat f_value) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(f_value);
+    }
+    return ceilf(f_value);
+}
+CGFloat mq_floor(CGFloat f_value) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return floor(f_value);
+    }
+    return floorf(f_value);
+}
+
 BOOL mq_available(double version) {
     return UIDevice.currentDevice.systemVersion.floatValue >= version;
 }
