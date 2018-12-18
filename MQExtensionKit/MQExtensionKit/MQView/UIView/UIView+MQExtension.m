@@ -192,9 +192,9 @@ CGFloat MQAspectRatio(void) {
     UIDeviceOrientation orientation = mq_current_device_orientation(YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        return UIScreen.mainScreen.bounds.size.width * UIScreen.mainScreen.scale / MQ_DEFAULT_SCALE_WIDTH ;
+        return UIScreen.mainScreen.bounds.size.width / MQ_DEFAULT_SCALE_WIDTH ;
     }
-    else return UIScreen.mainScreen.bounds.size.height * UIScreen.mainScreen.scale / MQ_DEFAULT_SCALE_WIDTH ;
+    else return UIScreen.mainScreen.bounds.size.height / MQ_DEFAULT_SCALE_WIDTH ;
 }
 CGFloat MQAspectW_Precise(CGFloat w) {
     return w * MQAspectRatio();
