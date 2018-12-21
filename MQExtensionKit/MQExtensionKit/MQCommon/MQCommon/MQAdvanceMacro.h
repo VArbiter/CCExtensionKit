@@ -9,16 +9,27 @@
 #ifndef MQAdvanceMacro_h
 #define MQAdvanceMacro_h
 
+/*
+    see @weakify && @strongify in 'React Native' .
+ */
+#ifndef MQ_KEYWORDIFY
+    #if DEBUG
+        #define MQ_KEYWORDIFY @autoreleasepool {}
+    #else
+        #define MQ_KEYWORDIFY @try {} @catch (...) {}
+    #endif
+#endif
+
 /// if implement this macro . // 如果引入了这个 宏
 /// the actions in this block can be executed when an litetime is dying . // 这个 block 将会在一个生命周期结束的时候执行
 /// note : this actions obey the stack in-out order . // 动作遵循栈的顺序
 /// note : which is first in , last out. // 即为 , 先进后出
-static void MQ_ON_EXIT_BLOCK(__strong void(^*block)(void)) {
-    (*block)();
-}
 #ifndef MQ_ON_EXIT
+    static inline void MQ_ON_EXIT_BLOCK(__strong void(^*block)(void)) {
+        (*block)();
+    }
     #define MQ_ON_EXIT \
-    __strong void(^MQ_ON_EXIT_BLOCK)(void) __attribute__((cleanup(MQ_ON_EXIT_BLOCK), unused)) = ^
+    MQ_KEYWORDIFY __strong void(^MQ_ON_EXIT_BLOCK)(void) __attribute__((cleanup(MQ_ON_EXIT_BLOCK), unused)) = ^
 #endif
 
 /// add this to your method tail , // 在方法后添加这个

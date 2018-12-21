@@ -89,12 +89,18 @@
     #endif
 #endif
 
-#define MQ_EXCEPTION_TRY @try {
-#define MQ_EXCEPTION_CATCH } @catch (NSException *exception_local) {
-#define MQ_EXCEPTION_END }
+#ifndef MQ_EXCEPTION
+    #define MQ_EXCEPTION_TRY @try {
+    #define MQ_EXCEPTION_CATCH } @catch (...) {
+    #define MQ_EXCEPTION_END }
+#endif
+
+#ifndef MQ_ASSERT_MAIN_THREAD
+    #define MQ_ASSERT_MAIN_THREAD() NSAssert([NSThread isMainThread], \
+            @"This method must be called on main thread")
+#endif
 
 //@interface MQCommon : NSObject
-//- (instancetype) init NS_UNAVAILABLE;
 //@end
 
 CGFloat mq_ceil(CGFloat f_value) ;

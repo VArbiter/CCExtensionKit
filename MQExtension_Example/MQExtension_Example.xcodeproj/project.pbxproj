@@ -10,6 +10,9 @@
 		3FE6F4D7C4B954FAD21408F9 /* Pods_MQExtension_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */; };
 		704C2E1B21C79BBE003EBB38 /* MQTouchableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */; };
 		7089AB5B21ACF13A00C835EE /* UIWindow+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */; };
+		70AC07B121CC91AB0098EDB1 /* MQRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AC07AC21CC91AB0098EDB1 /* MQRouter.m */; };
+		70AC07B221CC91AB0098EDB1 /* MQBridgeWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AC07AF21CC91AB0098EDB1 /* MQBridgeWrapper.m */; };
+		70AC07B621CC9A3E0098EDB1 /* MQRouterDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AC07B521CC9A3E0098EDB1 /* MQRouterDefine.m */; };
 		70EC8DFF21C23F2C005E90A8 /* MQProxyDealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC8DFA21C23F2C005E90A8 /* MQProxyDealer.m */; };
 		70EC8E0021C23F2C005E90A8 /* MQRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC8DFE21C23F2C005E90A8 /* MQRuntime.m */; };
 		70EC8E0621C24292005E90A8 /* MQAutoTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC8E0221C24292005E90A8 /* MQAutoTextView.m */; };
@@ -20,7 +23,6 @@
 		70F08BFB210EB300007B4D33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70F08BF9210EB300007B4D33 /* LaunchScreen.storyboard */; };
 		70F08BFE210EB300007B4D33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08BFD210EB300007B4D33 /* main.m */; };
 		70F08E7A210EC60C007B4D33 /* MQMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D6C210EC60C007B4D33 /* MQMediator.m */; };
-		70F08E7B210EC60C007B4D33 /* MQBridgeWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D71210EC60C007B4D33 /* MQBridgeWrapper.m */; };
 		70F08E7C210EC60C007B4D33 /* UIImageView+MQExtension_WeakNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D75210EC60C007B4D33 /* UIImageView+MQExtension_WeakNetwork.m */; };
 		70F08E7D210EC60C007B4D33 /* UICollectionView+MQExtension_Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D78210EC60C007B4D33 /* UICollectionView+MQExtension_Refresh.m */; };
 		70F08E7E210EC60C007B4D33 /* MQNetworkMoniter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08D7C210EC60C007B4D33 /* MQNetworkMoniter.m */; };
@@ -109,6 +111,12 @@
 		704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTouchableImageView.m; sourceTree = "<group>"; };
 		7089AB5921ACF13A00C835EE /* UIWindow+MQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+MQExtension.h"; sourceTree = "<group>"; };
 		7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+MQExtension.m"; sourceTree = "<group>"; };
+		70AC07AB21CC91AB0098EDB1 /* MQRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRouter.h; sourceTree = "<group>"; };
+		70AC07AC21CC91AB0098EDB1 /* MQRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQRouter.m; sourceTree = "<group>"; };
+		70AC07AF21CC91AB0098EDB1 /* MQBridgeWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQBridgeWrapper.m; sourceTree = "<group>"; };
+		70AC07B021CC91AB0098EDB1 /* MQBridgeWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQBridgeWrapper.h; sourceTree = "<group>"; };
+		70AC07B421CC9A3E0098EDB1 /* MQRouterDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQRouterDefine.h; sourceTree = "<group>"; };
+		70AC07B521CC9A3E0098EDB1 /* MQRouterDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQRouterDefine.m; sourceTree = "<group>"; };
 		70EC8DF921C23F2C005E90A8 /* MQProxyDealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProxyDealer.h; sourceTree = "<group>"; };
 		70EC8DFA21C23F2C005E90A8 /* MQProxyDealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProxyDealer.m; sourceTree = "<group>"; };
 		70EC8DFB21C23F2C005E90A8 /* MQProxyDealerMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProxyDealerMacro.h; sourceTree = "<group>"; };
@@ -129,8 +137,6 @@
 		70F08D6C210EC60C007B4D33 /* MQMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQMediator.m; sourceTree = "<group>"; };
 		70F08D6D210EC60C007B4D33 /* MQMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQMediator.h; sourceTree = "<group>"; };
 		70F08D6E210EC60C007B4D33 /* MQRouterExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRouterExtension.h; sourceTree = "<group>"; };
-		70F08D71210EC60C007B4D33 /* MQBridgeWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQBridgeWrapper.m; sourceTree = "<group>"; };
-		70F08D72210EC60C007B4D33 /* MQBridgeWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQBridgeWrapper.h; sourceTree = "<group>"; };
 		70F08D75210EC60C007B4D33 /* UIImageView+MQExtension_WeakNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MQExtension_WeakNetwork.m"; sourceTree = "<group>"; };
 		70F08D76210EC60C007B4D33 /* UIImageView+MQExtension_WeakNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MQExtension_WeakNetwork.h"; sourceTree = "<group>"; };
 		70F08D78210EC60C007B4D33 /* UICollectionView+MQExtension_Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+MQExtension_Refresh.m"; sourceTree = "<group>"; };
@@ -349,6 +355,43 @@
 			path = UIWindow;
 			sourceTree = "<group>";
 		};
+		70AC07A921CC91AB0098EDB1 /* MQRouter */ = {
+			isa = PBXGroup;
+			children = (
+				70AC07AA21CC91AB0098EDB1 /* MQRouter */,
+				70AC07AD21CC91AB0098EDB1 /* MQBridgeMGJ */,
+				70AC07B421CC9A3E0098EDB1 /* MQRouterDefine.h */,
+				70AC07B521CC9A3E0098EDB1 /* MQRouterDefine.m */,
+			);
+			path = MQRouter;
+			sourceTree = "<group>";
+		};
+		70AC07AA21CC91AB0098EDB1 /* MQRouter */ = {
+			isa = PBXGroup;
+			children = (
+				70AC07AB21CC91AB0098EDB1 /* MQRouter.h */,
+				70AC07AC21CC91AB0098EDB1 /* MQRouter.m */,
+			);
+			path = MQRouter;
+			sourceTree = "<group>";
+		};
+		70AC07AD21CC91AB0098EDB1 /* MQBridgeMGJ */ = {
+			isa = PBXGroup;
+			children = (
+				70AC07AE21CC91AB0098EDB1 /* MQBridgeWrapper */,
+			);
+			path = MQBridgeMGJ;
+			sourceTree = "<group>";
+		};
+		70AC07AE21CC91AB0098EDB1 /* MQBridgeWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				70AC07AF21CC91AB0098EDB1 /* MQBridgeWrapper.m */,
+				70AC07B021CC91AB0098EDB1 /* MQBridgeWrapper.h */,
+			);
+			path = MQBridgeWrapper;
+			sourceTree = "<group>";
+		};
 		70EC8DF821C23F2C005E90A8 /* MQProxyDealer */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,9 +485,9 @@
 		70F08D6A210EC60C007B4D33 /* MQRouter */ = {
 			isa = PBXGroup;
 			children = (
+				70AC07A921CC91AB0098EDB1 /* MQRouter */,
 				70F08D6B210EC60C007B4D33 /* MQMediator */,
 				70F08D6E210EC60C007B4D33 /* MQRouterExtension.h */,
-				70F08D6F210EC60C007B4D33 /* MQBridgeMGJ */,
 			);
 			path = MQRouter;
 			sourceTree = "<group>";
@@ -456,23 +499,6 @@
 				70F08D6D210EC60C007B4D33 /* MQMediator.h */,
 			);
 			path = MQMediator;
-			sourceTree = "<group>";
-		};
-		70F08D6F210EC60C007B4D33 /* MQBridgeMGJ */ = {
-			isa = PBXGroup;
-			children = (
-				70F08D70210EC60C007B4D33 /* MQBridgeWrapper */,
-			);
-			path = MQBridgeMGJ;
-			sourceTree = "<group>";
-		};
-		70F08D70210EC60C007B4D33 /* MQBridgeWrapper */ = {
-			isa = PBXGroup;
-			children = (
-				70F08D71210EC60C007B4D33 /* MQBridgeWrapper.m */,
-				70F08D72210EC60C007B4D33 /* MQBridgeWrapper.h */,
-			);
-			path = MQBridgeWrapper;
 			sourceTree = "<group>";
 		};
 		70F08D73210EC60C007B4D33 /* MQCustom */ = {
@@ -1477,10 +1503,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70AC07B221CC91AB0098EDB1 /* MQBridgeWrapper.m in Sources */,
 				70F08E93210EC60C007B4D33 /* NSObject+MQProtocol.m in Sources */,
 				70F08E9D210EC60C007B4D33 /* NSUserDefaults+MQExtension.m in Sources */,
 				70F08EBC210EC60C007B4D33 /* WKWebView+MQExtension.m in Sources */,
 				70F08EC3210EC60C007B4D33 /* UITableView+MQExtension.m in Sources */,
+				70AC07B121CC91AB0098EDB1 /* MQRouter.m in Sources */,
 				70F08E83210EC60C007B4D33 /* MQGradientLayerView.m in Sources */,
 				70F08EBB210EC60C007B4D33 /* UINavigationItem+MQExtension.m in Sources */,
 				70F08F652112A374007B4D33 /* SVProgressHUD+MQExtension.m in Sources */,
@@ -1520,6 +1548,7 @@
 				70F08E9F210EC60C007B4D33 /* NSNumber+MQExtension.m in Sources */,
 				70F08EA2210EC60C007B4D33 /* NSObject+MQExtension.m in Sources */,
 				70F08E8E210EC60C007B4D33 /* MQDevice.m in Sources */,
+				70AC07B621CC9A3E0098EDB1 /* MQRouterDefine.m in Sources */,
 				70F08E95210EC60C007B4D33 /* NSBundle+MQExtension.m in Sources */,
 				70F08EAC210EC60C007B4D33 /* PHAsset+MQExtension.m in Sources */,
 				70F08EBA210EC60C007B4D33 /* UIFont+MQExtension.m in Sources */,
@@ -1536,7 +1565,6 @@
 				70F08F56211152FD007B4D33 /* MQRLMBaseEntity.m in Sources */,
 				70F08EB0210EC60C007B4D33 /* UIImage+MQExtension.m in Sources */,
 				70F08EC8210EC60C007B4D33 /* UITextField+MQExtension.m in Sources */,
-				70F08E7B210EC60C007B4D33 /* MQBridgeWrapper.m in Sources */,
 				704C2E1B21C79BBE003EBB38 /* MQTouchableImageView.m in Sources */,
 				70F08BFE210EB300007B4D33 /* main.m in Sources */,
 				70F08E85210EC60C007B4D33 /* MQCrashCatcher.m in Sources */,

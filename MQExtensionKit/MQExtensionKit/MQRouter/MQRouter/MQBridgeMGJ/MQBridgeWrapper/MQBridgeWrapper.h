@@ -6,14 +6,9 @@
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MQRouterDefine.h"
 
 #if __has_include(<MGJRouter/MGJRouter.h>)
-
-typedef NSString *MQRouterOperateKey NS_EXTENSIBLE_STRING_ENUM;
-typedef NSString *MQRouterRegistKey NS_EXTENSIBLE_STRING_ENUM;
-typedef NSDictionary MQRouterPatternInfo;
-typedef void (^MQRouterCompletionBlock)(id result);
 
 #ifndef MQ_ROUTER_W
     #define MQ_ROUTER_W MQBridgeWrapper.mq_shared
@@ -35,37 +30,34 @@ typedef void (^MQRouterCompletionBlock)(id result);
 + (instancetype) mq_shared_with_scheme : (MQRouterRegistKey) s_scheme ;
 
 // regist // 注册
-- (instancetype) mq_regist_fallback : (void (^)(MQRouterPatternInfo *dInfos)) fallback ;
+//- (instancetype) mq_regist_fallback : (void (^)(MQRouterPatternInfo dInfos)) fallback ;
 - (instancetype) mq_regist_operation : (MQRouterRegistKey) s_url
-                              action : (void(^)(MQRouterPatternInfo *dInfos)) action ;
+                              action : (void(^)(MQRouterPatternInfo dInfos)) action ;
 - (instancetype) mq_regist_object : (MQRouterRegistKey) s_url
-                            value : (id(^)(MQRouterPatternInfo *d_infos)) value ;
+                            value : (id(^)(MQRouterPatternInfo d_infos)) value ;
 
 // deregist // 取消注册
 - (instancetype) mq_deregist : (MQRouterRegistKey) s_url ;
 
 // open // 打开
 - (BOOL) mq_is_can_open : (MQRouterRegistKey) s_url ;
-- (instancetype) mq_call : (MQRouterPatternInfo *) d_pattern
-                fallback : (void(^)(MQRouterPatternInfo *d_infos)) fallback ;
+- (instancetype) mq_call : (MQRouterPatternInfo) d_pattern
+                fallback : (void(^)(MQRouterPatternInfo d_infos)) fallback ;
 
-- (id) mq_get : (MQRouterPatternInfo *) d_pattern
-     fallback : (void(^)(MQRouterPatternInfo *)) fallback ;
+- (id) mq_get : (MQRouterPatternInfo) d_pattern
+     fallback : (void(^)(MQRouterPatternInfo)) fallback ;
 
-FOUNDATION_EXPORT MQRouterOperateKey const mq_router_params_url ;
-FOUNDATION_EXPORT MQRouterOperateKey const mq_router_params_completion;
-FOUNDATION_EXPORT MQRouterOperateKey const mq_router_params_userinfo;
 FOUNDATION_EXPORT MQRouterOperateKey mq_router_fallback_url ; // can be customed by user with 'mq_sharedWithScheme:' methods // 可以被开发者使用 'mq_sharedWithScheme:' 来设置
 
-MQRouterPatternInfo * mq_router_url_make(MQRouterRegistKey s_url) ;
-MQRouterPatternInfo * mq_router_url_pattern_make(MQRouterRegistKey s_url ,
-                                                 NSDictionary *d_user_info) ;
+MQRouterPatternInfo mq_router_url_make(MQRouterRegistKey s_url) ;
+MQRouterPatternInfo mq_router_url_pattern_make(MQRouterRegistKey s_url ,
+                                               NSDictionary *d_user_info) ;
 
 /// note : completion block only works with regist methods // 完成 block 只在 注册过的方法中有效
 /// note : if uses in call method , completion will have no values . // 如果在回调中使用 , block 没有值 .
-MQRouterPatternInfo * mq_router_url_pattern_completion_make(MQRouterRegistKey s_url ,
-                                                            NSDictionary *d_user_info ,
-                                                            MQRouterCompletionBlock) ;
+MQRouterPatternInfo mq_router_url_pattern_completion_make(MQRouterRegistKey s_url ,
+                                                          NSDictionary *d_user_info ,
+                                                          MQRouterCompletionBlock) ;
 
 @end
 

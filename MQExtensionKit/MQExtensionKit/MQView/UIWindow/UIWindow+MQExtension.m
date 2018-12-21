@@ -58,7 +58,7 @@
         UITabBarController *t_bvc = (UITabBarController *)controller;
         return [self mq_current_from:t_bvc.selectedViewController];
     }
-    else if(controller.presentedViewController != nil) {
+    else if(controller.presentedViewController) {
         return [self mq_current_from:controller.presentedViewController];
     }
     else return controller;

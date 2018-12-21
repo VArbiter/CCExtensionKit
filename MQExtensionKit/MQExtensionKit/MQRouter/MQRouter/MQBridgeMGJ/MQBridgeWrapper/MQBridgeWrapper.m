@@ -10,9 +10,6 @@
 
 #if __has_include(<MGJRouter/MGJRouter.h>)
 
-MQRouterOperateKey const mq_router_params_url = @"MQ_ROUTER_PARAMS_URL";
-MQRouterOperateKey const mq_router_params_completion = @"MQ_ROUTER_PARAMS_COMPLETION";
-MQRouterOperateKey const mq_router_params_userinfo = @"MQ_ROUTER_PARAMS_USER_INFO";
 MQRouterOperateKey mq_router_fallback_url = @"elwinfrederick://";
 
 @interface MQBridgeWrapper () < NSCopying , NSMutableCopying >
@@ -58,21 +55,23 @@ static MQBridgeWrapper *__router = nil;
 #pragma mark -
 
 // regist
-- (instancetype) mq_regist_fallback : (void (^)(MQRouterPatternInfo *d_infos)) fallBack {
+/*
+- (instancetype) mq_regist_fallback : (void (^)(MQRouterPatternInfo d_infos)) fallBack {
     [MGJRouter registerURLPattern:mq_router_fallback_url toHandler:^(NSDictionary *routerParameters) {
         if (fallBack) fallBack(mq_transfer_MGJ_parameters(routerParameters));
     }];
     return self;
 }
+ */
 - (instancetype) mq_regist_operation : (MQRouterRegistKey) s_url
-                              action : (void(^)(MQRouterPatternInfo *d_infos)) action {
+                              action : (void(^)(MQRouterPatternInfo d_infos)) action {
     [MGJRouter registerURLPattern:mq_append_url_scheme(s_url , YES) toHandler:^(NSDictionary *routerParameters) {
         if (action) action(mq_transfer_MGJ_parameters(routerParameters));
     }];
     return self;
 }
 - (instancetype) mq_regist_object : (MQRouterRegistKey) s_url
-                            value : (id(^)(MQRouterPatternInfo *d_infos)) value {
+                            value : (id(^)(MQRouterPatternInfo d_infos)) value {
     [MGJRouter registerURLPattern:mq_append_url_scheme(s_url , YES) toObjectHandler:^id(NSDictionary *routerParameters) {
         if (value) return value(mq_transfer_MGJ_parameters(routerParameters));
         return nil;
@@ -91,8 +90,8 @@ static MQBridgeWrapper *__router = nil;
     return [MGJRouter canOpenURL:mq_append_url_scheme(s_url , false)];
 }
 
-- (instancetype) mq_call : (MQRouterPatternInfo *) d_pattern
-                fallback : (void(^)(MQRouterPatternInfo *d_infos)) fallback {
+- (instancetype) mq_call : (MQRouterPatternInfo) d_pattern
+                fallback : (void(^)(MQRouterPatternInfo d_infos)) fallback {
     if (![MGJRouter canOpenURL:mq_append_url_scheme(d_pattern[mq_router_params_url] , false)]) {
         if (fallback) fallback(d_pattern);
         return self;
@@ -106,8 +105,8 @@ static MQBridgeWrapper *__router = nil;
     return self;
 }
 
-- (id) mq_get : (MQRouterPatternInfo *) d_pattern
-     fallback : (void(^)(MQRouterPatternInfo *)) fallback {
+- (id) mq_get : (MQRouterPatternInfo) d_pattern
+     fallback : (void(^)(MQRouterPatternInfo)) fallback {
     id v = [MGJRouter objectForURL:mq_append_url_scheme(d_pattern[mq_router_params_url] , false)
                       withUserInfo:d_pattern[mq_router_params_userinfo]];
     if (v) return v;
@@ -115,15 +114,15 @@ static MQBridgeWrapper *__router = nil;
     return nil;
 }
 
-MQRouterPatternInfo * mq_router_url_make(MQRouterRegistKey s_url) {
+MQRouterPatternInfo mq_router_url_make(MQRouterRegistKey s_url) {
     return mq_router_url_pattern_make(s_url, nil);
 }
-MQRouterPatternInfo * mq_router_url_pattern_make(MQRouterRegistKey s_url , NSDictionary *d_user_info) {
+MQRouterPatternInfo mq_router_url_pattern_make(MQRouterRegistKey s_url , NSDictionary *d_user_info) {
     return mq_router_url_pattern_completion_make(s_url, d_user_info, nil);
 }
-MQRouterPatternInfo * mq_router_url_pattern_completion_make(MQRouterRegistKey s_url ,
-                                                            NSDictionary *d_user_info ,
-                                                        void (^completion)(id result)) {
+MQRouterPatternInfo mq_router_url_pattern_completion_make(MQRouterRegistKey s_url ,
+                                                          NSDictionary *d_user_info ,
+                                                          void (^completion)(id result)) {
     NSMutableDictionary *d= [NSMutableDictionary dictionary];
     [d setValue:s_url forKey:mq_router_params_url];
     [d setValue:d_user_info forKey:mq_router_params_userinfo];

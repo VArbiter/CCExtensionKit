@@ -226,15 +226,15 @@
     
     NSString *s_encoded = nil;
     if (@available(iOS 9.0, *)) {
-        NSString *s_characters_to_sscape = @"?!@#$^&%*+,:;='\"`<>()~[]{}/\\|";
-        NSCharacterSet *s_allowed_characters = [[NSCharacterSet characterSetWithCharactersInString:s_characters_to_sscape] invertedSet];
+        NSString *s_characters_to_escape = @"?!@#$^&%*+,:;='\"`<>()~[]{}/\\|";
+        NSCharacterSet *s_allowed_characters = [[NSCharacterSet characterSetWithCharactersInString:s_characters_to_escape] invertedSet];
         s_encoded = [self stringByAddingPercentEncodingWithAllowedCharacters:s_allowed_characters];
     }
     else {
-        NSString *sUnencode = self;
+        NSString *s_unencode = self;
         s_encoded = (NSString *)
         CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                  (CFStringRef)sUnencode,
+                                                                  (CFStringRef)s_unencode,
                                                                   NULL,
                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                   kCFStringEncodingUTF8));
@@ -243,13 +243,18 @@
     return s_encoded;
 }
 - (NSString *)to_url_decoded {
-    NSString *s_encode = self;
-    NSString *s_decode = nil;
-    s_decode = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
-                                                                                                    (__bridge CFStringRef)s_encode,
-                                                                                                    CFSTR(""),
-                                                                                                    CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-    return s_decode;
+    if (@available(iOS 7.0, *)) {
+        return [self stringByRemovingPercentEncoding];
+    }
+    else {
+        NSString *s_encode = self;
+        NSString *s_decode = nil;
+        s_decode = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                                                         (__bridge CFStringRef)s_encode,
+                                                                                                         CFSTR(""),
+                                                                                                         CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+        return s_decode;
+    }
 }
 #pragma clang diagnostic pop
 

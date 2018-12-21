@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger , MQHudExtensionType) {
 + (BOOL) mq_has_hud : (UIView *) view ;
 
 /// for showing action // 展示类操作
-- (instancetype) mq_show ; // if needed , default showing after chain complete // 如果需要 , 默认展示在 链 完成后战术
+- (instancetype) mq_show ; // if needed , default showing after chain complete // 如果需要 , 默认展示在 链 完成后展示
 - (void) mq_hide ; // default 2 seconds . and hide will trigger dealloc . last step . // 默认两秒钟 . hide 会触发 dealloc , 最后一步
 - (void) mq_hide : (NSTimeInterval) interval ;
 
