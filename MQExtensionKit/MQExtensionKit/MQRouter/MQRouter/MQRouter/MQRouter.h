@@ -7,7 +7,6 @@
 //
 
 #import "MQRouterDefine.h"
-#import <pthread.h>
 
 /*
  if you wanna all assert worked only under debug environment , // 如果你想所有的断言只在 debug 环境下起效 ,
@@ -206,7 +205,7 @@ FOUNDATION_EXPORT NSString * MQ_ROUTER_DEFAULT_SCHEME ;
 
 /**
  return all node that generate under a specific scheme . // 返回为 特定的 scheme 生成的节点信息
- note : this contains all nodes , included some middle nodes (not as a complete path registed , as a part or as a middle pattern) . // 包含了所有 节点 , 包括中间节点 (不是作为 完整路径 注册的 , 作为一部分 或者 中间值) 
+ note : this contains all nodes , included some middle nodes (not as a complete path registed , as a part or as a middle pattern) . // 包含了所有 节点 , 包括中间节点 (不是作为 完整路径 注册的 , 作为一部分 或者 中间值)
 
  @param scheme scheme
  @return node info . // 节点信息

@@ -7,6 +7,7 @@
 //
 
 #import "MQRouter.h"
+#import <pthread.h>
 
 @interface MQRouterNodeInfo ()
 
