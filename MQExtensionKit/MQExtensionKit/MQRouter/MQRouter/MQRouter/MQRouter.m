@@ -554,7 +554,7 @@ static MQRouter *__router_shared = nil;
             [array_path_components removeLastObject];
             
             // might be the root key , it's "router_map" then .
-            // 有可能是根 key，这样就是 self.routes 了
+            // 有可能是根 key，这样就是 router_map 了
             dict_route = MQ_ROUTER.router_map_d;
             if (array_path_components.count) {
                 NSString *s_component_without_last = [array_path_components componentsJoinedByString:@"."];
@@ -872,6 +872,55 @@ MQRouterPath mq_router_make_scheme(NSString * _Nullable scheme, MQRouterPath pat
     }
     else if (fall_error_block) fall_error_block();
     return nil;
+}
+
++ (NSString *) mq_generate_path_pattern : (NSString *) s_pattern
+                         related_params : (NSArray <NSString *> *) arr_params {
+    /*
+        borrowed from "MGJRouter ( http://github.com/mogujie/MGJRouter )"
+     */
+    
+    NSInteger i_colon_start_index = 0;
+    
+    NSMutableArray *arr_holders = [NSMutableArray array];
+    
+    for (int i = 0; i < s_pattern.length; i++) {
+        NSString *s_character = [NSString stringWithFormat:@"%c", [s_pattern characterAtIndex:i]];
+        if ([s_character isEqualToString:@":"]) {
+            i_colon_start_index = i;
+        }
+        if ([mq_router_special_character rangeOfString:s_character].location != NSNotFound && i > (i_colon_start_index + 1) && i_colon_start_index) {
+            NSRange range = NSMakeRange(i_colon_start_index, i - i_colon_start_index);
+            NSString *s_holder = [s_pattern substringWithRange:range];
+            if (![MQRouter mq_is_contain_special_character:s_holder]) {
+                [arr_holders addObject:s_holder];
+                i_colon_start_index = 0;
+            }
+        }
+        if (i == s_pattern.length - 1 && i_colon_start_index) {
+            NSRange range = NSMakeRange(i_colon_start_index, i - i_colon_start_index + 1);
+            NSString *s_holder = [s_pattern substringWithRange:range];
+            if (![MQRouter mq_is_contain_special_character:s_holder]) {
+                [arr_holders addObject:s_holder];
+            }
+        }
+    }
+    
+    if (arr_holders.count != arr_params.count) {
+#if DEBUG
+        NSAssert(false, @"patterns' count must equals to params' count .") ;
+#endif
+        return nil;
+    }
+    
+    __block NSString *s_result = s_pattern;
+    
+    [arr_holders enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        idx = arr_params.count > idx ? idx : arr_params.count - 1;
+        s_result = [s_result stringByReplacingOccurrencesOfString:obj withString:arr_params[idx]];
+    }];
+    
+    return s_result;
 }
 
 #pragma mark - ----- private

@@ -327,6 +327,26 @@ MQRouterPath mq_router_make_scheme( NSString * _Nullable scheme, MQRouterPath pa
      completion : (nullable MQRouterCompletionBlock) completion
           error : (nullable MQRouterErrorBlock) error_block ;
 
+/**
+ generate pattern . // 生成 路径 参数
+
+ note :
+    1. pattern holders' count must equals to params' count .
+        // 路径中 占位符 个数 , 必须和 参数 个数相同 .
+    2. all pattern holders must have prefix ":" . // 所有 占位路径 必须以 ":" 开头 .
+ 
+ eg :
+    1. [MGJRouter generateURLWithPattern:@"test/:id/:value" parameters:@[@"0" , @"1"]];
+    2. [MGJRouter generateURLWithPattern:@"test&:id&:value" parameters:@[@"0" , @"1"]];
+    ... supported "/?&." .
+ 
+ @param s_pattern pattern . // eg : @"test/:id" , @"test/:id/:value" , etc ...
+ @param arr_params params . // 参数 . eg : @[@"0"] , @[@"0" , @"abc"] , etc
+ @return generated path pattern . // 生成的 路径参数
+ */
++ (NSString *) mq_generate_path_pattern : (NSString *) s_pattern
+                         related_params : (NSArray <NSString *> *) arr_params ;
+
 @end
 
 NS_ASSUME_NONNULL_END
