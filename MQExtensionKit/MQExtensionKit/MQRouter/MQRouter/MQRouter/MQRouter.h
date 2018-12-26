@@ -203,7 +203,14 @@ FOUNDATION_EXPORT NSString * MQ_ROUTER_DEFAULT_SCHEME ;
 
 /// make NSLog(node_info) show the detail or not . // 决定是否 NSLog(node_info) 时显示详细信息
 - (void) mq_node_console_log_with_detail : (BOOL) is_need ;
-/// return all node that generate under a specific scheme . // 返回为 特定的 scheme 生成的节点信息
+
+/**
+ return all node that generate under a specific scheme . // 返回为 特定的 scheme 生成的节点信息
+ note : this contains all nodes , included some middle pattern (not as a complete path registed , as a part or as a middle pattern) . // 包含了所有 节点 , 包括中间节点 (不是作为 完整路径 , 作为一部分 或者 中间值) 
+
+ @param scheme scheme
+ @return node info . // 节点信息
+ */
 + (NSArray <MQRouterNodeInfo *> *) mq_registed_nodes_for_scheme : (NSString *) scheme ;
 
 /**

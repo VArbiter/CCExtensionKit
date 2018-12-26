@@ -245,9 +245,10 @@ static BOOL __mq_router_node_info_console_log_detail_enable = false;
     @autoreleasepool {
         array_schemes = [NSMutableArray array];
         [array_nodes enumerateObjectsUsingBlock:^(MQRouterNodeInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            NSString *s = [NSString stringWithFormat:@"( %@ ) %@" , obj.regist_type_s , obj.original_path_s];
-            if (s) [array_schemes addObject:s];
+            if (obj.mark_as_start) {
+                NSString *s = [NSString stringWithFormat:@"( %@ ) %@" , obj.regist_type_s , obj.original_path_s];
+                if (s) [array_schemes addObject:s];
+            }
         }];
     }
     
@@ -277,7 +278,6 @@ static BOOL __mq_router_node_info_console_log_detail_enable = false;
             [array_nodes addObject:node_info];
         }];
     }
-    
     return [array_nodes copy];
 }
 
