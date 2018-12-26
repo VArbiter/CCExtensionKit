@@ -225,18 +225,20 @@
     // CharactersToLeaveUnescaped = @"[].";
     
     NSString *s_encoded = nil;
+//    NSString *s_characters_to_escape = @"?!@#$^&%*+,:;='\"`<>()~[]{}/\\|";
+    NSString *s_characters = @"#%^{}[]|\"<> ";
     if (@available(iOS 9.0, *)) {
-        NSString *s_characters_to_escape = @"?!@#$^&%*+,:;='\"`<>()~[]{}/\\|";
-        NSCharacterSet *s_allowed_characters = [[NSCharacterSet characterSetWithCharactersInString:s_characters_to_escape] invertedSet];
+        NSCharacterSet *s_allowed_characters = [[NSCharacterSet characterSetWithCharactersInString:s_characters] invertedSet];
         s_encoded = [self stringByAddingPercentEncodingWithAllowedCharacters:s_allowed_characters];
     }
     else {
         NSString *s_unencode = self;
+//        @"!*'();:@&=+$,/?%#[]"
         s_encoded = (NSString *)
         CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                   (CFStringRef)s_unencode,
                                                                   NULL,
-                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                  (CFStringRef)s_characters,
                                                                   kCFStringEncodingUTF8));
     }
     
