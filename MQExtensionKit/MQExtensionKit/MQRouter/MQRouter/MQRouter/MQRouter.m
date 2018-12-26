@@ -265,6 +265,8 @@ static BOOL __mq_router_node_info_console_log_detail_enable = false;
      但是并没有 回溯索引 , 即为指向上一个节点的 key || pointer 这一概念
      3. 以至于 , 获得索引时 , 需要 先序遍历 所有的 node , 然后构建 回溯索引 .
      4. 最后完成路径的重构造
+     
+     note : 不知道怎么用英语说这些 , 不翻译了 ...
      */
     
     NSMutableArray <MQRouterNodeInfo *> *array_nodes = nil;
@@ -296,8 +298,8 @@ static BOOL __mq_router_node_info_console_log_detail_enable = false;
         return info;
     };
     
-    // 如果 某个 node 存在 "_" 的 block ,
-    // 则 表示它是被单独注册上的 路径 .
+    // if find the block stored with key of "_" // 如果 某个 node 存在 "_" 的 block ,
+    // then it means its registed as a complete path .// 则 表示它是被单独注册上的 完整路径 .
     MQRouterNodeInfo *dict_temp = filter_block(dict);
     
     for (NSString * s_key_temp in dict_temp.allKeys) {
@@ -509,7 +511,7 @@ static MQRouter *__router_shared = nil;
     return !!t;
 }
 
-+ (void) mq_deregist_for_scheme : (NSString *) s_scheme {
++ (void) mq_unregist_for_scheme : (NSString *) s_scheme {
     
     int i = pthread_mutex_lock(&__lock);
 #if DEBUG
@@ -522,14 +524,14 @@ static MQRouter *__router_shared = nil;
     if ([MQ_ROUTER.router_map_d objectForKey:s_scheme]) {
         [MQ_ROUTER.router_map_d removeObjectForKey:s_scheme];
         
-        [MQ_ROUTER mq_delegate_response:@selector(mq_router:did_deregist_scheme:) enumerate_delegate:^(id<MQRouterDelegate> delegate, BOOL is_response) {
+        [MQ_ROUTER mq_delegate_response:@selector(mq_router:did_unregist_scheme:) enumerate_delegate:^(id<MQRouterDelegate> delegate, BOOL is_response) {
             if (is_response) {
-                [delegate mq_router:MQ_ROUTER did_deregist_scheme:s_scheme];
+                [delegate mq_router:MQ_ROUTER did_unregist_scheme:s_scheme];
             }
         }];
     }
 }
-+ (void) mq_deregist : (MQRouterPath) path {
++ (void) mq_unregist : (MQRouterPath) path {
     NSMutableArray *array_path_components = [MQRouter mq_path_components:path].mutableCopy;
     
     /*
@@ -559,15 +561,15 @@ static MQRouter *__router_shared = nil;
             }
             [dict_route removeObjectForKey:s_last];
             
-            [MQ_ROUTER mq_delegate_response:@selector(mq_router:did_deregist_path:) enumerate_delegate:^(id<MQRouterDelegate> delegate, BOOL is_response) {
+            [MQ_ROUTER mq_delegate_response:@selector(mq_router:did_unregist_path:) enumerate_delegate:^(id<MQRouterDelegate> delegate, BOOL is_response) {
                 if (is_response) {
-                    [delegate mq_router:MQ_ROUTER did_deregist_path:path];
+                    [delegate mq_router:MQ_ROUTER did_unregist_path:path];
                 }
             }];
         }
     }
 }
-+ (void) mq_deregist_all {
++ (void) mq_unregist_all {
     int i = pthread_mutex_lock(&__lock);
 #if DEBUG
     NSAssert(i == 0, @"pthread mutex lock error .");
@@ -579,9 +581,9 @@ static MQRouter *__router_shared = nil;
     [MQ_ROUTER.router_map_d removeAllObjects];
     MQ_ROUTER.router_map_d = [NSMutableDictionary dictionary];
     
-    [MQ_ROUTER mq_delegate_response:@selector(mq_router_deregist_all_complete:) enumerate_delegate:^(id<MQRouterDelegate> delegate, BOOL is_response) {
+    [MQ_ROUTER mq_delegate_response:@selector(mq_router_unregist_all_complete:) enumerate_delegate:^(id<MQRouterDelegate> delegate, BOOL is_response) {
         if (is_response) {
-            [delegate mq_router_deregist_all_complete:MQ_ROUTER];
+            [delegate mq_router_unregist_all_complete:MQ_ROUTER];
         }
     }];
 }
