@@ -30,6 +30,7 @@ BOOL mq_is_string_valued(__kindof NSString * string) {
                 && ![string isEqualToString:@"(null)"]
                 && ![string isEqualToString:@"null"]
                 && ![string isEqualToString:@"<null>"]
+                && ![string isEqualToString:@"n/a"]
                 && ![string isKindOfClass:NSNull.class]) {
                 return YES;
             }
