@@ -15,9 +15,9 @@
 
 @implementation NSString (MQExtension)
 
-- (NSString *(^)(id))s {
+- (__kindof NSString *(^)(id))s {
     __weak typeof(self) weak_self = self;
-    return ^NSString *(id value) {
+    return ^__kindof NSString *(id value) {
         __strong typeof(weak_self) strong_self = weak_self;
         if ([value isKindOfClass:NSString.class]) {
             return ((NSString *)value).length > 0 ? [strong_self stringByAppendingString:(NSString *)value] : strong_self;
@@ -26,14 +26,69 @@
     };
 }
 
-- (NSString *(^)(id))p {
+- (__kindof NSString *(^)(id))p {
     __weak typeof(self) weak_self = self;
-    return ^NSString *(id value) {
+    return ^__kindof NSString *(id value) {
         __strong typeof(weak_self) strong_self = weak_self;
         if ([value isKindOfClass:NSString.class]) {
             return ((NSString *)value).length > 0 ? [strong_self stringByAppendingPathComponent:(NSString *)value] : strong_self;
         }
         return [strong_self stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",value]];
+    };
+}
+
+- (__kindof NSString *(^)(NSUInteger))sub_from {
+    __weak typeof(self) weak_self = self;
+    return ^__kindof NSString *(NSUInteger index) {
+        __strong typeof(weak_self) strong_self = weak_self;
+        if (index >= 0 && index <= (strong_self.length - 1)) {
+            return [strong_self substringFromIndex:index];
+        }
+        return @"";
+    };
+}
+
+- (__kindof NSString *(^)(NSUInteger))sub_to {
+    __weak typeof(self) weak_self = self;
+    return ^__kindof NSString *(NSUInteger index) {
+        __strong typeof(weak_self) strong_self = weak_self;
+        if (index >= 0 && index <= (strong_self.length - 1)) {
+            return [strong_self substringToIndex:index];
+        }
+        return @"";
+    };
+}
+
+- (__kindof NSString *(^)(NSUInteger, NSUInteger))sub_range {
+    __weak typeof(self) weak_self = self;
+    return ^__kindof NSString *(NSUInteger location , NSUInteger length) {
+        __strong typeof(weak_self) strong_self = weak_self;
+        
+        if (location >=0
+            && length >= 0
+            && (location + length) < strong_self.length) {
+            return [strong_self substringWithRange:NSMakeRange(location, length)];
+        }
+        else return @"";
+        
+    };
+}
+
+- (__kindof NSString *(^)(NSUInteger))sub_drop_tail {
+    __weak typeof(self) weak_self = self;
+    return ^__kindof NSString *(NSUInteger length) {
+        __strong typeof(weak_self) strong_self = weak_self;
+        if (strong_self.length <= length) return @"";
+        else return [strong_self substringWithRange:(NSRange){0, strong_self.length - length}]; 
+    };
+}
+
+- (__kindof NSString *(^)(NSUInteger))sub_drop_header {
+    __weak typeof(self) weak_self = self;
+    return ^__kindof NSString *(NSUInteger length) {
+        __strong typeof(weak_self) strong_self = weak_self;
+        if (strong_self.length <= length) return @"";
+        else return [strong_self substringWithRange:(NSRange){length , strong_self.length - length}];
     };
 }
 
@@ -142,7 +197,7 @@
 }
 
 - (NSRange)range_full {
-    return NSMakeRange(0, self.length);
+    return NSRangeFromString(self);
 }
 
 @end

@@ -19,9 +19,22 @@
 
 @interface NSString (MQExtension)
 
-/// note : the string that use 's' && 'p' can't be nil. or went crash . 使用 s 和 p 的字符串不能为 nil , 否则崩溃
-@property (nonatomic , copy , readonly) NSString *(^s)(id value) ; // append string // 追加 string
-@property (nonatomic , copy , readonly) NSString *(^p)(id value) ; // append path // 追加 路径
+/// note : the string that uses these blocks blow , can't be nil. or went crash . 使用 s 和 p 的字符串不能为 nil , 否则崩溃
+
+/// append string // 追加 string
+@property (nonatomic , copy , readonly) __kindof NSString *(^s)(id value) ;
+/// append path // 追加 路径
+@property (nonatomic , copy , readonly) __kindof NSString *(^p)(id value) ;
+/// equals "substringFromIndex:"
+@property (nonatomic , copy , readonly) __kindof NSString *(^sub_from)(NSUInteger index) ;
+/// equals "substringToIndex:"
+@property (nonatomic , copy , readonly) __kindof NSString *(^sub_to)(NSUInteger index) ;
+/// equals "substringWithRange:"
+@property (nonatomic , copy , readonly) __kindof NSString *(^sub_range)(NSUInteger location , NSUInteger length) ;
+/// remove specific length of characters in string (from tail to head) . // 移除特定长度的字符串 (从 尾 到 头).
+@property (nonatomic , copy , readonly) __kindof NSString *(^sub_drop_tail)(NSUInteger length) ;
+/// remove specific length of characters in string (from head to tail) . // 移除特定长度的字符串 (从 头 到 尾).
+@property (nonatomic , copy , readonly) __kindof NSString *(^sub_drop_header)(NSUInteger length) ;
 
 /// break has the topest priority . // 回车拥有最高优先级
 + (instancetype) mq_merge : (BOOL) is_need_break
