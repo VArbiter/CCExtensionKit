@@ -25,13 +25,13 @@
 
 BOOL mq_is_string_valued(__kindof NSString * string) {
     if (string) {
-        if ([string isKindOfClass:[NSString class]]) {
+        if (![string isKindOfClass:NSNull.class]
+            && [string isKindOfClass:[NSString class]]) {
             if (string.length
                 && ![string isEqualToString:@"(null)"]
                 && ![string isEqualToString:@"null"]
                 && ![string isEqualToString:@"<null>"]
-                && ![string isEqualToString:@"n/a"]
-                && ![string isKindOfClass:NSNull.class]) {
+                && ![string isEqualToString:@"n/a"]) {
                 return YES;
             }
         }
@@ -80,7 +80,7 @@ BOOL mq_is_decimal_valued(__kindof NSDecimalNumber * decimal) {
     return false;
 }
 BOOL mq_is_null(id object) {
-    return (object && ![object isKindOfClass:[NSNull class]] && (object != NSNull.null));
+    return (!object || [object isKindOfClass:[NSNull class]] || [object isEqual:NSNull.null] || (object == NSNull.null));
 }
 
 NSString * mq_log_object(id object) {
@@ -106,7 +106,7 @@ NSString * mq_log_object(id object) {
     }
     
 #if DEBUG
-    NSLog(@" CCExtension: %s \n ERROR : %@",__func__, error.localizedDescription);
+    NSLog(@" MQExtension: %s \n ERROR : %@",__func__, error.localizedDescription);
 #endif
     
     return nil;

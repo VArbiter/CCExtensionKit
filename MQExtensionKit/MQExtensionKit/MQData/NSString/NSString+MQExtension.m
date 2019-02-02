@@ -79,7 +79,7 @@
     return ^__kindof NSString *(NSUInteger length) {
         __strong typeof(weak_self) strong_self = weak_self;
         if (strong_self.length <= length) return @"";
-        else return [strong_self substringWithRange:(NSRange){0, strong_self.length - length}]; 
+        else return [strong_self substringWithRange:(NSRange){0, strong_self.length - length}];
     };
 }
 
