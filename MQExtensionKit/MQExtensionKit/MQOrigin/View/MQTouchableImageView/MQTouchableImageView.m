@@ -62,8 +62,7 @@ NSData * data_image_alpha_bitmap_info(UIImage *image) {
 }
 
 
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
-{
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     if (!CGRectContainsPoint(self.bounds, point)) { return false; }
     Byte *bytes = ((Byte *)self.data_image_alpha_bitmap_info.bytes);
     unsigned long long offset = mq_image_alpha_offset(point.x,

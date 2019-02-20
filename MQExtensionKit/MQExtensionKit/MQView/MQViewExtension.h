@@ -33,5 +33,6 @@
     #import "UISwitch+MQExtension.h"
     #import "UIResponder+MQExtension.h"
     #import "UIApplication+MQExtension.h"
+    #import "CALayer+MQExtension.h"
 
 #endif /* MQViewExtension_h */
