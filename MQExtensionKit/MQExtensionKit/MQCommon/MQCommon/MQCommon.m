@@ -69,11 +69,12 @@ void mq_safe_chain(id object , void (^safe)(id object)) {
     if (object && safe) safe(object);
 }
 
-NSString * mq_size_for_length(NSUInteger i_length) {
-    if (i_length > pow(MQ_STANDARD_LENGTH, 2))
-        return [NSString stringWithFormat:@"%.2fMB",i_length / pow(MQ_STANDARD_LENGTH, 2)];
-    else if (i_length > MQ_STANDARD_LENGTH)
-        return [NSString stringWithFormat:@"%.0fKB",i_length / MQ_STANDARD_LENGTH];
+NSString * mq_size_for_length(NSUInteger i_length , BOOL standard) {
+    NSUInteger i = standard ? MQ_STANDARD_LENGTH : MQ_STANDARD_LENGTH_IN_IOS;
+    if (i_length > pow(i, 2))
+        return [NSString stringWithFormat:@"%.2fMB",i_length / pow(i, 2)];
+    else if (i_length > i)
+        return [NSString stringWithFormat:@"%.0luKB",i_length / i];
     else return [NSString stringWithFormat:@"%@B",@(i_length)];
 }
 

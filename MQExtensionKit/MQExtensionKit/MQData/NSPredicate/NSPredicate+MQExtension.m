@@ -89,8 +89,8 @@
 }
 
 // only in china
-+ (BOOL) mq_accurate_verify_ID : (NSString *) sID {
-    NSString *value = [sID stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
++ (BOOL) mq_accurate_verify_ID : (NSString *) s_ID {
+    NSString *value = [s_ID stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     int length =0;
     if (!value || !value.length) return NO;
     else {

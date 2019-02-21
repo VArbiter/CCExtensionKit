@@ -7,17 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MQExtensionConst.h"
+
 @import UIKit;
-
-/// MQExtensionKit Version Number . // MQExtensionKit 版本号 .
-#ifndef MQ_EXTENSION_KIT_RELEASE_VERSION_NUMBER
-    #define MQ_EXTENSION_KIT_RELEASE_VERSION_NUMBER 4.0.0
-#endif
-
-/// storage standard unit size . // 标准储存单元大小
-#ifndef MQ_STANDARD_LENGTH
-    #define MQ_STANDARD_LENGTH 1024.f
-#endif
 
 /// formatStrings. // 格式化字符串
 #ifndef MQ_STRING_FORMAT
@@ -28,10 +20,12 @@
 #endif
 
 /// console debug logging // 控制台 debug 输出
+// for log , recommended to use DDLog in CocoaLumberjack ( https://github.com/CocoaLumberjack/CocoaLumberjack )
+// 针对 log , 推荐使用 CocoaLumberjack 中的 DDLog .
 #ifndef MQLog
     #if DEBUG
         #define MQLog(fmt , ...) \
-                NSLog((@"\n\nMQ_LOG\n\nMQ_FILE :  %s\nMQ_METHOND :  %s\nMQ_LINE :  %d\n" fmt),__FILE__,__func__,__LINE__,##__VA_ARGS__)
+                NSLog((@"\n\n\tMQ_LOG:\n\n\t\tMQ_FILE :  %s\n\t\tMQ_METHOND :  %s\n\t\tMQ_LINE :  %d\n\t\tMQ_OUTPUT:  " fmt),__FILE__,__func__,__LINE__,##__VA_ARGS__)
     #else
         #define MQLog(fmt , ...) /* */
     #endif
@@ -130,7 +124,7 @@ void mq_detect_simulator(void (^y)(void) , void (^n)(void));
 void mq_safe_chain(id object , void (^safe)(id object));
 
 /// @return MB / KB / B . // 返回 MB , KB , B
-NSString * mq_size_for_length(NSUInteger i_length);
+NSString * mq_size_for_length(NSUInteger i_length , BOOL standard);
 
 /// if object == nil , make insure_object replace it .// 如果 object 为 nil , 用 insure_object 替换它.
 id mq_default_object(id object , id insure_object);

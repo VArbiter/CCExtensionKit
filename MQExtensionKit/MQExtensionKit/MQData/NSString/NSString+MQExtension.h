@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MQExtensionConst.h"
 
 #ifndef MQ_LOCALIZED_S
     #define MQ_LOCALIZED_S(_vKey_,_vComment_) [NSString mq_localized:(_vKey_) comment:(_vComment_)]
@@ -39,10 +40,10 @@
 /// break has the topest priority . // 回车拥有最高优先级
 + (instancetype) mq_merge : (BOOL) is_need_break
                   spacing : (BOOL) is_need_spacing
-                     with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION;
+                     with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION MQ_EXTENSION_DEPRECATED("deprecated . use 's' && 'p' block . // 弃用 , 使用 's' 和 'p' 块代码 .");
 + (instancetype) mq_merge : (NSArray <NSString *> *) array_strings
                need_break : (BOOL) is_need_break
-                  spacing : (BOOL) is_need_spacing ;
+                  spacing : (BOOL) is_need_spacing MQ_EXTENSION_DEPRECATED("deprecated . use 's' && 'p' block . // 弃用 , 使用 's' 和 'p' 块代码 .");
 
 /// for localizedString == MQ_LOCALIZED_S(...) // 本地化字符串
 + (instancetype) mq_localized : (NSString *) s_key
