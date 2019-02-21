@@ -209,3 +209,14 @@ static NSString * MQ_EXTENSION_KVO_ALL_KEY_PATHS_KEY = @"MQ_EXTENSION_KVO_ALL_KE
 }
 
 @end
+
+@implementation NSObject (MQExtension_Filter_Unicode)
+
+- (NSString *) mq_log_filter_unicode {
+    if ([self respondsToSelector:@selector(description)]) {
+        return [NSString stringWithCString:[[self description] cStringUsingEncoding:NSUTF8StringEncoding] encoding:NSNonLossyASCIIStringEncoding];
+    }
+    return nil;
+}
+
+@end

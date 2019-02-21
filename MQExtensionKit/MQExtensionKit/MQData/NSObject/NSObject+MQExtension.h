@@ -46,3 +46,10 @@ NSString * mq_log_object(id object);
 - (void) mq_remove_all_observers_and_destory ;
 
 @end
+
+@interface NSObject (MQExtension_Filter_Unicode)
+
+// covert unicode to its right format , use it in NSlog . // 转换 Unicode 为正确的形式 , 在 NSlog 中使用
+- (NSString *) mq_log_filter_unicode ;
+
+@end
