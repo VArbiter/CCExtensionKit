@@ -8,9 +8,9 @@
 
 [![Platform](https://img.shields.io/cocoapods/p/MQExtensionKit.svg?style=flat)](http://cocoapods.org/pods/MQExtensionKit)
 
-### 中文说明请点击[[这里](https://varbiter.github.io/2018/08/01/MQExtensionKit_README_CN/)].
+### 中文说明请点击[[这里](https://varbiter.github.io/2018/12/27/MQExtensionKit_README_CN/)].
 
-### Docs in English [[click here](https://varbiter.github.io/2018/08/01/MQExtensionKit_README/)].
+### Docs in English [[click here](https://varbiter.github.io/2018/12/27/MQExtensionKit_README/)].
 
 ### Example
 
