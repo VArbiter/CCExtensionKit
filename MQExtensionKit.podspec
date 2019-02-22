@@ -70,7 +70,7 @@ Pod::Spec.new do |s|
       s.subspec 'MQMedia' do |media|
         media.source_files = 'MQExtensionKit/MQExtensionKit/MQMedia/**/*'
         media.dependency 'MQExtensionKit/MQCore'
-        media.frameworks = 'AVFoundation' , "AssetsLibrary"
+        media.frameworks = 'AVFoundation' , "AssetsLibrary" , "VideoToolbox" , "CoreMedia"
         media.weak_frameworks = "Photos"
       end
 
