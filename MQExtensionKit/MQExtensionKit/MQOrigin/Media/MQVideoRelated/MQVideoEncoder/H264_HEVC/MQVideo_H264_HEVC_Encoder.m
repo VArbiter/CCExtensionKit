@@ -32,6 +32,7 @@ void mq_compression_recall_function(void * CM_NULLABLE outputCallbackRefCon,
 
 - (void) mq_prepare_file_path : (NSString *) s_file_path
                   encode_type : (CMVideoCodecType) type
+                     for_live : (BOOL) is_for_live
                  encode_width : (int32_t) i_width
                 encode_height : (int32_t) i_height
                    frame_rate : (int32_t) fps
@@ -56,10 +57,15 @@ void mq_compression_recall_function(void * CM_NULLABLE outputCallbackRefCon,
     VTSessionSetProperty(_ref, kVTCompressionPropertyKey_RealTime, (__bridge CFTypeRef _Nullable)(@(false)));
     VTSessionSetProperty(_ref, kVTCompressionPropertyKey_ExpectedFrameRate, (__bridge CFTypeRef _Nullable)(@(fps)));
     VTSessionSetProperty(_ref, kVTCompressionPropertyKey_AverageBitRate, (__bridge CFTypeRef _Nullable)(@(bit_rate)));
+    
     CFArrayRef array = (__bridge CFArrayRef _Nullable)(@[@(bit_rate / 8) , @(1)]);
     VTSessionSetProperty(_ref, kVTCompressionPropertyKey_DataRateLimits, array);
     VTSessionSetProperty(_ref, kVTCompressionPropertyKey_MaxKeyFrameInterval, (__bridge CFTypeRef _Nullable)(@(fps)));
     
+    if (is_for_live) {
+        VTSessionSetProperty(_ref, kVTCompressionPropertyKey_ProfileLevel, kVTProfileLevel_H264_Baseline_AutoLevel);
+    }
+
     VTCompressionSessionPrepareToEncodeFrames(_ref);
     
 }

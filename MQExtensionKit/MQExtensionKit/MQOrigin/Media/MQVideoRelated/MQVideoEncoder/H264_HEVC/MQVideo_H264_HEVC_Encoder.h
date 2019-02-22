@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 // have to make sure that filepath exists . (not file .) // 保证路径存在 (不是文件存在)
 - (void) mq_prepare_file_path : (NSString *) s_file_path
                   encode_type : (CMVideoCodecType) type
+                     for_live : (BOOL) is_for_live
                  encode_width : (int32_t) i_width
                 encode_height : (int32_t) i_height
                    frame_rate : (int32_t) fps
