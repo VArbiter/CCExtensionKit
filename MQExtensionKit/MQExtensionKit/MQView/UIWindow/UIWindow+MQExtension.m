@@ -1,6 +1,6 @@
 //
 //  UIWindow+MQExtension.m
-//  MQExtension_Example
+//  MQExtensionKit
 //
 //  Created by ElwinFrederick on 2018/11/27.
 //  Copyright © 2018 ElwinFrederick. All rights reserved.

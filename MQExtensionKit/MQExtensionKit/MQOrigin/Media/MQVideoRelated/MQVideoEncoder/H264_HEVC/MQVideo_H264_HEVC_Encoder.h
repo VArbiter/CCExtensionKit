@@ -1,6 +1,6 @@
 //
 //  MQVideo_H264_HEVC_Encoder.h
-//  MQExtension_Example
+//  MQExtensionKit
 //
 //  Created by 冯明庆 on 2019/2/21.
 //  Copyright © 2019 ElwinFrederick. All rights reserved.
