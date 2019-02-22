@@ -83,6 +83,7 @@
     if (_array_pointer) return _array_pointer;
     NSPointerArray *t = [[NSPointerArray alloc] initWithOptions:NSPointerFunctionsWeakMemory];
     _array_pointer = t;
-    return _array_pointer;}
+    return _array_pointer;
+}
 
 @end

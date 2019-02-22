@@ -29,5 +29,7 @@
     #import "MQPhotoManager.h"
     #import "MQVideoManager.h"
     #import "MQAudioRecorder.h"
+    #import "MQVideo_H264_HEVC_Encoder.h"
+    #import "MQVideo_H264_HEVC_Decoder.h"
 
 #endif /* MQOriginCustom_h */
