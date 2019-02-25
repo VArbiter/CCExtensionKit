@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/// Video ONLY , no audio .
 @interface MQVideo_H264_HEVC_Decoder : NSObject
 
 @property (nonatomic , assign) id <MQVideo_H264_HEVC_DecoderDelegate> delegate_t ;

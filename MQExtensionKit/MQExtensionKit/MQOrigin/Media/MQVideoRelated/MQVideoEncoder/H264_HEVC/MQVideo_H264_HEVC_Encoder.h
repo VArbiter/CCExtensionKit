@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 //      VLC player ( https://www.videolan.org ) might got speed of the vids ( encoded by this file) faster than normal .
 //      VLC 播放器 ( https://www.videolan.org ) 可能会将视频 (这个文件编码的) 的速度变快 .
 
+
+/// Video ONLY , no audio .
 @interface MQVideo_H264_HEVC_Encoder : NSObject
 
 // have to make sure that filepath exists . (not file .) // 保证路径存在 (不是文件存在)
