@@ -10,57 +10,99 @@
 
 FOUNDATION_EXPORT CGFloat const mq_default_animation_common_duration ;
 
+/// orientation is enabled.  // 旋转方向 是启用的 .
+/// all the function name ended with "_Precise" indicate that calculation will be precised . ( eg : it might be 0.33333333333333 ... ) // 所有以 "_Precise" 结尾的函数 , 计算是精确的 . (可能是 0.333333333 ... (0.3 3循环)) .
+/// all the function name ended with "_o" indicate that calculation consider the orientation of device . // 所有以 "_o" 结尾的函数 , 都是考虑到了设备的旋转方向来计算的 .
+
 /// for some designer use basic UI that is not for iPhone 6/6s/7/8 // 针对于一些设计人员设计的不是基于 iPhone 6/6s/7/8 所设计的尺寸
 /// set H && W only once in somewhere for "+ (void) load" // 设置基准 宽 && 高 , 在 "+ (void) load "设置里调用一次即可
+
 void mq_set_UI_designed_default_size(CGSize size) ;
 
 typedef struct CG_BOXABLE CGPoint MQPoint;
-/// consider it always protrait (home button on the bottom) . // 只考虑垂直方向 (home 按键在底部)
+
 MQPoint MQPointMake_Precise(CGFloat x , CGFloat y);
 MQPoint MQPointMake(CGFloat x , CGFloat y);
 MQPoint MQMakePointFrom(CGPoint point);
+
+MQPoint MQPointMake_Precise_o(CGFloat x , CGFloat y);
+MQPoint MQPointMake_o(CGFloat x , CGFloat y);
+MQPoint MQMakePointFrom_o(CGPoint point);
+
 CGPoint CGMakePointFrom(MQPoint point);
 
 typedef struct CG_BOXABLE CGSize MQSize;
-/// consider it always protrait (home button on the bottom) . // 只考虑垂直方向 (home 按键在底部)
+
 MQSize MQSizeMake_Precise(CGFloat width , CGFloat height);
 MQSize MQSizeMake(CGFloat width , CGFloat height);
 MQSize MQMakeSizeFrom(CGSize size);
+
+MQSize MQSizeMake_Precise_o(CGFloat width , CGFloat height);
+MQSize MQSizeMake_o(CGFloat width , CGFloat height);
+MQSize MQMakeSizeFrom_o(CGSize size);
+
 CGSize CGMakeSizeFrom(MQSize size);
 
 typedef struct CG_BOXABLE CGRect MQRect;
+
 MQRect MQRectMake_Precise(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
 MQRect MQRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
 MQRect MQMakeRectFrom(CGRect rect);
+
+MQRect MQRectMake_Precise_o(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
+MQRect MQRectMake_o(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
+MQRect MQMakeRectFrom_o(CGRect rect);
+
 CGRect CGMakeRectFrom(MQRect rect);
 
 CGRect CGRectFull(void); // main screen bounds . // 等于屏幕的边界
 
 typedef struct CG_BOXABLE UIEdgeInsets MQEdgeInsets;
-/// consider it always protrait (home button on the bottom) . // 只考虑垂直方向 (home 按键在底部)
+
 MQEdgeInsets MQEdgeInsetsMake_Precise(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
 MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
 MQEdgeInsets MQMakeEdgeInsetsFrom(UIEdgeInsets insets);
+
+MQEdgeInsets MQEdgeInsetsMake_Precise_o(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
+MQEdgeInsets MQEdgeInsetsMake_o(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
+MQEdgeInsets MQMakeEdgeInsetsFrom_o(UIEdgeInsets insets);
+
 UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets);
 
-/// scaled width && height (based on main screen's width && height resolution) , consider it always protrait (home button on the bottom) . // 按比例缩放后的 宽/高 (基于屏幕宽和高的分辨率) , 只考虑垂直方向 (home 按键在底部)
+/// scaled width && height (based on main screen's width && height resolution) . // 按比例缩放后的 宽/高 (基于屏幕宽和高的分辨率)
 CGFloat MQScaleW_Precise(CGFloat w);
 CGFloat MQScaleW(CGFloat w);
 CGFloat MQScaleH_Precise(CGFloat h);
 CGFloat MQScaleH(CGFloat h);
 
-/// aspect fit the width && height , consider it always protrait (home button on the bottom) .(based on main screen's width resolution) // 按照特定比例缩放后的 宽 / 高 (基于屏幕宽的分辨率) , 只考虑垂直方向 (home 按键在底部)
+CGFloat MQScaleW_Precise_o(CGFloat w);
+CGFloat MQScaleW_o(CGFloat w);
+CGFloat MQScaleH_Precise_o(CGFloat h);
+CGFloat MQScaleH_o(CGFloat h);
+
+/// aspect fit the width && height .(based on main screen's width resolution) // 按照特定比例缩放后的 宽 / 高 (基于屏幕宽的分辨率)
 CGFloat MQAspectRatio(void);
 CGFloat MQAspectW_Precise(CGFloat w);
 CGFloat MQAspectW(CGFloat w);
 CGFloat MQAspectH_Precise(CGFloat h);
 CGFloat MQAspectH(CGFloat h);
 
-/// length scale , consider it always protrait (home button on the bottom) . // 计算 宽/高 所占屏幕比例 , 只考虑垂直方向 (home 按键在底部)
+CGFloat MQAspectRatio_o(void);
+CGFloat MQAspectW_Precise_o(CGFloat w);
+CGFloat MQAspectW_o(CGFloat w);
+CGFloat MQAspectH_Precise_o(CGFloat h);
+CGFloat MQAspectH_o(CGFloat h);
+
+/// length scale . // 计算 宽/高 所占屏幕比例
 CGFloat MQWScale(CGFloat w);
 CGFloat MQHScale(CGFloat h);
 CGPoint MQScaleOrigin(CGPoint origin);
 CGSize MQScaleSize(CGSize size);
+
+CGFloat MQWScale_o(CGFloat w);
+CGFloat MQHScale_o(CGFloat h);
+CGPoint MQScaleOrigin_o(CGPoint origin);
+CGSize MQScaleSize_o(CGSize size);
 
 /// get device orientation . if "UIDeviceOrientationFaceUp / UIDeviceOrientationFaceDown" have no relevance to your app , recommended to set YES with this param . if you set false / NO . you will get "UIDeviceOrientationUnknown" the first time you use . // 获得屏幕旋转方向 , 如果你的应用不在乎手机 是 "UIDeviceOrientationFaceUp / UIDeviceOrientationFaceDown" 的 , 推荐在参数设置为 YES . 如果设置 false / NO . 第一次获得屏幕旋转方向的时候 , 你会获得 "UIDeviceOrientationUnknown" .
 UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orientation);

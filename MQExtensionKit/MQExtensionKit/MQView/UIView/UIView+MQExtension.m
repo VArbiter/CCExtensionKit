@@ -17,11 +17,26 @@ void mq_set_UI_designed_default_size(CGSize size) {
     MQ_DEFAULT_SCALE_HEIGHT = size.height;
 }
 
-#pragma mark - Struct
-MQPoint MQPointMake_Precise(CGFloat x , CGFloat y) {
+#pragma mark - ----- ###########################################################
+
+/// internal functions
+
+UIDeviceOrientation mq_internal_current_device_orientation(BOOL is_portrait , BOOL is_use_status_bar_orientation) {
+    if (is_portrait) return UIDeviceOrientationPortrait;
+    if (is_use_status_bar_orientation) {
+        UIDeviceOrientation orientation = ((UIDeviceOrientation)UIApplication.sharedApplication.statusBarOrientation);
+        return orientation;
+    }
+    else {
+        UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+        return orientation;
+    }
+}
+
+MQPoint mq_internal_pointer_make_precise(BOOL is_portrait , CGFloat x , CGFloat y) {
     MQPoint o;
     
-    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
+    UIDeviceOrientation orientation = mq_internal_current_device_orientation(is_portrait, YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
         o.x = x / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
@@ -34,25 +49,11 @@ MQPoint MQPointMake_Precise(CGFloat x , CGFloat y) {
     
     return o;
 }
-MQPoint MQPointMake(CGFloat x , CGFloat y) {
-    MQPoint o = MQPointMake_Precise(x, y);
-    if (CGFLOAT_IS_DOUBLE) {
-        o = (MQPoint){ceil(o.x),ceil(o.y)};
-    }
-    else o = (MQPoint){ceilf(o.x),ceilf(o.y)};
-    return o;
-}
-MQPoint MQMakePointFrom(CGPoint point) {
-    return MQPointMake(point.x, point.y);
-}
-CGPoint CGMakePointFrom(MQPoint point) {
-    return CGPointMake(point.x, point.y);
-}
 
-MQSize MQSizeMake_Precise(CGFloat width , CGFloat height) {
+MQSize  mq_internal_size_make_precise(BOOL is_portrait , CGFloat width , CGFloat height) {
     MQSize s;
     
-    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
+    UIDeviceOrientation orientation = mq_internal_current_device_orientation(is_portrait, YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
         s.width = width / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
@@ -65,6 +66,77 @@ MQSize MQSizeMake_Precise(CGFloat width , CGFloat height) {
     
     return s;
 }
+
+MQRect mq_internal_rect_make_precise(BOOL is_portrait , CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
+    MQRect r;
+    r.origin = mq_internal_pointer_make_precise(is_portrait, x, y);
+    r.size = mq_internal_size_make_precise(is_portrait, width, height);
+    return r;
+}
+
+MQEdgeInsets mq_internal_edge_insets_make_precise(BOOL is_portrait , CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
+    MQEdgeInsets i;
+    
+    UIDeviceOrientation orientation = mq_internal_current_device_orientation(is_portrait, YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        i.top = top / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
+        i.left = left / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
+        i.bottom = bottom / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
+        i.right = right / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
+    }
+    else {
+        i.top = top / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
+        i.left = left / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
+        i.bottom = bottom / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
+        i.right = right / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
+    }
+    
+    return i;
+}
+
+#pragma mark - ----- ###########################################################
+#pragma mark - Struct
+
+MQPoint MQPointMake_Precise(CGFloat x , CGFloat y) {
+    return mq_internal_pointer_make_precise(YES, x, y);
+}
+MQPoint MQPointMake(CGFloat x , CGFloat y) {
+    MQPoint o = MQPointMake_Precise(x, y);
+    if (CGFLOAT_IS_DOUBLE) {
+        o = (MQPoint){ceil(o.x),ceil(o.y)};
+    }
+    else o = (MQPoint){ceilf(o.x),ceilf(o.y)};
+    return o;
+}
+MQPoint MQMakePointFrom(CGPoint point) {
+    return MQPointMake(point.x, point.y);
+}
+
+MQPoint MQPointMake_Precise_o(CGFloat x , CGFloat y) {
+    return mq_internal_pointer_make_precise(false, x, y);
+}
+MQPoint MQPointMake_o(CGFloat x , CGFloat y) {
+    MQPoint o = MQPointMake_Precise_o(x, y);
+    if (CGFLOAT_IS_DOUBLE) {
+        o = (MQPoint){ceil(o.x),ceil(o.y)};
+    }
+    else o = (MQPoint){ceilf(o.x),ceilf(o.y)};
+    return o;
+}
+MQPoint MQMakePointFrom_o(CGPoint point) {
+    return MQPointMake_o(point.x, point.y);
+}
+
+CGPoint CGMakePointFrom(MQPoint point) {
+    return CGPointMake(point.x, point.y);
+}
+
+#pragma mark - -----
+
+MQSize MQSizeMake_Precise(CGFloat width , CGFloat height) {
+    return mq_internal_size_make_precise(YES, width, height);
+}
 MQSize MQSizeMake(CGFloat width , CGFloat height) {
     MQSize s = MQSizeMake_Precise(width, height);
     if (CGFLOAT_IS_DOUBLE) {
@@ -76,15 +148,30 @@ MQSize MQSizeMake(CGFloat width , CGFloat height) {
 MQSize MQMakeSizeFrom(CGSize size) {
     return MQSizeMake(size.width, size.height);
 }
+
+MQSize MQSizeMake_Precise_o(CGFloat width , CGFloat height) {
+    return mq_internal_size_make_precise(false, width, height);
+}
+MQSize MQSizeMake_o(CGFloat width , CGFloat height) {
+    MQSize s = MQSizeMake_Precise_o(width, height);
+    if (CGFLOAT_IS_DOUBLE) {
+        s = (MQSize){ceil(s.width),ceil(s.height)};
+    }
+    else s = (MQSize){ceilf(s.width),ceilf(s.height)};
+    return s;
+}
+MQSize MQMakeSizeFrom_o(CGSize size) {
+    return MQSizeMake_o(size.width, size.height);
+}
+
 CGSize CGMakeSizeFrom(MQSize size) {
     return CGSizeMake(size.width, size.height);
 }
 
+#pragma mark - -----
+
 MQRect MQRectMake_Precise(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
-    MQRect r;
-    r.origin = MQPointMake(x, y);
-    r.size = MQSizeMake(width, height);
-    return r;
+    return mq_internal_rect_make_precise(YES, x, y, width, height);
 }
 MQRect MQRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
     MQRect r = MQRectMake_Precise(x, y, width, height);
@@ -104,6 +191,29 @@ MQRect MQMakeRectFrom(CGRect rect) {
                       rect.size.width,
                       rect.size.height);
 }
+
+MQRect MQRectMake_Precise_o(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
+    return mq_internal_rect_make_precise(false, x, y, width, height);
+}
+MQRect MQRectMake_o(CGFloat x , CGFloat y , CGFloat width , CGFloat height) {
+    MQRect r = MQRectMake_Precise_o(x, y, width, height);
+    if (CGFLOAT_IS_DOUBLE) {
+        r = (MQRect){.origin = {ceil(r.origin.x),ceil(r.origin.y)},
+            .size = {ceil(r.size.width),ceil(r.size.height)}};
+    }
+    else {
+        r = (MQRect){.origin = {ceilf(r.origin.x),ceilf(r.origin.y)},
+            .size = {ceilf(r.size.width),ceilf(r.size.height)}};
+    }
+    return r;
+}
+MQRect MQMakeRectFrom_o(CGRect rect) {
+    return MQRectMake_o(rect.origin.x,
+                        rect.origin.y,
+                        rect.size.width,
+                        rect.size.height);
+}
+
 CGRect CGMakeRectFrom(MQRect rect) {
     return CGRectMake(rect.origin.x,
                       rect.origin.y,
@@ -115,25 +225,10 @@ CGRect CGRectFull(void){
     return UIScreen.mainScreen.bounds;
 }
 
+#pragma mark - -----
+
 MQEdgeInsets MQEdgeInsetsMake_Precise(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
-    MQEdgeInsets i;
-    
-    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
-    if (orientation == UIDeviceOrientationPortrait
-        || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        i.top = top / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
-        i.left = left / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
-        i.bottom = bottom / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
-        i.right = right / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
-    }
-    else {
-        i.top = top / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
-        i.left = left / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
-        i.bottom = bottom / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
-        i.right = right / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
-    }
-    
-    return i;
+    return mq_internal_edge_insets_make_precise(YES, top, left, bottom, right);
 }
 MQEdgeInsets MQEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
     MQEdgeInsets i = MQEdgeInsetsMake_Precise(top, left, bottom, right);
@@ -151,6 +246,27 @@ MQEdgeInsets MQMakeEdgeInsetsFrom(UIEdgeInsets insets) {
                             insets.bottom,
                             insets.right);
 }
+
+MQEdgeInsets MQEdgeInsetsMake_Precise_o(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
+    return mq_internal_edge_insets_make_precise(false, top, left, bottom, right);
+}
+MQEdgeInsets MQEdgeInsetsMake_o(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right) {
+    MQEdgeInsets i = MQEdgeInsetsMake_Precise_o(top, left, bottom, right);
+    
+    if (CGFLOAT_IS_DOUBLE) {
+        i = (MQEdgeInsets){ceil(i.top),ceil(i.left),ceil(i.bottom),ceil(i.right)};
+    }
+    else i = (MQEdgeInsets){ceilf(i.top),ceilf(i.left),ceilf(i.bottom),ceilf(i.right)};
+    
+    return i;
+}
+MQEdgeInsets MQMakeEdgeInsetsFrom_o(UIEdgeInsets insets) {
+    return MQEdgeInsetsMake_o(insets.top,
+                              insets.left,
+                              insets.bottom,
+                              insets.right);
+}
+
 UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets) {
     return UIEdgeInsetsMake(insets.top,
                             insets.left,
@@ -158,14 +274,10 @@ UIEdgeInsets UIMakeEdgeInsetsFrom(MQEdgeInsets insets) {
                             insets.right);
 }
 
-#pragma mark - Scale
+#pragma mark - ----- Scale
+
 CGFloat MQScaleW_Precise(CGFloat w) {
-    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
-    if (orientation == UIDeviceOrientationPortrait
-        || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        return w / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
-    }
-    else return w / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
+    return w / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
 }
 CGFloat MQScaleW(CGFloat w) {
     if (CGFLOAT_IS_DOUBLE) {
@@ -174,12 +286,7 @@ CGFloat MQScaleW(CGFloat w) {
     return ceilf(MQScaleW_Precise(w));
 }
 CGFloat MQScaleH_Precise(CGFloat h) {
-    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
-    if (orientation == UIDeviceOrientationPortrait
-        || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        return h / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
-    }
-    else return h / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
+    return h / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
 }
 CGFloat MQScaleH(CGFloat h) {
     if (CGFLOAT_IS_DOUBLE) {
@@ -188,13 +295,39 @@ CGFloat MQScaleH(CGFloat h) {
     return ceilf(MQScaleH_Precise(h));
 }
 
-CGFloat MQAspectRatio(void) {
-    UIDeviceOrientation orientation = mq_current_device_orientation(YES);
+CGFloat MQScaleW_Precise_o(CGFloat w) {
+    UIDeviceOrientation orientation = mq_internal_current_device_orientation(false, YES);
     if (orientation == UIDeviceOrientationPortrait
         || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        return UIScreen.mainScreen.bounds.size.width / MQ_DEFAULT_SCALE_WIDTH ;
+        return w / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.width;
     }
-    else return UIScreen.mainScreen.bounds.size.height / MQ_DEFAULT_SCALE_WIDTH ;
+    else return w / MQ_DEFAULT_SCALE_WIDTH * UIScreen.mainScreen.bounds.size.height;
+}
+CGFloat MQScaleW_o(CGFloat w) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(MQScaleW_Precise_o(w));
+    }
+    return ceilf(MQScaleW_Precise_o(w));
+}
+CGFloat MQScaleH_Precise_o(CGFloat h) {
+    UIDeviceOrientation orientation = mq_internal_current_device_orientation(false, YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        return h / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.height;
+    }
+    else return h / MQ_DEFAULT_SCALE_HEIGHT * UIScreen.mainScreen.bounds.size.width;
+}
+CGFloat MQScaleH_o(CGFloat h) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(MQScaleH_Precise_o(h));
+    }
+    return ceilf(MQScaleH_Precise_o(h));
+}
+
+#pragma mark - -----
+
+CGFloat MQAspectRatio(void) {
+    return UIScreen.mainScreen.bounds.size.width / MQ_DEFAULT_SCALE_WIDTH ;
 }
 CGFloat MQAspectW_Precise(CGFloat w) {
     return w * MQAspectRatio();
@@ -215,6 +348,47 @@ CGFloat MQAspectH(CGFloat h) {
     return ceilf(MQAspectH_Precise(h));
 }
 
+CGFloat MQAspectRatio_o(void) {
+    UIDeviceOrientation orientation = mq_internal_current_device_orientation(false, YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        return UIScreen.mainScreen.bounds.size.width / MQ_DEFAULT_SCALE_WIDTH ;
+    }
+    else return UIScreen.mainScreen.bounds.size.height / MQ_DEFAULT_SCALE_HEIGHT ;
+}
+CGFloat MQAspectW_Precise_o(CGFloat w) {
+    return w * MQAspectRatio_o();
+}
+CGFloat MQAspectW_o(CGFloat w) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(MQAspectW_Precise_o(w));
+    }
+    return ceilf(MQAspectW_Precise_o(w));
+}
+CGFloat MQAspectH_Precise_o(CGFloat h) {
+    return h * MQAspectRatio_o();
+}
+CGFloat MQAspectH_o(CGFloat h) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(MQAspectH_Precise_o(h));
+    }
+    return ceilf(MQAspectH_Precise_o(h));
+}
+
+#pragma mark - -----
+
+CGFloat MQWScale(CGFloat w) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(w / MQ_DEFAULT_SCALE_WIDTH);
+    }
+    return ceilf(w / MQ_DEFAULT_SCALE_WIDTH);
+}
+CGFloat MQHScale(CGFloat h) {
+    if (CGFLOAT_IS_DOUBLE) {
+        return ceil(h / MQ_DEFAULT_SCALE_HEIGHT);
+    }
+    return ceilf(h / MQ_DEFAULT_SCALE_HEIGHT);
+}
 CGPoint MQScaleOrigin(CGPoint origin) {
     return CGPointMake(MQScaleW(origin.x), MQScaleH(origin.y));
 }
@@ -222,23 +396,52 @@ CGSize MQScaleSize(CGSize size) {
     return CGSizeMake(MQScaleW(size.width), MQScaleH(size.height));
 }
 
-CGFloat MQWScale(CGFloat w) {
-    return w / MQ_DEFAULT_SCALE_WIDTH;
-}
-CGFloat MQHScale(CGFloat h) {
-    return h / MQ_DEFAULT_SCALE_HEIGHT;
-}
-
-UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orientation) {
-    if (is_use_status_bar_orientation) {
-        UIDeviceOrientation orientation = ((UIDeviceOrientation)UIApplication.sharedApplication.statusBarOrientation);
-        return orientation;
+CGFloat MQWScale_o(CGFloat w) {
+    UIDeviceOrientation orientation = mq_internal_current_device_orientation(false, YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        if (CGFLOAT_IS_DOUBLE) {
+            return ceil(w / MQ_DEFAULT_SCALE_WIDTH);
+        }
+        return ceilf(w / MQ_DEFAULT_SCALE_WIDTH);
     }
     else {
-        UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-        return orientation;
+        if (CGFLOAT_IS_DOUBLE) {
+            return ceil(w / MQ_DEFAULT_SCALE_HEIGHT);
+        }
+        return ceilf(w / MQ_DEFAULT_SCALE_HEIGHT);
     }
 }
+CGFloat MQHScale_o(CGFloat h) {
+    UIDeviceOrientation orientation = mq_internal_current_device_orientation(false, YES);
+    if (orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown) {
+        if (CGFLOAT_IS_DOUBLE) {
+            return ceil(h / MQ_DEFAULT_SCALE_HEIGHT);
+        }
+        return ceilf(h / MQ_DEFAULT_SCALE_HEIGHT);
+    }
+    else {
+        if (CGFLOAT_IS_DOUBLE) {
+            return ceil(h / MQ_DEFAULT_SCALE_WIDTH);
+        }
+        return ceilf(h / MQ_DEFAULT_SCALE_WIDTH);
+    }
+}
+CGPoint MQScaleOrigin_o(CGPoint origin) {
+    return CGPointMake(MQScaleW_o(origin.x), MQScaleH_o(origin.y));
+}
+CGSize MQScaleSize_o(CGSize size) {
+    return CGSizeMake(MQScaleW_o(size.width), MQScaleH_o(size.height));
+}
+
+#pragma mark - -----
+
+UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orientation) {
+    return mq_internal_current_device_orientation(false, is_use_status_bar_orientation);
+}
+
+#pragma mark - ----- ###########################################################
 
 @implementation UIView (MQExtension)
 
