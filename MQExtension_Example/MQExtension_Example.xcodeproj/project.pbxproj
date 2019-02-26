@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3771917B221E88D8001A6B5A /* MQVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37719172221E88D8001A6B5A /* MQVideoManager.m */; };
+		3771917C221E88D8001A6B5A /* MQAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771917A221E88D8001A6B5A /* MQAudioRecorder.m */; };
+		3771917F221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771917E221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.m */; };
+		37719182221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 37719181221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.m */; };
 		3FE6F4D7C4B954FAD21408F9 /* Pods_MQExtension_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */; };
 		704C2E1B21C79BBE003EBB38 /* MQTouchableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */; };
 		7089AB5B21ACF13A00C835EE /* UIWindow+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */; };
@@ -39,8 +43,6 @@
 		70F08E89210EC60C007B4D33 /* MQNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08DA1210EC60C007B4D33 /* MQNull.m */; };
 		70F08E8A210EC60C007B4D33 /* MQTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08DA4210EC60C007B4D33 /* MQTaskManager.m */; };
 		70F08E8B210EC60C007B4D33 /* MQPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08DA8210EC60C007B4D33 /* MQPhotoManager.m */; };
-		70F08E8C210EC60C007B4D33 /* MQAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08DAC210EC60C007B4D33 /* MQAudioRecorder.m */; };
-		70F08E8D210EC60C007B4D33 /* MQVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08DAF210EC60C007B4D33 /* MQVideoManager.m */; };
 		70F08E8E210EC60C007B4D33 /* MQDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08DB2210EC60C007B4D33 /* MQDevice.m */; };
 		70F08E8F210EC60C007B4D33 /* MQAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08DB6210EC60C007B4D33 /* MQAuthentication.m */; };
 		70F08E90210EC60C007B4D33 /* MQAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08DBA210EC60C007B4D33 /* MQAuthorize.m */; };
@@ -106,6 +108,15 @@
 
 /* Begin PBXFileReference section */
 		3234B751F3D87C878A5DA387 /* Pods-MQExtension_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQExtension_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example.release.xcconfig"; sourceTree = "<group>"; };
+		37719160221E485E001A6B5A /* MQExtensionConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQExtensionConst.h; sourceTree = "<group>"; };
+		37719171221E88D8001A6B5A /* MQVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQVideoManager.h; sourceTree = "<group>"; };
+		37719172221E88D8001A6B5A /* MQVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQVideoManager.m; sourceTree = "<group>"; };
+		37719179221E88D8001A6B5A /* MQAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQAudioRecorder.h; sourceTree = "<group>"; };
+		3771917A221E88D8001A6B5A /* MQAudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQAudioRecorder.m; sourceTree = "<group>"; };
+		3771917D221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQVideo_H264_HEVC_Encoder.h; sourceTree = "<group>"; };
+		3771917E221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQVideo_H264_HEVC_Encoder.m; sourceTree = "<group>"; };
+		37719180221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQVideo_H264_HEVC_Decoder.h; sourceTree = "<group>"; };
+		37719181221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQVideo_H264_HEVC_Decoder.m; sourceTree = "<group>"; };
 		65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MQExtension_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		704C2E1921C79BBE003EBB38 /* MQTouchableImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQTouchableImageView.h; sourceTree = "<group>"; };
 		704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTouchableImageView.m; sourceTree = "<group>"; };
@@ -171,10 +182,6 @@
 		70F08DA5210EC60C007B4D33 /* MQTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQTaskManager.h; sourceTree = "<group>"; };
 		70F08DA8210EC60C007B4D33 /* MQPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQPhotoManager.m; sourceTree = "<group>"; };
 		70F08DA9210EC60C007B4D33 /* MQPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQPhotoManager.h; sourceTree = "<group>"; };
-		70F08DAB210EC60C007B4D33 /* MQAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQAudioRecorder.h; sourceTree = "<group>"; };
-		70F08DAC210EC60C007B4D33 /* MQAudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQAudioRecorder.m; sourceTree = "<group>"; };
-		70F08DAE210EC60C007B4D33 /* MQVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQVideoManager.h; sourceTree = "<group>"; };
-		70F08DAF210EC60C007B4D33 /* MQVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQVideoManager.m; sourceTree = "<group>"; };
 		70F08DB2210EC60C007B4D33 /* MQDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQDevice.m; sourceTree = "<group>"; };
 		70F08DB3210EC60C007B4D33 /* MQDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQDevice.h; sourceTree = "<group>"; };
 		70F08DB5210EC60C007B4D33 /* MQAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQAuthentication.h; sourceTree = "<group>"; };
@@ -326,6 +333,84 @@
 				65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3771915F221E483E001A6B5A /* MQExtensionConst */ = {
+			isa = PBXGroup;
+			children = (
+				37719160221E485E001A6B5A /* MQExtensionConst.h */,
+			);
+			path = MQExtensionConst;
+			sourceTree = "<group>";
+		};
+		3771916F221E88D8001A6B5A /* MQVideoRelated */ = {
+			isa = PBXGroup;
+			children = (
+				37719170221E88D8001A6B5A /* MQVideoManager */,
+				37719173221E88D8001A6B5A /* MQVideoEncoder */,
+				37719175221E88D8001A6B5A /* MQVideoDecoder */,
+			);
+			path = MQVideoRelated;
+			sourceTree = "<group>";
+		};
+		37719170221E88D8001A6B5A /* MQVideoManager */ = {
+			isa = PBXGroup;
+			children = (
+				37719171221E88D8001A6B5A /* MQVideoManager.h */,
+				37719172221E88D8001A6B5A /* MQVideoManager.m */,
+			);
+			path = MQVideoManager;
+			sourceTree = "<group>";
+		};
+		37719173221E88D8001A6B5A /* MQVideoEncoder */ = {
+			isa = PBXGroup;
+			children = (
+				37719174221E88D8001A6B5A /* H264_HEVC */,
+			);
+			path = MQVideoEncoder;
+			sourceTree = "<group>";
+		};
+		37719174221E88D8001A6B5A /* H264_HEVC */ = {
+			isa = PBXGroup;
+			children = (
+				3771917D221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.h */,
+				3771917E221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.m */,
+			);
+			path = H264_HEVC;
+			sourceTree = "<group>";
+		};
+		37719175221E88D8001A6B5A /* MQVideoDecoder */ = {
+			isa = PBXGroup;
+			children = (
+				37719176221E88D8001A6B5A /* H264_HEVC */,
+			);
+			path = MQVideoDecoder;
+			sourceTree = "<group>";
+		};
+		37719176221E88D8001A6B5A /* H264_HEVC */ = {
+			isa = PBXGroup;
+			children = (
+				37719180221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.h */,
+				37719181221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.m */,
+			);
+			path = H264_HEVC;
+			sourceTree = "<group>";
+		};
+		37719177221E88D8001A6B5A /* MQAudioRelated */ = {
+			isa = PBXGroup;
+			children = (
+				37719178221E88D8001A6B5A /* MQAudioRecorder */,
+			);
+			path = MQAudioRelated;
+			sourceTree = "<group>";
+		};
+		37719178221E88D8001A6B5A /* MQAudioRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				37719179221E88D8001A6B5A /* MQAudioRecorder.h */,
+				3771917A221E88D8001A6B5A /* MQAudioRecorder.m */,
+			);
+			path = MQAudioRecorder;
 			sourceTree = "<group>";
 		};
 		53C42F97ECC1244305B475CB /* Pods */ = {
@@ -693,9 +778,9 @@
 		70F08DA6210EC60C007B4D33 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				37719177221E88D8001A6B5A /* MQAudioRelated */,
+				3771916F221E88D8001A6B5A /* MQVideoRelated */,
 				70F08DA7210EC60C007B4D33 /* MQPhotoManager */,
-				70F08DAA210EC60C007B4D33 /* MQAudioRecorder */,
-				70F08DAD210EC60C007B4D33 /* MQVideoManager */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -707,24 +792,6 @@
 				70F08DA9210EC60C007B4D33 /* MQPhotoManager.h */,
 			);
 			path = MQPhotoManager;
-			sourceTree = "<group>";
-		};
-		70F08DAA210EC60C007B4D33 /* MQAudioRecorder */ = {
-			isa = PBXGroup;
-			children = (
-				70F08DAB210EC60C007B4D33 /* MQAudioRecorder.h */,
-				70F08DAC210EC60C007B4D33 /* MQAudioRecorder.m */,
-			);
-			path = MQAudioRecorder;
-			sourceTree = "<group>";
-		};
-		70F08DAD210EC60C007B4D33 /* MQVideoManager */ = {
-			isa = PBXGroup;
-			children = (
-				70F08DAE210EC60C007B4D33 /* MQVideoManager.h */,
-				70F08DAF210EC60C007B4D33 /* MQVideoManager.m */,
-			);
-			path = MQVideoManager;
 			sourceTree = "<group>";
 		};
 		70F08DB0210EC60C007B4D33 /* MQCommon */ = {
@@ -790,6 +857,7 @@
 		70F08DC3210EC60C007B4D33 /* MQProtocol */ = {
 			isa = PBXGroup;
 			children = (
+				3771915F221E483E001A6B5A /* MQExtensionConst */,
 				70F08DC4210EC60C007B4D33 /* NSObject */,
 				70F08DC7210EC60C007B4D33 /* MQProtocolExtension.h */,
 			);
@@ -1470,7 +1538,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -1493,7 +1561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1509,11 +1577,13 @@
 				70F08EBC210EC60C007B4D33 /* WKWebView+MQExtension.m in Sources */,
 				70F08EC3210EC60C007B4D33 /* UITableView+MQExtension.m in Sources */,
 				70AC07B121CC91AB0098EDB1 /* MQRouter.m in Sources */,
+				37719182221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.m in Sources */,
 				70F08E83210EC60C007B4D33 /* MQGradientLayerView.m in Sources */,
 				70F08EBB210EC60C007B4D33 /* UINavigationItem+MQExtension.m in Sources */,
 				70F08F652112A374007B4D33 /* SVProgressHUD+MQExtension.m in Sources */,
 				70F08E91210EC60C007B4D33 /* MQCommon.m in Sources */,
 				70F08EB7210EC60C007B4D33 /* UIColor+MQExtension.m in Sources */,
+				3771917B221E88D8001A6B5A /* MQVideoManager.m in Sources */,
 				70F08E81210EC60C007B4D33 /* MQMenuView.m in Sources */,
 				70EC8E0621C24292005E90A8 /* MQAutoTextView.m in Sources */,
 				70F08EC5210EC60C007B4D33 /* UIGestureRecognizer+MQExtension.m in Sources */,
@@ -1525,19 +1595,18 @@
 				70F08E8A210EC60C007B4D33 /* MQTaskManager.m in Sources */,
 				70F08E7F210EC60C007B4D33 /* UITableView+MQExtension_Refresh.m in Sources */,
 				70F08BF3210EB2FF007B4D33 /* ViewController.m in Sources */,
-				70F08E8D210EC60C007B4D33 /* MQVideoManager.m in Sources */,
 				70F08EA3210EC60C007B4D33 /* NSDate+MQExtension.m in Sources */,
 				70F08E9A210EC60C007B4D33 /* NSArray+MQExtension.m in Sources */,
 				70F08EB6210EC60C007B4D33 /* UIButton+MQExtension.m in Sources */,
 				70F08E7C210EC60C007B4D33 /* UIImageView+MQExtension_WeakNetwork.m in Sources */,
 				70F08E90210EC60C007B4D33 /* MQAuthorize.m in Sources */,
 				70F08F57211152FD007B4D33 /* MQRealmHandler.m in Sources */,
+				3771917C221E88D8001A6B5A /* MQAudioRecorder.m in Sources */,
 				70F08F5A211152FD007B4D33 /* FCModelNotificationCenter.m in Sources */,
 				70F08E7D210EC60C007B4D33 /* UICollectionView+MQExtension_Refresh.m in Sources */,
 				70F08E7E210EC60C007B4D33 /* MQNetworkMoniter.m in Sources */,
 				70F08EAE210EC60C007B4D33 /* PHFetchResult+MQExtension.m in Sources */,
 				70F08EB1210EC60C007B4D33 /* UISwitch+MQExtension.m in Sources */,
-				70F08E8C210EC60C007B4D33 /* MQAudioRecorder.m in Sources */,
 				70F08E80210EC60C007B4D33 /* MBProgressHUD+MQExtension.m in Sources */,
 				70F08EAF210EC60C007B4D33 /* PHAssetCollection+MQExtension.m in Sources */,
 				70EC8E0021C23F2C005E90A8 /* MQRuntime.m in Sources */,
@@ -1580,6 +1649,7 @@
 				70F08E8F210EC60C007B4D33 /* MQAuthentication.m in Sources */,
 				70F08E92210EC60C007B4D33 /* MQFit.m in Sources */,
 				70F08E88210EC60C007B4D33 /* MQPointMarker.m in Sources */,
+				3771917F221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.m in Sources */,
 				70F08F5C211152FD007B4D33 /* FCModelDatabase.m in Sources */,
 				70F08E96210EC60C007B4D33 /* NSNotificationCenter+MQExtension.m in Sources */,
 				70F08E89210EC60C007B4D33 /* MQNull.m in Sources */,
