@@ -18,8 +18,11 @@
  
  */
 
+
 @class CLLocation ;
 @class MQPointMarker , MQMarkerEvent ;
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString * MQPointMarkerEventKey NS_EXTENSIBLE_STRING_ENUM;
 
@@ -231,22 +234,22 @@ FOUNDATION_EXPORT MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_p
 - (instancetype) init NS_UNAVAILABLE;
 
 /// init method .
-- (instancetype) init_event_id : (NSString  * _Nonnull ) s_event_id NS_DESIGNATED_INITIALIZER ;
-- (instancetype) init_event_id : (NSString  * _Nonnull ) s_event_id
+- (instancetype) init_event_id : (NSString  * ) s_event_id NS_DESIGNATED_INITIALIZER ;
+- (instancetype) init_event_id : (NSString  * ) s_event_id
                          extra : (NSDictionary * _Nullable) d_extra ;
-- (instancetype) init_event_id : (NSString  * _Nonnull ) s_event_id
+- (instancetype) init_event_id : (NSString  * ) s_event_id
                    description : (NSString  * _Nullable ) s_description
                          extra : (NSDictionary * _Nullable) d_extra ;
 /// event type . // 事件类型
-@property (nonatomic , copy , readonly , nonnull) NSString * type ;
+@property (nonatomic , copy , readonly) NSString * type ;
 /// event identifier . must be unique . /// 事件 id , 必须唯一
-@property (nonatomic , copy , readonly , nonnull) NSString * s_event_id ;
+@property (nonatomic , copy , readonly) NSString * s_event_id ;
 /// event description . can be NULL . /// 事件描述 , 可为空
 @property (nonatomic , copy , readonly , nullable) NSString * s_description ;
 /// extra info . can be NULL . /// 额外自定义统计信息 , 可为空
 @property (nonatomic , copy , readonly , nullable) NSMutableDictionary * d_extra ;
 /// default info . can't be NULL . // 默认统计信息 , 不可为空
-@property (nonatomic , copy , readonly , nonnull) NSMutableDictionary * d_default ;
+@property (nonatomic , copy , readonly) NSMutableDictionary * d_default ;
 /// adding default extra info or not . (default YES) // 是否添加额外的统计信息 . (默认添加)
 @property (nonatomic , assign) BOOL is_adding_default_extra_info ;
 
@@ -269,3 +272,5 @@ FOUNDATION_EXPORT MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_p
 @interface MQMarkerEvent_Common : MQMarkerEvent
 
 @end
+
+NS_ASSUME_NONNULL_END
