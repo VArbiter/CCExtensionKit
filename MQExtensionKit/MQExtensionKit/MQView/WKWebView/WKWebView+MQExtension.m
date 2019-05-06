@@ -45,22 +45,55 @@
 
 - (instancetype) mq_loading : (NSString *) s_link
                  navigation : (void (^)(WKNavigation *navigation)) navigation {
+    return [self mq_loading:s_link
+               cache_policy:NSURLRequestUseProtocolCachePolicy
+                    timeout:20
+                   base_url:nil
+                 navigation:navigation];
+}
+
+- (instancetype) mq_loading : (NSString *) s_link
+               cache_policy : (NSURLRequestCachePolicy) policy
+                    timeout : (NSTimeInterval) interval
+                   base_url : (NSURL *) url
+                 navigation : (void (^)(WKNavigation *navigation)) navigation {
     if (![s_link isKindOfClass:NSString.class] || !s_link.length) return self;
     if ([s_link hasPrefix:@"http://"] || [s_link hasPrefix:@"https://"]) {
-        return [self mq_request:s_link navigation:nil];
-    } else return [self mq_content:s_link navigation:nil];
+        return [self mq_request:s_link cache_policy:policy timeout:interval navigation:navigation];
+    } else return [self mq_content:s_link base_url:url navigation:navigation];
 }
 
 - (instancetype) mq_request : (NSString *) s_link
                 navigation : (void (^)(WKNavigation *navigation)) navigation {
-    WKNavigation *n = [self loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:s_link && s_link.length? s_link : @""]]];
+    return [self mq_request:s_link
+               cache_policy:NSURLRequestUseProtocolCachePolicy
+                    timeout:20
+                 navigation:navigation];
+}
+
+- (instancetype) mq_request : (NSString *) s_link
+               cache_policy : (NSURLRequestCachePolicy) policy
+                    timeout : (NSTimeInterval) interval
+                 navigation : (void (^)(WKNavigation *navigation)) navigation {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:s_link && s_link.length? s_link : @""]
+                                             cachePolicy:policy
+                                         timeoutInterval:interval];
+    WKNavigation *n = [self loadRequest:request];
     if (navigation) navigation(n);
     return self;
 }
 
 - (instancetype) mq_content : (NSString *) content
                 navigation : (void (^)(WKNavigation *navigation)) navigation {
-    WKNavigation *n = [self loadHTMLString:(content && content.length) ? content : @"" baseURL:nil];
+    return [self mq_content:content
+                   base_url:nil
+                 navigation:navigation];
+}
+
+- (instancetype) mq_content : (NSString *) content
+                   base_url : (NSURL *) url
+                 navigation : (void (^)(WKNavigation *navigation)) navigation {
+    WKNavigation *n = [self loadHTMLString:(content && content.length) ? content : @"" baseURL:url];
     if (navigation) navigation(n);
     return self;
 }

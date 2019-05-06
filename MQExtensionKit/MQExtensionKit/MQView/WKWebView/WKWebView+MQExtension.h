@@ -23,11 +23,23 @@
 /// others will be loading as HTML content . // 其它的会被当做 HTML 文本
 - (instancetype) mq_loading : (NSString *) s_link
                  navigation : (void (^)(WKNavigation *navigation)) navigation ;
+- (instancetype) mq_loading : (NSString *) s_link
+               cache_policy : (NSURLRequestCachePolicy) policy
+                    timeout : (NSTimeInterval) interval
+                   base_url : (NSURL *) url
+                 navigation : (void (^)(WKNavigation *navigation)) navigation ;
 /// loading as links // 使用 网页加载
 - (instancetype) mq_request : (NSString *) s_link
                  navigation : (void (^)(WKNavigation *navigation)) navigation ;
+- (instancetype) mq_request : (NSString *) s_link
+               cache_policy : (NSURLRequestCachePolicy) policy
+                    timeout : (NSTimeInterval) interval
+                 navigation : (void (^)(WKNavigation *navigation)) navigation ;
 /// loading as HTML content // 使用 HTML 文本加载
 - (instancetype) mq_content : (NSString *) content
+                 navigation : (void (^)(WKNavigation *navigation)) navigation ;
+- (instancetype) mq_content : (NSString *) content
+                   base_url : (NSURL *) url
                  navigation : (void (^)(WKNavigation *navigation)) navigation ;
 
 - (WKNavigation *) mq_go_back ;
