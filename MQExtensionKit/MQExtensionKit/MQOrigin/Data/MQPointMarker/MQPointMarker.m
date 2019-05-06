@@ -532,8 +532,11 @@ MQMarkerEventDefaultExtraInfoKey mq_event_default_extra_info_page_sequence_key =
     [d setValue:version forKey:mq_event_default_extra_info_version_key];
     [d setValue:build forKey:mq_event_default_extra_info_build_version_key];
     
-    NSString *s_idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    [d setValue:s_idfa forKey:mq_event_default_extra_info_IDFA_key];
+    if ([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+        NSString *idfa_s = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+        [d setValue:idfa_s forKey:mq_event_default_extra_info_IDFA_key];
+    }
+    else [d setValue:@"not_enabled" forKey:mq_event_default_extra_info_IDFA_key];
     
     _d_default = d;
     return _d_default;

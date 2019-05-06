@@ -157,7 +157,10 @@
 }
 
 + (NSString *) mq_device_IDFA {
-    return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    if ([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+        return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    }
+    else return nil;
 }
 
 + (MQDeviceResolution) mq_device_resolution : (BOOL) is_landscape {
