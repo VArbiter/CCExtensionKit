@@ -13,6 +13,10 @@
 - (instancetype) init : (CGRect) frame
         configuration : (WKWebViewConfiguration *) configuration;
 
+- (instancetype) init : (CGRect) frame
+        configuration : (WKWebViewConfiguration *) configuration
+      request_timeout : (NSTimeInterval) interval ;
+
 @property (nonatomic , strong) WKWebView *web_view ;
 
 /// (CGRect){0,0,Screen Width , 2} , superview : webView // 坐标是 webView 的 0,0 屏宽 , 高度为 2 .
@@ -23,6 +27,9 @@
 
 /// default is YES , allow all challenges . // 默认为 YES , 允许所有验证
 @property (nonatomic , assign) BOOL is_trust_without_any_doubt;
+
+/// default 20 . decide the longest time a request can hold .
+@property (nonatomic , assign) NSTimeInterval timeout_interval ;
 
 /// if webview receive a auth challenge // 如果 webView 收到一个验证
 /// note : if not implemented 'mq_deal_auth_challenge' , // 如果没有实现 'mq_deal_auth_challenge'
@@ -50,6 +57,12 @@
 // nil to do nothing // nil 什么也不做
 
 - (instancetype) mq_load : (NSString *) s_content
+              navigation : (void (^)(WKNavigation *navigation)) navigation ;
+
+- (instancetype) mq_load : (NSString *) s_content
+            cache_policy : (NSURLRequestCachePolicy) policy
+                 timeout : (NSTimeInterval) timeout_interval
+                base_url : (NSURL *) url_base 
               navigation : (void (^)(WKNavigation *navigation)) navigation ;
 
 /// pushing the loading progress of current page . // 推送当前页面加载进度

@@ -37,17 +37,23 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 @implementation MQEasyWebView
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    if ((self = [super initWithFrame:frame])) {
-        self.is_trust_without_any_doubt = YES;
-    }
-    return self;
+    return [self init:frame configuration:nil];
 }
 
 - (instancetype) init : (CGRect) frame
         configuration : (WKWebViewConfiguration *) configuration {
+    return [self init:frame
+        configuration:configuration
+      request_timeout:20];
+}
+
+- (instancetype) init : (CGRect) frame
+        configuration : (WKWebViewConfiguration *) configuration
+      request_timeout : (NSTimeInterval) interval {
     if ((self = [super initWithFrame:frame])) {
         self.config = configuration;
         self.is_trust_without_any_doubt = YES;
+        self.timeout_interval = interval;
     }
     return self;
 }
@@ -109,11 +115,26 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
 
 - (instancetype) mq_load : (NSString *) s_content
               navigation : (void (^)(WKNavigation *navigation)) navigation {
+    return [self mq_load:s_content
+            cache_policy:NSURLRequestUseProtocolCachePolicy
+                 timeout:self.timeout_interval
+                base_url:nil
+              navigation:navigation];
+}
+
+- (instancetype) mq_load : (NSString *) s_content
+            cache_policy : (NSURLRequestCachePolicy) policy
+                 timeout : (NSTimeInterval) timeout_interval
+                base_url : (NSURL *) url_base
+              navigation : (void (^)(WKNavigation *navigation)) navigation {
     if (s_content && s_content.length) {
         WKNavigation *n = nil;
         if ([s_content hasPrefix:@"http://"] || [s_content hasPrefix:@"https://"]) {
-            n = [self.web_view loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:s_content]]];
-        } else [self.web_view loadHTMLString:s_content baseURL:nil];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:s_content]
+                                                     cachePolicy:policy
+                                                 timeoutInterval:timeout_interval];
+            n = [self.web_view loadRequest:request];
+        } else [self.web_view loadHTMLString:s_content baseURL:url_base];
         if (n && navigation) navigation(n);
     }
     return self;
