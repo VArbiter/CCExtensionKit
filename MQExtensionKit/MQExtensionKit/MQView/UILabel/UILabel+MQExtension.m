@@ -7,7 +7,6 @@
 //
 
 #import "UILabel+MQExtension.h"
-#import "NSString+MQExtension.h"
 
 @implementation UILabel (MQExtension)
 
