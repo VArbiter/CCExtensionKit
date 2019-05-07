@@ -108,7 +108,6 @@
 
 /* Begin PBXFileReference section */
 		3234B751F3D87C878A5DA387 /* Pods-MQExtension_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQExtension_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example.release.xcconfig"; sourceTree = "<group>"; };
-		37719160221E485E001A6B5A /* MQExtensionConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQExtensionConst.h; sourceTree = "<group>"; };
 		37719171221E88D8001A6B5A /* MQVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQVideoManager.h; sourceTree = "<group>"; };
 		37719172221E88D8001A6B5A /* MQVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQVideoManager.m; sourceTree = "<group>"; };
 		37719179221E88D8001A6B5A /* MQAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQAudioRecorder.h; sourceTree = "<group>"; };
@@ -120,6 +119,7 @@
 		65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MQExtension_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		704C2E1921C79BBE003EBB38 /* MQTouchableImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQTouchableImageView.h; sourceTree = "<group>"; };
 		704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTouchableImageView.m; sourceTree = "<group>"; };
+		7080138322817E5D0015E816 /* MQExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQExtensionConst.h; sourceTree = "<group>"; };
 		7089AB5921ACF13A00C835EE /* UIWindow+MQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+MQExtension.h"; sourceTree = "<group>"; };
 		7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+MQExtension.m"; sourceTree = "<group>"; };
 		70AC07AB21CC91AB0098EDB1 /* MQRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRouter.h; sourceTree = "<group>"; };
@@ -335,14 +335,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3771915F221E483E001A6B5A /* MQExtensionConst */ = {
-			isa = PBXGroup;
-			children = (
-				37719160221E485E001A6B5A /* MQExtensionConst.h */,
-			);
-			path = MQExtensionConst;
-			sourceTree = "<group>";
-		};
 		3771916F221E88D8001A6B5A /* MQVideoRelated */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +421,14 @@
 				704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */,
 			);
 			path = MQTouchableImageView;
+			sourceTree = "<group>";
+		};
+		7080138222817E5D0015E816 /* MQExtensionConst */ = {
+			isa = PBXGroup;
+			children = (
+				7080138322817E5D0015E816 /* MQExtensionConst.h */,
+			);
+			path = MQExtensionConst;
 			sourceTree = "<group>";
 		};
 		7089AB5821ACF12B00C835EE /* UIWindow */ = {
@@ -797,6 +797,7 @@
 		70F08DB0210EC60C007B4D33 /* MQCommon */ = {
 			isa = PBXGroup;
 			children = (
+				7080138222817E5D0015E816 /* MQExtensionConst */,
 				70F08DB1210EC60C007B4D33 /* MQDevice */,
 				70F08DB4210EC60C007B4D33 /* MQAuthentication */,
 				70F08DB7210EC60C007B4D33 /* MQCommonExtension.h */,
@@ -857,7 +858,6 @@
 		70F08DC3210EC60C007B4D33 /* MQProtocol */ = {
 			isa = PBXGroup;
 			children = (
-				3771915F221E483E001A6B5A /* MQExtensionConst */,
 				70F08DC4210EC60C007B4D33 /* NSObject */,
 				70F08DC7210EC60C007B4D33 /* MQProtocolExtension.h */,
 			);

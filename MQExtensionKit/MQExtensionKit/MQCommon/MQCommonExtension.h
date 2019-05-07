@@ -16,5 +16,6 @@
     #import "MQSingleton.h"
     #import "MQDevice.h"
     #import "MQFit.h"
+    #import "MQExtensionConst.h"
 
 #endif /* MQCommonExtension_h */
