@@ -9,11 +9,11 @@ Pod::Spec.new do |s|
                    DESC
 
     s.author       = { "冯明庆" => "elwinfrederick@163.com" }
-    s.homepage = "https://github.com/VArbiter/MQExtensionKit"
+    s.homepage = "https://github.com/VArbiter/CCExtensionKit"
     s.license  = "MIT"
     s.platform     = :ios, "8.0"
 
-    s.source = { :git => "https://github.com/VArbiter/MQExtensionKit.git" , :tag => s.version.to_s}
+    s.source = { :git => "https://github.com/VArbiter/CCExtensionKit.git" , :tag => s.version.to_s}
     s.compiler_flags = '-Wstrict-prototypes'
 
     s.default_subspec = 'MQCore'
