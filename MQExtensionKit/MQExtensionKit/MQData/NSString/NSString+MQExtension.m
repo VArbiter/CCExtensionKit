@@ -92,6 +92,8 @@
     };
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wsometimes-uninitialized"
 + (instancetype) mq_merge : (BOOL) is_need_break
                   spacing : (BOOL) is_need_spacing
                      with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION {
@@ -113,6 +115,8 @@
                need_break:is_need_break
                   spacing:is_need_spacing];
 }
+#pragma clang diagnostic pop
+
 + (instancetype) mq_merge : (NSArray <NSString *> *) array_strings
                need_break : (BOOL) is_need_break
                   spacing : (BOOL) is_need_spacing {

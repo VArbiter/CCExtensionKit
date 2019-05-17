@@ -512,6 +512,8 @@ static MQRouter *__router_shared = nil;
     return !!t;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wunused-variable"
 + (void) mq_unregist_for_scheme : (NSString *) s_scheme {
     
     int i = pthread_mutex_lock(&__lock);
@@ -532,6 +534,8 @@ static MQRouter *__router_shared = nil;
         }];
     }
 }
+#pragma clang diagnostic pop
+
 + (void) mq_unregist : (MQRouterPath) path {
     NSMutableArray *array_path_components = [MQRouter mq_path_components:path].mutableCopy;
     
@@ -570,6 +574,9 @@ static MQRouter *__router_shared = nil;
         }
     }
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wunused-variable"
 + (void) mq_unregist_all {
     int i = pthread_mutex_lock(&__lock);
 #if DEBUG
@@ -588,6 +595,7 @@ static MQRouter *__router_shared = nil;
         }
     }];
 }
+#pragma clang diagnostic pop
 
 #pragma mark - -----
 + (NSArray <NSString *> *) mq_registed_schemes {
@@ -610,6 +618,9 @@ static MQRouter *__router_shared = nil;
                   handler : (MQRouterRegistActionHandler) handler {
     [self mq_regist_action:path required:nil handler:handler];
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wunused-variable"
 + (void) mq_regist_action : (MQRouterPath) path
                  required : (nullable NSArray <NSString *> *) required_params
                   handler : (MQRouterRegistActionHandler) handler {
@@ -631,10 +642,15 @@ static MQRouter *__router_shared = nil;
              forKey:mq_router_regist_sequence_key];
     }
 }
+#pragma clang diagnostic pop
+
 + (void) mq_regist_object : (MQRouterPath) path
                   handler : (MQRouterRegistObjectHandler) handler {
     [self mq_regist_object:path required:nil handler:handler];
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wunused-variable"
 + (void) mq_regist_object : (MQRouterPath) path
                  required : (nullable NSArray <NSString *> *) required_params
                   handler : (MQRouterRegistObjectHandler) handler {
@@ -656,6 +672,7 @@ static MQRouter *__router_shared = nil;
              forKey:mq_router_regist_sequence_key];
     }
 }
+#pragma clang diagnostic pop
 
 MQRouterPath mq_router_make(MQRouterPath path) {
     return mq_router_make_scheme(MQ_ROUTER.s_scheme, path);

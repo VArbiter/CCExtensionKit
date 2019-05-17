@@ -73,8 +73,13 @@ NSString * mq_size_for_length(NSUInteger i_length , BOOL standard) {
     NSUInteger i = standard ? MQ_STANDARD_LENGTH : MQ_STANDARD_LENGTH_IN_IOS;
     if (i_length > pow(i, 2))
         return [NSString stringWithFormat:@"%.2fMB",i_length / pow(i, 2)];
-    else if (i_length > i)
+    else if (i_length > i) {
+#if __LP64__ || 0 || NS_BUILD_32_LIKE_64
         return [NSString stringWithFormat:@"%.0luKB",i_length / i];
+#else
+        return [NSString stringWithFormat:@"%.0uKB",i_length / i];
+#endif
+    }
     else return [NSString stringWithFormat:@"%@B",@(i_length)];
 }
 

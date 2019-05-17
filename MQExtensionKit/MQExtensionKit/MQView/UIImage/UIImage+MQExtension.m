@@ -205,6 +205,8 @@ compatibleWithTraitCollection:nil];
     return context;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wunused-variable"
 + (UIColor *) mq_pixel_color_in_point : (CGPoint) point
                                 image : (UIImage *) image {
     UIColor * color = nil;
@@ -222,6 +224,7 @@ compatibleWithTraitCollection:nil];
     
     if (data) {
         int offset = 4 * ((w * round(point.y)) + round(point.x));
+        
         int a = data[offset];
         int r = data[offset + 1];
         int g = data[offset + 2];
@@ -244,6 +247,7 @@ compatibleWithTraitCollection:nil];
     
     return color;
 }
+#pragma clang diagnostic pop
 
 @end
 
