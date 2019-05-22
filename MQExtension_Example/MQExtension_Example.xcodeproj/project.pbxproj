@@ -12,6 +12,8 @@
 		3771917F221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771917E221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.m */; };
 		37719182221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 37719181221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.m */; };
 		3FE6F4D7C4B954FAD21408F9 /* Pods_MQExtension_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */; };
+		7035CEC52294F18F00B7F8D5 /* CLLocation+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7035CEC42294F18F00B7F8D5 /* CLLocation+MQExtension.m */; };
+		7035CEC92294F57E00B7F8D5 /* CLGeocoder+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7035CEC82294F57E00B7F8D5 /* CLGeocoder+MQExtension.m */; };
 		704C2E1B21C79BBE003EBB38 /* MQTouchableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */; };
 		7089AB5B21ACF13A00C835EE /* UIWindow+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7089AB5A21ACF13A00C835EE /* UIWindow+MQExtension.m */; };
 		70AC07B121CC91AB0098EDB1 /* MQRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AC07AC21CC91AB0098EDB1 /* MQRouter.m */; };
@@ -117,6 +119,10 @@
 		37719180221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQVideo_H264_HEVC_Decoder.h; sourceTree = "<group>"; };
 		37719181221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQVideo_H264_HEVC_Decoder.m; sourceTree = "<group>"; };
 		65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MQExtension_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7035CEC32294F18F00B7F8D5 /* CLLocation+MQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocation+MQExtension.h"; sourceTree = "<group>"; };
+		7035CEC42294F18F00B7F8D5 /* CLLocation+MQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+MQExtension.m"; sourceTree = "<group>"; };
+		7035CEC72294F57E00B7F8D5 /* CLGeocoder+MQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLGeocoder+MQExtension.h"; sourceTree = "<group>"; };
+		7035CEC82294F57E00B7F8D5 /* CLGeocoder+MQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLGeocoder+MQExtension.m"; sourceTree = "<group>"; };
 		704C2E1921C79BBE003EBB38 /* MQTouchableImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQTouchableImageView.h; sourceTree = "<group>"; };
 		704C2E1A21C79BBE003EBB38 /* MQTouchableImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTouchableImageView.m; sourceTree = "<group>"; };
 		7080138322817E5D0015E816 /* MQExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQExtensionConst.h; sourceTree = "<group>"; };
@@ -412,6 +418,24 @@
 				3234B751F3D87C878A5DA387 /* Pods-MQExtension_Example.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7035CEC22294F17900B7F8D5 /* CLLocation */ = {
+			isa = PBXGroup;
+			children = (
+				7035CEC32294F18F00B7F8D5 /* CLLocation+MQExtension.h */,
+				7035CEC42294F18F00B7F8D5 /* CLLocation+MQExtension.m */,
+			);
+			path = CLLocation;
+			sourceTree = "<group>";
+		};
+		7035CEC62294F56A00B7F8D5 /* CLGeocoder */ = {
+			isa = PBXGroup;
+			children = (
+				7035CEC72294F57E00B7F8D5 /* CLGeocoder+MQExtension.h */,
+				7035CEC82294F57E00B7F8D5 /* CLGeocoder+MQExtension.m */,
+			);
+			path = CLGeocoder;
 			sourceTree = "<group>";
 		};
 		704C2E1821C79BAB003EBB38 /* MQTouchableImageView */ = {
@@ -876,6 +900,8 @@
 		70F08DC8210EC60C007B4D33 /* MQData */ = {
 			isa = PBXGroup;
 			children = (
+				7035CEC62294F56A00B7F8D5 /* CLGeocoder */,
+				7035CEC22294F17900B7F8D5 /* CLLocation */,
 				70F08F70212171EC007B4D33 /* NSError */,
 				70F08DC9210EC60C007B4D33 /* NSDictionary */,
 				70F08DCC210EC60C007B4D33 /* NSBundle */,
@@ -1576,6 +1602,7 @@
 				70F08E9D210EC60C007B4D33 /* NSUserDefaults+MQExtension.m in Sources */,
 				70F08EBC210EC60C007B4D33 /* WKWebView+MQExtension.m in Sources */,
 				70F08EC3210EC60C007B4D33 /* UITableView+MQExtension.m in Sources */,
+				7035CEC52294F18F00B7F8D5 /* CLLocation+MQExtension.m in Sources */,
 				70AC07B121CC91AB0098EDB1 /* MQRouter.m in Sources */,
 				37719182221E8926001A6B5A /* MQVideo_H264_HEVC_Decoder.m in Sources */,
 				70F08E83210EC60C007B4D33 /* MQGradientLayerView.m in Sources */,
@@ -1648,6 +1675,7 @@
 				70F08EBD210EC60C007B4D33 /* UITextView+MQExtension.m in Sources */,
 				70F08E8F210EC60C007B4D33 /* MQAuthentication.m in Sources */,
 				70F08E92210EC60C007B4D33 /* MQFit.m in Sources */,
+				7035CEC92294F57E00B7F8D5 /* CLGeocoder+MQExtension.m in Sources */,
 				70F08E88210EC60C007B4D33 /* MQPointMarker.m in Sources */,
 				3771917F221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.m in Sources */,
 				70F08F5C211152FD007B4D33 /* FCModelDatabase.m in Sources */,

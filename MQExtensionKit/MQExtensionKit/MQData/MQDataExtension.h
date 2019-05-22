@@ -27,4 +27,6 @@
     #import "NSLock+MQExtension.h"
     #import "NSError+MQExtension.h"
 
+    #import "CLLocation+MQExtension.h"
+
 #endif /* MQDataExtension_h */

@@ -50,7 +50,7 @@ Pod::Spec.new do |s|
       s.subspec 'MQData' do |data|
         data.source_files = 'MQExtensionKit/MQExtensionKit/MQData/**/*'
         data.dependency 'MQExtensionKit/MQProtocol'
-        data.frameworks = "MobileCoreServices"
+        data.frameworks = "MobileCoreServices" , "CoreLocation"
       end
 
       s.subspec 'MQView' do |view|
