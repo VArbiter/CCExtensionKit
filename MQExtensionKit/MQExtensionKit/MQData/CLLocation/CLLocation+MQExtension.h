@@ -20,6 +20,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CLAuthorizationStatus) mq_is_location_authorizated : (void (^)(BOOL is_need_guide_to_app_settings)) complete ;
 
+
+/**
+ calculate the distance between two locations . // 计算两个地点之间的距离
+
+ @param location location // 坐标点
+ @return lateral distance between two locations . // 两个地点之间的距离 (直线)
+ */
+- (CLLocationDegrees) mq_calculate_distance_from : (CLLocation *) location ;
+
 /**
  calculate the distance between two locations . // 计算两个地点之间的距离
 

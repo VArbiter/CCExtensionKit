@@ -22,6 +22,10 @@
     return status;
 }
 
+- (CLLocationDegrees) mq_calculate_distance_from : (CLLocation *) location {
+    return [self distanceFromLocation:location];
+}
+
 + (CLLocationDegrees) mq_calculate_distance_between : (CLLocation *) location_1
                                        and_location : (CLLocation *) location_2 {
     return [location_1 distanceFromLocation:location_2];
