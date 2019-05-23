@@ -57,6 +57,14 @@ FOUNDATION_EXPORT MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_RENREN ; // 人人
 
 #pragma mark - -----
 
+@interface UIApplication (MQExtension_Function)
+
++ (void) mq_redirect_to_write_review : (NSNumber *) app_id ;
+
+@end
+
+#pragma mark - -----
+
 @interface NSURL (MQExtension_Open_Scheme)
 
 - (BOOL) mq_can_open ;

@@ -114,6 +114,17 @@ MQThirdPartiesScheme MQ_THIRD_PARTY_SCHEME_RENREN = @"renren://";
 
 #pragma mark - -----
 
+@implementation UIApplication (MQExtension_Function)
+
++ (void) mq_redirect_to_write_review : (NSNumber *) app_id {
+    NSString *s = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review",app_id];
+    [self mq_open_url:s];
+}
+
+@end
+
+#pragma mark - -----
+
 @implementation NSURL (MQExtension_Open_Scheme)
 
 - (BOOL) mq_can_open {
