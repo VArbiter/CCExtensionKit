@@ -31,7 +31,7 @@
         NSString *s_t = [NSString stringWithFormat:@"%@",s];
         for(int i = 0 ; i < s_t.length ; i++){
             int t = [s_t characterAtIndex:i];
-            if( t > 0x4e00 && t < 0x9fff) return YES ;
+            if( t >= 0x4e00 && t <= 0x9fff) return YES ;
         }
         return false;
     };

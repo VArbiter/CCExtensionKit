@@ -413,7 +413,7 @@ NSString * MQ_STRING_FROM_UTF8(const char * c_UTF8) {
 - (BOOL)is_contains_chinese {
     for(int i = 0 ; i < self.length ; i++){
         int s = [self characterAtIndex:i];
-        if(s > 0x4e00 && s < 0x9fff) return YES ;
+        if(s >= 0x4e00 && s <= 0x9fff) return YES ;
     }
     return false;
 }
