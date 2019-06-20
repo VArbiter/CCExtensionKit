@@ -27,19 +27,6 @@
     return [NSPredicate mq_common:@"^((http)|(https))+:[^\\s]+\\.[^\\s]*$"];
 }
 
-+ (instancetype) mq_cell_phone {
-    return [NSPredicate mq_common:@"^1((3//d|5[0-35-9]|8[025-9])//d|70[059])\\d{7}$"];
-}
-+ (instancetype) mq_china_mobile {
-    return [NSPredicate mq_common:@"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d|705)\\d{7}$"];
-}
-+ (instancetype) mq_china_unicom {
-    return [NSPredicate mq_common:@"^1((3[0-2]|5[256]|8[56])\\d|709)\\d{7}$"];
-}
-+ (instancetype) mq_china_telecom {
-    return [NSPredicate mq_common:@"^1((33|53|8[09])\\d|349|700)\\d{7}$"];
-}
-
 + (instancetype) mq_email {
     return [NSPredicate mq_common:@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"];
 }
@@ -50,11 +37,7 @@
 + (instancetype) mq_chinese_identity_number {
     return [NSPredicate mq_common:@"^(\\d{14}|\\d{17})(\\d|[xX])$"];
 }
-+ (instancetype) mq_chinese_car_number {
-    // \u4e00-\u9fa5 indicates that's a encoded unicode , \u9fa5-\u9fff reserve for future addition .
-    // \u4e00-\u9fa5 判断是否是 unicode 编码 , \u9fa5-\u9fff 为未来添加所保留
-    return [NSPredicate mq_common:@"^[\u4e00-\u9fff]{1}[a-zA-Z]{1}[-][a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fff]$"];
-}
+
 + (instancetype) mq_chinese_character {
     return [NSPredicate mq_common:@"^[\u4e00-\u9fa5]+$"];
 }
@@ -180,6 +163,55 @@
 - (BOOL) is_accurate_identity {
     return [NSString mq_accurate_verify_ID:self] ? YES : false;
 }
+
+- (BOOL) is_telephone {
+    return [NSPredicate.mq_telephone mq_evalute:self] ? YES : false;
+}
+- (BOOL) is_email {
+    return [NSPredicate.mq_email mq_evalute:self] ? YES : false;
+}
+- (BOOL) is_chinese_identity_number {
+    return [NSPredicate.mq_chinese_identity_number mq_evalute:self] ? YES : false;
+}
+
+- (BOOL) is_chinese_character {
+    return [NSPredicate.mq_chinese_character mq_evalute:self] ? YES : false;
+}
+- (BOOL) is_chinese_postal_code {
+    return [NSPredicate.mq_chinese_postal_code mq_evalute:self] ? YES : false;
+}
+- (BOOL) is_chinese_tax_number {
+    return [NSPredicate.mq_chinese_tax_number mq_evalute:self] ? YES : false;
+}
+
+@end
+
+#pragma mark - ----- ###########################################################
+
+@implementation NSPredicate (MQExtension_Deprecated)
+
++ (instancetype) mq_cell_phone {
+    return [NSPredicate mq_common:@"^1((3//d|5[0-35-9]|8[025-9])//d|70[059])\\d{7}$"];
+}
++ (instancetype) mq_china_mobile {
+    return [NSPredicate mq_common:@"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d|705)\\d{7}$"];
+}
++ (instancetype) mq_china_unicom {
+    return [NSPredicate mq_common:@"^1((3[0-2]|5[256]|8[56])\\d|709)\\d{7}$"];
+}
++ (instancetype) mq_china_telecom {
+    return [NSPredicate mq_common:@"^1((33|53|8[09])\\d|349|700)\\d{7}$"];
+}
++ (instancetype) mq_chinese_car_number {
+    // \u4e00-\u9fa5 indicates that's a encoded unicode , \u9fa5-\u9fff reserve for future addition .
+    // \u4e00-\u9fa5 判断是否是 unicode 编码 , \u9fa5-\u9fff 为未来添加所保留
+    return [NSPredicate mq_common:@"^[\u4e00-\u9fff]{1}[a-zA-Z]{1}[-][a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fff]$"];
+}
+
+@end
+
+@implementation NSString (MQExtension_Regex_Deprecated)
+    
 - (BOOL) is_cell_phone {
     return [NSPredicate.mq_cell_phone mq_evalute:self] ? YES : false;
 }
@@ -192,26 +224,9 @@
 - (BOOL) is_chinese_telecom {
     return [NSPredicate.mq_china_telecom mq_evalute:self] ? YES : false;
 }
-- (BOOL) is_telephone {
-    return [NSPredicate.mq_telephone mq_evalute:self] ? YES : false;
-}
-- (BOOL) is_email {
-    return [NSPredicate.mq_email mq_evalute:self] ? YES : false;
-}
-- (BOOL) is_chinese_identity_number {
-    return [NSPredicate.mq_chinese_identity_number mq_evalute:self] ? YES : false;
-}
+    
 - (BOOL) is_chinese_car_number {
     return [NSPredicate.mq_chinese_car_number mq_evalute:self] ? YES : false;
 }
-- (BOOL) is_chinese_character {
-    return [NSPredicate.mq_chinese_character mq_evalute:self] ? YES : false;
-}
-- (BOOL) is_chinese_postal_code {
-    return [NSPredicate.mq_chinese_postal_code mq_evalute:self] ? YES : false;
-}
-- (BOOL) is_chinese_tax_number {
-    return [NSPredicate.mq_chinese_tax_number mq_evalute:self] ? YES : false;
-}
-
+    
 @end

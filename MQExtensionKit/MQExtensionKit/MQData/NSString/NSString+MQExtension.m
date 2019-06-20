@@ -136,115 +136,6 @@ NSString * mq_localized_string_module(Class cls ,
 - (NSRange)range_full {
     return NSRangeFromString(self);
 }
-    
-#pragma mark - ----- deprecated
-    
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wsometimes-uninitialized"
-+ (instancetype) mq_merge : (BOOL) is_need_break
-                  spacing : (BOOL) is_need_spacing
-                     with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION {
-    if (!string || !string.length) return nil;
-    
-    NSMutableArray *array_strings = [NSMutableArray array];
-    NSString *string_temp;
-    va_list argument_list;
-    if (string) {
-        [array_strings addObject:string];
-        va_start(argument_list, string);
-        while ((string_temp = va_arg(argument_list, id))) {
-            [array_strings addObject:string_temp];
-        }
-        va_end(argument_list);
-    }
-    free(argument_list);
-    return [self mq_merge:array_strings
-               need_break:is_need_break
-                  spacing:is_need_spacing];
-}
-#pragma clang diagnostic pop
-    
-+ (instancetype) mq_merge : (NSArray <NSString *> *) array_strings
-               need_break : (BOOL) is_need_break
-                  spacing : (BOOL) is_need_spacing {
-    __block NSString *string_result = @"";
-    if (is_need_break) {
-        [array_strings enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj isKindOfClass:[NSString class]]) {
-                string_result = [string_result stringByAppendingString:(NSString *) obj];
-                if (idx != (array_strings.count - 1)) {
-                    string_result = [string_result stringByAppendingString:@"\n"];
-                }
-            }
-        }];
-    }
-    else if (is_need_spacing) {
-        [array_strings enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj isKindOfClass:[NSString class]]) {
-                string_result = [string_result stringByAppendingString:(NSString *) obj];
-                if (idx != (array_strings.count - 1)) {
-                    string_result = [string_result stringByAppendingString:@""];
-                }
-            }
-        }];
-    }
-    else {
-        for (NSString *temp_string in array_strings) {
-            string_result = [string_result stringByAppendingString:temp_string];
-        }
-    }
-    return string_result;
-}
-    
-+ (instancetype) mq_localized : (NSString *) s_key
-                      comment : (NSString *) s_comment {
-    return [self mq_localized:s_key
-                       bundle:NSBundle.mainBundle
-                      comment:s_comment];
-}
-+ (instancetype) mq_localized : (NSString *) s_key
-                       bundle : (NSBundle *) bundle
-                      comment : (NSString *) s_comment {
-    return [self mq_localized:s_key
-                      strings:@"Localizable"
-                       bundle:bundle
-                      comment:s_comment];
-}
-    /// key , strings file , bundle , comment
-+ (instancetype) mq_localized : (NSString *) s_key
-                      strings : (NSString *) s_strings
-                       bundle : (NSBundle *) bundle
-                      comment : (NSString *) s_comment {
-    if (!bundle) bundle = NSBundle.mainBundle;
-    if (!s_strings) s_strings = @"Localizable";
-    NSString *s = NSLocalizedStringFromTableInBundle(s_key, s_strings, bundle, nil);
-#if DEBUG
-    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" not found , return @\"\" istead",s_key);
-#endif
-    return ((s && s.length) ? s : @"");
-}
-    
-+ (instancetype) mq_localized : (Class) cls
-                       module : (NSString *) s_module
-                      strings : (NSString *) s_strings
-                          key : (NSString *) s_key
-                      comment : (NSString *) s_comment {
-    NSBundle *b = [NSBundle bundleForClass:cls];
-    NSString *s = nil;
-    if (s_module && s_module.length) {
-        s_module = [s_module stringByReplacingOccurrencesOfString:@"/" withString:@""];
-        NSString *p = [b pathForResource:s_module
-                                  ofType:@"bundle"
-                             inDirectory:nil];
-        NSBundle *bS = [NSBundle bundleWithPath:p];
-        s = NSLocalizedStringFromTableInBundle(s_key, s_strings, bS, nil);
-    }
-    else s = NSLocalizedStringFromTableInBundle(s_key, s_strings, b, nil);
-#if DEBUG
-    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" in module \"%@\" not found , return @\"\" istead",s_key,s_module);
-#endif
-    return ((s && s.length) ? s : @"");
-}
 
 @end
 
@@ -567,6 +458,119 @@ CGFloat MQ_TEXT_HEIGHT_AS(CGFloat f_width ,
     }
     
     return rect.size.height >= f_estimate_height ? rect.size.height : f_estimate_height;
+}
+
+@end
+
+#pragma mark - ----- ###########################################################
+
+@implementation NSString (MQExtension_Deprecated)
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wsometimes-uninitialized"
++ (instancetype) mq_merge : (BOOL) is_need_break
+                  spacing : (BOOL) is_need_spacing
+                     with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION {
+    if (!string || !string.length) return nil;
+    
+    NSMutableArray *array_strings = [NSMutableArray array];
+    NSString *string_temp;
+    va_list argument_list;
+    if (string) {
+        [array_strings addObject:string];
+        va_start(argument_list, string);
+        while ((string_temp = va_arg(argument_list, id))) {
+            [array_strings addObject:string_temp];
+        }
+        va_end(argument_list);
+    }
+    free(argument_list);
+    return [self mq_merge:array_strings
+               need_break:is_need_break
+                  spacing:is_need_spacing];
+}
+#pragma clang diagnostic pop
+    
++ (instancetype) mq_merge : (NSArray <NSString *> *) array_strings
+               need_break : (BOOL) is_need_break
+                  spacing : (BOOL) is_need_spacing {
+    __block NSString *string_result = @"";
+    if (is_need_break) {
+        [array_strings enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                string_result = [string_result stringByAppendingString:(NSString *) obj];
+                if (idx != (array_strings.count - 1)) {
+                    string_result = [string_result stringByAppendingString:@"\n"];
+                }
+            }
+        }];
+    }
+    else if (is_need_spacing) {
+        [array_strings enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                string_result = [string_result stringByAppendingString:(NSString *) obj];
+                if (idx != (array_strings.count - 1)) {
+                    string_result = [string_result stringByAppendingString:@""];
+                }
+            }
+        }];
+    }
+    else {
+        for (NSString *temp_string in array_strings) {
+            string_result = [string_result stringByAppendingString:temp_string];
+        }
+    }
+    return string_result;
+}
+    
++ (instancetype) mq_localized : (NSString *) s_key
+                      comment : (NSString *) s_comment {
+    return [self mq_localized:s_key
+                       bundle:NSBundle.mainBundle
+                      comment:s_comment];
+}
++ (instancetype) mq_localized : (NSString *) s_key
+                       bundle : (NSBundle *) bundle
+                      comment : (NSString *) s_comment {
+    return [self mq_localized:s_key
+                      strings:@"Localizable"
+                       bundle:bundle
+                      comment:s_comment];
+}
+    /// key , strings file , bundle , comment
++ (instancetype) mq_localized : (NSString *) s_key
+                      strings : (NSString *) s_strings
+                       bundle : (NSBundle *) bundle
+                      comment : (NSString *) s_comment {
+    if (!bundle) bundle = NSBundle.mainBundle;
+    if (!s_strings) s_strings = @"Localizable";
+    NSString *s = NSLocalizedStringFromTableInBundle(s_key, s_strings, bundle, nil);
+#if DEBUG
+    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" not found , return @\"\" istead",s_key);
+#endif
+    return ((s && s.length) ? s : @"");
+}
+    
++ (instancetype) mq_localized : (Class) cls
+                       module : (NSString *) s_module
+                      strings : (NSString *) s_strings
+                          key : (NSString *) s_key
+                      comment : (NSString *) s_comment {
+    NSBundle *b = [NSBundle bundleForClass:cls];
+    NSString *s = nil;
+    if (s_module && s_module.length) {
+        s_module = [s_module stringByReplacingOccurrencesOfString:@"/" withString:@""];
+        NSString *p = [b pathForResource:s_module
+                                  ofType:@"bundle"
+                             inDirectory:nil];
+        NSBundle *bS = [NSBundle bundleWithPath:p];
+        s = NSLocalizedStringFromTableInBundle(s_key, s_strings, bS, nil);
+    }
+    else s = NSLocalizedStringFromTableInBundle(s_key, s_strings, b, nil);
+#if DEBUG
+    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" in module \"%@\" not found , return @\"\" istead",s_key,s_module);
+#endif
+    return ((s && s.length) ? s : @"");
 }
 
 @end

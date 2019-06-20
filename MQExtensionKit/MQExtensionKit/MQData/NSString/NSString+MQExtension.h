@@ -53,29 +53,6 @@ NSString * mq_localized_string_module(Class cls ,
                                       NSString *s_comment);
     
 @property (nonatomic , assign , readonly) NSRange range_full ;
-    
-/// break has the topest priority . // 回车拥有最高优先级
-+ (instancetype) mq_merge : (BOOL) is_need_break
-                  spacing : (BOOL) is_need_spacing
-                     with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION MQ_EXTENSION_DEPRECATED("deprecated . use 's' && 'p' block . // 弃用 , 使用 's' 和 'p' 块代码 .");
-+ (instancetype) mq_merge : (NSArray <NSString *> *) array_strings
-               need_break : (BOOL) is_need_break
-                  spacing : (BOOL) is_need_spacing MQ_EXTENSION_DEPRECATED("deprecated . use 's' && 'p' block . // 弃用 , 使用 's' 和 'p' 块代码 .");
-    
-+ (instancetype) mq_localized : (NSString *) s_key
-                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string' . // 弃用 , 使用 'mq_localized_string'.");
-+ (instancetype) mq_localized : (NSString *) s_key
-                       bundle : (NSBundle *) bundle
-                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string_bundle' . // 弃用 , 使用 'mq_localized_string_bundle'.");
-+ (instancetype) mq_localized : (NSString *) s_key
-                      strings : (NSString *) s_strings
-                       bundle : (NSBundle *) bundle
-                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string_specific' . // 弃用 , 使用 'mq_localized_string_specific' .");
-+ (instancetype) mq_localized : (Class) cls
-                       module : (NSString *) s_module
-                      strings : (NSString *) s_strings
-                          key : (NSString *) s_key
-                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string_module' . // 弃用 , 使用 'mq_localized_string_module' .");
 
 @end
 
@@ -171,4 +148,33 @@ CGFloat MQ_TEXT_HEIGHT_AS(CGFloat f_width ,
                           CGFloat f_line_spacing ,
                           CGFloat f_character_spacing);
 
+@end
+
+#pragma mark - ----- ###########################################################
+
+@interface NSString (MQExtension_Deprecated)
+
+/// break has the topest priority . // 回车拥有最高优先级
++ (instancetype) mq_merge : (BOOL) is_need_break
+                  spacing : (BOOL) is_need_spacing
+                     with : (NSString *) string , ... NS_REQUIRES_NIL_TERMINATION MQ_EXTENSION_DEPRECATED("deprecated . use 's' && 'p' block . // 弃用 , 使用 's' 和 'p' 块代码 .");
++ (instancetype) mq_merge : (NSArray <NSString *> *) array_strings
+               need_break : (BOOL) is_need_break
+                  spacing : (BOOL) is_need_spacing MQ_EXTENSION_DEPRECATED("deprecated . use 's' && 'p' block . // 弃用 , 使用 's' 和 'p' 块代码 .");
+    
++ (instancetype) mq_localized : (NSString *) s_key
+                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string' . // 弃用 , 使用 'mq_localized_string'.");
++ (instancetype) mq_localized : (NSString *) s_key
+                       bundle : (NSBundle *) bundle
+                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string_bundle' . // 弃用 , 使用 'mq_localized_string_bundle'.");
++ (instancetype) mq_localized : (NSString *) s_key
+                      strings : (NSString *) s_strings
+                       bundle : (NSBundle *) bundle
+                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string_specific' . // 弃用 , 使用 'mq_localized_string_specific' .");
++ (instancetype) mq_localized : (Class) cls
+                       module : (NSString *) s_module
+                      strings : (NSString *) s_strings
+                          key : (NSString *) s_key
+                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string_module' . // 弃用 , 使用 'mq_localized_string_module' .");
+    
 @end
