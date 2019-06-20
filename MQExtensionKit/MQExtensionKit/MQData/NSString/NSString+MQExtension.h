@@ -10,12 +10,12 @@
 #import "MQExtensionConst.h"
 
 #ifndef MQ_LOCALIZED_S
-    #define MQ_LOCALIZED_S(_vKey_,_vComment_) [NSString mq_localized:(_vKey_) comment:(_vComment_)]
+    #define MQ_LOCALIZED_S(_v_key_,_v_comment_) mq_localized_string(_v_key_,_v_comment_)
 #endif
 
 #ifndef MQ_LOCALIZED_B
-    #define MQ_LOCALIZED_B(_vModule_,_vStrings_,_vKey_,_vComment_) \
-        [NSString mq_localized:self.class module:(_vModule_) strings:(_vStrings_) key:(_vKey_) comment:(_vComment_)];
+    #define MQ_LOCALIZED_B(_v_module_,_v_strings_,_v_key_,_v_comment_) \
+        mq_localized_string_module([self class],_v_module_,_v_strings_,_v_key_,_v_comment_)
 #endif
 
 @interface NSString (MQExtension)
@@ -37,6 +37,23 @@
 /// remove specific length of characters in string (from head to tail) . // 移除特定长度的字符串 (从 头 到 尾).
 @property (nonatomic , copy , readonly) __kindof NSString *(^sub_drop_header)(NSUInteger length) ;
 
+/// for localizedString == MQ_LOCALIZED_S(...) // 本地化字符串
+NSString * mq_localized_string(NSString *s_key , NSString *s_comment);
+NSString * mq_localized_string_bundle(NSBundle *bundle , NSString *s_key , NSString *s_comment);
+/// bundle , strings file , key , comment // bundle , 字符串文件 , key , 注释
+NSString * mq_localized_string_specific(NSBundle *bundle ,
+                                        NSString *s_strings_name ,
+                                        NSString *s_key ,
+                                        NSString *s_comment);
+/// for those used in subspecs == MQ_LOCALIZED_B(...). // 适用于在 subspec 中的资源
+NSString * mq_localized_string_module(Class cls ,
+                                      NSString *s_module_name ,
+                                      NSString *s_strings_name ,
+                                      NSString *s_key ,
+                                      NSString *s_comment);
+    
+@property (nonatomic , assign , readonly) NSRange range_full ;
+    
 /// break has the topest priority . // 回车拥有最高优先级
 + (instancetype) mq_merge : (BOOL) is_need_break
                   spacing : (BOOL) is_need_spacing
@@ -44,27 +61,21 @@
 + (instancetype) mq_merge : (NSArray <NSString *> *) array_strings
                need_break : (BOOL) is_need_break
                   spacing : (BOOL) is_need_spacing MQ_EXTENSION_DEPRECATED("deprecated . use 's' && 'p' block . // 弃用 , 使用 's' 和 'p' 块代码 .");
-
-/// for localizedString == MQ_LOCALIZED_S(...) // 本地化字符串
+    
 + (instancetype) mq_localized : (NSString *) s_key
-                      comment : (NSString *) s_comment ;
+                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string' . // 弃用 , 使用 'mq_localized_string'.");
 + (instancetype) mq_localized : (NSString *) s_key
                        bundle : (NSBundle *) bundle
-                      comment : (NSString *) s_comment ;
-/// key , strings file , bundle , comment // key , 字符串文件 , bundle , 注释
+                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string_bundle' . // 弃用 , 使用 'mq_localized_string_bundle'.");
 + (instancetype) mq_localized : (NSString *) s_key
                       strings : (NSString *) s_strings
                        bundle : (NSBundle *) bundle
-                      comment : (NSString *) s_comment ;
-
-/// for those used in subspecs == MQ_LOCALIZED_B(...). // 适用于在 subspec 中的资源
+                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string_specific' . // 弃用 , 使用 'mq_localized_string_specific' .");
 + (instancetype) mq_localized : (Class) cls
                        module : (NSString *) s_module
                       strings : (NSString *) s_strings
                           key : (NSString *) s_key
-                      comment : (NSString *) s_comment ;
-
-@property (nonatomic , assign , readonly) NSRange range_full ;
+                      comment : (NSString *) s_comment MQ_EXTENSION_DEPRECATED("deprecated . use 'mq_localized_string_module' . // 弃用 , 使用 'mq_localized_string_module' .");
 
 @end
 
@@ -115,6 +126,18 @@ NSString * MQ_STRING_FROM_UTF8(const char * c_UTF8) ; // if params doesn't exist
 
 /// detect that a string is constructed by the characters in params you gave . // 检查字符串是否由参数中所给定的字符串中的字符构成
 - (BOOL) mq_is_constructed_by : (NSString *) s_content ;
+    
+/// using ASCII to estimate a character is fit the given condition . // 使用 ASCII 去判断字符是否符合e给出的条件 .
+// note : emoji is sth that very special . some emoji contains two or more characters . thus it can't be processed as normal string . using [NSString.instance is_contains_emoji] above to decide whether this string contains an emoji .
+// 注意 : emoji 是i一种很特殊的字符 . 一些 emoji 包含了 两个甚至多个字符 . 所以 它不能被当做普通字符串来处理 . 使用上方的 [NSString.instance is_contains_emoji] 来判定这个字符是否包含了 emoji .
+    
+BOOL mq_is_char_pure_letter(unichar c , BOOL is_uppercasing);
+BOOL mq_is_char_pure_number(unichar c);
+BOOL mq_is_char_pure_chinese_character(unichar c);
+BOOL mq_is_pure_white_space(unichar c);
+    
+/// dynamic to custom the filter condition . // 动态定义判断条件 .
+- (BOOL) mq_filter_string_with_character_enumerater : (BOOL (^)(unichar c , NSUInteger index)) character_enumerater ;
 
 @end
 

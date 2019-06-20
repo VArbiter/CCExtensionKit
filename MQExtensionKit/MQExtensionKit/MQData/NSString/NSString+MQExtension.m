@@ -92,6 +92,53 @@
     };
 }
 
+/// for localizedString
+NSString * mq_localized_string(NSString *s_key , NSString *s_comment){
+    return mq_localized_string_bundle([NSBundle mainBundle], s_key, s_comment);
+}
+NSString * mq_localized_string_bundle(NSBundle *bundle , NSString *s_key , NSString *s_comment){
+    return mq_localized_string_specific(bundle, @"Localizable", s_comment, s_comment);
+}
+NSString * mq_localized_string_specific(NSBundle *bundle ,
+                                        NSString *s_strings_name ,
+                                        NSString *s_key ,
+                                        NSString *s_comment){
+    if (!bundle) bundle = NSBundle.mainBundle;
+    if (!s_strings_name) s_strings_name = @"Localizable";
+    NSString *s = NSLocalizedStringFromTableInBundle(s_key, s_strings_name, bundle, nil);
+#if DEBUG
+    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" not found , return @\"\" istead",s_key);
+#endif
+    return ((s && s.length) ? s : nil);
+}
+NSString * mq_localized_string_module(Class cls ,
+                                      NSString *s_module_name ,
+                                      NSString *s_strings_name ,
+                                      NSString *s_key ,
+                                      NSString *s_comment){
+    NSBundle *b = [NSBundle bundleForClass:cls];
+    NSString *s = nil;
+    if (s_module_name && s_module_name.length) {
+        s_module_name = [s_module_name stringByReplacingOccurrencesOfString:@"/" withString:@""];
+        NSString *p = [b pathForResource:s_module_name
+                                  ofType:@"bundle"
+                             inDirectory:nil];
+        NSBundle *bS = [NSBundle bundleWithPath:p];
+        s = NSLocalizedStringFromTableInBundle(s_key, s_strings_name, bS, nil);
+    }
+    else s = NSLocalizedStringFromTableInBundle(s_key, s_strings_name, b, nil);
+#if DEBUG
+    if (!(s && s.length)) NSLog(@"string Key Named \"%@\" in module \"%@\" not found , return @\"\" istead",s_key,s_module_name);
+#endif
+    return ((s && s.length) ? s : nil);
+}
+
+- (NSRange)range_full {
+    return NSRangeFromString(self);
+}
+    
+#pragma mark - ----- deprecated
+    
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wsometimes-uninitialized"
 + (instancetype) mq_merge : (BOOL) is_need_break
@@ -116,7 +163,7 @@
                   spacing:is_need_spacing];
 }
 #pragma clang diagnostic pop
-
+    
 + (instancetype) mq_merge : (NSArray <NSString *> *) array_strings
                need_break : (BOOL) is_need_break
                   spacing : (BOOL) is_need_spacing {
@@ -148,8 +195,7 @@
     }
     return string_result;
 }
-
-/// for localizedString
+    
 + (instancetype) mq_localized : (NSString *) s_key
                       comment : (NSString *) s_comment {
     return [self mq_localized:s_key
@@ -164,7 +210,7 @@
                        bundle:bundle
                       comment:s_comment];
 }
-/// key , strings file , bundle , comment
+    /// key , strings file , bundle , comment
 + (instancetype) mq_localized : (NSString *) s_key
                       strings : (NSString *) s_strings
                        bundle : (NSBundle *) bundle
@@ -177,7 +223,7 @@
 #endif
     return ((s && s.length) ? s : @"");
 }
-
+    
 + (instancetype) mq_localized : (Class) cls
                        module : (NSString *) s_module
                       strings : (NSString *) s_strings
@@ -198,10 +244,6 @@
     if (!(s && s.length)) NSLog(@"string Key Named \"%@\" in module \"%@\" not found , return @\"\" istead",s_key,s_module);
 #endif
     return ((s && s.length) ? s : @"");
-}
-
-- (NSRange)range_full {
-    return NSRangeFromString(self);
 }
 
 @end
@@ -374,7 +416,7 @@ NSString * MQ_STRING_FROM_UTF8(const char * c_UTF8) {
 }
 
 - (BOOL)is_contains_emoji {
-    __block BOOL is_contain = NO;
+    __block BOOL is_contain = false;
     [self enumerateSubstringsInRange:NSMakeRange(0, [self length]) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
         
         const unichar hs = [substring characterAtIndex:0];
@@ -422,6 +464,33 @@ NSString * MQ_STRING_FROM_UTF8(const char * c_UTF8) {
     NSCharacterSet *t_set = [[NSCharacterSet characterSetWithCharactersInString:s_content] invertedSet];
     NSString *s_filter = [[self componentsSeparatedByCharactersInSet:t_set] componentsJoinedByString:@""];
     return [self isEqualToString:s_filter];
+}
+    
+BOOL mq_is_char_pure_letter(unichar c , BOOL is_uppercasing){
+    if (is_uppercasing) return (c >= 65 && c <= 90);
+    else return (c >= 97 && c <= 122);
+}
+BOOL mq_is_char_pure_number(unichar c){
+    return (c >= 48 && c <= 57);
+}
+BOOL mq_is_char_pure_chinese_character(unichar c){
+    return (c >= 0x4e00 && c <= 0x9fff);
+}
+BOOL mq_is_pure_white_space(unichar c) {
+    return (c == 32 // space // 空格
+            || c == 0x00a0 // hard space or fixed space // 不换行空格
+            || c == 0x0020 // space (chinese) // 空格 (中文)
+            || c == 0x3000 ); // space (GBK)  // 中文(全角)空格
+}
+    
+- (BOOL) mq_filter_string_with_character_enumerater : (BOOL (^)(unichar c , NSUInteger index)) character_enumerater {
+    if (!self.length) return false;
+    if (!character_enumerater) return YES;
+    for (NSUInteger i = 0 ; i < self.length; i++) {
+        unichar s = [self characterAtIndex:i];
+        if (!character_enumerater(s,i)) return false;
+    }
+    return YES;
 }
 
 @end

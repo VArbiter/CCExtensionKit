@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  detect a coordinate if is in a given country. // 检测给出的坐标是否处于给出的国家之内
 
  @param location location // 坐标
- @param conuntry_code a code that used to identify a country , eg : @"CN" . // 用于辨识国家的代码
+ @param country_code a code that used to identify a country , eg : @"CN" . // 用于辨识国家的代码
  @param response original response that Geocoder returned . // Geocoder 的原始返回数据
  @param complete valued if no error occurs . // 如果没有错误 , 则生效
  */
