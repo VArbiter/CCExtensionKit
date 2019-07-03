@@ -72,7 +72,7 @@ typedef NS_ENUM(NSInteger , MQHudExtensionType) {
 - (void) mq_hide : (BOOL) is_animated
            after : (NSTimeInterval) interval ;
     
-/// if invoked , make sure you DO NOT delpoied "cc_show"; // 如果实现下方这些 , 不能调用 "mq_show:"
+/// if invoked , make sure you DO NOT delpoied "mq_show"; // 如果实现下方这些 , 不能调用 "mq_show:"
 - (instancetype) mq_delay : (CGFloat) f_delay ;
     
 + (void) mq_configure_type : (MBProgressHUD *) hud
