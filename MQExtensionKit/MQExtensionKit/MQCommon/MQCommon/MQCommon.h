@@ -46,6 +46,11 @@
     #define MQ_WEAK_SELF __weak typeof(&*self) weak_self = self
 #endif
 
+/// make sure that a block can't be nil . // 确保 block 不为空 .
+#ifndef MQ_SAFE_BLOCK
+    #define MQ_SAFE_BLOCK(_value_ , _value_imp_) !_value_ ?: _value_imp_
+#endif
+
 /// only applied for those named weak_self . // 只针对那些命名为 weak_self 的 self .
 #ifndef MQ_STRONG_SELF
     #define MQ_STRONG_SELF __strong typeof(weak_self) strong_self = weak_self

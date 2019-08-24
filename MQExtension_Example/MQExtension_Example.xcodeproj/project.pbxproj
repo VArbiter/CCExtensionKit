@@ -110,6 +110,7 @@
 
 /* Begin PBXFileReference section */
 		3234B751F3D87C878A5DA387 /* Pods-MQExtension_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQExtension_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example.release.xcconfig"; sourceTree = "<group>"; };
+		37719160221E485E001A6B5A /* MQExtensionConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQExtensionConst.h; sourceTree = "<group>"; };
 		37719171221E88D8001A6B5A /* MQVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQVideoManager.h; sourceTree = "<group>"; };
 		37719172221E88D8001A6B5A /* MQVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQVideoManager.m; sourceTree = "<group>"; };
 		37719179221E88D8001A6B5A /* MQAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQAudioRecorder.h; sourceTree = "<group>"; };
@@ -339,6 +340,14 @@
 				65F6DA6D9A04E9EC9F5E4774 /* Pods_MQExtension_Example.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3771915F221E483E001A6B5A /* MQExtensionConst */ = {
+			isa = PBXGroup;
+			children = (
+				37719160221E485E001A6B5A /* MQExtensionConst.h */,
+			);
+			path = MQExtensionConst;
 			sourceTree = "<group>";
 		};
 		3771916F221E88D8001A6B5A /* MQVideoRelated */ = {

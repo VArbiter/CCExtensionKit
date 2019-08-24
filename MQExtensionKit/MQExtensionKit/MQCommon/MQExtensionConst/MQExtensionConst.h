@@ -25,7 +25,3 @@
 #ifndef MQ_STANDARD_LENGTH
     #define MQ_STANDARD_LENGTH 1024
 #endif
-
-
-
-
