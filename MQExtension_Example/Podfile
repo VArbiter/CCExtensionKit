@@ -1,20 +1,17 @@
-platform :ios, '8.0'
+platform :ios, '11.0'
 
 target 'MQExtension_Example' do
   use_frameworks!
 
 #    pod 'MQExtensionKit/MQFull', :path => '../'
 
-    pod 'MBProgressHUD', '~> 1.1.0'
+    pod 'MBProgressHUD', '~> 1.2.0'
     pod 'SVProgressHUD', '~> 2.2.5'
 
-    pod 'Realm', '~> 3.7.5'
-
     pod 'MGJRouter', '~> 0.10.0'
-    pod 'AFNetworking/Reachability', '~> 3.2.1'
-    pod 'AFNetworking/UIKit', '~> 3.2.1'
-    pod 'SDWebImage', '~> 4.4.2'
-    pod 'MJRefresh', '~> 3.1.15'
-    pod 'FMDB', '~> 2.7.2'
+    pod 'AFNetworking/Reachability', '~> 4.0.1'
+    pod 'AFNetworking/UIKit', '~> 4.0.1'
+    pod 'SDWebImage', '~> 5.8.0'
+    pod 'MJRefresh', '~> 3.4.3'
     
 end

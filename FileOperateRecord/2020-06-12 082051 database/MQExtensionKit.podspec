@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     s.author       = { "冯明庆" => "elwinfrederick@163.com" }
     s.homepage = "https://github.com/VArbiter/CCExtensionKit"
     s.license  = "MIT"
-    s.platform     = :ios, "11.0"
+    s.platform     = :ios, "8.0"
 
     s.source = { :git => "https://github.com/VArbiter/CCExtensionKit.git" , :tag => s.version.to_s}
     s.compiler_flags = '-Wstrict-prototypes'
@@ -70,8 +70,15 @@ Pod::Spec.new do |s|
       s.subspec 'MQMedia' do |media|
         media.source_files = 'MQExtensionKit/MQExtensionKit/MQMedia/**/*'
         media.dependency 'MQExtensionKit/MQCore'
-        media.frameworks = 'AVFoundation' , "AssetsLibrary" , "VideoToolbox" , "CoreMedia" , "UIKit"
+        media.frameworks = 'AVFoundation' , "AssetsLibrary" , "VideoToolbox" , "CoreMedia"
         media.weak_frameworks = "Photos"
+      end
+
+      s.subspec 'MQDatabase' do |database|
+        database.source_files = 'MQExtensionKit/MQExtensionKit/MQDatabase/**/*'
+        database.dependency 'Realm', '>= 3.7.5'
+        database.dependency 'FMDB', '>= 2.7.2'
+        database.frameworks = "Foundation"
       end
 
       s.subspec 'MQCustom' do |custom|

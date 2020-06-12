@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -97,12 +97,6 @@
 		70F08EC7210EC60C007B4D33 /* CALayer+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08E6B210EC60C007B4D33 /* CALayer+MQExtension.m */; };
 		70F08EC8210EC60C007B4D33 /* UITextField+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08E6E210EC60C007B4D33 /* UITextField+MQExtension.m */; };
 		70F08ECB210EC60C007B4D33 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 70F08E78210EC60C007B4D33 /* .swift-version */; };
-		70F08F56211152FD007B4D33 /* MQRLMBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F41211152FC007B4D33 /* MQRLMBaseEntity.m */; };
-		70F08F57211152FD007B4D33 /* MQRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F45211152FC007B4D33 /* MQRealmHandler.m */; };
-		70F08F59211152FD007B4D33 /* FCModelCachedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F4B211152FC007B4D33 /* FCModelCachedObject.m */; };
-		70F08F5A211152FD007B4D33 /* FCModelNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F50211152FC007B4D33 /* FCModelNotificationCenter.m */; };
-		70F08F5B211152FD007B4D33 /* FCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F51211152FC007B4D33 /* FCModel.m */; };
-		70F08F5C211152FD007B4D33 /* FCModelDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F52211152FC007B4D33 /* FCModelDatabase.m */; };
 		70F08F652112A374007B4D33 /* SVProgressHUD+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F632112A374007B4D33 /* SVProgressHUD+MQExtension.m */; };
 		70F08F692112CF63007B4D33 /* MQMultiArgumentPerformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F682112CF63007B4D33 /* MQMultiArgumentPerformer.m */; };
 		70F08F7321217200007B4D33 /* NSError+MQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F08F7221217200007B4D33 /* NSError+MQExtension.m */; };
@@ -300,19 +294,6 @@
 		70F08E6E210EC60C007B4D33 /* UITextField+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MQExtension.m"; sourceTree = "<group>"; };
 		70F08E78210EC60C007B4D33 /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
 		70F08E79210EC60C007B4D33 /* MQExtensionKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQExtensionKit.h; sourceTree = "<group>"; };
-		70F08F3E211152FC007B4D33 /* MQDatabaseExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQDatabaseExtension.h; sourceTree = "<group>"; };
-		70F08F41211152FC007B4D33 /* MQRLMBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQRLMBaseEntity.m; sourceTree = "<group>"; };
-		70F08F42211152FC007B4D33 /* MQRLMBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRLMBaseEntity.h; sourceTree = "<group>"; };
-		70F08F44211152FC007B4D33 /* MQRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQRealmHandler.h; sourceTree = "<group>"; };
-		70F08F45211152FC007B4D33 /* MQRealmHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQRealmHandler.m; sourceTree = "<group>"; };
-		70F08F4B211152FC007B4D33 /* FCModelCachedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelCachedObject.m; sourceTree = "<group>"; };
-		70F08F4C211152FC007B4D33 /* FCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModel.h; sourceTree = "<group>"; };
-		70F08F4D211152FC007B4D33 /* FCModelNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModelNotificationCenter.h; sourceTree = "<group>"; };
-		70F08F4E211152FC007B4D33 /* FCModelDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModelDatabase.h; sourceTree = "<group>"; };
-		70F08F4F211152FC007B4D33 /* FCModelCachedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModelCachedObject.h; sourceTree = "<group>"; };
-		70F08F50211152FC007B4D33 /* FCModelNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelNotificationCenter.m; sourceTree = "<group>"; };
-		70F08F51211152FC007B4D33 /* FCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModel.m; sourceTree = "<group>"; };
-		70F08F52211152FC007B4D33 /* FCModelDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModelDatabase.m; sourceTree = "<group>"; };
 		70F08F632112A374007B4D33 /* SVProgressHUD+MQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+MQExtension.m"; sourceTree = "<group>"; };
 		70F08F642112A374007B4D33 /* SVProgressHUD+MQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+MQExtension.h"; sourceTree = "<group>"; };
 		70F08F672112CF63007B4D33 /* MQMultiArgumentPerformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQMultiArgumentPerformer.h; sourceTree = "<group>"; };
@@ -594,7 +575,6 @@
 				70F08DC3210EC60C007B4D33 /* MQProtocol */,
 				70F08DC8210EC60C007B4D33 /* MQData */,
 				70F08E13210EC60C007B4D33 /* MQMedia */,
-				70F08F3D211152FC007B4D33 /* MQDatabase */,
 				70F08E22210EC60C007B4D33 /* MQView */,
 			);
 			path = MQExtensionKit;
@@ -1392,66 +1372,6 @@
 			path = UITextField;
 			sourceTree = "<group>";
 		};
-		70F08F3D211152FC007B4D33 /* MQDatabase */ = {
-			isa = PBXGroup;
-			children = (
-				70F08F3E211152FC007B4D33 /* MQDatabaseExtension.h */,
-				70F08F3F211152FC007B4D33 /* MQRealm */,
-				70F08F46211152FC007B4D33 /* MQFCModel */,
-			);
-			path = MQDatabase;
-			sourceTree = "<group>";
-		};
-		70F08F3F211152FC007B4D33 /* MQRealm */ = {
-			isa = PBXGroup;
-			children = (
-				70F08F40211152FC007B4D33 /* MQRealmModel */,
-				70F08F43211152FC007B4D33 /* MQRealmHandler */,
-			);
-			path = MQRealm;
-			sourceTree = "<group>";
-		};
-		70F08F40211152FC007B4D33 /* MQRealmModel */ = {
-			isa = PBXGroup;
-			children = (
-				70F08F41211152FC007B4D33 /* MQRLMBaseEntity.m */,
-				70F08F42211152FC007B4D33 /* MQRLMBaseEntity.h */,
-			);
-			path = MQRealmModel;
-			sourceTree = "<group>";
-		};
-		70F08F43211152FC007B4D33 /* MQRealmHandler */ = {
-			isa = PBXGroup;
-			children = (
-				70F08F44211152FC007B4D33 /* MQRealmHandler.h */,
-				70F08F45211152FC007B4D33 /* MQRealmHandler.m */,
-			);
-			path = MQRealmHandler;
-			sourceTree = "<group>";
-		};
-		70F08F46211152FC007B4D33 /* MQFCModel */ = {
-			isa = PBXGroup;
-			children = (
-				70F08F4A211152FC007B4D33 /* FCModel */,
-			);
-			path = MQFCModel;
-			sourceTree = "<group>";
-		};
-		70F08F4A211152FC007B4D33 /* FCModel */ = {
-			isa = PBXGroup;
-			children = (
-				70F08F4B211152FC007B4D33 /* FCModelCachedObject.m */,
-				70F08F4C211152FC007B4D33 /* FCModel.h */,
-				70F08F4D211152FC007B4D33 /* FCModelNotificationCenter.h */,
-				70F08F4E211152FC007B4D33 /* FCModelDatabase.h */,
-				70F08F4F211152FC007B4D33 /* FCModelCachedObject.h */,
-				70F08F50211152FC007B4D33 /* FCModelNotificationCenter.m */,
-				70F08F51211152FC007B4D33 /* FCModel.m */,
-				70F08F52211152FC007B4D33 /* FCModelDatabase.m */,
-			);
-			path = FCModel;
-			sourceTree = "<group>";
-		};
 		70F08F622112A374007B4D33 /* SVProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1572,27 +1492,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/MGJRouter/MGJRouter.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGJRouter.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MQExtension_Example/Pods-MQExtension_Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1625,7 +1530,6 @@
 				70F08EC5210EC60C007B4D33 /* UIGestureRecognizer+MQExtension.m in Sources */,
 				7089AB5B21ACF13A00C835EE /* UIWindow+MQExtension.m in Sources */,
 				70F08EAD210EC60C007B4D33 /* PHImageRequestOptions+MQExtension.m in Sources */,
-				70F08F5B211152FD007B4D33 /* FCModel.m in Sources */,
 				70F08E94210EC60C007B4D33 /* NSDictionary+MQExtension.m in Sources */,
 				70F08E97210EC60C007B4D33 /* NSFileManager+MQExtension.m in Sources */,
 				70F08E8A210EC60C007B4D33 /* MQTaskManager.m in Sources */,
@@ -1636,9 +1540,7 @@
 				70F08EB6210EC60C007B4D33 /* UIButton+MQExtension.m in Sources */,
 				70F08E7C210EC60C007B4D33 /* UIImageView+MQExtension_WeakNetwork.m in Sources */,
 				70F08E90210EC60C007B4D33 /* MQAuthorize.m in Sources */,
-				70F08F57211152FD007B4D33 /* MQRealmHandler.m in Sources */,
 				3771917C221E88D8001A6B5A /* MQAudioRecorder.m in Sources */,
-				70F08F5A211152FD007B4D33 /* FCModelNotificationCenter.m in Sources */,
 				70F08E7D210EC60C007B4D33 /* UICollectionView+MQExtension_Refresh.m in Sources */,
 				70F08E7E210EC60C007B4D33 /* MQNetworkMoniter.m in Sources */,
 				70F08EAE210EC60C007B4D33 /* PHFetchResult+MQExtension.m in Sources */,
@@ -1667,7 +1569,6 @@
 				70F08EC0210EC60C007B4D33 /* UIBarButtonItem+MQExtension.m in Sources */,
 				70F08EB8210EC60C007B4D33 /* UIAlertController+MQExtension.m in Sources */,
 				70F08E87210EC60C007B4D33 /* MQIAPManager.m in Sources */,
-				70F08F56211152FD007B4D33 /* MQRLMBaseEntity.m in Sources */,
 				70F08EB0210EC60C007B4D33 /* UIImage+MQExtension.m in Sources */,
 				70F08EC8210EC60C007B4D33 /* UITextField+MQExtension.m in Sources */,
 				704C2E1B21C79BBE003EBB38 /* MQTouchableImageView.m in Sources */,
@@ -1687,13 +1588,11 @@
 				7035CEC92294F57E00B7F8D5 /* CLGeocoder+MQExtension.m in Sources */,
 				70F08E88210EC60C007B4D33 /* MQPointMarker.m in Sources */,
 				3771917F221E890C001A6B5A /* MQVideo_H264_HEVC_Encoder.m in Sources */,
-				70F08F5C211152FD007B4D33 /* FCModelDatabase.m in Sources */,
 				70F08E96210EC60C007B4D33 /* NSNotificationCenter+MQExtension.m in Sources */,
 				70F08E89210EC60C007B4D33 /* MQNull.m in Sources */,
 				70F08EC6210EC60C007B4D33 /* UIVisualEffectView+MQExtension.m in Sources */,
 				70F08EC4210EC60C007B4D33 /* UIControl+MQExtension.m in Sources */,
 				70F08EA0210EC60C007B4D33 /* NSTimer+MQExtension.m in Sources */,
-				70F08F59211152FD007B4D33 /* FCModelCachedObject.m in Sources */,
 				70F08E8B210EC60C007B4D33 /* MQPhotoManager.m in Sources */,
 				70F08E84210EC60C007B4D33 /* MQEasyWebView.m in Sources */,
 				70F08EBE210EC60C007B4D33 /* UICollectionView+MQExtension.m in Sources */,
