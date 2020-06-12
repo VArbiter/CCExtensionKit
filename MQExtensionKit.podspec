@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "MQExtensionKit"
-    s.version      = "4.0.0"
+    s.version      = "4.1.9"
     s.summary      = "MQExtensionKit."
 
     s.description  = <<-DESC
@@ -77,10 +77,10 @@ Pod::Spec.new do |s|
       s.subspec 'MQCustom' do |custom|
         custom.source_files = 'MQExtensionKit/MQExtensionKit/MQCustom/**/*'
         custom.dependency 'MQExtensionKit/MQCore'
-        custom.dependency 'AFNetworking/Reachability', '>= 3.2.1'
-        custom.dependency 'AFNetworking/UIKit', '>= 3.2.1'
+        custom.dependency 'AFNetworking/Reachability', '>= 4.0.0'
+        custom.dependency 'AFNetworking/UIKit', '>= 4.0.0'
         custom.dependency 'SDWebImage', '>= 4.4.2'
-        custom.dependency 'MJRefresh', '>= 3.1.12'
+        custom.dependency 'MJRefresh', '>= 3.4.0'
         custom.dependency 'MBProgressHUD', '>= 1.1.0'
         custom.dependency 'SVProgressHUD', '>= 2.2.5'
         custom.frameworks =  "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
