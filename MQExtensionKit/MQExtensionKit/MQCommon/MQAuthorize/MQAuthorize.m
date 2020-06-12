@@ -9,6 +9,8 @@
 #import "MQAuthorize.h"
 
 #import <AVFoundation/AVFoundation.h>
+#import <UIKit/UIKit.h>
+
 
 #ifdef __IPHONE_9_0
     #import <Photos/Photos.h>

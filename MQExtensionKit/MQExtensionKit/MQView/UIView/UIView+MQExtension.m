@@ -769,7 +769,7 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:sel]];
         [invocation setSelector:sel];
         [invocation setTarget:UIDevice.currentDevice];
-        int var = orientation;
+        UIDeviceOrientation var = orientation;
         [invocation setArgument:&var atIndex:2];
         [invocation invoke];
     }

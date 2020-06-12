@@ -7,6 +7,7 @@
 //
 
 #import "PHAssetCollection+MQExtension.h"
+#import <UIKit/UIKit.h>
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
 
