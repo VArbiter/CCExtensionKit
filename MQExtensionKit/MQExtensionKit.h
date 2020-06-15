@@ -24,10 +24,6 @@
             #import <MQExtensionKit/MQRouterExtension.h>
         #endif
 
-        #ifdef MQDatabaseExtension_h
-            #import <MQExtensionKit/MQDatabaseExtension.h>
-        #endif
-
     #else
 
         #import "MQProtocolExtension.h"
@@ -42,10 +38,6 @@
 
         #ifdef MQRouterExtension_h
             #import "MQRouterExtension.h"
-        #endif
-
-        #ifdef MQDatabaseExtension_h
-            #import "MQDatabaseExtension.h"
         #endif
 
     #endif
