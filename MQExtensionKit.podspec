@@ -50,7 +50,7 @@ Pod::Spec.new do |s|
       s.subspec 'MQData' do |data|
         data.source_files = 'MQExtensionKit/MQExtensionKit/MQData/**/*'
         data.dependency 'MQExtensionKit/MQProtocol'
-        data.frameworks = "MobileCoreServices" , "CoreLocation"
+        data.frameworks = "CoreServices" , "CoreLocation"
       end
 
       s.subspec 'MQView' do |view|
@@ -83,7 +83,7 @@ Pod::Spec.new do |s|
         custom.dependency 'MJRefresh', '>= 3.4.0'
         custom.dependency 'MBProgressHUD', '>= 1.1.0'
         custom.dependency 'SVProgressHUD', '>= 2.2.5'
-        custom.frameworks =  "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
+        custom.frameworks =  "SystemConfiguration" , "CoreTelephony" , "CoreServices", "ImageIO"
         custom.weak_frameworks = "WebKit"
       end
 
