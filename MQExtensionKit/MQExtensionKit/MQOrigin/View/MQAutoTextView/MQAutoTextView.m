@@ -237,7 +237,13 @@ CGFloat MQ_ORIGIN_AUTO_TEXT_VIEW_DEFAULT_FONT_SIZE = 16.f;
     }
     return YES;
 }
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+
+#ifdef __IPHONE_10_0
+-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction
+#else
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+#endif
+{
     if ([self.delegate_text_view
          respondsToSelector:@selector(mq_auto_text_view:
                                       should_interact_with_url:
@@ -248,7 +254,13 @@ CGFloat MQ_ORIGIN_AUTO_TEXT_VIEW_DEFAULT_FONT_SIZE = 16.f;
     }
     return YES;
 }
-- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange {
+
+#ifdef __IPHONE_10_0
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction
+#else
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange
+#endif
+{
     if ([self.delegate_text_view
          respondsToSelector:@selector(mq_auto_text_view:
                                       should_interact_with_text_attachment:

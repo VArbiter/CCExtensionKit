@@ -197,10 +197,16 @@ static NSArray *__array_keys = nil;
     
     self.menu_controller.menuItems = self.array_menu_items;
     [self becomeFirstResponder];
-    [self.menu_controller setTargetRect:frame
-                                inView:self];
-    [self.menu_controller setMenuVisible:YES
-                               animated:YES];
+
+#ifdef __IPHONE_13_0
+        [self.menu_controller showMenuFromView:self
+                                          rect:frame];
+#else
+        [self.menu_controller setTargetRect:frame
+                                     inView:self];
+        [self.menu_controller setMenuVisible:YES
+                                    animated:YES];
+#endif
     return self;
 }
 - (instancetype) mq_click : (void (^)(NSDictionary *d_total ,

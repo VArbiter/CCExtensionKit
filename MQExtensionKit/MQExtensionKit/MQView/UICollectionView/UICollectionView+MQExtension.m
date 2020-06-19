@@ -374,13 +374,13 @@ forCellWithReuseIdentifier:NSStringFromClass(cls)];
 
 @implementation NSArray (MQExtension_Collection_Refresh)
 
-- (instancetype) mq_reload : (UICollectionView *) collectionView {
+- (instancetype) mq_reload_collectionview : (UICollectionView *) collectionView {
     if (self.count) [collectionView mq_reloading:YES];
     else [collectionView reloadData];
     return self;
 }
-- (instancetype) mq_reload : (UICollectionView *) collectionView
-                  sections : (NSIndexSet *) set {
+- (instancetype) mq_reload_collectionview : (UICollectionView *) collectionView
+                                 sections : (NSIndexSet *) set {
     if (self.count) [collectionView mq_reload_sections:set
                                               animated:YES];
     else [collectionView mq_reload_sections:set

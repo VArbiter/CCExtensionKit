@@ -172,12 +172,12 @@ NSString * mq_photo_manger_asset_key = @"asset" ;
 - (void) mq_get_image_data : (PHAsset *) asset
                   complete : (void(^)(NSData *image_data ,
                                       BOOL is_can_be_used)) mq_complete_block {
-    [[PHCachingImageManager defaultManager] requestImageDataForAsset:asset
-                                                             options:nil
-                                                       resultHandler:^(NSData * _Nullable imageData,
-                                                                       NSString * _Nullable dataUTI,
-                                                                       UIImageOrientation orientation,
-                                                                       NSDictionary * _Nullable info) {
+    PHCachingImageManager *manager = (PHCachingImageManager *)[PHCachingImageManager defaultManager];
+#ifdef __IPHONE_13_0
+    [manager requestImageDataAndOrientationForAsset:asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, CGImagePropertyOrientation orientation, NSDictionary * _Nullable info) {
+#else
+    [manager requestImageDataForAsset:asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+#endif
            if (imageData) {
                UIImage *t_image = [UIImage imageWithData:imageData].mq_fix_orientation;
                NSData *data_new_image = UIImageJPEGRepresentation(t_image, .5f);

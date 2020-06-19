@@ -744,8 +744,17 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
 }
 
 - (instancetype) mq_duplicate {
+#ifdef __IPHONE_12_0
+    NSData * dt = [NSKeyedArchiver archivedDataWithRootObject:self
+                                        requiringSecureCoding:false
+                                                        error:nil];
+    return [NSKeyedUnarchiver unarchivedObjectOfClass:[self class]
+                                             fromData:dt
+                                                error:nil];
+#else
     NSData * dt = [NSKeyedArchiver archivedDataWithRootObject:self];
     return [NSKeyedUnarchiver unarchiveObjectWithData:dt];
+#endif
 }
 
 - (CGRect) mq_location_in_window {

@@ -416,13 +416,13 @@ forHeaderFooterViewReuseIdentifier:s_nib];
 
 @implementation NSArray (MQExtension_Table_Refresh)
 
-- (instancetype) mq_reload : (__kindof UITableView *) table_view {
+- (instancetype) mq_reload_tableview : (__kindof UITableView *) table_view {
     if (self.count) [table_view mq_reloading:UITableViewRowAnimationFade];
     else [table_view reloadData];
     return self;
 }
-- (instancetype) mq_reload : (__kindof UITableView *) table_view
-                  sections : (NSIndexSet *) set {
+- (instancetype) mq_reload_tableview : (__kindof UITableView *) table_view
+                            sections : (NSIndexSet *) set {
     if (self.count) [table_view mq_reload_sections:set animate:UITableViewRowAnimationFade];
     else [table_view mq_reload_sections:set animate:UITableViewRowAnimationNone];
     return self;

@@ -118,12 +118,11 @@ void mq_close_decode(MQVideo_H264_HEVC_Decoder *decoder) {
         _i_preferred_frames_per_second = 30;
     }
     
-    if (@available(iOS 10.0 , *)) {
-        [t setPreferredFramesPerSecond:_i_preferred_frames_per_second];
-    }
-    else {
-        [t setFrameInterval:(60 / _i_preferred_frames_per_second)];
-    }
+#ifdef __IPHONE_10_0
+    [t setPreferredFramesPerSecond:_i_preferred_frames_per_second];
+#else
+    [t setFrameInterval:(60 / _i_preferred_frames_per_second)];
+#endif
     
     [t addToRunLoop:[NSRunLoop mainRunLoop]
             forMode:NSRunLoopCommonModes];

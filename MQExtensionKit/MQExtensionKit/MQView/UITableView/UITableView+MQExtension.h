@@ -103,9 +103,9 @@
 
 @interface NSArray (MQExtension_Table_Refresh)
 
-- (instancetype) mq_reload : (__kindof UITableView *) table_view ;
-- (instancetype) mq_reload : (__kindof UITableView *) table_view
-                  sections : (NSIndexSet *) set ;
+- (instancetype) mq_reload_tableview : (__kindof UITableView *) table_view ;
+- (instancetype) mq_reload_tableview : (__kindof UITableView *) table_view
+                            sections : (NSIndexSet *) set ;
 
 @end
 

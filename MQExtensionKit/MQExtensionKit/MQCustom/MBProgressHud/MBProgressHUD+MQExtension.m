@@ -31,11 +31,16 @@ static NSTimeInterval __mq_mb_progress_hud_auto_hide_time_interval = 2.f;
     return [self mq_has_hud:nil];
 }
 + (BOOL) mq_has_hud : (UIView *) view {
+#ifdef __IPHONE_13_0
+    return !![MBProgressHUD HUDForView:view];
+#else
     if (!view) view = UIApplication.sharedApplication.keyWindow;
     return !![MBProgressHUD HUDForView:view];
+#endif
 }
     
 #pragma mark - -----
+#ifndef __IPHONE_13_0
 + (instancetype) mq_simple_title : (NSString *) s_title {
     return [self mq_simple:MQHudExtensionType_Light
                   for_view:nil
@@ -56,6 +61,7 @@ static NSTimeInterval __mq_mb_progress_hud_auto_hide_time_interval = 2.f;
                 with_title:s_title
                    message:s_message];
 }
+#endif
 + (instancetype) mq_simple : (MQHudExtensionType) type
                   for_view : (__kindof UIView *) view
                 with_title : (NSString *) s_title {
@@ -76,8 +82,13 @@ static NSTimeInterval __mq_mb_progress_hud_auto_hide_time_interval = 2.f;
                   for_view : (__kindof UIView *) view
                 with_title : (NSString *) s_title
                    message : (NSString *) s_message {
+#ifdef __IPHONE_13_0
+    NSAssert((view != nil), @"view can't be nil under iOS 13.0 (or above)");
+#else
     if (!view) view = UIApplication.sharedApplication.delegate.window;
     if (!view) view = UIApplication.sharedApplication.keyWindow;
+#endif
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view
                                               animated:YES];
     hud.mode = MBProgressHUDModeText;
@@ -89,12 +100,14 @@ static NSTimeInterval __mq_mb_progress_hud_auto_hide_time_interval = 2.f;
 }
     
 /// generate an indicator . //  创建指示器
+#ifndef __IPHONE_13_0
 + (instancetype) mq_indicator {
     return [self mq_indicator:MQHudExtensionType_Light];
 }
 + (instancetype) mq_indicator : (MQHudExtensionType) type {
     return [self mq_indicator:type for_view:nil];
 }
+#endif
 + (instancetype) mq_indicator : (MQHudExtensionType) type
                      for_view : (__kindof UIView *) view {
     return [self mq_indicator:type for_view:view with_title:nil];
@@ -108,8 +121,13 @@ static NSTimeInterval __mq_mb_progress_hud_auto_hide_time_interval = 2.f;
                      for_view : (__kindof UIView *) view
                    with_title : (NSString *) s_title
                       message : (NSString *) s_message {
-    if (!view) view = UIApplication.sharedApplication.delegate.window;
-    if (!view) view = UIApplication.sharedApplication.keyWindow;
+#ifdef __IPHONE_13_0
+        NSAssert((view != nil), @"view can't be nil under iOS 13.0 (or above)");
+#else
+        if (!view) view = UIApplication.sharedApplication.delegate.window;
+        if (!view) view = UIApplication.sharedApplication.keyWindow;
+#endif
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view
                                               animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;

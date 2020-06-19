@@ -191,7 +191,7 @@ UIDeviceOrientation mq_current_device_orientation(BOOL is_use_status_bar_orienta
                          offset : (CGSize) size_offset ;
 - (instancetype) mq_content_mode : (UIViewContentMode) mode ;
 
-/// copy it self . // 复制自身
+/// copy it self , might be nil . // 复制自身 , 可能是空
 - (instancetype) mq_duplicate ;
 
 /// find its absolute location in screen . // 找到 view 在屏幕中的绝对位置 

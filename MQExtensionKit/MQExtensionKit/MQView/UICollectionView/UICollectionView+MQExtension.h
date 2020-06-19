@@ -111,9 +111,9 @@
 
 @interface NSArray (MQExtension_Collection_Refresh)
 
-- (instancetype) mq_reload : (__kindof UICollectionView *) collectionView ;
-- (instancetype) mq_reload : (__kindof UICollectionView *) collectionView
-                  sections : (NSIndexSet *) set ;
+- (instancetype) mq_reload_collectionview : (__kindof UICollectionView *) collectionView ;
+- (instancetype) mq_reload_collectionview : (__kindof UICollectionView *) collectionView
+                                 sections : (NSIndexSet *) set ;
 
 @end
 

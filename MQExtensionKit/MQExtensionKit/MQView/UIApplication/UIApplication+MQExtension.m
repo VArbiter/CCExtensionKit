@@ -52,14 +52,14 @@ UIApplication *MQ_SHARED_APPLICATION(void) {
         return nil;
     };
     if (can_open_block) {
-        if (@available(iOS 10.0, *)) {
-            [t openURL:can_open_block() options:options ? options : @{} completionHandler:^(BOOL success) {
-                if (mq_completion_block) mq_completion_block(success);
-            }];
-        } else {
-            BOOL is_success = [t openURL:can_open_block()] ;
-            if (mq_completion_block) mq_completion_block(is_success);
-        }
+#ifdef __IPHONE_10_0
+        [t openURL:can_open_block() options:options ? options : @{} completionHandler:^(BOOL success) {
+            if (mq_completion_block) mq_completion_block(success);
+        }];
+#else
+        BOOL is_success = [t openURL:can_open_block()] ;
+        if (mq_completion_block) mq_completion_block(is_success);
+#endif
     }
     else if (mq_completion_block) mq_completion_block(false) ;
     

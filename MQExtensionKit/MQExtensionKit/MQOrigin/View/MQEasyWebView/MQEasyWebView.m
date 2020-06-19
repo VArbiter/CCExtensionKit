@@ -191,11 +191,22 @@ void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSUR
         SecTrustRef sec_trust_ref = challenge.protectionSpace.serverTrust;
         if (sec_trust_ref != NULL) {
             SecTrustResultType result;
+#warning TODO >>>
+#ifdef __IPHONE_13_0
+            CFErrorRef err_ref;
+            // sync function // 同步方法
+            bool trusted = SecTrustEvaluateWithError(sec_trust_ref , &err_ref);
+            if (trusted) {
+                completionHandler(NSURLSessionAuthChallengeRejectProtectionSpace,nil);
+                return;
+            }
+#else
             OSErr er = SecTrustEvaluate(sec_trust_ref, &result);
             if (er != noErr) {
                 completionHandler(NSURLSessionAuthChallengeRejectProtectionSpace,nil);
                 return;
             }
+#endif
             
             if (result == kSecTrustResultRecoverableTrustFailure) {
                 /// certificate can't be trusted

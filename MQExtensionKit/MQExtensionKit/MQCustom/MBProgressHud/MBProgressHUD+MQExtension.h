@@ -33,11 +33,14 @@ typedef NS_ENUM(NSInteger , MQHudExtensionType) {
 + (BOOL) mq_has_hud : (UIView *) view ;
     
 /// generate an text Toast . // 创建普通文本提示框
+#ifndef __IPHONE_13_0
 + (instancetype) mq_simple_title : (NSString *) s_title ;
 + (instancetype) mq_simple_message : (NSString *) s_message ;
 + (instancetype) mq_simple : (MQHudExtensionType) type
                 with_title : (NSString *) s_title
                    message : (NSString *) s_message ;
+#endif
+
 + (instancetype) mq_simple : (MQHudExtensionType) type
                   for_view : (__kindof UIView *) view
                 with_title : (NSString *) s_title ;
@@ -47,8 +50,11 @@ typedef NS_ENUM(NSInteger , MQHudExtensionType) {
                    message : (NSString *) s_message ;
     
 /// generate an indicator . //  创建指示器
+#ifndef __IPHONE_13_0
 + (instancetype) mq_indicator ;
 + (instancetype) mq_indicator : (MQHudExtensionType) type ;
+#endif
+
 + (instancetype) mq_indicator : (MQHudExtensionType) type
                      for_view : (__kindof UIView *) view ;
 + (instancetype) mq_indicator : (MQHudExtensionType) type
