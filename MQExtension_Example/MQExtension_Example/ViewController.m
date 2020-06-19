@@ -1,9 +1,9 @@
 //
 //  ViewController.m
-//  MQExtensionKit
+//  MQExtension_Example
 //
-//  Created by ElwinFrederick on 2018/7/30.
-//  Copyright © 2018 ElwinFrederick. All rights reserved.
+//  Created by 冯明庆 on 2020/6/19.
+//  Copyright © 2020 MQ. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -16,13 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

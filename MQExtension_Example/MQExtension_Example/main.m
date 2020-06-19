@@ -1,16 +1,19 @@
 //
 //  main.m
-//  MQExtensionKit
+//  MQExtension_Example
 //
-//  Created by ElwinFrederick on 2018/7/30.
-//  Copyright © 2018 ElwinFrederick. All rights reserved.
+//  Created by 冯明庆 on 2020/6/19.
+//  Copyright © 2020 MQ. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "CCAppDelegate.h"
+#import "AppDelegate.h"
 
 int main(int argc, char * argv[]) {
+    NSString * appDelegateClassName;
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([CCAppDelegate class]));
+        // Setup code that might create autoreleased objects goes here.
+        appDelegateClassName = NSStringFromClass([AppDelegate class]);
     }
+    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
 }
