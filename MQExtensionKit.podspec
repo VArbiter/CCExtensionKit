@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "MQExtensionKit"
-    s.version      = "4.1.9"
+    s.version      = "4.2.0-alpha"
     s.summary      = "MQExtensionKit."
 
     s.description  = <<-DESC
