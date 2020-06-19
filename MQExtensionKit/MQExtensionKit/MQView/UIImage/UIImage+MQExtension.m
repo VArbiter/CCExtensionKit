@@ -10,6 +10,7 @@
 
 #import <CoreGraphics/CoreGraphics.h>
 
+#ifndef __IPHONE_13_0
 UIImage * mq_capture_window(UIWindow *window) {
     UIWindow *w = [UIApplication sharedApplication].windows.firstObject;
     if (window) w = window;
@@ -48,6 +49,7 @@ UIImage * mq_launch_image(void) {
     
     return image ? image : [UIImage imageNamed:@"LaunchImage"];
 }
+#endif
 
 @implementation UIImage (MQExtension)
 
@@ -112,9 +114,11 @@ compatibleWithTraitCollection:nil];
     return [UIImage imageWithContentsOfFile:s_path];
 }
 
+#ifndef __IPHONE_13_0
 + (instancetype) mq_capture_current {
     return mq_capture_window(nil);
 }
+#endif
 
 @end
 

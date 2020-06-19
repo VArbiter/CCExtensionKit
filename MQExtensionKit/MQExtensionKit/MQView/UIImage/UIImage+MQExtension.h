@@ -28,8 +28,10 @@
     #define MQ_IMAGE_BUNDLE(_vBundle_,_vName_) [UIImage mq_name:(_vName_) bundle:(_vBundle_)]
 #endif
 
+#ifndef __IPHONE_13_0
 UIImage * mq_capture_window(UIWindow *window);
 UIImage * mq_launch_image(void);
+#endif
 
 @interface UIImage (MQExtension)
 
@@ -52,8 +54,10 @@ UIImage * mq_launch_image(void);
                   bundle : (NSBundle *) bundle ;
 + (instancetype) mq_file : (NSString *) s_path ;
 
+#ifndef __IPHONE_13_0
 /// create an image with current window // 对当前 window 进行截图
 + (instancetype) mq_capture_current ;
+#endif
 
 @end
 

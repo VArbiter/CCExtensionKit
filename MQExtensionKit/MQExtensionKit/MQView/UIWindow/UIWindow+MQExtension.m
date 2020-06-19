@@ -10,6 +10,7 @@
 
 @implementation UIWindow (MQExtension)
 
+#ifndef __IPHONE_13_0
 + (instancetype) mq_current_window {
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];
     if (window.windowLevel != UIWindowLevelNormal) {
@@ -23,6 +24,7 @@
     }
     return window;
 }
+#endif
 
 + (NSArray <__kindof UIWindow *> *) mq_all_windows {
     return [[UIApplication sharedApplication] windows];
@@ -32,6 +34,7 @@
 
 @implementation UIViewController (MQExtension_Window)
 
+#ifndef __IPHONE_13_0
 + (instancetype) mq_windowed_current : (__kindof UIWindow *) window {
     id t = nil;
     UIView * view_front = [[window subviews] firstObject];
@@ -49,6 +52,7 @@
 + (instancetype) mq_current_navigation {
     return [UIViewController mq_current].navigationController;
 }
+#endif
 + (instancetype) mq_current_from : (__kindof UIViewController *) controller {
     if ([controller isKindOfClass:UINavigationController.class]) {
         UINavigationController *t_nvc = (UINavigationController *)controller;

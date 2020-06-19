@@ -27,7 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
+#ifndef __IPHONE_13_0
 - (instancetype) initWithView : (__kindof UIView *) view ;
+#endif
 - (instancetype) initWithView : (__kindof UIView *) view
                        showOn : (__kindof UIView *) view_on ;
 

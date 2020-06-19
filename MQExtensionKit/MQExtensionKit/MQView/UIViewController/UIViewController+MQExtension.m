@@ -138,6 +138,7 @@
     return self;
 }
 
+#ifndef __IPHONE_13_0
 + (void) mq_cover_view_with : (__kindof UIViewController *) controller
                    animated : (BOOL) is_aminated
                    duration : (CGFloat) f_animation_duration {
@@ -155,6 +156,7 @@
     }
     else [w addSubview:controller.view];
 }
+#endif
 
 - (instancetype) mq_enable_pushing_poping_style_when_present_or_dismiss {
     self.transitioningDelegate = self;

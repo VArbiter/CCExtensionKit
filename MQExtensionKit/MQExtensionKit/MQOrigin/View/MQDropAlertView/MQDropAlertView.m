@@ -26,10 +26,12 @@ CGFloat MQ_SNAP_DAMPING_DURATION = .85f;
 
 @implementation MQDropAlertView
 
+#ifndef __IPHONE_13_0
 - (instancetype) initWithView : (__kindof UIView *) view {
     return [self initWithView:view
                        showOn:UIApplication.sharedApplication.delegate.window];
 }
+#endif
 
 - (instancetype) initWithView : (__kindof UIView *) view
                        showOn : (__kindof UIView *) view_on {

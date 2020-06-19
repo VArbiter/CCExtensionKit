@@ -10,8 +10,10 @@
 
 @interface UIWindow (MQExtension)
 
+#ifndef __IPHONE_13_0
 /// get current window . // 获得当前的 窗口
 + (instancetype) mq_current_window ;
+#endif
 
 /// get all app windows . // 获得应用所有的窗口
 + (NSArray <__kindof UIWindow *> *) mq_all_windows ;
@@ -20,6 +22,7 @@
 
 @interface UIViewController (MQExtension_Window)
 
+#ifndef __IPHONE_13_0
 /// when have muti windows . // 如果有多个 window 的话 .
 + (instancetype) mq_windowed_current : (__kindof UIWindow *) window ;
 
@@ -27,6 +30,7 @@
 + (instancetype) mq_current ;
 + (instancetype) mq_current_root ;
 + (instancetype) mq_current_navigation;
+#endif
 + (instancetype) mq_current_from : (__kindof UIViewController *) controller ;
 
 @end

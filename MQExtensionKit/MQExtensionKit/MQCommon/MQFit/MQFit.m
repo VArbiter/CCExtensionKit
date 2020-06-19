@@ -11,6 +11,7 @@
 //@implementation MQFit
 //@end
 
+#ifndef __IPHONE_13_0
 CGRect mq_fit_status_bar_frame() {
     return UIApplication.sharedApplication.statusBarFrame;
 }
@@ -20,6 +21,7 @@ CGFloat mq_fit_status_bar_height() {
 CGFloat mq_fit_status_bar_bottom() {
     return CGRectGetMaxY(mq_fit_status_bar_frame());
 }
+#endif
 CGFloat mq_fit_navigation_height(void) {
     return 44.f;
 }
@@ -34,11 +36,21 @@ CGFloat mq_fit_tabbar_top(void) {
 }
 
 BOOL mq_fit_is_has_bangs(void) {
-    if (@available(iOS 11.0, *)) {
-        UIEdgeInsets insets_safe_area = UIApplication.sharedApplication.delegate.window.safeAreaInsets;
-        return insets_safe_area.bottom > 0; 
+#ifdef __IPHONE_13_0
+    NSSet <UIScene *> *set = UIApplication.sharedApplication.connectedScenes;
+    if (set.count) {
+        UIScene *scene = set.anyObject;
+        if ([scene isKindOfClass:[UIWindowScene class]]) {
+            UIEdgeInsets insets_safe_area = ((UIWindowScene *)scene).windows.firstObject.safeAreaInsets;
+            return insets_safe_area.bottom > 0;
+        }
     }
-    else return false;
+#endif
+#ifdef __IPHONE_11_0
+    UIEdgeInsets insets_safe_area = UIApplication.sharedApplication.delegate.window.safeAreaInsets;
+    return insets_safe_area.bottom > 0;
+#endif
+    return false;
 }
 
 CGFloat mq_fit_safe_area_top_height(void) {

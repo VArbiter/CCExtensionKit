@@ -16,6 +16,7 @@
 
 @interface NSString (MQExtension_Number_Assist)
 
+/// only numbers do . 只针对数字
 @property (nonatomic , readonly) NSDecimalNumber * to_decimal ;
 
 @end
