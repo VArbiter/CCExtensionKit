@@ -91,6 +91,7 @@ NSString * MQ_LIBRARY_DIRECTORY(void) {
     return folder_size;
 }
 
+#ifndef __IPHONE_13_0
 - (NSString *)mq_MD5_auto:(NSString *)s_path {
     if (!s_path || !s_path.length) return nil;
     if ([self mq_is_directory_t:s_path]) return nil;
@@ -187,6 +188,8 @@ NSString * MQ_LIBRARY_DIRECTORY(void) {
     };
     return t ? t(((__bridge CFStringRef)s_path) , mq_file_hash_default_chunk_size) : nil;
 }
+#endif
+
 - (NSString *)mq_mime_type:(NSString *)s_path {
     if (!s_path || !s_path.length) return nil;
     if ([self mq_is_directory_t:s_path]) return nil;
@@ -233,6 +236,8 @@ NSString * MQ_LIBRARY_DIRECTORY(void) {
 - (NSString *)mime_type {
     return [NSFileManager.defaultManager mq_mime_type:self];
 }
+
+#ifndef __IPHONE_13_0
 - (NSString *)file_auto_MD5 {
     return [NSFileManager.defaultManager mq_MD5_auto:self];
 }
@@ -242,5 +247,6 @@ NSString * MQ_LIBRARY_DIRECTORY(void) {
 - (NSString *)large_file_MD5 {
     return [NSFileManager.defaultManager mq_MD5_large:self];
 }
+#endif
 
 @end

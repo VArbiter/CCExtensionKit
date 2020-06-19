@@ -165,10 +165,7 @@ NSString * mq_localized_string_module(Class cls ,
     return [self dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (NSDecimalNumber *)to_decimal {
-    return [NSDecimalNumber decimalNumberWithString:self];
-}
-
+#ifndef __IPHONE_13_0
 - (NSString *)to_MD5 {
     if (!mq_is_string_valued(self)) return nil;
     const char *c_str = [self UTF8String];
@@ -179,6 +176,7 @@ NSString * mq_localized_string_module(Class cls ,
         [s_output appendFormat:@"%02x", digest[i]];
     return  s_output;
 }
+#endif
 - (NSString *)to_SHA1 {
     if (!mq_is_string_valued(self)) return nil;
     const char *c_str = [self cStringUsingEncoding:NSUTF8StringEncoding];

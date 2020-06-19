@@ -32,9 +32,11 @@ NSString * MQ_LIBRARY_DIRECTORY(void);
 - (unsigned long long) mq_folder_size_t : (NSString *) s_path ;
 
 /// note : if self is a folder or not valued path at all , returns nil // 如果 self 是一个文件夹 , 或者路径是无效的 , 返回 nil
+#ifndef __IPHONE_13_0
 - (NSString *) mq_MD5_auto : (NSString *) s_path ;
 - (NSString *) mq_MD5_normal : (NSString *) s_path ;
 - (NSString *) mq_MD5_large : (NSString *) s_path ;
+#endif
 - (NSString *) mq_mime_type : (NSString *) s_path ;
 
 @end
@@ -56,8 +58,11 @@ NSString * MQ_LIBRARY_DIRECTORY(void);
 
 /// note : if self is a folder or not valued path at all , returns nil rather than it self . // 如果 字符串 是一个文件夹 , 或者路径是无效的 , 返回 nil 而不是它本身
 @property (nonatomic , readonly) NSString *mime_type ;
+
+#ifndef __IPHONE_13_0
 @property (nonatomic , readonly) NSString *file_auto_MD5 ;
 @property (nonatomic , readonly) NSString *file_MD5 ;
 @property (nonatomic , readonly) NSString *large_file_MD5 ;
+#endif
 
 @end

@@ -68,10 +68,9 @@ NSString * mq_localized_string_module(Class cls ,
 @property (nonatomic , readonly) double to_double ;
 @property (nonatomic , readonly) NSData *to_data ; // [self dataUsingEncoding:NSUTF8StringEncoding];
 
-/// only numbers . // 只针对数字字符起效
-@property (nonatomic , readonly) NSDecimalNumber * to_decimal;
-
+#ifndef __IPHONE_13_0
 @property (nonatomic , readonly) NSString *to_MD5 ;
+#endif
 @property (nonatomic , readonly) NSString *to_SHA1 ;
 @property (nonatomic , readonly) NSString *to_base64 ; // encode base 64 usign origin // 使用原生进行 base64 编码
 @property (nonatomic , readonly) NSString *to_base64_decode ; // decode base 64 using origin // 使用原生进行 base 64 解码
