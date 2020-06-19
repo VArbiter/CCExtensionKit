@@ -21,6 +21,11 @@ UIApplication *MQ_SHARED_APPLICATION(void) ;
              options : (NSDictionary *) options // default @{UIApplicationOpenURLOptionUniversalLinksOnly : @(false)} .
           completion : (void (^)(BOOL success)) mq_completion_block;
 
+#ifdef __IPHONE_13_0
+/// find the only window scene for single scene application , might be nil . // 在单 scene 应用中找到特定的 window scene , 可能为空
++ (UIWindowScene *) mq_current_window_scene_for_single_scene;
+#endif
+
 @end
 
 #pragma mark - -----

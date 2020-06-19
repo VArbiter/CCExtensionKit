@@ -65,6 +65,20 @@ UIApplication *MQ_SHARED_APPLICATION(void) {
     
 }
 
+#ifdef __IPHONE_13_0
++ (UIWindowScene *) mq_current_window_scene_for_single_scene {
+    NSSet <UIScene *> *set = UIApplication.sharedApplication.connectedScenes;
+    if (set.count) {
+        UIScene *scene = set.anyObject;
+        if ([scene isKindOfClass:[UIWindowScene class]]) {
+            UIEdgeInsets insets_safe_area = ((UIWindowScene *)scene).windows.firstObject.safeAreaInsets;
+            return insets_safe_area.bottom > 0;
+        }
+    }
+    return nil;
+}
+#endif
+
 @end
 
 @implementation UIApplication (MQExtension_Schemes)
