@@ -71,8 +71,7 @@ UIApplication *MQ_SHARED_APPLICATION(void) {
     if (set.count) {
         UIScene *scene = set.anyObject;
         if ([scene isKindOfClass:[UIWindowScene class]]) {
-            UIEdgeInsets insets_safe_area = ((UIWindowScene *)scene).windows.firstObject.safeAreaInsets;
-            return insets_safe_area.bottom > 0;
+            return (UIWindowScene *)scene;
         }
     }
     return nil;
